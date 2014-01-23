@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -55,10 +55,23 @@ doctrine:
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: "%kernel.root_dir%/data/data.db3"
         # path:     "%database_path%"
-
+        types:
+            json: Sonata\Doctrine\Types\JsonType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+
+#    orm:
+#        auto_generate_proxy_classes: "%kernel.debug%"
+#        entity_managers:
+#            default:
+#                mappings:
+#                    ApplicationSonataUserBundle: ~
+#                    SonataUserBundle: ~
+#    dbal:
+#        types:
+#            json: Sonata\Doctrine\Types\JsonType
+
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -67,3 +80,52 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# FOSUser Configuration
+#fos_user:
+#    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+#    firewall_name: main
+#    user_class: Projectx\UserBundle\Entity\User
+
+# Sonata Configuration
+#sonata_block:
+#    default_contexts: [cms]
+#    blocks:
+#        # Enable the SonataAdminBundle block
+#        sonata.admin.block.admin_list:
+#            contexts:   [admin]
+#        # Your other blocks
+
+sonata_user:
+    security_acl: true
+    manager_type: orm # can be orm or mongodb
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        #...
+        sonata.user.block.menu:    # used to display the menu in profile pages
+        sonata.user.block.account: # used to display menu option (login option)
+
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class: Application\Sonata\UserBundle\Entity\Group
+
+
+
+parameters:
+#    sonata.user.admin.user.entity: Application\Sonata\UserBundle\Entity\User
+#    sonata.user.admin.user.class: Projectx\UserBundle\Admin\UserAdmin
+    sonata.user.admin.user.entity: Projectx\UserBundle\Entity\User
+    sonata.user.admin.user.class: Projectx\UserBundle\Entity\UserAdmin
+
+services:
+    sonata.user.admin.group:
+        abstract: true
+        public: false
