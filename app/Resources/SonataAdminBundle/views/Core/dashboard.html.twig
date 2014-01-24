@@ -1,0 +1,28 @@
+{% extends base_template %}
+
+{% block title %}{{ 'title_dashboard'|trans({}, 'SonataAdminBundle') }}{% endblock%}
+{% block breadcrumb %}{% endblock %}
+{% block content %}
+    <div class="row-fluid">
+        <div class="span6">
+            <a href="{{ url('projectx_admin_homepage') }}" class="btn">Custom Page</a>
+        </div>
+    </div>
+    <br/>
+    <div class="row-fluid">
+        <div class="span6">
+            {% for block in blocks %}
+                {% if block.position == 'left' %}
+                    {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="span6">
+            {% for block in blocks %}
+                {% if block.position == 'right' %}
+                    {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

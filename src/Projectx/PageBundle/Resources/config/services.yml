@@ -1,0 +1,7 @@
+parameters:
+#    projectx_page.example.class: Projectx\PageBundle\Example
+
+services:
+#    projectx_page.example:
+#        class: %projectx_page.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

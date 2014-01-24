@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: @ProjectxPageBundle/Resources/config/admin.yml }
 
 framework:
     #esi:             ~
@@ -97,7 +96,6 @@ swiftmailer:
 #            contexts:   [admin]
 #        # Your other blocks
 
-
 # Users section start
 sonata_user:
     security_acl: true
@@ -111,7 +109,6 @@ fos_user:
 
     group:
         group_class: Application\Sonata\UserBundle\Entity\Group
-
 parameters:
 #    sonata.user.admin.user.entity: Projectx\UserBundle\Entity\User
     sonata.user.admin.user.entity: Application\Sonata\UserBundle\Entity\User
@@ -123,19 +120,13 @@ services:
         abstract: true
         public: false
 
-sonata_admin:
-    title:      Projectx Admin
-    templates:
-        # other configuration options
-        search:              SonataAdminBundle:Core:search.html.twig
-        search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
+# Users section end
+
 
 sonata_block:
     default_contexts: [cms]
     blocks:
         sonata.admin.block.admin_list:
-            contexts:   [admin]
-        sonata.admin.block.search_result:
             contexts:   [admin]
         #...
         sonata.user.block.menu:    # used to display the menu in profile pages
@@ -152,39 +143,39 @@ sonata_block:
 #            router.default: 100
 
 
-#sonata_page:
-#    multisite: host
-#    use_streamed_response: true # set the value to false in debug mode or if the reverse proxy does not handle streamed response
-#    ignore_route_patterns:
-#        - ^(.*)admin(.*)   # ignore admin route, ie route containing 'admin'
-#        - ^_(.*)          # ignore symfony routes
-#
-#    ignore_routes:
-#        - sonata_page_cache_esi
-#        - sonata_page_cache_ssi
-#        - sonata_page_js_sync_cache
-#        - sonata_page_js_async_cache
-#        - sonata_cache_esi
-#        - sonata_cache_ssi
-#        - sonata_cache_js_async
-#        - sonata_cache_js_sync
-#        - sonata_cache_apc
-#
-#    ignore_uri_patterns:
-#        - ^/admin\/   # ignore admin route, ie route containing 'admin'
-#
-#    page_defaults:
-#        homepage: {decorate: false} # disable decoration for homepage, key - is a page route
-#
-#    default_template: default # template key from templates section, used as default for pages
-#    templates:
-#        default:  { path: 'SonataPageBundle::layout.html.twig',          name: 'default' }
-#        2columns: { path: 'SonataPageBundle::2columns_layout.html.twig', name: '2 columns layout' }
-#
-#    # manage the http errors
-#    catch_exceptions:
-#        not_found: [404]    # render 404 page with "not_found" key (name generated: _page_internal_error_{key})
-#        fatal:     [500]    # so you can use the same page for different http errors or specify specific page for each error
+sonata_page:
+    multisite: host
+    use_streamed_response: true # set the value to false in debug mode or if the reverse proxy does not handle streamed response
+    ignore_route_patterns:
+        - ^(.*)admin(.*)   # ignore admin route, ie route containing 'admin'
+        - ^_(.*)          # ignore symfony routes
+
+    ignore_routes:
+        - sonata_page_cache_esi
+        - sonata_page_cache_ssi
+        - sonata_page_js_sync_cache
+        - sonata_page_js_async_cache
+        - sonata_cache_esi
+        - sonata_cache_ssi
+        - sonata_cache_js_async
+        - sonata_cache_js_sync
+        - sonata_cache_apc
+
+    ignore_uri_patterns:
+        - ^/admin\/   # ignore admin route, ie route containing 'admin'
+
+    page_defaults:
+        homepage: {decorate: false} # disable decoration for homepage, key - is a page route
+
+    default_template: default # template key from templates section, used as default for pages
+    templates:
+        default:  { path: 'SonataPageBundle::layout.html.twig',          name: 'default' }
+        2columns: { path: 'SonataPageBundle::2columns_layout.html.twig', name: '2 columns layout' }
+
+    # manage the http errors
+    catch_exceptions:
+        not_found: [404]    # render 404 page with "not_found" key (name generated: _page_internal_error_{key})
+        fatal:     [500]    # so you can use the same page for different http errors or specify specific page for each error
 
 
 
@@ -217,65 +208,65 @@ sonata_block:
 #                - { domain: kooqit.local, ip: 127.0.0.1, port: 80}
 
 
-#sonata_seo:
-#    default:          sonata.seo.page.default
-#    encoding:         UTF-8
-#    page:
-#        title:            Sonata Project
-#        metas:
-#            name:
-#                keywords:             foo bar
-#                description:          The description
-#                robots:               index, follow
-#
-##            property:
-##                # Facebook application settings
-##                #'fb:app_id':          XXXXXX
-##                #'fb:admins':          admin1, admin2
-##
-##                # Open Graph information
-##                # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
-##                'og:site_name':       Sonata Project Sandbox
-##                'og:description':     A demo of the some rich bundles for your Symfony2 projects
-##
-##            http-equiv:
-##                'Content-Type':         text/html; charset=utf-8
-##                #'X-Ua-Compatible':      IE=EmulateIE7
-#
-#        head:
-#            'xmlns':              http://www.w3.org/1999/xhtml
-#            'xmlns:og':           http://opengraphprotocol.org/schema/
-#            #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
+sonata_seo:
+    default:          sonata.seo.page.default
+    encoding:         UTF-8
+    page:
+        title:            Sonata Project
+        metas:
+            name:
+                keywords:             foo bar
+                description:          The description
+                robots:               index, follow
 
-#sonata_notification:
-#    backend: sonata.notification.backend.runtime
+#            property:
+#                # Facebook application settings
+#                #'fb:app_id':          XXXXXX
+#                #'fb:admins':          admin1, admin2
+#
+#                # Open Graph information
+#                # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
+#                'og:site_name':       Sonata Project Sandbox
+#                'og:description':     A demo of the some rich bundles for your Symfony2 projects
+#
+#            http-equiv:
+#                'Content-Type':         text/html; charset=utf-8
+#                #'X-Ua-Compatible':      IE=EmulateIE7
+
+        head:
+            'xmlns':              http://www.w3.org/1999/xhtml
+            'xmlns:og':           http://opengraphprotocol.org/schema/
+            #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
+
+sonata_notification:
+    backend: sonata.notification.backend.runtime
 
 
-#sonata_media:
-#    # if you don't use default namespace configuration
-#    #class:
-#    #    media: MyVendor\MediaBundle\Entity\Media
-#    #    gallery: MyVendor\MediaBundle\Entity\Gallery
-#    #    gallery_has_media: MyVendor\MediaBundle\Entity\GalleryHasMedia
-#    default_context: default
-#    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
-#    contexts:
-#        default:  # the default context is mandatory
-#            providers:
-#                - sonata.media.provider.dailymotion
-#                - sonata.media.provider.youtube
-#                - sonata.media.provider.image
-#                - sonata.media.provider.file
-#
-#            formats:
-#                small: { width: 100 , quality: 70}
-#                big:   { width: 500 , quality: 70}
-#
-#    cdn:
-#        server:
-#            path: /uploads/media # http://media.sonata-project.org/
-#
-#    filesystem:
-#        local:
-#            directory:  %kernel.root_dir%/../web/uploads/media
-#            create:     false
+sonata_media:
+    # if you don't use default namespace configuration
+    #class:
+    #    media: MyVendor\MediaBundle\Entity\Media
+    #    gallery: MyVendor\MediaBundle\Entity\Gallery
+    #    gallery_has_media: MyVendor\MediaBundle\Entity\GalleryHasMedia
+    default_context: default
+    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
+    contexts:
+        default:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+
+    cdn:
+        server:
+            path: /uploads/media # http://media.sonata-project.org/
+
+    filesystem:
+        local:
+            directory:  %kernel.root_dir%/../web/uploads/media
+            create:     false

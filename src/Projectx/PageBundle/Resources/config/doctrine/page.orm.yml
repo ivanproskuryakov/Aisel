@@ -1,0 +1,23 @@
+Projectx\PageBundle\Entity\Page:
+    type: entity
+    table: x_page
+    repositoryClass: Projectx\PageBundle\Entity\PageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        content:
+            type: text
+        dateCreated:
+            type: datetime
+            column: date_created
+        dateModified:
+            type: datetime
+            column: date_modified
+    lifecycleCallbacks: {  }

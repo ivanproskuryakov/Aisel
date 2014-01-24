@@ -21,7 +21,7 @@ security:
 #                users:
 #                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
 #                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-#    providers:
+    providers:
 #            fos_userbundle:
 #                id: fos_user.user_provider.username
     providers:
@@ -66,16 +66,16 @@ security:
 
         # -> custom firewall for the admin area of the URL
         admin:
-            pattern:            /admin(.*)
+            pattern:            /administration(.*)
             context:            user
             form_login:
                 provider:       fos_userbundle
-                login_path:     /admin/login
+                login_path:     /administration/login
                 use_forward:    false
-                check_path:     /admin/login_check
+                check_path:     /administration/login_check
                 failure_path:   null
             logout:
-                path:           /admin/logout
+                path:           /administration/logout
             anonymous:          true
 
         # -> end custom configuration
@@ -114,12 +114,12 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
         # Admin login page needs to be access without credential
-        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/administration/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/administration/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/administration/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
-        - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
+        - { path: ^/administration/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

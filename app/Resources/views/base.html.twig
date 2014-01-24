@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html {{ sonata_seo_html_attributes() }}>
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        {{ sonata_seo_head_attributes() }}>
+        {{ sonata_seo_title() }}
+        {{ sonata_seo_metadatas() }}
+        {{ sonata_seo_link_canonical() }}
+        {{ sonata_seo_lang_alternates() }}
     </head>
     <body>
+        {{ sonata_block_render_event('breadcrumb', { 'context': 'my_custom_context', 'current_uri': app.request.requestUri }) }}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
