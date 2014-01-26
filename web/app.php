@@ -3,7 +3,7 @@
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 
-$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+$loader = require_once __DIR__.'/../sfapp/app/bootstrap.php.cache';
 
 // Use APC for autoloading to improve performance.
 // Change 'sf2' to a unique prefix in order to prevent cache key conflicts
@@ -14,7 +14,7 @@ $loader->unregister();
 $apcLoader->register(true);
 */
 
-require_once __DIR__.'/../app/AppKernel.php';
+require_once __DIR__.'/../sf2app/app/AppKernel.php';
 //require_once __DIR__.'/../app/AppCache.php';
 
 $kernel = new AppKernel('prod', false);

@@ -1,10 +1,10 @@
 /web/bundles/
-/app/bootstrap.php.cache
-/app/cache/*
-/app/config/parameters.yml
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
+/sf2app/app/bootstrap.php.cache
+/sf2app/app/cache/*
+/sf2app/app/config/parameters.yml
+/sf2app/app/logs/*
+!/sf2appapp/cache/.gitkeep
+!sf2app/app/logs/.gitkeep
 /build/
 /vendor/
 /bin/

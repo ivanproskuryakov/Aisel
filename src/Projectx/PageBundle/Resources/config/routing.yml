@@ -1,3 +1,3 @@
 projectx_page_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: ProjectxPageBundle:Default:index }
