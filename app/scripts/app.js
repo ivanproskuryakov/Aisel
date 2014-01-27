@@ -6,15 +6,20 @@ angular.module('projectxApp', [
   'ngSanitize',
   'ngRoute'
 ])
+  .constant('API_URL','http://projectx.dev/app_dev.php/api')
   .config(function ($routeProvider) {
     $routeProvider
         .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
         })
-        .when('/page/', {
+        .when('/pages/:current/', {
             templateUrl: 'views/page.html',
             controller: 'PageCtrl'
+        })
+        .when('/page/:pageId', {
+            templateUrl: 'views/page-detail.html',
+            controller: 'PageDetailCtrl'
         })
         .when('/about/', {
             templateUrl: 'views/about.html',

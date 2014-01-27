@@ -1,28 +1,41 @@
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span2">
-            <!--Sidebar content-->
+<div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-xs-12 col-sm-9">
+        <!--Body content-->
+        <h2>CMS Pages</h2>
+        <ul class="pagination pagination-sm" ng-repeat="n in [] | pagination:1: (pagesTotal)">
+            <li><a href="#/pages/{{n}}/?order={{order}}&orderby={{orderby}}&search={{search}}">{{n}}</a></li>
+        </ul>
+        <hr/>
+        <ul class="pageList">
+            <li ng-repeat="page in list.pages">
+                <a href="#/page/{{page.id}}/" class="thumb">{{page.title}}</a>
+                <p>{{page.content}}</p>
+                <p>Date: {{page.dateCreated}}</p>
+                <hr/>
+            </li>
+        </ul>
+        <hr/>
+        <p>Total pages: {{list.total}} Current: {{currentPage}}</p>
 
-            Search: <input ng-model="query">
-            Sort by:
-            <select ng-model="orderProp">
-                <option value="name">Alphabetical</option>
-                <option value="age">Newest</option>
-            </select>
-
-        </div>
-        <div class="span10">
-            <!--Body content-->
-
-            <ul class="phones">
-                <li ng-repeat="phone in phones | filter:query | orderBy:orderProp"
-                    class="thumbnail phone-listing">
-                    <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
-                    <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
-                    <p>{{phone.snippet}}</p>
-                </li>
-            </ul>
-
-        </div>
     </div>
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+
+    <!--Sidebar content-->
+
+        Search: <input ng-change="doRequest()" ng-model="search"><br/>
+        Sort by:
+        <select ng-model="order" ng-change="doRequest()">
+            <option value="id">Identifier</option>
+            <option value="title">Title</option>
+            <option value="dateCreated">Date Created</option>
+            <option value="dateModified">Date Modified</option>
+        </select>
+
+        <select ng-model="orderby" ng-change="doRequest()">
+            <option value="ASC">ASC</option>
+            <option value="DESC">DESC</option>
+        </select>
+
+    </div>
+
 </div>

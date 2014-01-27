@@ -6,21 +6,27 @@ use Projectx\PageBundle\Entity\Page as Page;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class ApiController extends Controller
 {
 
     /**
      * @Rest\View
+     * /api/page/list/?limit=2&current=3&search=123
      */
-    public function pageListAction()
+    public function pageListAction(Request $request)
     {
-//        $r = $this->container->get("projectx.page.admin");
-//        vat_dump($r);
-//        exit();
+        $params = array(
+            'current'=>$request->query->get('current'),
+            'limit'=>$request->query->get('limit'),
+            'search'=>$request->query->get('search'),
+            'order'=>$request->query->get('order'),
+            'orderby'=>$request->query->get('orderby'),
+        );
 
-        $pageList = $this->container->get("projectx.page.manager")->getPages();
-        return array('pageList' => $pageList);
+        $pageList = $this->container->get("projectx.page.manager")->getPages($params);
+        return $pageList;
 
     }
 
@@ -30,7 +36,7 @@ class ApiController extends Controller
     public function pageViewAction($id)
     {
         $page = $this->container->get("projectx.page.manager")->getPage($id);
-        return array('page' => $page);
+        return $page;
 
     }
 }

@@ -12,4 +12,87 @@ use Doctrine\ORM\EntityRepository;
  */
 class PageRepository extends EntityRepository
 {
+    private $search = '';
+    private $pageCurrent = 1;
+    private $pageLimit = 1;
+    private $pageSkip = 1;
+    private $pageOrder = 'id';
+    private $pageOrderBy = 'ASC';
+
+    private function mapRequest($params) {
+
+        if ($params['current']) {
+            $this->pageCurrent = $params['current'];
+        }
+        if ( $params['limit']) {
+            $this->pageLimit = $params['limit'];
+        }
+        if ($params['search'] != '') {
+            $this->search = $params['search'];
+        }
+        if ( $params['order']) {
+            $this->pageOrder = $params['order'];
+        }
+        if ( $params['orderby']) {
+            $this->pageOrderBy = $params['orderby'];
+        }
+
+        $this->pageSkip = ($this->pageCurrent-1) * $this->pageLimit;
+    }
+
+
+    /*
+     * Get page total
+     *
+     * @return int value
+     * */
+
+    public function getTotalFromRequest($params)
+    {
+        $this->mapRequest($params);
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('COUNT(p.id)')
+            ->from('ProjectxPageBundle:Page', 'p')
+            ->where('p.pageStatus = :page_status');
+
+        if ($this->search != '') {
+            $qb->andWhere('p.content LIKE :search')->setParameter('search', '%'.$this->search.'%');
+        }
+        $r = $qb->setParameter('page_status', 1)
+                ->getQuery()->getSingleScalarResult();
+
+        if (!$r) return 0;
+        return $r;
+    }
+
+    /*
+     * Get pages based on limit, current pagination and search query
+     *
+     * @return pages
+     * */
+
+    public function getCurrentPagesFromRequest($params)
+    {
+        $this->mapRequest($params);
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('p.id, p.title, p.content, p.dateCreated')
+            ->from('ProjectxPageBundle:Page', 'p')
+            ->setMaxResults($this->pageLimit)
+            ->setFirstResult($this->pageSkip);
+
+        if ($this->search != '') {
+            $qb->where('p.content LIKE :search')->setParameter('search', '%'.$this->search.'%');
+        }
+        $r = $qb->setMaxResults($this->pageLimit)
+            ->setFirstResult($this->pageSkip)
+            ->orderBy('p.'.$this->pageOrder, $this->pageOrderBy)
+            ->getQuery()
+            ->execute();
+
+        return $r;
+    }
+
 }

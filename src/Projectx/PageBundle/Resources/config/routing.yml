@@ -8,6 +8,7 @@ api_projectx_pagelist:
     requirements:
         _method: GET
 
+
 api_projectx_pageview:
     pattern:  /api/page/view/{id}/
     defaults: { _controller: ProjectxPageBundle:Api:pageView, _format: json }

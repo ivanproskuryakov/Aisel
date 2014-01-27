@@ -16,15 +16,17 @@ class PageManager
      * Get list of all pages
      * @return json
      */
-    public function getPages()
+    public function getPages($params)
     {
-        $pageList = $this->em->getRepository('ProjectxPageBundle:Page')
-            ->findAll();
+        $total = $this->em->getRepository('ProjectxPageBundle:Page')->getTotalFromRequest($params);
+        $pages = $this->em->getRepository('ProjectxPageBundle:Page')->getCurrentPagesFromRequest($params);
 
-        if(!($pageList)){
-            throw $this->createNotFoundException();
-        }
-        return $pageList;
+        $return = array (
+            'total'=> $total,
+            'pages'=> $pages
+        );
+
+        return $return;
     }
 
     /**
