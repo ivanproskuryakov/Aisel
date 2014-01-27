@@ -34,6 +34,35 @@ class Page
      */
     private $dateModified;
 
+    /**
+     * @var string
+     */
+    private $pageStatus;
+
+    /**
+     * @var boolean
+     */
+    private $commentStatus;
+
+    /**
+     * @var string
+     */
+    private $metaUrl;
+
+    /**
+     * @var string
+     */
+    private $metaTitle;
+
+    /**
+     * @var string
+     */
+    private $metaDescription;
+
+    /**
+     * @var string
+     */
+    private $metaKeywords;
 
     /**
      * Get id
@@ -99,7 +128,13 @@ class Page
      */
     public function setDateCreated($dateCreated)
     {
-        $this->dateCreated = $dateCreated;
+        if (!$this->getDateCreated()) {
+            if (!$dateCreated) {
+                $dateCreated = new \DateTime(date('Y-m-d H:i:s'));
+            }
+
+            $this->dateCreated = $dateCreated;
+        }
 
         return $this;
     }
@@ -122,6 +157,9 @@ class Page
      */
     public function setDateModified($dateModified)
     {
+        if (!$dateModified) {
+            $dateCreated = new \DateTime(date('Y-m-d H:i:s'));
+        }
         $this->dateModified = $dateModified;
 
         return $this;
@@ -135,5 +173,143 @@ class Page
     public function getDateModified()
     {
         return $this->dateModified;
+    }
+
+    /**
+     * Set pageStatus
+     *
+     * @param string $pageStatus
+     * @return Page
+     */
+    public function setPageStatus($pageStatus)
+    {
+        $this->pageStatus = $pageStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get pageStatus
+     *
+     * @return string 
+     */
+    public function getPageStatus()
+    {
+        return $this->pageStatus;
+    }
+
+    /**
+     * Set commentStatus
+     *
+     * @param boolean $commentStatus
+     * @return Page
+     */
+    public function setCommentStatus($commentStatus)
+    {
+        $this->commentStatus = $commentStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get commentStatus
+     *
+     * @return boolean 
+     */
+    public function getCommentStatus()
+    {
+        return $this->commentStatus;
+    }
+
+    /**
+     * Set metaUrl
+     *
+     * @param string $metaUrl
+     * @return Page
+     */
+    public function setMetaUrl($metaUrl)
+    {
+        $this->metaUrl = $metaUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get metaUrl
+     *
+     * @return string 
+     */
+    public function getMetaUrl()
+    {
+        return $this->metaUrl;
+    }
+
+    /**
+     * Set metaTitle
+     *
+     * @param string $metaTitle
+     * @return Page
+     */
+    public function setMetaTitle($metaTitle)
+    {
+        $this->metaTitle = $metaTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get metaTitle
+     *
+     * @return string 
+     */
+    public function getMetaTitle()
+    {
+        return $this->metaTitle;
+    }
+
+    /**
+     * Set metaDescription
+     *
+     * @param string $metaDescription
+     * @return Page
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get metaDescription
+     *
+     * @return string 
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * Set metaKeywords
+     *
+     * @param string $metaKeywords
+     * @return Page
+     */
+    public function setMetaKeywords($metaKeywords)
+    {
+        $this->metaKeywords = $metaKeywords;
+
+        return $this;
+    }
+
+    /**
+     * Get metaKeywords
+     *
+     * @return string 
+     */
+    public function getMetaKeywords()
+    {
+        return $this->metaKeywords;
     }
 }

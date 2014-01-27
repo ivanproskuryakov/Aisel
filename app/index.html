@@ -26,19 +26,13 @@
 
     <!-- Add your site or application content here -->
 
+    <div class="header" ng-include="'views/main/header.html'"></div>
 
     <div class="container">
-
-        <div class="header">
-            <ul class="nav nav-pills pull-right">
-                <li class="active"><a ng-href="#">Home</a></li>
-                <li><a ng-href="#/page">Page</a></li>
-                <li><a ng-href="#/about">About</a></li>
-                <li><a ng-href="#/contact">Contact</a></li>
-            </ul>
-            <h3 class="text-muted">Projectx yo</h3>
-        </div>
         <div class="view" ng-view=""></div>
+
+        <div class="footer" ng-include="'views/main/footer.html'"></div>
+
     </div>
 
 
@@ -76,13 +70,13 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/pageController.js"></script>
-        <script src="scripts/controllers/page.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/contact.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/pageController.js"></script>
+    <script src="scripts/controllers/page.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/contact.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

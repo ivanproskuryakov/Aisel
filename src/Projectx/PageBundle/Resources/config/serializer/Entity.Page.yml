@@ -1,0 +1,23 @@
+Projectx\PageBundle\Entity\Page:
+  exclusion_policy: ALL
+  properties:
+    id:
+        expose: true
+    title:
+        expose: true
+    content:
+        expose: true
+    dateCreated:
+        expose: true
+    dateModified:
+        expose: true
+    comment_status:
+        expose: true
+    metaUrl:
+        expose: true
+    metaTitle:
+        expose: true
+    metaDescription:
+        expose: true
+    metaKeywords:
+        expose: true

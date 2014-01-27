@@ -1,7 +1,29 @@
 parameters:
-#    projectx_page.example.class: Projectx\PageBundle\Example
+    projectx.page.manager.class: Projectx\PageBundle\Manager\PageManager
 
 services:
-#    projectx_page.example:
-#        class: %projectx_page.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    sonata.admin.post:
+        class: Projectx\PageBundle\Admin\PageAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Page" }
+        arguments:
+            - ~
+            - Projectx\PageBundle\Entity\Page
+            - ~
+        calls:
+            - [ setTranslationDomain, [ProjectxPageBundle]]
+
+    projectx.page.manager:
+        class: %projectx.page.manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager]
+
+#    projectx.page.admin:
+#        class: Projectx\PageBundle\Admin\PageAdmin
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Page" }
+#        arguments:
+#            - ~
+#            - Projectx\PageBundle\Entity\Page
+#            - ~
+#        calls:
+#            - [ setPageManager, ['@doctrine.orm.entity_manager']]

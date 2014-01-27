@@ -20,6 +20,7 @@
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~1.3",
+        "friendsofsymfony/rest-bundle": "dev-master",
 
         "sonata-project/easy-extends-bundle": "~2.1@dev",
         "sonata-project/admin-bundle": "~2.2@dev",
@@ -28,7 +29,8 @@
         "sonata-project/user-bundle": "~2.2@dev",
         "sonata-project/cache-bundle": "~2.1@dev",
         "sonata-project/page-bundle": "~2.3@dev",
-        "sonata-project/core-bundle": "~2.2@dev"
+        "sonata-project/core-bundle": "~2.2@dev",
+        "jms/serializer-bundle": "dev-master"
 
 
     },
@@ -52,10 +54,10 @@
         "bin-dir": "bin"
     },
     "extra": {
-        "symfony-app-dir": "app",
-        "symfony-web-dir": "web",
+        "symfony-app-dir": "sf2app/app",
+        "symfony-web-dir": "app",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "sf2app/app/config/parameters.yml"
         },
         "branch-alias": {
             "dev-master": "2.4-dev"

@@ -1,11 +1,11 @@
-services:
-    sonata.admin.post:
-        class: Projectx\PageBundle\Entity\PageAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Page" }
-        arguments:
-            - ~
-            - Projectx\PageBundle\Entity\Page
-            - ~
-        calls:
-            - [ setTranslationDomain, [ProjectxPageBundle]]
+#services:
+#    sonata.admin.post:
+#        class: Projectx\PageBundle\Admin\PageAdmin
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Page" }
+#        arguments:
+#            - ~
+#            - Projectx\PageBundle\Entity\Page
+#            - ~
+#        calls:
+#            - [ setTranslationDomain, [ProjectxPageBundle]]
