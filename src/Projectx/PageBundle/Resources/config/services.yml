@@ -1,5 +1,6 @@
 parameters:
     projectx.page.manager.class: Projectx\PageBundle\Manager\PageManager
+    projectx.search.manager.class: Projectx\PageBundle\Manager\SearchManager
 
 services:
     sonata.admin.post:
@@ -16,6 +17,10 @@ services:
     projectx.page.manager:
         class: %projectx.page.manager.class%
         arguments: [@service_container, @doctrine.orm.entity_manager]
+
+    projectx.search.manager:
+        class: %projectx.search.manager.class%
+        arguments: [@doctrine.orm.entity_manager]
 
 #    projectx.page.admin:
 #        class: Projectx\PageBundle\Admin\PageAdmin

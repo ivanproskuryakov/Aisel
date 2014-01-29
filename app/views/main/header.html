@@ -1,5 +1,5 @@
 <!-- Static navbar -->
-<div class="navbar navbar-default navbar-static-top" role="navigation">
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -9,21 +9,17 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">Projectx</a>
-        </div>
-        <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <!--<li class="dropdown">-->
-                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions <b class="caret"></b></a>-->
-                    <!--<ul class="dropdown-menu">-->
-                        <!--<li><a href="#/page">Pages</a></li>-->
-                    <!--</ul>-->
-                <!--</li>-->
-                <li><a ng-href="#/pages/index/">Pages</a>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
                 <li><a ng-href="#/about">About</a>
                 <li><a ng-href="#/contact">Contact</a></li>
+                <li><a ng-href="#/pages/">Pages</a>
             </ul>
         </div>
+        <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+                <input type="text" ng-search-redirect="{{search}}" ng-model="search" placeholder="Enter query ..." class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
     </div>
 </div>

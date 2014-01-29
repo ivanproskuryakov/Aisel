@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('projectxApp', [
+  'ui.bootstrap',
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -10,10 +11,10 @@ angular.module('projectxApp', [
   .config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
         })
-        .when('/pages/:current/', {
+        .when('/pages/', {
             templateUrl: 'views/page.html',
             controller: 'PageCtrl'
         })
@@ -28,6 +29,10 @@ angular.module('projectxApp', [
         .when('/contact/', {
             templateUrl: 'views/contact.html',
             controller: 'ContactCtrl'
+        })
+        .when('/search/:query', {
+            templateUrl: 'views/search.html',
+            controller: 'SearchCtrl'
         })
         .otherwise({
         redirectTo: '/'

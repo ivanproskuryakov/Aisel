@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class PageRepository extends EntityRepository
 {
-    private $search = '';
+    private $query = '';
     private $pageCurrent = 1;
     private $pageLimit = 1;
     private $pageSkip = 1;
@@ -21,22 +21,33 @@ class PageRepository extends EntityRepository
 
     private function mapRequest($params) {
 
-        if ($params['current']) {
+        if ( isset($params['current'])) {
             $this->pageCurrent = $params['current'];
+        } else {
+            $this->pageCurrent = 1;
         }
-        if ( $params['limit']) {
+        if ( isset($params['limit'])) {
             $this->pageLimit = $params['limit'];
-        }
-        if ($params['search'] != '') {
-            $this->search = $params['search'];
-        }
-        if ( $params['order']) {
-            $this->pageOrder = $params['order'];
-        }
-        if ( $params['orderby']) {
-            $this->pageOrderBy = $params['orderby'];
+        } else {
+            $this->pageLimit = 5;
         }
 
+        // ordering
+        if ( isset($params['order'])) {
+            $this->pageOrder = $params['order'];
+        } else {
+            $this->pageOrder = 'id';
+        }
+        if ( isset($params['orderby'])) {
+            $this->pageOrderBy = $params['orderby'];
+        } else {
+            $this->pageOrderBy = 'ASC';
+        }
+
+        // search
+        if ( isset($params['query'])) {
+            $this->query = $params['query'];
+        }
         $this->pageSkip = ($this->pageCurrent-1) * $this->pageLimit;
     }
 
@@ -57,8 +68,8 @@ class PageRepository extends EntityRepository
             ->from('ProjectxPageBundle:Page', 'p')
             ->where('p.pageStatus = :page_status');
 
-        if ($this->search != '') {
-            $qb->andWhere('p.content LIKE :search')->setParameter('search', '%'.$this->search.'%');
+        if ($this->query != '') {
+            $qb->andWhere('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%');
         }
         $r = $qb->setParameter('page_status', 1)
                 ->getQuery()->getSingleScalarResult();
@@ -78,15 +89,31 @@ class PageRepository extends EntityRepository
         $this->mapRequest($params);
 
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $qb->select('p.id, p.title, p.content, p.dateCreated')
+        $r = $qb->select('p.id, p.title, p.content, p.dateCreated')
             ->from('ProjectxPageBundle:Page', 'p')
             ->setMaxResults($this->pageLimit)
-            ->setFirstResult($this->pageSkip);
+            ->setFirstResult($this->pageSkip)
+            ->getQuery()
+            ->execute();
 
-        if ($this->search != '') {
-            $qb->where('p.content LIKE :search')->setParameter('search', '%'.$this->search.'%');
-        }
-        $r = $qb->setMaxResults($this->pageLimit)
+        return $r;
+    }
+
+    /*
+     * Get pages based on limit, current pagination and search query
+     *
+     * @return pages
+     * */
+
+    public function searchFromRequest($params)
+    {
+        $this->mapRequest($params);
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $r = $qb->select('p.id, p.title, p.content, p.dateCreated')
+            ->from('ProjectxPageBundle:Page', 'p')
+            ->where('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%')
+            ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
             ->orderBy('p.'.$this->pageOrder, $this->pageOrderBy)
             ->getQuery()

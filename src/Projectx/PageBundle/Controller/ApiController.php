@@ -13,16 +13,31 @@ class ApiController extends Controller
 
     /**
      * @Rest\View
-     * /api/page/list/?limit=2&current=3&search=123
+     * /api/search/?query=abc
+     */
+    public function searchAction(Request $request)
+    {
+        $params = array(
+            'current'=>$request->query->get('current'),
+            'limit'=>$request->query->get('limit'),
+            'query'=>$request->query->get('query'),
+            'order'=>$request->query->get('order'),
+            'orderby'=>$request->query->get('orderby'),
+        );
+
+        $searchResult = $this->container->get("projectx.search.manager")->search($params);
+        return $searchResult;
+
+    }
+    /**
+     * @Rest\View
+     * /api/page/list/?limit=2&current=3
      */
     public function pageListAction(Request $request)
     {
         $params = array(
             'current'=>$request->query->get('current'),
             'limit'=>$request->query->get('limit'),
-            'search'=>$request->query->get('search'),
-            'order'=>$request->query->get('order'),
-            'orderby'=>$request->query->get('orderby'),
         );
 
         $pageList = $this->container->get("projectx.page.manager")->getPages($params);

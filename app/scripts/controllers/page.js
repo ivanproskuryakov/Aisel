@@ -1,38 +1,33 @@
 'use strict';
 
 angular.module('projectxApp')
-  .controller('PageCtrl', ['$scope','$routeParams','pageService',function ($scope,$routeParams, pageService) {
-//        console.log($scope);
+  .controller('PageCtrl', ['$location','$scope','$routeParams','pageService',function ($location, $scope, $routeParams, pageService) {
 
         $scope.limit = 5;
-        $scope.currentPage = $routeParams.current;
-
-
-        $scope.order = 'id'
-        if ($routeParams.order) {
-            $scope.order = $routeParams.order;
-        }
-        $scope.orderby = 'ASC';
-        if ($routeParams.orderby) {
-            $scope.orderby = $routeParams.orderby;
-        }
-        $scope.search = '';
-        if ($routeParams.search) {
-            $scope.search = $routeParams.search;
-        }
+//        $scope.paginationPage = $routeParams.page;
+//        if (!$scope.paginationPage)
+        $scope.paginationPage = 1;
 
         var handleSuccess = function(data, status) {
             $scope.list = data;
-            $scope.pagesTotal = pageService.getTotalPages($scope)
-
-        };
-        $scope.doRequest = function() {
-            pageService.getPages($scope).success(handleSuccess);
         };
         pageService.getPages($scope).success(handleSuccess);
 
-
-
-
-
+        $scope.pageChanged = function(page) {
+            $scope.paginationPage = page;
+            pageService.getPages($scope).success(handleSuccess);
+        };
   }]);
+
+//$scope.order = 'id'
+//if ($routeParams.order) {
+//    $scope.order = $routeParams.order;
+//}
+//$scope.orderby = 'ASC';
+//if ($routeParams.orderby) {
+//    $scope.orderby = $routeParams.orderby;
+//}
+//$scope.search = '';
+//if ($routeParams.search) {
+//    $scope.search = $routeParams.search;
+//}

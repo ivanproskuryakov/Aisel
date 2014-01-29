@@ -15,3 +15,10 @@ api_projectx_pageview:
     requirements:
         _method: GET
         id: "\d+"
+
+api_search:
+    pattern:  /api/search/
+    defaults: { _controller: ProjectxPageBundle:Api:search, _format: json }
+    requirements:
+        _method: GET
+        id: "\d+"
