@@ -80,44 +80,5 @@ Projectx\CategoryBundle\Entity\Category:
         mappedBy: parent
         orderBy:
           lft: ASC
-#    id:
-#        id:
-#            type: integer
-#            id: true
-#            generator:
-#                strategy: AUTO
-#    fields:
-#        parentId:
-#            type: text
-#            column: parent_id
-#        name:
-#            type: string
-#            length: 255
-#        description:
-#            type: text
-#        status:
-#            type: boolean
-#            column: status
-#        metaUrl:
-#            type: string
-#            length: 255
-#            column: meta_url
-#        metaTitle:
-#            type: string
-#            length: 255
-#            column: meta_title
-#        metaDescription:
-#            type: string
-#            length: 255
-#            column: meta_description
-#        metaKeywords:
-#            type: string
-#            length: 255
-#            column: meta_keywords
-#        dateCreated:
-#            type: datetime
-#            column: date_created
-#        dateModified:
-#            type: datetime
-#            column: date_modified
+
 #    lifecycleCallbacks: {  }

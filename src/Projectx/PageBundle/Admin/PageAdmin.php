@@ -68,11 +68,17 @@ class PageAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('title')
-            ->add('content')
+            ->add('content', null, array('template' => 'ProjectxPageBundle:Admin:content.html.twig', 'label'=>'Content','true'=>false))
             ->add('pageStatus', 'boolean', array('label' => 'Status','editable' => true))
             ->add('commentStatus', 'boolean', array('label' => 'Comments','editable' => true))
             ->add('dateModified', 'datetime', array('label' => 'Date'))
-
+            ->add('_action', 'actions', array(
+                    'actions' => array(
+                        'show' => array(),
+                        'edit' => array(),
+                        'delete' => array(),
+                    ))
+            );
         ;
     }
 
