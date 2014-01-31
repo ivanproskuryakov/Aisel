@@ -30,7 +30,8 @@
         "sonata-project/cache-bundle": "~2.1@dev",
         "sonata-project/page-bundle": "~2.3@dev",
         "sonata-project/core-bundle": "~2.2@dev",
-        "jms/serializer-bundle": "dev-master"
+        "jms/serializer-bundle": "dev-master",
+        "stof/doctrine-extensions-bundle": "dev-master"
 
 
     },
@@ -54,10 +55,10 @@
         "bin-dir": "bin"
     },
     "extra": {
-        "symfony-app-dir": "sf2app/app",
+        "symfony-app-dir": "app",
         "symfony-web-dir": "app",
         "incenteev-parameters": {
-            "file": "sf2app/app/config/parameters.yml"
+            "file": "app/config/parameters.yml"
         },
         "branch-alias": {
             "dev-master": "2.4-dev"

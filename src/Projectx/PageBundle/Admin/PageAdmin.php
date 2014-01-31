@@ -69,9 +69,9 @@ class PageAdmin extends Admin
             ->addIdentifier('id')
             ->add('title')
             ->add('content')
-            ->add('page_status', 'datetime', array('label' => 'Status'))
-            ->add('comments_status', 'datetime', array('label' => 'Comments'))
-            ->add('date_modified', 'datetime', array('label' => 'Date'))
+            ->add('pageStatus', 'boolean', array('label' => 'Status','editable' => true))
+            ->add('commentStatus', 'boolean', array('label' => 'Comments','editable' => true))
+            ->add('dateModified', 'datetime', array('label' => 'Date'))
 
         ;
     }

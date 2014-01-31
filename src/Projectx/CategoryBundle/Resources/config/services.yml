@@ -1,0 +1,14 @@
+parameters:
+#    projectx_category.example.class: Projectx\CategoryBundle\Example
+
+services:
+    sonata.admin.category:
+        class: Projectx\CategoryBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Categories" }
+        arguments:
+            - ~
+            - Projectx\CategoryBundle\Entity\Category
+            - ~
+        calls:
+            - [ setTranslationDomain, [ProjectxCategoryBundle]]

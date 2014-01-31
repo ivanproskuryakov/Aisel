@@ -1,0 +1,123 @@
+Projectx\CategoryBundle\Entity\Category:
+    type: entity
+    repositoryClass: Gedmo\Tree\Entity\Repository\NestedTreeRepository
+    table: x_category
+    gedmo:
+      tree:
+        type: nested
+    id:
+      id:
+        type: integer
+        generator:
+          strategy: AUTO
+    fields:
+      title:
+        type: string
+        length: 64
+      lft:
+        type: integer
+        gedmo:
+          - treeLeft
+      rgt:
+        type: integer
+        gedmo:
+          - treeRight
+      root:
+        type: integer
+        nullable: true
+        gedmo:
+          - treeRoot
+      lvl:
+        type: integer
+        gedmo:
+          - treeLevel
+
+      #GENERAL
+      description:
+          type: text
+      status:
+          type: boolean
+          column: status
+
+      #META
+      metaUrl:
+          type: string
+          length: 255
+          column: meta_url
+      metaTitle:
+          type: string
+          length: 255
+          column: meta_title
+      metaDescription:
+          type: string
+          length: 255
+          column: meta_description
+      metaKeywords:
+          type: string
+          length: 255
+          column: meta_keywords
+
+      dateCreated:
+          type: datetime
+          column: date_created
+      dateModified:
+          type: datetime
+          column: date_modified
+
+    manyToOne:
+      parent:
+        targetEntity: Projectx\CategoryBundle\Entity\Category
+        inversedBy: children
+        joinColumn:
+          name: parent_id
+          referencedColumnName: id
+          onDelete: CASCADE
+        gedmo:
+          - treeParent
+    oneToMany:
+      children:
+        targetEntity: Projectx\CategoryBundle\Entity\Category
+        mappedBy: parent
+        orderBy:
+          lft: ASC
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTO
+#    fields:
+#        parentId:
+#            type: text
+#            column: parent_id
+#        name:
+#            type: string
+#            length: 255
+#        description:
+#            type: text
+#        status:
+#            type: boolean
+#            column: status
+#        metaUrl:
+#            type: string
+#            length: 255
+#            column: meta_url
+#        metaTitle:
+#            type: string
+#            length: 255
+#            column: meta_title
+#        metaDescription:
+#            type: string
+#            length: 255
+#            column: meta_description
+#        metaKeywords:
+#            type: string
+#            length: 255
+#            column: meta_keywords
+#        dateCreated:
+#            type: datetime
+#            column: date_created
+#        dateModified:
+#            type: datetime
+#            column: date_modified
+#    lifecycleCallbacks: {  }

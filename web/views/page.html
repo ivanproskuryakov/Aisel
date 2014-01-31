@@ -1,0 +1,36 @@
+<div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-xs-12 col-sm-9">
+        <h2>CMS Pages</h2>
+
+        <hr/>
+
+        <div class="col-md-12">
+            <ul class="pageList">
+                <li ng-repeat="page in list.pages">
+                    <h2><a href="#/page/{{page.id}}/" class="thumb">{{page.title}}</a></h2>
+                    <p>{{page.content}}</p>
+                    <p>Date: {{page.dateCreated | date:"MM/dd/yyyy @ h:mma" }}</p>
+                    <hr/>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <pagination ng-if="list.total > 0" on-select-page="pageChanged(page)" items-per-page="{{limit}}" total-items="list.total"  page="paginationPage"></pagination>
+        </div>
+        <div class="col-md-6">
+            <p class="pull-right"><strong>Total pages: {{list.total}} Current: {{paginationPage}}</strong></p>
+        </div>
+    </div>
+
+
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+
+        <h3>Sidebar</h3>
+        <div class="form-group">
+            <label for="searchQuery">Search</label>
+            <input id="searchQuery" class="form-control" ng-search-redirect="{{search}}" ng-model="search" placeholder="Enter query ..." class="form-control">
+        </div>
+
+    </div>
+
+</div>
