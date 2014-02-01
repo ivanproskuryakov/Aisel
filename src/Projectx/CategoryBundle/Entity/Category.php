@@ -53,13 +53,15 @@ class Category
 
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getSpacedTitle();
     }
 
-//    public function getSpacedTitle()
-//    {
-//        return (string)$this;
-//    }
+    public function getSpacedTitle()
+    {
+        $prefix = str_repeat('--',$this->getLvl());
+        return $prefix.$this->getTitle();
+    }
+
     /**
      * Constructor
      */

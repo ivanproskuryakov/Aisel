@@ -18,10 +18,6 @@ class PageAdmin extends Admin
             ->with('General', array('description' => 'This section contains general settings for the web page'))
                 ->add('title', 'text', array('label' => 'Post Title'))
                 ->add('content', 'textarea', array('label' => 'Content'))
-//                ->add('page_status', 'choice', array( 'choices'   => array( 'morning'   => 'Morning',
-//                        'afternoon' => 'Afternoon',
-//                        'evening'   => 'Evening',
-//                    ),array('label' => 'Status')))
                 ->add('page_status', 'choice', array('choices'   => array(
                         '0'   => 'Draft',
                         '1' => 'Published'),
@@ -32,6 +28,12 @@ class PageAdmin extends Admin
                     '1' => 'Enabled'),
                     'label' => 'Comments'
                 ))
+                ->add('categories', 'sonata_type_model',array('property' => 'spacedtitle','expanded' => true, 'compound' => true, 'multiple' => true))
+//                ->add('categories', 'sonata_type_collection', array(), array(
+//                    'edit' => 'inline',
+//                    'inline' => 'table',
+//                    'sortable'  => 'id'
+//                ))
             ->with('Meta', array('description' => 'Meta description for search engines'))
                 ->add('meta_url', 'text', array('label' => 'Url slug'))
                 ->add('meta_Title', 'text', array('label' => 'Title'))

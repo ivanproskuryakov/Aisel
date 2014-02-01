@@ -29,6 +29,7 @@ class ApiController extends Controller
         return $searchResult;
 
     }
+
     /**
      * @Rest\View
      * /api/page/list/?limit=2&current=3

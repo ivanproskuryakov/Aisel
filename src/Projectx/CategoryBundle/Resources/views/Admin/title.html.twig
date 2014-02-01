@@ -4,7 +4,9 @@
 
     {% spaceless %}
         {% set padding = object.lvl * 30 %}
-        <a style="padding-left: {{ padding }}px" href="">{{ object.title }}</a>
+        <a  style="padding-left: {{ padding }}px" class="sonata-link-identifier" href="{{ admin.generateObjectUrl(field_description.options.route.name, object, field_description.options.route.parameters) }}">
+            {{ value }}
+        </a>
     {% endspaceless %}
 
 

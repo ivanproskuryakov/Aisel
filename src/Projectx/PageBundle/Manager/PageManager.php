@@ -14,7 +14,7 @@ class PageManager
 
     /**
      * Get list of all pages
-     * @return json
+     * @return page object
      */
     public function getPages($params)
     {
@@ -30,18 +30,29 @@ class PageManager
     }
 
     /**
-     * Get single page
-     * @return json
+     * Get single detailed page with category
+     * @return mixed array
      */
     public function getPage($id)
     {
-        $page = $this->em->getRepository('ProjectxPageBundle:Page')
-            ->find($id);
+        $page = $this->em->getRepository('ProjectxPageBundle:Page')->find($id);
 
         if(!($page)){
             throw $this->createNotFoundException();
         }
-        return $page;
+
+        $pageDetails = array('page'=>$page,'categories'=>array());
+        foreach ($page->getCategories() as $c) {
+            $category = array();
+
+            $category['id'] = $c->getId();
+            $category['title'] = $c->getTitle();
+            $category['url'] = $c->getMetaUrl();
+            $pageDetails['categories'][$c->getId()] = $category;
+
+        }
+
+        return $pageDetails;
     }
 
 }

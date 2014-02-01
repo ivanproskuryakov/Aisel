@@ -47,7 +47,7 @@ class CategoryAdmin extends Admin
                         }
                         $qb ->orderBy('p.root, p.lft', 'ASC');
                         return $qb;
-                    }
+                    }, 'empty_value' => 'Set as root'
                 ))
                 ->add('status', 'choice', array('choices'   => array(
                     '0'   => 'Disabled',
