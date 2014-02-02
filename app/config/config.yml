@@ -162,13 +162,30 @@ services:
     sonata.user.admin.group:
         abstract: true
         public: false
+    yavin.symfony.form.tree:
+        class: Yavin\Symfony\Form\Type\TreeType
+        arguments:
+            -
+                prefixAttributeName: "nodetree"
+                treeLevelField: "lvl"
+                orderColumns:
+                  - root
+                  - lft
+        tags:
+            - { name: form.type, alias: y_tree }
 
 sonata_admin:
-    title:      Administaration
+    title:      administration
+    title_logo: /images/x_icon.png
     templates:
         # other configuration options
         search:              SonataAdminBundle:Core:search.html.twig
         search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
+sonata_doctrine_orm_admin:
+    entity_manager: ~
+    templates:
+        form:
+            - ProjectxAdminBundle:Form:form_admin_fields.html.twig
 
 sonata_block:
     default_contexts: [cms]

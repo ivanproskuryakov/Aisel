@@ -40,20 +40,32 @@ class CategoryAdmin extends Admin
             ->with('General', array('description' => 'This section contains general settings'))
                 ->add('title', 'text', array('label' => 'Title'))
                 ->add('description', 'textarea', array('label' => 'Description'))
-                ->add('parent', null, array('label' => 'Parent', 'required' => false, 'query_builder' => function ($er) use ($id) {
+                ->add('status', 'choice', array('choices'   => array(
+                    '0'   => 'Disabled',
+                    '1' => 'Enabled'),
+                    'label' => 'Status'
+                ))
+                ->add('parent', 'y_tree', array('expanded' => true,'multiple' => false,
+                    'class' => 'Projectx\CategoryBundle\Entity\Category',
+                    'query_builder' => function ($er) use ($id) {
                         $qb = $er->createQueryBuilder('p');
                         if ($id) {
                             $qb ->where('p.id <> :id')->setParameter('id', $id);
                         }
                         $qb ->orderBy('p.root, p.lft', 'ASC');
                         return $qb;
-                    }, 'empty_value' => 'Set as root'
+                    }, 'empty_value' => 'no parent'
+
                 ))
-                ->add('status', 'choice', array('choices'   => array(
-                    '0'   => 'Disabled',
-                    '1' => 'Enabled'),
-                    'label' => 'Status'
-                ))
+//                ->add('parent', null, array('label' => 'Parent', 'required' => false, 'query_builder' => function ($er) use ($id) {
+//                        $qb = $er->createQueryBuilder('p');
+//                        if ($id) {
+//                            $qb ->where('p.id <> :id')->setParameter('id', $id);
+//                        }
+//                        $qb ->orderBy('p.root, p.lft', 'ASC');
+//                        return $qb;
+//                    }, 'empty_value' => 'no parent'
+//                ))
 
             ->with('Meta', array('description' => 'Meta description for search engines'))
                 ->add('meta_url', 'text', array('label' => 'Url'))

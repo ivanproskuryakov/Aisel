@@ -53,7 +53,7 @@ class Category
 
     public function __toString()
     {
-        return $this->getSpacedTitle();
+        return $this->getTitle();
     }
 
     public function getSpacedTitle()

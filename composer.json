@@ -27,7 +27,6 @@
         "sonata-project/doctrine-orm-admin-bundle": "~2.2@dev",
         "sonata-project/block-bundle": "~2.2@dev",
         "sonata-project/user-bundle": "~2.2@dev",
-        "sonata-project/cache-bundle": "~2.1@dev",
         "sonata-project/page-bundle": "~2.3@dev",
         "sonata-project/core-bundle": "~2.2@dev",
         "jms/serializer-bundle": "dev-master",

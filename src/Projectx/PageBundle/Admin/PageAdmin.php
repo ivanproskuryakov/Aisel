@@ -28,7 +28,10 @@ class PageAdmin extends Admin
                     '1' => 'Enabled'),
                     'label' => 'Comments'
                 ))
-                ->add('categories', 'sonata_type_model',array('property' => 'spacedtitle','expanded' => true, 'compound' => true, 'multiple' => true))
+                ->add('categories', 'y_tree', array('expanded' => true,'multiple' => true,
+                    'class' => 'Projectx\CategoryBundle\Entity\Category',
+                ))
+//                ->add('categories', 'sonata_type_model',array('property' => 'spacedtitle','expanded' => true, 'compound' => true, 'multiple' => true))
 //                ->add('categories', 'sonata_type_collection', array(), array(
 //                    'edit' => 'inline',
 //                    'inline' => 'table',

@@ -48,7 +48,7 @@ file that was distributed with this source code.
             {% endif %}
 
             <!-- base application asset -->
-            <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/css/layout.css') }}" media="all">
+            <link rel="stylesheet" href="{{ asset('bundles/projectxadmin/css/layout.css') }}" media="all">
             <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/css/colors.css') }}" media="all">
 
         {% endblock %}
@@ -267,9 +267,10 @@ file that was distributed with this source code.
                 </div>
 
                 {% block footer %}
+                    <hr/>
                     <div class="row-fluid">
                         <div class="span2 offset10 pull-right">
-                            <span class="label">#extended<a href="http://sonata-project.org" rel="noreferrer" style="text-decoration: none; color: black">Sonata Project</a></span>
+                            <a href="#" rel="noreferrer" style="float: right; text-decoration: none; background: none">Projectx</a>
                         </div>
                     </div>
                 {% endblock %}

@@ -1,0 +1,229 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{# Labels #}
+{% block form_label %}
+{% spaceless %}
+    {% if label is not sameas(false) %}
+        {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ " control-label" }) %}
+
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+
+        {% if in_list_checkbox is defined and in_list_checkbox and widget is defined %}
+            <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+                {{ widget|raw }}
+                <span>
+                    {% if not sonata_admin.admin %}
+                        {{- label|trans({}, translation_domain) -}}
+                    {% else %}
+                        {{- label|trans({}, sonata_admin.field_description.translationDomain) -}}
+                    {% endif%}
+                </span>
+            </label>
+        {% else %}
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                {% if not sonata_admin.admin%}
+                    {{- label|trans({}, translation_domain) -}}
+                {% else %}
+                    {{ sonata_admin.admin.trans(label, {}, sonata_admin.field_description.translationDomain) }}
+                {% endif %}
+            </label>
+        {% endif %}
+    {% endif %}
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block widget_container_attributes_choice_widget %}
+    {% spaceless %}
+        id="{{ id }}"
+        {% for attrname,attrvalue in attr %}{{attrname}}="{% if attrname == 'class' %}unstyled {% endif%}{{attrvalue}}" {% endfor %}
+        {% if "class" not in attr %}class="unstyled"{%endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block choice_widget_expanded %}
+{% spaceless %}
+    <ul {{ block('widget_container_attributes') }}>
+        {% for child in form %}
+            <li>
+                {{ form_widget(child) }}
+                {{ form_label(child) }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+{% block choice_widget %}
+{% spaceless %}
+    {% if compound %}
+        <ul {{ block('widget_container_attributes_choice_widget') }}>
+
+            {#{{ dump(form.vars.choices[12].data.lvl) }}#}
+            {% for child in form %}
+
+                {# Override to make a tree #}
+                {% if child.vars.value %}
+                    {% set margin = form.vars.choices[child.vars.value].data.lvl * 30 %}
+                {% else %}
+                    {% set margin = 0 %}
+                {% endif %}
+
+                {#{{ dump(child.vars.value) }}#}
+                {#{{ dump(form.vars.choices[child.vars.value].data.lvl) }}#}
+
+
+                <li style="margin-left: {{ margin }}px;">
+                    {% set form_widget_content %}
+                        {{ form_widget(child) }}
+                    {% endset %}
+                    {{ form_label(child, child.vars.label|default(null), { 'in_list_checkbox' : true, 'widget' : form_widget_content } ) }}
+                </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {% if empty_value is not none %}
+            <option value="">
+                {% if not sonata_admin.admin %}
+                    {{- empty_value|trans({}, translation_domain) -}}
+                {% else %}
+                    {{- empty_value|trans({}, sonata_admin.field_description.translationDomain) -}}
+                {% endif%}
+            </option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+            {% set options = preferred_choices %}
+            {{ block('choice_widget_options') }}
+            {% if choices|length > 0 %}
+                <option disabled="disabled">{{ separator }}</option>
+            {% endif %}
+        {% endif %}
+        {% set options = choices %}
+        {{ block('choice_widget_options') }}
+    </select>
+    {% endif %}
+{% endspaceless %}
+{% endblock choice_widget %}
+
+{% block form_row %}
+    {% if sonata_admin is not defined or not sonata_admin_enabled or not sonata_admin.field_description %}
+        <div class="control-group {% if errors|length > 0%} error{% endif %}">
+            {{ form_label(form, label|default(null)) }}
+            <div class="controls {% if label is sameas(false) %}sonata-collection-row-without-label{% endif %}">
+                {{ form_widget(form) }}
+                {% if errors|length > 0 %}
+                    <div class="help-inline sonata-ba-field-error-messages">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <div class="control-group{% if errors|length > 0%} error{%endif%}" id="sonata-ba-field-container-{{ id }}">
+            {% block label %}
+                {% if sonata_admin.field_description.options.name is defined %}
+                    {{ form_label(form, sonata_admin.field_description.options.name, { 'attr' : {'class' : 'control-label'} }) }}
+                {% else %}
+                    {{ form_label(form, label|default(null), { 'attr' : {'class' : 'control-label'} }) }}
+                {% endif %}
+            {% endblock %}
+
+            {% set has_label = sonata_admin.field_description.options.name is defined or label is not sameas(false) %}
+            <div class="controls sonata-ba-field sonata-ba-field-{{ sonata_admin.edit }}-{{ sonata_admin.inline }} {% if errors|length > 0 %}sonata-ba-field-error{% endif %} {% if not has_label %}sonata-collection-row-without-label{% endif %}">
+
+                {{ form_widget(form) }}
+
+                {% if errors|length > 0 %}
+                    <div class="help-inline sonata-ba-field-error-messages">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
+
+                {% if sonata_admin.field_description.help %}
+                    <span class="help-block sonata-ba-field-help">{{ sonata_admin.admin.trans(sonata_admin.field_description.help, {}, sonata_admin.field_description.translationDomain)|raw }}</span>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock form_row %}
+
+{% block collection_widget_row %}
+{% spaceless %}
+    <div class="sonata-collection-row">
+        {% if allow_delete %}
+            <a href="#" class="btn sonata-collection-delete"><i class="icon-remove"></i></a>
+        {% endif %}
+        {{ form_row(child) }}
+    </div>
+{% endspaceless %}
+{% endblock %}
+
+{% block collection_widget %}
+{% spaceless %}
+    {% if prototype is defined %}
+        {% set child = prototype %}
+        {% set attr = attr|merge({'data-prototype': block('collection_widget_row'), 'data-prototype-name': prototype.vars.name, 'class': attr.class|default('') }) %}
+    {% endif %}
+    <div {{ block('widget_container_attributes') }}>
+        {{ form_errors(form) }}
+        {% for child in form %}
+            {{ block('collection_widget_row') }}
+        {% endfor %}
+        {{ form_rest(form) }}
+        {% if allow_add %}
+            <div><a href="#" class="btn sonata-collection-add"><i class="icon-plus"></i></a></div>
+        {% endif %}
+    </div>
+{% endspaceless %}
+{% endblock collection_widget %}
+
+{% block sonata_type_immutable_array_widget %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_errors(form) }}
+
+            {% for key, child in form %}
+                {{ block('sonata_type_immutable_array_widget_row') }}
+            {% endfor %}
+
+            {{ form_rest(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock sonata_type_immutable_array_widget %}
+
+{% block sonata_type_immutable_array_widget_row %}
+    {% spaceless %}
+        <div class="control-group{% if errors|length > 0%} error{%endif%}" id="sonata-ba-field-container-{{ id }}-{{ key }}">
+
+            {{ form_label(child) }}
+
+            <div class="controls sonata-ba-field sonata-ba-field-{{ sonata_admin.edit }}-{{ sonata_admin.inline }} {% if errors|length > 0 %}sonata-ba-field-error{% endif %}">
+                {{ form_widget(child) }}
+            </div>
+
+            {% if errors|length > 0 %}
+                <div class="help-inline sonata-ba-field-error-messages">
+                    {{ form_errors(child) }}
+                </div>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock %}

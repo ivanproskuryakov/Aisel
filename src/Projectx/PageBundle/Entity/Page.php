@@ -64,6 +64,10 @@ class Page
      */
     private $metaKeywords;
 
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
     /**
      * Get id
      *
