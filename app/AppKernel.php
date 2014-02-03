@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new Projectx\AdminBundle\ProjectxAdminBundle(),
             new Projectx\PageBundle\ProjectxPageBundle(),
             new Projectx\CategoryBundle\ProjectxCategoryBundle(),
+            new Projectx\NavigationBundle\ProjectxNavigationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

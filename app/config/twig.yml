@@ -1,0 +1,5 @@
+twig:
+  globals:
+    application:
+      name: %application.name%
+      version: %application.version%

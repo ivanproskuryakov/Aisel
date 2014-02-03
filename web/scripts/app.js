@@ -7,8 +7,8 @@ angular.module('projectxApp', [
   'ngSanitize',
   'ngRoute'
 ])
-  .constant('API_URL','http://projectx.dev/app_dev.php/api')
-  .config(function ($routeProvider) {
+  .constant('API_URL','/api')
+  .config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'views/main.html',
@@ -37,4 +37,7 @@ angular.module('projectxApp', [
         .otherwise({
         redirectTo: '/'
         });
+    $locationProvider
+        .html5Mode(false)
+        .hashPrefix('!');
   });

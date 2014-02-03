@@ -1,5 +1,4 @@
-# SF2
-/web/bundles/
+/web/bundles/*
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
@@ -10,9 +9,8 @@
 /vendor/
 /bin/
 /composer.phar
-# YO
 node_modules
 dist
 .tmp
 .sass-cache
-app/bower_components
+web/bower_components

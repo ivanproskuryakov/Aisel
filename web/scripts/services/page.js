@@ -11,6 +11,7 @@ angular.module('projectxApp')
             },
             getPage: function($id) {
                 var url = API_URL+'/page/view/'+$id;
+                console.log(url);
                 return $http.get(url);
             }
         };

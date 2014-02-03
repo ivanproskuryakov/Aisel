@@ -1,6 +1,6 @@
 <?php
 
-namespace Projectx\CategoryBundle\Admin;
+namespace Projectx\NavigationBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -9,10 +9,9 @@ use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-
-class CategoryAdmin extends Admin
+class NavigationAdmin extends Admin
 {
-    protected $baseRoutePattern = 'category';
+    protected $baseRoutePattern = 'navigation/menu';
     protected $maxPerPage = 500;
     protected $maxPageLinks = 500;
 
@@ -33,26 +32,22 @@ class CategoryAdmin extends Admin
         return array('ProjectxAdminBundle:Form:form_admin_fields.html.twig');
     }
 
-
-    // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
 
         $subject = $this->getSubject();
         $id = $subject->getId();
-//        $id = 1;
 
         $formMapper
             ->with('General', array('description' => 'This section contains general settings'))
-                ->add('title', 'text', array('label' => 'Title'))
-                ->add('description', 'textarea', array('label' => 'Description'))
-                ->add('status', 'choice', array('choices'   => array(
+            ->add('title', 'text', array('label' => 'Title'))
+            ->add('status', 'choice', array('choices'   => array(
                     '0'   => 'Disabled',
                     '1' => 'Enabled'),
                     'label' => 'Status'
                 ))
                 ->add('parent', 'y_tree', array('expanded' => true,'multiple' => false,
-                    'class' => 'Projectx\CategoryBundle\Entity\Category',
+                    'class' => 'Projectx\NavigationBundle\Entity\Menu',
                     'query_builder' => function ($er) use ($id) {
                         $qb = $er->createQueryBuilder('p');
                         if ($id) {
@@ -63,21 +58,6 @@ class CategoryAdmin extends Admin
                     }, 'empty_value' => 'no parent'
 
                 ))
-//                ->add('parent', null, array('label' => 'Parent', 'required' => false, 'query_builder' => function ($er) use ($id) {
-//                        $qb = $er->createQueryBuilder('p');
-//                        if ($id) {
-//                            $qb ->where('p.id <> :id')->setParameter('id', $id);
-//                        }
-//                        $qb ->orderBy('p.root, p.lft', 'ASC');
-//                        return $qb;
-//                    }, 'empty_value' => 'no parent'
-//                ))
-
-            ->with('Meta', array('description' => 'Meta description for search engines'))
-                ->add('meta_url', 'text', array('label' => 'Url'))
-                ->add('meta_Title', 'text', array('label' => 'Title'))
-                ->add('meta_description', 'textarea', array('label' => 'Description'))
-                ->add('meta_keywords', 'textarea', array('label' => 'Keywords'))
             ->end();
 
     }
@@ -100,9 +80,8 @@ class CategoryAdmin extends Admin
         $listMapper
             ->addIdentifier('id', null,array('sortable'=>false))
             ->add('status', 'boolean', array('label' => 'Enabled','editable' => true))
-            ->add('title', null, array('template' => 'ProjectxCategoryBundle:Admin:title.html.twig', 'label'=>'Title','sortable'=>false))
-            ->add('description', 'text', array('label' => 'Description'))
-            ->add('order', 'text', array('template' => 'ProjectxCategoryBundle:Admin:order.html.twig', 'label'=>'Move'))
+            ->add('title', null, array('template' => 'ProjectxNavigationBundle:Admin:title.html.twig', 'label'=>'Title','sortable'=>false))
+            ->add('order', 'text', array('template' => 'ProjectxNavigationBundle:Admin:order.html.twig', 'label'=>'Move'))
 
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -124,14 +103,8 @@ class CategoryAdmin extends Admin
             ->with('Information')
                 ->add('dateModified')
                 ->add('status')
-            ->with('Meta')
-                ->add('metaUrl')
-                ->add('metaTitle')
-                ->add('metaDescription')
-                ->add('metaKeywords')
             ->with('General')
                 ->add('id')
         ;
     }
-
 }

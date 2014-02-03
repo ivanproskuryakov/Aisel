@@ -1,7 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: twig.yml }
+#    - { resource: @ProjectxPageBundle/Resources/config/admin.yml }
 
 framework:
     #esi:             ~
@@ -25,12 +25,10 @@ framework:
     fragments:       ~
     http_method_override: true
 
-
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-
 
 # Assetic Configuration
 assetic:
@@ -104,6 +102,16 @@ stof_doctrine_extensions:
 #        other:
 #            timestampable: true
 
+#    orm:
+#        auto_generate_proxy_classes: "%kernel.debug%"
+#        entity_managers:
+#            default:
+#                mappings:
+#                    ApplicationSonataUserBundle: ~
+#                    SonataUserBundle: ~
+#    dbal:
+#        types:
+#            json: Sonata\Doctrine\Types\JsonType
 
 
 # Swiftmailer Configuration
@@ -114,55 +122,27 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-# Fields serialization
-jms_serializer:
-  metadata:
-    auto_detection: true
-    directories:
-      ProjectxPageBundle:
-        namespace_prefix: "Projectx\\PageBundle"
-        path: "@ProjectxPageBundle/Resources/config/serializer/"
+# FOSUser Configuration
+#fos_user:
+#    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+#    firewall_name: main
+#    user_class: Projectx\UserBundle\Entity\User
+
+# Sonata Configuration
+#sonata_block:
+#    default_contexts: [cms]
+#    blocks:
+#        # Enable the SonataAdminBundle block
+#        sonata.admin.block.admin_list:
+#            contexts:   [admin]
+#        # Your other blocks
 
 
-# Annotations
-sensio_framework_extra:
-    view:
-        annotations: false
-
-# REST
-fos_rest:
-#    param_fetcher_listener: true
-#    body_listener: true
-#    format_listener: true
-    view:
-        view_response_listener: 'force'
-#    routing_loader:
-#        default_format: json
-
-
-# Somata section
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        sonata.admin.block.admin_list:
-            contexts:   [admin]
-        sonata.admin.block.search_result:
-            contexts:   [admin]
-        #...
-        sonata.user.block.menu:    # used to display the menu in profile pages
-        sonata.user.block.account: # used to display menu option (login option)
-
-sonata_admin:
-    title:      Aisel Admin
-    title_logo: /images/logo_x32.png
-    templates:
-        # other configuration options
-        search:              SonataAdminBundle:Core:search.html.twig
-        search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
-
+# Users section start
 sonata_user:
     security_acl: true
     manager_type: orm # can be orm or mongodb
+
 
 fos_user:
     db_driver:      orm # can be orm or odm
@@ -177,6 +157,7 @@ parameters:
     sonata.user.admin.user.class: Application\Sonata\UserBundle\Admin\UserAdmin
 
 services:
+
     sonata.user.admin.group:
         abstract: true
         public: false
@@ -192,10 +173,79 @@ services:
         tags:
             - { name: form.type, alias: y_tree }
 
+#    sonata.admin.user:
+#        class: Application\Sonata\UserBundle\Admin\UserAdmin
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: users, label: users, label_translator_strategy: sonata.admin.label.strategy.underscore }
+#        arguments:
+#            - null
+#            - Application\Sonata\UserBundle\Entity\User
+#            - SonataAdminBundle:CRUD
+#        calls:
+#            - [setTranslationDomain, [SonataUserBundle]]
+#            - [setUserManager, [@fos_user.user_manager]]
+#            - [setSecurityContext, [@security.context]]
 
+sonata_admin:
+    title:      administration
+    title_logo: /images/x_icon.png
+    templates:
+        # other configuration options
+        search:              SonataAdminBundle:Core:search.html.twig
+        search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
 sonata_doctrine_orm_admin:
     entity_manager: ~
     templates:
-        types:
-            show:
-                tree: ProjectxAdminBundle:Form:tree.html.twig
+        form:
+            - ProjectxAdminBundle:Form:form_admin_fields.html.twig
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        sonata.admin.block.search_result:
+            contexts:   [admin]
+        #...
+        sonata.user.block.menu:    # used to display the menu in profile pages
+        sonata.user.block.account: # used to display menu option (login option)
+
+
+sensio_framework_extra:
+    view:
+        annotations: false
+fos_rest:
+#    param_fetcher_listener: true
+#    body_listener: true
+#    format_listener: true
+    view:
+        view_response_listener: 'force'
+#    routing_loader:
+#        default_format: json
+
+#fos_rest:
+#    param_fetcher_listener: true
+#    body_listener: true
+#    format_listener: true
+#    view:
+##        view_response_listener: 'force'
+#        formats:
+#            xml: true
+#            json : true
+#        templating_formats:
+#            html: true
+#        force_redirects:
+#            html: true
+#        failed_validation: HTTP_BAD_REQUEST
+#        default_engine: twig
+#    routing_loader:
+#        default_format: json
+
+
+jms_serializer:
+  metadata:
+    auto_detection: true
+    directories:
+      ProjectxPageBundle:
+        namespace_prefix: "Projectx\\PageBundle"
+        path: "@ProjectxPageBundle/Resources/config/serializer/"

@@ -20,7 +20,6 @@ file that was distributed with this source code.
 {% block side_menu %}{{ knp_menu_render(admin.sidemenu(action), {'currentClass' : 'active'}, 'list') }}{% endblock %}
 
 {% block list_table %}
-
     {{ sonata_block_render_event('sonata.admin.list.table.top', { 'admin': admin }) }}
 
     {% block list_header %}{% endblock %}

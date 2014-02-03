@@ -1,0 +1,11 @@
+services:
+    sonata.admin.navigation:
+        class: Projectx\NavigationBundle\Admin\NavigationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Navigation", label: "Menu" }
+        arguments:
+            - ~
+            - Projectx\NavigationBundle\Entity\Menu
+            - ~
+        calls:
+            - [ setTranslationDomain, [ProjectxNavigationBundle]]

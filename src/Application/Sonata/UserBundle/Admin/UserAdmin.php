@@ -15,7 +15,7 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class UserAdmin extends BaseUserAdmin
 {
-
+    protected $baseRoutePattern = 'system/user';
     /**
      * {@inheritdoc}
      */
@@ -101,4 +101,24 @@ class UserAdmin extends BaseUserAdmin
 //            ;
 //        }
     }
+
+
+    /**
+     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
+     *
+     * @return void
+     */
+    protected function configureShowField(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->with('Information')
+                ->add('enabled')
+                ->add('locked')
+                ->add('expired')
+                ->add('createdAt')
+            ->with('General')
+                ->add('id')
+        ;
+    }
+
 }

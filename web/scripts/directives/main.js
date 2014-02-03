@@ -8,7 +8,7 @@ angular.module('projectxApp')
                 element.bind("keyup", function (e) {
                     if (e.keyCode === 13) {
                         if(attrs.ngSearchRedirect.length > 1){
-                            window.location.assign('#/search/'+attrs.ngSearchRedirect);
+                            window.location.assign('#!/search/'+attrs.ngSearchRedirect);
                         }
 //                        else {
 //                            alert('Search query should have 3 or more letters');
