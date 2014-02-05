@@ -30,7 +30,10 @@
         "sonata-project/page-bundle": "~2.3@dev",
         "sonata-project/core-bundle": "~2.2@dev",
         "jms/serializer-bundle": "dev-master",
-        "stof/doctrine-extensions-bundle": "dev-master"
+        "stof/doctrine-extensions-bundle": "dev-master",
+
+        "mopa/bootstrap-bundle": "2.3.x-dev",
+        "twbs/bootstrap": "v2.3.2"
 
 
     },
@@ -55,7 +58,7 @@
     },
     "extra": {
         "symfony-app-dir": "app",
-        "symfony-web-dir": "app",
+        "symfony-web-dir": "web",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         },

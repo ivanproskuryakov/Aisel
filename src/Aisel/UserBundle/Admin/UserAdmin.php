@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Sonata\UserBundle\Admin;
+namespace Aisel\UserBundle\Admin;
 
 use Sonata\UserBundle\Admin\Model\UserAdmin as BaseUserAdmin;
 
@@ -45,7 +45,7 @@ class UserAdmin extends BaseUserAdmin
             // .. more info
         ;
 
-        if (!$this->getSubject()->hasRole('ROLE_SUPER_ADMIN')) {
+//        if (!$this->getSubject()->hasRole('ROLE_SUPER_ADMIN')) {
             $formMapper
                 ->with('Management')
                 ->add('roles', 'sonata_security_roles', array(
@@ -59,7 +59,7 @@ class UserAdmin extends BaseUserAdmin
                 ->add('credentialsExpired', null, array('required' => false))
                 ->end()
             ;
-        }
+//        }
     }
 
     /**

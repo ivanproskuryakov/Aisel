@@ -4,10 +4,10 @@
       xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
                     http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
 
-    <document name="Application\Sonata\UserBundle\Document\User" collection="fos_user_user" customId="true">
+    <document name="Aisel\UserBundleёDocument\Group" collection="fos_user_group">
 
-        <field fieldName="id" id="true" strategy="INCREMENT" />
-
+		<field fieldName="id" id="true" strategy="INCREMENT" />
+        
     </document>
 
 </doctrine-mongo-mapping>

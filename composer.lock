@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8de727ad8b5ef3f15240b2dea8a10d57",
+    "hash": "01b8265723a29661d894f2c5fa6d79ff",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -153,16 +153,16 @@
         },
         {
             "name": "doctrine/collections",
-            "version": "v1.1",
+            "version": "v1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "560f29c39cfcfbcd210e5d549d993a39d898b04b"
+                "reference": "b99c5c46c87126201899afe88ec490a25eedd6a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/560f29c39cfcfbcd210e5d549d993a39d898b04b",
-                "reference": "560f29c39cfcfbcd210e5d549d993a39d898b04b",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/b99c5c46c87126201899afe88ec490a25eedd6a2",
+                "reference": "b99c5c46c87126201899afe88ec490a25eedd6a2",
                 "shasum": ""
             },
             "require": {
@@ -171,7 +171,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -217,7 +217,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2013-03-07 12:15:54"
+            "time": "2014-02-03 23:07:43"
         },
         {
             "name": "doctrine/common",
@@ -1428,6 +1428,120 @@
             "time": "2013-11-14 19:48:31"
         },
         {
+            "name": "mopa/bootstrap-bundle",
+            "version": "2.3.x-dev",
+            "target-dir": "Mopa/Bundle/BootstrapBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phiamo/MopaBootstrapBundle.git",
+                "reference": "ae77c07dbed6dc8428cf03f044925950e6850214"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/ae77c07dbed6dc8428cf03f044925950e6850214",
+                "reference": "ae77c07dbed6dc8428cf03f044925950e6850214",
+                "shasum": ""
+            },
+            "require": {
+                "mopa/composer-bridge": "1.3.*",
+                "symfony/symfony": "~2.3-dev"
+            },
+            "suggest": {
+                "craue/formflow-bundle": "dev-master",
+                "jlong/sass-twitter-bootstrap": "dev-master",
+                "knplabs/knp-menu-bundle": "2.0.*",
+                "knplabs/knp-paginator-bundle": "dev-master",
+                "mopa/bootstrap-sandbox-bundle": "~2.3",
+                "twbs/bootstrap": "2.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Mopa\\Bundle\\BootstrapBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philipp A. Mohrenweiser",
+                    "email": "phiamo@googlemail.com",
+                    "homepage": "http://bootstrap.mohrenweiserpartner.de"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/phiamo/MopaBootstrapBundle/contributors"
+                }
+            ],
+            "description": "Easy integration of twitters bootstrap into symfony2",
+            "keywords": [
+                "bootstrap",
+                "bootstrap form",
+                "extra form",
+                "form",
+                "template"
+            ],
+            "time": "2013-11-28 08:19:42"
+        },
+        {
+            "name": "mopa/composer-bridge",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phiamo/MopaComposerBridge.git",
+                "reference": "4ce791bfeabc5261da11cf4a949745d60dae711f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phiamo/MopaComposerBridge/zipball/4ce791bfeabc5261da11cf4a949745d60dae711f",
+                "reference": "4ce791bfeabc5261da11cf4a949745d60dae711f",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/console": "2.*"
+            },
+            "type": "symfony-bridge",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Mopa\\Bridge\\Composer": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philipp A. Mohrenweiser",
+                    "email": "phiamo@googlemail.com",
+                    "homepage": "http://bootstrap.mohrenweiserpartner.de"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/phiamo/MopaComposerBridge/contributors"
+                }
+            ],
+            "description": "Symfony2 Composer Bridge",
+            "homepage": "http://bootstrap.mohrenweiserpartner.de",
+            "keywords": [
+                "Symfony2",
+                "composer"
+            ],
+            "time": "2013-09-10 10:06:34"
+        },
+        {
             "name": "phpcollection/phpcollection",
             "version": "0.2.0",
             "source": {
@@ -1720,12 +1834,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "11b8733dff29c277e45140d7b15b26eb39039386"
+                "reference": "29a13b723bb5294d85a5ad47604722b76eac82b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/11b8733dff29c277e45140d7b15b26eb39039386",
-                "reference": "11b8733dff29c277e45140d7b15b26eb39039386",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/29a13b723bb5294d85a5ad47604722b76eac82b7",
+                "reference": "29a13b723bb5294d85a5ad47604722b76eac82b7",
                 "shasum": ""
             },
             "require": {
@@ -1792,7 +1906,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2014-02-01 09:58:27"
+            "time": "2014-02-05 10:12:01"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -1801,12 +1915,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataBlockBundle.git",
-                "reference": "657ae74116ec03cc91c23ce1f15390af3bf943bf"
+                "reference": "dafc76f04bfd3c7f2bd470674320bf6a53d0ce26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/657ae74116ec03cc91c23ce1f15390af3bf943bf",
-                "reference": "657ae74116ec03cc91c23ce1f15390af3bf943bf",
+                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/dafc76f04bfd3c7f2bd470674320bf6a53d0ce26",
+                "reference": "dafc76f04bfd3c7f2bd470674320bf6a53d0ce26",
                 "shasum": ""
             },
             "require": {
@@ -1857,7 +1971,7 @@
                 "block",
                 "sonata"
             ],
-            "time": "2014-01-29 10:34:19"
+            "time": "2014-02-03 16:43:19"
         },
         {
             "name": "sonata-project/cache-bundle",
@@ -1931,12 +2045,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataCoreBundle.git",
-                "reference": "991143570bf19ddd37f5bfb8af7382c4aa90de24"
+                "reference": "3dfff360e608d8f54d09244588c8ed0383f41fe3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/991143570bf19ddd37f5bfb8af7382c4aa90de24",
-                "reference": "991143570bf19ddd37f5bfb8af7382c4aa90de24",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/3dfff360e608d8f54d09244588c8ed0383f41fe3",
+                "reference": "3dfff360e608d8f54d09244588c8ed0383f41fe3",
                 "shasum": ""
             },
             "require": {
@@ -1947,6 +2061,8 @@
                 "twig/twig": "~1.12"
             },
             "require-dev": {
+                "doctrine/orm": "~2.4",
+                "doctrine/phpcr-odm": "~1.0",
                 "sonata-project/exporter": "~1.3"
             },
             "type": "symfony-bundle",
@@ -1980,7 +2096,7 @@
             "keywords": [
                 "sonata"
             ],
-            "time": "2014-01-15 14:43:01"
+            "time": "2014-02-05 16:22:11"
         },
         {
             "name": "sonata-project/doctrine-extensions",
@@ -2037,12 +2153,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "a8e4cb3723389b9ed60c83194d24026866ecd0a8"
+                "reference": "fc514a81364c5f044a421772dae1397cf9fd9fb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/a8e4cb3723389b9ed60c83194d24026866ecd0a8",
-                "reference": "a8e4cb3723389b9ed60c83194d24026866ecd0a8",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/fc514a81364c5f044a421772dae1397cf9fd9fb8",
+                "reference": "fc514a81364c5f044a421772dae1397cf9fd9fb8",
                 "shasum": ""
             },
             "require": {
@@ -2097,7 +2213,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2014-01-24 14:05:29"
+            "time": "2014-02-02 23:23:05"
         },
         {
             "name": "sonata-project/easy-extends-bundle",
@@ -2106,12 +2222,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataEasyExtendsBundle.git",
-                "reference": "d1c09828b18a869cbcef776a230f671398728617"
+                "reference": "8949681870e8ba53e33d3d8ea20a803f12ae3be9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataEasyExtendsBundle/zipball/d1c09828b18a869cbcef776a230f671398728617",
-                "reference": "d1c09828b18a869cbcef776a230f671398728617",
+                "url": "https://api.github.com/repos/sonata-project/SonataEasyExtendsBundle/zipball/8949681870e8ba53e33d3d8ea20a803f12ae3be9",
+                "reference": "8949681870e8ba53e33d3d8ea20a803f12ae3be9",
                 "shasum": ""
             },
             "require": {
@@ -2155,7 +2271,7 @@
                 "Easy Extends",
                 "sonata"
             ],
-            "time": "2013-12-17 11:49:19"
+            "time": "2014-02-03 13:21:56"
         },
         {
             "name": "sonata-project/exporter",
@@ -2385,12 +2501,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataPageBundle.git",
-                "reference": "bbfefd302e729f75555bae2d7f5235ff9e293598"
+                "reference": "b3079ce4317f48c5a9fc9f4a4631bf01d2c0b4b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataPageBundle/zipball/bbfefd302e729f75555bae2d7f5235ff9e293598",
-                "reference": "bbfefd302e729f75555bae2d7f5235ff9e293598",
+                "url": "https://api.github.com/repos/sonata-project/SonataPageBundle/zipball/b3079ce4317f48c5a9fc9f4a4631bf01d2c0b4b2",
+                "reference": "b3079ce4317f48c5a9fc9f4a4631bf01d2c0b4b2",
                 "shasum": ""
             },
             "require": {
@@ -2441,7 +2557,7 @@
                 "page",
                 "sonata"
             ],
-            "time": "2014-01-31 17:22:03"
+            "time": "2014-02-05 10:06:08"
         },
         {
             "name": "sonata-project/seo-bundle",
@@ -2512,12 +2628,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataUserBundle.git",
-                "reference": "4ed102123b6d246c9be9f5ff039536f0d7f76020"
+                "reference": "267514bcba9f9d3cf03b783dee06b11edaf29874"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/4ed102123b6d246c9be9f5ff039536f0d7f76020",
-                "reference": "4ed102123b6d246c9be9f5ff039536f0d7f76020",
+                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/267514bcba9f9d3cf03b783dee06b11edaf29874",
+                "reference": "267514bcba9f9d3cf03b783dee06b11edaf29874",
                 "shasum": ""
             },
             "require": {
@@ -2572,7 +2688,7 @@
                 "sonata",
                 "user"
             ],
-            "time": "2014-01-31 10:53:00"
+            "time": "2014-02-04 16:52:07"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -3149,6 +3265,33 @@
             "time": "2014-01-05 02:12:11"
         },
         {
+            "name": "twbs/bootstrap",
+            "version": "v2.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "b4c4072679943773a7582daa63f545ba818fa627"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/b4c4072679943773a7582daa63f545ba818fa627",
+                "reference": "b4c4072679943773a7582daa63f545ba818fa627",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
+            "homepage": "http://twbs.github.com/bootstrap/",
+            "keywords": [
+                "bootstrap",
+                "css"
+            ],
+            "time": "2013-07-27 06:36:38"
+        },
+        {
             "name": "twig/extensions",
             "version": "v1.0.1",
             "source": {
@@ -3352,7 +3495,8 @@
         "sonata-project/page-bundle": 20,
         "sonata-project/core-bundle": 20,
         "jms/serializer-bundle": 20,
-        "stof/doctrine-extensions-bundle": 20
+        "stof/doctrine-extensions-bundle": 20,
+        "mopa/bootstrap-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: twig.yml }
+    - { resource: aisel.yml }
 
 framework:
     #esi:             ~
@@ -66,43 +67,18 @@ doctrine:
             default:
                 auto_mapping: true
                 mappings:
-#                    gedmo_translatable:
-#                        type: annotation
-#                        prefix: Gedmo\Translatable\Entity
-#                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
-#                        alias: GedmoTranslatable # this one is optional and will default to the name set for the mapping
-#                        is_bundle: false
-#                    gedmo_translator:
-#                        type: annotation
-#                        prefix: Gedmo\Translator\Entity
-#                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
-#                        alias: GedmoTranslator # this one is optional and will default to the name set for the mapping
-#                        is_bundle: false
-#                    gedmo_loggable:
-#                        type: annotation
-#                        prefix: Gedmo\Loggable\Entity
-#                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
-#                        alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
-#                        is_bundle: false
                     gedmo_tree:
                         type: annotation
                         prefix: Gedmo\Tree\Entity
                         dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
                         alias: GedmoTree # this one is optional and will default to the name set for the mapping
                         is_bundle: false
-#                filters:
-#                    softdeleteable:
-#                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
-#                        enabled: true
 
 stof_doctrine_extensions:
     default_locale: en_US
     orm:
         default:
             tree: true
-#            timestampable: false # not needed: listeners are not enabled by default
-#        other:
-#            timestampable: true
 
 
 
@@ -139,8 +115,14 @@ fos_rest:
 #    routing_loader:
 #        default_format: json
 
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Aisel\UserBundle\Entity\User
+    group:
+        group_class: Aisel\UserBundle\Entity\Group
 
-# Somata section
+# Sonata section
 sonata_block:
     default_contexts: [cms]
     blocks:
@@ -151,30 +133,18 @@ sonata_block:
         #...
         sonata.user.block.menu:    # used to display the menu in profile pages
         sonata.user.block.account: # used to display menu option (login option)
+        sonata.block.service.text:
 
 sonata_admin:
     title:      Aisel Admin
     title_logo: /images/logo_x32.png
     templates:
-        # other configuration options
         search:              SonataAdminBundle:Core:search.html.twig
         search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
+    options:
+        html5_validate: false # does not use html5 validation
+        confirm_exit:   false # disable confirmation when quitting with unsaved changes
 
-sonata_user:
-    security_acl: true
-    manager_type: orm # can be orm or mongodb
-
-fos_user:
-    db_driver:      orm # can be orm or odm
-    firewall_name:  main
-    user_class:     Application\Sonata\UserBundle\Entity\User
-
-    group:
-        group_class: Application\Sonata\UserBundle\Entity\Group
-
-parameters:
-    sonata.user.admin.user.entity: Application\Sonata\UserBundle\Entity\User
-    sonata.user.admin.user.class: Application\Sonata\UserBundle\Admin\UserAdmin
 
 services:
     sonata.user.admin.group:

@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
 
+
             // Sonata
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
@@ -33,7 +34,7 @@ class AppKernel extends Kernel
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
 
             // local bundles
-            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Aisel\UserBundle\AiselUserBundle(),
             new Projectx\AdminBundle\ProjectxAdminBundle(),
             new Projectx\PageBundle\ProjectxPageBundle(),
             new Projectx\CategoryBundle\ProjectxCategoryBundle(),
