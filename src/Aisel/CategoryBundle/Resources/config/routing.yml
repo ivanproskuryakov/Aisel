@@ -1,0 +1,7 @@
+aisel_category_tree_up:
+    pattern:  /administration/aisel/category/category/up/{id}
+    defaults:  { _controller: AiselCategoryBundle:AdminCategorySort:up }
+
+aisel_category_tree_down:
+    pattern:  /administration/aisel/category/category/down/{id}
+    defaults:  { _controller: AiselCategoryBundle:AdminCategorySort:down }

@@ -1,7 +1,0 @@
-projectx_menu_tree_up:
-    pattern:  /administration/projectx/navigation/menu/up/{id}
-    defaults:  { _controller: ProjectxNavigationBundle:AdminMenuNavigationSort:up }
-
-projectx_menu_tree_down:
-    pattern:  /administration/projectx/navigation/menu/down/{id}
-    defaults:  { _controller: ProjectxNavigationBundle:AdminMenuNavigationSort:down }

@@ -1,7 +1,0 @@
-parameters:
-#    projectx_user.example.class: Projectx\UserBundle\Example
-
-services:
-#    projectx_user.example:
-#        class: %projectx_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

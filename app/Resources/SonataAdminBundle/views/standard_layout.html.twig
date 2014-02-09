@@ -48,7 +48,8 @@ file that was distributed with this source code.
             {% endif %}
 
             <!-- base application asset -->
-            <link rel="stylesheet" href="{{ asset('bundles/projectxadmin/css/layout.css') }}" media="all">
+            <link rel="stylesheet" href="{{ asset('bundles/aiseladmin/css/layout.css') }}" media="all">
+            <link rel="stylesheet" href="{{ asset('bundles/aiseladmin/css/additional.css') }}" media="all">
             <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/css/colors.css') }}" media="all">
 
         {% endblock %}
@@ -78,6 +79,7 @@ file that was distributed with this source code.
             <script src="{{ asset('bundles/sonataadmin/jquery/jquery.form.js') }}"></script>
             {% if admin_pool is defined and admin_pool.getOption('confirm_exit') %}<script src="{{ asset('bundles/sonataadmin/jquery/jquery.confirmExit.js') }}"></script>{% endif %}
             <script src="{{ asset('bundles/sonataadmin/base.js') }}"></script>
+
         {% endblock %}
 
         <title>

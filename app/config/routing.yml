@@ -1,17 +1,17 @@
-projectx_category:
-    resource: "@ProjectxCategoryBundle/Resources/config/routing.yml"
+aisel_category:
+    resource: "@AiselCategoryBundle/Resources/config/routing.yml"
     prefix:   /
 
-projectx_navigation:
-    resource: "@ProjectxNavigationBundle/Resources/config/routing.yml"
+aisel_navigation:
+    resource: "@AiselNavigationBundle/Resources/config/routing.yml"
     prefix:   /
 
-projectx_page:
-    resource: "@ProjectxPageBundle/Resources/config/routing.yml"
+aisel_page:
+    resource: "@AiselPageBundle/Resources/config/routing.yml"
     prefix:   /
 
-projectx_admin:
-    resource: "@ProjectxAdminBundle/Resources/config/routing.yml"
+aisel_admin:
+    resource: "@AiselAdminBundle/Resources/config/routing.yml"
     prefix:   /
 
 aisel_user:

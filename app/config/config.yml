@@ -95,9 +95,9 @@ jms_serializer:
   metadata:
     auto_detection: true
     directories:
-      ProjectxPageBundle:
-        namespace_prefix: "Projectx\\PageBundle"
-        path: "@ProjectxPageBundle/Resources/config/serializer/"
+      AiselPageBundle:
+        namespace_prefix: "Aisel\\PageBundle"
+        path: "@AiselPageBundle/Resources/config/serializer/"
       AiselUserBundle:
         namespace_prefix: "Aisel\\UserBundle"
         path: "@AiselUserBundle/Resources/config/serializer/"
@@ -155,17 +155,17 @@ sonata_admin:
         confirm_exit:   false # disable confirmation when quitting with unsaved changes
 
 services:
-    yavin.symfony.form.tree:
-        class: Yavin\Symfony\Form\Type\TreeType
+    aisel.symfony.form.tree:
+        class: Aisel\Symfony\Form\Type\TreeType
         arguments:
             -
-                prefixAttributeName: "nodetree"
+                prefixAttributeName: "gedmotree"
                 treeLevelField: "lvl"
                 orderColumns:
                   - root
                   - lft
         tags:
-            - { name: form.type, alias: y_tree }
+            - { name: form.type, alias: gedmotree }
 
 
 sonata_doctrine_orm_admin:
@@ -173,4 +173,5 @@ sonata_doctrine_orm_admin:
     templates:
         types:
             show:
-                tree: ProjectxAdminBundle:Form:tree.html.twig
+                tree: AiselAdminBundle:Form:tree.html.twig
+

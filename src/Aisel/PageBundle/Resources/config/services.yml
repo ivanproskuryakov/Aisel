@@ -1,0 +1,34 @@
+parameters:
+    aisel.page.manager.class: Aisel\PageBundle\Manager\PageManager
+    aisel.search.manager.class: Aisel\PageBundle\Manager\SearchManager
+
+services:
+    sonata.admin.page:
+        class: Aisel\PageBundle\Admin\PageAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Pages" }
+        arguments:
+            - ~
+            - Aisel\PageBundle\Entity\Page
+            - ~
+        calls:
+            - [ setTranslationDomain, [AiselPageBundle]]
+
+    aisel.page.manager:
+        class: %aisel.page.manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager]
+
+    aisel.search.manager:
+        class: %aisel.search.manager.class%
+        arguments: [@doctrine.orm.entity_manager]
+
+#    aisel.page.admin:
+#        class: Aisel\PageBundle\Admin\PageAdmin
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Page" }
+#        arguments:
+#            - ~
+#            - Aisel\PageBundle\Entity\Page
+#            - ~
+#        calls:
+#            - [ setPageManager, ['@doctrine.orm.entity_manager']]

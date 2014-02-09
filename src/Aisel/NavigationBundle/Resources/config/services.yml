@@ -1,0 +1,11 @@
+services:
+    sonata.admin.navigation:
+        class: Aisel\NavigationBundle\Admin\NavigationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Navigation", label: "Menu" }
+        arguments:
+            - ~
+            - Aisel\NavigationBundle\Entity\Menu
+            - ~
+        calls:
+            - [ setTranslationDomain, [AiselNavigationBundle]]

@@ -1,7 +1,0 @@
-projectx_category_tree_up:
-    pattern:  /administration/projectx/category/category/up/{id}
-    defaults:  { _controller: ProjectxCategoryBundle:AdminCategorySort:up }
-
-projectx_category_tree_down:
-    pattern:  /administration/projectx/category/category/down/{id}
-    defaults:  { _controller: ProjectxCategoryBundle:AdminCategorySort:down }

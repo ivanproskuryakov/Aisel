@@ -1,0 +1,7 @@
+parameters:
+#    aisel_admin.example.class: Aisel\AdminBundle\Example
+
+services:
+#    aisel_admin.example:
+#        class: %aisel_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
