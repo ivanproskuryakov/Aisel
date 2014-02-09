@@ -1,0 +1,11 @@
+Aisel\UserBundle\Entity\FrontendUser:
+  exclusion_policy: ALL
+  properties:
+    id:
+        expose: true
+    username:
+        expose: true
+    email:
+        expose: true
+    lastLogin:
+        expose: true
