@@ -15,6 +15,7 @@ use Sonata\AdminBundle\Route\RouteCollection;
 class FrontendUserAdmin extends BaseUserAdmin
 {
     protected $baseRoutePattern = 'system/user/front';
+    protected $encoderFactory;
     /**
      * {@inheritdoc}
      */
@@ -26,7 +27,6 @@ class FrontendUserAdmin extends BaseUserAdmin
                 ->add('email')
 
             ->end()
-            // .. more info
         ;
     }
 
@@ -39,8 +39,13 @@ class FrontendUserAdmin extends BaseUserAdmin
             ->with('General')
                 ->add('username')
                 ->add('email')
-                ->add('password')
-                ->add('isActive','text')
+//                ->add('password')
+                ->add('plainPassword', 'text', array(
+                    'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
+                ))
+                ->add('locked', null, array('required' => false))
+                ->add('enabled', null, array('required' => false))
+
             ->end()
         ;
     }
@@ -66,6 +71,9 @@ class FrontendUserAdmin extends BaseUserAdmin
         $listMapper
             ->addIdentifier('username')
             ->add('email')
+            ->add('enabled', null, array('editable' => true))
+            ->add('locked', null, array('editable' => true))
+            ->add('createdAt')
 
             ->add('_action', 'actions', array(
                     'actions' => array(
@@ -76,30 +84,37 @@ class FrontendUserAdmin extends BaseUserAdmin
             );
     }
 
-    public function prePersist($page)
+    public function prePersist($user)
     {
-        $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $encoder = $this->getEncoderFactory()->getEncoder($user);
+        $encodedPassword = $encoder->encodePassword($user->getPlainPassword(), $user->getSalt());
+        $user->setPassword($encodedPassword);
+
+        $user->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
-    public function preUpdate($page)
+    public function preUpdate($user)
     {
-        $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        if ($user->getPlainPassword()) {
+            $encoder = $this->getEncoderFactory()->getEncoder($user);
+            $encodedPassword = $encoder->encodePassword($user->getPlainPassword(), $user->getSalt());
+            $user->setPassword($encodedPassword);
+        }
+
+        $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
-    /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
-     */
-    protected function configureShowField(ShowMapper $showMapper)
+
+    public function getEncoderFactory()
     {
-        $showMapper
-            ->with('Information')
-                ->add('username')
-            ->with('General')
-                ->add('id')
-        ;
+        return $this->encoderFactory;
     }
+
+    public function setEncoderFactory($encoderFactory)
+    {
+        $this->encoderFactory = $encoderFactory;
+    }
+
 
 }

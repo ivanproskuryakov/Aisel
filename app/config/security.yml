@@ -46,7 +46,7 @@ security:
                 use_forward:    true
 #                check_path:     /login_check
 #                default_target_path: /
-                failure_path:   false
+                failure_path:   true
 #            logout:
 #                path:           /logout
             anonymous:          true

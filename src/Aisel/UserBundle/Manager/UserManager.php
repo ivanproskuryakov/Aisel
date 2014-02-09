@@ -53,9 +53,12 @@ class UserManager  implements UserProviderInterface
             $user->setEmail($userData['email']);
             $user->setUsername($userData['username']);
             $user->setPassword($encodedPassword);
-            $user->setIsActive(true);
+            $user->setEnabled(true);
+            $user->setLocked(false);
+
             $user->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
             $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+            $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
 
             $this->em->persist($user);
             $this->em->flush();

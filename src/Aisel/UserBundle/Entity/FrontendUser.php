@@ -10,15 +10,11 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  */
 class FrontendUser implements AdvancedUserInterface, \Serializable
 {
-    /**
-     * @var \DateTime
-     */
-    private $createdAt;
 
     /**
-     * @var \DateTime
+     * @var integer
      */
-    private $updatedAt;
+    private $id;
 
     /**
      * @var string
@@ -36,15 +32,159 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     private $email;
 
     /**
-     * @var boolean
+     * @var \DateTime
      */
-    private $is_active;
+    private $createdAt;
 
     /**
-     * @var integer
+     * @var \DateTime
      */
-    private $id;
+    private $updatedAt;
 
+
+    /**
+     * @var \DateTime
+     */
+    private $lastLogin;
+
+    /**
+     * @var \DateTime
+     */
+    private $expiresAt;
+
+    /**
+     * @var boolean
+     */
+    private $enabled;
+
+    /**
+     * @var boolean
+     */
+    private $locked;
+
+    /**
+     * @var string
+     */
+    private $salt;
+
+    /**
+     * Plain password. Used for model validation. Must not be persisted.
+     *
+     * @var string
+     */
+    protected $plainPassword;
+
+    // Interface methods
+    public function __construct()
+    {
+//        $this->isActive = true;
+        // may not be needed, see section on salt below
+        $this->salt = md5(uniqid(null, true));
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+
+        return $this;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * Set lastLogin
+     *
+     * @param \DateTime $lastLogin
+     * @return FrontendUser
+     */
+    public function setLastLogin($lastLogin)
+    {
+        $this->lastLogin = $lastLogin;
+
+        return $this;
+    }
+
+    /**
+     * Get lastLogin
+     *
+     * @return \DateTime
+     */
+    public function getLastLogin()
+    {
+        return $this->lastLogin;
+    }
+
+    /**
+     * Set expiresAt
+     *
+     * @param \DateTime $expiresAt
+     * @return FrontendUser
+     */
+    public function setExpiresAt($expiresAt)
+    {
+        $this->expiresAt = $expiresAt;
+
+        return $this;
+    }
+
+    /**
+     * Get expiresAt
+     *
+     * @return \DateTime
+     */
+    public function getExpiresAt()
+    {
+        return $this->expiresAt;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     * @return FrontendUser
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set locked
+     *
+     * @param boolean $locked
+     * @return FrontendUser
+     */
+    public function setLocked($locked)
+    {
+        $this->locked = $locked;
+
+        return $this;
+    }
+
+    /**
+     * Get locked
+     *
+     * @return boolean
+     */
+    public function getLocked()
+    {
+        return $this->locked;
+    }
 
     /**
      * Set createdAt
@@ -161,28 +301,6 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
         return $this->email;
     }
 
-    /**
-     * Set is_active
-     *
-     * @param boolean $isActive
-     * @return FrontUser
-     */
-    public function setIsActive($isActive)
-    {
-        $this->is_active = $isActive;
-
-        return $this;
-    }
-
-    /**
-     * Get is_active
-     *
-     * @return boolean 
-     */
-    public function getIsActive()
-    {
-        return $this->is_active;
-    }
 
     /**
      * Get id
@@ -195,15 +313,6 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     }
 
 
-
-    // Interface methods
-    public function __construct()
-    {
-        $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
-    }
-
     /**
      * @inheritDoc
      */
@@ -213,6 +322,19 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
         // see section on salt below
         return null;
     }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return FrontendUser
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+        return $this;
+    }
+
 
     /**
      * @inheritDoc
@@ -274,8 +396,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
 
     public function isEnabled()
     {
-        return $this->is_active;
+        return $this->enabled;
     }
-
 
 }

@@ -15,19 +15,6 @@ use Sonata\AdminBundle\Route\RouteCollection;
 class BackendUserAdmin extends BaseUserAdmin
 {
     protected $baseRoutePattern = 'system/user/back';
-    /**
-     * {@inheritdoc}
-     */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->with('General')
-            ->add('username')
-            ->add('email')
-            ->end()
-            // .. more info
-        ;
-    }
 
     /**
      * {@inheritdoc}
@@ -36,11 +23,11 @@ class BackendUserAdmin extends BaseUserAdmin
     {
         $formMapper
             ->with('General')
-            ->add('username')
-            ->add('email')
-            ->add('plainPassword', 'text', array(
-                'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
-            ))
+                ->add('username')
+                ->add('email')
+                ->add('plainPassword', 'text', array(
+                    'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
+                ))
             ->end()
 //            ->with('Groups')
 //            ->add('groups', 'sonata_type_model', array(

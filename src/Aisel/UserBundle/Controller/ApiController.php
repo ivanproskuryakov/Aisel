@@ -20,6 +20,21 @@ class ApiController extends Controller
         return $this->get('frontend.user.manager');
     }
 
+    protected function isAuthenticated()
+    {
+        if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN') === false) {
+            return $this->container->get('security.context')->isGranted('ROLE_USER');
+        }
+        return false;
+    }
+
+    protected function loginUser(FrontendUser $user)
+    {
+        $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+        $this->get('security.context')->setToken($token);
+        $this->get('session')->set('_security_main',serialize($token));
+    }
+
     /**
      * @Rest\View
      */
@@ -28,7 +43,7 @@ class ApiController extends Controller
 //        $user = $this->get('security.context')->getToken()->getUser();
 //        if(!is_object($user)) {
 
-        if(! $this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY') ){
+        if(! $this->isAuthenticated() ){
             $request = $this->getRequest();
             $username = $request->get('username');
             $password = $request->get('password');
@@ -45,7 +60,6 @@ class ApiController extends Controller
                 throw new AccessDeniedException("Wrong password");
             }
             $this->loginUser($user);
-
             $status = array('status'=>true, 'message'=>'successully logged in');
         } else {
             $status = array('status'=>false, 'message'=>'already logged');
@@ -59,6 +73,9 @@ class ApiController extends Controller
      */
     public function registerAction()
     {
+        if ($this->isAuthenticated())
+            return array('status'=>false, 'message'=>'Please logout first');
+
         $request = $this->getRequest();
         $userData = array(
             'username'=>$request->get('username'),
@@ -93,18 +110,14 @@ class ApiController extends Controller
      */
     public function informationAction()
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-        return $user;
-//        var_dump($user);
-//        exit();
+        if ($this->isAuthenticated()) {
+            return $this->get('security.context')->getToken()->getUser();
+        } else {
+            return false;
+        }
+
     }
 
-    protected function loginUser(FrontendUser $user)
-    {
-        $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-        $this->get('security.context')->setToken($token);
-        $this->get('session')->set('_security_main',serialize($token));
-    }
 
 
 }

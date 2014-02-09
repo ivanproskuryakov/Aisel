@@ -11,14 +11,21 @@
             <sequence-generator sequence-name="tablename_seq" allocation-size="100" initial-value="1" />
         </id>
 
+        <field name="username"      type="string"     column="username"  length="255" nullable="false" unique="true" />
+        <field name="email"         type="string"     column="email"     length="255" nullable="false" unique="true" />
+        <field name="password"      type="string"     column="password"  length="255" nullable="false" />
+        <field name="salt"         type="string"     column="salt"  />
+
+        <field name="enabled"       type="boolean"    column="enabled"  />
+        <field name="locked"        type="boolean"    column="locked"   />
+
         <field name="createdAt"    type="datetime"   column="created_at" />
         <field name="updatedAt"    type="datetime"   column="updated_at" />
+        <field name="expiresAt"    type="datetime"   column="expires_at" nullable="true" />
+        <field name="lastLogin"    type="datetime"   column="last_login" />
 
         <!-- Profile fields -->
-        <field name="username"      type="string"     column="username"  length="25" nullable="false" unique="true" />
-        <field name="password"      type="string"     column="password"  length="64" nullable="false"  />
-        <field name="email"         type="string"     column="email"  length="60" nullable="false" unique="true" />
-        <field name="is_active"     type="boolean"    column="is_active"  />
+
 
     </entity>
 

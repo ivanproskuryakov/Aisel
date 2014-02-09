@@ -14,7 +14,7 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AiselUserBundle]]
-
+            - [ setEncoderFactory, [ @security.encoder_factory ] ]
 
 #    frontend.user.provider:
 #        class: Doctrine\Common\Persistence\ObjectRepository

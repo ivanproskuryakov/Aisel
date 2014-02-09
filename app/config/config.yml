@@ -98,6 +98,9 @@ jms_serializer:
       ProjectxPageBundle:
         namespace_prefix: "Projectx\\PageBundle"
         path: "@ProjectxPageBundle/Resources/config/serializer/"
+      AiselUserBundle:
+        namespace_prefix: "Aisel\\UserBundle"
+        path: "@AiselUserBundle/Resources/config/serializer/"
 
 
 # Annotations
