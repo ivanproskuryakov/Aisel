@@ -16,7 +16,7 @@ api_projectx_pageview:
         _method: GET
         id: "\d+"
 
-api_search:
+api_aisel_search:
     pattern:  /api/search/
     defaults: { _controller: ProjectxPageBundle:Api:search, _format: json }
     requirements:

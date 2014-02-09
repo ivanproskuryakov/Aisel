@@ -1,30 +1,25 @@
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
-
-#    acl:
-#        connection: default
+        Aisel\UserBundle\Entity\FrontendUser: sha512
+#            algorithm: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-#        PAGES:
-#            - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT
-#        ROLE_SONATA_USER_STAFF:
-#            - ROLE_SONATA_USER_ADMIN_EDIT
-#            - ROLE_SONATA_USER_ADMIN_LIST
-#            - ROLE_SONATA_USER_ADMIN_CREATE
-        # using the staff role to create new roles
-#        ROLE_MANAGE_USERS:             [ROLE_SONATA_USER_STAFF]
+        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+#        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
 
     providers:
-        fos_userbundle:
+        user_backend:
             id: fos_user.user_manager
+        user_frontend:
+            entity: { class: AiselUserBundle:FrontendUser, property: username }
+#            entity: { class: AiselUserBundle:FrontendUser }
 
     firewalls:
         # Disabling the security for the web debug toolbar, the profiler and Assetic.
         dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            pattern:    ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
         # -> custom firewall for the admin area of the URL
@@ -32,7 +27,7 @@ security:
             pattern:            /administration(.*)
             context:            user
             form_login:
-                provider:       fos_userbundle
+                provider:       user_backend
                 login_path:     /administration/login
                 use_forward:    false
                 check_path:     /administration/login_check
@@ -46,13 +41,14 @@ security:
             pattern:             .*
             context:             user
             form_login:
-                provider:       fos_userbundle
+                provider:       user_frontend
                 login_path:     /login
                 use_forward:    false
                 check_path:     /login_check
                 default_target_path: /
                 failure_path:   null
-            logout:             true
+            logout:
+                path:           /logout
             anonymous:          true
 
     access_control:
@@ -60,6 +56,7 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/secure_area, roles: ROLE_USER }
 
         # Admin login page needs to be access without credential
         - { path: ^/administration/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -69,5 +66,5 @@ security:
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
-        - { path: ^/administration/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
+        - { path: ^/administration/, role: [ROLE_ADMIN] }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

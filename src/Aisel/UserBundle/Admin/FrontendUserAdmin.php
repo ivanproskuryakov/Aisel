@@ -9,13 +9,12 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-use FOS\UserBundle\Model\UserManagerInterface;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 
-class UserAdmin extends BaseUserAdmin
+class FrontendUserAdmin extends BaseUserAdmin
 {
-    protected $baseRoutePattern = 'system/user';
+    protected $baseRoutePattern = 'system/user/front';
     /**
      * {@inheritdoc}
      */
@@ -23,8 +22,9 @@ class UserAdmin extends BaseUserAdmin
     {
         $showMapper
             ->with('General')
-            ->add('username')
-            ->add('email')
+                ->add('username')
+                ->add('email')
+
             ->end()
             // .. more info
         ;
@@ -35,32 +35,16 @@ class UserAdmin extends BaseUserAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-
         $formMapper
             ->with('General')
-            ->add('username')
-            ->add('email')
-            ->add('plainPassword', 'text', array('required' => false))
+                ->add('username')
+                ->add('email')
+                ->add('password')
+                ->add('isActive','text')
             ->end()
-            // .. more info
         ;
-
-//        if (!$this->getSubject()->hasRole('ROLE_SUPER_ADMIN')) {
-            $formMapper
-                ->with('Management')
-                ->add('roles', 'sonata_security_roles', array(
-                    'expanded' => true,
-                    'multiple' => true,
-                    'required' => false
-                ))
-                ->add('locked', null, array('required' => false))
-                ->add('expired', null, array('required' => false))
-                ->add('enabled', null, array('required' => false))
-                ->add('credentialsExpired', null, array('required' => false))
-                ->end()
-            ;
-//        }
     }
+
 
     /**
      * {@inheritdoc}
@@ -70,7 +54,6 @@ class UserAdmin extends BaseUserAdmin
         $filterMapper
             ->add('id')
             ->add('username')
-            ->add('locked')
             ->add('email')
         ;
     }
@@ -83,9 +66,6 @@ class UserAdmin extends BaseUserAdmin
         $listMapper
             ->addIdentifier('username')
             ->add('email')
-            ->add('enabled', null, array('editable' => true))
-            ->add('locked', null, array('editable' => true))
-            ->add('createdAt')
 
             ->add('_action', 'actions', array(
                     'actions' => array(
@@ -94,14 +74,18 @@ class UserAdmin extends BaseUserAdmin
                         'delete' => array(),
                     ))
             );
-
-//        if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
-//            $listMapper
-//                ->add('impersonating', 'string', array('template' => 'SonataUserBundle:Admin:Field/impersonating.html.twig'))
-//            ;
-//        }
     }
 
+    public function prePersist($page)
+    {
+        $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+    }
+
+    public function preUpdate($page)
+    {
+        $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+    }
 
     /**
      * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
@@ -112,10 +96,7 @@ class UserAdmin extends BaseUserAdmin
     {
         $showMapper
             ->with('Information')
-                ->add('enabled')
-                ->add('locked')
-                ->add('expired')
-                ->add('createdAt')
+                ->add('username')
             ->with('General')
                 ->add('id')
         ;

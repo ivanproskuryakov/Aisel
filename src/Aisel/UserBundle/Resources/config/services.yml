@@ -1,0 +1,27 @@
+services:
+    sonata.user.admin.group:
+        abstract: true
+        public: false
+
+
+    sonata.admin.user.frontend:
+        class: Aisel\UserBundle\Admin\FrontendUserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "System", label: "Frontend Users" }
+        arguments:
+            - ~
+            - Aisel\UserBundle\Entity\FrontendUser
+            - ~
+        calls:
+            - [ setTranslationDomain, [AiselUserBundle]]
+
+
+    frontend.user.provider:
+        class: Doctrine\Common\Persistence\ObjectRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments: [ Aisel\UserBundle\Entity\FrontendUser ]
+
+#    frontend.user.repository:
+#        class: Aisel\UserBundle\Entity\FrontendUserRepository
+#        arguments: [@security.encoder_factory]

@@ -51,7 +51,9 @@ class ApiController extends Controller
      */
     public function pageViewAction($id)
     {
+        /** @var \Projectx\PageBundle\Entity\Page $page */
         $page = $this->container->get("projectx.page.manager")->getPage($id);
+
         return $page;
 
     }

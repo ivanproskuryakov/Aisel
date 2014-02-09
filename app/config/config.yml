@@ -118,9 +118,15 @@ fos_rest:
 fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
-    user_class:     Aisel\UserBundle\Entity\User
-    group:
-        group_class: Aisel\UserBundle\Entity\Group
+    user_class:     Aisel\UserBundle\Entity\BackendUser
+#    group:
+#        group_class: Aisel\UserBundle\Entity\Group
+
+sonata_user:
+    class:
+        user: Aisel\UserBundle\Entity\BackendUser
+        # To also override the Group object
+        # group:              Your\Bundle\Entity\Group
 
 # Sonata section
 sonata_block:
@@ -145,11 +151,7 @@ sonata_admin:
         html5_validate: false # does not use html5 validation
         confirm_exit:   false # disable confirmation when quitting with unsaved changes
 
-
 services:
-    sonata.user.admin.group:
-        abstract: true
-        public: false
     yavin.symfony.form.tree:
         class: Yavin\Symfony\Form\Type\TreeType
         arguments:

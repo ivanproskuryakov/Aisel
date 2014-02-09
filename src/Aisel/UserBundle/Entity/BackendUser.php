@@ -21,7 +21,7 @@ use Sonata\UserBundle\Entity\BaseUser as BaseUser;
  *
  * @author <yourname> <youremail>
  */
-class User extends BaseUser
+class BackendUser extends BaseUser
 {
     /**
      * @var integer $id

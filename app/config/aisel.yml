@@ -2,5 +2,5 @@ parameters:
     application.name: Aisel
     application.version: 0.0.2
     sonata.user.admin.groupname: System
-    sonata.user.admin.user.entity: Aisel\UserBundle\Entity\User
-    sonata.user.admin.user.class: Aisel\UserBundle\Admin\UserAdmin
+    sonata.user.admin.user.entity: Aisel\UserBundle\Entity\BackendUser
+    sonata.user.admin.user.class: Aisel\UserBundle\Admin\BackendUserAdmin
