@@ -16,12 +16,12 @@ services:
             - [ setTranslationDomain, [AiselUserBundle]]
 
 
-    frontend.user.provider:
-        class: Doctrine\Common\Persistence\ObjectRepository
-        factory_service: doctrine
-        factory_method: getRepository
-        arguments: [ Aisel\UserBundle\Entity\FrontendUser ]
+#    frontend.user.provider:
+#        class: Doctrine\Common\Persistence\ObjectRepository
+#        factory_service: doctrine
+#        factory_method: getRepository
+#        arguments: [ Aisel\UserBundle\Entity\FrontendUser ]
 
-#    frontend.user.repository:
-#        class: Aisel\UserBundle\Entity\FrontendUserRepository
-#        arguments: [@security.encoder_factory]
+    frontend.user.manager:
+        class: Aisel\UserBundle\Manager\UserManager
+        arguments: [@doctrine.orm.entity_manager, @security.encoder_factory]

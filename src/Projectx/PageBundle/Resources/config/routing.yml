@@ -3,7 +3,7 @@ projectx_page_emptyhomepage:
     defaults: { _controller: ProjectxPageBundle:Default:index }
 
 api_projectx_pagelist:
-    pattern:  /api/page/list/
+    pattern:  /api/page/list.json
     defaults: { _controller: ProjectxPageBundle:Api:pageList, _format: json }
     requirements:
         _method: GET

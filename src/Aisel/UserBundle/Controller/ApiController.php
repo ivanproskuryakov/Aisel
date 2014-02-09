@@ -17,7 +17,7 @@ class ApiController extends Controller
 
     protected function getUserManager()
     {
-        return $this->get('frontend.user.provider');
+        return $this->get('frontend.user.manager');
     }
 
     /**
@@ -41,18 +41,40 @@ class ApiController extends Controller
                 throw new NotFoundHttpException("User not found");
             }
 
-            if(!$this->checkUserPassword($user, $password)){
+            if(!$this->getUserManager()->checkUserPassword($user, $password)){
                 throw new AccessDeniedException("Wrong password");
             }
             $this->loginUser($user);
-            $status = array('success'=>true, 'status'=>'successully logged in');
 
+            $status = array('status'=>true, 'message'=>'successully logged in');
         } else {
-            $status = array('success'=>true, 'status'=>'already logged');
-//            $user = $this->get('security.context')->getToken()->getUser();
+            $status = array('status'=>false, 'message'=>'already logged');
         }
 
         return $status;
+    }
+
+    /**
+     * @Rest\View
+     */
+    public function registerAction()
+    {
+        $request = $this->getRequest();
+        $userData = array(
+            'username'=>$request->get('username'),
+            'password'=>$request->get('password'),
+            'email'=>$request->get('email'),
+        );
+
+        $user = $this->getUserManager()->registerUser($userData);
+
+        if ($user) {
+            $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+            $this->get('security.context')->setToken($token);
+            $this->get('session')->set('_security_main',serialize($token));
+        }
+
+        return array('status'=>$user);
     }
 
     /**
@@ -69,73 +91,19 @@ class ApiController extends Controller
     /**
      * @Rest\View
      */
-    public function registerAction()
-    {
-        $request = $this->getRequest();
-        $userData = array(
-            'username'=>$request->get('username'),
-            'password'=>$request->get('password'),
-            'email'=>$request->get('email'),
-        );
-
-        $result = $this->registerUser($userData);
-        return array('success'=>$result);
-    }
-
-    /**
-     * @Rest\View
-     */
     public function informationAction()
     {
         $user = $this->get('security.context')->getToken()->getUser();
-        if(!is_object($user)) {
-            return array('success'=>false);
-        } else {
-            $user = $this->get('security.context')->getToken()->getUser();
-            return $user;
-        }
-    }
-
-
-    protected function checkUserPassword(FrontendUser $user, $password)
-    {
-        $factory = $this->get('security.encoder_factory');
-        $encoder = $factory->getEncoder($user);
-//        var_dump($encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt()));
+        return $user;
 //        var_dump($user);
-//        var_dump($encoder);
 //        exit();
-
-        if(!$encoder){
-            return false;
-        }
-        return $encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt());
     }
 
     protected function loginUser(FrontendUser $user)
     {
-
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
         $this->get('security.context')->setToken($token);
         $this->get('session')->set('_security_main',serialize($token));
-    }
-
-
-    protected function registerUser(Array $userData)
-    {
-        /** @var \Aisel\UserBundle\Entity\FrontendUserRepository $um */
-        $um = $this->getUserManager();
-        $factory = $this->get('security.encoder_factory');
-        $user = $um->registerUser($userData,$factory);
-        if ($user) {
-            $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-            $this->get('security.context')->setToken($token);
-            $this->get('session')->set('_security_main',serialize($token));
-            return true;
-
-        } else {
-            return false;
-        }
     }
 
 
