@@ -23,6 +23,7 @@ Aisel\PageBundle\Entity\Page:
             column: comment_status
         metaUrl:
             type: string
+            unique: true
             length: 255
             column: meta_url
         metaTitle:

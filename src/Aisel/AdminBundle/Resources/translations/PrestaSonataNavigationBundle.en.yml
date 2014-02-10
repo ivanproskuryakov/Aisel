@@ -1,0 +1,15 @@
+navigation:
+    system:
+        label: System
+        backenduser:
+            label: Administators
+        frontenduser:
+            label: Users
+    cms:
+        label: CMS
+        page:
+            label: Page
+        category:
+            label: Category
+        menu:
+            label: Menu

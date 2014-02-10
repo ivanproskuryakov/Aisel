@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Aisel package.
+ *
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Aisel\CategoryBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
@@ -63,7 +72,7 @@ class CategoryAdmin extends Admin
                 ->add('status', 'choice', array('choices'   => array(
                     '0'   => 'Disabled',
                     '1' => 'Enabled'),
-                    'label' => 'Status'
+                    'label' => 'Status','attr' => array('class' => 'span3')
                 ))
                 ->add('parent', 'gedmotree', array('expanded' => true,'multiple' => false,
                     'class' => 'Aisel\CategoryBundle\Entity\Category',
@@ -88,7 +97,7 @@ class CategoryAdmin extends Admin
 //                ))
 
             ->with('Meta', array('description' => 'Meta description for search engines'))
-                ->add('meta_url', 'text', array('label' => 'Url'))
+                ->add('meta_url', 'text', array('label' => 'Url','help'=>'note: URL value must be unique'))
                 ->add('meta_Title', 'text', array('label' => 'Title'))
                 ->add('meta_description', 'textarea', array('label' => 'Description'))
                 ->add('meta_keywords', 'textarea', array('label' => 'Keywords'))

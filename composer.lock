@@ -3,8 +3,55 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "207cf8062e3d1522f0cee8a965892881",
+    "hash": "2b3f7ffe53e29db221e4a25a92402d63",
     "packages": [
+        {
+            "name": "craue/config-bundle",
+            "version": "1.1.4",
+            "target-dir": "Craue/ConfigBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/craue/CraueConfigBundle.git",
+                "reference": "b2e4ceb049581ef5c2ce7b902e5a1dafbfcbbac0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/craue/CraueConfigBundle/zipball/b2e4ceb049581ef5c2ce7b902e5a1dafbfcbbac0",
+                "reference": "b2e4ceb049581ef5c2ce7b902e5a1dafbfcbbac0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "~2.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Craue\\ConfigBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Raue",
+                    "email": "christian.raue@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/craue/CraueConfigBundle/contributors"
+                }
+            ],
+            "description": "Database-stored settings made available via a service for your Symfony2 project.",
+            "homepage": "https://github.com/craue/CraueConfigBundle",
+            "keywords": [
+                "Symfony2",
+                "config"
+            ],
+            "time": "2013-12-08 12:29:47"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.1.2",
@@ -1811,6 +1858,59 @@
             "time": "2014-01-09 22:37:17"
         },
         {
+            "name": "presta/sonata-navigation-bundle",
+            "version": "dev-master",
+            "target-dir": "Presta/SonataNavigationBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/prestaconcept/PrestaSonataNavigationBundle.git",
+                "reference": "57c0c7a3420caaf07a858e30216a399606c08d64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/prestaconcept/PrestaSonataNavigationBundle/zipball/57c0c7a3420caaf07a858e30216a399606c08d64",
+                "reference": "57c0c7a3420caaf07a858e30216a399606c08d64",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "suggest": {
+                "presta/cms-core-bundle": "1.0.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Presta\\SonataNavigationBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Bastien",
+                    "email": "nbastien@prestaconcept.net",
+                    "homepage": "http://www.prestaconcept.net/"
+                }
+            ],
+            "description": "PrestaSonataNavigationBundle : Allow you to customize your SonataAdmin Navigation",
+            "homepage": "https://github.com/prestaconcept/PrestaSonataNavigationBundle",
+            "keywords": [
+                "Symfony2",
+                "bundle",
+                "prestaconcept",
+                "sonata-admin"
+            ],
+            "time": "2014-01-30 17:15:15"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -3283,7 +3383,8 @@
         "sonata-project/core-bundle": 20,
         "jms/serializer-bundle": 20,
         "stof/doctrine-extensions-bundle": 20,
-        "mopa/bootstrap-bundle": 20
+        "mopa/bootstrap-bundle": 20,
+        "presta/sonata-navigation-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

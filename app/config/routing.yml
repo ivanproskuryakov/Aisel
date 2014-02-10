@@ -18,7 +18,26 @@ aisel_user:
     resource: "@AiselUserBundle/Resources/config/routing.yml"
     prefix:   /
 
-# SonataUser routing
+sonata_user:
+    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+    prefix: /administration
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /administration
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /administration
+
+
+craue_config_settings:
+  resource: "@CraueConfigBundle/Resources/config/routing/settings.xml"
+  prefix: /administration/settings
+
+
+# Don't need this, but I just wan't to leave it for a while.
 #sonata_user_security:
 #    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
 #
@@ -37,16 +56,3 @@ aisel_user:
 #sonata_user_change_password:
 #    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
 #    prefix: /profile
-
-sonata_user:
-    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
-    prefix: /administration
-
-admin:
-    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /administration
-
-_sonata_admin:
-    resource: .
-    type: sonata_admin
-    prefix: /administration

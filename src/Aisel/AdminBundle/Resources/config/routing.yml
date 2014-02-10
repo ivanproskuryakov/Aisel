@@ -1,7 +1,3 @@
 aisel_admin_homepage:
     pattern:  /admin/custompage
     defaults: { _controller: AiselAdminBundle:Default:index }
-
-#sonata_admin_custompage:
-#    pattern:  /admin/custompage
-#    defaults: { _controller: AcmeDemoBundle:Admin:custompage }

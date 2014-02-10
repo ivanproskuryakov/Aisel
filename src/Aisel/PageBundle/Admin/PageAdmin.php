@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Aisel package.
+ *
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Aisel\PageBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
@@ -48,7 +57,7 @@ class PageAdmin extends Admin
                     'class' => 'Aisel\CategoryBundle\Entity\Category',
                 ))
             ->with('Meta', array('description' => 'Meta description for search engines'))
-                ->add('metaUrl', 'text', array('label' => 'Url slug'))
+                ->add('metaUrl', 'text', array('label' => 'Url','help'=>'note: URL value must be unique'))
                 ->add('metaTitle', 'text', array('label' => 'Title'))
                 ->add('metaDescription', 'textarea', array('label' => 'Description'))
                 ->add('metaKeywords', 'textarea', array('label' => 'Keywords'))

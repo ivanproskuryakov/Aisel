@@ -42,6 +42,7 @@ Aisel\CategoryBundle\Entity\Category:
       #META
       metaUrl:
           type: string
+          unique: true
           length: 255
           column: meta_url
       metaTitle:

@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Craue\ConfigBundle\CraueConfigBundle(),
 
             // Sonata
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -32,6 +33,9 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\UserBundle\SonataUserBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+
+            new Presta\SonataNavigationBundle\PrestaSonataNavigationBundle(),
+
 
             // local bundles
             new Aisel\UserBundle\AiselUserBundle(),

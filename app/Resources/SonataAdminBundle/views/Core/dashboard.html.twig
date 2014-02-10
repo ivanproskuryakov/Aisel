@@ -1,16 +1,19 @@
+{#
+
+This file is part of the Aisel package.
+
+(c) Ivan Proskuryakov
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
 {% extends base_template %}
 
 {% block title %}{{ 'title_dashboard'|trans({}, 'SonataAdminBundle') }}{% endblock%}
 {% block breadcrumb %}{% endblock %}
 {% block content %}
-    {##}
-    {#<div class="row-fluid">#}
-        {#<div class="span6">#}
-            {#<a href="{{ url('projectx_admin_homepage') }}" class="btn">Custom Page</a>#}
-        {#</div>#}
-    {#</div>#}
-    {#<br/>#}
-    {##}
     <div class="row-fluid">
         <div class="span6">
             {% for block in blocks %}

@@ -34,7 +34,9 @@
         "stof/doctrine-extensions-bundle": "dev-master",
 
         "mopa/bootstrap-bundle": "2.3.x-dev",
-        "twbs/bootstrap": "v2.3.2"
+        "twbs/bootstrap": "v2.3.2",
+        "presta/sonata-navigation-bundle": "dev-master",
+        "craue/config-bundle": "~1.1"
 
 
     },

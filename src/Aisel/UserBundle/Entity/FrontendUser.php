@@ -81,6 +81,10 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
         // may not be needed, see section on salt below
         $this->salt = md5(uniqid(null, true));
     }
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
 
     public function setPlainPassword($password)
     {

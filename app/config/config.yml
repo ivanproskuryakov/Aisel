@@ -122,14 +122,10 @@ fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
     user_class:     Aisel\UserBundle\Entity\BackendUser
-#    group:
-#        group_class: Aisel\UserBundle\Entity\Group
 
 sonata_user:
     class:
         user: Aisel\UserBundle\Entity\BackendUser
-        # To also override the Group object
-        # group:              Your\Bundle\Entity\Group
 
 # Sonata section
 sonata_block:
@@ -153,6 +149,8 @@ sonata_admin:
     options:
         html5_validate: false # does not use html5 validation
         confirm_exit:   false # disable confirmation when quitting with unsaved changes
+    templates:
+        layout:  AiselAdminBundle::layout.html.twig
 
 services:
     aisel.symfony.form.tree:
@@ -175,3 +173,24 @@ sonata_doctrine_orm_admin:
             show:
                 tree: AiselAdminBundle:Form:tree.html.twig
 
+
+presta_sonata_navigation:
+    menu:
+        with_description: false
+        items:
+#            website:
+#                route: aisel_page_emptyhomepage
+            system:
+                children:
+                    backenduser:
+                        route: admin_aisel_user_backenduser_list
+                    frontenduser:
+                        route: admin_aisel_user_frontenduser_list
+            cms:
+                children:
+                    page:
+                        route: admin_aisel_page_page_list
+                    category:
+                        route: admin_aisel_category_category_list
+                    menu:
+                        route: admin_aisel_navigation_menu_list
