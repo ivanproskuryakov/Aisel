@@ -1,0 +1,6 @@
+services:
+    aisel_config.routing_loader:
+        class: Aisel\ConfigBundle\Routing\ExtraLoader
+        tags:
+            - { name: routing.loader }
+        arguments: [@service_container]

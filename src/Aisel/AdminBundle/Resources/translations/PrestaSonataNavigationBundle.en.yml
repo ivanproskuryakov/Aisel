@@ -5,6 +5,8 @@ navigation:
             label: Administators
         frontenduser:
             label: Users
+        settings:
+            label: Settings
     cms:
         label: CMS
         page:

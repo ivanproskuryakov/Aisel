@@ -37,7 +37,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        []
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -173,15 +173,14 @@ sonata_doctrine_orm_admin:
             show:
                 tree: AiselAdminBundle:Form:tree.html.twig
 
-
 presta_sonata_navigation:
     menu:
         with_description: false
         items:
-#            website:
-#                route: aisel_page_emptyhomepage
             system:
                 children:
+                    settings:
+                        route: config_contact
                     backenduser:
                         route: admin_aisel_user_backenduser_list
                     frontenduser:
@@ -194,3 +193,4 @@ presta_sonata_navigation:
                         route: admin_aisel_category_category_list
                     menu:
                         route: admin_aisel_navigation_menu_list
+

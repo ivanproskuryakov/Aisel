@@ -1,3 +1,4 @@
+
 aisel_category:
     resource: "@AiselCategoryBundle/Resources/config/routing.yml"
     prefix:   /
@@ -32,9 +33,10 @@ _sonata_admin:
     prefix: /administration
 
 
-craue_config_settings:
-  resource: "@CraueConfigBundle/Resources/config/routing/settings.xml"
-  prefix: /administration/settings
+aisel_config:
+    resource: .
+    type: extra
+    prefix: /administration/settings/
 
 
 # Don't need this, but I just wan't to leave it for a while.

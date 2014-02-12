@@ -14,6 +14,8 @@
         "twig/extensions": "~1.0",
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
+        "stof/doctrine-extensions-bundle": "dev-master",
+
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~2.3",
         "sensio/framework-extra-bundle": "~3.0",
@@ -31,13 +33,9 @@
         "sonata-project/user-bundle": "~2.2@dev",
         "sonata-project/core-bundle": "~2.2@dev",
         "jms/serializer-bundle": "dev-master",
-        "stof/doctrine-extensions-bundle": "dev-master",
-
         "mopa/bootstrap-bundle": "2.3.x-dev",
         "twbs/bootstrap": "v2.3.2",
-        "presta/sonata-navigation-bundle": "dev-master",
-        "craue/config-bundle": "~1.1"
-
+        "presta/sonata-navigation-bundle": "dev-master"
 
     },
     "scripts": {

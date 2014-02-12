@@ -1,0 +1,16 @@
+Aisel\ConfigBundle\Entity\Config:
+    type: entity
+    table: x_config
+    repositoryClass: Aisel\ConfigBundle\Entity\ConfigRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        entity:
+            type: string
+            length: 255
+        value:
+            type: text

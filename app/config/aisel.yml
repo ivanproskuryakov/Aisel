@@ -4,3 +4,13 @@ parameters:
     sonata.user.admin.groupname: System
     sonata.user.admin.user.entity: Aisel\UserBundle\Entity\BackendUser
     sonata.user.admin.user.class: Aisel\UserBundle\Admin\BackendUserAdmin
+
+aisel_config:
+    route_prefix: config_ # ex: config_contact
+    entities:
+        contact:
+            order: 10
+            controller: AiselContactBundle:Config:modify
+        category:
+            order: 20
+            controller: AiselCategoryBundle:Config:modify

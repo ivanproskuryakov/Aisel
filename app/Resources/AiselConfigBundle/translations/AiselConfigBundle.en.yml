@@ -1,0 +1,5 @@
+no_settings.label: There are no settings defined yet.
+settings_changed.label: The settings has been saved in database.
+settings.label: Sections
+aisel_config_contact.label: Contact
+aisel_config_category.label: Category

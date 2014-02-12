@@ -22,7 +22,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new Craue\ConfigBundle\CraueConfigBundle(),
+
 
             // Sonata
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -43,6 +43,9 @@ class AppKernel extends Kernel
             new Aisel\PageBundle\AiselPageBundle(),
             new Aisel\CategoryBundle\AiselCategoryBundle(),
             new Aisel\NavigationBundle\AiselNavigationBundle(),
+            new Aisel\ContactBundle\AiselContactBundle(),
+            new Aisel\ConfigBundle\AiselConfigBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
