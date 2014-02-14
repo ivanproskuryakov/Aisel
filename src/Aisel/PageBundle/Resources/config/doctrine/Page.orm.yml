@@ -1,6 +1,6 @@
 Aisel\PageBundle\Entity\Page:
     type: entity
-    table: x_page
+    table: aisel_page
     repositoryClass: Aisel\PageBundle\Entity\PageRepository
     id:
         id:
@@ -14,12 +14,12 @@ Aisel\PageBundle\Entity\Page:
             length: 255
         content:
             type: text
-        pageStatus:
-            type:
-            length: 25
-            column: page_status
+        status:
+            type: boolean
+            column: status
         commentStatus:
             type: boolean
+            nullable: true
             column: comment_status
         metaUrl:
             type: string
@@ -28,27 +28,32 @@ Aisel\PageBundle\Entity\Page:
             column: meta_url
         metaTitle:
             type: string
+            nullable: true
             length: 255
             column: meta_title
         metaDescription:
+            nullable: true
             type: string
             length: 255
             column: meta_description
         metaKeywords:
             type: string
+            nullable: true
             length: 255
             column: meta_keywords
-        dateCreated:
+
+        createdAt:
             type: datetime
-            column: date_created
-        dateModified:
+            column: created_at
+        updatedAt:
             type: datetime
-            column: date_modified
+            column: updated_at
+
     manyToMany:
       categories:
         targetEntity: Aisel\CategoryBundle\Entity\Category
         joinTable:
-          name: x_page_category
+          name: aisel_page_category
           joinColumns:
             page_id:
               referencedColumnName: id

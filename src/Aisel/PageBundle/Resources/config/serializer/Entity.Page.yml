@@ -7,9 +7,9 @@ Aisel\PageBundle\Entity\Page:
         expose: true
     content:
         expose: true
-    dateCreated:
+    createdAt:
         expose: true
-    dateModified:
+    updatedAt:
         expose: true
     comment_status:
         expose: true

@@ -1,5 +1,5 @@
 parameters:
-#    aisel_category.example.class: Aisel\CategoryBundle\Example
+    aisel_category_manager.class: Aisel\CategoryBundle\Manager\CategoryManager
 
 services:
     sonata.admin.category:
@@ -12,3 +12,8 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AiselCategoryBundle]]
+            - [ setManager, [@aisel.category.manager]]
+
+    aisel.category.manager:
+        class: %aisel_category_manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager]

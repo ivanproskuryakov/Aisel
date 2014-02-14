@@ -59,6 +59,38 @@ class Category
      */
     private $parent;
 
+    /**
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @var boolean
+     */
+    private $status;
+
+    /**
+     * @var string
+     */
+    private $metaUrl;
+
+    /**
+     * @var string
+     */
+    private $metaTitle;
+
+    /**
+     * @var string
+     */
+    private $metaDescription;
+
+    /**
+     * @var string
+     */
+    private $metaKeywords;
+
+
+
 
     public function __toString()
     {
@@ -204,6 +236,8 @@ class Category
         return $this->lvl;
     }
 
+
+
     /**
      * Add children
      *
@@ -259,46 +293,6 @@ class Category
     {
         return $this->parent;
     }
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * @var boolean
-     */
-    private $status;
-
-    /**
-     * @var string
-     */
-    private $metaUrl;
-
-    /**
-     * @var string
-     */
-    private $metaTitle;
-
-    /**
-     * @var string
-     */
-    private $metaDescription;
-
-    /**
-     * @var string
-     */
-    private $metaKeywords;
-
-    /**
-     * @var \DateTime
-     */
-    private $dateCreated;
-
-    /**
-     * @var \DateTime
-     */
-    private $dateModified;
-
 
     /**
      * Set description
@@ -439,48 +433,59 @@ class Category
     }
 
     /**
-     * Set dateCreated
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+
+    /**
+     * Set createdAt
      *
-     * @param \DateTime $dateCreated
+     * @param \DateTime $createdAt
      * @return Category
      */
-    public function setDateCreated($dateCreated)
+    public function setCreatedAt($createdAt)
     {
-        $this->dateCreated = $dateCreated;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get dateCreated
+     * Get createdAt
      *
      * @return \DateTime 
      */
-    public function getDateCreated()
+    public function getCreatedAt()
     {
-        return $this->dateCreated;
+        return $this->createdAt;
     }
 
     /**
-     * Set dateModified
+     * Set updatedAt
      *
-     * @param \DateTime $dateModified
+     * @param \DateTime $updatedAt
      * @return Category
      */
-    public function setDateModified($dateModified)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->dateModified = $dateModified;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get dateModified
+     * Get updatedAt
      *
      * @return \DateTime 
      */
-    public function getDateModified()
+    public function getUpdatedAt()
     {
-        return $this->dateModified;
+        return $this->updatedAt;
     }
 }

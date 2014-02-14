@@ -1,7 +1,7 @@
 Aisel\NavigationBundle\Entity\Menu:
     type: entity
     repositoryClass: Gedmo\Tree\Entity\Repository\NestedTreeRepository
-    table: x_menu
+    table: aisel_menu
     gedmo:
       tree:
         type: nested
@@ -12,6 +12,7 @@ Aisel\NavigationBundle\Entity\Menu:
           strategy: AUTO
     fields:
       title:
+        nullable: false
         type: string
         length: 64
       lft:
@@ -37,12 +38,12 @@ Aisel\NavigationBundle\Entity\Menu:
           type: boolean
           column: status
 
-      dateCreated:
+      createdAt:
           type: datetime
-          column: date_created
-      dateModified:
+          column: created_at
+      updatedAt:
           type: datetime
-          column: date_modified
+          column: updated_at
 
     manyToOne:
       parent:

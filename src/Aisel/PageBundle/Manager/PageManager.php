@@ -11,12 +11,14 @@
 
 namespace Aisel\PageBundle\Manager;
 
+use Aisel\AdminBundle\Util\UrlUtility;
+
 class PageManager
 {
     protected $sc;
     protected $em;
 
-    public function __construct($sc,$em)
+    public function __construct($sc, $em)
     {
         $this->sc = $sc;
         $this->em = $em;
@@ -24,7 +26,8 @@ class PageManager
 
     /**
      * Get list of all pages
-     * @return page object
+     * @param array $params
+     * @return array
      */
     public function getPages($params)
     {
@@ -41,7 +44,8 @@ class PageManager
 
     /**
      * Get single detailed page with category
-     * @return mixed array
+     * @param int $id
+     * @return mixed
      */
     public function getPage($id)
     {
@@ -64,5 +68,25 @@ class PageManager
 
         return $pageDetails;
     }
+
+
+    /**
+     * validate metaUrl for Page Entity and return one we can use
+     * @return string
+     */
+    public function normalizePageUrl($url, $pageId = null)
+    {
+        $page = $this->em->getRepository('AiselPageBundle:Page')->findTotalByURL($url, $pageId);
+
+        $utility = new UrlUtility();
+        $validUrl = $utility->process($url);
+
+        if ($page) {
+            $validUrl = $validUrl. '-1';
+        }
+
+        return $validUrl;
+    }
+
 
 }

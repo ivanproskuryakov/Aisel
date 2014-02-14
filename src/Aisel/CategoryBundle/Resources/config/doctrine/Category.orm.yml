@@ -1,7 +1,7 @@
 Aisel\CategoryBundle\Entity\Category:
     type: entity
-    repositoryClass: Gedmo\Tree\Entity\Repository\NestedTreeRepository
-    table: x_category
+    repositoryClass: Aisel\CategoryBundle\Entity\CategoryRepository
+    table: aisel_category
     gedmo:
       tree:
         type: nested
@@ -47,23 +47,26 @@ Aisel\CategoryBundle\Entity\Category:
           column: meta_url
       metaTitle:
           type: string
+          nullable: true
           length: 255
           column: meta_title
       metaDescription:
           type: string
+          nullable: true
           length: 255
           column: meta_description
       metaKeywords:
           type: string
+          nullable: true
           length: 255
           column: meta_keywords
 
-      dateCreated:
+      createdAt:
           type: datetime
-          column: date_created
-      dateModified:
+          column: created_at
+      updatedAt:
           type: datetime
-          column: date_modified
+          column: updated_at
 
     manyToOne:
       parent:
@@ -81,44 +84,3 @@ Aisel\CategoryBundle\Entity\Category:
         mappedBy: parent
         orderBy:
           lft: ASC
-#    id:
-#        id:
-#            type: integer
-#            id: true
-#            generator:
-#                strategy: AUTO
-#    fields:
-#        parentId:
-#            type: text
-#            column: parent_id
-#        name:
-#            type: string
-#            length: 255
-#        description:
-#            type: text
-#        status:
-#            type: boolean
-#            column: status
-#        metaUrl:
-#            type: string
-#            length: 255
-#            column: meta_url
-#        metaTitle:
-#            type: string
-#            length: 255
-#            column: meta_title
-#        metaDescription:
-#            type: string
-#            length: 255
-#            column: meta_description
-#        metaKeywords:
-#            type: string
-#            length: 255
-#            column: meta_keywords
-#        dateCreated:
-#            type: datetime
-#            column: date_created
-#        dateModified:
-#            type: datetime
-#            column: date_modified
-#    lifecycleCallbacks: {  }

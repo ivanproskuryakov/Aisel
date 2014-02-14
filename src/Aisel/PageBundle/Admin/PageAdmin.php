@@ -17,11 +17,40 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+use Sonata\AdminBundle\Validator\ErrorElement;
+use Symfony\Component\Validator\ValidatorInterface;
 
 class PageAdmin extends Admin
 {
+    protected $pageManager;
     protected $baseRoutePattern = 'page';
-    // Fields to be shown on create/edit forms
+
+    public function setManager($pageManager) {
+        $this->pageManager = $pageManager ;
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validate(ErrorElement $errorElement, $object)
+    {
+        $errorElement
+            ->with('title')
+                ->assertNotBlank()
+            ->end()
+            ->with('content')
+                ->assertNotBlank()
+            ->end()
+            ->with('metaUrl')
+                ->assertNotBlank()
+            ->end()
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -30,18 +59,10 @@ class PageAdmin extends Admin
                 ->add('content', 'ckeditor',
                     array(
                         'label' => 'Content',
-                        'attr' => array('class' => 'span10 field-content'),
-                        'config' => array(
-                            'styles' => 'my_styles',
-                        ),
-                        'styles' => array(
-                            'my_styles' => array(
-                                array('name' => 'Blue Title', 'element' => 'h2', 'styles' => array('color' => 'Blue')),
-                                array('name' => 'CSS Style', 'element' => 'span', 'attributes' => array('class' => 'span10')),
-                            ),
-                        ),
+                        'required' => true,
+                        'attr' => array('class' => 'span10 field-content')
                 ))
-                ->add('pageStatus', 'choice', array('choices'   => array(
+                ->add('status', 'choice', array('choices'   => array(
                         '0'   => 'Draft',
                         '1' => 'Published'),
                         'label' => 'Status','attr' => array('class' => 'span3')
@@ -80,13 +101,22 @@ class PageAdmin extends Admin
 
     public function prePersist($page)
     {
-        $page->setDateCreated(new \DateTime(date('Y-m-d H:i:s')));
-        $page->setDateModified(new \DateTime(date('Y-m-d H:i:s')));
+        $url = $page->getMetaUrl();
+        $normalUrl = $this->pageManager->normalizePageUrl($url);
+
+        $page->setMetaUrl($normalUrl);
+        $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
     public function preUpdate($page)
     {
-        $page->setDateModified(new \DateTime(date('Y-m-d H:i:s')));
+        $url = $page->getMetaUrl();
+        $pageId = $page->getId();
+        $normalUrl = $this->pageManager->normalizePageUrl($url, $pageId);
+
+        $page->setMetaUrl($normalUrl);
+        $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
 
@@ -96,10 +126,9 @@ class PageAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('title')
-            ->add('content', null, array('template' => 'AiselPageBundle:Admin:content.html.twig', 'label'=>'Content','true'=>false))
-            ->add('pageStatus', 'boolean', array('label' => 'Status','editable' => true))
+            ->add('status', 'boolean', array('label' => 'Status','editable' => true))
             ->add('commentStatus', 'boolean', array('label' => 'Comments','editable' => true))
-            ->add('dateModified', 'datetime', array('label' => 'Date'))
+            ->add('updatedAt', 'datetime', array('label' => 'Date'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -120,8 +149,8 @@ class PageAdmin extends Admin
         $showMapper
             ->with('Information')
                 ->add('content')
-                ->add('dateModified')
-                ->add('pageStatus','boolean')
+                ->add('updatedAt')
+                ->add('status','boolean')
             ->with('Categories')
                 ->add('categories','tree')
             ->with('Meta')
@@ -134,4 +163,11 @@ class PageAdmin extends Admin
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function toString($object)
+    {
+        return $object->getId() ? $object->getUsername() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
+    }
 }

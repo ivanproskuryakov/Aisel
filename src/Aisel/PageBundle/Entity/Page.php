@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Aisel package.
- *
- * (c) Ivan Proskuryakov
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Aisel\PageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -34,19 +25,9 @@ class Page
     private $content;
 
     /**
-     * @var \DateTime
+     * @var boolean
      */
-    private $dateCreated;
-
-    /**
-     * @var \DateTime
-     */
-    private $dateModified;
-
-    /**
-     * @var string
-     */
-    private $pageStatus;
+    private $status;
 
     /**
      * @var boolean
@@ -73,10 +54,29 @@ class Page
      */
     private $metaKeywords;
 
-    public function __toString()
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $categories;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        return $this->getTitle();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
     /**
      * Get id
      *
@@ -134,81 +134,26 @@ class Page
     }
 
     /**
-     * Set dateCreated
+     * Set status
      *
-     * @param \DateTime $dateCreated
+     * @param boolean $status
      * @return Page
      */
-    public function setDateCreated($dateCreated)
+    public function setStatus($status)
     {
-        if (!$this->getDateCreated()) {
-            if (!$dateCreated) {
-                $dateCreated = new \DateTime(date('Y-m-d H:i:s'));
-            }
-
-            $this->dateCreated = $dateCreated;
-        }
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get dateCreated
+     * Get status
      *
-     * @return \DateTime 
+     * @return boolean 
      */
-    public function getDateCreated()
+    public function getStatus()
     {
-        return $this->dateCreated;
-    }
-
-    /**
-     * Set dateModified
-     *
-     * @param \DateTime $dateModified
-     * @return Page
-     */
-    public function setDateModified($dateModified)
-    {
-        if (!$dateModified) {
-            $dateCreated = new \DateTime(date('Y-m-d H:i:s'));
-        }
-        $this->dateModified = $dateModified;
-
-        return $this;
-    }
-
-    /**
-     * Get dateModified
-     *
-     * @return \DateTime 
-     */
-    public function getDateModified()
-    {
-        return $this->dateModified;
-    }
-
-    /**
-     * Set pageStatus
-     *
-     * @param string $pageStatus
-     * @return Page
-     */
-    public function setPageStatus($pageStatus)
-    {
-        $this->pageStatus = $pageStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get pageStatus
-     *
-     * @return string 
-     */
-    public function getPageStatus()
-    {
-        return $this->pageStatus;
+        return $this->status;
     }
 
     /**
@@ -325,26 +270,60 @@ class Page
     {
         return $this->metaKeywords;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $categories;
 
     /**
-     * Constructor
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Page
      */
-    public function __construct()
+    public function setCreatedAt($createdAt)
     {
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Page
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 
     /**
      * Add categories
      *
-     * @param \Aisel\PageBundle\Entity\Category $categories
+     * @param \Aisel\CategoryBundle\Entity\Category $categories
      * @return Page
      */
-    public function addCategory(\Aisel\PageBundle\Entity\Category $categories)
+    public function addCategory(\Aisel\CategoryBundle\Entity\Category $categories)
     {
         $this->categories[] = $categories;
 
@@ -354,9 +333,9 @@ class Page
     /**
      * Remove categories
      *
-     * @param \Aisel\PageBundle\Entity\Category $categories
+     * @param \Aisel\CategoryBundle\Entity\Category $categories
      */
-    public function removeCategory(\Aisel\PageBundle\Entity\Category $categories)
+    public function removeCategory(\Aisel\CategoryBundle\Entity\Category $categories)
     {
         $this->categories->removeElement($categories);
     }

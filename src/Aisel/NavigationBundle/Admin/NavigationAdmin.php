@@ -18,11 +18,27 @@ use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+use Sonata\AdminBundle\Validator\ErrorElement;
+use Symfony\Component\Validator\ValidatorInterface;
+
 class NavigationAdmin extends Admin
 {
     protected $baseRoutePattern = 'navigation/menu';
     protected $maxPerPage = 500;
     protected $maxPageLinks = 500;
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validate(ErrorElement $errorElement, $object)
+    {
+        $errorElement
+            ->with('title')
+                ->assertNotBlank()
+            ->end()
+        ;
+    }
 
     /**
      * {@inheritdoc}
@@ -74,13 +90,13 @@ class NavigationAdmin extends Admin
 
     public function prePersist($page)
     {
-        $page->setDateCreated(new \DateTime(date('Y-m-d H:i:s')));
-        $page->setDateModified(new \DateTime(date('Y-m-d H:i:s')));
+        $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
     public function preUpdate($page)
     {
-        $page->setDateModified(new \DateTime(date('Y-m-d H:i:s')));
+        $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
     // Fields to be shown on lists
@@ -110,10 +126,19 @@ class NavigationAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-                ->add('dateModified')
+                ->add('updatedAt')
                 ->add('status')
             ->with('General')
                 ->add('id')
         ;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toString($object)
+    {
+        return $object->getId() ? $object->getUsername() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
+    }
+
 }

@@ -18,12 +18,38 @@ use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+use Sonata\AdminBundle\Validator\ErrorElement;
+use Symfony\Component\Validator\ValidatorInterface;
 
 class CategoryAdmin extends Admin
 {
+    protected $categoryManager;
     protected $baseRoutePattern = 'category';
     protected $maxPerPage = 500;
     protected $maxPageLinks = 500;
+
+    public function setManager($categoryManager) {
+        $this->categoryManager = $categoryManager ;
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validate(ErrorElement $errorElement, $object)
+    {
+        $errorElement
+            ->with('title')
+                ->assertNotBlank()
+            ->end()
+            ->with('description')
+                ->assertNotBlank()
+            ->end()
+            ->with('metaUrl')
+                ->assertNotBlank()
+            ->end()
+        ;
+    }
 
     /**
      * {@inheritdoc}
@@ -54,7 +80,6 @@ class CategoryAdmin extends Admin
         $formMapper
             ->with('General', array('description' => 'This section contains general settings'))
                 ->add('title', 'text', array('label' => 'Title','attr' => array('class' => 'span12')))
-//                ->add('description', 'textarea', array('label' => 'Description','attr' => array('class' => 'span10 field-content')))
                 ->add('description', 'ckeditor',
                     array(
                         'label' => 'Content',
@@ -86,35 +111,35 @@ class CategoryAdmin extends Admin
                     }, 'empty_value' => 'no parent'
 
                 ))
-//                ->add('parent', null, array('label' => 'Parent', 'required' => false, 'query_builder' => function ($er) use ($id) {
-//                        $qb = $er->createQueryBuilder('p');
-//                        if ($id) {
-//                            $qb ->where('p.id <> :id')->setParameter('id', $id);
-//                        }
-//                        $qb ->orderBy('p.root, p.lft', 'ASC');
-//                        return $qb;
-//                    }, 'empty_value' => 'no parent'
-//                ))
 
             ->with('Meta', array('description' => 'Meta description for search engines'))
-                ->add('meta_url', 'text', array('label' => 'Url','help'=>'note: URL value must be unique'))
-                ->add('meta_Title', 'text', array('label' => 'Title'))
-                ->add('meta_description', 'textarea', array('label' => 'Description'))
-                ->add('meta_keywords', 'textarea', array('label' => 'Keywords'))
+                ->add('metaUrl', 'text', array('label' => 'Url','help'=>'note: URL value must be unique'))
+                ->add('metaTitle', 'text', array('label' => 'Title'))
+                ->add('metaDescription', 'textarea', array('label' => 'Description'))
+                ->add('metaKeywords', 'textarea', array('label' => 'Keywords'))
             ->end();
 
     }
 
 
-    public function prePersist($page)
+    public function prePersist($category)
     {
-        $page->setDateCreated(new \DateTime(date('Y-m-d H:i:s')));
-        $page->setDateModified(new \DateTime(date('Y-m-d H:i:s')));
+        $url = $category->getMetaUrl();
+        $normalUrl = $this->categoryManager->normalizeCategoryUrl($url);
+
+        $category->setMetaUrl($normalUrl);
+        $category->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $category->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
-    public function preUpdate($page)
+    public function preUpdate($category)
     {
-        $page->setDateModified(new \DateTime(date('Y-m-d H:i:s')));
+        $url = $category->getMetaUrl();
+        $categoryId = $category->getId();
+        $normalUrl = $this->categoryManager->normalizeCategoryUrl($url, $categoryId);
+
+        $category->setMetaUrl($normalUrl);
+        $category->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
     // Fields to be shown on lists
@@ -124,7 +149,6 @@ class CategoryAdmin extends Admin
             ->addIdentifier('id', null,array('sortable'=>false))
             ->add('status', 'boolean', array('label' => 'Enabled','editable' => true))
             ->add('title', null, array('template' => 'AiselCategoryBundle:Admin:title.html.twig', 'label'=>'Title','sortable'=>false))
-            ->add('description', 'text', array('label' => 'Description'))
             ->add('order', 'text', array('template' => 'AiselCategoryBundle:Admin:order.html.twig', 'label'=>'Move'))
 
             ->add('_action', 'actions', array(
@@ -145,7 +169,7 @@ class CategoryAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-                ->add('dateModified')
+                ->add('updatedAt')
                 ->add('status')
             ->with('Meta')
                 ->add('metaUrl')
@@ -155,6 +179,14 @@ class CategoryAdmin extends Admin
             ->with('General')
                 ->add('id')
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toString($object)
+    {
+        return $object->getId() ? $object->getUsername() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
     }
 
 }

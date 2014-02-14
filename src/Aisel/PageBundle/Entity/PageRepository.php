@@ -75,12 +75,12 @@ class PageRepository extends EntityRepository
 
         $qb->select('COUNT(p.id)')
             ->from('AiselPageBundle:Page', 'p')
-            ->where('p.pageStatus = :page_status');
+            ->where('p.pageStatus = :status');
 
         if ($this->query != '') {
             $qb->andWhere('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%');
         }
-        $r = $qb->setParameter('page_status', 1)
+        $r = $qb->setParameter('status', 1)
                 ->getQuery()->getSingleScalarResult();
 
         if (!$r) return 0;
@@ -130,5 +130,30 @@ class PageRepository extends EntityRepository
 
         return $r;
     }
+
+
+    /*
+     * Find categories by url
+     *
+     * @return int value
+     * */
+
+    public function findTotalByURL($url, $pageId = null)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('COUNT(p.id)')
+            ->from('AiselPageBundle:Page', 'p')
+            ->where('p.metaUrl = :url')->setParameter('url', $url);
+
+        if ($pageId) {
+            $qb->andWhere('p.id != :pageId')->setParameter('pageId',$pageId);
+        }
+        $found = $qb->getQuery()->getSingleScalarResult();
+
+        return $found;
+    }
+
+
 
 }

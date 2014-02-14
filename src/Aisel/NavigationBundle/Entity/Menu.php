@@ -279,60 +279,107 @@ class Menu
     {
         return $this->parent;
     }
+
+
+//    /**
+//     * Set dateCreated
+//     *
+//     * @param \DateTime $dateCreated
+//     * @return Menu
+//     */
+//    public function setDateCreated($dateCreated)
+//    {
+//        $this->dateCreated = $dateCreated;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get dateCreated
+//     *
+//     * @return \DateTime
+//     */
+//    public function getDateCreated()
+//    {
+//        return $this->dateCreated;
+//    }
+//
+//    /**
+//     * Set dateModified
+//     *
+//     * @param \DateTime $dateModified
+//     * @return Menu
+//     */
+//    public function setDateModified($dateModified)
+//    {
+//        $this->dateModified = $dateModified;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get dateModified
+//     *
+//     * @return \DateTime
+//     */
+//    public function getDateModified()
+//    {
+//        return $this->dateModified;
+//    }
     /**
      * @var \DateTime
      */
-    private $dateCreated;
+    private $createdAt;
 
     /**
      * @var \DateTime
      */
-    private $dateModified;
+    private $updatedAt;
 
 
     /**
-     * Set dateCreated
+     * Set createdAt
      *
-     * @param \DateTime $dateCreated
+     * @param \DateTime $createdAt
      * @return Menu
      */
-    public function setDateCreated($dateCreated)
+    public function setCreatedAt($createdAt)
     {
-        $this->dateCreated = $dateCreated;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get dateCreated
+     * Get createdAt
      *
      * @return \DateTime 
      */
-    public function getDateCreated()
+    public function getCreatedAt()
     {
-        return $this->dateCreated;
+        return $this->createdAt;
     }
 
     /**
-     * Set dateModified
+     * Set updatedAt
      *
-     * @param \DateTime $dateModified
+     * @param \DateTime $updatedAt
      * @return Menu
      */
-    public function setDateModified($dateModified)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->dateModified = $dateModified;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get dateModified
+     * Get updatedAt
      *
      * @return \DateTime 
      */
-    public function getDateModified()
+    public function getUpdatedAt()
     {
-        return $this->dateModified;
+        return $this->updatedAt;
     }
 }

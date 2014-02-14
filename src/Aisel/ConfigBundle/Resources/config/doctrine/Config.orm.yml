@@ -1,6 +1,6 @@
 Aisel\ConfigBundle\Entity\Config:
     type: entity
-    table: x_config
+    table: aisel_config
     repositoryClass: Aisel\ConfigBundle\Entity\ConfigRepository
     id:
         id:

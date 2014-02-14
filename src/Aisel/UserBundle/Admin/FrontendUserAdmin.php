@@ -11,20 +11,22 @@
 
 namespace Aisel\UserBundle\Admin;
 
-use Sonata\UserBundle\Admin\Model\UserAdmin as BaseUserAdmin;
-
+use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-
 use Sonata\AdminBundle\Route\RouteCollection;
 
+use Sonata\AdminBundle\Validator\ErrorElement;
+use Symfony\Component\Validator\ValidatorInterface;
 
-class FrontendUserAdmin extends BaseUserAdmin
+
+class FrontendUserAdmin extends Admin
 {
     protected $baseRoutePattern = 'system/user/front';
     protected $encoderFactory;
+
     /**
      * {@inheritdoc}
      */
@@ -34,9 +36,33 @@ class FrontendUserAdmin extends BaseUserAdmin
             ->with('General')
                 ->add('username')
                 ->add('email')
-
             ->end()
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validate(ErrorElement $errorElement, $object)
+    {
+        $errorElement
+            ->with('username')
+                ->assertNotBlank()
+            ->end()
+            ->with('email')
+                ->assertNotBlank()
+                ->assertNotNull()
+                ->assertEmail()
+            ->end()
+        ;
+        if (!$object->getId()) {
+
+            $errorElement
+                ->with('plainPassword')
+                ->assertNotBlank()
+                ->end()
+            ;
+        }
     }
 
     /**
@@ -46,9 +72,8 @@ class FrontendUserAdmin extends BaseUserAdmin
     {
         $formMapper
             ->with('General')
-                ->add('username')
+                ->add('username', 'text', array('required' => true))
                 ->add('email')
-//                ->add('password')
                 ->add('plainPassword', 'text', array(
                     'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
                 ))
@@ -93,6 +118,9 @@ class FrontendUserAdmin extends BaseUserAdmin
             );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function prePersist($user)
     {
         $encoder = $this->getEncoderFactory()->getEncoder($user);
@@ -101,8 +129,12 @@ class FrontendUserAdmin extends BaseUserAdmin
 
         $user->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function preUpdate($user)
     {
         if ($user->getPlainPassword()) {
@@ -123,6 +155,15 @@ class FrontendUserAdmin extends BaseUserAdmin
     public function setEncoderFactory($encoderFactory)
     {
         $this->encoderFactory = $encoderFactory;
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toString($object)
+    {
+        return $object->getId() ? $object->getUsername() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
     }
 
 
