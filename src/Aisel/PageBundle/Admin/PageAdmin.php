@@ -168,6 +168,6 @@ class PageAdmin extends Admin
      */
     public function toString($object)
     {
-        return $object->getId() ? $object->getUsername() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
+        return $object->getId() ? $object->getTitle() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
     }
 }

@@ -32,7 +32,15 @@ class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
         $menu->setStatus(true);
         $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $manager->persist($menu);
+        $manager->flush();
 
+        // Blog
+        $menu = new Menu();
+        $menu->setTitle('Contacts');
+        $menu->setStatus(true);
+        $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $manager->persist($menu);
         $manager->flush();
 
