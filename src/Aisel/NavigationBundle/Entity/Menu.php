@@ -382,4 +382,32 @@ class Menu
     {
         return $this->updatedAt;
     }
+    /**
+     * @var string
+     */
+    private $url;
+
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return Menu
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string 
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
 }

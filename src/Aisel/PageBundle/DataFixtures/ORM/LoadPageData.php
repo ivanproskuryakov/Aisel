@@ -32,7 +32,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $childCategory = $this->getReference('child-category');
 
         // Pages
-        for ($i = 1; $i <= 10; $i++ ) {
+        for ($i = 1; $i <= 30; $i++ ) {
             $page = new Page();
             $page->setTitle('Sample Page '. $i);
             $page->setContent('empty content');

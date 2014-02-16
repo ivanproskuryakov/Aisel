@@ -13,7 +13,7 @@ class ConfigType extends AbstractType
             ->add('Name', 'text', array('label' => 'Name'))
             ->add('Email', 'email', array('label' => 'E-mail'))
             ->add('AddressLine1', 'text', array('label' => 'Address Line 1', 'attr'=> array( 'class'=>'span6')))
-            ->add('AddressLine2', 'text', array('label' => 'Address Line 2', 'attr'=> array( 'class'=>'span6')))
+            ->add('AddressLine2', 'text', array('label' => 'Address Line 2', 'required'=>false, 'attr'=> array( 'class'=>'span6')))
             ->add('information', 'ckeditor', array('label' => 'Some Information' ))
             ->add('save', 'submit', array('label' => 'Save', 'attr'=> array( 'class'=>'btn btn-primary')));
 

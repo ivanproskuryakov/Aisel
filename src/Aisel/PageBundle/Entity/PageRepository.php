@@ -75,7 +75,7 @@ class PageRepository extends EntityRepository
 
         $qb->select('COUNT(p.id)')
             ->from('AiselPageBundle:Page', 'p')
-            ->where('p.pageStatus = :status');
+            ->where('p.status = :status');
 
         if ($this->query != '') {
             $qb->andWhere('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%');
@@ -98,7 +98,7 @@ class PageRepository extends EntityRepository
         $this->mapRequest($params);
 
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $r = $qb->select('p.id, p.title, p.content, p.dateCreated')
+        $r = $qb->select('p.id, p.title, p.content, p.createdAt')
             ->from('AiselPageBundle:Page', 'p')
             ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
@@ -119,7 +119,7 @@ class PageRepository extends EntityRepository
         $this->mapRequest($params);
 
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $r = $qb->select('p.id, p.title, p.content, p.dateCreated')
+        $r = $qb->select('p.id, p.title, p.content, p.createdAt')
             ->from('AiselPageBundle:Page', 'p')
             ->where('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%')
             ->setMaxResults($this->pageLimit)

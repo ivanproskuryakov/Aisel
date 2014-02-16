@@ -41,7 +41,7 @@ class ApiController extends Controller
 
     /**
      * @Rest\View
-     * /api/page/list/?limit=2&current=3
+     * /api/page/list.json?limit=2&current=3
      */
     public function pageListAction(Request $request)
     {
@@ -64,6 +64,5 @@ class ApiController extends Controller
         $page = $this->container->get("aisel.page.manager")->getPage($id);
 
         return $page;
-
     }
 }

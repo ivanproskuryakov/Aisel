@@ -1,6 +1,13 @@
-<!--<p>Page ID: {{page.id}}</p>-->
-<!--<hr/>-->
-<h2>{{page.page.title}}</h2>
-<p>{{page.page.date_created}}</p>
+<h2>{{scope.page.title}}</h2>
+<p><strong>Date:</strong> {{scope.page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
 <hr/>
-<p>{{page.page.content}}</p>
+<p>{{scope.page.content}}</p>
+<hr/>
+<div class="pageCategories">
+<p><strong> Post categories </strong></p>
+    <ul class="categoryList">
+        <li ng-repeat="category in scope.categories">
+            <a ng-href="#!/category/{{category.id}}">{{ category.title }}</a>
+        </li>
+    </ul>
+</div>

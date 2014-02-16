@@ -1,1 +1,47 @@
-<p>This is the contact view.</p>
+<div class="row row-offcanvas row-offcanvas-right">
+    <div class="page-header">
+        <h2>Contact Us</h2>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <h3>Your contacts</h3>
+        <form class="form-horizontal" role="form">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" class="form-control" placeholder="Your Name">
+            </div>
+            <br class="divider">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                <input type="text" class="form-control" placeholder="E-mail">
+            </div>
+            <br class="divider">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                <input type="text" class="form-control" placeholder="Phone">
+            </div>
+
+            <h3>Message</h3>
+            <textarea class="form-control" rows="10"></textarea>
+            <br class="divider">
+            <div class="input-group pull-right">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-xs-6 col-sm-6 sidebar-offcanvas jumbotron" id="sidebar">
+        <h4>Name</h4>
+        <p>{{ config.Name }}</p>
+
+        <h4>Email</h4>
+        <p>{{ config.Email }}</p>
+
+        <h4>Address</h4>
+        <p>{{ config.AddressLine1 }}</p>
+        <p>{{ config.AddressLine2 }}</p>
+
+        <h4>Information</h4>
+        <p ng-bind-html="config.information"></p>
+    </div>
+
+</div>

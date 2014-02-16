@@ -5,7 +5,8 @@ angular.module('projectxApp')
 
         var pageId = $routeParams.pageId;
         var handleSuccess = function(data, status) {
-            $scope.page = data;
+            $scope.scope = data;
+            console.log($scope.scope);
         };
         pageService.getPage(pageId).success(handleSuccess);
   });

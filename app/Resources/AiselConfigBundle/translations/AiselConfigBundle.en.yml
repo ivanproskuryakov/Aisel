@@ -3,3 +3,4 @@ settings_changed.label: The settings has been saved in database.
 settings.label: Sections
 aisel_config_contact.label: Contact
 aisel_config_category.label: Category
+aisel_config_meta.label: Meta Information

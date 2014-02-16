@@ -11,7 +11,7 @@
 
 namespace Aisel\CategoryBundle\Manager;
 
-use Aisel\AdminBundle\Util\UrlUtility;
+use Aisel\AdminBundle\Utility\UrlUtility;
 
 class CategoryManager
 {
@@ -22,6 +22,52 @@ class CategoryManager
     {
         $this->sc = $sc;
         $this->em = $em;
+    }
+
+
+    /**
+     * Get list of enabled categories sorted as a tree
+     * @return object
+     */
+    public function getCategoryTree()
+    {
+        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
+
+        return $categories;
+    }
+
+    /**
+     * Get list of all categories
+     * @param array $params
+     * @return mixed
+     */
+    public function getCategories($params)
+    {
+        $total      = $this->em->getRepository('AiselCategoryBundle:Category')->getTotalFromRequest($params);
+        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getCurrentCategoriesFromRequest($params);
+
+        $return = array (
+            'total'=> $total,
+            'categories'=> $categories
+        );
+
+        return $return;
+    }
+
+    /**
+     * Get single category
+     * @param int $id
+     * @return object
+     */
+    public function getCategory($id)
+    {
+        $category = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategory($id);
+
+        if(!($category)){
+            throw $this->createNotFoundException();
+        }
+
+        return $category;
     }
 
     /**

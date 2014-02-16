@@ -1,0 +1,9 @@
+<div class="page-header">
+    <h2>{{category.title}}</h2>
+</div>
+
+<p><strong>Date:</strong> {{category.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
+<hr/>
+<p>{{category.description}}</p>
+
+<a ng-href="#!/categories/">browse categories</a>

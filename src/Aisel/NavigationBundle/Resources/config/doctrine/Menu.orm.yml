@@ -1,6 +1,6 @@
 Aisel\NavigationBundle\Entity\Menu:
     type: entity
-    repositoryClass: Gedmo\Tree\Entity\Repository\NestedTreeRepository
+    repositoryClass: Aisel\NavigationBundle\Entity\MenuRepository
     table: aisel_menu
     gedmo:
       tree:
@@ -11,10 +11,6 @@ Aisel\NavigationBundle\Entity\Menu:
         generator:
           strategy: AUTO
     fields:
-      title:
-        nullable: false
-        type: string
-        length: 64
       lft:
         type: integer
         gedmo:
@@ -34,6 +30,12 @@ Aisel\NavigationBundle\Entity\Menu:
           - treeLevel
 
       #GENERAL
+      title:
+        nullable: false
+        type: string
+        length: 255
+      url:
+          type: text
       status:
           type: boolean
           column: status

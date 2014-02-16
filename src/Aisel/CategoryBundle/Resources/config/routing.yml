@@ -1,3 +1,23 @@
+api_aisel_categorylist:
+    pattern:  /api/category/list.json
+    defaults: { _controller: AiselCategoryBundle:Api:categoryList, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_categorytree:
+    pattern:  /api/category/tree.json
+    defaults: { _controller: AiselCategoryBundle:Api:categoryTree, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_categoryview:
+    pattern:  /api/category/view/{id}.json
+    defaults: { _controller: AiselCategoryBundle:Api:categoryView, _format: json }
+    requirements:
+        _method: GET
+        id: "\d+"
+
+
 aisel_category_tree_up:
     pattern:  /administration/aisel/category/category/up/{id}
     defaults:  { _controller: AiselCategoryBundle:AdminCategorySort:up }

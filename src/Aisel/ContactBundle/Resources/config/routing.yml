@@ -1,0 +1,5 @@
+api_aisel_configcontact:
+    pattern:  /api/config/contact.json
+    defaults: { _controller: AiselContactBundle:Api:config, _format: json }
+    requirements:
+        _method: GET

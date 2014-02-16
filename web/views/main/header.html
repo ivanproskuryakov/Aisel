@@ -1,19 +1,20 @@
 <!-- Static navbar -->
 <div class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        <div class="navbar-header" ng-controller="MainCtrl">
             <a class="navbar-brand" href="#!">Aisel</a>
+
             <ul class="nav navbar-nav">
-                <li><a ng-href="#!/about">About</a>
-                <li><a ng-href="#!/contact">Contact</a></li>
-                <li><a ng-href="#!/pages/">Pages</a>
+                <li ng-repeat="menuItem in navigationMenu">
+                    <a ng-href="{{menuItem.url}}">{{menuItem.title}}</a>
+                </li>
             </ul>
+
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li><a ng-href="#!/about">About</a>-->
+                <!--<li><a ng-href="#!/contact">Contact</a></li>-->
+                <!--<li><a ng-href="#!/pages/">Pages</a>-->
+            <!--</ul>-->
         </div>
         <form class="navbar-form navbar-right" role="form">
             <div class="form-group">

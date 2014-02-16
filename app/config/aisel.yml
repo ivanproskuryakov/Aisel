@@ -14,3 +14,6 @@ aisel_config:
         category:
             order: 20
             controller: AiselCategoryBundle:Config:modify
+        meta:
+            order: 0
+            controller: AiselAdminBundle:Config:modify

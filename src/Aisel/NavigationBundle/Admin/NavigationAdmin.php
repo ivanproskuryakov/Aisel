@@ -36,6 +36,8 @@ class NavigationAdmin extends Admin
         $errorElement
             ->with('title')
                 ->assertNotBlank()
+            ->with('url')
+                ->assertNotBlank()
             ->end()
         ;
     }
@@ -66,6 +68,7 @@ class NavigationAdmin extends Admin
         $formMapper
             ->with('General', array('description' => 'This section contains general settings'))
             ->add('title', 'text', array('label' => 'Title'))
+            ->add('url', 'text', array('label' => 'URL'))
             ->add('status', 'choice', array('choices'   => array(
                     '0'   => 'Disabled',
                     '1' => 'Enabled'),
@@ -106,6 +109,7 @@ class NavigationAdmin extends Admin
             ->addIdentifier('id', null,array('sortable'=>false))
             ->add('status', 'boolean', array('label' => 'Enabled','editable' => true))
             ->add('title', null, array('template' => 'AiselNavigationBundle:Admin:title.html.twig', 'label'=>'Title','sortable'=>false))
+            ->add('url', null, array('label'=>'URL','sortable'=>false))
             ->add('order', 'text', array('template' => 'AiselNavigationBundle:Admin:order.html.twig', 'label'=>'Move'))
 
             ->add('_action', 'actions', array(

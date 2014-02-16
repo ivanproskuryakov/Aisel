@@ -1,3 +1,9 @@
+api_aisel_navigationmenu:
+    pattern:  /api/navigation/menu.json
+    defaults: { _controller: AiselNavigationBundle:Api:menu, _format: json }
+    requirements:
+        _method: GET
+
 aisel_menu_tree_up:
     pattern:  /administration/aisel/navigation/menu/up/{id}
     defaults:  { _controller: AiselNavigationBundle:AdminMenuNavigationSort:up }

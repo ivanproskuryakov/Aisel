@@ -1,0 +1,15 @@
+Aisel\CategoryBundle\Entity\Category:
+  exclusion_policy: ALL
+  properties:
+    id:
+        expose: true
+    lvl:
+        expose: true
+    title:
+        expose: true
+    description:
+        expose: true
+    metaUrl:
+        expose: true
+    createdAt:
+        expose: true

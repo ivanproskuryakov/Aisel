@@ -1,16 +1,11 @@
-aisel_page_emptyhomepage:
-    pattern:  /
-    defaults: { _controller: AiselPageBundle:Default:index }
-
 api_aisel_pagelist:
     pattern:  /api/page/list.json
     defaults: { _controller: AiselPageBundle:Api:pageList, _format: json }
     requirements:
         _method: GET
 
-
 api_aisel_pageview:
-    pattern:  /api/page/view/{id}/
+    pattern:  /api/page/view/{id}.json
     defaults: { _controller: AiselPageBundle:Api:pageView, _format: json }
     requirements:
         _method: GET

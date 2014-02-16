@@ -1,0 +1,13 @@
+Aisel\NavigationBundle\Entity\Menu:
+  exclusion_policy: ALL
+  properties:
+    id:
+        expose: true
+    title:
+        expose: true
+    url:
+        expose: true
+    metaUrl:
+        expose: true
+    description:
+        expose: true

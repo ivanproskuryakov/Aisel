@@ -11,6 +11,7 @@
 
 namespace Aisel\PageBundle\Manager;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Aisel\AdminBundle\Util\UrlUtility;
 
 class PageManager
@@ -52,7 +53,7 @@ class PageManager
         $page = $this->em->getRepository('AiselPageBundle:Page')->find($id);
 
         if(!($page)){
-            throw $this->createNotFoundException();
+            throw new NotFoundHttpException('Nothing found');
         }
 
         $pageDetails = array('page'=>$page,'categories'=>array());

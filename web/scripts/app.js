@@ -22,6 +22,16 @@ angular.module('projectxApp', [
             templateUrl: 'views/page-detail.html',
             controller: 'PageDetailCtrl'
         })
+
+        .when('/categories/', {
+            templateUrl: 'views/category.html',
+            controller: 'CategoryCtrl'
+        })
+        .when('/category/:categoryId', {
+            templateUrl: 'views/category-detail.html',
+            controller: 'CategoryDetailCtrl'
+        })
+
         .when('/about/', {
             templateUrl: 'views/about.html',
             controller: 'AboutCtrl'

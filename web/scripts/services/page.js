@@ -5,12 +5,12 @@ angular.module('projectxApp')
         return {
 
             getPages: function($scope) {
-                var url = API_URL+'/page/list/?limit='+$scope.limit+'&current='+$scope.paginationPage;
+                var url = API_URL+'/page/list.json?limit='+$scope.pageLimit+'&current='+$scope.paginationPage;
                 console.log(url);
                 return $http.get(url);
             },
             getPage: function($id) {
-                var url = API_URL+'/page/view/'+$id;
+                var url = API_URL+'/page/view/'+$id+'.json';
                 console.log(url);
                 return $http.get(url);
             }

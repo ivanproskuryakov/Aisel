@@ -1,0 +1,31 @@
+<div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-xs-12 col-sm-9">
+        <div class="page-header">
+            <h2>Categories</h2>
+        </div>
+
+        <div class="col-md-12">
+            <ul class="pageList">
+                <li ng-repeat="category in categoryList.categories">
+                    <h2><a href="#!/category/{{category.id}}/" class="thumb">{{category.title}}</a></h2>
+                    <p>{{category.description}}</p>
+                    <hr/>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <pagination ng-if="categoryList.total > 0" on-select-page="pageChanged(page)" items-per-page="{{pageLimit}}" total-items="categoryList.total"  page="paginationPage"></pagination>
+        </div>
+        <div class="col-md-6">
+            <p class="pull-right"><strong>Total categories: {{categoryLimit.total}} Current: {{paginationPage}}</strong></p>
+        </div>
+    </div>
+
+
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+
+        <div class="sidebar" ng-include="'views/main/sidebar.html'"></div>
+
+    </div>
+</div>

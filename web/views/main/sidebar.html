@@ -1,0 +1,13 @@
+<div ng-controller="MainCtrl">
+    <div class="form-group">
+        <label for="searchQuery">Search</label>
+        <input id="searchQuery" class="form-control" ng-search-redirect="{{search}}" ng-model="search" placeholder="Enter query ..." class="form-control">
+    </div>
+
+    <h3>Categories</h3>
+    <ul class="categoryList">
+        <li ng-repeat="category in categoryTree">
+            <a href="#!/category/{{category.id}}/" style="padding-left: {{category.lvl*10}}px " class="thumb">{{category.title}}</a>
+        </li>
+    </ul>
+</div>
