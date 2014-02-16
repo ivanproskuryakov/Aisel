@@ -349,4 +349,32 @@ class Page
     {
         return $this->categories;
     }
+    /**
+     * @var boolean
+     */
+    private $isHidden;
+
+
+    /**
+     * Set isHidden
+     *
+     * @param boolean $isHidden
+     * @return Page
+     */
+    public function setIsHidden($isHidden)
+    {
+        $this->isHidden = $isHidden;
+
+        return $this;
+    }
+
+    /**
+     * Get isHidden
+     *
+     * @return boolean 
+     */
+    public function getIsHidden()
+    {
+        return $this->isHidden;
+    }
 }

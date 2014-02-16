@@ -13,13 +13,13 @@ namespace Aisel\NavigationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class AdminNavigationSortController extends Controller
+class MenuSortController extends Controller
 {
 
     public function upAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('AiselNavigationBundle:Navigation');
+        $repo = $em->getRepository('AiselNavigationBundle:Menu');
         $page = $repo->findOneById($id);
         if ($page->getParent()){
             $repo->moveUp($page);
@@ -30,7 +30,7 @@ class AdminNavigationSortController extends Controller
     public function downAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('AiselNavigationBundle:Navigation');
+        $repo = $em->getRepository('AiselNavigationBundle:Menu');
         $category = $repo->findOneById($id);
         if ($category->getParent()){
             $repo->moveDown($category);

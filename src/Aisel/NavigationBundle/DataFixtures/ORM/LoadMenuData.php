@@ -23,23 +23,13 @@ class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $random = rand(11111,99999);
-        $time = time();
+        // referenced Page
+        $pinned = $this->getReference('pinned-page');
 
         // Blog
         $menu = new Menu();
         $menu->setTitle('Blog');
         $menu->setUrl('#!/pages/');
-        $menu->setStatus(true);
-        $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $manager->persist($menu);
-        $manager->flush();
-
-        // Contact
-        $menu = new Menu();
-        $menu->setTitle('Contact');
-        $menu->setUrl('#!/contact/');
         $menu->setStatus(true);
         $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -56,6 +46,25 @@ class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($menu);
         $manager->flush();
 
+        // Contact
+        $menu = new Menu();
+        $menu->setTitle('Contact');
+        $menu->setUrl('#!/contact/');
+        $menu->setStatus(true);
+        $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $manager->persist($menu);
+        $manager->flush();
+
+        // Pinned
+        $menu = new Menu();
+        $menu->setTitle('Pinned');
+        $menu->setUrl('#!/page/'.$pinned->getId());
+        $menu->setStatus(true);
+        $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $manager->persist($menu);
+        $manager->flush();
     }
 
     /**

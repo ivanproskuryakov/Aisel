@@ -12,7 +12,7 @@
 namespace Aisel\PageBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Aisel\AdminBundle\Util\UrlUtility;
+use Aisel\AdminBundle\Utility\UrlUtility;
 
 class PageManager
 {

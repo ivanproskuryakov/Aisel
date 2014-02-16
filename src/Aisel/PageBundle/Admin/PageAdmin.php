@@ -63,8 +63,8 @@ class PageAdmin extends Admin
                         'attr' => array('class' => 'span10 field-content')
                 ))
                 ->add('status', 'choice', array('choices'   => array(
-                        '0'   => 'Draft',
-                        '1' => 'Published'),
+                        '0'   => 'Disabled',
+                        '1' => 'Enabled'),
                         'label' => 'Status','attr' => array('class' => 'span3')
                     ))
                 ->add('commentStatus', 'choice', array('choices'   => array(
@@ -72,6 +72,8 @@ class PageAdmin extends Admin
                     '1' => 'Enabled'),
                     'label' => 'Comments','attr' => array('class' => 'span3')
                 ))
+                ->add('isHidden', null, array('required' => false,'label' => 'Hidden page'))
+
 
             ->with('Categories', array('description' => 'Select related categories'))
                 ->add('categories', 'gedmotree', array('expanded' => true,'multiple' => true,
@@ -127,6 +129,7 @@ class PageAdmin extends Admin
             ->addIdentifier('id')
             ->add('title')
             ->add('status', 'boolean', array('label' => 'Status','editable' => true))
+            ->add('isHidden', 'boolean', array('label' => 'Hidden','editable' => true))
             ->add('commentStatus', 'boolean', array('label' => 'Comments','editable' => true))
             ->add('updatedAt', 'datetime', array('label' => 'Date'))
             ->add('_action', 'actions', array(

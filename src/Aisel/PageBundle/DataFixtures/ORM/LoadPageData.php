@@ -31,13 +31,44 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $rootCategory = $this->getReference('root-category');
         $childCategory = $this->getReference('child-category');
 
+
+        // Hidden page
+        $hiddenPage = new Page();
+        $hiddenPage->setTitle('Pinned Page');
+        $hiddenPage->setContent('empty content 123 .. ');
+        $hiddenPage->setContent('pinned content for ');
+        $hiddenPage->setStatus(true);
+        $hiddenPage->setIsHidden(true);
+        $hiddenPage->setCommentStatus(false);
+        $hiddenPage->setMetaUrl('page-pinned');
+        $hiddenPage->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $hiddenPage->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $manager->persist($hiddenPage);
+        $manager->flush();
+        $this->addReference('pinned-page', $hiddenPage);
+
+        // Disabled page
+        $page = new Page();
+        $page->setTitle('Disabled Page');
+        $page->setContent('empty content 456 .. ');
+        $page->setContent('disabled content ');
+        $page->setStatus(false);
+        $page->setIsHidden(true);
+        $page->setCommentStatus(false);
+        $page->setMetaUrl('page-disabled');
+        $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $manager->persist($page);
+        $manager->flush();
+
         // Pages
-        for ($i = 1; $i <= 30; $i++ ) {
+        for ($i = 1; $i <= 28; $i++ ) {
             $page = new Page();
             $page->setTitle('Sample Page '. $i);
             $page->setContent('empty content');
             $page->setContent('dummy content for Page '.$i);
             $page->setStatus(true);
+            $page->setIsHidden(false);
             $page->addCategory($rootCategory);
             $page->addCategory($childCategory);
             $page->setCommentStatus(false);
@@ -48,6 +79,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($page);
             $manager->flush();
         }
+
     }
 
     /**

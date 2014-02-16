@@ -75,7 +75,8 @@ class PageRepository extends EntityRepository
 
         $qb->select('COUNT(p.id)')
             ->from('AiselPageBundle:Page', 'p')
-            ->where('p.status = :status');
+            ->where('p.status = :status')
+            ->andWhere('p.isHidden != 1');
 
         if ($this->query != '') {
             $qb->andWhere('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%');
@@ -93,15 +94,19 @@ class PageRepository extends EntityRepository
      * @return pages
      * */
 
-    public function getCurrentPagesFromRequest($params)
+    public function searchFromRequest($params)
     {
         $this->mapRequest($params);
 
         $qb = $this->getEntityManager()->createQueryBuilder();
         $r = $qb->select('p.id, p.title, p.content, p.createdAt')
             ->from('AiselPageBundle:Page', 'p')
+            ->where('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%')
+            ->andWhere('p.status = 1')
+            ->andWhere('p.isHidden != 1')
             ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
+            ->orderBy('p.'.$this->pageOrder, $this->pageOrderBy)
             ->getQuery()
             ->execute();
 
@@ -114,26 +119,25 @@ class PageRepository extends EntityRepository
      * @return pages
      * */
 
-    public function searchFromRequest($params)
+    public function getCurrentPagesFromRequest($params)
     {
         $this->mapRequest($params);
 
         $qb = $this->getEntityManager()->createQueryBuilder();
         $r = $qb->select('p.id, p.title, p.content, p.createdAt')
             ->from('AiselPageBundle:Page', 'p')
-            ->where('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%')
+            ->where('p.status = 1')
+            ->andWhere('p.isHidden != 1')
             ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
-            ->orderBy('p.'.$this->pageOrder, $this->pageOrderBy)
             ->getQuery()
             ->execute();
 
         return $r;
     }
 
-
     /*
-     * Find categories by url
+     * Find pages by url
      *
      * @return int value
      * */

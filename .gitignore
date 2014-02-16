@@ -9,6 +9,7 @@
 /vendor/
 /bin/
 /composer.phar
+Capfile
 node_modules
 dist
 .tmp
