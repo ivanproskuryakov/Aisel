@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <h3>Sign In</h2>
+</div>
+
+<form class="form-horizontal" name="loginForm" role="form" ng-submit="login(username, password)">
+
+    <div class="modal-body">
+        <div class="row row-offcanvas row-offcanvas-right">
+
+            <!-- Alert Messages -->
+            <div class="col-xs-12 col-sm-10 col-md-offset-1"  ng-hide="!apiResponse">
+                <div class="alert alert-success alert-dismissable" ng-hide="apiResponse.status == false">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Well done!</strong>  {{ apiResponse.message }}
+                </div>
+                <div class="alert alert-danger alert-dismissable" ng-hide="apiResponse.status == true">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Warning!</strong>  {{ apiResponse.message }}
+                </div>
+            </div>
+
+            <!-- Form Fields -->
+            <div class="col-xs-12 col-sm-8 col-md-offset-2">
+                <div class="form-group">
+                    <label for="signInUsername">Username</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                        <input ng-model="username" type="text" class="form-control" id="signInUsername" ng-required="true">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signInPassword">Your password</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <input ng-model="password" type="password" class="form-control" id="signInPassword" ng-required="true">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" >Log In</button>
+        <button class="btn btn-warning" ng-click="cancel()" >Cancel</button>
+    </div>
+</form>

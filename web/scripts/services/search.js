@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('projectxApp')
-    .service('searchService', ['$http','$routeParams','API_URL',function ($http,$routeParams,API_URL) {
+    .service('searchService', ['$http','$routeParams','API_URL',function ($http, $routeParams, API_URL) {
         return {
             getSearchResult: function($scope) {
 

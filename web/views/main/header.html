@@ -1,7 +1,6 @@
 <!-- Static navbar -->
 <div class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
-
         <div class="navbar-header" ng-controller="MainCtrl">
             <a class="navbar-brand" style="padding: 9px;"  href="#!"><img src="images/logo_x32.png" title="Aisel"></a>
 
@@ -15,28 +14,28 @@
 
         <form class="navbar-form navbar-right" role="form">
             <div class="form-group">
-                <input type="text" ng-search-redirect="{{search}}" ng-model="search" placeholder="Enter query ..." class="form-control">
+                <input type="text"a ng-search-redirect="{{search}}" ng-model="search" placeholder="Enter query ..." class="form-control">
             </div>
             <button type="submit" class="btn btn-success">Search</button>
-
-            <!--<div class="btn-group">-->
-                <!--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">-->
-                    <!--Account <span class="caret"></span>-->
-                <!--</button>-->
-                <!--<ul class="dropdown-menu" role="menu">-->
-                    <!--<li><a href="#">Sign In</a></li>-->
-                    <!--<li><a href="#">Register</a></li>-->
-                <!--</ul>-->
-            <!--</div>-->
         </form>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Sign In</a></li>
-                    <li><a href="#">Create Account</a></li>
-                </ul>
+        <ul class="nav navbar-nav navbar-right" ng-controller="UserCtrl">
 
+            <!-- Guests -->
+            <li class="dropdown" ng-if="!loggedIn">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guest<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="" ng-click="open();" >Sign In</a></li>
+                    <li><a ng-href="#!/user/register/">Create Account</a></li>
+                </ul>
+            </li>
+
+            <!-- Users -->
+            <li class="dropdown" ng-if="loggedIn">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a ng-href="#!/user/information/">View Account</a></li>
+                    <li><a ng-click="signOut()" >Sign Out</a></li>
+                </ul>
             </li>
         </ul>
 

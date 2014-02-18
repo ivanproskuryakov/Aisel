@@ -1,4 +1,5 @@
 /web/bundles/*
+/web/bower_components
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
@@ -14,4 +15,3 @@ node_modules
 dist
 .tmp
 .sass-cache
-/web/bower_components

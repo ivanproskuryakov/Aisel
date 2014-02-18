@@ -1,0 +1,17 @@
+<div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-xs-12">
+
+        <div class="page-header">
+            <h2>User Information</h2>
+        </div>
+
+        <div class="" ng-if="loggedIn">
+            <p> <strong>Id</strong>: {{ user.id }}</p>
+            <p> <strong>Username</strong>: {{ user.username }}</p>
+            <p> <strong>E-mail</strong>: {{ user.email }}</p>
+        </div>
+        <div class="" ng-if="!loggedIn">
+            Guest
+        </div>
+    </div>
+</div>

@@ -100,7 +100,7 @@ class ApiController extends Controller
             $this->get('session')->set('_security_main',serialize($token));
         }
 
-        return array('status'=>$user);
+        return array('status'=>true,'message'=>'User has been registered');
     }
 
     /**

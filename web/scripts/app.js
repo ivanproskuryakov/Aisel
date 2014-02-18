@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('projectxApp', [
-  'ui.bootstrap',
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
-  'ngRoute'
+    'ngCookies',
+    'ngResource',
+    'ngSanitize',
+    'ngRoute',
+    'ui.bootstrap',
+    'ui.utils',
+    'ui.validate'
 ])
   .constant('API_URL','/api')
   .config(function ($routeProvider, $locationProvider) {
@@ -44,6 +46,16 @@ angular.module('projectxApp', [
             templateUrl: 'views/search.html',
             controller: 'SearchCtrl'
         })
+
+        .when('/user/register/', {
+            templateUrl: 'views/user/register.html',
+            controller: 'UserCtrl'
+        })
+        .when('/user/information/', {
+            templateUrl: 'views/user/information.html',
+            controller: 'UserCtrl'
+        })
+
         .otherwise({
         redirectTo: '/'
         });
