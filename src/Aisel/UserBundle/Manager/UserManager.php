@@ -87,6 +87,13 @@ class UserManager  implements UserProviderInterface
         return $user;
     }
 
+
+    public function findUser($username, $email)
+    {
+        $user = $this->em->getRepository('AiselUserBundle:FrontendUser')->findUser($username, $email);
+        return $user;
+    }
+
     public function refreshUser(UserInterface $user)
     {
         $class = get_class($user);

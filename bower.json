@@ -15,7 +15,7 @@
     "angular-ui": "~0.4.0",
     "angular-bootstrap": "~0.10.0",
     "angular-ui-utils": "~0.1.1",
-    "angular-flash-messages": "~1.1.0"
+    "angular-notify": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

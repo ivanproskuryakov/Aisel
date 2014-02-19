@@ -28,13 +28,15 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <flash:messages class="slide-down" ng:show="messages"></flash:messages>
+
+    <flash:messages class="slide-down" ng-show="messages"></flash:messages>
 
     <!-- Add your site or application content here -->
 
     <div class="header" ng-include="'views/main/header.html'"></div>
 
     <div class="container">
+
         <div class="view" ng-view=""></div>
         <div class="footer" ng-include="'views/main/footer.html'"></div>
 
@@ -69,7 +71,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
-    <script src="bower_components/angular-flash-messages/angular-flash.js"></script>
+    <script src="bower_components/angular-notify/dist/angular-notify.min.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
 
     <!-- endbower -->

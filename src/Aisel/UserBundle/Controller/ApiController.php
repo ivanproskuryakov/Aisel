@@ -61,7 +61,7 @@ class ApiController extends Controller
             $user = $um->loadUserByUsername($username);
 
             if ((!$user instanceof FrontendUser) || (!$this->getUserManager()->checkUserPassword($user, $password)))
-                return array('message'=>'Wrong username or password');
+                return array('message'=>'Wrong username or password!');
 
             $this->loginUser($user);
 
@@ -89,10 +89,12 @@ class ApiController extends Controller
             'password'=>$request->get('password'),
             'email'=>$request->get('email'),
         );
-        $username = $request->get('username');
 
-        $user = $this->getUserManager()->loadUserByUsername($username);
-            return array('message'=> 'Username: '. $username .' already taken!');
+        $username = $request->get('username');
+        $email = $request->get('email');
+
+        if ($this->getUserManager()->findUser($username, $email))
+            return array('message'=> 'Username or e-mail already taken!');
 
         // TODO: Add is email taken validation
 

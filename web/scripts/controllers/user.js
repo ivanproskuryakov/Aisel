@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('projectxApp')
-    .controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService', 'flash' ,function ($log, $modal, $scope, $routeParams, userService, flash ) {
+    .controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService' ,'notify' ,function ($log, $modal, $scope, $routeParams, userService, notify ) {
 
-//        flash('test message');
 
         $scope.loggedIn = false;
 
@@ -12,7 +11,7 @@ angular.module('projectxApp')
             if (form.$valid) {
                 userService.register(form).success(
                     function(data, status) {
-                        flash(data.message);
+                        notify(data.message);
                         if (data.status) {
                             window.location = "/";
                         }
@@ -35,7 +34,7 @@ angular.module('projectxApp')
         $scope.signOut = function () {
             userService.signout($scope).success(
                 function(data, status) {
-                    flash(data.message);
+                    notify(data.message);
                     window.location = "/";
                 }
             );
@@ -53,16 +52,14 @@ angular.module('projectxApp')
 
     }]);
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, userService, flash) {
-
-    $scope.apiResponse = '';
+var ModalInstanceCtrl = function ($scope, $modalInstance, userService, notify) {
     $scope.login = function (username, password) {
-        console.log( username);
-        console.log( password);
 
         userService.login(username, password).success(
             function(data, status) {
-                flash(data.message);
+
+                notify(data.message);
+
                 if (data.status) {
                     window.location = "/";
                 }

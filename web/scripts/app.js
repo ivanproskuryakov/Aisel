@@ -9,7 +9,7 @@ angular.module('projectxApp', [
     'ui.bootstrap',
     'ui.utils',
     'ui.validate',
-    'flash'
+    'cgNotify'
 ])
   .constant('API_URL','/api')
   .config(function ($routeProvider, $locationProvider) {
