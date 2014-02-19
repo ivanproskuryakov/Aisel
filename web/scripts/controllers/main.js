@@ -10,10 +10,4 @@ angular.module('projectxApp')
             }
         );
 
-        $scope.notBlackListed = function(value) {
-            return value;
-        }
-
-
-
 }]);

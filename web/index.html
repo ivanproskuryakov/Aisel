@@ -18,11 +18,17 @@
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <script data-require="prefixfree@*" data-semver="1.0.7" src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+    <link rel="stylesheet" href="styles/flash-messages.css">
+    <link rel="stylesheet" href="styles/styles.css">
   </head>
   <body ng-app="projectxApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
+    <flash:messages class="slide-down" ng:show="messages"></flash:messages>
 
     <!-- Add your site or application content here -->
 
@@ -63,6 +69,9 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+    <script src="bower_components/angular-flash-messages/angular-flash.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+
     <!-- endbower -->
     <!-- endbuild -->
 

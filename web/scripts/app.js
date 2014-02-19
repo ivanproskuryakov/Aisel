@@ -5,9 +5,11 @@ angular.module('projectxApp', [
     'ngResource',
     'ngSanitize',
     'ngRoute',
+    'ngAnimate',
     'ui.bootstrap',
     'ui.utils',
-    'ui.validate'
+    'ui.validate',
+    'flash'
 ])
   .constant('API_URL','/api')
   .config(function ($routeProvider, $locationProvider) {

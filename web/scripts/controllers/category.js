@@ -20,7 +20,13 @@ angular.module('projectxApp')
         categoryService.getCategories($scope).success(
             function(data, status) {
                 $scope.categoryList = data;
-                console.log(data);
+            }
+        );
+
+        // CategoryTree
+        categoryService.getCategoryTree($scope).success(
+            function(data, status) {
+                $scope.categoryTree = data;
             }
         );
 //        $scope.categoryChanged = function(page) {

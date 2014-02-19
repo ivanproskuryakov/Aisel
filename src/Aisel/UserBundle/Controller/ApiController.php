@@ -13,6 +13,7 @@ namespace Aisel\UserBundle\Controller;
 
 use Aisel\UserBundle\Entity\FrontendUser;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
@@ -49,8 +50,6 @@ class ApiController extends Controller
      */
     public function loginAction()
     {
-//        $user = $this->get('security.context')->getToken()->getUser();
-//        if(!is_object($user)) {
 
         if(! $this->isAuthenticated() ){
             $request = $this->getRequest();
@@ -61,20 +60,17 @@ class ApiController extends Controller
             $um = $this->getUserManager();
             $user = $um->loadUserByUsername($username);
 
-            if(!$user instanceof FrontendUser){
-                throw new NotFoundHttpException("User not found");
-            }
+            if ((!$user instanceof FrontendUser) || (!$this->getUserManager()->checkUserPassword($user, $password)))
+                return array('message'=>'Wrong username or password');
 
-            if(!$this->getUserManager()->checkUserPassword($user, $password)){
-                throw new AccessDeniedException("Wrong password");
-            }
             $this->loginUser($user);
-            $status = array('status'=>true, 'message'=>'successully logged in');
+
+            return array('status'=>true, 'message'=>'successully logged in');
         } else {
-            $status = array('status'=>false, 'message'=>'already logged');
+            return array('message'=>'You already logged in');
         }
 
-        return $status;
+        return array('message'=>'Error in login action');
     }
 
     /**
@@ -83,7 +79,9 @@ class ApiController extends Controller
     public function registerAction()
     {
         if ($this->isAuthenticated())
-            return array('status'=>false, 'message'=>'Please logout first');
+            return array('message'=>'You already logged in, Please logout first');
+
+
 
         $request = $this->getRequest();
         $userData = array(
@@ -91,6 +89,13 @@ class ApiController extends Controller
             'password'=>$request->get('password'),
             'email'=>$request->get('email'),
         );
+        $username = $request->get('username');
+
+        $user = $this->getUserManager()->loadUserByUsername($username);
+            return array('message'=> 'Username: '. $username .' already taken!');
+
+        // TODO: Add is email taken validation
+
 
         $user = $this->getUserManager()->registerUser($userData);
 
@@ -100,7 +105,7 @@ class ApiController extends Controller
             $this->get('session')->set('_security_main',serialize($token));
         }
 
-        return array('status'=>true,'message'=>'User has been registered');
+        return array('status'=>true,'message'=>'User has been registered ');
     }
 
     /**
@@ -111,7 +116,7 @@ class ApiController extends Controller
         $token = new AnonymousToken(null, new FrontendUser());
         $this->get('security.context')->setToken($token);
         $this->get('session')->invalidate();
-        return array('success'=>true);
+        return array('success'=>true,'message'=>'You have been successfully logged out!');
     }
 
     /**

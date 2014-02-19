@@ -4,8 +4,13 @@ angular.module('projectxApp')
     .service('userService', ['$http', '$routeParams', 'API_URL',function ($http, $routeParams, API_URL) {
         return {
 
-            register: function($scope) {
-                var url = API_URL+'/user/register.json?username=aaaa&password=aaa&email=aaa@aaa.com';
+            register: function(form) {
+
+                var username = form.username.$modelValue;
+                var email = form.email.$modelValue;
+                var password = form.password.$modelValue;
+
+                var url = API_URL+'/user/register.json?username='+ username +'&password='+ email +'&email='+ password;
                 console.log(url);
                 return $http.get(url);
             },
@@ -23,7 +28,7 @@ angular.module('projectxApp')
             },
 
             login: function(username, password) {
-                var url = API_URL+'/user/login.json?username=' + username + '&password=' + password;
+                var url = API_URL+'/user/login.json?username=' + username + '&password=' +password;
                 console.log(url);
                 return $http.get(url);
             }

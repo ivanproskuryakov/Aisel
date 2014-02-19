@@ -1,17 +1,21 @@
 'use strict';
 
 angular.module('projectxApp')
-    .controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService',function ($log, $modal, $scope, $routeParams, userService) {
+    .controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService', 'flash' ,function ($log, $modal, $scope, $routeParams, userService, flash ) {
+
+//        flash('test message');
 
         $scope.loggedIn = false;
 
         // User Registration
         $scope.submitRegistration = function(form) {
             if (form.$valid) {
-                // register request
-                userService.register($scope).success(
+                userService.register(form).success(
                     function(data, status) {
-                        $scope.apiResponse = data;
+                        flash(data.message);
+                        if (data.status) {
+                            window.location = "/";
+                        }
                     }
                 );
             }
@@ -29,13 +33,13 @@ angular.module('projectxApp')
 
         // User Sign Out
         $scope.signOut = function () {
-            alert('signout');
             userService.signout($scope).success(
                 function(data, status) {
-                    $log.info(data);
+                    flash(data.message);
+                    window.location = "/";
                 }
             );
-            window.location = "/";
+
         }
 
         $scope.open = function () {
@@ -49,7 +53,7 @@ angular.module('projectxApp')
 
     }]);
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, userService) {
+var ModalInstanceCtrl = function ($scope, $modalInstance, userService, flash) {
 
     $scope.apiResponse = '';
     $scope.login = function (username, password) {
@@ -58,7 +62,7 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, userService) {
 
         userService.login(username, password).success(
             function(data, status) {
-                $scope.apiResponse = data;
+                flash(data.message);
                 if (data.status) {
                     window.location = "/";
                 }

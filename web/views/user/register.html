@@ -1,11 +1,10 @@
 <div class="row row-offcanvas row-offcanvas-right">
 
 
+
         <div class="" ng-if="!loggedIn">
             <div class="page-header">
                 <h2>Create Account</h2>
-
-                {{loggedIn}}
             </div>
             <div class="col-xs-12 col-sm-4 col-md-offset-4">
                 <form class="form-horizontal" name="registrationForm" role="form" ng-submit="submitRegistration(registrationForm)">
@@ -34,12 +33,11 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="registerPasswordRepeat">Password repeat</label>
+                        <label for="registerPasswordRepeat">Password Repeat</label>
                         <input type="password" name="confirm_password" class="form-control" id="registerPasswordRepeat" ng-required="true"
                                ng-model="confirm_password"
                                ui-validate=" '$value==password' "
-                               ui-validate-watch=" 'password' "
-                               placeholder="confirm password">
+                               ui-validate-watch=" 'password' " >
                         <span ng-show='registrationForm.confirm_password.$error.validator'>Passwords do not match!</span>
                     </div>
                     {{ apiResponse }}

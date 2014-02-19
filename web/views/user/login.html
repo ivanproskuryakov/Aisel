@@ -7,18 +7,6 @@
     <div class="modal-body">
         <div class="row row-offcanvas row-offcanvas-right">
 
-            <!-- Alert Messages -->
-            <div class="col-xs-12 col-sm-10 col-md-offset-1"  ng-hide="!apiResponse">
-                <div class="alert alert-success alert-dismissable" ng-hide="apiResponse.status == false">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>Well done!</strong>  {{ apiResponse.message }}
-                </div>
-                <div class="alert alert-danger alert-dismissable" ng-hide="apiResponse.status == true">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>Warning!</strong>  {{ apiResponse.message }}
-                </div>
-            </div>
-
             <!-- Form Fields -->
             <div class="col-xs-12 col-sm-8 col-md-offset-2">
                 <div class="form-group">
