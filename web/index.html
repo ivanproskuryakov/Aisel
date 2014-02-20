@@ -20,7 +20,6 @@
     <!-- endbuild -->
     <script data-require="prefixfree@*" data-semver="1.0.7" src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
-    <link rel="stylesheet" href="styles/flash-messages.css">
     <link rel="stylesheet" href="styles/styles.css">
   </head>
   <body ng-app="projectxApp">
@@ -29,9 +28,9 @@
     <![endif]-->
 
 
-    <flash:messages class="slide-down" ng-show="messages"></flash:messages>
 
     <!-- Add your site or application content here -->
+    <div class="loading-interceptor">Loading ...</div>
 
     <div class="header" ng-include="'views/main/header.html'"></div>
 

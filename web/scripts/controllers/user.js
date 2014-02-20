@@ -57,9 +57,7 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, userService, notify) {
 
         userService.login(username, password).success(
             function(data, status) {
-
                 notify(data.message);
-
                 if (data.status) {
                     window.location = "/";
                 }

@@ -10,7 +10,7 @@ angular.module('projectxApp')
                 var email = form.email.$modelValue;
                 var password = form.password.$modelValue;
 
-                var url = API_URL+'/user/register.json?username='+ username +'&password='+ email +'&email='+ password;
+                var url = API_URL+'/user/register.json?username='+ username +'&password='+ password +'&email='+ email;
                 console.log(url);
                 return $http.get(url);
             },

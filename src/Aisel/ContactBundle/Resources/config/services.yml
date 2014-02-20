@@ -4,4 +4,4 @@ parameters:
 services:
     aisel.contact.manager:
         class: %aisel_contact_manager.class%
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: [@doctrine.orm.entity_manager, @mailer, @templating,  %application.email% ]
