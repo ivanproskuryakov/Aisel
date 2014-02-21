@@ -2,9 +2,10 @@
 <p><strong>Date:</strong> {{scope.page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
 <hr/>
 <p>{{scope.page.content}}</p>
-<hr/>
-<div class="pageCategories">
-<p><strong> Post categories </strong></p>
+
+<div class="pageCategories" ng-if="scope.categories">
+    <hr/>
+    <p><strong> Posted in categories: </strong></p>
     <ul class="categoryList">
         <li ng-repeat="category in scope.categories">
             <a ng-href="#!/category/{{category.id}}">{{ category.title }}</a>

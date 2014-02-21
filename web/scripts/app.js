@@ -36,10 +36,6 @@ angular.module('projectxApp', [
             controller: 'CategoryDetailCtrl'
         })
 
-        .when('/about/', {
-            templateUrl: 'views/about.html',
-            controller: 'AboutCtrl'
-        })
         .when('/contact/', {
             templateUrl: 'views/contact.html',
             controller: 'ContactCtrl'
