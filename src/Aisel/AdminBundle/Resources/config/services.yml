@@ -1,5 +1,5 @@
 parameters:
-    aisel_adminconfig_manager.class: Aisel\AdminBundle\Manager\AdminConfigmanager
+    aisel_adminconfig_manager.class: Aisel\AdminBundle\Manager\AdminConfigManager
 
 services:
     aisel.adminconfig.manager:
