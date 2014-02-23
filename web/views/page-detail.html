@@ -7,7 +7,7 @@
     <hr/>
     <p><strong>Related categories: </strong></p>
     <ul class="categoryList">
-        <li ng-repeat="category in scope.categories">
+        <li ng-repeat="category in pageDetails.categories">
             <a ng-href="#!/category/{{category.url}}">{{ category.title }}</a>
         </li>
     </ul>
