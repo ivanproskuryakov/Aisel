@@ -56,7 +56,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         }
 
         // Nested Categories
-        for ($b = 1; $b <= 10; $b++ ) {
+        for ($b = 1; $b <= 3; $b++ ) {
 
             if (!isset($nestedCategory)) {
                 $parent = $childCategory;

@@ -38,7 +38,7 @@ var app = angular.module('projectxApp', [
         );
         rootService.getCategoryTree().success(
             function(data, status) {
-                $rootScope.categoryTree = data;
+                $rootScope.categoryTree = JSON.parse(data);
             }
         );
         rootService.getUserInformation().success(

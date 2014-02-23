@@ -1,9 +1,9 @@
-/web/bundles/*
-/web/bower_components
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
 /app/logs/*
+/web/bundles/*
+/web/bower_components/*
 !/app/cache/.gitkeep
 !app/logs/.gitkeep
 /build/

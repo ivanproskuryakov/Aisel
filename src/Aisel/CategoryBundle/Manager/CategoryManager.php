@@ -29,9 +29,25 @@ class CategoryManager
      * Get list of enabled categories sorted as a tree
      * @return object
      */
-    public function getCategoryTree()
+    public function getHTMLCategoryTree()
     {
-        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
+//        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
+        $options = array(
+            'decorate' => true,
+            'rootOpen' => '<ul>',
+            'rootClose' => '</ul>',
+            'childOpen' => '<li>',
+            'childClose' => '</li>',
+            'nodeDecorator' => function($node) {
+                    return '<a href="#!/category/'.$node['metaUrl'].'">'.$node['title'].'</a>';
+                }
+        );
+
+        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->childrenHierarchy(
+            null, /* starting from root nodes */
+            false, /* true: load all children, false: only direct */
+            $options
+        );
 
         return $categories;
     }

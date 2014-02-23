@@ -61,10 +61,35 @@
     min-height: 500px;
 }
 
-.categoryList {
-    list-style: none;
+.categoryTree .categories {
     padding-left: 10px;
 }
+
+.categoryTree ul, .categoryTree ul ul {
+    list-style-type: none;
+    background: url(../images/vline.png) repeat-y;
+    margin: 0;
+    padding: 0;
+}
+
+.categoryTree ul ul {
+    margin-left: 10px;
+}
+
+.categoryTree ul li {
+    margin: 0;
+    padding: 0 12px;
+    line-height: 20px;
+    background: url(../images/node.png) no-repeat;
+    color: #369;
+    font-weight: bold;
+}
+
+.categoryTree ul li:last-child {
+    background: #fff url(../images/lastnode.png) no-repeat;
+}
+
+
 
 .featurette-divider {
     margin: 80px 0;
