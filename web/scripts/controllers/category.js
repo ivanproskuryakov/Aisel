@@ -23,19 +23,5 @@ angular.module('projectxApp')
             }
         );
 
-        // CategoryTree
-        categoryService.getCategoryTree($scope).success(
-            function(data, status) {
-                $scope.categoryTree = data;
-            }
-        );
-//        $scope.categoryChanged = function(page) {
-//            $scope.paginationPage = page;
-//            categoryService.getCategories($scope).success(
-//                function(data, status) {
-//                    $scope.categoryList = data;
-//                }
-//            );
-//        };
 
     }]);

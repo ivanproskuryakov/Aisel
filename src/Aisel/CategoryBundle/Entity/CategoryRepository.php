@@ -68,6 +68,24 @@ class CategoryRepository extends NestedTreeRepository
      * @return object
      * */
 
+    public function getEnabledCategoryByUrl($urlKey)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $r = $qb->select('c')
+            ->from('AiselCategoryBundle:Category', 'c')
+            ->where('c.metaUrl = :metaUrl')->setParameter('metaUrl', $urlKey)
+            ->andWhere('c.status = 1')
+            ->getQuery()
+            ->getSingleResult();
+        return $r;
+    }
+
+    /*
+     * Returns enabled categories
+     *
+     * @return object
+     * */
+
     public function getEnabledCategory($categoryId)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();

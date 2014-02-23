@@ -1,11 +1,12 @@
 <!-- Static navbar -->
 <div class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
-        <div class="navbar-header" ng-controller="MainCtrl">
-            <a class="navbar-brand" style="padding: 9px;"  href="#!"><img src="images/logo_x32.png" title="Aisel"></a>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!"><img src="images/logo-white.png" title="Aisel"></a>
+
 
             <ul class="nav navbar-nav">
-                <li ng-repeat="menuItem in navigationMenu">
+                <li ng-repeat="menuItem in topMenu">
                     <a ng-href="{{menuItem.url}}">{{menuItem.title}}</a>
                 </li>
             </ul>
@@ -21,7 +22,7 @@
         <ul class="nav navbar-nav navbar-right" ng-controller="UserCtrl">
 
             <!-- Guests -->
-            <li class="dropdown" ng-if="!loggedIn">
+            <li class="dropdown" ng-if="!isAuthenticated">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guest<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="" ng-click="open();" >Sign In</a></li>
@@ -30,7 +31,7 @@
             </li>
 
             <!-- Users -->
-            <li class="dropdown" ng-if="loggedIn">
+            <li class="dropdown" ng-if="isAuthenticated">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a ng-href="#!/user/information/">View Account</a></li>

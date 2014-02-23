@@ -9,12 +9,15 @@ parameters:
 aisel_config:
     route_prefix: config_ # ex: config_contact
     entities:
-        contact:
+        homepage:
+            order: 0
+            controller: AiselAdminBundle:ConfigHomepage:modify
+        meta:
             order: 10
+            controller: AiselAdminBundle:ConfigMeta:modify
+        contact:
+            order: 20
             controller: AiselContactBundle:Config:modify
         category:
-            order: 20
+            order: 30
             controller: AiselCategoryBundle:Config:modify
-        meta:
-            order: 0
-            controller: AiselAdminBundle:Config:modify

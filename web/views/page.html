@@ -8,9 +8,9 @@
         <div class="col-md-12">
             <ul class="pageList">
                 <li ng-repeat="page in pageList.pages">
-                    <h2><a href="#!/page/{{page.id}}/" class="thumb">{{page.title}}</a></h2>
+                    <h2><a href="#!/page/{{page.meta_url}}/" class="thumb">{{page.title}}</a></h2>
                     <p>{{page.content}}</p>
-                    <p>Date: {{page.createdAt | date:"MM/dd/yyyy @ h:mma" }}</p>
+                    <p>Date: {{page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
                     <hr/>
                 </li>
             </ul>

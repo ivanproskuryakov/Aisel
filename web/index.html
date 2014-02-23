@@ -1,4 +1,5 @@
-<!doctype html>
+<html lang="en" class="ng-app:projectxApp" id="ng-app" ng-app="projectxApp" xmlns:ng="http://angularjs.org">
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -6,8 +7,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
+    <title>{{pageTitle}}</title>
+    <meta name="description" content="{{metaDescription}}">
+    <meta name="keywords" content="{{metaKeywords}}">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
@@ -22,7 +24,7 @@
 
     <link rel="stylesheet" href="styles/styles.css">
   </head>
-  <body ng-app="projectxApp">
+<body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -33,7 +35,6 @@
     <div class="loading-interceptor">Loading ...</div>
 
     <header ng-include="'views/main/header.html'"></header>
-
     <div class="container website-content">
         <div class="view" ng-view=""></div>
     </div>
@@ -71,7 +72,6 @@
     <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
     <script src="bower_components/angular-notify/dist/angular-notify.min.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
-
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -79,22 +79,22 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/page.js"></script>
-    <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/contact.js"></script>
     <script src="scripts/controllers/pagedetail.js"></script>
     <script src="scripts/controllers/category.js"></script>
     <script src="scripts/controllers/categorydetail.js"></script>
+    <script src="scripts/controllers/user.js"></script>
 
-    <script src="scripts/filters/pagination.js"></script>
+
+    <script src="scripts/filters/main.js"></script>
     <script src="scripts/controllers/search.js"></script>
     <script src="scripts/directives/main.js"></script>
 
-    <script src="scripts/services/search.js"></script>
-    <script src="scripts/services/page.js"></script>
     <script src="scripts/services/category.js"></script>
-    <script src="scripts/services/navigation.js"></script>
     <script src="scripts/services/contact.js"></script>
-    <script src="scripts/controllers/user.js"></script>
+    <script src="scripts/services/page.js"></script>
+    <script src="scripts/services/search.js"></script>
+    <script src="scripts/services/root.js"></script>
     <script src="scripts/services/user.js"></script>
     <!-- endbuild -->
 </body>

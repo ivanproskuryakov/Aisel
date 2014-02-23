@@ -146,8 +146,8 @@ sonata_block:
         sonata.block.service.text:
 
 sonata_admin:
-    title:      Aisel Admin
-    title_logo: /images/logo_x32.png
+    title:      Administration
+    title_logo: /images/logo-black.png
     templates:
         search:              SonataAdminBundle:Core:search.html.twig
         search_result_block: SonataAdminBundle:Block:block_search_result.html.twig

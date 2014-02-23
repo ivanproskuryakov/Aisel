@@ -1,14 +1,14 @@
-<h2>{{scope.page.title}}</h2>
-<p><strong>Date:</strong> {{scope.page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
+<h2>{{pageDetails.page.title}}</h2>
+<p><strong>Date:</strong> {{pageDetails.page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
 <hr/>
-<p>{{scope.page.content}}</p>
+<p>{{pageDetails.page.content}}</p>
 
-<div class="pageCategories" ng-if="scope.categories">
+<div class="related pageCategories" ng-if="pageDetails.categories">
     <hr/>
-    <p><strong> Posted in categories: </strong></p>
+    <p><strong>Related categories: </strong></p>
     <ul class="categoryList">
         <li ng-repeat="category in scope.categories">
-            <a ng-href="#!/category/{{category.id}}">{{ category.title }}</a>
+            <a ng-href="#!/category/{{category.url}}">{{ category.title }}</a>
         </li>
     </ul>
 </div>

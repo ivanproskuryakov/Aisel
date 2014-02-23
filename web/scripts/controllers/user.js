@@ -20,16 +20,6 @@ angular.module('projectxApp')
             }
         };
 
-        // User Information
-        userService.information($scope).success(
-            function(data, status) {
-                if (data.username) {
-                    $scope.loggedIn = true;
-                    $scope.user = data;
-                }
-            }
-        );
-
         // User Sign Out
         $scope.signOut = function () {
             userService.signout($scope).success(

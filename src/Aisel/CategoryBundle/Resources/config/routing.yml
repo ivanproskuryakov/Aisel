@@ -11,7 +11,7 @@ api_aisel_categorytree:
         _method: GET
 
 api_aisel_categoryview:
-    pattern:  /api/category/view/{id}.json
+    pattern:  /api/category/view/{urlKey}.json
     defaults: { _controller: AiselCategoryBundle:Api:categoryView, _format: json }
     requirements:
         _method: GET

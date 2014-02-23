@@ -15,12 +15,6 @@ angular.module('projectxApp')
                 return $http.get(url);
             },
 
-            information: function() {
-                var url = API_URL+'/user/information.json';
-                console.log(url);
-                return $http.get(url);
-            },
-
             signout: function() {
                 var url = API_URL+'/user/logout.json';
                 console.log(url);

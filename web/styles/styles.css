@@ -43,6 +43,13 @@
 }
 
 /*
+    Header
+*/
+.navbar-brand {
+    padding: 7px;
+}
+
+/*
     General
 */
 
@@ -67,6 +74,7 @@
     Footer
 */
 .website-footer {
+    margin-top: 20px;
     padding: 40px 0;
     color: #999;
     text-align: center;

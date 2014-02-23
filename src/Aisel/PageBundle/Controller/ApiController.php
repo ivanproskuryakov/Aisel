@@ -58,10 +58,10 @@ class ApiController extends Controller
     /**
      * @Rest\View
      */
-    public function pageViewAction($id)
+    public function pageViewAction($urlKey)
     {
         /** @var \Aisel\PageBundle\Entity\Page $page */
-        $page = $this->container->get("aisel.page.manager")->getPage($id);
+        $page = $this->container->get("aisel.page.manager")->getPageByURL($urlKey);
 
         return $page;
     }

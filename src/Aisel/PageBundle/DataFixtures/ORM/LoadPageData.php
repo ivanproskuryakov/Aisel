@@ -32,20 +32,20 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $childCategory = $this->getReference('child-category');
 
 
-        // Hidden page
+        // Hidden About page
         $hiddenPage = new Page();
-        $hiddenPage->setTitle('Pinned Page');
-        $hiddenPage->setContent('empty content 123 .. ');
-        $hiddenPage->setContent('pinned content for ');
+        $hiddenPage->setTitle('About Us Page');
+        $hiddenPage->setContent('empty content about us page .. ');
+        $hiddenPage->setContent('about us content for ...');
         $hiddenPage->setStatus(true);
         $hiddenPage->setIsHidden(true);
         $hiddenPage->setCommentStatus(false);
-        $hiddenPage->setMetaUrl('page-pinned');
+        $hiddenPage->setMetaUrl('about-aisel');
         $hiddenPage->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $hiddenPage->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $manager->persist($hiddenPage);
         $manager->flush();
-        $this->addReference('pinned-page', $hiddenPage);
+        $this->addReference('about-page', $hiddenPage);
 
         // Disabled page
         $page = new Page();

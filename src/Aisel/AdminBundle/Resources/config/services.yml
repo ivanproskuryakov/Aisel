@@ -1,7 +1,7 @@
 parameters:
-#    aisel_admin.example.class: Aisel\AdminBundle\Example
+    aisel_adminconfig_manager.class: Aisel\AdminBundle\Manager\AdminConfigmanager
 
 services:
-#    aisel_admin.example:
-#        class: %aisel_admin.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    aisel.adminconfig.manager:
+        class: %aisel_adminconfig_manager.class%
+        arguments: [@doctrine.orm.entity_manager ]

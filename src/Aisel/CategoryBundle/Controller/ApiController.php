@@ -47,11 +47,11 @@ class ApiController extends Controller
 
     /**
      * @Rest\View
-     * /api/category/view/{$id}.json
+     * /api/category/view/{$$urlKey}.json
      */
-    public function categoryViewAction($id)
+    public function categoryViewAction($urlKey)
     {
-        $category = $this->container->get("aisel.category.manager")->getCategory($id);
+        $category = $this->container->get("aisel.category.manager")->getCategoryByUrl($urlKey);
         return $category;
     }
 

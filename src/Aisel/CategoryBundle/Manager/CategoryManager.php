@@ -54,6 +54,27 @@ class CategoryManager
         return $return;
     }
 
+
+    /**
+     * Get single detailed category by URLKey
+     * @param int $id
+     * @return mixed
+     */
+    public function getCategoryByURL($urlKey)
+    {
+        $category = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoryByUrl($urlKey);
+
+        if(!($category)){
+            throw $this->createNotFoundException();
+        }
+
+
+        $pages = $this->em->getRepository('AiselPageBundle:Page')->getPagesByCategory($category->getId());
+        $categoryDetails = array('category'=>$category,'pages'=>$pages);
+
+        return $categoryDetails;
+    }
+
     /**
      * Get single category
      * @param int $id

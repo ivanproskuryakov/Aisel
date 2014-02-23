@@ -4,10 +4,10 @@ namespace Aisel\AdminBundle\Controller;
 
 use Aisel\ConfigBundle\Controller\SettingsController;
 
-class ConfigController extends SettingsController
+class ConfigHomepageController extends SettingsController
 {
 
-    public $form = "\Aisel\AdminBundle\Form\Type\ConfigType";
+    public $form = "\Aisel\AdminBundle\Form\Type\ConfigHomepageType";
 
     /**
      * {@inheritdoc }

@@ -16,7 +16,6 @@ angular.module('projectxApp')
 //                            return;
 //                        }
 
-
                 }
             });
         }

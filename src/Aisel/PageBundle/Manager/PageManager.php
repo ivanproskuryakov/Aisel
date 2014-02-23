@@ -44,13 +44,40 @@ class PageManager
     }
 
     /**
-     * Get single detailed page with category
+     * Get single detailed page with category by ID
      * @param int $id
      * @return mixed
      */
     public function getPage($id)
     {
         $page = $this->em->getRepository('AiselPageBundle:Page')->find($id);
+
+        if(!($page)){
+            throw new NotFoundHttpException('Nothing found');
+        }
+
+        $pageDetails = array('page'=>$page,'categories'=>array());
+        foreach ($page->getCategories() as $c) {
+            $category = array();
+
+            $category['id'] = $c->getId();
+            $category['title'] = $c->getTitle();
+            $category['url'] = $c->getMetaUrl();
+            $pageDetails['categories'][$c->getId()] = $category;
+
+        }
+
+        return $pageDetails;
+    }
+
+    /**
+     * Get single detailed page with category by URLKey
+     * @param int $id
+     * @return mixed
+     */
+    public function getPageByURL($urlKey)
+    {
+        $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(array('metaUrl' => $urlKey));
 
         if(!($page)){
             throw new NotFoundHttpException('Nothing found');

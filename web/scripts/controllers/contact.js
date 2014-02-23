@@ -1,8 +1,13 @@
 'use strict';
 
 angular.module('projectxApp')
-    .controller('ContactCtrl', ['$location','$scope','$routeParams','contactService', 'notify',function ($location, $scope, $routeParams, contactService, notify) {
+    .controller('ContactCtrl', ['$location','$scope','$routeParams','contactService','appConfig', 'notify',function ($location, $scope, $routeParams, contactService,appConfig, notify) {
 
+        appConfig.success(
+            function(data, status) {
+                $scope.config = JSON.parse(data.config_contact);
+            }
+        );
 
         // Submit Contact
         $scope.submitContact = function(form) {
@@ -14,14 +19,5 @@ angular.module('projectxApp')
                 );
             }
         };
-
-        // Get Contact Settings
-        contactService.getConfig($scope).success(
-            function(data, status) {
-                $scope.config = JSON.parse(data.value);
-//                console.log($scope.config);
-            }
-        );
-
 
     }]);

@@ -14,11 +14,34 @@ use Symfony\Component\Security\Core\Exception;
 class ConfigRepository extends EntityRepository
 {
 
+    /*
+      * Get all settings
+      *
+      * @return int value
+      * */
+
+    public function getAllSettings()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $values = $qb->select('c.entity, c.value')
+            ->from('AiselConfigBundle:Config', 'c')
+            ->getQuery()
+            ->execute();
+
+        $config = array();
+        foreach ($values as $k=>$v) {
+            $config[$v['entity']] = $v['value'];
+        }
+
+        return $config;
+    }
+
     public function getConfig($entity) {
         return $this->findOneBy(array('entity' => $entity));
     }
 
-    public function setConfig($entity, $value) {
+    public function setConfig($entity, $value)
+    {
         $config = $this->getConfig($entity);
 
         if (!$config) {

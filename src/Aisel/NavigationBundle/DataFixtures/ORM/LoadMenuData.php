@@ -24,7 +24,7 @@ class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         // referenced Page
-        $pinned = $this->getReference('pinned-page');
+        $pinned = $this->getReference('about-page');
 
         // Blog
         $menu = new Menu();
@@ -58,8 +58,8 @@ class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
 
         // Pinned
         $menu = new Menu();
-        $menu->setTitle('Pinned');
-        $menu->setUrl('#!/page/'.$pinned->getId());
+        $menu->setTitle('About');
+        $menu->setUrl('#!/page/'.$pinned->getMetaUrl());
         $menu->setStatus(true);
         $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));

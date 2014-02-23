@@ -5,7 +5,7 @@ api_aisel_pagelist:
         _method: GET
 
 api_aisel_pageview:
-    pattern:  /api/page/view/{id}.json
+    pattern:  /api/page/view/{urlKey}.json
     defaults: { _controller: AiselPageBundle:Api:pageView, _format: json }
     requirements:
         _method: GET

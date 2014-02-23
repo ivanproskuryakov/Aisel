@@ -1,3 +1,5 @@
-aisel_admin_homepage:
-    pattern:  /admin/custompage
-    defaults: { _controller: AiselAdminBundle:Default:index }
+api_aisel_config:
+    pattern:  /api/config/settings.json
+    defaults: { _controller: AiselAdminBundle:Api:config, _format: json }
+    requirements:
+        _method: GET

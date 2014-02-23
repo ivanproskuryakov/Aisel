@@ -1,9 +1,18 @@
 <div class="page-header">
-    <h2>{{category.title}}</h2>
+    <h2>{{categoryDetails.category.title}}</h2>
 </div>
 
-<p><strong>Date:</strong> {{category.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
+<p><strong>Date:</strong> {{categoryDetails.category.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
 <hr/>
-<p>{{category.description}}</p>
+<p>{{categoryDetails.category.description}}</p>
 
-<a ng-href="#!/categories/">browse categories</a>
+
+<div class="related categoryPages" ng-if="categoryDetails.pages">
+    <hr/>
+    <p><strong>Related pages: </strong></p>
+    <ul class="categoryList">
+        <li ng-repeat="page in categoryDetails.pages">
+            <a ng-href="#!/page/{{page.metaUrl}}">{{ page.title }}</a>
+        </li>
+    </ul>
+</div>

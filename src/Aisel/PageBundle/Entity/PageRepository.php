@@ -26,10 +26,11 @@ class PageRepository extends EntityRepository
     private $pageLimit = 1;
     private $pageSkip = 1;
     private $pageOrder = 'id';
-    private $pageOrderBy = 'ASC';
+    private $pageOrderBy = 'DESC';
 
     private function mapRequest($params) {
 
+        // Pagination
         if ( isset($params['current'])) {
             $this->pageCurrent = $params['current'];
         } else {
@@ -41,19 +42,7 @@ class PageRepository extends EntityRepository
             $this->pageLimit = 5;
         }
 
-        // ordering
-        if ( isset($params['order'])) {
-            $this->pageOrder = $params['order'];
-        } else {
-            $this->pageOrder = 'id';
-        }
-        if ( isset($params['orderby'])) {
-            $this->pageOrderBy = $params['orderby'];
-        } else {
-            $this->pageOrderBy = 'ASC';
-        }
-
-        // search
+        // Search
         if ( isset($params['query'])) {
             $this->query = $params['query'];
         }
@@ -71,17 +60,17 @@ class PageRepository extends EntityRepository
     {
         $this->mapRequest($params);
 
-        $qb = $this->getEntityManager()->createQueryBuilder();
+        $query = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('COUNT(p.id)')
+        $query->select('COUNT(p.id)')
             ->from('AiselPageBundle:Page', 'p')
             ->where('p.status = :status')
             ->andWhere('p.isHidden != 1');
 
         if ($this->query != '') {
-            $qb->andWhere('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%');
+            $query->andWhere('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%');
         }
-        $r = $qb->setParameter('status', 1)
+        $r = $query->setParameter('status', 1)
                 ->getQuery()->getSingleScalarResult();
 
         if (!$r) return 0;
@@ -98,8 +87,8 @@ class PageRepository extends EntityRepository
     {
         $this->mapRequest($params);
 
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $r = $qb->select('p.id, p.title, p.content, p.createdAt')
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $r = $query->select('p')
             ->from('AiselPageBundle:Page', 'p')
             ->where('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%')
             ->andWhere('p.status = 1')
@@ -123,13 +112,36 @@ class PageRepository extends EntityRepository
     {
         $this->mapRequest($params);
 
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $r = $qb->select('p.id, p.title, p.content, p.createdAt')
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $r = $query->select('p')
             ->from('AiselPageBundle:Page', 'p')
             ->where('p.status = 1')
             ->andWhere('p.isHidden != 1')
             ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
+            ->orderBy('p.'.$this->pageOrder, $this->pageOrderBy)
+            ->getQuery()
+            ->execute();
+
+        return $r;
+    }
+
+    /*
+     * Get pages filtered by category
+     *
+     * @return pages
+     * */
+
+    public function getPagesByCategory($categoryId)
+    {
+        $query = $this->getEntityManager()->createQueryBuilder();
+
+        $r = $query->select('p.title, p.metaUrl')
+            ->from('AiselPageBundle:Page', 'p')
+            ->innerJoin('p.categories','c')
+            ->where('p.status = 1')
+            ->andWhere('p.isHidden != 1')
+            ->andWhere('c.id = :categoryId')->setParameter('categoryId',$categoryId)
             ->getQuery()
             ->execute();
 
@@ -144,16 +156,16 @@ class PageRepository extends EntityRepository
 
     public function findTotalByURL($url, $pageId = null)
     {
-        $qb = $this->getEntityManager()->createQueryBuilder();
+        $query = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('COUNT(p.id)')
+        $query->select('COUNT(p.id)')
             ->from('AiselPageBundle:Page', 'p')
             ->where('p.metaUrl = :url')->setParameter('url', $url);
 
         if ($pageId) {
-            $qb->andWhere('p.id != :pageId')->setParameter('pageId',$pageId);
+            $query->andWhere('p.id != :pageId')->setParameter('pageId',$pageId);
         }
-        $found = $qb->getQuery()->getSingleScalarResult();
+        $found = $query->getQuery()->getSingleScalarResult();
 
         return $found;
     }

@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('projectxApp')
-    .controller('MainCtrl', ['$location','$scope','$routeParams','navigationService','categoryService',function ($location, $scope, $routeParams, navigationService, categoryService) {
+    .controller('MainCtrl', ['$location','$scope','$routeParams','rootService','appConfig', function ($location, $scope, $routeParams, rootService, appConfig) {
 
-        // Navigation Menu
-        navigationService.getMenu().success(
+        $scope.content = false;
+        appConfig.success(
             function(data, status) {
-                $scope.navigationMenu = data;
+                $scope.content = JSON.parse(data.config_homepage).content
             }
         );
 

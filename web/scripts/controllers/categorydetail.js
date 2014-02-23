@@ -7,8 +7,7 @@ angular.module('projectxApp')
         var categoryId = $routeParams.categoryId;
         categoryService.getCategory(categoryId).success(
             function(data, status) {
-                console.log(data);
-                $scope.category = data;
+                $scope.categoryDetails = data;
             }
         );
 

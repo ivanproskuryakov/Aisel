@@ -12,9 +12,9 @@ class ConfigType extends AbstractType
     {
 
         $builder
-            ->add('defaultMetaTitle', 'text', array('label' => 'Meta Keywords'))
-            ->add('defaultMetaDescription', 'text', array('label' => 'Meta Description'))
-            ->add('defaultMetaKeywords', 'text', array('label' => 'Meta Keywords'))
+            ->add('defaultMetaTitle', 'text', array('label' => 'Meta Title','attr' => array('class' => 'span12')))
+            ->add('defaultMetaDescription', 'text', array('label' => 'Meta Description','attr' => array('class' => 'span12')))
+            ->add('defaultMetaKeywords', 'text', array('label' => 'Meta Keywords','attr' => array('class' => 'span12')))
             ->add('save', 'submit', array('label' => 'Save', 'attr'=> array( 'class'=>'btn btn-primary')));
 
     }
