@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('projectxApp')
+angular.module('aiselApp')
     .service('searchService', ['$http','$routeParams','API_URL',function ($http, $routeParams, API_URL) {
         return {
             getSearchResult: function($scope) {

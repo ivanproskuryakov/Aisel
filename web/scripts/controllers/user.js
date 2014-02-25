@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('projectxApp')
+angular.module('aiselApp')
     .controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService' ,'notify' ,function ($log, $modal, $scope, $routeParams, userService, notify ) {
 
 

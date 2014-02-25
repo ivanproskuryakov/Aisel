@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('projectxApp')
+angular.module('aiselApp')
     .directive('ngSearchRedirect',["$location", function ($location) {
     return {
         restrict: 'A',
@@ -10,12 +10,6 @@ angular.module('projectxApp')
                     if(attrs.ngSearchRedirect.length > 1){
                         window.location.assign('#!/search/'+attrs.ngSearchRedirect);
                     }
-//                        else {
-//                            alert('Search query should have 3 or more letters');
-//                            e.preventDefault();
-//                            return;
-//                        }
-
                 }
             });
         }

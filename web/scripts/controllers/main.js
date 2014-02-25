@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('projectxApp')
+angular.module('aiselApp')
     .controller('MainCtrl', ['$location','$scope','$routeParams','rootService','appConfig', function ($location, $scope, $routeParams, rootService, appConfig) {
 
         $scope.content = false;

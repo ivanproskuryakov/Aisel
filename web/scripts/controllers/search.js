@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('projectxApp')
+angular.module('aiselApp')
   .controller('SearchCtrl', ['$scope','$routeParams','searchService',function ($scope,$routeParams, searchService) {
 
         $scope.queryText = $routeParams.query;

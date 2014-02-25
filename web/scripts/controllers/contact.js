@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('projectxApp')
+angular.module('aiselApp')
     .controller('ContactCtrl', ['$location','$scope','$routeParams','contactService','appConfig', 'notify',function ($location, $scope, $routeParams, contactService,appConfig, notify) {
 
         appConfig.success(

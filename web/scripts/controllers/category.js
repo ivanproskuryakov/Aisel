@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('projectxApp')
+angular.module('aiselApp')
     .controller('CategoryCtrl', ['$location','$scope','$routeParams','categoryService',function ($location, $scope, $routeParams, categoryService) {
 
         $scope.pageLimit = 5;

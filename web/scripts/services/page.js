@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('projectxApp')
+angular.module('aiselApp')
   .service('pageService', ['$http','$routeParams','API_URL',function ($http,$routeParams,API_URL) {
         return {
 
