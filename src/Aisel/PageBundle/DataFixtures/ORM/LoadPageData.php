@@ -24,6 +24,8 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+
+        $loremIpsumText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur dolor eget viverra commodo. Ut vehicula volutpat massa. Maecenas congue sed risus ut semper. Fusce blandit sem nunc, nec facilisis neque eleifend eget. Pellentesque fringilla velit enim, vel convallis libero ultrices vel. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas consectetur lacus et nibh facilisis, non vulputate urna convallis. Donec quis dictum magna, id dictum urna. Aliquam euismod sit amet arcu vulputate laoreet. Vivamus at leo nibh. Proin scelerisque orci sit amet sem varius, a porttitor tortor iaculis. Aenean sollicitudin diam sed euismod varius. Duis commodo a metus eu scelerisque. Etiam porttitor placerat urna vel tincidunt. Quisque congue tellus quam, non volutpat justo eleifend vehicula. Phasellus cursus convallis aliquam. Morbi adipiscing vulputate tellus, id auctor metus interdum a. Fusce diam tellus, varius commodo tincidunt in, ornare a mauris. Phasellus interdum, metus non fringilla rhoncus, odio massa pharetra orci, in semper tortor enim nec quam. Duis consectetur quis nibh at convallis. Integer tincidunt ligula sem, vitae bibendum sem elementum nec. Etiam ornare nisl lacinia, facilisis nisl a, mollis sem. Aliquam erat volutpat.';
         $random = rand(11111,99999);
         $time = time();
 
@@ -34,9 +36,8 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
 
         // Hidden About page
         $hiddenPage = new Page();
-        $hiddenPage->setTitle('About Us Page');
-        $hiddenPage->setContent('empty content about us page .. ');
-        $hiddenPage->setContent('about us content for ...');
+        $hiddenPage->setTitle('About Us');
+        $hiddenPage->setContent($loremIpsumText);
         $hiddenPage->setStatus(true);
         $hiddenPage->setIsHidden(true);
         $hiddenPage->setCommentStatus(false);
@@ -50,8 +51,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         // Disabled page
         $page = new Page();
         $page->setTitle('Disabled Page');
-        $page->setContent('empty content 456 .. ');
-        $page->setContent('disabled content ');
+        $page->setContent($loremIpsumText);
         $page->setStatus(false);
         $page->setIsHidden(true);
         $page->setCommentStatus(false);
@@ -65,8 +65,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         for ($i = 1; $i <= 28; $i++ ) {
             $page = new Page();
             $page->setTitle('Sample Page '. $i);
-            $page->setContent('empty content');
-            $page->setContent('dummy content for Page '.$i);
+            $page->setContent($loremIpsumText);
             $page->setStatus(true);
             $page->setIsHidden(false);
             $page->addCategory($rootCategory);

@@ -61,21 +61,30 @@
     min-height: 500px;
 }
 
+
+.categoryList {
+    padding-left: 0;
+}
+
+.categoryList li {
+    float: left;
+    margin-right: 5px;
+    font-size: 0.9em;
+}
+
+
 .categoryTree .categories {
     padding-left: 10px;
 }
-
 .categoryTree ul, .categoryTree ul ul {
     list-style-type: none;
     background: url(../images/vline.png) repeat-y;
     margin: 0;
     padding: 0;
 }
-
 .categoryTree ul ul {
     margin-left: 10px;
 }
-
 .categoryTree ul li {
     margin: 0;
     padding: 0 12px;
@@ -84,7 +93,6 @@
     color: #369;
     font-weight: bold;
 }
-
 .categoryTree ul li:last-child {
     background: #fff url(../images/lastnode.png) no-repeat;
 }
