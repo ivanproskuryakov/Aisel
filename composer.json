@@ -1,8 +1,19 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "aisel/aisel",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "homepage":    "http://aisel.co",
+    "description": "Aisel - Open source CMS based on Angular and Symfony2",
+    "authors": [
+        {
+            "name":     "Ivan Proskuryakov",
+            "homepage": "http://ivanproskuryakov.com/"
+        },
+        {
+            "name":     "Aisel Project",
+            "homepage": "http://aisel.co"
+        }
+    ],
     "autoload": {
         "psr-0": { "": "src/" }
     },
