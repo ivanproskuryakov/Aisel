@@ -5,7 +5,6 @@ var app = angular.module('aiselApp', [
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'ngAnimate',
     'ui.bootstrap',
     'ui.utils',
     'ui.validate',
