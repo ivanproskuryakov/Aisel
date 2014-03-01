@@ -24,7 +24,7 @@ php app/console cache:clear --env=dev<br/>
 6.) Install frontend dependencies with<br/>
 bower install<br/>
 
-Important: webserver need permissions to write in cache directory aisel/app/cache/<br/>
+Important: webserver needs permissions to write cache in aisel/app/cache/<br/>
 
 Once this steps is done you will be able to access admin section from http://websitename.dev/administration/
 and frontend at http://websitename.dev/
