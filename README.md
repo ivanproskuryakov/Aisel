@@ -11,11 +11,10 @@ Sandbox administration: http://sandbox.aisel.co/administration [backenduser/back
 Installation
 ========================
 
-1.) cd to your website directory and download composer with command <br/>
-curl -sS https://getcomposer.org/installer | php<br/>
+1.) cd to your website directory and download composer with:  <br/>
+<b>curl -sS https://getcomposer.org/installer | php</b><br/>
 2.) Create project, installer will ask you dbname, username, password, etc.. <br/>
 php composer.phar create-project -s dev aisel/aisel - (create project)
-
 3.) Create databasewith GUI tool like phpmyadmin or with command<br/>
 php app/console doctrine:schema:create<br/>
 3.) Load initial data in database with<br/>
