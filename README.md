@@ -32,6 +32,6 @@ and frontend at http://websitename.dev/
 
 Html Snapshots
 ========================
-Snapshots handled by https://github.com/localnerve/html-snapshots
-I created example node Task: node snapshots.js will create Page snapshots in directory web/snapshots
-Rest is up to you :)
+Snapshots handled by https://github.com/localnerve/html-snapshots<br/>
+I created example node Task: node snapshots.js will create Page snapshots in directory web/snapshots<br/>
+Rest is up to you :)<br/>
