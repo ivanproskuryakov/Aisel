@@ -29,3 +29,9 @@ Important: webserver needs permissions to write cache in aisel/app/cache/<br/>
 Once this steps is done you will be able to access admin section from http://websitename.dev/administration/
 and frontend at http://websitename.dev/
 
+
+Html Snapshots
+========================
+Snapshots handled by https://github.com/localnerve/html-snapshots
+I created example node Task: node snapshots.js will create Page snapshots in directory web/snapshots
+Rest is up to you :)

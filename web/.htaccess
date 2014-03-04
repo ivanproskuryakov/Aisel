@@ -11,8 +11,8 @@ DirectoryIndex index.html
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule $ app_dev.php$1 [NC,L,QSA]
-#    RewriteRule ^/administration/(.*)$ /app_dev.php [L]
 
+#    RewriteRule ^/administration/(.*)$ /app_dev.php [L]
 #    RewriteRule ^administration/(.*)$ /app_dev.php$1
 
 #    RewriteCond %{REQUEST_URI} !^/administration.*

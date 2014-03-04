@@ -3,6 +3,7 @@
 /app/config/parameters.yml
 /app/logs/*
 /web/bundles/*
+/web/snapshots/*
 /web/bower_components/*
 !/app/cache/.gitkeep
 !app/logs/.gitkeep
