@@ -127,10 +127,13 @@ fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
     user_class:     Aisel\UserBundle\Entity\BackendUser
+    group:
+      group_class:  Application\Sonata\UserBundle\Entity\Group
 
 sonata_user:
     class:
         user: Aisel\UserBundle\Entity\BackendUser
+
 
 # Sonata section
 sonata_block:

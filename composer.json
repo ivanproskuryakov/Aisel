@@ -37,6 +37,7 @@
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "egeloen/ckeditor-bundle": "~2.0",
 
+        "sonata-project/jquery-bundle": "1.10.*@dev",
         "sonata-project/easy-extends-bundle": "~2.1@dev",
         "sonata-project/admin-bundle": "~2.2@dev",
         "sonata-project/doctrine-orm-admin-bundle": "~2.2@dev",
