@@ -16,6 +16,11 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\NavigationBundle\Entity\Menu;
 
+/**
+ * Navigation menu fixtures
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**

@@ -13,6 +13,11 @@ namespace Aisel\UserBundle\Document;
 
 use Sonata\UserBundle\Document\BaseGroup as BaseGroup;
 
+/**
+ * User group class
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class Group extends BaseGroup
 {
     /**

@@ -11,6 +11,11 @@
 
 namespace Aisel\PageBundle\Manager;
 
+/**
+ * Manager for page search in REST API
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class SearchManager
 {
     protected $em;

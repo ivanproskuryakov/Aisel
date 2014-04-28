@@ -13,6 +13,8 @@ namespace Aisel\AdminBundle\Utility;
 
 /**
  * Url manipulations, check and return normilized RUL
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class UrlUtility
 {

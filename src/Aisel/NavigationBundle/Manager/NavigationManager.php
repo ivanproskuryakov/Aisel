@@ -11,6 +11,11 @@
 
 namespace Aisel\NavigationBundle\Manager;
 
+/**
+ * Manager for Navigation
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class NavigationManager
 {
     protected $sc;
@@ -23,7 +28,8 @@ class NavigationManager
     }
 
     /**
-     * Return enabled menu
+     * Returns enabled menu
+     *
      * @return object
      */
     public function getMenu()

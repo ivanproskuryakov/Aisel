@@ -4,6 +4,11 @@ namespace Aisel\CategoryBundle\Controller;
 
 use Aisel\ConfigBundle\Controller\SettingsController;
 
+/**
+ * Category settings controller for Backend, extends Aisel SettingsController
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class ConfigController extends SettingsController
 {
 

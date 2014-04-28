@@ -5,7 +5,9 @@ namespace Aisel\PageBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Page
+ * Page entity
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class Page
 {

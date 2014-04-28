@@ -12,6 +12,12 @@
 namespace Aisel\ContactBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+/**
+ * Contact manager, sends "contact us" email
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class ContactManager
 {
     protected $em;

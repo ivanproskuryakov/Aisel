@@ -17,6 +17,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Frontend navigation REST API controller
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class ApiController extends Controller
 {
 

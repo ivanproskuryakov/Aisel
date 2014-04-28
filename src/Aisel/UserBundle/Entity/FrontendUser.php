@@ -6,7 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
- * FrontUser
+ * Frontend user entity
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class FrontendUser implements AdvancedUserInterface, \Serializable
 {

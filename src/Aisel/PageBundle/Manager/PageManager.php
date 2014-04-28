@@ -14,6 +14,11 @@ namespace Aisel\PageBundle\Manager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Aisel\AdminBundle\Utility\UrlUtility;
 
+/**
+ * Manager for Pages, mostly used in REST API
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class PageManager
 {
     protected $sc;

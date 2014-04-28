@@ -1,10 +1,24 @@
 <?php
 
+/*
+ * This file is part of the Aisel package.
+ *
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Aisel\ContactBundle\Controller;
 
 use Aisel\ConfigBundle\Controller\SettingsController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Contact settings controller for Backend, extends Aisel SettingsController
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class ConfigController extends SettingsController
 {
 

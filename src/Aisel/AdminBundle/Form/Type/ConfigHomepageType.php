@@ -5,6 +5,11 @@ namespace Aisel\AdminBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * Form for Homepage settings in Backend
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class ConfigHomepageType extends AbstractType
 {
 

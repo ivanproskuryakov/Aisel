@@ -12,6 +12,10 @@ DirectoryIndex index.html
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule $ app_dev.php$1 [NC,L,QSA]
 
+    RewriteCond %{QUERY_STRING} ^_escaped_fragment_=(.*)$
+    RewriteCond %{REQUEST_URI} !^/snapshots/#! [NC]
+    RewriteRule ^(.*)/?$ /snapshots/\#\!/%1 [L]
+
 #    RewriteRule ^/administration/(.*)$ /app_dev.php [L]
 #    RewriteRule ^administration/(.*)$ /app_dev.php$1
 

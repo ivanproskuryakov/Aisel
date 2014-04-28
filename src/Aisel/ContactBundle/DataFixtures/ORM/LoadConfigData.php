@@ -16,6 +16,11 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\ConfigBundle\Entity\Config;
 
+/**
+ * Contact fixtures
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class LoadconfigData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**

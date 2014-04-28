@@ -21,6 +21,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
+/**
+ * Tree form type, to handle tree structures
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class TreeType extends AbstractType
 {
     protected $options;

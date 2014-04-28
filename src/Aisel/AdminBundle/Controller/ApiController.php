@@ -16,12 +16,18 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+
+/**
+ * Returns CMS settings in JSON format
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class ApiController extends Controller
 {
 
     /**
      * @Rest\View
-     * /api/config/contact.json
+     * /api/config/settings.json
      */
     public function configAction()
     {

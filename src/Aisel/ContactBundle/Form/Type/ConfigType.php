@@ -1,10 +1,24 @@
 <?php
 
+/*
+ * This file is part of the Aisel package.
+ *
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Aisel\ContactBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * Form for Config settings in Backend
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class ConfigType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)

@@ -13,8 +13,11 @@ namespace Aisel\NavigationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
- * Menu
+ * Menu enitity
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class Menu
 {

@@ -20,6 +20,11 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Symfony\Component\Validator\ValidatorInterface;
 
+/**
+ * Page CRUD configuration for Backend
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class PageAdmin extends Admin
 {
     protected $pageManager;

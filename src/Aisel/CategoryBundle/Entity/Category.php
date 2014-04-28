@@ -15,7 +15,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category
+ * Category enitity
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class Category
 {

@@ -13,6 +13,11 @@ namespace Aisel\NavigationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Page sort for Backend
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class MenuSortController extends Controller
 {
 

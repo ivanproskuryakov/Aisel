@@ -14,6 +14,11 @@ namespace Aisel\ConfigBundle\Controller;
 use Aisel\ConfigBundle\Entity\Setting;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * To implement settings fuctionality extend this class and set protected values
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class SettingsController extends Controller
 {
 

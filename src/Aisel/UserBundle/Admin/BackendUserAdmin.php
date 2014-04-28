@@ -20,7 +20,11 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 use Sonata\AdminBundle\Route\RouteCollection;
 
-
+/**
+ * Backend users CRUD configuration for Backend
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class BackendUserAdmin extends BaseUserAdmin
 {
     protected $baseRoutePattern = 'system/user/back';

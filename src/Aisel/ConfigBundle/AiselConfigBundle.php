@@ -14,7 +14,7 @@ namespace Aisel\ConfigBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Aisel configuration bundle, provides settings functionality
+ * Aisel configuration bundle, provides settings functionality.
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

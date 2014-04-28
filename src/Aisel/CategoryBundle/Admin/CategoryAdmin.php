@@ -21,6 +21,11 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Symfony\Component\Validator\ValidatorInterface;
 
+/**
+ * Category CRUD configuration for Backend
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class CategoryAdmin extends Admin
 {
     protected $categoryManager;
@@ -186,7 +191,7 @@ class CategoryAdmin extends Admin
      */
     public function toString($object)
     {
-        return $object->getId() ? $object->getUsername() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
+        return $object->getId() ? $object->getTitle() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
     }
 
 }

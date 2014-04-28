@@ -4,6 +4,11 @@ namespace Aisel\AdminBundle\Controller;
 
 use Aisel\ConfigBundle\Controller\SettingsController;
 
+/**
+ * Extends SettingsController for Meta settings in Backend
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class ConfigMetaController extends SettingsController
 {
 

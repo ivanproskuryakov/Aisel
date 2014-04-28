@@ -21,6 +21,11 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Symfony\Component\Validator\ValidatorInterface;
 
+/**
+ * Navigation CRUD configuration for Backend
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class NavigationAdmin extends Admin
 {
     protected $baseRoutePattern = 'navigation/menu';

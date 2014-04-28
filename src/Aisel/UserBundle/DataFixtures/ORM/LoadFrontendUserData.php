@@ -17,6 +17,11 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Frontend users fixtures
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class LoadFrontendUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
 

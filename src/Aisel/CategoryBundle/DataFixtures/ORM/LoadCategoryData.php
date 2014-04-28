@@ -16,6 +16,11 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\CategoryBundle\Entity\Category;
 
+/**
+ * Category fixtures
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**

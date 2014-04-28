@@ -4,6 +4,11 @@ namespace Aisel\AdminBundle\Controller;
 
 use Aisel\ConfigBundle\Controller\SettingsController;
 
+/**
+ * Homepage settings controller for Backend, extends Aisel SettingsController
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class ConfigHomepageController extends SettingsController
 {
 

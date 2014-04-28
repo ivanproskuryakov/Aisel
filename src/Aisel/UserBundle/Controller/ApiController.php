@@ -22,6 +22,11 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Api for frontend users. Login, registration, etc..
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class ApiController extends Controller
 {
 

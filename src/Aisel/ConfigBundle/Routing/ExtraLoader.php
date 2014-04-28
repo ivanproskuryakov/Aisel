@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Aisel\ConfigBundle\Routing;
 
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -17,6 +16,11 @@ use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
+/**
+ * Dynamic router
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class ExtraLoader implements LoaderInterface
 {
     private $loaded = false;

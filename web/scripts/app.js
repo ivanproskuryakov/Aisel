@@ -65,7 +65,7 @@ var app = angular.module('aiselApp', [
             });
 
         $locationProvider
-            .html5Mode(false)
+//            .html5Mode(true)
             .hashPrefix('!');
 
         $provide.factory('appConfig', function ($q,rootService) {

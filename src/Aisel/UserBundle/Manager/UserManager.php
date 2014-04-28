@@ -17,6 +17,11 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
+/**
+ * Manager for frontend users. Register, Load and others ...
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class UserManager  implements UserProviderInterface
 {
     protected $encoder;

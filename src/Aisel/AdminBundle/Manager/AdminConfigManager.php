@@ -12,6 +12,12 @@
 namespace Aisel\AdminBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+/**
+ * Manager to retrieve CMS settings
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class AdminConfigManager
 {
     protected $em;

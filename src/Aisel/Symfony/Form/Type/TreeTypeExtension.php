@@ -13,6 +13,9 @@ namespace Aisel\Symfony\Form\Type;
 
 use Symfony\Component\Form\AbstractExtension;
 
+/**
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class TreeTypeExtension extends AbstractExtension
 {
     protected function loadTypes()

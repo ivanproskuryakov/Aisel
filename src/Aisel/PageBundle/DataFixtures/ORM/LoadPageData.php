@@ -17,6 +17,11 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\PageBundle\Entity\Page;
 use Aisel\CategoryBundle\Entity\Category;
 
+/**
+ * Page fixtures
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**

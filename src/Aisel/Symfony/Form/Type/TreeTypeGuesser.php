@@ -18,7 +18,9 @@ use Symfony\Component\Form\FormTypeGuesserInterface;
 use Symfony\Component\Form\Guess\Guess;
 use Symfony\Component\Form\Guess\TypeGuess;
 
-
+/**
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class TreeTypeGuesser implements FormTypeGuesserInterface
 {
     const TREE_ANNOTATION = '\\Gedmo\\Mapping\\Annotation\\Tree';

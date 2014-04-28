@@ -21,7 +21,11 @@ use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Symfony\Component\Validator\ValidatorInterface;
 
-
+/**
+ * Frontend users CRUD configuration for Backend
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class FrontendUserAdmin extends Admin
 {
     protected $baseRoutePattern = 'system/user/front';

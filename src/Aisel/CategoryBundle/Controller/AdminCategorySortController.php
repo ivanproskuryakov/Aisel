@@ -13,6 +13,11 @@ namespace Aisel\CategoryBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Category ordering for Backend
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class AdminCategorySortController extends Controller
 {
 

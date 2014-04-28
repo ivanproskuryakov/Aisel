@@ -13,6 +13,11 @@ namespace Aisel\UserBundle\Document;
 
 use Sonata\UserBundle\Document\BaseUser as BaseUser;
 
+/**
+ * User class
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class User extends BaseUser
 {
     /**
