@@ -104,6 +104,23 @@ class PageRepository extends EntityRepository
     /*
      * Get pages based on limit, current pagination and search query
      *
+     * @return array
+     * */
+    public function getEnabledPages()
+    {
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $r = $query->select('p')
+            ->from('AiselPageBundle:Page', 'p')
+            ->andWhere('p.status = 1')
+            ->getQuery()
+            ->execute();
+
+        return $r;
+    }
+
+    /*
+     * Get pages based on limit, current pagination and search query
+     *
      * @return pages
      * */
 

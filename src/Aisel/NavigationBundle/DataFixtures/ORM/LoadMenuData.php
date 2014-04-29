@@ -34,7 +34,7 @@ class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
         // Blog
         $menu = new Menu();
         $menu->setTitle('Blog');
-        $menu->setUrl('#!/pages/');
+        $menu->setUrl('/#!/pages/');
         $menu->setStatus(true);
         $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -44,7 +44,7 @@ class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
         // Categories
         $menu = new Menu();
         $menu->setTitle('Categories');
-        $menu->setUrl('#!/categories/');
+        $menu->setUrl('/#!/categories/');
         $menu->setStatus(true);
         $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -54,7 +54,7 @@ class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
         // Contact
         $menu = new Menu();
         $menu->setTitle('Contact');
-        $menu->setUrl('#!/contact/');
+        $menu->setUrl('/#!/contact/');
         $menu->setStatus(true);
         $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -64,7 +64,7 @@ class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
         // Pinned
         $menu = new Menu();
         $menu->setTitle('About');
-        $menu->setUrl('#!/page/'.$pinned->getMetaUrl());
+        $menu->setUrl('/#!/page/'.$pinned->getMetaUrl());
         $menu->setStatus(true);
         $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));

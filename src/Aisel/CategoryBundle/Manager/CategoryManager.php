@@ -108,6 +108,16 @@ class CategoryManager
     }
 
     /**
+     * Get List of all categories, except disabled
+     * @return string
+     */
+    public function getEnabledCategories()
+    {
+        $pageList = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
+        return $pageList;
+    }
+
+    /**
      * validate metaUrl for Category Entity and return one we can use
      * @return string
      */
@@ -124,6 +134,8 @@ class CategoryManager
 
         return $validUrl;
     }
+
+
 
 
 }

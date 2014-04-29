@@ -121,5 +121,15 @@ class PageManager
         return $validUrl;
     }
 
+    /**
+     * Get List of all pages, except disabled
+     * @return string
+     */
+    public function getEnabledPages()
+    {
+        $pageList = $this->em->getRepository('AiselPageBundle:Page')->getEnabledPages();
+        return $pageList;
+    }
+
 
 }

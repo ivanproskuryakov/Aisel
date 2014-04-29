@@ -39,7 +39,6 @@ class AppKernel extends Kernel
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
 
 
-
             // Local bundles
             new Aisel\UserBundle\AiselUserBundle(),
             new Aisel\AdminBundle\AiselAdminBundle(),
@@ -48,6 +47,7 @@ class AppKernel extends Kernel
             new Aisel\NavigationBundle\AiselNavigationBundle(),
             new Aisel\ContactBundle\AiselContactBundle(),
             new Aisel\ConfigBundle\AiselConfigBundle(),
+            new Aisel\SitemapBundle\AiselSitemapBundle(),
 
         );
 
