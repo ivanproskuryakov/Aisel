@@ -5,15 +5,15 @@ var result = htmlSnapshots.run({
             "http://aisel.dev/#!/",
             "http://aisel.dev/#!/contact/",
             "http://aisel.dev/#!/page/about-aisel"
-//            "http://aisel.dev/#!/categories/"
     ],
     outputDir: "web/snapshots",
-//    outputPath: {
-//        "http://aisel.dev/#!/page/about-aisel": "page/about-aisel",
-//        "http://aisel.dev/#!/contact/": "contact"
-//    },
     outputDirClean: true,
-//    checkInterval: 1000,
     selector: ".navbar-header",
     timeout: 10000
+}, function(err, snapshotsCompleted) {
+    var fs = require('fs');
+    fs.rename('web/snapshots/#!', 'web/snapshots/views', function(err) {
+        if ( err ) console.log('ERROR: ' + err);
+    });
 });
+
