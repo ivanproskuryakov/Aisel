@@ -29,9 +29,18 @@ Important: webserver needs permissions to write cache in aisel/app/cache/<br/>
 Once this steps is done you will be able to access admin section from http://websitename.dev/administration/
 and frontend at http://websitename.dev/
 
-
-Html Snapshots
+Sitemap for search engines like Google
 ========================
+Task: php app/console aisel:sitemap:generate<br/>
+This will generate sitemap.xml file in web directory<br/>
+
+HTML Snapshots for SEO
+========================
+To make JS website crawlable by google you need to generate snapshots
 Snapshots handled by https://github.com/localnerve/html-snapshots<br/>
-I created example node Task: node snapshots.js will create Page snapshots in directory web/snapshots<br/>
-Rest is up to you :)<br/>
+To generate snapshots run: <b>node snapshots.js</b>. This task will create snapshots in directory web/snapshots<br/>
+In the end you will need to test like this:<br/>
+Page: http://aisel.dev/#!/page/about-aisel/<br/>
+Test: curl http://aisel.dev/\?_escaped_fragment_\=/page/about-aisel/<br/>
+Full terms from google here: https://developers.google.com/webmasters/ajax-crawling/docs/specification
+
