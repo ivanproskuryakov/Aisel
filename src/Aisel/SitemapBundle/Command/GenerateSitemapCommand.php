@@ -17,14 +17,18 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+//use Symfony\Component\Filesystem\Filesystem;
+//use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+
 
 /**
  * Generates sitemap.xml in web directory
+ * Command: "aisel:sitemap:generate"
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 
-class CreateUserCommand extends ContainerAwareCommand
+class GenerateSitemapCommand extends ContainerAwareCommand
 {
 
     /**
@@ -45,21 +49,37 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln(sprintf('Index at <comment>/#!/</comment>'));
+        $output->writeln(sprintf('Sitemap generator started ...'));
+        $urls = array();
 
-        $output->writeln(sprintf('Pages...'));
+        //Homepage
+        $urls[] = '/#!/';
+
+        //Pages
+        $urls[] = '/#!/pages/';
         $pages = $this->getContainer()->get('aisel.page.manager')->getEnabledPages();
         foreach ($pages as $p) {
-            $url = '/#!/pages/'.$p->getMetaUrl();
-            $output->writeln(sprintf('%s <comment>%s</comment>', $p->getTitle(), $url));
+            $urls[] = '/#!/page/'.$p->getMetaUrl();
         }
 
-        $output->writeln(sprintf('Categories...'));
+        //Categories
+        $urls[] = '/#!/categories/';
         $categories = $this->getContainer()->get('aisel.category.manager')->getEnabledCategories();
         foreach ($categories as $c) {
-            $url = '/#!/pages/'.$p->getMetaUrl();
-            $output->writeln(sprintf('%s: <comment>%s</comment>', $c->getTitle(), $url));
+            $urls[] = '/#!/category/'.$p->getMetaUrl();
         }
+
+        // Render sitemap template and save
+        $sitemapContents = $this->getContainer()->get('templating')->render(
+            'AiselSitemapBundle:Default:sitemap.txt.twig',
+            array('urls'  => $urls)
+        );
+        $webFolder = realpath($this->getContainer()->get('kernel')->getRootDir().'/../web/');
+        $sitemapFile = $webFolder.'/sitemap.xml';
+        file_put_contents($sitemapFile,$sitemapContents);
+
+        $output->writeln(sprintf('URL total: %s',count($urls)));
+        $output->writeln(sprintf('File sitemap.xml generated!'));
 
     }
 

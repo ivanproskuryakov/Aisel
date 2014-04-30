@@ -2,8 +2,8 @@
 /app/cache/*
 /app/config/parameters.yml
 /app/logs/*
+/web/sitemap.xml
 /web/bundles/*
-/web/snapshots/*
 /web/bower_components/*
 !/app/cache/.gitkeep
 !app/logs/.gitkeep
@@ -11,6 +11,7 @@
 /vendor/
 /bin/
 /composer.phar
+
 Capfile
 node_modules
 dist

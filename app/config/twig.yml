@@ -1,5 +1,7 @@
 twig:
   globals:
+    website_address: %website_address%
     application:
       name: %application.name%
+      version: %application.version%
       version: %application.version%
