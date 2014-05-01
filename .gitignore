@@ -2,6 +2,7 @@
 /app/cache/*
 /app/config/parameters.yml
 /app/logs/*
+/web/robots.txt
 /web/sitemap.xml
 /web/googlef8c13a8562a54c16.html
 /web/bundles/*

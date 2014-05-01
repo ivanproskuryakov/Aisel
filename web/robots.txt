@@ -3,5 +3,5 @@
 
 User-agent: *
 Allow: /
-Sitemap: http://aisel.dev/sitemaps.xml
+Sitemap: http://sandbox.aisel.co/sitemap.xml
 Disallow: _escaped_fragment_=
