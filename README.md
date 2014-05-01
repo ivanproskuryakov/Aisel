@@ -42,5 +42,5 @@ To generate snapshots run: <b>node snapshots.js</b><br/>
 Task will create snapshots in directory web/snapshots. In the end you will need to test like this:<br/>
 Example page: http://aisel.dev/#!/page/about-aisel/<br/>
 And to test it write in terminal: curl http://aisel.dev/?_escaped_fragment_=/page/about-aisel/<br/>
-Full info how to make SEO for JS read from google: https://developers.google.com/webmasters/ajax-crawling/docs/specification
+Full info how to make SEO for JS website read here: https://developers.google.com/webmasters/ajax-crawling/docs/specification
 
