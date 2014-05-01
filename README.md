@@ -1,12 +1,13 @@
 About
 ========================
 
-Aisel is young open source project based on combination Symfony2 with AngularJS for frontend, project started as experiment in january 2014.
+Aisel is open source project based on combination Symfony2 with AngularJS for frontend, project started as experiment in january 2014.
 Aisel still remains not finished, but has minimal list of features for quick-start.<br/>
 
 Project website: http://aisel.co/<br/>
 Sandbox frontend: http://sandbox.aisel.co/<br/>
 Sandbox administration: http://sandbox.aisel.co/administration [backenduser/backenduser]
+
 
 Installation
 ========================
@@ -23,8 +24,11 @@ php app/console doctrine:fixtures:load<br/>
 php app/console cache:clear --env=dev<br/>
 6.) Install frontend dependencies with<br/>
 bower install<br/>
-
-Important: webserver needs permissions to write cache in aisel/app/cache/<br/>
+7.) Important: webserver needs permissions to write cache in aisel/app/cache/<br/>
+sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
+sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
+8.) Add Links to CSS and JS files
+php app/console assets:install web --symlink
 
 Once this steps is done you will be able to access admin section from http://websitename.dev/administration/
 and frontend at http://websitename.dev/
@@ -32,15 +36,16 @@ and frontend at http://websitename.dev/
 Sitemaps
 ========================
 Task: <b>php app/console aisel:sitemap:generate</b><br/>
-This will generate sitemap.xml file in web directory<br/>
+This command will generate sitemap.xml<br/>
+Example: http://sandbox.aisel.co/sitemap.xml<br/>
 
 SEO for JS website
 ========================
 To make JS website indexable by Google you need to generate snapshots
 Snapshots handled by https://github.com/localnerve/html-snapshots<br/>
-To generate snapshots run: <b>node snapshots.js</b><br/>
+To generate snapshots run in terminal: <b>node snapshots.js</b><br/>
 Task will create snapshots in directory web/snapshots. In the end you will need to test like this:<br/>
-Example page: http://aisel.dev/#!/page/about-aisel/<br/>
-And to test it write in terminal: curl http://aisel.dev/?_escaped_fragment_=/page/about-aisel/<br/>
+Example page: http://sandbox.aisel.dev/#!/pages/<br/>
+And to test it write in terminal: curl http://sandbox.aisel.dev/?_escaped_fragment_=/pages/<br/>
 Full info how to make SEO for JS website read here: https://developers.google.com/webmasters/ajax-crawling/docs/specification
 
