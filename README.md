@@ -27,7 +27,7 @@ bower install<br/>
 7.) Important: webserver needs permissions to write cache in aisel/app/cache/<br/>
 sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
 sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
-8.) Add Links to CSS and JS files
+8.) Add Links to CSS and JS files<br/>
 php app/console assets:install web --symlink
 
 Once this steps is done you will be able to access admin section from http://websitename.dev/administration/
@@ -45,7 +45,6 @@ To make JS website indexable by Google you need to generate snapshots
 Snapshots handled by https://github.com/localnerve/html-snapshots<br/>
 To generate snapshots run in terminal: <b>node snapshots.js</b><br/>
 Task will create snapshots in directory web/snapshots. In the end you will need to test like this:<br/>
-Example page: http://sandbox.aisel.dev/#!/pages/<br/>
-And to test it write in terminal: curl http://sandbox.aisel.dev/?_escaped_fragment_=/pages/<br/>
+For page http://sandbox.aisel.dev/#!/pages/ you need type in terminal: <br/>curl http://sandbox.aisel.dev/?_escaped_fragment_=/pages/<br/>
 Full info how to make SEO for JS website read here: https://developers.google.com/webmasters/ajax-crawling/docs/specification
 
