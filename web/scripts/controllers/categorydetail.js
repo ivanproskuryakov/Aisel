@@ -1,14 +1,33 @@
 'use strict';
 
 angular.module('aiselApp')
-    .controller('CategoryDetailCtrl', ['$location','$scope','$routeParams','categoryService',function ($location, $scope, $routeParams, categoryService) {
+    .controller('CategoryDetailCtrl', ['$location','$scope','$routeParams','pageService','categoryService',function ($location, $scope, $routeParams, pageService, categoryService) {
+
+        $scope.pageLimit = 5;
+        $scope.paginationPage = 1;
+        $scope.categoryId = $routeParams.categoryId;
 
         // Category Information
-        var categoryId = $routeParams.categoryId;
-        categoryService.getCategory(categoryId).success(
+        categoryService.getCategory($scope.categoryId).success(
             function(data, status) {
                 $scope.categoryDetails = data;
             }
         );
+
+        // Pages
+        pageService.getPages($scope).success(
+            function(data, status) {
+                $scope.pageList = data;
+            }
+        );
+
+        $scope.pageChanged = function(page) {
+            $scope.paginationPage = page;
+            pageService.getPages($scope).success(
+                function(data, status) {
+                    $scope.pageList = data;
+                }
+            );
+        };
 
     }]);

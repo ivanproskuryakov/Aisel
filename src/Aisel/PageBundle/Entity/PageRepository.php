@@ -21,6 +21,7 @@ use Doctrine\ORM\EntityRepository;
 class PageRepository extends EntityRepository
 {
     private $query = '';
+    private $category = 0;
     private $pageCurrent = 1;
     private $pageLimit = 1;
     private $pageSkip = 1;
@@ -39,6 +40,11 @@ class PageRepository extends EntityRepository
             $this->pageLimit = $params['limit'];
         } else {
             $this->pageLimit = 5;
+        }
+        if ( isset($params['category'])) {
+            $this->category = $params['category'];
+        } else {
+            $this->category = 0;
         }
 
         // Search
@@ -66,9 +72,16 @@ class PageRepository extends EntityRepository
             ->where('p.status = :status')
             ->andWhere('p.isHidden != 1');
 
+        if ($this->category) {
+            $query
+                ->innerJoin('p.categories','c')
+                ->andWhere('c.metaUrl = :category')->setParameter('category',$this->category);
+        }
+
         if ($this->query != '') {
             $query->andWhere('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%');
         }
+
         $r = $query->setParameter('status', 1)
                 ->getQuery()->getSingleScalarResult();
 
@@ -87,7 +100,7 @@ class PageRepository extends EntityRepository
         $this->mapRequest($params);
 
         $query = $this->getEntityManager()->createQueryBuilder();
-        $r = $query->select('p')
+        $query->select('p')
             ->from('AiselPageBundle:Page', 'p')
             ->where('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%')
             ->andWhere('p.status = 1')
@@ -129,11 +142,19 @@ class PageRepository extends EntityRepository
         $this->mapRequest($params);
 
         $query = $this->getEntityManager()->createQueryBuilder();
-        $r = $query->select('p')
+
+        $r = $query->select('p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt')
             ->from('AiselPageBundle:Page', 'p')
             ->where('p.status = 1')
-            ->andWhere('p.isHidden != 1')
-            ->setMaxResults($this->pageLimit)
+            ->andWhere('p.isHidden != 1');
+
+        if ($this->category) {
+            $query
+                ->innerJoin('p.categories','c')
+                ->andWhere('c.metaUrl = :category')->setParameter('category',$this->category);
+        }
+
+        $r = $query-> setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
             ->orderBy('p.'.$this->pageOrder, $this->pageOrderBy)
             ->getQuery()
@@ -152,7 +173,7 @@ class PageRepository extends EntityRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
 
-        $r = $query->select('p.title, p.metaUrl')
+        $r = $query->select('p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt')
             ->from('AiselPageBundle:Page', 'p')
             ->innerJoin('p.categories','c')
             ->where('p.status = 1')

@@ -26,30 +26,93 @@ class CategoryManager
 
 
     /**
-     * Get list of enabled categories sorted as a tree
+     * Get array of enabled categories sorted as a tree
      * @return object
      */
     public function getHTMLCategoryTree()
     {
-//        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
-        $options = array(
-            'decorate' => true,
-            'rootOpen' => '<ul>',
-            'rootClose' => '</ul>',
-            'childOpen' => '<li>',
-            'childClose' => '</li>',
-            'nodeDecorator' => function($node) {
-                    return '<a href="#!/category/'.$node['metaUrl'].'">'.$node['title'].'</a>';
+        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
+        $tree = array();
+        $treeHTML = '<ul>';
+
+        foreach ($categories as $rootItem) {
+
+            if (!$rootItem->getStatus()) continue;
+            if ($rootItem->getRoot() == $rootItem->getId()) {
+
+                $treeHTML.= '<li>';
+                $treeHTML.= '<a href="/#!/category/'.$rootItem->getMetaUrl().'">'.$rootItem->getTitle().'</a>';
+                $treeHTML.= '</li>';
+//                $_category = array(
+//                    'title' => $rootItem->getTitle(),
+//                    'children' => $this->generatePageTree($rootItem->getChildren(),$rootItem->getId())
+//                );
+//                $tree[] = $_category;
+
+                $treeHTML.= $this->generatePageTreeHTML($rootItem->getChildren(),$rootItem->getId());
+            }
+        }
+        $treeHTML.='</ul>';
+
+        return $treeHTML;
+    }
+
+    /**
+     * Generate child categories for selected in HTML format
+     * @param object $items
+     * @param int $pid
+     * @return array
+     */
+    function generatePageTreeHTML($items, $pid = null){
+        $treeHTML= '<ul>';
+        foreach ($items as $item) {
+
+            if (!$item->getStatus()) continue;
+            if($item->getParent()) {
+                if($parentId = $item->getParent()->getId()) {
+                    if($parentId == $pid){
+                        $tree[$item->getId()]['title']= $item->getTitle();
+                        if ($item->getChildren()) {
+                                $children = $this->generatePageTreeHTML($item->getChildren(), $item->getId());
+//                                $tree[$item->getId()]['children'] = $children;
+//                                var_dump($item->getTitle());
+                                $treeHTML.= '<li>';
+                                $treeHTML.= '<a href="/#!/category/'.$item->getMetaUrl().'">'.$item->getTitle().'</a>';
+                                $treeHTML.= $children;
+                                $treeHTML.= '</li>';
+                        }
+                    }
                 }
-        );
+            }
+        }
+        $treeHTML.= '</ul>';
+        return $treeHTML;
+    }
 
-        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->childrenHierarchy(
-            null, /* starting from root nodes */
-            false, /* true: load all children, false: only direct */
-            $options
-        );
+    /**
+     * Generate child categories for selected root
+     * @param object $items
+     * @param int $pid
+     * @return array
+     */
+    function generatePageTree($items, $pid = null){
+        $tree = array();
+        foreach ($items as $item) {
 
-        return $categories;
+            if (!$item->getStatus()) continue;
+            if($item->getParent()) {
+                if($parentId = $item->getParent()->getId()) {
+                    if($parentId == $pid){
+                        $tree[$item->getId()]['title']= $item->getTitle();
+                        if ($item->getChildren()) {
+                            $children = $this->generatePageTree($item->getChildren(), $item->getId());
+                                $tree[$item->getId()]['children'] = $children;
+                        }
+                    }
+                }
+            }
+        }
+        return $tree;
     }
 
     /**

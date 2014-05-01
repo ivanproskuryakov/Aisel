@@ -5,7 +5,7 @@ angular.module('aiselApp')
         return {
 
             getPages: function($scope) {
-                var url = API_URL+'/page/list.json?limit='+$scope.pageLimit+'&current='+$scope.paginationPage;
+                var url = API_URL+'/page/list.json?limit='+$scope.pageLimit+'&current='+$scope.paginationPage+'&category='+$scope.categoryId;
                 console.log(url);
                 return $http.get(url);
             },

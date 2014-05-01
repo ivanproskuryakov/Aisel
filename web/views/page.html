@@ -1,16 +1,15 @@
 <div class="row row-offcanvas row-offcanvas-right">
     <div class="col-xs-12 col-sm-9">
         <div class="page-header">
-            <h2>Pages</h2>
+            <h2>Blog listing</h2>
         </div>
-
 
         <div class="col-md-12">
             <ul class="pageList">
                 <li ng-repeat="page in pageList.pages">
                     <h2><a href="#!/page/{{page.meta_url}}/" class="thumb">{{page.title}}</a></h2>
                     <p>{{page.content}}</p>
-                    <p>Date: {{page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
+                    <p><span class="glyphicon glyphicon-calendar"></span> {{page.createdAt | date:"MM/dd/yyyy @ h:mma" }}</p>
                     <hr/>
                 </li>
             </ul>

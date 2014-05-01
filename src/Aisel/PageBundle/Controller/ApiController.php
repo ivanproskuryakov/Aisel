@@ -53,6 +53,7 @@ class ApiController extends Controller
         $params = array(
             'current'=>$request->query->get('current'),
             'limit'=>$request->query->get('limit'),
+            'category'=>$request->query->get('category'),
         );
 
         $pageList = $this->container->get("aisel.page.manager")->getPages($params);
