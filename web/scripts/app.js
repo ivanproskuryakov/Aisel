@@ -28,7 +28,7 @@ var app = angular.module('aiselApp', [
                 templateUrl: 'views/page.html',
                 controller: 'PageCtrl'
             })
-            .when('/page/:pageId', {
+            .when('/page/:pageId/', {
                 templateUrl: 'views/page-detail.html',
                 controller: 'PageDetailCtrl'
             })
@@ -37,7 +37,7 @@ var app = angular.module('aiselApp', [
                 templateUrl: 'views/category.html',
                 controller: 'CategoryCtrl'
             })
-            .when('/category/:categoryId', {
+            .when('/category/:categoryId/', {
                 templateUrl: 'views/category-detail.html',
                 controller: 'CategoryDetailCtrl'
             })
