@@ -59,6 +59,10 @@ var app = angular.module('aiselApp', [
                 templateUrl: 'views/user/information.html',
                 controller: 'UserCtrl'
             })
+            .when('/user/password/forgot/', {
+                templateUrl: 'views/user/password-forgot.html',
+                controller: 'UserCtrl'
+            })
 
             .otherwise({
             redirectTo: '/'

@@ -15,6 +15,14 @@ angular.module('aiselApp')
                 return $http.get(url);
             },
 
+            passwordforgot: function(form) {
+
+                var email = form.email.$modelValue;
+                var url = API_URL+'/user/passwordforgot.json?email='+ email;
+                console.log(url);
+                return $http.get(url);
+            },
+
             signout: function() {
                 var url = API_URL+'/user/logout.json';
                 console.log(url);

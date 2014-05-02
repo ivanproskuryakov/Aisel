@@ -16,6 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Aisel\UserBundle\Utility\PasswordUtility;
 
 /**
  * Manager for frontend users. Register, Load and others ...
@@ -26,12 +27,33 @@ class UserManager  implements UserProviderInterface
 {
     protected $encoder;
     protected $em;
+    protected $templating;
+    protected $mailer;
+    protected $websiteEmail;
 
-    public function __construct($em, $encoder)
+    public function __construct($em, $encoder,$mailer,$templating,$websiteEmail)
     {
+        $this->mailer = $mailer;
+        $this->templating = $templating;
         $this->encoder = $encoder;
         $this->em = $em;
+        $this->websiteEmail = $websiteEmail;
+    }
 
+    /**
+     * Get Templating service
+     */
+    public function getTemplating()
+    {
+        return $this->templating;
+    }
+
+    /**
+     * Get Mailer service
+     */
+    public function getMailer()
+    {
+        return $this->mailer;
     }
 
     protected function getRepository() {
@@ -46,16 +68,12 @@ class UserManager  implements UserProviderInterface
             return false;
         }
         $isValid = $encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt());
-
-//        var_dump();
-//        var_dump($user);
-//        var_dump($encoder);
-//        exit();
-
         return $isValid;
     }
 
-
+    /*
+     *   Register user and send userinfo by email
+     */
     public function registerUser(Array $userData)
     {
         $user = $this->loadUserByUsername($userData['username']);
@@ -77,6 +95,29 @@ class UserManager  implements UserProviderInterface
 
             $this->em->persist($user);
             $this->em->flush();
+
+            // Send user info via email
+            try{
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('New Account!')
+                    ->setFrom($this->websiteEmail)
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->getTemplating()->render(
+                            'AiselUserBundle:Email:registration.txt.twig',
+                            array(
+                                'username'  => $user->getUsername(),
+                                'password'  => $userData['password'],
+                                'email'  => $user->getEmail(),
+                            )
+                        )
+                    );
+
+                $response = $this->getMailer()->send($message);
+            }catch(\Swift_TransportException $e){
+                $response = $e->getMessage() ;
+            }
+
             return $user;
 
         } else {
@@ -85,6 +126,48 @@ class UserManager  implements UserProviderInterface
 
     }
 
+    /*
+     *   Reset and send password by email
+     */
+    public function resetPassword($user)
+    {
+        if ($user) {
+            $utility = new PasswordUtility();
+            $password = $utility->generatePassword();
+
+            $encoder = $this->encoder->getEncoder($user);
+            $encodedPassword = $encoder->encodePassword($password, $user->getSalt());
+
+            $user->setPassword($encodedPassword);
+
+            // Send password via email
+            try {
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Password reset')
+                    ->setFrom($this->websiteEmail)
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->getTemplating()->render(
+                            'AiselUserBundle:Email:newPassword.txt.twig',
+                            array(
+                                'username'  => $user->getUsername(),
+                                'password'  => $password,
+                            )
+                        )
+                    );
+                $response = $this->getMailer()->send($message);
+            } catch(\Swift_TransportException $e) {
+                $response = $e->getMessage() ;
+            }
+
+            $this->em->persist($user);
+            $this->em->flush();
+            return $response;
+
+        } else {
+            return false;
+        }
+    }
 
     public function loadUserByUsername($username)
     {
@@ -92,6 +175,11 @@ class UserManager  implements UserProviderInterface
         return $user;
     }
 
+    public function findUserByEmail($email)
+    {
+        $user = $this->getRepository()->findOneBy(array('email' => $email));
+        return $user;
+    }
 
     public function findUser($username, $email)
     {

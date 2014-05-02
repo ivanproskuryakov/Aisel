@@ -22,6 +22,12 @@ api_aisel_user_register:
     requirements:
         _method: GET
 
+api_aisel_user_passwordforgot:
+    pattern:  /api/user/passwordforgot.json
+    defaults: { _controller: AiselUserBundle:Api:passwordforgot, _format: json }
+    requirements:
+        _method: GET
+
 
 #login:
 #    pattern:   /login

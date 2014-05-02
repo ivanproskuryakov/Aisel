@@ -116,6 +116,27 @@ class ApiController extends Controller
     }
 
     /**
+     * Forgot password
+     * @Rest\View
+     */
+    public function passwordforgotAction()
+    {
+        if ($this->isAuthenticated())
+            return array('message'=>'You already logged in, Please logout first');
+
+        $email = $this->getRequest()->get('email');
+
+        if ($user = $this->getUserManager()->findUserByEmail($email)) {
+            $response = $this->getUserManager()->resetPassword($user);
+            if ($response != 1) return array('message'=>$response);
+        } else {
+            return array('message'=>'User not found!');
+        }
+
+        return array('status'=>true,'message'=>'New password has been sent!');
+    }
+
+    /**
      * @Rest\View
      */
     public function logoutAction()

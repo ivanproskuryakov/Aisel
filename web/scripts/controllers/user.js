@@ -20,6 +20,21 @@ angular.module('aiselApp')
             }
         };
 
+        // User Password Forgot
+        $scope.submitPasswordForgot = function(form) {
+            if (form.$valid) {
+                userService.passwordforgot(form).success(
+                    function(data, status) {
+                        notify(data.message);
+                        if (data.status) {
+//                            window.location = "/";
+                            window.location = "/#!/";
+                        }
+                    }
+                );
+            }
+        };
+
         // User Sign Out
         $scope.signOut = function () {
             userService.signout($scope).success(

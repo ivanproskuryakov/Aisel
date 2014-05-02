@@ -14,7 +14,7 @@ class FrontendUserRepository extends EntityRepository
 {
 
     /*
-     * Find user by Username and Password
+     * Find user by Username and Email
      *
      * @return int value
      * */

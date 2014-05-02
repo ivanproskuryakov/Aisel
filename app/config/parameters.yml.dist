@@ -6,6 +6,7 @@ parameters:
     database_user:     root
     database_password: ~
     website_address:   http://sandbox.aisel.co
+    website_email:     ~
 
     mailer_transport:  gmail
     mailer_user:       ~
