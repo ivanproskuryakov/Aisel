@@ -4,4 +4,3 @@
 User-agent: *
 Allow: /
 Sitemap: http://sandbox.aisel.co/sitemap.xml
-Disallow: _escaped_fragment_=
