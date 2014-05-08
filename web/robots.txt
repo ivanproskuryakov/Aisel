@@ -3,4 +3,5 @@
 
 User-agent: *
 Allow: /
+Disallow: /snapshots/
 Sitemap: http://sandbox.aisel.co/sitemap.xml
