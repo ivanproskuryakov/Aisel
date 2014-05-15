@@ -5,7 +5,7 @@ var result = htmlSnapshots.run({
     outputDir: "web/snapshots",
     outputDirClean: true,
     selector: ".navbar-header",
-    timeout: 10000,
+    timeout: 100000,
     processLimit: 1
 }, function(err, snapshotsCompleted) {
     var fs = require('fs');
