@@ -59,14 +59,14 @@ EOT
         $urls[] = '/#!/pages/';
         $pages = $this->getContainer()->get('aisel.page.manager')->getEnabledPages();
         foreach ($pages as $p) {
-            $urls[] = '/#!/page/'.$p->getMetaUrl();
+            $urls[] = '/#!/page/'.$p->getMetaUrl().'/';
         }
 
         //Categories
         $urls[] = '/#!/categories/';
         $categories = $this->getContainer()->get('aisel.category.manager')->getEnabledCategories();
         foreach ($categories as $c) {
-            $urls[] = '/#!/category/'.$p->getMetaUrl();
+            $urls[] = '/#!/category/'.$c->getMetaUrl().'/';
         }
 
         // Render sitemap template and save
