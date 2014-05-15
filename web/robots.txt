@@ -4,4 +4,5 @@
 User-agent: *
 Allow: /
 Disallow: /snapshots/
+Disallow: /_wdt/
 Sitemap: http://sandbox.aisel.co/sitemap.xml
