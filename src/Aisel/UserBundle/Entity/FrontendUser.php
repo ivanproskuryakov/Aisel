@@ -405,4 +405,42 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
         return $this->enabled;
     }
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $pages;
+
+
+    /**
+     * Add pages
+     *
+     * @param \Aisel\PageBundle\Entity\Page $pages
+     * @return FrontendUser
+     */
+    public function addPage(\Aisel\PageBundle\Entity\Page $pages)
+    {
+        $this->pages[] = $pages;
+
+        return $this;
+    }
+
+    /**
+     * Remove pages
+     *
+     * @param \Aisel\PageBundle\Entity\Page $pages
+     */
+    public function removePage(\Aisel\PageBundle\Entity\Page $pages)
+    {
+        $this->pages->removeElement($pages);
+    }
+
+    /**
+     * Get pages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
 }

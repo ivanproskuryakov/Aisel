@@ -77,8 +77,8 @@ class PageManager
 
     /**
      * Get single detailed page with category by URLKey
-     * @param int $id
-     * @return mixed
+     * @param string $urlKey
+     * @return object
      */
     public function getPageByURL($urlKey)
     {
@@ -105,6 +105,8 @@ class PageManager
 
     /**
      * validate metaUrl for Page Entity and return one we can use
+     * @param string $url
+     * @param int $pageId
      * @return string
      */
     public function normalizePageUrl($url, $pageId = null)

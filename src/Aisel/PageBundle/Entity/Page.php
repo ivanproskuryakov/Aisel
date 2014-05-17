@@ -379,4 +379,60 @@ class Page
     {
         return $this->isHidden;
     }
+    /**
+     * @var integer
+     */
+    private $user_id;
+
+    /**
+     * @var \Aisel\UserBundle\Entity\FrontendUser
+     */
+    private $frontenduser;
+
+
+    /**
+     * Set user_id
+     *
+     * @param integer $userId
+     * @return Page
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get user_id
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set frontenduser
+     *
+     * @param \Aisel\UserBundle\Entity\FrontendUser $frontenduser
+     * @return Page
+     */
+    public function setFrontenduser(\Aisel\UserBundle\Entity\FrontendUser $frontenduser = null)
+    {
+        $this->frontenduser = $frontenduser;
+
+        return $this;
+    }
+
+    /**
+     * Get frontenduser
+     *
+     * @return \Aisel\UserBundle\Entity\FrontendUser 
+     */
+    public function getFrontenduser()
+    {
+        return $this->frontenduser;
+    }
 }

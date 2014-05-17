@@ -1,10 +1,9 @@
 <div class="row row-offcanvas row-offcanvas-right">
-    <div class="col-xs-12">
         <div class="page-header">
             <h2>Categories</h2>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-10">
             <ul class="pageList">
                 <li ng-repeat="category in categoryList.categories">
                     <h2><a href="#!/category/{{category.meta_url}}/" class="thumb">{{category.title}}</a></h2>
@@ -13,13 +12,13 @@
                 </li>
             </ul>
         </div>
-
-        <div class="col-md-6">
-            <pagination ng-if="categoryList.total > 0" on-select-page="pageChanged(page)" items-per-page="{{pageLimit}}" total-items="categoryList.total"  page="paginationPage"></pagination>
+        <div class="row col-md-10">
+            <div class="col-md-6">
+                <pagination ng-if="categoryList.total > 0" on-select-page="pageChanged(page)" items-per-page="{{pageLimit}}" total-items="categoryList.total"  page="paginationPage"></pagination>
+            </div>
+            <div class="col-md-6">
+                <p class="pull-right pagination"><strong>Total categories: {{categoryList.total}} Current: {{paginationPage}}</strong></p>
+            </div>
         </div>
-        <div class="col-md-6">
-            <p class="pull-right"><strong>Total categories: {{categoryList.total}} Current: {{paginationPage}}</strong></p>
-        </div>
-    </div>
 
 </div>

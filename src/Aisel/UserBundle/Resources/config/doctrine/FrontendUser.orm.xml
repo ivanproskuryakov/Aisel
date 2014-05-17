@@ -14,17 +14,26 @@
         <field name="username"      type="string"     column="username"  length="255" nullable="false" unique="true" />
         <field name="email"         type="string"     column="email"     length="255" nullable="false" unique="true" />
         <field name="password"      type="string"     column="password"  length="255" nullable="false" />
-        <field name="salt"         type="string"      column="salt"  />
+        <field name="salt"          type="string"     column="salt" />
 
-        <field name="enabled"       type="boolean"    column="enabled"  />
-        <field name="locked"        type="boolean"    column="locked"   />
+        <field name="enabled"       type="boolean"    column="enabled" />
+        <field name="locked"        type="boolean"    column="locked" />
 
-        <field name="createdAt"    type="datetime"   column="created_at" />
-        <field name="updatedAt"    type="datetime"   column="updated_at" />
-        <field name="expiresAt"    type="datetime"   column="expires_at" nullable="true" />
-        <field name="lastLogin"    type="datetime"   column="last_login" />
+        <field name="createdAt"     type="datetime"   column="created_at" />
+        <field name="updatedAt"     type="datetime"   column="updated_at" />
+        <field name="expiresAt"     type="datetime"   column="expires_at" nullable="true" />
+        <field name="lastLogin"     type="datetime"   column="last_login" />
 
         <!-- Profile fields -->
+
+        <one-to-many field="pages" target-entity="Aisel\PageBundle\Entity\Page" mapped-by="frontenduser">
+            <!--<cascade>-->
+                <!--<cascade-persist/>-->
+            <!--</cascade>-->
+            <!--<order-by>-->
+                <!--<order-by-field name="number" direction="ASC" />-->
+            <!--</order-by>-->
+        </one-to-many>
 
 
     </entity>

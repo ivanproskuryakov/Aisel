@@ -1,12 +1,18 @@
 <div ng-controller="CategoryCtrl">
-    <div class="form-group">
-        <h3>Search</h3>
-        <input id="searchQuery" class="form-control" ng-search-redirect="{{search}}" ng-model="search" placeholder="Enter query ..." class="form-control">
-    </div>
+    <!--<div class="form-group">-->
+        <!--<h3>Search</h3>-->
+        <!--<input id="searchQuery" class="form-control" ng-search-redirect="{{search}}" ng-model="search" placeholder="Enter query ..." class="form-control">-->
+    <!--</div>-->
 
     <div class="categoryTree" ng-if="categoryTree">
-        <h3>Categories</h3>
-        <div class="categories" ng-bind-html="categoryTree">
+        <div class="panel panel-primary">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Browse by Category</div>
+
+            <div class="panel-body">
+                <div class="categories" ng-bind-html="categoryTree">
+                </div>
+            </div>
         </div>
     </div>
 

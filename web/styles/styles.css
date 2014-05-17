@@ -1,7 +1,6 @@
-/*
+/***********
     Loading messages
-*/
-
+***********/
 .cg-notify-message {
     position: fixed;
     left: 50%;
@@ -16,10 +15,10 @@
     font-size: 12px;
     font-weight: bold;
     padding: 2px 8px 2px 8px;
-    -webkit-transition: top 0.5s ease-out,opacity 0.5s ease-out 4s;
-    -moz-transition: top 0.5s ease-out,opacity 0.5s ease-out 4s;
-    -o-transition: top 0.5s ease-out,opacity 0.5s ease-out 4s;
-    transition: top 0.5s ease-out,opacity 0.5s ease-out 4s;
+    -webkit-transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
+    -moz-transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
+    -o-transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
+    transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
 }
 
 .loading-interceptor {
@@ -36,22 +35,35 @@
     font-size: 12px;
     font-weight: bold;
     padding: 2px 8px 2px 8px;
-    -webkit-transition: top 0.5s ease-out,opacity 0.5s ease-out 4s;
-    -moz-transition: top 0.5s ease-out,opacity 0.5s ease-out 4s;
-    -o-transition: top 0.5s ease-out,opacity 0.5s ease-out 4s;
-    transition: top 0.5s ease-out,opacity 0.5s ease-out 4s;
+    -webkit-transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
+    -moz-transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
+    -o-transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
+    transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
 }
 
-/*
+
+
+
+/***********
     Header
-*/
-.navbar-brand {
-    padding: 7px;
+***********/
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand {
+    color: #999999;
+    background: #657496;
+    height: 50px;
+    padding: 7px 10px;
+    margin-right: 10px;
 }
 
-/*
+.header-logo {
+    height: 40px;
+}
+
+
+
+/***********
     General
-*/
+***********/
 .pageList {
     list-style: none;
     margin-left: 0;
@@ -66,7 +78,6 @@
     min-height: 500px;
 }
 
-
 .categoryList {
     padding-left: 0;
 }
@@ -78,18 +89,29 @@
 }
 
 
+
+
+/***********
+    Categories
+************/
+.categoryTree {
+    margin-top: 30px;
+}
+
 .categoryTree .categories {
     padding-left: 10px;
 }
+
 .categoryTree ul, .categoryTree ul ul {
     list-style-type: none;
-    background: url(../images/vline.png) repeat-y;
     margin: 0;
     padding: 0;
 }
+
 .categoryTree ul ul {
     margin-left: 10px;
 }
+
 .categoryTree ul li {
     margin: 0;
     padding: 0 12px;
@@ -98,19 +120,24 @@
     color: #369;
     font-weight: bold;
 }
+
 .categoryTree ul li:last-child {
     background: #fff url(../images/lastnode.png) no-repeat;
 }
-
-
 
 .featurette-divider {
     margin: 80px 0;
 }
 
-/*
+
+
+/***********
     Footer
-*/
+************/
+footer {
+    margin-top: 40px;
+}
+
 .website-footer {
     margin-top: 20px;
     padding: 40px 0;
@@ -118,4 +145,71 @@
     text-align: center;
     background-color: #f9f9f9;
     border-top: 1px solid #e5e5e5;
+}
+
+
+
+/***********
+    User
+************/
+.bs-callout-info {
+    background-color: #f4f8fa;
+    border-color: #5bc0de;
+}
+
+.bs-callout {
+    margin: 20px 0;
+    padding: 20px;
+    border-left: 3px solid #eee;
+}
+
+.user-navbar {
+    margin-right: 5px;
+}
+
+.gavatar-navbar {
+    margin-right: 5px;
+    margin-top: -2px;
+}
+
+.gavatar-userdetails {
+    margin-bottom: 10px;
+}
+
+
+
+/***********
+    User pages
+************/
+.tab-content {
+    padding: 10px 20px;
+}
+
+
+
+/***********
+    Navbar
+************/
+.navbar-search .search-query:hover {
+    color: #000;
+    background-color: #fff;
+}
+
+.navbar-search .search-query {
+    padding: 4px 9px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1;
+    color: #fff;
+    background-color: #626262;
+    border: 1px solid #151515;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+    -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
 }

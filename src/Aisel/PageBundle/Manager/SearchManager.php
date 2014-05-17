@@ -38,7 +38,6 @@ class SearchManager
             'total'=> $total,
             'pages'=> $pages
         );
-
         return $return;
     }
 

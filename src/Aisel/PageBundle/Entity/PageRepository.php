@@ -100,7 +100,7 @@ class PageRepository extends EntityRepository
         $this->mapRequest($params);
 
         $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select('p')
+        $r = $query->select('p')
             ->from('AiselPageBundle:Page', 'p')
             ->where('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%')
             ->andWhere('p.status = 1')

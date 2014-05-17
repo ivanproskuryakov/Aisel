@@ -9,6 +9,8 @@ Aisel\PageBundle\Entity\Page:
             generator:
                 strategy: AUTO
     fields:
+        user_id:
+            type: integer
         title:
             type: string
             length: 255
@@ -52,6 +54,10 @@ Aisel\PageBundle\Entity\Page:
             type: datetime
             column: updated_at
 
+    manyToOne:
+      frontenduser:
+        targetEntity: Aisel\UserBundle\Entity\FrontendUser
+        inversedBy: pages
     manyToMany:
       categories:
         targetEntity: Aisel\CategoryBundle\Entity\Category

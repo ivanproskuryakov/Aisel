@@ -25,11 +25,10 @@
     <link rel="stylesheet" href="styles/styles.css">
   </head>
 <body>
+
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-
 
     <!-- Add your site or application content here -->
     <div class="loading-interceptor">Loading ...</div>
@@ -40,8 +39,6 @@
     </div>
 
     <footer ng-include="'views/main/footer.html'"></footer>
-
-
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -71,6 +68,8 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
     <script src="bower_components/angular-notify/dist/angular-notify.min.js"></script>
+    <script src="bower_components/angular-gravatar/src/md5.js"></script>
+    <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -82,7 +81,8 @@
     <script src="scripts/controllers/pagedetail.js"></script>
     <script src="scripts/controllers/category.js"></script>
     <script src="scripts/controllers/categorydetail.js"></script>
-    <script src="scripts/controllers/user.js"></script>
+    <script src="scripts/controllers/user/user.js"></script>
+    <script src="scripts/controllers/user/page.js"></script>
 
 
     <script src="scripts/filters/main.js"></script>
@@ -95,8 +95,6 @@
     <script src="scripts/services/search.js"></script>
     <script src="scripts/services/root.js"></script>
     <script src="scripts/services/user.js"></script>
-
-    <script src="scripts/3rdparty/angular-seo.js"></script>
     <!-- endbuild -->
 </body>
 </html>

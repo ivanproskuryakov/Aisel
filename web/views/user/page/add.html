@@ -1,0 +1,81 @@
+<div class="row row-offcanvas row-offcanvas-right">
+    <div class="row col-sm-12">
+
+        <h2>Add New Page</h2>
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary">Save</button> &nbsp;
+            <button type="submit" class="btn btn-primary">Save & Exit</button> &nbsp;
+            <button type="submit" class="btn btn-danger">Cancel</button>
+        </div>
+        <p class=""><span class="glyphicon glyphicon-list"></span> <a ng-href="/#!/user/page/list/">Page List</a></p>
+
+        <p>....</p>
+
+        <div class="" ng-if="isAuthenticated">
+            <div class="row">
+                <div ng-controller="UserPageCtrl">
+                    <form class="form-horizontal" name="contanctForm" role="form"
+                          ng-submit="submitContact(contanctForm)">
+                        <tabset>
+                            <tab>
+                                <tab-heading>
+                                    <i class="glyphicon glyphicon-font"></i> General Information
+                                </tab-heading>
+                                <div class="col-sm-12 tab-content">
+                                    <div class="form-group">
+                                        <label for="registerEmail">Page Title</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="registerEmail">Page Content</label>
+                                        <textarea class="form-control" rows="10" ng-required="true" name="message"
+                                              ng-model="message"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="registerEmail">Status</label>
+                                        <select class="form-control col-sm-3">
+                                            <option>Draft</option>
+                                            <option>Published</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </tab>
+                            <tab>
+                                <tab-heading>
+                                    <i class="glyphicon glyphicon-list"></i> Meta Information
+                                </tab-heading>
+                                <div class="col-sm-12 tab-content">
+                                    <div class="form-group">
+                                        <label for="registerEmail">Meta Title</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="registerEmail">Meta Description</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="registerEmail">Meta Keywords</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab>
+                                <tab-heading>
+                                    <i class="glyphicon glyphicon-font"></i> Page Categories
+                                </tab-heading>
+                                <div class="col-sm-12 tab-content">
+                                    ...
+                                </div>
+                            </tab>
+                        </tabset>
+
+                    </form>
+                </div>
+            </div>
+            <!--<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">-->
+            <!--...-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>

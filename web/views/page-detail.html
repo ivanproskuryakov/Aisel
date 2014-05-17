@@ -1,14 +1,21 @@
-<h2>{{pageDetails.page.title}}</h2>
-<p><span class="glyphicon glyphicon-calendar"></span> {{pageDetails.page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
-<hr/>
-<p>{{pageDetails.page.content}}</p>
+<div class="row row-offcanvas row-offcanvas-right">
+        <div class="page-header">
+            <h2>{{pageDetails.page.title}}</h2>
+            <p><span class="glyphicon glyphicon-calendar"></span> {{pageDetails.page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
+        </div>
 
-<div class="related pageCategories" ng-if="pageDetails.categories">
-    <hr/>
-    <p><strong>Related categories: </strong></p>
-    <ul class="categoryList">
-        <li ng-repeat="category in pageDetails.categories">
-            <a ng-href="#!/category/{{category.url}}">{{ category.title }}</a>
-        </li>
-    </ul>
+        <div class="col-md-10">
+            <p>{{pageDetails.page.content}}</p>
+
+            <div class="related pageCategories" ng-if="pageDetails.categories">
+                <hr/>
+                <p><strong>Related categories: </strong></p>
+                <ul class="categoryList">
+                    <li ng-repeat="category in pageDetails.categories">
+                        <a ng-href="#!/category/{{category.url}}">{{ category.title }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 </div>
+

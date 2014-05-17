@@ -8,6 +8,7 @@ var app = angular.module('aiselApp', [
     'ui.bootstrap',
     'ui.utils',
     'ui.validate',
+    'ui.gravatar',
     'cgNotify'
     ])
 
@@ -20,10 +21,25 @@ var app = angular.module('aiselApp', [
     .config(function ($provide, $routeProvider, $locationProvider, $httpProvider ) {
 
         $routeProvider
+            // Homepage
             .when('/', {
                 templateUrl: 'views/homepage.html',
                 controller: 'MainCtrl'
             })
+
+            // Contact
+            .when('/contact/', {
+                templateUrl: 'views/contact.html',
+                controller: 'ContactCtrl'
+            })
+
+            // Search
+            .when('/search/:query', {
+                templateUrl: 'views/search.html',
+                controller: 'SearchCtrl'
+            })
+
+            // Pages
             .when('/pages/', {
                 templateUrl: 'views/page.html',
                 controller: 'PageCtrl'
@@ -33,6 +49,7 @@ var app = angular.module('aiselApp', [
                 controller: 'PageDetailCtrl'
             })
 
+            // Categories
             .when('/categories/', {
                 templateUrl: 'views/category.html',
                 controller: 'CategoryCtrl'
@@ -42,30 +59,39 @@ var app = angular.module('aiselApp', [
                 controller: 'CategoryDetailCtrl'
             })
 
-            .when('/contact/', {
-                templateUrl: 'views/contact.html',
-                controller: 'ContactCtrl'
-            })
-            .when('/search/:query', {
-                templateUrl: 'views/search.html',
-                controller: 'SearchCtrl'
-            })
-
+            // User operations
             .when('/user/register/', {
                 templateUrl: 'views/user/register.html',
-                controller: 'UserCtrl'
-            })
-            .when('/user/information/', {
-                templateUrl: 'views/user/information.html',
                 controller: 'UserCtrl'
             })
             .when('/user/password/forgot/', {
                 templateUrl: 'views/user/password-forgot.html',
                 controller: 'UserCtrl'
             })
+            .when('/user/information/', {
+                templateUrl: 'views/user/information/details.html',
+                controller: 'UserCtrl'
+            })
+            .when('/user/information/edit/', {
+                templateUrl: 'views/user/information/edit.html',
+                controller: 'UserCtrl'
+            })
+            .when('/user/page/list/', {
+                templateUrl: 'views/user/page/list.html',
+                controller: 'UserPageCtrl'
+            })
+            .when('/user/page/add/', {
+                templateUrl: 'views/user/page/add.html',
+                controller: 'UserPageCtrl'
+            })
+            .when('/user/page/edit/:pageId/', {
+                templateUrl: 'views/user/page/edit.html',
+                controller: 'UserPageCtrl'
+            })
 
+            // Default action
             .otherwise({
-            redirectTo: '/'
+                redirectTo: '/'
             });
 
         $locationProvider
