@@ -32,22 +32,32 @@ class UserPageManager
         $this->securityContext = $securityContext;
     }
 
+
     /**
-     * Get list of all pages for cur
-     * @param array $params
-     * @return array
+     * Get single page for editing
+     * @param int $pageId
+     * @return \Aisel\PageBundle\Entity\Page $page
      */
-    public function getPages($params)
+    public function getPageById($pageId)
     {
-        $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params);
-        $pages = $this->em->getRepository('AiselPageBundle:Page')->getCurrentPagesFromRequest($params);
+        $page = $this->em->getRepository('AiselPageBundle:Page')->find($pageId);
 
-        $return = array (
-            'total'=> $total,
-            'pages'=> $pages
-        );
+        if(!($page)){
+            throw new NotFoundHttpException('Nothing found');
+        }
+//
+//        $pageDetails = array('page'=>$page,'categories'=>array());
+//        foreach ($page->getCategories() as $c) {
+//            $category = array();
+//
+//            $category['id'] = $c->getId();
+//            $category['title'] = $c->getTitle();
+//            $category['url'] = $c->getMetaUrl();
+//            $pageDetails['categories'][$c->getId()] = $category;
+//
+//        }
 
-        return $return;
+        return $page;
     }
 
 

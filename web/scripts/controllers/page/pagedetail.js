@@ -3,14 +3,12 @@
 angular.module('aiselApp')
   .controller('PageDetailCtrl', function ($scope, $routeParams, pageService,$rootScope) {
 
+        var pageURL = $routeParams.pageId;
 
-
-        var pageId = $routeParams.pageId;
         var handleSuccess = function(data, status) {
-
             $scope.pageDetails = data;
             $rootScope.pageTitle = $scope.pageDetails.page.title;
-
         };
-        pageService.getPage(pageId).success(handleSuccess);
+        pageService.getPageByURL(pageURL).success(handleSuccess);
+
   });

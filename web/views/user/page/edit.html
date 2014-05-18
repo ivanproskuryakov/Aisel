@@ -1,16 +1,27 @@
 <div class="row row-offcanvas row-offcanvas-right">
-    <div class="col-xs-12">
-
         <div class="page-header">
-            <h2>Edit Page: {{ postId}}</h2>
-        </div>
-        <div class="" ng-if="isAuthenticated">
-            <div class="col-xs-12 col-sm-9">
-                <p>...</p>
+            <h2>Edit: {{ pageDetails.title }} </h2>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-primary">Save</button> &nbsp;
+                <button type="submit" class="btn btn-primary">Save & Exit</button> &nbsp;
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-default">Cancel</button>
             </div>
-            <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-                <div class="sidebar" ng-include="'views/user/sidebar.html'"></div>
+            <p class="clearfix"><span class="glyphicon glyphicon-list"></span> <a ng-href="/#!/user/page/list/">Page list</a></p>
+        </div>
+
+
+        <div class="col-md-10">
+            <p>{{pageDetails.content}}</p>
+
+            <div class="related pageCategories" ng-if="pageDetails.categories">
+                <hr/>
+                <p><strong>Related categories: </strong></p>
+                <ul class="categoryList">
+                    <li ng-repeat="category in pageDetails.categories">
+                        <a ng-href="#!/category/{{category.url}}">{{ category.title }}</a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
 </div>

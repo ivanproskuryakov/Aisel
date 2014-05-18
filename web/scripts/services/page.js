@@ -9,8 +9,8 @@ angular.module('aiselApp')
                 console.log(url);
                 return $http.get(url);
             },
-            getPage: function($id) {
-                var url = API_URL+'/page/view/'+$id+'.json';
+            getPageByURL: function($url) {
+                var url = API_URL+'/page/view/url/'+$url+'.json';
                 console.log(url);
                 return $http.get(url);
             }

@@ -11,6 +11,20 @@ api_aisel_pageview:
         _method: GET
         id: "\d+"
 
+api_aisel_pagedetails_by_id:
+    pattern:  /api/page/details/id/{pageId}.json
+    defaults: { _controller: AiselPageBundle:ApiUser:pageDetails, _format: json }
+    requirements:
+        _method: GET
+        id: "\d+"
+
+api_aisel_pageview_by_url:
+    pattern:  /api/page/view/url/{urlKey}.json
+    defaults: { _controller: AiselPageBundle:Api:pageViewByURL, _format: json }
+    requirements:
+        _method: GET
+        id: "\d+"
+
 api_aisel_search:
     pattern:  /api/search/
     defaults: { _controller: AiselPageBundle:Api:search, _format: json }

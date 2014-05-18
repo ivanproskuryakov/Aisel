@@ -27,21 +27,12 @@ class ApiUserController extends Controller
 
     /**
      * @Rest\View
-     * /api/user/page/edit.json?...
      */
-    public function pageEditAction(Request $request)
+    public function pageDetailsAction($pageId)
     {
-        exit();
-//        $userId = $this->get('security.context')->getToken()->getUser()->getId();
-//        $params = array(
-//            'current'=>$request->query->get('current'),
-//            'limit'=>$request->query->get('limit'),
-//            'category'=>$request->query->get('category'),
-//            'user_id'=> $request->query->get('userid'),
-//        );
-//
-//        $pageList = $this->container->get("aisel.page.manager")->getPages($params);
-//        return $pageList;
+        /** @var \Aisel\PageBundle\Entity\Page $page */
+        $page = $this->container->get("aisel.userpage.manager")->getPageById($pageId);
+        return $page;
     }
 
 }

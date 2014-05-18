@@ -8,6 +8,11 @@ angular.module('aiselApp')
                 var url = API_URL+'/page/list.json?userid='+$scope.userId+'&limit='+$scope.pageLimit+'limit='+$scope.pageLimit+'&current='+$scope.paginationPage+'&category='+$scope.categoryId;
                 console.log(url);
                 return $http.get(url);
+            },
+            getPageById: function($id) {
+                var url = API_URL+'/page/details/id/'+$id+'.json';
+                console.log(url);
+                return $http.get(url);
             }
         };
 

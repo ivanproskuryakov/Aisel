@@ -152,7 +152,7 @@ class PageRepository extends EntityRepository
 
         $query = $this->getEntityManager()->createQueryBuilder();
 
-        $r = $query->select('p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt')
+        $r = $query->select('p.id, p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt')
             ->from('AiselPageBundle:Page', 'p')
             ->where('p.status = 1')
             ->andWhere('p.isHidden != 1');

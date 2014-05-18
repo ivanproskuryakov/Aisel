@@ -16,29 +16,40 @@ angular.module('aiselApp')
 //            });
 //        };
 
-        $scope.pageLimit = 5;
-        $scope.paginationPage = 1;
-        $scope.categoryId = 0;
-        $scope.userId = 31;
-        var handleSuccess = function(data, status) {
-            $scope.pageList = data;
-        };
+        var pageId = $routeParams.pageId;
 
-        // Pages
-        userPageService.getPages($scope).success(
-            function(data, status) {
+        if (pageId) {
+            var handleSuccess = function(data, status) {
+                $scope.pageDetails = data;
+//                console.log(data);
+            };
+            userPageService.getPageById(pageId).success(handleSuccess);
+        } else {
+            $scope.pageLimit = 5;
+            $scope.paginationPage = 1;
+            $scope.categoryId = 0;
+            $scope.userId = 31;
+            var handleSuccess = function(data, status) {
                 $scope.pageList = data;
-            }
-        );
+            };
 
-        $scope.pageChanged = function(page) {
-            $scope.paginationPage = page;
+            // Pages
             userPageService.getPages($scope).success(
                 function(data, status) {
                     $scope.pageList = data;
                 }
             );
-        };
+
+            $scope.pageChanged = function(page) {
+                $scope.paginationPage = page;
+                userPageService.getPages($scope).success(
+                    function(data, status) {
+                        $scope.pageList = data;
+                    }
+                );
+            };
+
+        }
 
     }]);
 
