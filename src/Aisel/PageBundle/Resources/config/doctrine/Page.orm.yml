@@ -9,9 +9,9 @@ Aisel\PageBundle\Entity\Page:
             generator:
                 strategy: AUTO
     fields:
-        user_id:
-            type: integer
-            nullable: true
+#        user_id:
+#            type: integer
+#            nullable: true
         title:
             type: string
             length: 255
@@ -59,6 +59,10 @@ Aisel\PageBundle\Entity\Page:
       frontenduser:
         targetEntity: Aisel\UserBundle\Entity\FrontendUser
         inversedBy: pages
+        joinColumns:
+          user_id:
+            referencedColumnName: id
+
     manyToMany:
       categories:
         targetEntity: Aisel\CategoryBundle\Entity\Category

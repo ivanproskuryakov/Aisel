@@ -15,7 +15,7 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
 
 /**
- * Repositiry for Menu enitity
+ * Repository for Menu entity
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

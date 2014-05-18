@@ -37,6 +37,7 @@ class ApiController extends Controller
             'query'=>$request->query->get('query'),
             'order'=>$request->query->get('order'),
             'orderby'=>$request->query->get('orderby'),
+            'userid'=> $request->query->get('userid'),
         );
 
         $searchResult = $this->container->get("aisel.search.manager")->search($params);
@@ -54,6 +55,7 @@ class ApiController extends Controller
             'current'=>$request->query->get('current'),
             'limit'=>$request->query->get('limit'),
             'category'=>$request->query->get('category'),
+            'userid'=> $request->query->get('userid'),
         );
 
         $pageList = $this->container->get("aisel.page.manager")->getPages($params);

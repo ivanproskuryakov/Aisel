@@ -5,9 +5,7 @@ namespace Aisel\PageBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Page entity
- *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * Page
  */
 class Page
 {
@@ -30,6 +28,11 @@ class Page
      * @var boolean
      */
     private $status;
+
+    /**
+     * @var boolean
+     */
+    private $isHidden;
 
     /**
      * @var boolean
@@ -65,6 +68,11 @@ class Page
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * @var \Aisel\UserBundle\Entity\FrontendUser
+     */
+    private $frontenduser;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -156,6 +164,29 @@ class Page
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set isHidden
+     *
+     * @param boolean $isHidden
+     * @return Page
+     */
+    public function setIsHidden($isHidden)
+    {
+        $this->isHidden = $isHidden;
+
+        return $this;
+    }
+
+    /**
+     * Get isHidden
+     *
+     * @return boolean 
+     */
+    public function getIsHidden()
+    {
+        return $this->isHidden;
     }
 
     /**
@@ -320,6 +351,29 @@ class Page
     }
 
     /**
+     * Set frontenduser
+     *
+     * @param \Aisel\UserBundle\Entity\FrontendUser $frontenduser
+     * @return Page
+     */
+    public function setFrontenduser(\Aisel\UserBundle\Entity\FrontendUser $frontenduser = null)
+    {
+        $this->frontenduser = $frontenduser;
+
+        return $this;
+    }
+
+    /**
+     * Get frontenduser
+     *
+     * @return \Aisel\UserBundle\Entity\FrontendUser 
+     */
+    public function getFrontenduser()
+    {
+        return $this->frontenduser;
+    }
+
+    /**
      * Add categories
      *
      * @param \Aisel\CategoryBundle\Entity\Category $categories
@@ -350,89 +404,5 @@ class Page
     public function getCategories()
     {
         return $this->categories;
-    }
-    /**
-     * @var boolean
-     */
-    private $isHidden;
-
-
-    /**
-     * Set isHidden
-     *
-     * @param boolean $isHidden
-     * @return Page
-     */
-    public function setIsHidden($isHidden)
-    {
-        $this->isHidden = $isHidden;
-
-        return $this;
-    }
-
-    /**
-     * Get isHidden
-     *
-     * @return boolean 
-     */
-    public function getIsHidden()
-    {
-        return $this->isHidden;
-    }
-    /**
-     * @var integer
-     */
-    private $user_id;
-
-    /**
-     * @var \Aisel\UserBundle\Entity\FrontendUser
-     */
-    private $frontenduser;
-
-
-    /**
-     * Set user_id
-     *
-     * @param integer $userId
-     * @return Page
-     */
-    public function setUserId($userId)
-    {
-        $this->user_id = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get user_id
-     *
-     * @return integer 
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
-    }
-
-    /**
-     * Set frontenduser
-     *
-     * @param \Aisel\UserBundle\Entity\FrontendUser $frontenduser
-     * @return Page
-     */
-    public function setFrontenduser(\Aisel\UserBundle\Entity\FrontendUser $frontenduser = null)
-    {
-        $this->frontenduser = $frontenduser;
-
-        return $this;
-    }
-
-    /**
-     * Get frontenduser
-     *
-     * @return \Aisel\UserBundle\Entity\FrontendUser 
-     */
-    public function getFrontenduser()
-    {
-        return $this->frontenduser;
     }
 }

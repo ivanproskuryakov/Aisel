@@ -14,7 +14,7 @@ namespace Aisel\CategoryBundle\Entity;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
 /**
- * Repositiry for Category enitity
+ * Repository for Category entity
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

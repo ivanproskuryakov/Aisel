@@ -69,7 +69,7 @@ var app = angular.module('aiselApp', [
                 controller: 'UserCtrl'
             })
             .when('/user/information/', {
-                templateUrl: 'views/user/information/details.html',
+                templateUrl: 'views/user/information/dashboard.html',
                 controller: 'UserCtrl'
             })
             .when('/user/information/edit/', {

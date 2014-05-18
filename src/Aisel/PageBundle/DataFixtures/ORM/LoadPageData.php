@@ -35,6 +35,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $time = time();
 
         // referenced Categories
+        $frontendUser = $this->getReference('frontenduser');
         $rootCategory = $this->getReference('root-category');
         $childCategory = $this->getReference('child-category');
 
@@ -67,7 +68,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $manager->flush();
 
         // Pages
-        for ($i = 1; $i <= 28; $i++ ) {
+        for ($i = 1; $i <= 18; $i++ ) {
             $page = new Page();
             $page->setTitle('Sample Page '. $i);
             $page->setContent($loremIpsumText);
@@ -77,6 +78,25 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
             $page->addCategory($childCategory);
             $page->setCommentStatus(false);
             $page->setMetaUrl('page-'.$i);
+            $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+            $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+
+            $manager->persist($page);
+            $manager->flush();
+        }
+
+        // User Pages
+        for ($i = 1; $i <= 10; $i++ ) {
+            $page = new Page();
+            $page->setTitle('Sample User Page '. $i);
+            $page->setContent($loremIpsumText);
+            $page->setStatus(true);
+            $page->setIsHidden(false);
+            $page->setFrontenduser($frontendUser);
+            $page->addCategory($rootCategory);
+            $page->addCategory($childCategory);
+            $page->setCommentStatus(false);
+            $page->setMetaUrl('userpage-'.$i);
             $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
             $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 

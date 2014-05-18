@@ -17,3 +17,12 @@ api_aisel_search:
     requirements:
         _method: GET
         id: "\d+"
+
+
+# User specific actions
+
+api_aisel_user_page_edit:
+    pattern:  /api/user/page/edit/{id}.json
+    defaults: { _controller: AiselPageBundle:ApiUser:pageEdit, _format: json }
+    requirements:
+        _method: GET

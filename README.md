@@ -4,7 +4,7 @@ About
 Aisel is open source project based on combination Symfony2 and AngularJS for frontend.
 
 Project website: http://aisel.co/<br/>
-Sandbox frontend: http://sandbox.aisel.co/<br/>
+Sandbox frontend: http://sandbox.aisel.co/ [frontenduser/frontenduser]<br/>
 Sandbox administration: http://sandbox.aisel.co/administration [backenduser/backenduser]
 
 

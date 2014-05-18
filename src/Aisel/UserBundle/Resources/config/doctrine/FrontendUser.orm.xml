@@ -38,9 +38,9 @@
         <!-- Profile fields -->
 
         <one-to-many field="pages" target-entity="Aisel\PageBundle\Entity\Page" mapped-by="frontenduser">
-            <!--<cascade>-->
-                <!--<cascade-persist/>-->
-            <!--</cascade>-->
+            <cascade>
+                <cascade-remove/>
+            </cascade>
             <!--<order-by>-->
                 <!--<order-by-field name="number" direction="ASC" />-->
             <!--</order-by>-->

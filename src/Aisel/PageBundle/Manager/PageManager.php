@@ -51,7 +51,7 @@ class PageManager
     /**
      * Get single detailed page with category by ID
      * @param int $id
-     * @return mixed
+     * @return \Aisel\PageBundle\Entity\Page $pageDetails
      */
     public function getPage($id)
     {
@@ -78,7 +78,7 @@ class PageManager
     /**
      * Get single detailed page with category by URLKey
      * @param string $urlKey
-     * @return object
+     * @return \Aisel\PageBundle\Entity\Page $page
      */
     public function getPageByURL($urlKey)
     {

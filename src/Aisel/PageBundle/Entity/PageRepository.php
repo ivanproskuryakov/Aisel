@@ -14,53 +14,61 @@ namespace Aisel\PageBundle\Entity;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * Repositiry for Page enitity
+ * Repository for Page entity
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class PageRepository extends EntityRepository
 {
-    private $query = '';
+    private $search = '';
     private $category = 0;
     private $pageCurrent = 1;
     private $pageLimit = 1;
     private $pageSkip = 1;
+    private $userId = null;
     private $pageOrder = 'id';
     private $pageOrderBy = 'DESC';
 
-    private function mapRequest($params) {
-
+    /**
+     * Map request variables for later use in SQL
+     * @param array $params
+     */
+    private function mapRequest($params)
+    {
         // Pagination
-        if ( isset($params['current'])) {
+        if (isset($params['current'])) {
             $this->pageCurrent = $params['current'];
         } else {
             $this->pageCurrent = 1;
         }
-        if ( isset($params['limit'])) {
+        if (isset($params['limit'])) {
             $this->pageLimit = $params['limit'];
         } else {
             $this->pageLimit = 5;
         }
-        if ( isset($params['category'])) {
+        if (isset($params['category'])) {
             $this->category = $params['category'];
         } else {
             $this->category = 0;
         }
 
         // Search
-        if ( isset($params['query'])) {
-            $this->query = $params['query'];
+        if (isset($params['query'])) {
+            $this->search = $params['query'];
         }
-        $this->pageSkip = ($this->pageCurrent-1) * $this->pageLimit;
+        // User
+        if (isset($params['userid'])) {
+            $this->userId = $params['userid'];
+        }
+        $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
     }
 
 
-    /*
+    /**
      * Get page total
-     *
-     * @return int value
-     * */
-
+     * @param array $params
+     * @return int $total
+     */
     public function getTotalFromRequest($params)
     {
         $this->mapRequest($params);
@@ -69,32 +77,35 @@ class PageRepository extends EntityRepository
 
         $query->select('COUNT(p.id)')
             ->from('AiselPageBundle:Page', 'p')
-            ->where('p.status = :status')
+            ->where('p.status = :status')->setParameter('status', 1)
             ->andWhere('p.isHidden != 1');
 
         if ($this->category) {
             $query
-                ->innerJoin('p.categories','c')
-                ->andWhere('c.metaUrl = :category')->setParameter('category',$this->category);
+                ->innerJoin('p.categories', 'c')
+                ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
+        }
+        if ($this->search != '') {
+            $query->andWhere('p.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
         }
 
-        if ($this->query != '') {
-            $query->andWhere('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%');
+        if ($this->userId) {
+            $query
+                ->innerJoin('p.frontenduser', 'u')
+                ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
         }
 
-        $r = $query->setParameter('status', 1)
-                ->getQuery()->getSingleScalarResult();
+        $total = $query->getQuery()->getSingleScalarResult();
 
-        if (!$r) return 0;
-        return $r;
+        if (!$total) return 0;
+        return $total;
     }
 
-    /*
+    /**
      * Get pages based on limit, current pagination and search query
-     *
-     * @return pages
+     * @param array $params
+     * @return \Aisel\PageBundle\Entity\Page
      * */
-
     public function searchFromRequest($params)
     {
         $this->mapRequest($params);
@@ -102,41 +113,39 @@ class PageRepository extends EntityRepository
         $query = $this->getEntityManager()->createQueryBuilder();
         $r = $query->select('p')
             ->from('AiselPageBundle:Page', 'p')
-            ->where('p.content LIKE :search')->setParameter('search', '%'.$this->query.'%')
+            ->where('p.content LIKE :search')->setParameter('search', '%' . $this->search . '%')
             ->andWhere('p.status = 1')
             ->andWhere('p.isHidden != 1')
             ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
-            ->orderBy('p.'.$this->pageOrder, $this->pageOrderBy)
+            ->orderBy('p.' . $this->pageOrder, $this->pageOrderBy)
             ->getQuery()
             ->execute();
 
         return $r;
     }
 
-    /*
+    /**
      * Get pages based on limit, current pagination and search query
-     *
-     * @return array
+     * @return \Aisel\PageBundle\Entity\Page $pages
      * */
     public function getEnabledPages()
     {
         $query = $this->getEntityManager()->createQueryBuilder();
-        $r = $query->select('p')
+        $pages = $query->select('p')
             ->from('AiselPageBundle:Page', 'p')
             ->andWhere('p.status = 1')
             ->getQuery()
             ->execute();
 
-        return $r;
+        return $pages;
     }
 
-    /*
+    /**
      * Get pages based on limit, current pagination and search query
-     *
-     * @return pages
-     * */
-
+     * @param array $params
+     * @return \Aisel\PageBundle\Entity\Page $pages
+     */
     public function getCurrentPagesFromRequest($params)
     {
         $this->mapRequest($params);
@@ -148,49 +157,53 @@ class PageRepository extends EntityRepository
             ->where('p.status = 1')
             ->andWhere('p.isHidden != 1');
 
+        if ($this->userId) {
+            $query
+                ->innerJoin('p.frontenduser', 'u')
+                ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
+        }
         if ($this->category) {
             $query
-                ->innerJoin('p.categories','c')
-                ->andWhere('c.metaUrl = :category')->setParameter('category',$this->category);
+                ->innerJoin('p.categories', 'c')
+                ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
         }
 
-        $r = $query-> setMaxResults($this->pageLimit)
+        $pages = $query->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
-            ->orderBy('p.'.$this->pageOrder, $this->pageOrderBy)
+            ->orderBy('p.' . $this->pageOrder, $this->pageOrderBy)
             ->getQuery()
             ->execute();
 
-        return $r;
+        return $pages;
     }
 
-    /*
+    /**
      * Get pages filtered by category
-     *
-     * @return pages
-     * */
-
+     * @param int $categoryId
+     * @return \Aisel\PageBundle\Entity\Page $pages
+     */
     public function getPagesByCategory($categoryId)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
 
-        $r = $query->select('p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt')
+        $pages = $query->select('p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt')
             ->from('AiselPageBundle:Page', 'p')
-            ->innerJoin('p.categories','c')
+            ->innerJoin('p.categories', 'c')
             ->where('p.status = 1')
             ->andWhere('p.isHidden != 1')
-            ->andWhere('c.id = :categoryId')->setParameter('categoryId',$categoryId)
+            ->andWhere('c.id = :categoryId')->setParameter('categoryId', $categoryId)
             ->getQuery()
             ->execute();
 
-        return $r;
+        return $pages;
     }
 
-    /*
-     * Find pages by url
-     *
-     * @return int value
-     * */
-
+    /**
+     * Find pages by URL
+     * @param string $url
+     * @param int $pageId
+     * @return int $found
+     */
     public function findTotalByURL($url, $pageId = null)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
@@ -200,13 +213,12 @@ class PageRepository extends EntityRepository
             ->where('p.metaUrl = :url')->setParameter('url', $url);
 
         if ($pageId) {
-            $query->andWhere('p.id != :pageId')->setParameter('pageId',$pageId);
+            $query->andWhere('p.id != :pageId')->setParameter('pageId', $pageId);
         }
         $found = $query->getQuery()->getSingleScalarResult();
 
         return $found;
     }
-
 
 
 }

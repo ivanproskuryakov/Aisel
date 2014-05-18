@@ -53,7 +53,7 @@ class ApiController extends Controller
     /**
      * @Rest\View
      */
-    public function loginAction()
+    public function loginAction(Request $request)
     {
 
         if(! $this->isAuthenticated() ){
@@ -71,7 +71,7 @@ class ApiController extends Controller
 
             return array('status'=>true, 'message'=>'successully logged in');
         } else {
-            return array('message'=>'You already logged in');
+            return array('message'=>'You already logged in. Try to refresh page');
         }
 
         return array('message'=>'Error in login action');
@@ -80,7 +80,7 @@ class ApiController extends Controller
     /**
      * @Rest\View
      */
-    public function registerAction()
+    public function registerAction(Request $request)
     {
         if ($this->isAuthenticated())
             return array('message'=>'You already logged in, Please logout first');
@@ -151,7 +151,8 @@ class ApiController extends Controller
     public function informationAction()
     {
         if ($this->isAuthenticated()) {
-            return $this->get('security.context')->getToken()->getUser();
+            $user = $this->get('security.context')->getToken()->getUser();
+            return $user;
         } else {
             return false;
         }

@@ -19,6 +19,7 @@ angular.module('aiselApp')
                 );
             }
         };
+
         // User Edit Details
         $scope.submitEditUserDetails = function(form) {
             if (form.$valid) {
