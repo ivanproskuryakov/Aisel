@@ -16,6 +16,12 @@ api_aisel_user_information:
     requirements:
         _method: GET
 
+api_aisel_user_editdetails:
+    pattern:  /api/user/editdetails.json
+    defaults: { _controller: AiselUserBundle:Api:editdetails, _format: json }
+    requirements:
+        _method: GET
+
 api_aisel_user_register:
     pattern:  /api/user/register.json
     defaults: { _controller: AiselUserBundle:Api:register, _format: json }

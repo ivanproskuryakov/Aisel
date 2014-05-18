@@ -59,9 +59,33 @@ class LoadFrontendUserData extends AbstractFixture implements OrderedFixtureInte
             'username'=>'frontenduser',
             'password'=>'frontenduser',
             'email'=>'frontenduser@aisel.co',
+            'phone'=>'+7(123)123-1234',
+            'website'=>'aisel.co',
+            'facebook'=>'https://www.facebook.com/pages/Aisel/1439524699618478',
+            'twitter'=>'https://twitter.com/aisel',
+            'linkedin'=>'www.linkedin.com/pub/ivan-proskuryakov/31/200/316',
+            'googleplus'=>'https://plus.google.com/+aisel',
+            'github'=>'https://github.com/ivanproskuryakov/Aisel',
+            'behance'=>'https://www.behance.net/aisel',
+            'about'=>'orem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dol',
         );
+        $user = $this->getUserManager()->registerFixturesUser($userData);
 
-        $user = $this->getUserManager()->registerUser($userData);
+        $userData = array(
+            'username'=>'volgodark',
+            'password'=>'volgodark',
+            'email'=>'volgodark@gmail.com',
+            'phone'=>'+7(909)389-2222',
+            'website'=>'aisel.co',
+            'facebook'=>'https://www.facebook.com/pages/Aisel/1439524699618478',
+            'twitter'=>'https://twitter.com/aisel',
+            'linkedin'=>'www.linkedin.com/pub/ivan-proskuryakov/31/200/316',
+            'googleplus'=>'https://plus.google.com/+aisel',
+            'github'=>'https://github.com/ivanproskuryakov/Aisel',
+            'behance'=>'https://www.behance.net/aisel',
+            'about'=>'orem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dol',
+        );
+        $user = $this->getUserManager()->registerFixturesUser($userData);
 
     }
 

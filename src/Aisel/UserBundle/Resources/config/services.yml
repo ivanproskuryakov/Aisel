@@ -24,4 +24,4 @@ services:
 
     frontend.user.manager:
         class: Aisel\UserBundle\Manager\UserManager
-        arguments: [@doctrine.orm.entity_manager, @security.encoder_factory, @mailer, @templating, %application.email%,]
+        arguments: [@doctrine.orm.entity_manager, @security.encoder_factory, @mailer, @templating, %application.email%, @security.context]

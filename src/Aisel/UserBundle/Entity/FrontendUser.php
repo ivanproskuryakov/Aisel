@@ -443,4 +443,256 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     {
         return $this->pages;
     }
+    /**
+     * @var string
+     */
+    private $phone;
+
+    /**
+     * @var string
+     */
+    private $website;
+
+    /**
+     * @var string
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     */
+    private $twitter;
+
+    /**
+     * @var string
+     */
+    private $linkedin;
+
+    /**
+     * @var string
+     */
+    private $googleplus;
+
+    /**
+     * @var string
+     */
+    private $github;
+
+    /**
+     * @var string
+     */
+    private $behance;
+
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return FrontendUser
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set website
+     *
+     * @param string $website
+     * @return FrontendUser
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string 
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     * @return FrontendUser
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string 
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     * @return FrontendUser
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string 
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Set linkedin
+     *
+     * @param string $linkedin
+     * @return FrontendUser
+     */
+    public function setLinkedin($linkedin)
+    {
+        $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    /**
+     * Get linkedin
+     *
+     * @return string 
+     */
+    public function getLinkedin()
+    {
+        return $this->linkedin;
+    }
+
+    /**
+     * Set googleplus
+     *
+     * @param string $googleplus
+     * @return FrontendUser
+     */
+    public function setGoogleplus($googleplus)
+    {
+        $this->googleplus = $googleplus;
+
+        return $this;
+    }
+
+    /**
+     * Get googleplus
+     *
+     * @return string 
+     */
+    public function getGoogleplus()
+    {
+        return $this->googleplus;
+    }
+
+    /**
+     * Set github
+     *
+     * @param string $github
+     * @return FrontendUser
+     */
+    public function setGithub($github)
+    {
+        $this->github = $github;
+
+        return $this;
+    }
+
+    /**
+     * Get github
+     *
+     * @return string 
+     */
+    public function getGithub()
+    {
+        return $this->github;
+    }
+
+    /**
+     * Set behance
+     *
+     * @param string $behance
+     * @return FrontendUser
+     */
+    public function setBehance($behance)
+    {
+        $this->behance = $behance;
+
+        return $this;
+    }
+
+    /**
+     * Get behance
+     *
+     * @return string 
+     */
+    public function getBehance()
+    {
+        return $this->behance;
+    }
+    /**
+     * @var string
+     */
+    private $about;
+
+
+    /**
+     * Set about
+     *
+     * @param string $about
+     * @return FrontendUser
+     */
+    public function setAbout($about)
+    {
+        $this->about = $about;
+
+        return $this;
+    }
+
+    /**
+     * Get about
+     *
+     * @return string 
+     */
+    public function getAbout()
+    {
+        return $this->about;
+    }
 }

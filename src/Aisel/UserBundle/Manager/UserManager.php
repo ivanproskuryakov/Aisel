@@ -30,14 +30,16 @@ class UserManager  implements UserProviderInterface
     protected $templating;
     protected $mailer;
     protected $websiteEmail;
+    protected $securityContext;
 
-    public function __construct($em, $encoder,$mailer,$templating,$websiteEmail)
+    public function __construct($em, $encoder,$mailer,$templating,$websiteEmail,$securityContext)
     {
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->encoder = $encoder;
         $this->em = $em;
         $this->websiteEmail = $websiteEmail;
+        $this->securityContext = $securityContext;
     }
 
     /**
@@ -71,7 +73,72 @@ class UserManager  implements UserProviderInterface
         return $isValid;
     }
 
-    /*
+    /**
+     * Create User, specially for fixtures
+     */
+    public function registerFixturesUser(Array $userData)
+    {
+        $user = new FrontendUser();
+        $encoder = $this->encoder->getEncoder($user);
+        $encodedPassword = $encoder->encodePassword($userData['password'], $user->getSalt());
+
+        $user->setEmail($userData['email']);
+        $user->setUsername($userData['username']);
+        $user->setPassword($encodedPassword);
+        $user->setEnabled(true);
+        $user->setLocked(false);
+
+        $user->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
+
+        $user->setPhone($userData['phone']);
+        $user->setWebsite($userData['website']);
+        $user->setFacebook($userData['facebook']);
+        $user->setTwitter($userData['twitter']);
+        $user->setLinkedin($userData['linkedin']);
+        $user->setGoogleplus($userData['googleplus']);
+        $user->setGithub($userData['github']);
+        $user->setBehance($userData['behance']);
+        $user->setAbout($userData['about']);
+
+        $this->em->persist($user);
+        $this->em->flush();
+    }
+
+    /**
+     * Update User details
+     * @param   array $userData
+     * @return  string $message
+     */
+    public function updateDetailsCurrentUser(Array $userData)
+    {
+        try{
+            $user = $this->securityContext->getToken()->getUser();
+
+            if ($userData['phone'])         $user->setPhone($userData['phone']);
+            if ($userData['website'])       $user->setWebsite($userData['website']);
+            if ($userData['about'])         $user->setAbout($userData['about']);
+
+            if ($userData['facebook'])      $user->setFacebook($userData['facebook']);
+            if ($userData['twitter'])       $user->setTwitter($userData['twitter']);
+            if ($userData['linkedin'])      $user->setLinkedin($userData['linkedin']);
+            if ($userData['googleplus'])    $user->setGoogleplus($userData['googleplus']);
+            if ($userData['github'])        $user->setGithub($userData['github']);
+            if ($userData['behance'])       $user->setBehance($userData['behance']);
+
+            $this->em->persist($user);
+            $this->em->flush();
+            $message = 'Information successfully updated!';
+        }catch(\Swift_TransportException $e){
+            $message = $e->getMessage() ;
+        }
+        return $message;
+    }
+
+
+
+    /**
      *   Register user and send userinfo by email
      */
     public function registerUser(Array $userData)
@@ -126,7 +193,7 @@ class UserManager  implements UserProviderInterface
 
     }
 
-    /*
+    /**
      *   Reset and send password by email
      */
     public function resetPassword($user)

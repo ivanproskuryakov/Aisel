@@ -9,3 +9,22 @@ Aisel\UserBundle\Entity\FrontendUser:
         expose: true
     lastLogin:
         expose: true
+
+    about:
+        expose: true
+    phone:
+        expose: true
+    website:
+        expose: true
+    facebook:
+        expose: true
+    twitter:
+        expose: true
+    linkedin:
+        expose: true
+    googleplus:
+        expose: true
+    github:
+        expose: true
+    behance:
+        expose: true

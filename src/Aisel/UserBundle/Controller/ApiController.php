@@ -57,7 +57,6 @@ class ApiController extends Controller
     {
 
         if(! $this->isAuthenticated() ){
-            $request = $this->getRequest();
             $username = $request->get('username');
             $password = $request->get('password');
 
@@ -88,7 +87,6 @@ class ApiController extends Controller
 
 
 
-        $request = $this->getRequest();
         $userData = array(
             'username'=>$request->get('username'),
             'password'=>$request->get('password'),
@@ -154,6 +152,23 @@ class ApiController extends Controller
     {
         if ($this->isAuthenticated()) {
             return $this->get('security.context')->getToken()->getUser();
+        } else {
+            return false;
+        }
+
+    }
+
+    /**
+     * @Rest\View
+     */
+    public function editdetailsAction(Request $request)
+    {
+        if ($this->isAuthenticated()) {
+            $json = utf8_decode($request->get('userdata'));
+            $userData = json_decode($json,true);
+            $message = $this->getUserManager()->updateDetailsCurrentUser($userData);
+            return array('status'=>true,'message'=>$message);
+
         } else {
             return false;
         }

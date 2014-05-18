@@ -19,6 +19,19 @@ angular.module('aiselApp')
                 );
             }
         };
+        // User Edit Details
+        $scope.submitEditUserDetails = function(form) {
+            if (form.$valid) {
+                userService.editDetails(form).success(
+                    function(data, status) {
+                        notify(data.message);
+//                        if (data.status) {
+//                            window.location = "/#!/user/information/";
+//                        }
+                    }
+                );
+            }
+        };
 
         // User Password Forgot
         $scope.submitPasswordForgot = function(form) {
