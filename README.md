@@ -48,3 +48,13 @@ For page http://sandbox.aisel.co/#!/pages/ you need type in terminal: <br/>curl 
 Google index: https://www.google.ru/search?q=site%3Asandbox.aisel.co<br/>
 Full info how to make SEO for JS website read here: https://developers.google.com/webmasters/ajax-crawling/docs/specification
 
+Speed Test
+========================
+Notes:<br/>
+ - Clean Ubuntu with 512 RAM<br/>
+ - Symfony2 in DEV environment<br/>
+ - No server or MySQL tweaks<br/>
+<br/>
+http://tools.pingdom.com/fpt/#!/XzytX/http://sandbox.aisel.co/#!/ - 704ms
+http://tools.pingdom.com/fpt/#!/b3BHG9/http://sandbox.aisel.co/#!/pages/ -  773ms
+http://tools.pingdom.com/fpt/#!/dZajwY/http://sandbox.aisel.co/#!/page/userpage-10/ - 751ms
