@@ -82,7 +82,7 @@ var app = angular.module('aiselApp', [
             })
             .when('/user/page/add/', {
                 templateUrl: 'views/user/page/add.html',
-                controller: 'UserPageCtrl'
+                controller: 'UserPageAddCtrl'
             })
             .when('/user/page/edit/:pageId/', {
                 templateUrl: 'views/user/page/edit.html',

@@ -18,7 +18,7 @@ api_aisel_user_information:
 
 api_aisel_user_editdetails:
     pattern:  /api/user/editdetails.json
-    defaults: { _controller: AiselUserBundle:Api:information, _format: json }
+    defaults: { _controller: AiselUserBundle:Api:editdetails, _format: json }
     requirements:
         _method: GET
 
