@@ -21,3 +21,5 @@ Aisel\PageBundle\Entity\Page:
         expose: true
     metaKeywords:
         expose: true
+    status:
+        expose: true

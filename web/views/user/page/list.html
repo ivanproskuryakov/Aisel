@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <ul class="pageList">
                         <li ng-repeat="page in pageList.pages">
-                            <h2><a href="/#!/page/{{page.metaUrl}}/" class="thumb">{{page.title}}</a></h2>
+                            <h2><a href="/#!/user/page/edit/{{page.id}}/" class="thumb">{{page.title}}</a></h2>
                             <p>{{page.content}}</p>
                             <div class="clearfix">
                                 <p class="pull-left">
@@ -16,7 +16,7 @@
                                 </p>
                                 <p class="pull-right">
                                     <a ng-href="/#!/page/{{page.metaUrl}}/" type="button" class="btn btn-primary">View Page</a>
-                                    <a ng-href="/#!/user/page/edit/{{page.id}}/" type="button" class="btn btn-danger">Edit</a>
+                                    <a ng-href="/#!/user/page/edit/{{page.id}}/" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
                                 </p>
                             </div>
                             <hr/>

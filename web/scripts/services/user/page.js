@@ -10,9 +10,21 @@ angular.module('aiselApp')
                 return $http.get(url);
             },
             getPageById: function($id) {
-                var url = API_URL+'/page/details/id/'+$id+'.json';
+                var url = API_URL+'/user/page/details/id/'+$id+'.json';
                 console.log(url);
                 return $http.get(url);
+            },
+            addPage: function(pageDetails) {
+                pageDetails = '0';
+                var url = API_URL+'/user/page/add.json';
+                console.log(url);
+                return $http.post(url,pageDetails);
+            },
+            savePage: function(pageDetails) {
+                var id = pageDetails.page.id;
+                var url = API_URL+'/user/page/edit/'+id+'.json';
+                console.log(url);
+                return $http.post(url,pageDetails);
             }
         };
 

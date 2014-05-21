@@ -78,7 +78,7 @@ var app = angular.module('aiselApp', [
             })
             .when('/user/page/list/', {
                 templateUrl: 'views/user/page/list.html',
-                controller: 'UserPageCtrl'
+                controller: 'UserPageListCtrl'
             })
             .when('/user/page/add/', {
                 templateUrl: 'views/user/page/add.html',
@@ -86,7 +86,7 @@ var app = angular.module('aiselApp', [
             })
             .when('/user/page/edit/:pageId/', {
                 templateUrl: 'views/user/page/edit.html',
-                controller: 'UserPageCtrl'
+                controller: 'UserPageEditCtrl'
             })
 
             // Default action

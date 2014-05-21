@@ -102,7 +102,6 @@ class PageManager
         return $pageDetails;
     }
 
-
     /**
      * validate metaUrl for Page Entity and return one we can use
      * @param string $url

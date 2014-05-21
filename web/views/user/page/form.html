@@ -1,0 +1,56 @@
+<form class="form-horizontal" name="pageEditForm" role="form" >
+    <tabset>
+        <tab>
+            <tab-heading>
+                <i class="glyphicon glyphicon-font"></i> General Information
+            </tab-heading>
+            <div class="tab-content">
+                <div class="form-group">
+                    <label for="title">Page Title</label>
+                    <input type="text" name="title" id="title" class="form-control" ng-required="true" ng-model="pageDetails.page.title">
+                </div>
+                <div class="form-group">
+                    <label for="content">Page Content</label>
+                    <textarea name="content" id="content"  class="form-control" rows="10" ng-required="true" ng-model="pageDetails.page.content" name="content"
+                              ng-model="message"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select name="status" id="status" class="form-control col-sm-3" ng-model="pageDetails.page.content" name="status" >
+                        <option ng-selected="!pageDetails.page.status">Draft</option>
+                        <option ng-selected="pageDetails.page.status">Published</option>
+                    </select>
+                </div>
+            </div>
+
+        </tab>
+        <tab>
+            <tab-heading>
+                <i class="glyphicon glyphicon-list"></i> Meta Information
+            </tab-heading>
+            <div class="tab-content">
+                <div class="form-group">
+                    <label for="metaTitle">Meta Title</label>
+                    <input name="metaTitle" id="metaTitle" type="text" class="form-control" ng-required="true" ng-model="pageDetails.page.meta_url">
+                </div>
+                <div class="form-group">
+                    <label for="metaDescription">Meta Description</label>
+                    <input name="metaDescription" id="metaDescription" type="text" class="form-control" ng-required="true" ng-model="pageDetails.page.meta_description">
+                </div>
+                <div class="form-group">
+                    <label for="metaKeywords">Meta Keywords</label>
+                    <input name="metaKeywords" id="metaKeywords" type="text" class="form-control" ng-required="true" ng-model="pageDetails.page.meta_keyword">
+                </div>
+            </div>
+        </tab>
+        <tab>
+            <tab-heading>
+                <i class="glyphicon glyphicon glyphicon-tags"></i>&nbsp; Page Categories
+            </tab-heading>
+            <div class="tab-content">
+                ...
+            </div>
+        </tab>
+    </tabset>
+
+</form>

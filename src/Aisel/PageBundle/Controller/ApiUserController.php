@@ -35,4 +35,32 @@ class ApiUserController extends Controller
         return $page;
     }
 
+    /**
+     * @Rest\View
+     */
+    public function pageEditAction($pageId, Request $request)
+    {
+//        /** @var \Aisel\PageBundle\Entity\Page $page */
+//        $page = $request->get('page');
+//        $categories = $request->get('categories');
+//        $pageDetails = $request->get('page');
+//        $page = $this->container->get("aisel.userpage.manager")->getEditPageById($pageId);
+//        return $page;
+
+        return array('message'=>'Page Saved '.print_r($pageId,true));
+//        return print_r($pageDetails);
+    }
+
+    /**
+     * @Rest\View
+     */
+    public function pageAddAction()
+    {
+//        /** @var \Aisel\PageBundle\Entity\Page $page */
+//        $page = $this->container->get("aisel.userpage.manager")->getPageById($pageId);
+//        return $page;
+
+        return array('message'=>'Page added ');
+    }
+
 }

@@ -33,32 +33,34 @@ class UserPageManager
     }
 
 
+
     /**
-     * Get single page for editing
+     * Get single detailed page with category by URLKey
      * @param int $pageId
      * @return \Aisel\PageBundle\Entity\Page $page
      */
     public function getPageById($pageId)
     {
-        $page = $this->em->getRepository('AiselPageBundle:Page')->find($pageId);
+        $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(array('id' => $pageId));
 
         if(!($page)){
             throw new NotFoundHttpException('Nothing found');
         }
-//
-//        $pageDetails = array('page'=>$page,'categories'=>array());
-//        foreach ($page->getCategories() as $c) {
-//            $category = array();
-//
-//            $category['id'] = $c->getId();
-//            $category['title'] = $c->getTitle();
-//            $category['url'] = $c->getMetaUrl();
-//            $pageDetails['categories'][$c->getId()] = $category;
-//
-//        }
 
-        return $page;
+        $pageDetails = array('page'=>$page,'categories'=>array());
+        foreach ($page->getCategories() as $c) {
+            $category = array();
+
+            $category['id'] = $c->getId();
+            $category['title'] = $c->getTitle();
+            $category['url'] = $c->getMetaUrl();
+            $pageDetails['categories'][$c->getId()] = $category;
+
+        }
+
+        return $pageDetails;
     }
+
 
 
 }

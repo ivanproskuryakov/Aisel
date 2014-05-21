@@ -5,11 +5,15 @@ angular.module('aiselApp')
         function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, notify) {
 
 
-            // Save
-            $scope.savePage = function () {
-                notify('Page saved!');
-            }
 
+            $scope.addPage = function() {
+                console.log($scope.pageDetails);
+                userPageService.addPage($scope.pageDetails).success(
+                    function(data, status) {
+                        notify(data.message);
+                    }
+                );
+            };
 
             // Save & Exit
             $scope.saveExitPage = function () {
@@ -19,7 +23,7 @@ angular.module('aiselApp')
 
             // Close
             $scope.closePage = function () {
-                var answer = confirm("Close Editor?")
+                var answer = confirm("Changes would not be saved! Close?")
                 if (answer){
                     $location.path('/user/page/list/');
                 }

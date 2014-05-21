@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('aiselApp')
-    .controller('UserPageCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService' , 'userPageService' , 'notify' ,
+    .controller('UserPageEditCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService' , 'userPageService' , 'notify' ,
         function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, notify) {
 
         $scope.loggedIn = false;
@@ -11,28 +11,26 @@ angular.module('aiselApp')
         if (pageId) {
             var handleSuccess = function (data, status) {
                 $scope.pageDetails = data;
+                $scope.pageEditTitle = data.page.title;
 //                console.log(data);
             };
             userPageService.getPageById(pageId).success(handleSuccess);
 
 
-
-            // Save
-            $scope.savePage = function () {
-                notify('Page saved!');
-            }
-
-
-            // Save & Exit
-            $scope.saveExitPage = function () {
-                notify('Page saved!');
-                $location.path('/user/page/list/');
-            }
+            $scope.savePage = function() {
+                console.log($scope.pageDetails);
+                console.log($scope.pageDetails.page.id);
+                userPageService.savePage($scope.pageDetails).success(
+                    function(data, status) {
+                        notify(data.message);
+                    }
+                );
+            };
 
 
             // Close
             $scope.closePage = function () {
-                var answer = confirm("Close Editor?")
+                var answer = confirm("Changes would not be saved! Close?")
                 if (answer){
                     $location.path('/user/page/list/');
                 }
@@ -45,7 +43,7 @@ angular.module('aiselApp')
             $scope.deletePage = function () {
                 var modalInstance = $modal.open({
                     templateUrl: 'deletePageModal.html',
-                    controller: ModalInstanceCtrl,
+                    controller: PageInstanceCtrl,
                     resolve: {
                         page: function () {
                             return $scope.pageDetails;
@@ -62,39 +60,13 @@ angular.module('aiselApp')
                 });
             };
 
-        } else {
-            $scope.pageLimit = 5;
-            $scope.paginationPage = 1;
-            $scope.categoryId = 0;
-            $scope.userId = 31;
-            var handleSuccess = function (data, status) {
-                $scope.pageList = data;
-            };
-
-            // Pages
-            userPageService.getPages($scope).success(
-                function (data, status) {
-                    $scope.pageList = data;
-                }
-            );
-
-            $scope.pageChanged = function (page) {
-                $scope.paginationPage = page;
-                userPageService.getPages($scope).success(
-                    function (data, status) {
-                        $scope.pageList = data;
-                    }
-                );
-            };
         }
-
-
 
     }]);
 
 // ModalInstance for Delete event
 
-var ModalInstanceCtrl = function ($scope, $modalInstance,page) {
+var PageInstanceCtrl = function ($scope, $modalInstance,page) {
     console.log(page);
     $scope.page = page;
 

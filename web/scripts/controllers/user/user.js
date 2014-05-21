@@ -60,10 +60,10 @@ angular.module('aiselApp')
 
         }
 
-        $scope.open = function () {
+        $scope.openSignIn = function () {
             var modalInstance = $modal.open({
                 templateUrl: 'views/user/login.html',
-                controller: ModalInstanceCtrl,
+                controller: LoginInstanceCtrl,
                 resolve: {
                 }
             });
@@ -71,7 +71,7 @@ angular.module('aiselApp')
 
     }]);
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, userService, notify) {
+var LoginInstanceCtrl = function ($scope, $modalInstance, userService, notify) {
     $scope.login = function (username, password) {
 
         userService.login(username, password).success(
