@@ -23,7 +23,8 @@ angular.module('aiselApp')
 
             // Close
             $scope.closePage = function () {
-                var answer = confirm("Changes would not be saved! Close?")
+                var answer = confirm("You haven't finished your post yet. Do you want to leave without finishing? " +
+                    "\n\n Are you sure you want to leave this page?");
                 if (answer){
                     $location.path('/user/page/list/');
                 }

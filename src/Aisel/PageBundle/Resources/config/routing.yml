@@ -39,8 +39,8 @@ api_aisel_user_pagedetails_by_id:
 api_aisel_user_page_edit:
     pattern:  /api/user/page/edit/{pageId}.json
     defaults: { _controller: AiselPageBundle:ApiUser:pageEdit, _format: json }
-    requirements:
-        _method: POST
+#    requirements:
+#        _method: POST
 
 api_aisel_user_page_add:
     pattern:  /api/user/page/add.json

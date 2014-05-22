@@ -30,7 +30,6 @@ class ApiUserController extends Controller
      */
     public function pageDetailsAction($pageId)
     {
-        /** @var \Aisel\PageBundle\Entity\Page $page */
         $page = $this->container->get("aisel.userpage.manager")->getPageById($pageId);
         return $page;
     }
@@ -40,25 +39,38 @@ class ApiUserController extends Controller
      */
     public function pageEditAction($pageId, Request $request)
     {
-//        /** @var \Aisel\PageBundle\Entity\Page $page */
-//        $page = $request->get('page');
-//        $categories = $request->get('categories');
-//        $pageDetails = $request->get('page');
-//        $page = $this->container->get("aisel.userpage.manager")->getEditPageById($pageId);
-//        return $page;
+        $details = $request->get('details');
+        if ($details) {
+            $page = $this->container->get("aisel.userpage.manager")->updatePageId($pageId, $details);
+        } else {
+            return array('message'=>'Empty page details.');
+        }
 
-        return array('message'=>'Page Saved '.print_r($pageId,true));
-//        return print_r($pageDetails);
+        return array('message'=>'Page details updated!');
+
+//        exit();
+//        $pageDetails = array(
+//            'id' => $pageId,
+//            'page' => $request->get('page'),
+//            'categories' => $request->get('categories')
+//        );
+//        return $page;
     }
 
     /**
      * @Rest\View
      */
-    public function pageAddAction()
+    public function pageAddAction(Request $request)
     {
 //        /** @var \Aisel\PageBundle\Entity\Page $page */
 //        $page = $this->container->get("aisel.userpage.manager")->getPageById($pageId);
 //        return $page;
+        $details = $request->get('details');
+        if ($details) {
+            $page = $this->container->get("aisel.userpage.manager")->addPage($details);
+        } else {
+            return array('message'=>'Empty page details.');
+        }
 
         return array('message'=>'Page added ');
     }

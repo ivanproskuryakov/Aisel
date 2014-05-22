@@ -24,7 +24,9 @@ angular.module('aiselApp')
                 var id = pageDetails.page.id;
                 var url = API_URL+'/user/page/edit/'+id+'.json';
                 console.log(url);
-                return $http.post(url,pageDetails);
+                return $http.get(url,{params: { details : pageDetails }});
+
+//                return $http.post(url,pageDetails);
             }
         };
 

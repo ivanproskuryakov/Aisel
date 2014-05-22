@@ -25,7 +25,7 @@ services:
 
     aisel.userpage.manager:
         class: %aisel_userpage_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager, @security.context]
+        arguments: [@service_container, @doctrine.orm.entity_manager, @security.context @aisel.page.manager]
 
 #    aisel.page.admin:
 #        class: Aisel\PageBundle\Admin\PageAdmin
