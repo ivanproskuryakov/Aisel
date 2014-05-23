@@ -26,7 +26,7 @@ class UserPageManager
     protected $em;
     protected $securityContext;
     protected $pageManager;
-    protected $userId;
+    protected $user;
 
     public function __construct($sc, $em, $securityContext, $pageManager)
     {
@@ -38,10 +38,14 @@ class UserPageManager
         if (!$this->isAuthenticated()) {
             throw new NotFoundHttpException('User not authenticated.');
         } else {
-            $this->userId = $this->securityContext->getToken()->getUser()->getId();
+            $this->user = $this->securityContext->getToken()->getUser();
         }
     }
 
+    /**
+     * Check is user Authenticated
+     * @return boolean
+     */
     private function isAuthenticated()
     {
         if ($this->securityContext->isGranted('ROLE_SUPER_ADMIN') === false) {
@@ -51,34 +55,30 @@ class UserPageManager
     }
 
     /**
-     * Get single detailed page with category by URLKey
+     * Load page by Id
      * @param int $pageId
-     * @return \Aisel\PageBundle\Entity\Page $page
+     * @return array $page
      */
-    public function getPageById($pageId)
+    private function loadPage($pageId)
     {
-        $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(
-            array(
-                'id' => $pageId,
-                'frontenduser' => $this->userId,
-            )
-        );
-
+        $page = $this->em->getRepository('AiselPageBundle:Page')->find($pageId);
         if(!($page)){
             throw new NotFoundHttpException('Nothing found');
         }
+        return $page;
+    }
 
-        $pageDetails = array('page'=>$page,'categories'=>array());
-        foreach ($page->getCategories() as $c) {
-            $category = array();
 
-            $category['id'] = $c->getId();
-            $category['title'] = $c->getTitle();
-            $category['url'] = $c->getMetaUrl();
-            $pageDetails['categories'][$c->getId()] = $category;
-
-        }
-
+    /**
+     * Get single detailed page with category by URLKey
+     * @param int $pageId
+     * @return array $page
+     */
+    public function getPageDetailsById($pageId)
+    {
+        $page           = $this->loadPage($pageId);
+        $categories     = $this->pageManager->getPageCategories($page);
+        $pageDetails    = array('page'=>$page,'categories'=>$categories);
         return $pageDetails;
     }
 
@@ -86,10 +86,11 @@ class UserPageManager
      * Update page by given Id
      * @param int $pageId
      * @param array $details
-     * @return $pageDetails
+     * @return array $pageDetails
      */
     public function updatePageId($pageId, $details)
     {
+        $page        = $this->loadPage($pageId);
         $jsonDetails = utf8_decode($details);
         $pageDetails = json_decode($jsonDetails);
 
@@ -101,14 +102,15 @@ class UserPageManager
         if (isset($pageDetails->page->meta_keywords))       $page->setMetaKeywords($pageDetails->page->meta_keywords);
         if (isset($pageDetails->page->meta_description))    $page->setMetaKeywords($pageDetails->page->meta_description);
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-
         // url thing ..
         $url = $page->getMetaUrl();
         $normalUrl = $this->pageManager->normalizePageUrl($url);
         $page->setMetaUrl($normalUrl);
-
         $this->em->persist($page);
         $this->em->flush();
+
+        $categories     = $this->pageManager->getPageCategories($page);
+        $pageDetails    = array('page'=>$page,'categories'=>$categories);
 
 
 //        var_dump($page);
@@ -124,7 +126,7 @@ class UserPageManager
 //
 //        }
 
-        return $page;
+        return $pageDetails;
     }
 
     /**
@@ -132,11 +134,10 @@ class UserPageManager
      * @param array $details
      * @return $pageDetails
      */
-    public function addPage( $details)
+    public function addPage($pageDetails)
     {
-        $jsonDetails = utf8_decode($details);
-        $pageDetails = json_decode($jsonDetails);
-
+//        var_dump($pageDetails);
+//        exit();
         $page = new Page();
         if (isset($pageDetails->page->title))               $page->setTitle($pageDetails->page->title);
         if (isset($pageDetails->page->content))             $page->setContent($pageDetails->page->content);
@@ -145,17 +146,33 @@ class UserPageManager
         if (isset($pageDetails->page->meta_url))            $page->setMetaUrl($pageDetails->page->meta_url);
         if (isset($pageDetails->page->meta_keywords))       $page->setMetaKeywords($pageDetails->page->meta_keywords);
         if (isset($pageDetails->page->meta_description))    $page->setMetaKeywords($pageDetails->page->meta_description);
+        $page->setIsHidden(false);
+        $page->setCommentStatus(false);
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $page->setFrontenduser($this->user);
 
         // url thing ..
         $url = $page->getMetaUrl();
+        if (!$url) $url = $pageDetails->page->title;
         $normalUrl = $this->pageManager->normalizePageUrl($url);
         $page->setMetaUrl($normalUrl);
 
         $this->em->persist($page);
         $this->em->flush();
         return $page;
+    }
+
+    /**
+     * Add page
+     * @param array $details
+     * @return $pageDetails
+     */
+    public function deletePageId($pageId)
+    {
+        $page = $this->loadPage($pageId);
+        $this->em->remove($page);
+        $this->em->flush();
     }
 
 

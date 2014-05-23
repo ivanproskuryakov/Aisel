@@ -77,12 +77,10 @@ class PageRepository extends EntityRepository
 
         $query->select('COUNT(p.id)')
             ->from('AiselPageBundle:Page', 'p')
-            ->where('p.status = :status')->setParameter('status', 1)
             ->andWhere('p.isHidden != 1');
 
         if ($this->category) {
-            $query
-                ->innerJoin('p.categories', 'c')
+            $query->innerJoin('p.categories', 'c')
                 ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
         }
         if ($this->search != '') {
@@ -90,9 +88,10 @@ class PageRepository extends EntityRepository
         }
 
         if ($this->userId) {
-            $query
-                ->innerJoin('p.frontenduser', 'u')
+            $query->innerJoin('p.frontenduser', 'u')
                 ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
+        } else {
+            $query->where('p.status = :status')->setParameter('status', 1);
         }
 
         $total = $query->getQuery()->getSingleScalarResult();
@@ -151,20 +150,20 @@ class PageRepository extends EntityRepository
         $this->mapRequest($params);
 
         $query = $this->getEntityManager()->createQueryBuilder();
-
-        $r = $query->select('p.id, p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt')
+        $query->select('p.id, p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt')
             ->from('AiselPageBundle:Page', 'p')
-            ->where('p.status = 1')
             ->andWhere('p.isHidden != 1');
 
         if ($this->userId) {
             $query
                 ->innerJoin('p.frontenduser', 'u')
                 ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
+        } else {
+            $query->where('p.status = :status')->setParameter('status', 1);
         }
+
         if ($this->category) {
-            $query
-                ->innerJoin('p.categories', 'c')
+            $query->innerJoin('p.categories', 'c')
                 ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
         }
 

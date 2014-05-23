@@ -30,6 +30,25 @@ class PageManager
         $this->em = $em;
     }
 
+
+    /**
+     * Get categories in array for page
+     * @param int $pageId
+     * @return array
+     */
+    public function getPageCategories($page)
+    {
+        $categories = array();
+        foreach ($page->getCategories() as $c) {
+            $category = array();
+            $category['id'] = $c->getId();
+            $category['title'] = $c->getTitle();
+            $category['url'] = $c->getMetaUrl();
+            $categories[$c->getId()] = $category;
+        }
+        return $categories;
+    }
+
     /**
      * Get list of all pages
      * @param array $params
@@ -61,17 +80,7 @@ class PageManager
             throw new NotFoundHttpException('Nothing found');
         }
 
-        $pageDetails = array('page'=>$page,'categories'=>array());
-        foreach ($page->getCategories() as $c) {
-            $category = array();
-
-            $category['id'] = $c->getId();
-            $category['title'] = $c->getTitle();
-            $category['url'] = $c->getMetaUrl();
-            $pageDetails['categories'][$c->getId()] = $category;
-
-        }
-
+        $pageDetails = array('page'=>$page,'categories'=>$this->getPageCategories($page));
         return $pageDetails;
     }
 
@@ -88,17 +97,7 @@ class PageManager
             throw new NotFoundHttpException('Nothing found');
         }
 
-        $pageDetails = array('page'=>$page,'categories'=>array());
-        foreach ($page->getCategories() as $c) {
-            $category = array();
-
-            $category['id'] = $c->getId();
-            $category['title'] = $c->getTitle();
-            $category['url'] = $c->getMetaUrl();
-            $pageDetails['categories'][$c->getId()] = $category;
-
-        }
-
+        $pageDetails = array('page'=>$page,'categories'=>$this->getPageCategories($page));
         return $pageDetails;
     }
 
@@ -111,13 +110,12 @@ class PageManager
     public function normalizePageUrl($url, $pageId = null)
     {
         $page = $this->em->getRepository('AiselPageBundle:Page')->findTotalByURL($url, $pageId);
-
         $utility = new UrlUtility();
         $validUrl = $utility->process($url);
-
         if ($page) {
-            $validUrl = $validUrl. '-1';
+            $validUrl = $validUrl. '-'. time();
         }
+//        var_dump($validUrl);
 
         return $validUrl;
     }

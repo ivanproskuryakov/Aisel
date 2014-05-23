@@ -5,19 +5,28 @@ angular.module('aiselApp')
         function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, notify) {
 
 
+            $scope.pageDetails = {};
+            $scope.pageDetails.page = {};
+            $scope.pageDetails.page.title = '';
+            $scope.pageDetails.page.content = '';
+            $scope.pageDetails.page.status = false;
 
-            $scope.addPage = function() {
+            $scope.addPage = function () {
                 console.log($scope.pageDetails);
                 userPageService.addPage($scope.pageDetails).success(
-                    function(data, status) {
+                    function (data, status) {
+                        console.log(data);
                         notify(data.message);
+                        if (data.status == 'success') {
+                            $location.path('/user/page/edit/' + data.pageid + '/');
+                        }
                     }
                 );
             };
 
             // Save & Exit
             $scope.saveExitPage = function () {
-                notify('Page saved!');
+                notify('Post saved!');
                 $location.path('/user/page/list/');
             }
 
@@ -25,10 +34,10 @@ angular.module('aiselApp')
             $scope.closePage = function () {
                 var answer = confirm("You haven't finished your post yet. Do you want to leave without finishing? " +
                     "\n\n Are you sure you want to leave this page?");
-                if (answer){
+                if (answer) {
                     $location.path('/user/page/list/');
                 }
-                else{
+                else {
                     //some code
                 }
             }

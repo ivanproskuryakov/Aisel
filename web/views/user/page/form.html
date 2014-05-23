@@ -16,9 +16,9 @@
                 </div>
                 <div class="form-group">
                     <label for="status">Status</label>
-                    <select name="status" id="status" class="form-control col-sm-3" ng-model="pageDetails.page.content" name="status" >
-                        <option ng-selected="!pageDetails.page.status">Draft</option>
-                        <option ng-selected="pageDetails.page.status">Published</option>
+                    <select name="status" id="status" class="form-control col-sm-3" ng-model="pageDetails.page.status" name="status" >
+                        <option value="0" ng-selected="!pageDetails.page.status">Draft</option>
+                        <option value="1" ng-selected="pageDetails.page.status">Published</option>
                     </select>
                 </div>
             </div>

@@ -1,35 +1,35 @@
 <div class="row row-offcanvas row-offcanvas-right">
-        <div class="page-header">
-            <h2>{{ pageEditTitle }} </h2>
-            <div class="pull-right">
-                <button type="submit" ng-click="savePage()" class="btn btn-primary">Save</button> &nbsp;
-                <button type="submit" ng-click="saveExitPage()" class="btn btn-primary">Save & Exit</button> &nbsp;
-                <button type="submit" ng-click="deletePage()" class="btn btn-danger">Delete</button> &nbsp;
-                <button type="submit" ng-click="closePage()"  class="btn btn-default">Cancel</button>
-            </div>
-            <p class="">
-                <span class="glyphicon glyphicon-calendar"></span> {{pageDetails.page.created_at | date:"MM/dd/yyyy @ h:mma" }}
-            </p>
-            <p class="clearfix"><span class="glyphicon glyphicon-list"></span> <a ng-href="/#!/user/page/list/">Page list</a></p>
+    <div class="page-header">
+        <h2>{{ pageEditTitle }} </h2>
+        <div class="pull-right">
+            <button type="submit" ng-click="savePage()" class="btn btn-primary">Save</button> &nbsp;
+            <button type="submit" ng-click="saveExitPage()" class="btn btn-primary">Save & Exit</button> &nbsp;
+            <button type="submit" ng-click="deletePage()" class="btn btn-danger">Delete</button> &nbsp;
+            <button type="submit" ng-click="closePage()"  class="btn btn-default">Cancel</button>
         </div>
-
-
-        <div class="" ng-if="isAuthenticated">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div ng-include="'views/user/page/form.html'"></div>
-                </div>
+        <p class="">
+            <span class="glyphicon glyphicon-calendar"></span> {{pageDetails.page.created_at | date:"MM/dd/yyyy @ h:mma" }}
+        </p>
+        <p class="clearfix"><span class="glyphicon glyphicon-list"></span> <a ng-href="/#!/user/page/list/">Page list</a></p>
+    </div>
+    <div class="" ng-if="isAuthenticated">
+        <div class="row">
+            <div class="col-sm-12">
+                <div ng-include="'views/user/page/form.html'"></div>
             </div>
         </div>
-
+    </div>
 </div>
 
 <script type="text/ng-template" id="deletePageModal.html">
     <div class="modal-header">
-        <h3 class="modal-title">Delete page?</h3>
+        <h3 class="modal-title">Are you sure you want to delete this page?</h3>
     </div>
     <div class="modal-body">
-        Page: <b>{{  page.title }}</b>
+        <strong><span class="glyphicon glyphicon-barcode"></span> Id: </strong> {{  pageDetails.page.id }} <br/>
+        <strong><span class="glyphicon glyphicon-font"></span> Title: </strong> {{  pageDetails.page.title }} <br/>
+        <strong><span class="glyphicon glyphicon-link"></span> URL: </strong> <a ng-href="/#!/page/{{pageDetails.page.meta_url}}/">/#!/page/{{pageDetails.page.meta_url}}/</a><br/>
+        <strong><span class="glyphicon glyphicon-calendar"></span> Created at: </strong> {{pageDetails.page.created_at | date:"MM/dd/yyyy @ h:mma" }} <br/>
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" ng-click="ok()">OK</button>

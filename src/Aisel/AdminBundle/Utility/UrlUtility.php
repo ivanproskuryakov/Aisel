@@ -82,13 +82,15 @@ class UrlUtility
     );
 
     /**
-     * Process string based on convertation table
-     *
-     * @param   string $string
-     * @return  string
+     * Process string based on conversion table
+     * @param   string $str
+     * @return  string $normalUrl
      */
     public function process($str)
     {
+        // If we have empty URL string
+        if (!$str) $str = time();
+
         $normalUrl = '';
 
         $len = mb_strlen ($str, 'UTF-8');

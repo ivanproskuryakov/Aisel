@@ -135,7 +135,6 @@ class PageAdmin extends Admin
             ->add('title')
             ->add('status', 'boolean', array('label' => 'Status','editable' => true))
             ->add('isHidden', 'boolean', array('label' => 'Hidden','editable' => true))
-            ->add('commentStatus', 'boolean', array('label' => 'Comments','editable' => true))
             ->add('updatedAt', 'datetime', array('label' => 'Date'))
             ->add('_action', 'actions', array(
                     'actions' => array(
