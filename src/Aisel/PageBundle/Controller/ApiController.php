@@ -25,6 +25,14 @@ use Symfony\Component\HttpFoundation\Request;
 class ApiController extends Controller
 {
 
+    private function isAuthenticated()
+    {
+        if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN') === false) {
+            return $this->container->get('security.context')->isGranted('ROLE_USER');
+        }
+        return false;
+    }
+
     /**
      * @Rest\View
      * /api/search/?query=abc
@@ -32,13 +40,17 @@ class ApiController extends Controller
     public function searchAction(Request $request)
     {
         $params = array(
-            'current'=>$request->query->get('current'),
-            'limit'=>$request->query->get('limit'),
-            'query'=>$request->query->get('query'),
-            'order'=>$request->query->get('order'),
-            'orderby'=>$request->query->get('orderby'),
-            'userid'=> $request->query->get('userid'),
+            'current' => $request->get('current'),
+            'limit' => $request->get('limit'),
+            'query' => $request->get('query'),
+            'order' => $request->get('order'),
+            'orderby' => $request->get('orderby'),
         );
+
+        if ($request->get('userid') && $this->isAuthenticated()) {
+            $userid = $this->get('security.context')->getToken()->getUser()->getId();
+            $params['userid'] = $userid;
+        }
 
         $searchResult = $this->container->get("aisel.search.manager")->search($params);
         return $searchResult;
@@ -51,12 +63,18 @@ class ApiController extends Controller
      */
     public function pageListAction(Request $request)
     {
+
         $params = array(
-            'current'=>$request->query->get('current'),
-            'limit'=>$request->query->get('limit'),
-            'category'=>$request->query->get('category'),
-            'userid'=> $request->query->get('userid'),
+            'current' => $request->get('current'),
+            'limit' => $request->get('limit'),
+            'category' => $request->get('category'),
+            'userid' => $request->get('userid'),
         );
+
+        if ($request->get('userid') && $this->isAuthenticated()) {
+            $userid = $this->get('security.context')->getToken()->getUser()->getId();
+            $params['userid'] = $userid;
+        }
 
         $pageList = $this->container->get("aisel.page.manager")->getPages($params);
         return $pageList;

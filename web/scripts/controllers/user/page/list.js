@@ -10,7 +10,6 @@ angular.module('aiselApp')
         $scope.pageLimit = 5;
         $scope.paginationPage = 1;
         $scope.categoryId = 0;
-        $scope.userId = 31;
         var handleSuccess = function (data, status) {
             $scope.pageList = data;
         };

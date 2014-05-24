@@ -35,7 +35,7 @@ class ApiController extends Controller
         return $this->get('frontend.user.manager');
     }
 
-    protected function isAuthenticated()
+    private  function isAuthenticated()
     {
         if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN') === false) {
             return $this->container->get('security.context')->isGranted('ROLE_USER');
