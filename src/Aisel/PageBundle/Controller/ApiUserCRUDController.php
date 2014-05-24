@@ -77,13 +77,13 @@ class ApiUserCRUDController extends Controller
 //        var_dump($pageDetails);
         // Check for required minimum
         if (!$pageDetails) return array('message' => 'Empty page details');
-        if (empty($pageDetails->page->title)) return array('message' => 'Empty page title');
+        if (empty($pageDetails->page->title)) return array('message' => 'Empty title');
         if (empty($pageDetails->page->content)) return array('message' => 'Empty page content');
 
 
         $page = $this->container->get("aisel.userpage.manager")->addPage($pageDetails);
         return array(
-            'message' => 'Page added',
+            'message' => 'Page successfully added!',
             'status' => 'success',
             'pageid' => $page->getId());
     }

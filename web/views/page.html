@@ -8,7 +8,7 @@
             <ul class="pageList">
                 <li ng-repeat="page in pageList.pages">
                     <h2><a href="#!/page/{{page.metaUrl}}/" class="thumb">{{page.title}}</a></h2>
-                    <p>{{page.content}}</p>
+                    <p ng-bind-html="page.content"></p>
                     <p><span class="glyphicon glyphicon-calendar"></span> {{page.createdAt | date:"MM/dd/yyyy @ h:mma" }}</p>
                     <hr/>
                 </li>

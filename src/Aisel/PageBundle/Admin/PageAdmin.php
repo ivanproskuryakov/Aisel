@@ -78,6 +78,7 @@ class PageAdmin extends Admin
                     'label' => 'Comments','attr' => array('class' => 'span3')
                 ))
                 ->add('isHidden', null, array('required' => false,'label' => 'Hidden page'))
+                ->add('frontenduser',null, array('label' => 'Assigned Frontend User'))
 
 
             ->with('Categories', array('description' => 'Select related categories'))
@@ -133,6 +134,8 @@ class PageAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('title')
+//            ->add('categories')
+            ->add('frontenduser', null, array('label' => 'Frontend User'))
             ->add('status', 'boolean', array('label' => 'Status','editable' => true))
             ->add('isHidden', 'boolean', array('label' => 'Hidden','editable' => true))
             ->add('updatedAt', 'datetime', array('label' => 'Date'))
