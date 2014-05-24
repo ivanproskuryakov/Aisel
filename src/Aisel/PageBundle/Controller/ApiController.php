@@ -44,10 +44,10 @@ class ApiController extends Controller
             'limit' => $request->get('limit'),
             'query' => $request->get('query'),
             'order' => $request->get('order'),
-            'orderby' => $request->get('orderby'),
+            'orderby' => $request->get('orderby')
         );
 
-        if ($request->get('userid') && $this->isAuthenticated()) {
+        if ($request->get('user') && $this->isAuthenticated()) {
             $userid = $this->get('security.context')->getToken()->getUser()->getId();
             $params['userid'] = $userid;
         }
@@ -67,11 +67,10 @@ class ApiController extends Controller
         $params = array(
             'current' => $request->get('current'),
             'limit' => $request->get('limit'),
-            'category' => $request->get('category'),
-            'userid' => $request->get('userid'),
+            'category' => $request->get('category')
         );
 
-        if ($request->get('userid') && $this->isAuthenticated()) {
+        if ($request->get('user') && $this->isAuthenticated()) {
             $userid = $this->get('security.context')->getToken()->getUser()->getId();
             $params['userid'] = $userid;
         }

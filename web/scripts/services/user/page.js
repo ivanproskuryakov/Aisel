@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('aiselApp')
-    .service('userPageService', ['$http', '$routeParams', '$rootScope', 'API_URL', function ($http, $routeParams, $rootScope, API_URL) {
+    .service('userPageService', ['$http', '$routeParams', 'API_URL', function ($http, $routeParams, API_URL) {
         return {
 
             getPages: function ($scope) {
 
-                var url = API_URL + '/page/list.json?userid=true&limit=' + $scope.pageLimit + 'limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage + '&category=' + $scope.categoryId;
-                console.log($rootScope.user);
+                var url = API_URL + '/page/list.json?user=true&limit=' + $scope.pageLimit + 'limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage + '&category=' + $scope.categoryId;
                 console.log(url);
                 return $http.get(url);
             },
