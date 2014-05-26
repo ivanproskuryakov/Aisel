@@ -115,8 +115,6 @@ class PageManager
         if ($page) {
             $validUrl = $validUrl. '-'. time();
         }
-//        var_dump($validUrl);
-
         return $validUrl;
     }
 

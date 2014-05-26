@@ -5,6 +5,7 @@ angular.module('aiselApp')
         function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, userCategoryService, notify) {
 
             $scope.loggedIn = false;
+//            $scope.c = {};
 
             var pageId = $routeParams.pageId;
 
@@ -20,29 +21,32 @@ angular.module('aiselApp')
                 }
             );
             $scope.isCategorySelected = function (category) {
-                if ($scope.pageDetails.categories[category.id]) {
-                    category.selected = true;
-                    return true;
-                }
+//                if ($scope.pageDetails.categories[category.id]) {
+//                    category.selected = true;
+//                    $scope.c[category.id] = new Date();
+//                    return true;
+//                }
+//                $scope.c[category.id] = false;
+//                console.log(category.title + category.selected);
                 return false;
             }
 
-            $scope.cbCategory = function (category) {
-                console.log(cbCategory);
-            }
+//            $scope.cbCategory = function (category) {
+//                console.log(cbCategory);
+//            }
 
 
             // Actions::
             // Save
             $scope.savePage = function () {
-                console.log($scope.websiteCategories);
-//                userPageService.savePage($scope.pageDetails, $scope.websiteCategories).success(
-//                    function (data, status) {
-//                        console.log(data.message);
-//                        notify(data.message);
-//                        $scope.pageEditTitle = $scope.pageDetails.page.title;
-//                    }
-//                );
+//                console.log($scope.c);
+                userPageService.savePage($scope.pageDetails, $scope.websiteCategories).success(
+                    function (data, status) {
+                        console.log(data.message);
+                        notify(data.message);
+                        $scope.pageEditTitle = $scope.pageDetails.page.title;
+                    }
+                );
             };
 
             // Save & Exit

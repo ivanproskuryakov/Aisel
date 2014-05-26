@@ -21,7 +21,7 @@ angular.module('aiselApp')
                 return $http.get(url, {params: { details: pageDetails }});
             },
             savePage: function (pageDetails, websiteCategories) {
-                var categories = JSON.stringify(websiteCategories);
+                var categories = null;
                 var id = pageDetails.page.id;
                 var url = API_URL + '/user/page/edit/' + id + '.json';
                 console.log(url);

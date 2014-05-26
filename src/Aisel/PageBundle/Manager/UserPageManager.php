@@ -116,9 +116,9 @@ class UserPageManager
         $jsonDetails    = utf8_decode($details);
         $pageDetails    = json_decode($jsonDetails);
 
-        $treeCategories = utf8_decode($treeCategories);
-        $treeCategories = json_decode($treeCategories, true);
-        $this->flat_categories($treeCategories, array());
+//        $treeCategories = utf8_decode($treeCategories);
+//        $treeCategories = json_decode($treeCategories, true);
+//        $this->flat_categories($treeCategories, array());
 
         if (isset($pageDetails->page->title))               $page->setTitle($pageDetails->page->title);
         if (isset($pageDetails->page->content))             $page->setContent($pageDetails->page->content);
@@ -131,18 +131,18 @@ class UserPageManager
 
         // Set URL
         $url = $page->getMetaUrl();
-        $normalUrl = $this->pageManager->normalizePageUrl($url);
+        $normalUrl = $this->pageManager->normalizePageUrl($url,$pageId);
         $page->setMetaUrl($normalUrl);
 
         // Remove and Set Categories
-        $currentCategories = $page->getCategories();
-        foreach ($currentCategories as $c) {
-            $page->removeCategory($c);
-        }
-        foreach ($this->categories as $k => $v) {
-            $category = $this->em->getRepository('AiselCategoryBundle:Category')->find($k);
-            $page->addCategory($category);
-        }
+//        $currentCategories = $page->getCategories();
+//        foreach ($currentCategories as $c) {
+//            $page->removeCategory($c);
+//        }
+//        foreach ($this->categories as $k => $v) {
+//            $category = $this->em->getRepository('AiselCategoryBundle:Category')->find($k);
+//            $page->addCategory($category);
+//        }
 
         $this->em->persist($page);
         $this->em->flush();
