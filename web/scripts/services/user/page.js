@@ -5,7 +5,6 @@ angular.module('aiselApp')
         return {
 
             getPages: function ($scope) {
-
                 var url = API_URL + '/page/list.json?user=true&limit=' + $scope.pageLimit + 'limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage + '&category=' + $scope.categoryId;
                 console.log(url);
                 return $http.get(url);
@@ -15,18 +14,19 @@ angular.module('aiselApp')
                 console.log(url);
                 return $http.get(url);
             },
-            addPage: function (pageDetails,categories) {
+            addPage: function (pageDetails, categories) {
                 var url = API_URL + '/user/page/add.json';
                 console.log(categories);
                 console.log(url);
                 return $http.get(url, {params: { details: pageDetails }});
             },
-            savePage: function (pageDetails) {
+            savePage: function (pageDetails, websiteCategories) {
+                var categories = JSON.stringify(websiteCategories);
                 var id = pageDetails.page.id;
                 var url = API_URL + '/user/page/edit/' + id + '.json';
                 console.log(url);
-                return $http.get(url, {params: { details: pageDetails }});
-
+                console.log(categories);
+                return $http.get(url, {params: { details: pageDetails, categories: categories}});
 //                return $http.post(url,pageDetails);
             },
             deletePage: function (pageDetails) {

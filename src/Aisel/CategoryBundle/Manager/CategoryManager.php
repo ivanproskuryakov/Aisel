@@ -39,8 +39,9 @@ class CategoryManager
             if ($rootItem->getRoot() == $rootItem->getId()) {
                 $_category = array(
                     'id' => $rootItem->getId(),
+                    'selected' => false,
                     'title' => $rootItem->getTitle(),
-                    'children' => $this->generatePageTree($rootItem->getChildren(),$rootItem->getId())
+                    'children' => $this->generatePageTree($rootItem->getChildren(), $rootItem->getId())
                 );
                 $tree[] = $_category;
             }
@@ -63,19 +64,19 @@ class CategoryManager
             if (!$rootItem->getStatus()) continue;
             if ($rootItem->getRoot() == $rootItem->getId()) {
 
-                $treeHTML.= '<li>';
-                $treeHTML.= '<a href="/#!/category/'.$rootItem->getMetaUrl().'">'.$rootItem->getTitle().'</a>';
-                $treeHTML.= '</li>';
+                $treeHTML .= '<li>';
+                $treeHTML .= '<a href="/#!/category/' . $rootItem->getMetaUrl() . '">' . $rootItem->getTitle() . '</a>';
+                $treeHTML .= '</li>';
 //                $_category = array(
 //                    'title' => $rootItem->getTitle(),
 //                    'children' => $this->generatePageTree($rootItem->getChildren(),$rootItem->getId())
 //                );
 //                $tree[] = $_category;
 
-                $treeHTML.= $this->generatePageTreeHTML($rootItem->getChildren(),$rootItem->getId());
+                $treeHTML .= $this->generatePageTreeHTML($rootItem->getChildren(), $rootItem->getId());
             }
         }
-        $treeHTML.='</ul>';
+        $treeHTML .= '</ul>';
 
         return $treeHTML;
     }
@@ -86,29 +87,30 @@ class CategoryManager
      * @param int $pid
      * @return array
      */
-    function generatePageTreeHTML($items, $pid = null){
-        $treeHTML= '<ul>';
+    function generatePageTreeHTML($items, $pid = null)
+    {
+        $treeHTML = '<ul>';
         foreach ($items as $item) {
 
             if (!$item->getStatus()) continue;
-            if($item->getParent()) {
-                if($parentId = $item->getParent()->getId()) {
-                    if($parentId == $pid){
-                        $tree[$item->getId()]['title']= $item->getTitle();
+            if ($item->getParent()) {
+                if ($parentId = $item->getParent()->getId()) {
+                    if ($parentId == $pid) {
+                        $tree[$item->getId()]['title'] = $item->getTitle();
                         if ($item->getChildren()) {
-                                $children = $this->generatePageTreeHTML($item->getChildren(), $item->getId());
+                            $children = $this->generatePageTreeHTML($item->getChildren(), $item->getId());
 //                                $tree[$item->getId()]['children'] = $children;
 //                                var_dump($item->getTitle());
-                                $treeHTML.= '<li>';
-                                $treeHTML.= '<a href="/#!/category/'.$item->getMetaUrl().'">'.$item->getTitle().'</a>';
-                                $treeHTML.= $children;
-                                $treeHTML.= '</li>';
+                            $treeHTML .= '<li>';
+                            $treeHTML .= '<a href="/#!/category/' . $item->getMetaUrl() . '">' . $item->getTitle() . '</a>';
+                            $treeHTML .= $children;
+                            $treeHTML .= '</li>';
                         }
                     }
                 }
             }
         }
-        $treeHTML.= '</ul>';
+        $treeHTML .= '</ul>';
         return $treeHTML;
     }
 
@@ -118,19 +120,21 @@ class CategoryManager
      * @param int $pid
      * @return array
      */
-    function generatePageTree($items, $pid = null){
+    function generatePageTree($items, $pid = null)
+    {
         $tree = array();
         foreach ($items as $item) {
 
             if (!$item->getStatus()) continue;
-            if($item->getParent()) {
-                if($parentId = $item->getParent()->getId()) {
-                    if($parentId == $pid){
-                        $tree[$item->getId()]['id']= $item->getId();
-                        $tree[$item->getId()]['title']= $item->getTitle();
+            if ($item->getParent()) {
+                if ($parentId = $item->getParent()->getId()) {
+                    if ($parentId == $pid) {
+                        $tree[$item->getId()]['id'] = $item->getId();
+                        $tree[$item->getId()]['title'] = $item->getTitle();
+                        $tree[$item->getId()]['selected'] = false;
                         if ($item->getChildren()) {
                             $children = $this->generatePageTree($item->getChildren(), $item->getId());
-                                $tree[$item->getId()]['children'] = $children;
+                            $tree[$item->getId()]['children'] = $children;
                         }
                     }
                 }
@@ -146,12 +150,12 @@ class CategoryManager
      */
     public function getCategories($params)
     {
-        $total      = $this->em->getRepository('AiselCategoryBundle:Category')->getTotalFromRequest($params);
+        $total = $this->em->getRepository('AiselCategoryBundle:Category')->getTotalFromRequest($params);
         $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getCurrentCategoriesFromRequest($params);
 
-        $return = array (
-            'total'=> $total,
-            'categories'=> $categories
+        $return = array(
+            'total' => $total,
+            'categories' => $categories
         );
 
         return $return;
@@ -167,13 +171,13 @@ class CategoryManager
     {
         $category = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoryByUrl($urlKey);
 
-        if(!($category)){
+        if (!($category)) {
             throw $this->createNotFoundException();
         }
 
 
         $pages = $this->em->getRepository('AiselPageBundle:Page')->getPagesByCategory($category->getId());
-        $categoryDetails = array('category'=>$category,'pages'=>$pages);
+        $categoryDetails = array('category' => $category, 'pages' => $pages);
 
         return $categoryDetails;
     }
@@ -187,7 +191,7 @@ class CategoryManager
     {
         $category = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategory($id);
 
-        if(!($category)){
+        if (!($category)) {
             throw $this->createNotFoundException();
         }
 
@@ -213,17 +217,15 @@ class CategoryManager
     public function normalizeCategoryUrl($url, $categoryId = null)
     {
         $category = $this->em->getRepository('AiselCategoryBundle:Category')->findTotalByURL($url, $categoryId);
-        $utility  = new UrlUtility();
+        $utility = new UrlUtility();
         $validUrl = $utility->process($url);
 
         if ($category) {
-            $validUrl = $validUrl. '-'. time();
+            $validUrl = $validUrl . '-' . time();
         }
 
         return $validUrl;
     }
-
-
 
 
 }

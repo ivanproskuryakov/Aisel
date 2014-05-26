@@ -39,10 +39,11 @@ class ApiUserCRUDController extends Controller
      */
     public function pageEditAction($pageId, Request $request)
     {
-        $details = $request->get('details');
+        $pageDetails = $request->get('details');
+        $treeCategories = $request->get('categories');
 
-        if ($details) {
-            $page = $this->container->get("aisel.userpage.manager")->updatePageId($pageId, $details);
+        if ($pageDetails) {
+            $page = $this->container->get("aisel.userpage.manager")->updatePageId($pageId, $pageDetails, $treeCategories);
         } else {
             return array('message' => 'Empty page details.');
         }

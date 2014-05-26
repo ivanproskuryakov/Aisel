@@ -27,6 +27,7 @@ class UserPageManager
     protected $securityContext;
     protected $pageManager;
     protected $user;
+    protected $categories = array();
 
     public function __construct($sc, $em, $securityContext, $pageManager)
     {
@@ -41,6 +42,26 @@ class UserPageManager
             $this->user = $this->securityContext->getToken()->getUser();
         }
     }
+
+    /**
+     * Helper function, get enabled categories from Tree Array
+     *
+     */
+    public function flat_categories($array, $return)
+    {
+        foreach ($array as $k => $v) {
+            if (count($v['children'])) {
+                if ($v['selected']) $this->categories[$v['id']] = trim($v['title']);
+//                var_dump($v['children']);
+                $return = $this->flat_categories($v['children'], $return);
+            } else {
+                if ($v['selected']) $this->categories[$v['id']] = trim($v['title']);
+            }
+        }
+        return $return;
+    }
+
+
 
     /**
      * Check is user Authenticated
@@ -86,13 +107,18 @@ class UserPageManager
      * Update page by given Id
      * @param int $pageId
      * @param array $details
+     * @param array $treeCategories
      * @return array $pageDetails
      */
-    public function updatePageId($pageId, $details)
+    public function updatePageId($pageId, $details, $treeCategories )
     {
-        $page        = $this->loadPage($pageId);
-        $jsonDetails = utf8_decode($details);
-        $pageDetails = json_decode($jsonDetails);
+        $page           = $this->loadPage($pageId);
+        $jsonDetails    = utf8_decode($details);
+        $pageDetails    = json_decode($jsonDetails);
+
+        $treeCategories = utf8_decode($treeCategories);
+        $treeCategories = json_decode($treeCategories, true);
+        $this->flat_categories($treeCategories, array());
 
         if (isset($pageDetails->page->title))               $page->setTitle($pageDetails->page->title);
         if (isset($pageDetails->page->content))             $page->setContent($pageDetails->page->content);
@@ -102,16 +128,27 @@ class UserPageManager
         if (isset($pageDetails->page->meta_keywords))       $page->setMetaKeywords($pageDetails->page->meta_keywords);
         if (isset($pageDetails->page->meta_description))    $page->setMetaKeywords($pageDetails->page->meta_description);
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        // url thing ..
+
+        // Set URL
         $url = $page->getMetaUrl();
         $normalUrl = $this->pageManager->normalizePageUrl($url);
         $page->setMetaUrl($normalUrl);
+
+        // Remove and Set Categories
+        $currentCategories = $page->getCategories();
+        foreach ($currentCategories as $c) {
+            $page->removeCategory($c);
+        }
+        foreach ($this->categories as $k => $v) {
+            $category = $this->em->getRepository('AiselCategoryBundle:Category')->find($k);
+            $page->addCategory($category);
+        }
+
         $this->em->persist($page);
         $this->em->flush();
 
         $categories     = $this->pageManager->getPageCategories($page);
         $pageDetails    = array('page'=>$page,'categories'=>$categories);
-
 
 //        var_dump($page);
 //        exit();

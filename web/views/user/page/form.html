@@ -1,5 +1,25 @@
 <form class="form-horizontal" name="pageEditForm" role="form" >
 
+    <div class="categoryTree">
+
+        <!--{{ websiteCategories }}-->
+        <!--{{ pageDetails.categories }}-->
+        <script type="text/ng-template" id="field_renderer.html">
+
+            <span ng-if="!isCategorySelected(category)">
+                <input ng-click="cbCategory(category)" type="checkbox" ng-model="category.selected"> {{ category.title}}
+            </span>
+            <span ng-if="isCategorySelected(category)">
+                <input ng-click="cbCategory(category)" checked type="checkbox" ng-model="category.selected"> {{ category.title}}
+            </span>
+            <ul>
+                <li ng-repeat="category in category.children" ng-include="'field_renderer.html'"></li>
+            </ul>
+        </script>
+        <ul>
+            <li ng-repeat="category in websiteCategories" ng-include="'field_renderer.html'"></li>
+        </ul>
+    </div>
 
     <tabset>
         <tab>
@@ -51,21 +71,7 @@
                 <i class="glyphicon glyphicon glyphicon-tags"></i>&nbsp; Page Categories
             </tab-heading>
             <div class="tab-content">
-                <div class="categoryTree">
 
-                    <!--{{ pageCategories }}-->
-                    <!--{{ pageDetails.categories }}-->
-
-                    <script type="text/ng-template" id="field_renderer.html">
-                        <input  ng-checked="pageDetails.categories[category.id].id == category.id" type="checkbox" ng-model="category.selected"> {{ category.title}}
-                        <ul>
-                            <li ng-repeat="category in category.children" ng-include="'field_renderer.html'"></li>
-                        </ul>
-                    </script>
-                    <ul>
-                        <li ng-repeat="category in pageCategories" ng-include="'field_renderer.html'"></li>
-                    </ul>
-                </div>
             </div>
         </tab>
     </tabset>
