@@ -15,8 +15,9 @@ angular.module('aiselApp')
                 console.log(url);
                 return $http.get(url);
             },
-            addPage: function (pageDetails) {
+            addPage: function (pageDetails,categories) {
                 var url = API_URL + '/user/page/add.json';
+                console.log(categories);
                 console.log(url);
                 return $http.get(url, {params: { details: pageDetails }});
             },

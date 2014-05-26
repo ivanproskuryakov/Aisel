@@ -26,8 +26,31 @@ class CategoryManager
 
 
     /**
-     * Get array of enabled categories sorted as a tree
-     * @return object
+     * Get tree array of enabled categories
+     * @return array $tree
+     */
+    public function getCategoryTree()
+    {
+        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
+        $tree = array();
+        foreach ($categories as $rootItem) {
+
+            if (!$rootItem->getStatus()) continue;
+            if ($rootItem->getRoot() == $rootItem->getId()) {
+                $_category = array(
+                    'id' => $rootItem->getId(),
+                    'title' => $rootItem->getTitle(),
+                    'children' => $this->generatePageTree($rootItem->getChildren(),$rootItem->getId())
+                );
+                $tree[] = $_category;
+            }
+        }
+        return $tree;
+    }
+
+    /**
+     * Get enabled categories as HTML "ul li" tree
+     * @return string $treeHTML
      */
     public function getHTMLCategoryTree()
     {
@@ -103,6 +126,7 @@ class CategoryManager
             if($item->getParent()) {
                 if($parentId = $item->getParent()->getId()) {
                     if($parentId == $pid){
+                        $tree[$item->getId()]['id']= $item->getId();
                         $tree[$item->getId()]['title']= $item->getTitle();
                         if ($item->getChildren()) {
                             $children = $this->generatePageTree($item->getChildren(), $item->getId());
@@ -136,7 +160,7 @@ class CategoryManager
 
     /**
      * Get single detailed category by URLKey
-     * @param int $id
+     * @param string $urlKey
      * @return mixed
      */
     public function getCategoryByURL($urlKey)
@@ -182,17 +206,18 @@ class CategoryManager
 
     /**
      * validate metaUrl for Category Entity and return one we can use
+     * @param string $url
+     * @param int $categoryId
      * @return string
      */
     public function normalizeCategoryUrl($url, $categoryId = null)
     {
         $category = $this->em->getRepository('AiselCategoryBundle:Category')->findTotalByURL($url, $categoryId);
-
-        $utility = new UrlUtility();
+        $utility  = new UrlUtility();
         $validUrl = $utility->process($url);
 
         if ($category) {
-            $validUrl = $validUrl. '-1';
+            $validUrl = $validUrl. '-'. time();
         }
 
         return $validUrl;

@@ -1,5 +1,6 @@
 parameters:
     aisel_category_manager.class: Aisel\CategoryBundle\Manager\CategoryManager
+    aisel_usercategory_manager.class: Aisel\CategoryBundle\Manager\UserCategoryManager
 
 services:
     sonata.admin.category:
@@ -17,3 +18,7 @@ services:
     aisel.category.manager:
         class: %aisel_category_manager.class%
         arguments: [@service_container, @doctrine.orm.entity_manager]
+
+    aisel.usercategory.manager:
+        class: %aisel_category_manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager, @security.context]

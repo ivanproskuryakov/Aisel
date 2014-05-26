@@ -25,3 +25,13 @@ aisel_category_tree_up:
 aisel_category_tree_down:
     pattern:  /administration/aisel/category/category/down/{id}
     defaults:  { _controller: AiselCategoryBundle:AdminCategorySort:down }
+
+
+
+# User specific actions
+
+api_aisel_user_categorytree:
+    pattern:  /api/user/category/tree.json
+    defaults: { _controller: AiselCategoryBundle:ApiUser:categoryTree, _format: json }
+    requirements:
+        _method: GET

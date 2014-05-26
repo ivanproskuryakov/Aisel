@@ -1,24 +1,31 @@
 'use strict';
 
 angular.module('aiselApp')
-    .controller('UserPageEditCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService' , 'userPageService' , 'notify' ,
-        function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, notify) {
+    .controller('UserPageEditCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService' , 'userPageService' , 'userCategoryService' , 'notify' ,
+        function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, userCategoryService ,notify) {
 
             $scope.loggedIn = false;
-
             var pageId = $routeParams.pageId;
 
-            var handleSuccess = function (data, status) {
-                $scope.pageDetails = data;
-                $scope.pageEditTitle = data.page.title;
-//                console.log(data);
-            };
-            userPageService.getPageById(pageId).success(handleSuccess);
+            userPageService.getPageById(pageId).success(
+                function (data, status) {
+                    $scope.pageDetails = data;
+                    $scope.pageEditTitle = data.page.title;
+                }
+            );
+            userCategoryService.appCategories().success(
+                function (data, status) {
+                    $scope.pageCategories = data;
+                }
+            );
 
+
+
+            // Actions::
             // Save
             $scope.savePage = function () {
                 console.log($scope.pageDetails);
-                userPageService.savePage($scope.pageDetails).success(
+                userPageService.savePage($scope.pageDetails,$scope.pageCategories).success(
                     function (data, status) {
 //                        console.log(data.message);
                         notify(data.message);

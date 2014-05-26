@@ -1,10 +1,13 @@
 <form class="form-horizontal" name="pageEditForm" role="form" >
+
+
     <tabset>
         <tab>
             <tab-heading>
                 <i class="glyphicon glyphicon-font"></i> General Information
             </tab-heading>
             <div class="tab-content">
+
                 <div class="form-group">
                     <label for="title">Page Title</label>
                     <input type="text" name="title" id="title" class="form-control" ng-required="true" ng-model="pageDetails.page.title">
@@ -48,7 +51,21 @@
                 <i class="glyphicon glyphicon glyphicon-tags"></i>&nbsp; Page Categories
             </tab-heading>
             <div class="tab-content">
-                ...
+                <div class="categoryTree">
+
+                    <!--{{ pageCategories }}-->
+                    <!--{{ pageDetails.categories }}-->
+
+                    <script type="text/ng-template" id="field_renderer.html">
+                        <input  ng-checked="pageDetails.categories[category.id].id == category.id" type="checkbox" ng-model="category.selected"> {{ category.title}}
+                        <ul>
+                            <li ng-repeat="category in category.children" ng-include="'field_renderer.html'"></li>
+                        </ul>
+                    </script>
+                    <ul>
+                        <li ng-repeat="category in pageCategories" ng-include="'field_renderer.html'"></li>
+                    </ul>
+                </div>
             </div>
         </tab>
     </tabset>
