@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('aiselApp')
-    .controller('UserPageAddCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService' , 'userPageService' , 'notify' ,
-        function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, notify) {
+    .controller('UserPageAddCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService' , 'userPageService' ,'userCategoryService' , 'notify' ,
+        function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, userCategoryService, notify) {
 
 
             $scope.pageDetails = {};
@@ -11,9 +11,15 @@ angular.module('aiselApp')
             $scope.pageDetails.page.content = '';
             $scope.pageDetails.page.status = false;
 
+            userCategoryService.appCategories().success(
+                function (data, status) {
+                    $scope.websiteCategories = data;
+                }
+            );
+
             $scope.addPage = function () {
                 console.log($scope.pageDetails);
-                userPageService.addPage($scope.pageDetails).success(
+                userPageService.addPage($scope.pageDetails, $scope.websiteCategories).success(
                     function (data, status) {
                         console.log(data);
                         notify(data.message);

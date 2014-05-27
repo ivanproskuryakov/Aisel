@@ -184,6 +184,18 @@ class UserPageManager
         $normalUrl = $this->pageManager->normalizePageUrl($url);
         $page->setMetaUrl($normalUrl);
 
+        // Remove old and Set new Categories
+        if ($cats = $pageDetails->selectedCategories) {
+            $this->flat_categories($cats, array());
+
+            foreach ($this->categories as $k => $v) {
+                $category = $this->em->getRepository('AiselCategoryBundle:Category')->find($k);
+                $page->addCategory($category);
+            }
+        }
+
+
+
         $this->em->persist($page);
         $this->em->flush();
         return $page;

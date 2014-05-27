@@ -14,10 +14,11 @@ angular.module('aiselApp')
                 console.log(url);
                 return $http.get(url);
             },
-            addPage: function (pageDetails, categories) {
+            addPage: function (pageDetails, websiteCategories) {
                 var url = API_URL + '/user/page/add.json';
-                console.log(categories);
+                pageDetails.selectedCategories = websiteCategories;
                 console.log(url);
+                console.log(pageDetails);
                 return $http.get(url, {params: { details: pageDetails }});
             },
             savePage: function (pageDetails, websiteCategories) {
@@ -25,7 +26,7 @@ angular.module('aiselApp')
                 var url = API_URL + '/user/page/edit/' + id + '.json';
                 pageDetails.selectedCategories = websiteCategories;
                 console.log(url);
-//                console.log(pageDetails);
+                console.log(pageDetails);
                 return $http.get(url, {params: { details: pageDetails}});
             },
             deletePage: function (pageDetails) {
