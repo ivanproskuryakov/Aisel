@@ -21,21 +21,18 @@ angular.module('aiselApp')
                 return $http.get(url, {params: { details: pageDetails }});
             },
             savePage: function (pageDetails, websiteCategories) {
-                var categories = null;
                 var id = pageDetails.page.id;
                 var url = API_URL + '/user/page/edit/' + id + '.json';
+                pageDetails.selectedCategories = websiteCategories;
                 console.log(url);
-                console.log(categories);
-                return $http.get(url, {params: { details: pageDetails, categories: categories}});
-//                return $http.post(url,pageDetails);
+//                console.log(pageDetails);
+                return $http.get(url, {params: { details: pageDetails}});
             },
             deletePage: function (pageDetails) {
                 var id = pageDetails.page.id;
                 var url = API_URL + '/user/page/delete/' + id + '.json';
                 console.log(url);
                 return $http.get(url);
-
-//                return $http.post(url,pageDetails);
             }
         };
 

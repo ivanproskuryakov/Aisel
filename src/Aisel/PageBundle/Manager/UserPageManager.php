@@ -45,22 +45,23 @@ class UserPageManager
 
     /**
      * Helper function, get enabled categories from Tree Array
-     *
+     * @param array $array
+     * @param array $return
+     * @return array $return
      */
     public function flat_categories($array, $return)
     {
         foreach ($array as $k => $v) {
-            if (count($v['children'])) {
-                if ($v['selected']) $this->categories[$v['id']] = trim($v['title']);
+            if (count($v->children)) {
+                if ($v->selected) $this->categories[$v->id] = trim($v->title);
 //                var_dump($v['children']);
-                $return = $this->flat_categories($v['children'], $return);
+                $return = $this->flat_categories($v->children, $return);
             } else {
-                if ($v['selected']) $this->categories[$v['id']] = trim($v['title']);
+                if ($v->selected) $this->categories[$v->id] = trim($v->title);
             }
         }
         return $return;
     }
-
 
 
     /**
@@ -83,7 +84,7 @@ class UserPageManager
     private function loadPage($pageId)
     {
         $page = $this->em->getRepository('AiselPageBundle:Page')->find($pageId);
-        if(!($page)){
+        if (!($page)) {
             throw new NotFoundHttpException('Nothing found');
         }
         return $page;
@@ -97,9 +98,9 @@ class UserPageManager
      */
     public function getPageDetailsById($pageId)
     {
-        $page           = $this->loadPage($pageId);
-        $categories     = $this->pageManager->getPageCategories($page);
-        $pageDetails    = array('page'=>$page,'categories'=>$categories);
+        $page = $this->loadPage($pageId);
+        $categories = $this->pageManager->getPageCategories($page);
+        $pageDetails = array('page' => $page, 'categories' => $categories);
         return $pageDetails;
     }
 
@@ -107,82 +108,70 @@ class UserPageManager
      * Update page by given Id
      * @param int $pageId
      * @param array $details
-     * @param array $treeCategories
      * @return array $pageDetails
      */
-    public function updatePageId($pageId, $details, $treeCategories )
+    public function updatePageId($pageId, $details)
     {
-        $page           = $this->loadPage($pageId);
-        $jsonDetails    = utf8_decode($details);
-        $pageDetails    = json_decode($jsonDetails);
+        $page = $this->loadPage($pageId);
+        $jsonDetails = utf8_decode($details);
+        $pageDetails = json_decode($jsonDetails);
 
-//        $treeCategories = utf8_decode($treeCategories);
-//        $treeCategories = json_decode($treeCategories, true);
-//        $this->flat_categories($treeCategories, array());
-
-        if (isset($pageDetails->page->title))               $page->setTitle($pageDetails->page->title);
-        if (isset($pageDetails->page->content))             $page->setContent($pageDetails->page->content);
-        if (isset($pageDetails->page->status))              $page->setStatus($pageDetails->page->status);
-        if (isset($pageDetails->page->meta_title))          $page->setMetaTitle($pageDetails->page->meta_title);
-        if (isset($pageDetails->page->meta_url))            $page->setMetaUrl($pageDetails->page->meta_url);
-        if (isset($pageDetails->page->meta_keywords))       $page->setMetaKeywords($pageDetails->page->meta_keywords);
-        if (isset($pageDetails->page->meta_description))    $page->setMetaKeywords($pageDetails->page->meta_description);
+        if (isset($pageDetails->page->title)) $page->setTitle($pageDetails->page->title);
+        if (isset($pageDetails->page->content)) $page->setContent($pageDetails->page->content);
+        if (isset($pageDetails->page->status)) $page->setStatus($pageDetails->page->status);
+        if (isset($pageDetails->page->meta_title)) $page->setMetaTitle($pageDetails->page->meta_title);
+        if (isset($pageDetails->page->meta_url)) $page->setMetaUrl($pageDetails->page->meta_url);
+        if (isset($pageDetails->page->meta_keywords)) $page->setMetaKeywords($pageDetails->page->meta_keywords);
+        if (isset($pageDetails->page->meta_description)) $page->setMetaKeywords($pageDetails->page->meta_description);
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+
 
         // Set URL
         $url = $page->getMetaUrl();
-        $normalUrl = $this->pageManager->normalizePageUrl($url,$pageId);
+        $normalUrl = $this->pageManager->normalizePageUrl($url, $pageId);
         $page->setMetaUrl($normalUrl);
 
-        // Remove and Set Categories
-//        $currentCategories = $page->getCategories();
-//        foreach ($currentCategories as $c) {
-//            $page->removeCategory($c);
-//        }
-//        foreach ($this->categories as $k => $v) {
-//            $category = $this->em->getRepository('AiselCategoryBundle:Category')->find($k);
-//            $page->addCategory($category);
-//        }
+
+        // Remove old and Set new Categories
+        if ($cats = $pageDetails->selectedCategories) {
+            $this->flat_categories($cats, array());
+
+//            print_r($this->categories);
+//            exit();
+            $currentCats = $page->getCategories();
+            foreach ($currentCats as $c) {
+                $page->removeCategory($c);
+            }
+            foreach ($this->categories as $k => $v) {
+                $category = $this->em->getRepository('AiselCategoryBundle:Category')->find($k);
+                $page->addCategory($category);
+            }
+        }
 
         $this->em->persist($page);
         $this->em->flush();
-
-        $categories     = $this->pageManager->getPageCategories($page);
-        $pageDetails    = array('page'=>$page,'categories'=>$categories);
-
-//        var_dump($page);
-//        exit();
-//        $pageDetails = array('page'=>$page,'categories'=>array());
-//        foreach ($page->getCategories() as $c) {
-//            $category = array();
-//
-//            $category['id'] = $c->getId();
-//            $category['title'] = $c->getTitle();
-//            $category['url'] = $c->getMetaUrl();
-//            $pageDetails['categories'][$c->getId()] = $category;
-//
-//        }
-
+        $categories = $this->pageManager->getPageCategories($page);
+        $pageDetails = array('page' => $page, 'categories' => $categories);
         return $pageDetails;
     }
 
     /**
-     * Add page
-     * @param array $details
-     * @return $pageDetails
+     * Add page from frontend
+     * @param object $pageDetails
+     * @return \Aisel\PageBundle\Entity\Page $page
      */
     public function addPage($pageDetails)
     {
 //        var_dump($pageDetails);
 //        exit();
         $page = new Page();
-        if (isset($pageDetails->page->title))               $page->setTitle($pageDetails->page->title);
-        if (isset($pageDetails->page->content))             $page->setContent($pageDetails->page->content);
-        if (isset($pageDetails->page->status))              $page->setStatus($pageDetails->page->status);
-        if (isset($pageDetails->page->meta_title))          $page->setMetaTitle($pageDetails->page->meta_title);
-        if (isset($pageDetails->page->meta_url))            $page->setMetaUrl($pageDetails->page->meta_url);
-        if (isset($pageDetails->page->meta_keywords))       $page->setMetaKeywords($pageDetails->page->meta_keywords);
-        if (isset($pageDetails->page->meta_description))    $page->setMetaKeywords($pageDetails->page->meta_description);
+        if (isset($pageDetails->page->title)) $page->setTitle($pageDetails->page->title);
+        if (isset($pageDetails->page->content)) $page->setContent($pageDetails->page->content);
+        if (isset($pageDetails->page->status)) $page->setStatus($pageDetails->page->status);
+        if (isset($pageDetails->page->meta_title)) $page->setMetaTitle($pageDetails->page->meta_title);
+        if (isset($pageDetails->page->meta_url)) $page->setMetaUrl($pageDetails->page->meta_url);
+        if (isset($pageDetails->page->meta_keywords)) $page->setMetaKeywords($pageDetails->page->meta_keywords);
+        if (isset($pageDetails->page->meta_description)) $page->setMetaKeywords($pageDetails->page->meta_description);
         $page->setIsHidden(false);
         $page->setCommentStatus(false);
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -202,8 +191,7 @@ class UserPageManager
 
     /**
      * Add page
-     * @param array $details
-     * @return $pageDetails
+     * @param int $pageId
      */
     public function deletePageId($pageId)
     {
@@ -211,7 +199,6 @@ class UserPageManager
         $this->em->remove($page);
         $this->em->flush();
     }
-
 
 
 }

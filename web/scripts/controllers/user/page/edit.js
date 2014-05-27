@@ -5,41 +5,39 @@ angular.module('aiselApp')
         function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, userCategoryService, notify) {
 
             $scope.loggedIn = false;
-//            $scope.c = {};
 
             var pageId = $routeParams.pageId;
-
             userPageService.getPageById(pageId).success(
                 function (data, status) {
                     $scope.pageDetails = data;
                     $scope.pageEditTitle = data.page.title;
+
+                    userCategoryService.appCategories().success(
+                        function (data, status) {
+                            $scope.websiteCategories = data;
+                            $scope.setSelected($scope.websiteCategories);
+                        }
+                    );
                 }
             );
-            userCategoryService.appCategories().success(
-                function (data, status) {
-                    $scope.websiteCategories = data;
+            $scope.setSelected = function (categories) {
+                for (var c in categories) {
+                    var catId = -1;
+                    if ($scope.pageDetails.categories[categories[c].id]) {
+                        catId = $scope.pageDetails.categories[categories[c].id].id;
+                    }
+
+                    if (categories[c].id == catId) categories[c].selected = true;
+                    if (categories[c].children.length != 0) {
+//                        console.log(categories[c].title + ' ' + categories[c].selected );
+                        $scope.setSelected(categories[c].children);
+                    }
                 }
-            );
-            $scope.isCategorySelected = function (category) {
-//                if ($scope.pageDetails.categories[category.id]) {
-//                    category.selected = true;
-//                    $scope.c[category.id] = new Date();
-//                    return true;
-//                }
-//                $scope.c[category.id] = false;
-//                console.log(category.title + category.selected);
-                return false;
             }
-
-//            $scope.cbCategory = function (category) {
-//                console.log(cbCategory);
-//            }
-
 
             // Actions::
             // Save
             $scope.savePage = function () {
-//                console.log($scope.c);
                 userPageService.savePage($scope.pageDetails, $scope.websiteCategories).success(
                     function (data, status) {
                         console.log(data.message);
