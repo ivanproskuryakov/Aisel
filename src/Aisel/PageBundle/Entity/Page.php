@@ -380,11 +380,10 @@ class Page
      */
     private $hidden;
 
-
     /**
      * Set hidden
      *
-     * @param boolean $hidden
+     * @param  boolean $hidden
      * @return Page
      */
     public function setHidden($hidden)
@@ -397,7 +396,7 @@ class Page
     /**
      * Get hidden
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getHidden()
     {

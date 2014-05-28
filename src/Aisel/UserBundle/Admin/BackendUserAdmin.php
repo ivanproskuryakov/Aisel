@@ -100,11 +100,6 @@ class BackendUserAdmin extends BaseUserAdmin
                     ))
             );
 
-//        if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
-//            $listMapper
-//                ->add('impersonating', 'string', array('template' => 'SonataUserBundle:Admin:Field/impersonating.html.twig'))
-//            ;
-//        }
     }
 
     /**

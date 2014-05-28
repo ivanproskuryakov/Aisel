@@ -69,7 +69,7 @@ class PageManager
 
     /**
      * Get single detailed page with category by ID
-     * @param  int $id
+     * @param  int                           $id
      * @return \Aisel\PageBundle\Entity\Page $pageDetails
      */
     public function getPage($id)

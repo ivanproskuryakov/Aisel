@@ -17,7 +17,6 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
-
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
@@ -25,7 +24,6 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Presta\SonataNavigationBundle\PrestaSonataNavigationBundle(),
-
 
             // Sonata
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -37,7 +35,6 @@ class AppKernel extends Kernel
 //            new Sonata\UserBundle\SonataUserBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-
 
             // Local bundles
             new Aisel\UserBundle\AiselUserBundle(),

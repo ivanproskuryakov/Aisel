@@ -11,8 +11,6 @@
 
 namespace Aisel\ContactBundle\Manager;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 /**
  * Contact manager, sends "contact us" email
  *

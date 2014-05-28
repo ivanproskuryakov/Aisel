@@ -53,7 +53,6 @@ class UserPageManager
         foreach ($array as $k => $v) {
             if (count($v->children)) {
                 if ($v->selected) $this->categories[$v->id] = trim($v->title);
-//                var_dump($v['children']);
                 $return = $this->flatCategories($v->children, $return);
             } else {
                 if ($v->selected) $this->categories[$v->id] = trim($v->title);
@@ -133,8 +132,6 @@ class UserPageManager
         if ($cats = $pageDetails->selectedCategories) {
             $this->flatCategories($cats, array());
 
-//            print_r($this->categories);
-//            exit();
             $currentCats = $page->getCategories();
             foreach ($currentCats as $c) {
                 $page->removeCategory($c);
@@ -160,8 +157,6 @@ class UserPageManager
      */
     public function addPage($pageDetails)
     {
-//        var_dump($pageDetails);
-//        exit();
         $page = new Page();
         if (isset($pageDetails->page->title)) $page->setTitle($pageDetails->page->title);
         if (isset($pageDetails->page->content)) $page->setContent($pageDetails->page->content);
