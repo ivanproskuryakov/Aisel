@@ -76,7 +76,7 @@ class PageAdmin extends Admin
                     '1' => 'Enabled'),
                     'label' => 'Comments','attr' => array('class' => 'span3')
                 ))
-                ->add('isHidden', null, array('required' => false,'label' => 'Hidden page'))
+                ->add('hidden', null, array('required' => false,'label' => 'Hidden page'))
                 ->add('frontenduser',null, array('label' => 'Assigned Frontend User'))
 
             ->with('Categories', array('description' => 'Select related categories'))
@@ -134,7 +134,7 @@ class PageAdmin extends Admin
 //            ->add('categories')
             ->add('frontenduser', null, array('label' => 'Frontend User'))
             ->add('status', 'boolean', array('label' => 'Status','editable' => true))
-            ->add('isHidden', 'boolean', array('label' => 'Hidden','editable' => true))
+            ->add('hidden', 'boolean', array('label' => 'Hidden','editable' => true))
             ->add('updatedAt', 'datetime', array('label' => 'Date'))
             ->add('_action', 'actions', array(
                     'actions' => array(

@@ -76,7 +76,7 @@ class PageRepository extends EntityRepository
 
         $query->select('COUNT(p.id)')
             ->from('AiselPageBundle:Page', 'p')
-            ->andWhere('p.isHidden != 1');
+            ->andWhere('p.hidden != 1');
 
         if ($this->category) {
             $query->innerJoin('p.categories', 'c')
@@ -113,7 +113,7 @@ class PageRepository extends EntityRepository
             ->from('AiselPageBundle:Page', 'p')
             ->where('p.content LIKE :search')->setParameter('search', '%' . $this->search . '%')
             ->andWhere('p.status = 1')
-            ->andWhere('p.isHidden != 1')
+            ->andWhere('p.hidden != 1')
             ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
             ->orderBy('p.' . $this->pageOrder, $this->pageOrderBy)
@@ -151,7 +151,7 @@ class PageRepository extends EntityRepository
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('p.id, p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt,  p.status')
             ->from('AiselPageBundle:Page', 'p')
-            ->andWhere('p.isHidden != 1');
+            ->andWhere('p.hidden != 1');
 
         if ($this->userId) {
             $query
@@ -188,7 +188,7 @@ class PageRepository extends EntityRepository
             ->from('AiselPageBundle:Page', 'p')
             ->innerJoin('p.categories', 'c')
             ->where('p.status = 1')
-            ->andWhere('p.isHidden != 1')
+            ->andWhere('p.hidden != 1')
             ->andWhere('c.id = :categoryId')->setParameter('categoryId', $categoryId)
             ->getQuery()
             ->execute();

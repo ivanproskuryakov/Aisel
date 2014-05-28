@@ -42,7 +42,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $hiddenPage->setTitle('About Us');
         $hiddenPage->setContent($loremIpsumText);
         $hiddenPage->setStatus(true);
-        $hiddenPage->setIsHidden(true);
+        $hiddenPage->setHidden(true);
         $hiddenPage->setCommentStatus(false);
         $hiddenPage->setMetaUrl('about-aisel');
         $hiddenPage->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -56,7 +56,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setTitle('Disabled Page');
         $page->setContent($loremIpsumText);
         $page->setStatus(false);
-        $page->setIsHidden(true);
+        $page->setHidden(true);
         $page->setCommentStatus(false);
         $page->setMetaUrl('page-disabled');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -70,7 +70,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
             $page->setTitle('Sample Page '. $i);
             $page->setContent($loremIpsumText);
             $page->setStatus(true);
-            $page->setIsHidden(false);
+            $page->setHidden(false);
             $page->addCategory($rootCategory);
             $page->addCategory($childCategory);
             $page->setCommentStatus(false);
@@ -88,7 +88,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
             $page->setTitle('Sample User Page '. $i);
             $page->setContent($loremIpsumText);
             $page->setStatus(true);
-            $page->setIsHidden(false);
+            $page->setHidden(false);
             $page->setFrontenduser($frontendUser);
             $page->addCategory($rootCategory);
             $page->addCategory($childCategory);

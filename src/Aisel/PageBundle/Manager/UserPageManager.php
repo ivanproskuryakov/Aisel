@@ -170,7 +170,7 @@ class UserPageManager
         if (isset($pageDetails->page->meta_url)) $page->setMetaUrl($pageDetails->page->meta_url);
         if (isset($pageDetails->page->meta_keywords)) $page->setMetaKeywords($pageDetails->page->meta_keywords);
         if (isset($pageDetails->page->meta_description)) $page->setMetaKeywords($pageDetails->page->meta_description);
-        $page->setIsHidden(false);
+        $page->setHidden(false);
         $page->setCommentStatus(false);
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
