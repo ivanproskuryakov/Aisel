@@ -12,7 +12,6 @@
 namespace Aisel\ContactBundle\Controller;
 
 use Aisel\ConfigBundle\Controller\SettingsController;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Contact settings controller for Backend, extends Aisel SettingsController

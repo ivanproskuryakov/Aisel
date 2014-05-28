@@ -150,7 +150,7 @@ sonata_block:
 
 sonata_admin:
     title:      Administration
-    title_logo: /images/logo-black.png
+#    title_logo: /images/logo-black.png
     templates:
         layout:              AiselAdminBundle::layout.html.twig
         search:              SonataAdminBundle:Core:search.html.twig
