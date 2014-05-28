@@ -56,7 +56,6 @@ class CategoryManager
     public function getHTMLCategoryTree()
     {
         $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
-        $tree = array();
         $treeHTML = '<ul>';
 
         foreach ($categories as $rootItem) {

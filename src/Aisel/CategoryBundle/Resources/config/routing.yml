@@ -21,11 +21,14 @@ api_aisel_categoryview:
 aisel_category_tree_up:
     pattern:  /administration/aisel/category/category/up/{id}
     defaults:  { _controller: AiselCategoryBundle:AdminCategorySort:up }
+    requirements:
+        _method: GET
 
 aisel_category_tree_down:
     pattern:  /administration/aisel/category/category/down/{id}
     defaults:  { _controller: AiselCategoryBundle:AdminCategorySort:down }
-
+    requirements:
+        _method: GET
 
 
 # User specific actions

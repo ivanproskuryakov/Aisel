@@ -49,13 +49,13 @@ class UserPageManager
      * @param array $return
      * @return array $return
      */
-    public function flat_categories($array, $return)
+    public function flatCategories($array, $return)
     {
         foreach ($array as $k => $v) {
             if (count($v->children)) {
                 if ($v->selected) $this->categories[$v->id] = trim($v->title);
 //                var_dump($v['children']);
-                $return = $this->flat_categories($v->children, $return);
+                $return = $this->flatCategories($v->children, $return);
             } else {
                 if ($v->selected) $this->categories[$v->id] = trim($v->title);
             }
@@ -132,7 +132,7 @@ class UserPageManager
 
         // Remove old and Set new Categories
         if ($cats = $pageDetails->selectedCategories) {
-            $this->flat_categories($cats, array());
+            $this->flatCategories($cats, array());
 
 //            print_r($this->categories);
 //            exit();
@@ -184,7 +184,7 @@ class UserPageManager
 
         // Remove old and Set new Categories
         if ($cats = $pageDetails->selectedCategories) {
-            $this->flat_categories($cats, array());
+            $this->flatCategories($cats, array());
 
             foreach ($this->categories as $k => $v) {
                 $category = $this->em->getRepository('AiselCategoryBundle:Category')->find($k);

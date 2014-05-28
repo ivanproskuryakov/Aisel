@@ -7,7 +7,11 @@ api_aisel_navigationmenu:
 aisel_menu_tree_up:
     pattern:  /administration/aisel/navigation/menu/up/{id}
     defaults:  { _controller: AiselNavigationBundle:MenuSort:up }
+    requirements:
+        _method: GET
 
 aisel_menu_tree_down:
     pattern:  /administration/aisel/navigation/menu/down/{id}
     defaults:  { _controller: AiselNavigationBundle:MenuSort:down }
+    requirements:
+        _method: GET
