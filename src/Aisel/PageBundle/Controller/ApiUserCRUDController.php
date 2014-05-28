@@ -11,7 +11,6 @@
 
 namespace Aisel\PageBundle\Controller;
 
-use Aisel\PageBundle\Entity\Page as Page;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -42,7 +41,7 @@ class ApiUserCRUDController extends Controller
         $pageDetails = $request->get('details');
 
         if ($pageDetails) {
-            $page = $this->container->get("aisel.userpage.manager")->updatePageId($pageId, $pageDetails);
+            $this->container->get("aisel.userpage.manager")->updatePageId($pageId, $pageDetails);
         } else {
             return array('message' => 'Empty page details.');
         }

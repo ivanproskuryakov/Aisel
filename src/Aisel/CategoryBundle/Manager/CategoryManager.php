@@ -66,12 +66,6 @@ class CategoryManager
                 $treeHTML .= '<li>';
                 $treeHTML .= '<a href="/#!/category/' . $rootItem->getMetaUrl() . '">' . $rootItem->getTitle() . '</a>';
                 $treeHTML .= '</li>';
-//                $_category = array(
-//                    'title' => $rootItem->getTitle(),
-//                    'children' => $this->generatePageTree($rootItem->getChildren(),$rootItem->getId())
-//                );
-//                $tree[] = $_category;
-
                 $treeHTML .= $this->generatePageTreeHTML($rootItem->getChildren(), $rootItem->getId());
             }
         }
