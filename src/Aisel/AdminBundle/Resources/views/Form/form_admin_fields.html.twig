@@ -9,11 +9,11 @@ file that was distributed with this source code.
 
 #}
 
-{% extends 'SonataAdminBundle:Form:form_admin_fields.html.twig' %}
 
-<!-- Aisel choice widget-->
+{% extends 'SonataAdminBundle:Form:form_admin_fields.html.twig' %}
 {% block choice_widget %}
 {% spaceless %}
+    <!-- Aisel choice widget-->
     {% if compound %}
         <ul {{ block('widget_container_attributes_choice_widget') }}>
 

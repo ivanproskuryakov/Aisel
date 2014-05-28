@@ -182,9 +182,7 @@ class UserManager  implements UserProviderInterface
                         )
                     );
 
-                $response = $this->getMailer()->send($message);
             } catch (\Swift_TransportException $e) {
-                $response = $e->getMessage() ;
             }
 
             return $user;
