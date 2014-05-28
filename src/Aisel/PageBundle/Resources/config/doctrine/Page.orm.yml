@@ -20,7 +20,7 @@ Aisel\PageBundle\Entity\Page:
         status:
             type: boolean
             column: status
-        isHidden:
+        hidden:
             type: boolean
             column: is_hidden
         commentStatus:

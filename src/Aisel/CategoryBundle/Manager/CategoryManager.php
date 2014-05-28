@@ -92,8 +92,6 @@ class CategoryManager
                         $tree[$item->getId()]['title'] = $item->getTitle();
                         if ($item->getChildren()) {
                             $children = $this->generatePageTreeHTML($item->getChildren(), $item->getId());
-//                                $tree[$item->getId()]['children'] = $children;
-//                                var_dump($item->getTitle());
                             $treeHTML .= '<li>';
                             $treeHTML .= '<a href="/#!/category/' . $item->getMetaUrl() . '">' . $item->getTitle() . '</a>';
                             $treeHTML .= $children;

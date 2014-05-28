@@ -133,7 +133,7 @@ class CategoryRepository extends NestedTreeRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
         $r = $qb->select('c')
             ->from('AiselCategoryBundle:Category', 'c')
-//            ->where('c.status = 1')
+            ->where('c.status = 1')
             ->orderBy('c.root', 'ASC')
             ->addOrderBy('c.lft', 'ASC')
             ->getQuery()

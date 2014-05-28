@@ -33,8 +33,8 @@
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~1.3",
-        "friendsofsymfony/rest-bundle": "dev-master",
-        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "friendsofsymfony/rest-bundle": "1.4.*@dev",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
         "egeloen/ckeditor-bundle": "~2.0",
 
         "sonata-project/jquery-bundle": "1.10.*@dev",

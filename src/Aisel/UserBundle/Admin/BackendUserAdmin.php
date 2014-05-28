@@ -40,12 +40,6 @@ class BackendUserAdmin extends BaseUserAdmin
                     'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
                 ))
             ->end()
-//            ->with('Groups')
-//            ->add('groups', 'sonata_type_model', array(
-//                'required' => false,
-//                'expanded' => true,
-//                'multiple' => true
-//            ))
             ->end()
             ->with('Profile')
                 ->add('dateOfBirth', 'birthday', array('required' => false))
@@ -71,22 +65,6 @@ class BackendUserAdmin extends BaseUserAdmin
             ->end()
         ;
 
-//        if ($this->getSubject() && !$this->getSubject()->hasRole('ROLE_SONATA_ADMIN')) {
-//            $formMapper
-//                ->with('Management')
-//                ->add('realRoles', 'sonata_security_roles', array(
-//                    'label'    => 'form.label_roles',
-//                    'expanded' => true,
-//                    'multiple' => true,
-//                    'required' => false
-//                ))
-//                ->add('locked', null, array('required' => false))
-//                ->add('expired', null, array('required' => false))
-//                ->add('enabled', null, array('required' => false))
-//                ->add('credentialsExpired', null, array('required' => false))
-//                ->end()
-//            ;
-//        }
     }
 
     /**

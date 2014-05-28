@@ -77,8 +77,6 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     // Interface methods
     public function __construct()
     {
-//        $this->isActive = true;
-        // may not be needed, see section on salt below
         $this->salt = md5(uniqid(null, true));
     }
     public function __toString()
@@ -377,7 +375,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
             $this->username,
             $this->password,
             // see section on salt below
-            // $this->salt
+             $this->salt
             ) = unserialize($serialized);
     }
 

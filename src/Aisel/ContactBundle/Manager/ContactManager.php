@@ -82,18 +82,4 @@ class ContactManager
         return $response;
     }
 
-//    /**
-//     * Get contact setting
-//     * @param array $params
-//     * @return array
-//     */
-//    public function getConfig()
-//    {
-//        $config = $this->em->getRepository('AiselConfigBundle:Config')->findOneBy(array('entity' => 'config_contact'));
-//        if (!($config)) {
-//            throw new NotFoundHttpException('Nothing found');
-//        }
-//        return $config;
-//    }
-
 }

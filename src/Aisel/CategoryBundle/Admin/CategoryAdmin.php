@@ -77,8 +77,6 @@ class CategoryAdmin extends Admin
 
         $subject = $this->getSubject();
         $id = $subject->getId();
-//        $id = 1;
-
         $formMapper
             ->with('General', array('description' => 'This section contains general settings'))
                 ->add('title', 'text', array('label' => 'Title','attr' => array('class' => 'span12')))

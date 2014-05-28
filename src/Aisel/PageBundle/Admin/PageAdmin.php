@@ -97,7 +97,6 @@ class PageAdmin extends Admin
         return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
     }
 
-    // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper

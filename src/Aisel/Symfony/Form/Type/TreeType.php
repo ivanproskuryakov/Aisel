@@ -74,7 +74,6 @@ class TreeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $orderColumns = $this->options['orderColumns'];
-//
         if (!empty($orderColumns)) {
 
             $queryBuilder = function ($repository) use ($orderColumns) {
@@ -90,9 +89,8 @@ class TreeType extends AbstractType
                 'query_builder' => $queryBuilder,
             ));
         }
-//
         $resolver->setDefaults(array(
-            'required'  => false
+            'required' => false
         ));
     }
 

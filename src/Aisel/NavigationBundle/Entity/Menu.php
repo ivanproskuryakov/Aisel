@@ -280,51 +280,6 @@ class Menu
         return $this->parent;
     }
 
-//    /**
-//     * Set dateCreated
-//     *
-//     * @param \DateTime $dateCreated
-//     * @return Menu
-//     */
-//    public function setDateCreated($dateCreated)
-//    {
-//        $this->dateCreated = $dateCreated;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get dateCreated
-//     *
-//     * @return \DateTime
-//     */
-//    public function getDateCreated()
-//    {
-//        return $this->dateCreated;
-//    }
-//
-//    /**
-//     * Set dateModified
-//     *
-//     * @param \DateTime $dateModified
-//     * @return Menu
-//     */
-//    public function setDateModified($dateModified)
-//    {
-//        $this->dateModified = $dateModified;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get dateModified
-//     *
-//     * @return \DateTime
-//     */
-//    public function getDateModified()
-//    {
-//        return $this->dateModified;
-//    }
     /**
      * @var \DateTime
      */
