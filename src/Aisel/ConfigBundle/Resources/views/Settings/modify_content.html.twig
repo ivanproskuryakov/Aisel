@@ -13,7 +13,6 @@ file that was distributed with this source code.
    <div class="config-routes col-md-3 sidebar-nav">
        <h4>{{ 'settings.label' | trans({}, 'AiselConfigBundle') }}</h4>
        <ul class="config-entities nav nav-list">
-           {#<li class="nav-header">{{ 'settings.label' | trans({}, 'AiselConfigBundle') }}</li>#}
            {% for route in routes %}
                 <li>
                     <a href="{{ path(route.path) }}">

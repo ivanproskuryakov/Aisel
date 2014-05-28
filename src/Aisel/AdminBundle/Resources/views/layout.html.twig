@@ -12,5 +12,12 @@ file that was distributed with this source code.
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
 
 {% block side_bar_after_nav %}
-    {{ knp_menu_render('presta_sonata_navigation.menu.main', {'allow_safe_labels' : true}, 'list') }}
+    <ul class="sidebar-menu">
+        <li class="treeview">
+            <a onclick="javascript:location.href='{{ path('config_homepage') }}'" href="#">
+                <i class="fa fa-wrench"></i><span> Settings</span>
+            </a>
+        </li>
+    </ul>
+
 {% endblock %}
