@@ -11,9 +11,7 @@
 
 namespace Aisel\CategoryBundle\Controller;
 
-use Aisel\PageBundle\Entity\Page as Page;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -37,6 +35,7 @@ class ApiController extends Controller
         );
 
         $categoryList = $this->container->get("aisel.category.manager")->getCategories($params);
+
         return $categoryList;
     }
 
@@ -47,6 +46,7 @@ class ApiController extends Controller
     public function categoryTreeAction(Request $request)
     {
         $categoryList = $this->container->get("aisel.category.manager")->getHTMLCategoryTree();
+
         return $categoryList;
     }
 
@@ -57,6 +57,7 @@ class ApiController extends Controller
     public function categoryViewAction($urlKey)
     {
         $category = $this->container->get("aisel.category.manager")->getCategoryByUrl($urlKey);
+
         return $category;
     }
 

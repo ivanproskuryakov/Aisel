@@ -30,11 +30,10 @@ class PageManager
         $this->em = $em;
     }
 
-
     /**
      * Get categories in array for page
-     * @param int $pageId
-     * @return array
+     * @param  int   $page
+     * @return array $categories
      */
     public function getPageCategories($page)
     {
@@ -46,12 +45,13 @@ class PageManager
             $category['url'] = $c->getMetaUrl();
             $categories[$c->getId()] = $category;
         }
+
         return $categories;
     }
 
     /**
      * Get list of all pages
-     * @param array $params
+     * @param  array $params
      * @return array
      */
     public function getPages($params)
@@ -69,43 +69,45 @@ class PageManager
 
     /**
      * Get single detailed page with category by ID
-     * @param int $id
+     * @param  int $id
      * @return \Aisel\PageBundle\Entity\Page $pageDetails
      */
     public function getPage($id)
     {
         $page = $this->em->getRepository('AiselPageBundle:Page')->find($id);
 
-        if(!($page)){
+        if (!($page)) {
             throw new NotFoundHttpException('Nothing found');
         }
 
         $pageDetails = array('page'=>$page,'categories'=>$this->getPageCategories($page));
+
         return $pageDetails;
     }
 
     /**
      * Get single detailed page with category by URLKey
-     * @param string $urlKey
+     * @param  string                        $urlKey
      * @return \Aisel\PageBundle\Entity\Page $page
      */
     public function getPageByURL($urlKey)
     {
         $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(array('metaUrl' => $urlKey));
 
-        if(!($page)){
+        if (!($page)) {
             throw new NotFoundHttpException('Nothing found');
         }
 
         $pageDetails = array('page'=>$page,'categories'=>$this->getPageCategories($page));
+
         return $pageDetails;
     }
 
     /**
      * validate metaUrl for Page Entity and return one we can use
-     * @param string $url
-     * @param int $pageId
-     * @return string
+     * @param  string $url
+     * @param  int    $pageId
+     * @return string $validUrl
      */
     public function normalizePageUrl($url, $pageId = null)
     {
@@ -115,6 +117,7 @@ class PageManager
         if ($page) {
             $validUrl = $validUrl. '-'. time();
         }
+
         return $validUrl;
     }
 
@@ -125,8 +128,8 @@ class PageManager
     public function getEnabledPages()
     {
         $pageList = $this->em->getRepository('AiselPageBundle:Page')->getEnabledPages();
+
         return $pageList;
     }
-
 
 }

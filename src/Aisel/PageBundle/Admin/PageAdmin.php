@@ -18,7 +18,6 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 use Sonata\AdminBundle\Validator\ErrorElement;
-use Symfony\Component\Validator\ValidatorInterface;
 
 /**
  * Page CRUD configuration for Backend
@@ -30,10 +29,10 @@ class PageAdmin extends Admin
     protected $pageManager;
     protected $baseRoutePattern = 'page';
 
-    public function setManager($pageManager) {
+    public function setManager($pageManager)
+    {
         $this->pageManager = $pageManager ;
     }
-
 
     /**
      * {@inheritdoc}
@@ -80,7 +79,6 @@ class PageAdmin extends Admin
                 ->add('isHidden', null, array('required' => false,'label' => 'Hidden page'))
                 ->add('frontenduser',null, array('label' => 'Assigned Frontend User'))
 
-
             ->with('Categories', array('description' => 'Select related categories'))
                 ->add('categories', 'gedmotree', array('expanded' => true,'multiple' => true,
                     'class' => 'Aisel\CategoryBundle\Entity\Category',
@@ -94,7 +92,8 @@ class PageAdmin extends Admin
 
     }
 
-    public function getFormTheme() {
+    public function getFormTheme()
+    {
         return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
     }
 
@@ -126,7 +125,6 @@ class PageAdmin extends Admin
         $page->setMetaUrl($normalUrl);
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
-
 
     // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)

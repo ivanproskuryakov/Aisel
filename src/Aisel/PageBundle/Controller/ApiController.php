@@ -13,7 +13,6 @@ namespace Aisel\PageBundle\Controller;
 
 use Aisel\PageBundle\Entity\Page as Page;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -30,6 +29,7 @@ class ApiController extends Controller
         if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN') === false) {
             return $this->container->get('security.context')->isGranted('ROLE_USER');
         }
+
         return false;
     }
 
@@ -53,6 +53,7 @@ class ApiController extends Controller
         }
 
         $searchResult = $this->container->get("aisel.search.manager")->search($params);
+
         return $searchResult;
 
     }
@@ -76,6 +77,7 @@ class ApiController extends Controller
         }
 
         $pageList = $this->container->get("aisel.page.manager")->getPages($params);
+
         return $pageList;
 
     }

@@ -24,7 +24,6 @@ class CategoryManager
         $this->em = $em;
     }
 
-
     /**
      * Get tree array of enabled categories
      * @return array $tree
@@ -46,6 +45,7 @@ class CategoryManager
                 $tree[] = $_category;
             }
         }
+
         return $tree;
     }
 
@@ -76,11 +76,11 @@ class CategoryManager
 
     /**
      * Generate child categories for selected in HTML format
-     * @param object $items
-     * @param int $pid
+     * @param  object $items
+     * @param  int    $pid
      * @return array
      */
-    function generatePageTreeHTML($items, $pid = null)
+    public function generatePageTreeHTML($items, $pid = null)
     {
         $treeHTML = '<ul>';
         foreach ($items as $item) {
@@ -104,16 +104,17 @@ class CategoryManager
             }
         }
         $treeHTML .= '</ul>';
+
         return $treeHTML;
     }
 
     /**
      * Generate child categories for selected root
-     * @param object $items
-     * @param int $pid
+     * @param  object $items
+     * @param  int    $pid
      * @return array
      */
-    function generatePageTree($items, $pid = null)
+    public function generatePageTree($items, $pid = null)
     {
         $tree = array();
         foreach ($items as $item) {
@@ -133,12 +134,13 @@ class CategoryManager
                 }
             }
         }
+
         return $tree;
     }
 
     /**
      * Get list of all categories
-     * @param array $params
+     * @param  array $params
      * @return mixed
      */
     public function getCategories($params)
@@ -154,10 +156,9 @@ class CategoryManager
         return $return;
     }
 
-
     /**
      * Get single detailed category by URLKey
-     * @param string $urlKey
+     * @param  string $urlKey
      * @return mixed
      */
     public function getCategoryByURL($urlKey)
@@ -168,7 +169,6 @@ class CategoryManager
             throw $this->createNotFoundException();
         }
 
-
         $pages = $this->em->getRepository('AiselPageBundle:Page')->getPagesByCategory($category->getId());
         $categoryDetails = array('category' => $category, 'pages' => $pages);
 
@@ -177,7 +177,7 @@ class CategoryManager
 
     /**
      * Get single category
-     * @param int $id
+     * @param  int    $id
      * @return object
      */
     public function getCategory($id)
@@ -198,13 +198,14 @@ class CategoryManager
     public function getEnabledCategories()
     {
         $pageList = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
+
         return $pageList;
     }
 
     /**
      * validate metaUrl for Category Entity and return one we can use
-     * @param string $url
-     * @param int $categoryId
+     * @param  string $url
+     * @param  int    $categoryId
      * @return string
      */
     public function normalizeCategoryUrl($url, $categoryId = null)
@@ -219,6 +220,5 @@ class CategoryManager
 
         return $validUrl;
     }
-
 
 }

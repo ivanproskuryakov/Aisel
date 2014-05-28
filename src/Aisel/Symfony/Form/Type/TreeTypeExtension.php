@@ -30,4 +30,3 @@ class TreeTypeExtension extends AbstractExtension
         return new TreeTypeGuesser();
     }
 }
-

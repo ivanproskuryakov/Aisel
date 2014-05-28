@@ -13,13 +13,10 @@ namespace Aisel\CategoryBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 use Sonata\AdminBundle\Validator\ErrorElement;
-use Symfony\Component\Validator\ValidatorInterface;
 
 /**
  * Category CRUD configuration for Backend
@@ -33,10 +30,10 @@ class CategoryAdmin extends Admin
     protected $maxPerPage = 500;
     protected $maxPageLinks = 500;
 
-    public function setManager($categoryManager) {
+    public function setManager($categoryManager)
+    {
         $this->categoryManager = $categoryManager ;
     }
-
 
     /**
      * {@inheritdoc}
@@ -69,10 +66,10 @@ class CategoryAdmin extends Admin
         return $query;
     }
 
-    public function getFormTheme() {
+    public function getFormTheme()
+    {
         return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
     }
-
 
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
@@ -112,6 +109,7 @@ class CategoryAdmin extends Admin
                             $qb ->where('p.id <> :id')->setParameter('id', $id);
                         }
                         $qb ->orderBy('p.root, p.lft', 'ASC');
+
                         return $qb;
                     }, 'empty_value' => 'no parent'
 
@@ -125,7 +123,6 @@ class CategoryAdmin extends Admin
             ->end();
 
     }
-
 
     public function prePersist($category)
     {

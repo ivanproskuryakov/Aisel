@@ -189,4 +189,3 @@ presta_sonata_navigation:
                         route: admin_aisel_category_category_list
                     menu:
                         route: admin_aisel_navigation_menu_list
-

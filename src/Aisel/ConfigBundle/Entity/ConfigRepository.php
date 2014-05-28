@@ -44,7 +44,8 @@ class ConfigRepository extends EntityRepository
         return $config;
     }
 
-    public function getConfig($entity) {
+    public function getConfig($entity)
+    {
         return $this->findOneBy(array('entity' => $entity));
     }
 
@@ -62,7 +63,7 @@ class ConfigRepository extends EntityRepository
             $this->_em->persist($config);
             $this->_em->flush();
 
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             throw new Exception($e);
         }
 

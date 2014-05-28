@@ -37,7 +37,6 @@ class ExtraLoader implements LoaderInterface
             throw new \RuntimeException('Do not add this loader twice');
         }
 
-
         $configEntities = $this->container->getParameter('aisel_config.entities');
         $prefix = $this->container->getParameter('aisel_config.route_prefix');
 

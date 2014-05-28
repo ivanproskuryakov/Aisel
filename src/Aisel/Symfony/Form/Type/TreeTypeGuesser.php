@@ -12,7 +12,6 @@
 namespace Aisel\Symfony\Form\Type;
 
 use Doctrine\Common\Annotations\Reader;
-use Doctrine\Common\Annotations\SimpleAnnotationReader;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Common\Persistence\Mapping\MappingException;
 use Doctrine\ORM\Mapping\MappingException as LegacyMappingException;

@@ -11,7 +11,6 @@
 
 namespace Aisel\ConfigBundle\Controller;
 
-use Aisel\ConfigBundle\Entity\Setting;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -31,11 +30,10 @@ class SettingsController extends Controller
     /*
      * Main and single action
      * */
-	public function modifyAction()
+    public function modifyAction()
     {
         $request = $this->get('request');
         $routeId = $request->get('_route');
-
 
         $config = $this->getRepository()->getConfig($routeId);
         $form = $this->populateForm(new $this->form(), $config);
@@ -60,28 +58,28 @@ class SettingsController extends Controller
 
         return $this->render($this->template, $this->getTemplateVariables());
 
-	}
+    }
 
-	/**
+    /**
      * Use this method if you need to pass additional variables for twig, in Aisel I use it to pass some Sonata vars
-	 * @return array
-	 */
+     * @return array
+     */
     protected function getTemplateVariables()
     {
         return $this->$twig;
     }
 
-	/**
-	 * @return ConfigRepository
-	 */
+    /**
+     * @return ConfigRepository
+     */
     protected function getRepository()
     {
         return $this->get('doctrine')->getRepository('AiselConfigBundle:Config');
     }
 
-	/**
-	 * @return Form
-	 */
+    /**
+     * @return Form
+     */
     protected function populateForm($formClass, $config)
     {
         $formArray = array();
@@ -94,11 +92,11 @@ class SettingsController extends Controller
         return $form;
     }
 
-	/**
+    /**
      * Return routes with their names
      *
-	 * @return Array
-	 */
+     * @return Array
+     */
     protected function getRoutes()
     {
         $configEntities = $this->container->getParameter('aisel_config.entities');
@@ -118,16 +116,16 @@ class SettingsController extends Controller
         return $routes;
     }
 
-	/**
+    /**
      * Return config name
      *
-	 * @return Array
-	 */
+     * @return Array
+     */
     protected function getConfigNameLabel()
     {
         $label =  'aisel_'.$this->get('request')->get('_route').'.label';
+
         return $label;
     }
-
 
 }

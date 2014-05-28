@@ -3,7 +3,6 @@
 namespace Aisel\UserBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\NoResultException;
 
 /**
  * Frontend user repository
@@ -17,7 +16,7 @@ class FrontendUserRepository extends EntityRepository
      * Find user by Username and Email
      *
      * @return int value
-     * */
+     *             */
 
     public function findUser($username, $email)
     {

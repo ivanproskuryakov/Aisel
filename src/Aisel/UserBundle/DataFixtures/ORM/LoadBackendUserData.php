@@ -68,7 +68,6 @@ class LoadBackendUserData extends AbstractFixture implements OrderedFixtureInter
 
         $user = $this->getUserManager()->updateUser($user);
 
-
     }
 
     /**

@@ -11,9 +11,6 @@
 
 namespace Aisel\CategoryBundle\Entity;
 
-use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Category enitity
  *
@@ -91,9 +88,6 @@ class Category
      */
     private $metaKeywords;
 
-
-
-
     public function __toString()
     {
         return $this->getTitle();
@@ -102,6 +96,7 @@ class Category
     public function getSpacedTitle()
     {
         $prefix = str_repeat('--',$this->getLvl());
+
         return $prefix.$this->getTitle();
     }
 
@@ -116,7 +111,7 @@ class Category
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -126,7 +121,7 @@ class Category
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string   $title
      * @return Category
      */
     public function setTitle($title)
@@ -139,7 +134,7 @@ class Category
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -149,7 +144,7 @@ class Category
     /**
      * Set lft
      *
-     * @param integer $lft
+     * @param  integer  $lft
      * @return Category
      */
     public function setLft($lft)
@@ -162,7 +157,7 @@ class Category
     /**
      * Get lft
      *
-     * @return integer 
+     * @return integer
      */
     public function getLft()
     {
@@ -172,7 +167,7 @@ class Category
     /**
      * Set rgt
      *
-     * @param integer $rgt
+     * @param  integer  $rgt
      * @return Category
      */
     public function setRgt($rgt)
@@ -185,7 +180,7 @@ class Category
     /**
      * Get rgt
      *
-     * @return integer 
+     * @return integer
      */
     public function getRgt()
     {
@@ -195,7 +190,7 @@ class Category
     /**
      * Set root
      *
-     * @param integer $root
+     * @param  integer  $root
      * @return Category
      */
     public function setRoot($root)
@@ -208,7 +203,7 @@ class Category
     /**
      * Get root
      *
-     * @return integer 
+     * @return integer
      */
     public function getRoot()
     {
@@ -218,7 +213,7 @@ class Category
     /**
      * Set lvl
      *
-     * @param integer $lvl
+     * @param  integer  $lvl
      * @return Category
      */
     public function setLvl($lvl)
@@ -231,19 +226,17 @@ class Category
     /**
      * Get lvl
      *
-     * @return integer 
+     * @return integer
      */
     public function getLvl()
     {
         return $this->lvl;
     }
 
-
-
     /**
      * Add children
      *
-     * @param \Aisel\CategoryBundle\Entity\Category $children
+     * @param  \Aisel\CategoryBundle\Entity\Category $children
      * @return Category
      */
     public function addChild(\Aisel\CategoryBundle\Entity\Category $children)
@@ -266,7 +259,7 @@ class Category
     /**
      * Get children
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {
@@ -276,7 +269,7 @@ class Category
     /**
      * Set parent
      *
-     * @param \Aisel\CategoryBundle\Entity\Category $parent
+     * @param  \Aisel\CategoryBundle\Entity\Category $parent
      * @return Category
      */
     public function setParent(\Aisel\CategoryBundle\Entity\Category $parent = null)
@@ -299,7 +292,7 @@ class Category
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string   $description
      * @return Category
      */
     public function setDescription($description)
@@ -312,7 +305,7 @@ class Category
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -322,7 +315,7 @@ class Category
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param  boolean  $status
      * @return Category
      */
     public function setStatus($status)
@@ -335,7 +328,7 @@ class Category
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -345,7 +338,7 @@ class Category
     /**
      * Set metaUrl
      *
-     * @param string $metaUrl
+     * @param  string   $metaUrl
      * @return Category
      */
     public function setMetaUrl($metaUrl)
@@ -358,7 +351,7 @@ class Category
     /**
      * Get metaUrl
      *
-     * @return string 
+     * @return string
      */
     public function getMetaUrl()
     {
@@ -368,7 +361,7 @@ class Category
     /**
      * Set metaTitle
      *
-     * @param string $metaTitle
+     * @param  string   $metaTitle
      * @return Category
      */
     public function setMetaTitle($metaTitle)
@@ -381,7 +374,7 @@ class Category
     /**
      * Get metaTitle
      *
-     * @return string 
+     * @return string
      */
     public function getMetaTitle()
     {
@@ -391,7 +384,7 @@ class Category
     /**
      * Set metaDescription
      *
-     * @param string $metaDescription
+     * @param  string   $metaDescription
      * @return Category
      */
     public function setMetaDescription($metaDescription)
@@ -404,7 +397,7 @@ class Category
     /**
      * Get metaDescription
      *
-     * @return string 
+     * @return string
      */
     public function getMetaDescription()
     {
@@ -414,7 +407,7 @@ class Category
     /**
      * Set metaKeywords
      *
-     * @param string $metaKeywords
+     * @param  string   $metaKeywords
      * @return Category
      */
     public function setMetaKeywords($metaKeywords)
@@ -427,7 +420,7 @@ class Category
     /**
      * Get metaKeywords
      *
-     * @return string 
+     * @return string
      */
     public function getMetaKeywords()
     {
@@ -444,11 +437,10 @@ class Category
      */
     private $updatedAt;
 
-
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Category
      */
     public function setCreatedAt($createdAt)
@@ -461,7 +453,7 @@ class Category
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -471,7 +463,7 @@ class Category
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Category
      */
     public function setUpdatedAt($updatedAt)
@@ -484,7 +476,7 @@ class Category
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {

@@ -12,7 +12,6 @@
 namespace Aisel\PageBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -30,6 +29,7 @@ class ApiUserCRUDController extends Controller
     public function pageDetailsAction($pageId)
     {
         $page = $this->container->get("aisel.userpage.manager")->getPageDetailsById($pageId);
+
         return $page;
     }
 
@@ -58,6 +58,7 @@ class ApiUserCRUDController extends Controller
     public function pageDeleteAction($pageId)
     {
         $this->container->get("aisel.userpage.manager")->deletePageId($pageId);
+
         return array(
             'message' => 'Page Deleted!',
             'status' => 'success');
@@ -80,8 +81,8 @@ class ApiUserCRUDController extends Controller
         if (empty($pageDetails->page->title)) return array('message' => 'Empty title');
         if (empty($pageDetails->page->content)) return array('message' => 'Empty page content');
 
-
         $page = $this->container->get("aisel.userpage.manager")->addPage($pageDetails);
+
         return array(
             'message' => 'Page successfully added!',
             'status' => 'success',

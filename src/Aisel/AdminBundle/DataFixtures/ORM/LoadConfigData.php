@@ -14,7 +14,6 @@ namespace Aisel\AdminBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\PageBundle\Entity\Page;
 use Aisel\ConfigBundle\Entity\Config;
 
 /**
@@ -22,7 +21,7 @@ use Aisel\ConfigBundle\Entity\Config;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
+class LoadConfigData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * {@inheritDoc}

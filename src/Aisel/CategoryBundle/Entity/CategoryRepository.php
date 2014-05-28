@@ -25,8 +25,8 @@ class CategoryRepository extends NestedTreeRepository
     private $pageLimit = 5;
     private $pageSkip = 1;
 
-    private function mapRequest($params) {
-
+    private function mapRequest($params)
+    {
         if ( isset($params['current'])) {
             $this->pageCurrent = $params['current'];
         }
@@ -42,7 +42,7 @@ class CategoryRepository extends NestedTreeRepository
      * Get total active categories
      *
      * @return int value
-     * */
+     *             */
 
     public function getTotalFromRequest($params)
     {
@@ -60,12 +60,11 @@ class CategoryRepository extends NestedTreeRepository
         return $r;
     }
 
-
     /*
      * Returns enabled categories
      *
      * @return object
-     * */
+     *                */
 
     public function getEnabledCategoryByUrl($urlKey)
     {
@@ -76,6 +75,7 @@ class CategoryRepository extends NestedTreeRepository
             ->andWhere('c.status = 1')
             ->getQuery()
             ->getSingleResult();
+
         return $r;
     }
 
@@ -83,7 +83,7 @@ class CategoryRepository extends NestedTreeRepository
      * Returns enabled categories
      *
      * @return object
-     * */
+     *                */
 
     public function getEnabledCategory($categoryId)
     {
@@ -94,15 +94,15 @@ class CategoryRepository extends NestedTreeRepository
             ->andWhere('c.status = 1')
             ->getQuery()
             ->getSingleResult();
+
         return $r;
     }
-
 
     /*
      * Returns enabled categories sorted as tree
      *
      * @return object
-     * */
+     *                */
 
     public function getCurrentCategoriesFromRequest($params)
     {
@@ -117,8 +117,8 @@ class CategoryRepository extends NestedTreeRepository
             ->setFirstResult($this->pageSkip)
             ->getQuery()
             ->execute();
-        return $r;
 
+        return $r;
 
     }
 
@@ -126,7 +126,7 @@ class CategoryRepository extends NestedTreeRepository
      * Returns enabled categories sorted as tree
      *
      * @return object
-     * */
+     *                */
 
     public function getEnabledCategoriesAsTree()
     {
@@ -138,6 +138,7 @@ class CategoryRepository extends NestedTreeRepository
             ->addOrderBy('c.lft', 'ASC')
             ->getQuery()
             ->execute();
+
         return $r;
     }
 
@@ -145,7 +146,7 @@ class CategoryRepository extends NestedTreeRepository
      * Find categories by url
      *
      * @return int value
-     * */
+     *             */
 
     public function findTotalByURL($url, $categoryId = null)
     {

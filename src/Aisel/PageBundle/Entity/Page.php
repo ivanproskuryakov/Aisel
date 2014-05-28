@@ -2,8 +2,6 @@
 
 namespace Aisel\PageBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Page
  */
@@ -90,7 +88,7 @@ class Page
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -100,7 +98,7 @@ class Page
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Page
      */
     public function setTitle($title)
@@ -113,7 +111,7 @@ class Page
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -123,7 +121,7 @@ class Page
     /**
      * Set content
      *
-     * @param string $content
+     * @param  string $content
      * @return Page
      */
     public function setContent($content)
@@ -136,7 +134,7 @@ class Page
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -146,7 +144,7 @@ class Page
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param  boolean $status
      * @return Page
      */
     public function setStatus($status)
@@ -159,7 +157,7 @@ class Page
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -169,7 +167,7 @@ class Page
     /**
      * Set isHidden
      *
-     * @param boolean $isHidden
+     * @param  boolean $isHidden
      * @return Page
      */
     public function setIsHidden($isHidden)
@@ -182,7 +180,7 @@ class Page
     /**
      * Get isHidden
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsHidden()
     {
@@ -192,7 +190,7 @@ class Page
     /**
      * Set commentStatus
      *
-     * @param boolean $commentStatus
+     * @param  boolean $commentStatus
      * @return Page
      */
     public function setCommentStatus($commentStatus)
@@ -205,7 +203,7 @@ class Page
     /**
      * Get commentStatus
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getCommentStatus()
     {
@@ -215,7 +213,7 @@ class Page
     /**
      * Set metaUrl
      *
-     * @param string $metaUrl
+     * @param  string $metaUrl
      * @return Page
      */
     public function setMetaUrl($metaUrl)
@@ -228,7 +226,7 @@ class Page
     /**
      * Get metaUrl
      *
-     * @return string 
+     * @return string
      */
     public function getMetaUrl()
     {
@@ -238,7 +236,7 @@ class Page
     /**
      * Set metaTitle
      *
-     * @param string $metaTitle
+     * @param  string $metaTitle
      * @return Page
      */
     public function setMetaTitle($metaTitle)
@@ -251,7 +249,7 @@ class Page
     /**
      * Get metaTitle
      *
-     * @return string 
+     * @return string
      */
     public function getMetaTitle()
     {
@@ -261,7 +259,7 @@ class Page
     /**
      * Set metaDescription
      *
-     * @param string $metaDescription
+     * @param  string $metaDescription
      * @return Page
      */
     public function setMetaDescription($metaDescription)
@@ -274,7 +272,7 @@ class Page
     /**
      * Get metaDescription
      *
-     * @return string 
+     * @return string
      */
     public function getMetaDescription()
     {
@@ -284,7 +282,7 @@ class Page
     /**
      * Set metaKeywords
      *
-     * @param string $metaKeywords
+     * @param  string $metaKeywords
      * @return Page
      */
     public function setMetaKeywords($metaKeywords)
@@ -297,7 +295,7 @@ class Page
     /**
      * Get metaKeywords
      *
-     * @return string 
+     * @return string
      */
     public function getMetaKeywords()
     {
@@ -307,7 +305,7 @@ class Page
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Page
      */
     public function setCreatedAt($createdAt)
@@ -320,7 +318,7 @@ class Page
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -330,7 +328,7 @@ class Page
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Page
      */
     public function setUpdatedAt($updatedAt)
@@ -343,7 +341,7 @@ class Page
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -353,7 +351,7 @@ class Page
     /**
      * Set frontenduser
      *
-     * @param \Aisel\UserBundle\Entity\FrontendUser $frontenduser
+     * @param  \Aisel\UserBundle\Entity\FrontendUser $frontenduser
      * @return Page
      */
     public function setFrontenduser(\Aisel\UserBundle\Entity\FrontendUser $frontenduser = null)
@@ -366,7 +364,7 @@ class Page
     /**
      * Get frontenduser
      *
-     * @return \Aisel\UserBundle\Entity\FrontendUser 
+     * @return \Aisel\UserBundle\Entity\FrontendUser
      */
     public function getFrontenduser()
     {
@@ -376,7 +374,7 @@ class Page
     /**
      * Add categories
      *
-     * @param \Aisel\CategoryBundle\Entity\Category $categories
+     * @param  \Aisel\CategoryBundle\Entity\Category $categories
      * @return Page
      */
     public function addCategory(\Aisel\CategoryBundle\Entity\Category $categories)
@@ -399,7 +397,7 @@ class Page
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {

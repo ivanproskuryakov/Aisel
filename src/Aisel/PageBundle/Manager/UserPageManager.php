@@ -13,7 +13,6 @@ namespace Aisel\PageBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Aisel\PageBundle\Entity\Page;
-use Aisel\AdminBundle\Utility\UrlUtility;
 
 /**
  * Manager for Pages, mostly used in REST API
@@ -45,8 +44,8 @@ class UserPageManager
 
     /**
      * Helper function, get enabled categories from Tree Array
-     * @param array $array
-     * @param array $return
+     * @param  array $array
+     * @param  array $return
      * @return array $return
      */
     public function flatCategories($array, $return)
@@ -60,9 +59,9 @@ class UserPageManager
                 if ($v->selected) $this->categories[$v->id] = trim($v->title);
             }
         }
+
         return $return;
     }
-
 
     /**
      * Check is user Authenticated
@@ -73,12 +72,13 @@ class UserPageManager
         if ($this->securityContext->isGranted('ROLE_SUPER_ADMIN') === false) {
             return $this->securityContext->isGranted('ROLE_USER');
         }
+
         return false;
     }
 
     /**
      * Load page by Id
-     * @param int $pageId
+     * @param  int   $pageId
      * @return array $page
      */
     private function loadPage($pageId)
@@ -87,13 +87,13 @@ class UserPageManager
         if (!($page)) {
             throw new NotFoundHttpException('Nothing found');
         }
+
         return $page;
     }
 
-
     /**
      * Get single detailed page with category by URLKey
-     * @param int $pageId
+     * @param  int   $pageId
      * @return array $page
      */
     public function getPageDetailsById($pageId)
@@ -101,13 +101,14 @@ class UserPageManager
         $page = $this->loadPage($pageId);
         $categories = $this->pageManager->getPageCategories($page);
         $pageDetails = array('page' => $page, 'categories' => $categories);
+
         return $pageDetails;
     }
 
     /**
      * Update page by given Id
-     * @param int $pageId
-     * @param array $details
+     * @param  int   $pageId
+     * @param  array $details
      * @return array $pageDetails
      */
     public function updatePageId($pageId, $details)
@@ -118,7 +119,6 @@ class UserPageManager
         $url            = $page->getMetaUrl();
         $normalUrl      = $this->pageManager->normalizePageUrl($url, $pageId);
 
-
         if (isset($pageDetails->page->title)) $page->setTitle($pageDetails->page->title);
         if (isset($pageDetails->page->content)) $page->setContent($pageDetails->page->content);
         if (isset($pageDetails->page->status)) $page->setStatus($pageDetails->page->status);
@@ -128,7 +128,6 @@ class UserPageManager
         if (isset($pageDetails->page->meta_description)) $page->setMetaKeywords($pageDetails->page->meta_description);
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setMetaUrl($normalUrl);
-
 
         // Remove old and Set new Categories
         if ($cats = $pageDetails->selectedCategories) {
@@ -150,12 +149,13 @@ class UserPageManager
         $this->em->flush();
         $categories = $this->pageManager->getPageCategories($page);
         $pageDetails = array('page' => $page, 'categories' => $categories);
+
         return $pageDetails;
     }
 
     /**
      * Add page from frontend
-     * @param object $pageDetails
+     * @param  object                        $pageDetails
      * @return \Aisel\PageBundle\Entity\Page $page
      */
     public function addPage($pageDetails)
@@ -192,10 +192,9 @@ class UserPageManager
             }
         }
 
-
-
         $this->em->persist($page);
         $this->em->flush();
+
         return $page;
     }
 
@@ -209,6 +208,5 @@ class UserPageManager
         $this->em->remove($page);
         $this->em->flush();
     }
-
 
 }

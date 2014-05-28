@@ -12,9 +12,6 @@
 namespace Aisel\UserBundle\Controller;
 
 use Aisel\UserBundle\Entity\FrontendUser;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 
@@ -35,11 +32,12 @@ class ApiController extends Controller
         return $this->get('frontend.user.manager');
     }
 
-    private  function isAuthenticated()
+    private function isAuthenticated()
     {
         if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN') === false) {
             return $this->container->get('security.context')->isGranted('ROLE_USER');
         }
+
         return false;
     }
 
@@ -56,7 +54,7 @@ class ApiController extends Controller
     public function loginAction(Request $request)
     {
 
-        if(! $this->isAuthenticated() ){
+        if (! $this->isAuthenticated() ) {
             $username = $request->get('username');
             $password = $request->get('password');
 
@@ -84,8 +82,6 @@ class ApiController extends Controller
     {
         if ($this->isAuthenticated())
             return array('message'=>'You already logged in, Please logout first');
-
-
 
         $userData = array(
             'username'=>$request->get('username'),
@@ -139,6 +135,7 @@ class ApiController extends Controller
         $token = new AnonymousToken(null, new FrontendUser());
         $this->get('security.context')->setToken($token);
         $this->get('session')->invalidate();
+
         return array('success'=>true,'message'=>'You have been successfully logged out!');
     }
 
@@ -149,6 +146,7 @@ class ApiController extends Controller
     {
         if ($this->isAuthenticated()) {
             $user = $this->get('security.context')->getToken()->getUser();
+
             return $user;
         } else {
             return false;
@@ -165,6 +163,7 @@ class ApiController extends Controller
             $json = utf8_decode($request->get('userdata'));
             $userData = json_decode($json,true);
             $message = $this->getUserManager()->updateDetailsCurrentUser($userData);
+
             return array('status'=>true,'message'=>$message);
 
         } else {
@@ -172,7 +171,5 @@ class ApiController extends Controller
         }
 
     }
-
-
 
 }

@@ -11,9 +11,7 @@
 
 namespace Aisel\Symfony\Form\Type;
 
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
@@ -84,6 +82,7 @@ class TreeType extends AbstractType
                 foreach ($orderColumns as $columnName) {
                     $qb->addOrderBy('a.' . $columnName);
                 }
+
                 return $qb;
             };
 

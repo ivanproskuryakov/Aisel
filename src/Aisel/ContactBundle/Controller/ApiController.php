@@ -12,7 +12,6 @@
 namespace Aisel\ContactBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -45,6 +44,7 @@ class ApiController extends Controller
         } else {
             $status = array('message'=>$response);
         }
+
         return $status;
 
     }

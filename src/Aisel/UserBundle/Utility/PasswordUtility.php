@@ -17,18 +17,18 @@ namespace Aisel\UserBundle\Utility;
 class PasswordUtility
 {
 
-
     /**
      * Generates password
      *
-     * @param   string $string
-     * @return  string
+     * @param  string $string
+     * @return string
      */
-    public function generatePassword( $length = 8 ) {
+    public function generatePassword($length = 8)
+    {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
         $password = substr( str_shuffle( $chars ), 0, $length );
+
         return $password;
     }
-
 
 }

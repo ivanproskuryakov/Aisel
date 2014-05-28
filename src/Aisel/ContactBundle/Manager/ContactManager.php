@@ -51,13 +51,13 @@ class ContactManager
 
     /**
      * Send email to administration E-mail
-     * @param array $params
+     * @param  array $params
      * @return array
      */
     public function sendMail($params)
     {
 
-        try{
+        try {
             $message = \Swift_Message::newInstance()
                 ->setSubject('Contacts Mail')
                 ->setFrom($params['email'])
@@ -75,13 +75,12 @@ class ContactManager
                 );
 
             $response = $this->getMailer()->send($message);
-        }catch(\Swift_TransportException $e){
+        } catch (\Swift_TransportException $e) {
             $response = $e->getMessage() ;
         }
 
         return $response;
     }
-
 
 //    /**
 //     * Get contact setting
@@ -91,11 +90,10 @@ class ContactManager
 //    public function getConfig()
 //    {
 //        $config = $this->em->getRepository('AiselConfigBundle:Config')->findOneBy(array('entity' => 'config_contact'));
-//        if(!($config)){
+//        if (!($config)) {
 //            throw new NotFoundHttpException('Nothing found');
 //        }
 //        return $config;
 //    }
-
 
 }

@@ -13,7 +13,6 @@ namespace Aisel\UserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-
 /**
  * Aisel user bundle. Contains two different user entities for Frontend and Backend users.
  * Backend users based on FOSUser Bundle

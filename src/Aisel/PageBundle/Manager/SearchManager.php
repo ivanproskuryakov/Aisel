@@ -27,7 +27,8 @@ class SearchManager
 
     /**
      * Get list of results
-     * @return json
+     * @param array $params
+     * @return array $return
      */
     public function search($params)
     {
@@ -38,8 +39,8 @@ class SearchManager
             'total'=> $total,
             'pages'=> $pages
         );
+
         return $return;
     }
-
 
 }

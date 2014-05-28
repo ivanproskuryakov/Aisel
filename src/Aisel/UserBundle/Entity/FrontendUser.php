@@ -2,7 +2,6 @@
 
 namespace Aisel\UserBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
@@ -42,7 +41,6 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
      * @var \DateTime
      */
     private $updatedAt;
-
 
     /**
      * @var \DateTime
@@ -103,7 +101,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set lastLogin
      *
-     * @param \DateTime $lastLogin
+     * @param  \DateTime    $lastLogin
      * @return FrontendUser
      */
     public function setLastLogin($lastLogin)
@@ -126,7 +124,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set expiresAt
      *
-     * @param \DateTime $expiresAt
+     * @param  \DateTime    $expiresAt
      * @return FrontendUser
      */
     public function setExpiresAt($expiresAt)
@@ -149,7 +147,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set enabled
      *
-     * @param boolean $enabled
+     * @param  boolean      $enabled
      * @return FrontendUser
      */
     public function setEnabled($enabled)
@@ -172,7 +170,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set locked
      *
-     * @param boolean $locked
+     * @param  boolean      $locked
      * @return FrontendUser
      */
     public function setLocked($locked)
@@ -195,7 +193,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return FrontUser
      */
     public function setCreatedAt($createdAt)
@@ -208,7 +206,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -218,7 +216,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return FrontUser
      */
     public function setUpdatedAt($updatedAt)
@@ -231,7 +229,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -241,7 +239,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set username
      *
-     * @param string $username
+     * @param  string    $username
      * @return FrontUser
      */
     public function setUsername($username)
@@ -254,7 +252,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -264,7 +262,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set password
      *
-     * @param string $password
+     * @param  string    $password
      * @return FrontUser
      */
     public function setPassword($password)
@@ -277,7 +275,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -287,7 +285,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set email
      *
-     * @param string $email
+     * @param  string    $email
      * @return FrontUser
      */
     public function setEmail($email)
@@ -300,24 +298,22 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
         return $this->email;
     }
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-
 
     /**
      * @inheritDoc
@@ -332,15 +328,15 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set salt
      *
-     * @param string $salt
+     * @param  string       $salt
      * @return FrontendUser
      */
     public function setSalt($salt)
     {
         $this->salt = $salt;
+
         return $this;
     }
-
 
     /**
      * @inheritDoc
@@ -410,11 +406,10 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
      */
     private $pages;
 
-
     /**
      * Add pages
      *
-     * @param \Aisel\PageBundle\Entity\Page $pages
+     * @param  \Aisel\PageBundle\Entity\Page $pages
      * @return FrontendUser
      */
     public function addPage(\Aisel\PageBundle\Entity\Page $pages)
@@ -437,7 +432,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get pages
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPages()
     {
@@ -483,11 +478,10 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
      */
     private $behance;
 
-
     /**
      * Set phone
      *
-     * @param string $phone
+     * @param  string       $phone
      * @return FrontendUser
      */
     public function setPhone($phone)
@@ -500,7 +494,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -510,7 +504,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set website
      *
-     * @param string $website
+     * @param  string       $website
      * @return FrontendUser
      */
     public function setWebsite($website)
@@ -523,7 +517,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get website
      *
-     * @return string 
+     * @return string
      */
     public function getWebsite()
     {
@@ -533,7 +527,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set facebook
      *
-     * @param string $facebook
+     * @param  string       $facebook
      * @return FrontendUser
      */
     public function setFacebook($facebook)
@@ -546,7 +540,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get facebook
      *
-     * @return string 
+     * @return string
      */
     public function getFacebook()
     {
@@ -556,7 +550,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set twitter
      *
-     * @param string $twitter
+     * @param  string       $twitter
      * @return FrontendUser
      */
     public function setTwitter($twitter)
@@ -569,7 +563,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get twitter
      *
-     * @return string 
+     * @return string
      */
     public function getTwitter()
     {
@@ -579,7 +573,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set linkedin
      *
-     * @param string $linkedin
+     * @param  string       $linkedin
      * @return FrontendUser
      */
     public function setLinkedin($linkedin)
@@ -592,7 +586,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get linkedin
      *
-     * @return string 
+     * @return string
      */
     public function getLinkedin()
     {
@@ -602,7 +596,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set googleplus
      *
-     * @param string $googleplus
+     * @param  string       $googleplus
      * @return FrontendUser
      */
     public function setGoogleplus($googleplus)
@@ -615,7 +609,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get googleplus
      *
-     * @return string 
+     * @return string
      */
     public function getGoogleplus()
     {
@@ -625,7 +619,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set github
      *
-     * @param string $github
+     * @param  string       $github
      * @return FrontendUser
      */
     public function setGithub($github)
@@ -638,7 +632,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get github
      *
-     * @return string 
+     * @return string
      */
     public function getGithub()
     {
@@ -648,7 +642,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set behance
      *
-     * @param string $behance
+     * @param  string       $behance
      * @return FrontendUser
      */
     public function setBehance($behance)
@@ -661,7 +655,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get behance
      *
-     * @return string 
+     * @return string
      */
     public function getBehance()
     {
@@ -672,11 +666,10 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
      */
     private $about;
 
-
     /**
      * Set about
      *
-     * @param string $about
+     * @param  string       $about
      * @return FrontendUser
      */
     public function setAbout($about)
@@ -689,7 +682,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get about
      *
-     * @return string 
+     * @return string
      */
     public function getAbout()
     {

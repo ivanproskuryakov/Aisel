@@ -32,7 +32,4 @@ class UrlUtilityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('tekst-url-na-russkom-s-probelami', $validUrl);
     }
 
-
 }
-
-?>

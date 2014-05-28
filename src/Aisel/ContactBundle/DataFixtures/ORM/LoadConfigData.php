@@ -21,7 +21,7 @@ use Aisel\ConfigBundle\Entity\Config;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadconfigData extends AbstractFixture implements OrderedFixtureInterface
+class LoadConfigData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * Set default settings for Contacts

@@ -26,9 +26,10 @@ class MenuSortController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $repo = $em->getRepository('AiselNavigationBundle:Menu');
         $page = $repo->findOneById($id);
-        if ($page->getParent()){
+        if ($page->getParent()) {
             $repo->moveUp($page);
         }
+
         return $this->redirect($this->getRequest()->headers->get('referer'));
     }
 
@@ -37,9 +38,10 @@ class MenuSortController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $repo = $em->getRepository('AiselNavigationBundle:Menu');
         $category = $repo->findOneById($id);
-        if ($category->getParent()){
+        if ($category->getParent()) {
             $repo->moveDown($category);
         }
+
         return $this->redirect($this->getRequest()->headers->get('referer'));
     }
 }

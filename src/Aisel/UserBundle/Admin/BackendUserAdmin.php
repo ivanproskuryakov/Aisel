@@ -18,8 +18,6 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-use Sonata\AdminBundle\Route\RouteCollection;
-
 /**
  * Backend users CRUD configuration for Backend
  *
@@ -91,7 +89,6 @@ class BackendUserAdmin extends BaseUserAdmin
 //        }
     }
 
-
     /**
      * {@inheritdoc}
      */
@@ -131,7 +128,6 @@ class BackendUserAdmin extends BaseUserAdmin
 //            ;
 //        }
     }
-
 
     /**
      * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper

@@ -18,5 +18,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class AiselConfigBundle extends Bundle {
+class AiselConfigBundle extends Bundle
+{
 }

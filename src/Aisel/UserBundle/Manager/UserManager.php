@@ -14,7 +14,6 @@ namespace Aisel\UserBundle\Manager;
 use Aisel\UserBundle\Entity\FrontendUser;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Aisel\UserBundle\Utility\PasswordUtility;
 
@@ -58,7 +57,8 @@ class UserManager  implements UserProviderInterface
         return $this->mailer;
     }
 
-    protected function getRepository() {
+    protected function getRepository()
+    {
         return $this->em->getRepository('AiselUserBundle:FrontendUser');
     }
 
@@ -66,10 +66,11 @@ class UserManager  implements UserProviderInterface
     {
         $encoder = $this->encoder->getEncoder($user);
 
-        if(!$encoder){
+        if (!$encoder) {
             return false;
         }
         $isValid = $encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt());
+
         return $isValid;
     }
 
@@ -110,12 +111,12 @@ class UserManager  implements UserProviderInterface
 
     /**
      * Update User details
-     * @param   array $userData
-     * @return  string $message
+     * @param  array  $userData
+     * @return string $message
      */
     public function updateDetailsCurrentUser(Array $userData)
     {
-        try{
+        try {
             $user = $this->securityContext->getToken()->getUser();
 
             if ($userData['phone'])         $user->setPhone($userData['phone']);
@@ -132,13 +133,12 @@ class UserManager  implements UserProviderInterface
             $this->em->persist($user);
             $this->em->flush();
             $message = 'Information successfully updated!';
-        }catch(\Swift_TransportException $e){
+        } catch (\Swift_TransportException $e) {
             $message = $e->getMessage() ;
         }
+
         return $message;
     }
-
-
 
     /**
      *   Register user and send userinfo by email
@@ -166,7 +166,7 @@ class UserManager  implements UserProviderInterface
             $this->em->flush();
 
             // Send user info via email
-            try{
+            try {
                 $message = \Swift_Message::newInstance()
                     ->setSubject('New Account!')
                     ->setFrom($this->websiteEmail)
@@ -183,7 +183,7 @@ class UserManager  implements UserProviderInterface
                     );
 
                 $response = $this->getMailer()->send($message);
-            }catch(\Swift_TransportException $e){
+            } catch (\Swift_TransportException $e) {
                 $response = $e->getMessage() ;
             }
 
@@ -225,12 +225,13 @@ class UserManager  implements UserProviderInterface
                         )
                     );
                 $response = $this->getMailer()->send($message);
-            } catch(\Swift_TransportException $e) {
+            } catch (\Swift_TransportException $e) {
                 $response = $e->getMessage() ;
             }
 
             $this->em->persist($user);
             $this->em->flush();
+
             return $response;
 
         } else {
@@ -241,18 +242,21 @@ class UserManager  implements UserProviderInterface
     public function loadUserByUsername($username)
     {
         $user = $this->getRepository()->findOneBy(array('username' => $username));
+
         return $user;
     }
 
     public function findUserByEmail($email)
     {
         $user = $this->getRepository()->findOneBy(array('email' => $email));
+
         return $user;
     }
 
     public function findUser($username, $email)
     {
         $user = $this->em->getRepository('AiselUserBundle:FrontendUser')->findUser($username, $email);
+
         return $user;
     }
 
@@ -277,6 +281,5 @@ class UserManager  implements UserProviderInterface
         return $this->getEntityName() === $class
         || is_subclass_of($class, $this->getEntityName());
     }
-
 
 }

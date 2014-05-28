@@ -13,13 +13,10 @@ namespace Aisel\NavigationBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 use Sonata\AdminBundle\Validator\ErrorElement;
-use Symfony\Component\Validator\ValidatorInterface;
 
 /**
  * Navigation CRUD configuration for Backend
@@ -31,7 +28,6 @@ class NavigationAdmin extends Admin
     protected $baseRoutePattern = 'navigation/menu';
     protected $maxPerPage = 500;
     protected $maxPageLinks = 500;
-
 
     /**
      * {@inheritdoc}
@@ -60,7 +56,8 @@ class NavigationAdmin extends Admin
         return $query;
     }
 
-    public function getFormTheme() {
+    public function getFormTheme()
+    {
         return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
     }
 
@@ -87,6 +84,7 @@ class NavigationAdmin extends Admin
                             $qb ->where('p.id <> :id')->setParameter('id', $id);
                         }
                         $qb ->orderBy('p.root, p.lft', 'ASC');
+
                         return $qb;
                     }, 'empty_value' => 'no parent'
 
@@ -94,7 +92,6 @@ class NavigationAdmin extends Admin
             ->end();
 
     }
-
 
     public function prePersist($page)
     {

@@ -39,7 +39,6 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $rootCategory = $this->getReference('root-category');
         $childCategory = $this->getReference('child-category');
 
-
         // Hidden About page
         $hiddenPage = new Page();
         $hiddenPage->setTitle('About Us');
@@ -68,7 +67,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $manager->flush();
 
         // Pages
-        for ($i = 1; $i <= 18; $i++ ) {
+        for ($i = 1; $i <= 18; $i++) {
             $page = new Page();
             $page->setTitle('Sample Page '. $i);
             $page->setContent($loremIpsumText);
@@ -86,7 +85,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         }
 
         // User Pages
-        for ($i = 1; $i <= 10; $i++ ) {
+        for ($i = 1; $i <= 10; $i++) {
             $page = new Page();
             $page->setTitle('Sample User Page '. $i);
             $page->setContent($loremIpsumText);

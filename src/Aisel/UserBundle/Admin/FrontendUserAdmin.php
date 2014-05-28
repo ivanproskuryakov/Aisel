@@ -16,10 +16,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 
 use Sonata\AdminBundle\Validator\ErrorElement;
-use Symfony\Component\Validator\ValidatorInterface;
 
 /**
  * Frontend users CRUD configuration for Backend
@@ -88,7 +86,6 @@ class FrontendUserAdmin extends Admin
         ;
     }
 
-
     /**
      * {@inheritdoc}
      */
@@ -150,7 +147,6 @@ class FrontendUserAdmin extends Admin
         $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
-
     public function getEncoderFactory()
     {
         return $this->encoderFactory;
@@ -161,7 +157,6 @@ class FrontendUserAdmin extends Admin
         $this->encoderFactory = $encoderFactory;
     }
 
-
     /**
      * {@inheritdoc}
      */
@@ -169,6 +164,5 @@ class FrontendUserAdmin extends Admin
     {
         return $object->getId() ? $object->getUsername() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
     }
-
 
 }

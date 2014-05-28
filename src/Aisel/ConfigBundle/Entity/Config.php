@@ -11,8 +11,6 @@
 
 namespace Aisel\ConfigBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Config Repository
  *
@@ -35,11 +33,10 @@ class Config
      */
     private $value;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -49,7 +46,7 @@ class Config
     /**
      * Set entity
      *
-     * @param string $entity
+     * @param  string $entity
      * @return Config
      */
     public function setEntity($entity)
@@ -62,7 +59,7 @@ class Config
     /**
      * Get entity
      *
-     * @return string 
+     * @return string
      */
     public function getEntity()
     {
@@ -72,7 +69,7 @@ class Config
     /**
      * Set value
      *
-     * @param string $value
+     * @param  string $value
      * @return Config
      */
     public function setValue($value)
@@ -85,7 +82,7 @@ class Config
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {

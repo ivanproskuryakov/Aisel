@@ -35,8 +35,8 @@ class NavigationManager
     public function getMenu()
     {
         $menu = $this->em->getRepository('AiselNavigationBundle:Menu')->getEnabledMenuItems();
+
         return $menu;
     }
-
 
 }

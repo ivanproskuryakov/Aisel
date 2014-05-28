@@ -13,7 +13,6 @@ namespace Aisel\NavigationBundle\Entity;
 
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
-
 /**
  * Repository for Menu entity
  *
@@ -22,12 +21,11 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 class MenuRepository extends NestedTreeRepository
 {
 
-
     /*
      * Get enabled menu items sorted as tree
      *
      * @return object
-     * */
+     *                */
 
     public function getEnabledMenuItems()
     {
@@ -39,9 +37,9 @@ class MenuRepository extends NestedTreeRepository
             ->addOrderBy('m.lft', 'ASC')
             ->getQuery()
             ->execute();
+
         return $r;
 //        return $this->findAll();
     }
-
 
 }

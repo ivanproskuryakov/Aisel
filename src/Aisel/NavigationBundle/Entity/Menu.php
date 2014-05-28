@@ -11,9 +11,6 @@
 
 namespace Aisel\NavigationBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
-
 /**
  * Menu enitity
  *
@@ -82,7 +79,7 @@ class Menu
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -92,7 +89,7 @@ class Menu
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Menu
      */
     public function setTitle($title)
@@ -105,7 +102,7 @@ class Menu
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -115,7 +112,7 @@ class Menu
     /**
      * Set lft
      *
-     * @param integer $lft
+     * @param  integer $lft
      * @return Menu
      */
     public function setLft($lft)
@@ -128,7 +125,7 @@ class Menu
     /**
      * Get lft
      *
-     * @return integer 
+     * @return integer
      */
     public function getLft()
     {
@@ -138,7 +135,7 @@ class Menu
     /**
      * Set rgt
      *
-     * @param integer $rgt
+     * @param  integer $rgt
      * @return Menu
      */
     public function setRgt($rgt)
@@ -151,7 +148,7 @@ class Menu
     /**
      * Get rgt
      *
-     * @return integer 
+     * @return integer
      */
     public function getRgt()
     {
@@ -161,7 +158,7 @@ class Menu
     /**
      * Set root
      *
-     * @param integer $root
+     * @param  integer $root
      * @return Menu
      */
     public function setRoot($root)
@@ -174,7 +171,7 @@ class Menu
     /**
      * Get root
      *
-     * @return integer 
+     * @return integer
      */
     public function getRoot()
     {
@@ -184,7 +181,7 @@ class Menu
     /**
      * Set lvl
      *
-     * @param integer $lvl
+     * @param  integer $lvl
      * @return Menu
      */
     public function setLvl($lvl)
@@ -197,7 +194,7 @@ class Menu
     /**
      * Get lvl
      *
-     * @return integer 
+     * @return integer
      */
     public function getLvl()
     {
@@ -207,7 +204,7 @@ class Menu
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param  boolean $status
      * @return Menu
      */
     public function setStatus($status)
@@ -220,7 +217,7 @@ class Menu
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -230,7 +227,7 @@ class Menu
     /**
      * Add children
      *
-     * @param \Aisel\NavigationBundle\Entity\Menu $children
+     * @param  \Aisel\NavigationBundle\Entity\Menu $children
      * @return Menu
      */
     public function addChild(\Aisel\NavigationBundle\Entity\Menu $children)
@@ -253,7 +250,7 @@ class Menu
     /**
      * Get children
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {
@@ -263,7 +260,7 @@ class Menu
     /**
      * Set parent
      *
-     * @param \Aisel\NavigationBundle\Entity\Menu $parent
+     * @param  \Aisel\NavigationBundle\Entity\Menu $parent
      * @return Menu
      */
     public function setParent(\Aisel\NavigationBundle\Entity\Menu $parent = null)
@@ -282,7 +279,6 @@ class Menu
     {
         return $this->parent;
     }
-
 
 //    /**
 //     * Set dateCreated
@@ -339,11 +335,10 @@ class Menu
      */
     private $updatedAt;
 
-
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Menu
      */
     public function setCreatedAt($createdAt)
@@ -356,7 +351,7 @@ class Menu
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -366,7 +361,7 @@ class Menu
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Menu
      */
     public function setUpdatedAt($updatedAt)
@@ -379,7 +374,7 @@ class Menu
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -390,11 +385,10 @@ class Menu
      */
     private $url;
 
-
     /**
      * Set url
      *
-     * @param string $url
+     * @param  string $url
      * @return Menu
      */
     public function setUrl($url)
@@ -407,7 +401,7 @@ class Menu
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {

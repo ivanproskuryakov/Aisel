@@ -29,20 +29,20 @@ class AdminConfigManager
 
     /**
      * Get all setting
-     * @param array $params
+     * @param  array $params
      * @return array
      */
     public function getConfig()
     {
         $config = $this->em->getRepository('AiselConfigBundle:Config')->getAllSettings();
-        if(!($config)){
+        if (!($config)) {
             throw new NotFoundHttpException('Nothing found');
         }
 
         // inject response unix timestamp
         $config['time'] = time();
+
         return $config;
     }
-
 
 }

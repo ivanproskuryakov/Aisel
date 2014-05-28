@@ -12,10 +12,7 @@
 namespace Aisel\AdminBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-
 
 /**
  * Returns CMS settings in JSON format
@@ -32,9 +29,9 @@ class ApiController extends Controller
     public function configAction()
     {
         $config = $this->container->get("aisel.adminconfig.manager")->getConfig();
+
         return $config;
 
     }
-
 
 }

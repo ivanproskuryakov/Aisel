@@ -63,11 +63,10 @@ class PageRepository extends EntityRepository
         $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
     }
 
-
     /**
      * Get page total
-     * @param array $params
-     * @return int $total
+     * @param  array $params
+     * @return int   $total
      */
     public function getTotalFromRequest($params)
     {
@@ -102,9 +101,9 @@ class PageRepository extends EntityRepository
 
     /**
      * Get pages based on limit, current pagination and search query
-     * @param array $params
+     * @param  array                         $params
      * @return \Aisel\PageBundle\Entity\Page
-     * */
+     *                                              */
     public function searchFromRequest($params)
     {
         $this->mapRequest($params);
@@ -127,7 +126,7 @@ class PageRepository extends EntityRepository
     /**
      * Get pages based on limit, current pagination and search query
      * @return \Aisel\PageBundle\Entity\Page $pages
-     * */
+     *                                       */
     public function getEnabledPages()
     {
         $query = $this->getEntityManager()->createQueryBuilder();
@@ -142,7 +141,7 @@ class PageRepository extends EntityRepository
 
     /**
      * Get pages based on limit, current pagination and search query
-     * @param array $params
+     * @param  array                         $params
      * @return \Aisel\PageBundle\Entity\Page $pages
      */
     public function getCurrentPagesFromRequest($params)
@@ -178,7 +177,7 @@ class PageRepository extends EntityRepository
 
     /**
      * Get pages filtered by category
-     * @param int $categoryId
+     * @param  int                           $categoryId
      * @return \Aisel\PageBundle\Entity\Page $pages
      */
     public function getPagesByCategory($categoryId)
@@ -199,9 +198,9 @@ class PageRepository extends EntityRepository
 
     /**
      * Find pages by URL
-     * @param string $url
-     * @param int $pageId
-     * @return int $found
+     * @param  string $url
+     * @param  int    $pageId
+     * @return int    $found
      */
     public function findTotalByURL($url, $pageId = null)
     {
@@ -218,6 +217,5 @@ class PageRepository extends EntityRepository
 
         return $found;
     }
-
 
 }

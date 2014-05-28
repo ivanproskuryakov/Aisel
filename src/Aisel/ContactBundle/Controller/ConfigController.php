@@ -36,6 +36,4 @@ class ConfigController extends SettingsController
         return $this->templateVariables;
     }
 
-
-
 }

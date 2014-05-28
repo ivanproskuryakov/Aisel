@@ -83,8 +83,8 @@ class UrlUtility
 
     /**
      * Process string based on conversion table
-     * @param   string $str
-     * @return  string $normalUrl
+     * @param  string $str
+     * @return string $normalUrl
      */
     public function process($str)
     {
@@ -100,18 +100,16 @@ class UrlUtility
             array_push ($charArray, $char);
         }
 
-        foreach ($charArray as $char ){
+        foreach ($charArray as $char) {
             if (isset($this->_convertTable[$char])) {
                 $normalUrl .= $this->_convertTable[$char];
             } else {
                 $normalUrl .= $char;
             }
 
-
         }
 
         return $normalUrl;
     }
-
 
 }

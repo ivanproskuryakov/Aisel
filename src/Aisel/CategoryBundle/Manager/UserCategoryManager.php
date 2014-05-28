@@ -11,9 +11,6 @@
 
 namespace Aisel\CategoryBundle\Manager;
 
-use Aisel\AdminBundle\Utility\UrlUtility;
-
-
 /**
  * Category Manager for user specific actions
  *

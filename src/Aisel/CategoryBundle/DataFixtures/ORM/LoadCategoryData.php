@@ -32,7 +32,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $time = time();
 
         // Root Categories
-        for ($i = 1; $i <= 3; $i++ ) {
+        for ($i = 1; $i <= 3; $i++) {
             $rootCategory = new Category();
             $rootCategory->setTitle('Root '. $i);
             $rootCategory->setDescription('dummy root description ...');
@@ -46,7 +46,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         }
 
         // Fist Level Categories
-        for ($a = 1; $a <= 5; $a++ ) {
+        for ($a = 1; $a <= 5; $a++) {
             $childCategory = new Category();
             $childCategory->setTitle('First '. $a);
             $childCategory->setDescription('dummy description for category ...');
@@ -61,7 +61,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         }
 
         // Nested Categories
-        for ($b = 1; $b <= 3; $b++ ) {
+        for ($b = 1; $b <= 3; $b++) {
 
             if (!isset($nestedCategory)) {
                 $parent = $childCategory;
