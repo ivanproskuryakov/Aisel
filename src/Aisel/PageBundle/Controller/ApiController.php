@@ -11,7 +11,6 @@
 
 namespace Aisel\PageBundle\Controller;
 
-use Aisel\PageBundle\Entity\Page as Page;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
