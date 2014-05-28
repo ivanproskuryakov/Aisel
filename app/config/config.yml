@@ -152,27 +152,15 @@ sonata_admin:
     title:      Administration
     title_logo: /images/logo-black.png
     templates:
+        layout:              AiselAdminBundle::layout.html.twig
         search:              SonataAdminBundle:Core:search.html.twig
         search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
     options:
         html5_validate: false # does not use html5 validation
         confirm_exit:   false # disable confirmation when quitting with unsaved changes
-    templates:
-        layout:  AiselAdminBundle::layout.html.twig
 
-services:
-    aisel.symfony.form.tree:
-        class: Aisel\Symfony\Form\Type\TreeType
-        arguments:
-            -
-                prefixAttributeName: "gedmotree"
-                treeLevelField: "lvl"
-                orderColumns:
-                  - root
-                  - lft
-        tags:
-            - { name: form.type, alias: gedmotree }
 
+#services:
 
 sonata_doctrine_orm_admin:
     entity_manager: ~
@@ -188,7 +176,7 @@ presta_sonata_navigation:
             system:
                 children:
                     settings:
-                        route: config_contact
+                        route: config_homepage
                     backenduser:
                         route: admin_aisel_user_backenduser_list
                     frontenduser:

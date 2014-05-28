@@ -5,3 +5,15 @@ services:
     aisel.adminconfig.manager:
         class: %aisel_adminconfig_manager.class%
         arguments: [@doctrine.orm.entity_manager ]
+
+    aisel.symfony.form.tree:
+        class: Aisel\Symfony\Form\Type\TreeType
+        arguments:
+            -
+                prefixAttributeName: "gedmotree"
+                treeLevelField: "lvl"
+                orderColumns:
+                  - root
+                  - lft
+        tags:
+            - { name: form.type, alias: gedmotree }

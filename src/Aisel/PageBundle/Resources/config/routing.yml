@@ -4,26 +4,26 @@ api_aisel_pagelist:
     requirements:
         _method: GET
 
-api_aisel_pageview:
-    pattern:  /api/page/view/{urlKey}.json
-    defaults: { _controller: AiselPageBundle:Api:pageView, _format: json }
-    requirements:
-        _method: GET
-        id: "\d+"
+#api_aisel_pageview:
+#    pattern:  /api/page/view/{urlKey}.json
+#    defaults: { _controller: AiselPageBundle:Api:pageView, _format: json }
+#    requirements:
+#        _method: GET
+#        id: "\d+"
 
 api_aisel_pageview_by_url:
     pattern:  /api/page/view/url/{urlKey}.json
     defaults: { _controller: AiselPageBundle:Api:pageViewByURL, _format: json }
     requirements:
         _method: GET
-        id: "\d+"
+#        id: "\d+"
 
 api_aisel_search:
     pattern:  /api/search/
     defaults: { _controller: AiselPageBundle:Api:search, _format: json }
     requirements:
         _method: GET
-        id: "\d+"
+#        id: "\d+"
 
 
 # User specific actions
@@ -34,7 +34,7 @@ api_aisel_user_pagedetails_by_id:
     defaults: { _controller: AiselPageBundle:ApiUserCRUD:pageDetails, _format: json }
     requirements:
         _method: GET
-        id: "\d+"
+#        id: "\d+"
 
 api_aisel_user_page_edit:
     pattern:  /api/user/page/edit/{pageId}.json

@@ -99,9 +99,6 @@ class ApiController extends Controller
         if ($this->getUserManager()->findUser($username, $email))
             return array('message'=> 'Username or e-mail already taken!');
 
-        // TODO: Add is email taken validation
-
-
         $user = $this->getUserManager()->registerUser($userData);
 
         if ($user) {

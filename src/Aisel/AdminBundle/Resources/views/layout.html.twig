@@ -11,6 +11,6 @@ file that was distributed with this source code.
 
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
 
-{% block sonata_top_bar_nav %}
+{% block side_bar_after_nav %}
     {{ knp_menu_render('presta_sonata_navigation.menu.main', {'allow_safe_labels' : true}, 'list') }}
 {% endblock %}

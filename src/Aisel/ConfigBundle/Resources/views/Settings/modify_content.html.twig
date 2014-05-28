@@ -10,7 +10,7 @@ file that was distributed with this source code.
 #}
 
 <div class="aisel-config-bunle">
-   <div class="config-routes span3 well sidebar-nav">
+   <div class="config-routes col-md-3 sidebar-nav">
        <h4>{{ 'settings.label' | trans({}, 'AiselConfigBundle') }}</h4>
        <ul class="config-entities nav nav-list">
            {#<li class="nav-header">{{ 'settings.label' | trans({}, 'AiselConfigBundle') }}</li>#}
@@ -23,7 +23,7 @@ file that was distributed with this source code.
            {% endfor %}
        </ul>
    </div>
-   <div class="config-form span9 well">
+   <div class="config-form col-md-8">
 
        <h3>{{ config_name | trans({}, 'AiselConfigBundle') }}</h3>
        {% if form %}

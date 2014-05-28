@@ -112,9 +112,12 @@ class UserPageManager
      */
     public function updatePageId($pageId, $details)
     {
-        $page = $this->loadPage($pageId);
-        $jsonDetails = utf8_decode($details);
-        $pageDetails = json_decode($jsonDetails);
+        $jsonDetails    = utf8_decode($details);
+        $pageDetails    = json_decode($jsonDetails);
+        $page           = $this->loadPage($pageId);
+        $url            = $page->getMetaUrl();
+        $normalUrl      = $this->pageManager->normalizePageUrl($url, $pageId);
+
 
         if (isset($pageDetails->page->title)) $page->setTitle($pageDetails->page->title);
         if (isset($pageDetails->page->content)) $page->setContent($pageDetails->page->content);
@@ -124,11 +127,6 @@ class UserPageManager
         if (isset($pageDetails->page->meta_keywords)) $page->setMetaKeywords($pageDetails->page->meta_keywords);
         if (isset($pageDetails->page->meta_description)) $page->setMetaKeywords($pageDetails->page->meta_description);
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-
-
-        // Set URL
-        $url = $page->getMetaUrl();
-        $normalUrl = $this->pageManager->normalizePageUrl($url, $pageId);
         $page->setMetaUrl($normalUrl);
 
 
