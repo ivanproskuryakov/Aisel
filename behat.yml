@@ -1,0 +1,16 @@
+default:
+    extensions:
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~
+                javascript:
+                    selenium2: ~
+            browser_name: firefox
+            show_auto:    false
+        Behat\Symfony2Extension: ~
+
+    suites:
+        api.page:
+            contexts:
+                - Aisel\PageBundle\Features\Context\FeatureContext

@@ -361,7 +361,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
             $this->username,
             $this->password,
             // see section on salt below
-            // $this->salt,
+//             $this->salt,
         ));
     }
 
@@ -375,7 +375,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
             $this->username,
             $this->password,
             // see section on salt below
-             $this->salt
+//             $this->salt
             ) = unserialize($serialized);
     }
 

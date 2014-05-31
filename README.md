@@ -8,6 +8,7 @@ Sandbox frontend: http://sandbox.aisel.co/ [frontenduser/frontenduser]<br/>
 Sandbox administration: http://sandbox.aisel.co/administration [backenduser/backenduser]<br/>
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)
+
 Installation
 ========================
 
@@ -32,7 +33,7 @@ php app/console assets:install web --symlink
 Once this steps is done you will be able to access admin section from http://websitename.dev/administration/
 and frontend at http://websitename.dev/
 
-Sitemaps
+Sitemap
 ========================
 Task: <b>php app/console aisel:sitemap:generate</b><br/>
 This command will generate sitemap.xml<br/>
@@ -50,11 +51,15 @@ Full info how to make SEO for JS website read here: https://developers.google.co
 
 Speed Test
 ========================
-Notes:<br/>
  - Clean Ubuntu with 512 RAM<br/>
  - Symfony2 in DEV environment<br/>
  - No server or MySQL tweaks<br/>
-<br/>
 http://tools.pingdom.com/fpt/#!/XzytX/http://sandbox.aisel.co/#!/ - 704ms
 http://tools.pingdom.com/fpt/#!/b3BHG9/http://sandbox.aisel.co/#!/pages/ -  773ms
 http://tools.pingdom.com/fpt/#!/dZajwY/http://sandbox.aisel.co/#!/page/userpage-10/ - 751ms
+
+Bug tracking
+========================
+
+Project uses [GitHub issues](https://github.com/ivanproskuryakov/Aisel/issues).
+If you have found bug, please create an issue.

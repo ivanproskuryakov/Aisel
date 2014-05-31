@@ -150,7 +150,6 @@ sonata_block:
 
 sonata_admin:
     title:      Administration
-#    title_logo: /images/logo-black.png
     templates:
         layout:              AiselAdminBundle::layout.html.twig
         search:              SonataAdminBundle:Core:search.html.twig
@@ -159,8 +158,6 @@ sonata_admin:
         html5_validate: false # does not use html5 validation
         confirm_exit:   false # disable confirmation when quitting with unsaved changes
 
-
-#services:
 
 sonata_doctrine_orm_admin:
     entity_manager: ~

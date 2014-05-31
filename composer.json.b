@@ -49,14 +49,14 @@
         "presta/sonata-navigation-bundle": "1.0.*@dev",
         "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
 
-        "behat/behat":                       "~3.0",
-        "behat/symfony2-extension":          "~2.0@dev",
-        "behat/mink-extension":              "~2.0@dev",
-        "behat/mink-browserkit-driver":      "~1.2@dev",
-        "behat/mink-selenium2-driver":       "@dev",
-        "behat/mink":                        "~1.6@dev",
-
-        "phpspec/phpspec":                   "~2.0",
+        "behat/behat": "2.5.*@stable",
+        "behat/symfony2-extension": "1.1.*@dev",
+        "behat/mink":   "1.5.*@stable",
+        "behat/mink-extension":          "*",
+        "behat/mink-browserkit-driver":  "*",
+        "behat/mink-selenium2-driver":   "  *",
+        "behat/mink-goutte-driver": "*",
+        "behat/mink-sahi-driver": "*",
         "phpunit/phpunit": "3.7.*"
     },
     "scripts": {
