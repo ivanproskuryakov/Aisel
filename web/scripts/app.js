@@ -1,24 +1,24 @@
 'use strict';
 
 var app = angular.module('aiselApp', [
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
-    'ngRoute',
-    'ui.bootstrap',
-    'ui.utils',
-    'ui.validate',
-    'ui.gravatar',
-    'cgNotify'
+        'ngCookies',
+        'ngResource',
+        'ngSanitize',
+        'ngRoute',
+        'ui.bootstrap',
+        'ui.utils',
+        'ui.validate',
+        'ui.gravatar',
+        'cgNotify'
     ])
 
-    .constant('API_URL','/api')
+    .constant('API_URL', '/api')
 
-    .run(['$http', '$rootScope','rootService', function($http, $rootScope, rootService) {
+    .run(['$http', '$rootScope', 'rootService', function ($http, $rootScope, rootService) {
         rootService.init();
     }])
 
-    .config(function ($provide, $routeProvider, $locationProvider, $httpProvider ) {
+    .config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
 
         $routeProvider
             // Homepage
@@ -98,11 +98,11 @@ var app = angular.module('aiselApp', [
 //            .html5Mode(true)
             .hashPrefix('!');
 
-        $provide.factory('appConfig', function ($q,rootService) {
+        $provide.factory('appConfig', function ($q, rootService) {
             return rootService.getApplicationConfig();
         });
 
-        // Intercept http calls.
+        // Intercept http calls
         $provide.factory('requestInterceptor', function ($q) {
             return {
                 request: function (config) {
@@ -123,7 +123,7 @@ var app = angular.module('aiselApp', [
                 }
             };
         });
-        $httpProvider.interceptors.push('requestInterceptor')
+        $httpProvider.interceptors.push('requestInterceptor');
 
 
-  });
+    });

@@ -165,7 +165,7 @@ class CategoryAdmin extends Admin
      *
      * @return void
      */
-    protected function configureShowField(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
             ->with('Information')
