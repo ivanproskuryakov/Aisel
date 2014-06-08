@@ -1,5 +1,14 @@
 'use strict';
 
+/**
+ * @ngdoc overview
+ * @name aiselApp
+ * @description
+ * # aiselApp
+ *
+ * Main module of the application.
+ */
+
 var app = angular.module('aiselApp', [
         'ngCookies',
         'ngResource',
