@@ -67,6 +67,11 @@ module.exports = function (config) {
             'karma-jasmine'
         ],
 
+        junitReporter: {
+            outputFile: '/test/test_out_unit.xml',
+            suite: 'unit'
+        },
+
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
         singleRun: false,

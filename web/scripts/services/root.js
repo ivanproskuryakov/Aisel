@@ -6,7 +6,6 @@ angular.module('aiselApp')
 
             init: function() {
 
-
                 // Set Default Meta
                 var meta = false;
                 $rootScope.$on('$routeChangeStart', function (event, to, from) {

@@ -6,7 +6,7 @@
  * @description
  * # aiselApp
  *
- * Main module of the application.
+ * Core module of the application.
  */
 
 var app = angular.module('aiselApp', [
@@ -107,9 +107,6 @@ var app = angular.module('aiselApp', [
 //            .html5Mode(true)
             .hashPrefix('!');
 
-        $provide.factory('appConfig', function ($q, rootService) {
-            return rootService.getApplicationConfig();
-        });
 
         // Intercept http calls
         $provide.factory('requestInterceptor', function ($q) {
