@@ -8,7 +8,7 @@
  * Unit Test for Contact Controller.
  */
 
-describe('Contact Controller', function () {
+describe('Unit: Contact Controller', function () {
 
     var $scope,
         $rootScope,

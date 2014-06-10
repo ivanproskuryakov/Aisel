@@ -8,7 +8,7 @@
  * Unit Test for Homepage Controller.
  */
 
-describe('Homepage Controller', function () {
+describe('Unit: Homepage Controller', function () {
 
     var $scope,
         $rootScope,
@@ -39,7 +39,7 @@ describe('Homepage Controller', function () {
 
             // now run that scope through the controller function,
             // injecting any services or other injectables we need.
-            ctrl = $controller('MainCtrl', {
+            ctrl = $controller('HomepageCtrl', {
                 '$scope': $scope,
                 'rs': rootService
             });

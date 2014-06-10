@@ -33,7 +33,7 @@ var app = angular.module('aiselApp', [
             // Homepage
             .when('/', {
                 templateUrl: 'views/homepage.html',
-                controller: 'MainCtrl'
+                controller: 'HomepageCtrl'
             })
 
             // Contact

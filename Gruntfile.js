@@ -317,13 +317,22 @@ module.exports = function (grunt) {
       ]
     },
 
-    // Test settings
+    // Karma Settings
     karma: {
-      unit: {
-        configFile: 'karma/karma.conf.js',
-        singleRun: true
-      }
+        unit: {
+            configFile: 'karma/unit/karma.conf.js',
+            singleRun: true
+        },
+        midway: {
+            configFile: 'karma/midway/karma.midway.conf.js',
+            singleRun: true
+        },
+        e2e: {
+            configFile: 'karma/e2e/karma.e2e.conf.js',
+            singleRun: true
+        }
     }
+
   });
 
 

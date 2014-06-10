@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('aiselApp')
-    .controller('MainCtrl', ['$location', '$scope', '$routeParams', 'rootService',
+    .controller('HomepageCtrl', ['$location', '$scope', '$routeParams', 'rootService',
         function ($location, $scope, $routeParams, rootService) {
 
             $scope.content = false;

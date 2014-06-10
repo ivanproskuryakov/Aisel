@@ -8,10 +8,10 @@ module.exports = function (config) {
         autoWatch: true,
 
         // base path, that will be used to resolve files and exclude
-        basePath: '../',
+        basePath: '../../',
 
         // testing framework to use (jasmine/mocha/qunit/...)
-        frameworks: ['jasmine'],
+        frameworks: ['mocha'],
 
         // list of files / patterns to load in the browser
         files: [
@@ -28,12 +28,19 @@ module.exports = function (config) {
             'web/bower_components/angular-notify/dist/angular-notify.min.js',
             'web/bower_components/angular-gravatar/src/md5.js',
             'web/bower_components/angular-gravatar/build/angular-gravatar.js',
+            'node_modules/ng-midway-tester/src/ngMidwayTester.js',
+            'node_modules/chai/chai.js',
 
             'web/scripts/app.js',
             'web/scripts/**/*.js',
             'web/scripts/**/**/*.js',
             'web/scripts/**/**/**/*.js',
-            'karma/spec/**/*.js'
+
+            'karma/midway/mocha.conf.js',
+            'karma/midway/chai-helper.js',
+            'karma/midway/**/*.js',
+
+
         ],
 
         // list of files / patterns to exclude
@@ -62,17 +69,23 @@ module.exports = function (config) {
 //        Which plugins to enable
         plugins: [
             'karma-phantomjs-launcher',
-            'karma-jasmine'
+            'karma-jasmine',
+            'karma-mocha',
+            'karma-ng-scenario',
+            'karma-chrome-launcher',
         ],
 
-        junitReporter: {
-            outputFile: '/test/test_out_unit.xml',
-            suite: 'unit'
+        proxies: {
+            //point this to the root of where your AngularJS application
+            //is being hosted locally
+            '/': 'http://aisel.dev/'
         },
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
-        singleRun: false,
+        singleRun: true,
+
+        captureTimeout: 60000,
 
         colors: true
     });
