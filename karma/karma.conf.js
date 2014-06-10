@@ -33,7 +33,7 @@ module.exports = function (config) {
             'web/scripts/**/*.js',
             'web/scripts/**/**/*.js',
             'web/scripts/**/**/**/*.js',
-            'test/spec/**/*.js'
+            'karma/spec/**/*.js'
         ],
 
         // list of files / patterns to exclude
@@ -49,8 +49,6 @@ module.exports = function (config) {
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
         logLevel: config.LOG_INFO,
 
-//
-//
 //    // Start these browsers, currently available:
 //    // - Chrome
 //    // - ChromeCanary
