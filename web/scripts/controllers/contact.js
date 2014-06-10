@@ -4,6 +4,8 @@ angular.module('aiselApp')
     .controller('ContactCtrl', ['$location', '$scope', '$routeParams', 'contactService', 'rootService', 'notify',
         function ($location, $scope, $routeParams, contactService, rootService, notify) {
 
+            $scope.config = false;
+
             rootService.getApplicationConfig().success(
                 function (data, status) {
                     $scope.config = JSON.parse(data.config_contact);

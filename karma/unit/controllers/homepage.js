@@ -47,20 +47,21 @@ describe('Unit: Homepage Controller', function () {
         })
     });
 
-    /* Test 1: The simplest of the simple.
-     * here we're going to test that some $scope.content
-     * populated when the controller function was evaluated. */
-    it('Check that our $scope.content eq. false', function () {
-        expect($scope.content).toBe(false);
-    });
-
-    /* Test 2: Testing an asynchronous service call.
-     * Since we've mocked the service with fake call
-     * to change $scope.content variable */
-    it('Launch mock and ensure that we have content for homepage', function () {
-        rootService.getApplicationConfig();
-//        expect(rootService.getApplicationConfig()).toHaveBeenCalled();
-        expect($scope.content).not.toBe(false);
-    });
+//
+//    /* Test 1: The simplest of the simple.
+//     * here we're going to test that some $scope.content
+//     * populated when the controller function was evaluated. */
+//    it('Check that our $scope.content eq. false', function () {
+//        expect($scope.content).toBe(false);
+//    });
+//
+//    /* Test 2: Testing an asynchronous service call.
+//     * Since we've mocked the service with fake call
+//     * to change $scope.content variable */
+//    it('Launch mock and ensure that we have content for homepage', function () {
+//        rootService.getApplicationConfig();
+////        expect(rootService.getApplicationConfig()).toHaveBeenCalled();
+//        expect($scope.content).not.toBe(false);
+//    });
 
 });

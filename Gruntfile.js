@@ -320,16 +320,13 @@ module.exports = function (grunt) {
     // Karma Settings
     karma: {
         unit: {
-            configFile: 'karma/unit/karma.conf.js',
-            singleRun: true
+            configFile: 'karma/unit/karma.conf.js'
         },
         midway: {
-            configFile: 'karma/midway/karma.midway.conf.js',
-            singleRun: true
+            configFile: 'karma/midway/karma.midway.conf.js'
         },
         e2e: {
-            configFile: 'karma/e2e/karma.e2e.conf.js',
-            singleRun: true
+            configFile: 'karma/e2e/karma.e2e.conf.js'
         }
     }
 

@@ -5,16 +5,13 @@
  * @name aiselApp
  * @description
  *
- * Midway Test
+ * Midway Contact Page Test
  */
 
-describe("Midway: 1st test", function() {
+describe("Midway: Ensure that our contact page is working ", function() {
 
     var tester;
     beforeEach(function() {
-        if(tester) {
-            tester.destroy();
-        }
         tester = ngMidwayTester('aiselApp');
     });
 
@@ -23,16 +20,15 @@ describe("Midway: 1st test", function() {
         tester = null;
     });
 
-    it('should have a working scope page', function(done) {
+    it('should have a working Contact page', function(done) {
         tester.visit('/contact/', function() {
 
             var current = tester.inject('$route').current;
             var controller = current.controller;
-            var scope = current.scope;
+            var template = current.templateUrl;
 
-            console.log(tester.path());
-            console.log(scope.config);
-            console.log(tester.viewElement().html());
+            expect(controller).to.eql('ContactCtrl');
+            expect(template).to.eql('views/contact.html');
             done();
         });
     });

@@ -75,8 +75,8 @@ module.exports = function (config) {
 //        },
 
 //        proxies: {
-            //point this to the root of where your AngularJS application
-            //is being hosted locally
+        //point this to the root of where your AngularJS application
+        //is being hosted locally
 //            '/': 'http://aisel.dev/'
 //        },
 

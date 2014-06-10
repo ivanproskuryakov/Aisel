@@ -1,6 +1,19 @@
 {
-    "name": "aisel",
+    "name": "Aisel",
     "version": "0.0.1",
+    "description": "Aisel - Open source CMS based on Angular and Symfony2",
+    "author": {
+        "name": "Ivan Proskuryakov",
+        "email": "volgodark@gmail.com",
+        "url": "https://github.com/ivanproskuryakov"
+    },
+    "license": "MIT",
+    "readmeFilename": "README.md",
+    "contributors": [],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ivanproskuryakov/Aisel.git"
+    },
     "dependencies": {},
     "devDependencies": {
         "grunt": "^0.4.5",
