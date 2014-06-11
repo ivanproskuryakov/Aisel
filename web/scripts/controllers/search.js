@@ -7,6 +7,8 @@ angular.module('aiselApp')
         $scope.search = $routeParams.query;
         $scope.limit = 5;
         $scope.paginationPage = 1;
+        $scope.results = {};
+        $scope.results.total = 0;
 
         var handleSuccess = function(data, status) {
             $scope.results = data;
