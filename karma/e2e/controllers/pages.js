@@ -8,7 +8,7 @@
  * E2E Blog listing
  */
 
-describe("E2E: Check blog listing page is working", function() {
+describe("E2E: Check page listing is working", function() {
 
     beforeEach(function() {
         browser().navigateTo('/#!/pages/');
