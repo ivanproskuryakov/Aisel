@@ -15,7 +15,7 @@ Installation
 1.) cd to your website directory and download composer with:  <br/>
 curl -sS https://getcomposer.org/installer | php<br/>
 2.) Create project, installer will ask you dbname, username, password, etc.. <br/>
-php composer.phar create-project -s dev aisel/aisel - (create project)
+php composer.phar create-project -s dev aisel/aisel - (create project)<br/>
 3.) Create databasewith GUI tool like phpmyadmin or with command<br/>
 php app/console doctrine:schema:create<br/>
 3.) Load initial data in database with<br/>
