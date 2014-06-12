@@ -70,6 +70,7 @@ class PageRepository extends EntityRepository
      */
     public function getTotalFromRequest($params)
     {
+
         $this->mapRequest($params);
 
         $query = $this->getEntityManager()->createQueryBuilder();
@@ -90,10 +91,13 @@ class PageRepository extends EntityRepository
             $query->innerJoin('p.frontenduser', 'u')
                 ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
         } else {
-            $query->where('p.status = :status')->setParameter('status', 1);
+            $query->andWhere('p.status = :status')->setParameter('status', 1);
         }
 
+
+
         $total = $query->getQuery()->getSingleScalarResult();
+
 
         if (!$total) return 0;
         return $total;
@@ -106,6 +110,7 @@ class PageRepository extends EntityRepository
      *                                              */
     public function searchFromRequest($params)
     {
+
         $this->mapRequest($params);
 
         $query = $this->getEntityManager()->createQueryBuilder();
@@ -158,7 +163,7 @@ class PageRepository extends EntityRepository
                 ->innerJoin('p.frontenduser', 'u')
                 ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
         } else {
-            $query->where('p.status = :status')->setParameter('status', 1);
+            $query->andWhere('p.status = :status')->setParameter('status', 1);
         }
 
         if ($this->category) {
