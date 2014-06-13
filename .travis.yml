@@ -7,6 +7,10 @@ branches:
     only:
         - master
 
+before_install:
+    # Install node.js
+    - npm install -g grunt-cli
+
 install:
 
     # Install php packages
@@ -19,9 +23,16 @@ install:
     - echo "127.0.0.1 aisel.dev" | sudo tee -a /etc/hosts
     - sudo /etc/init.d/apache2 restart
 
+    # Install node packages
+    - sudo apt-get install python-software-properties
+    - sudo apt-add-repository ppa:chris-lea/node.js
+    - sudo apt-get update
+    - sudo apt-get install nodejs
+    - sudo npm install
+    - node -v
+
 
 before_script:
-
     # Update composer
     - composer self-update
     - composer install
@@ -33,4 +44,5 @@ before_script:
     - php app/console doctrine:fixtures:load --env=test > /dev/null
     - php app/console assets:install web --symlink
     - php app/console cache:warmup --env=test > /dev/null
+    - chmod -R 777 app/cache app/logs
     - chmod -R 777 app/cache app/logs
