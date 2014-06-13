@@ -11,7 +11,7 @@ before_install:
     # Install node.js
     - npm install -g grunt-cli
     - npm install -g bower
-    
+
     # Install node packages
     - npm install
     - node -v
@@ -42,7 +42,7 @@ before_script:
     - php app/console assets:install web --symlink
     - php app/console cache:warmup --env=test
     - chmod -R 777 app/cache app/logs
-    - bower install
+    - bower install -f
 
 script:
     - grunt karma:unit
