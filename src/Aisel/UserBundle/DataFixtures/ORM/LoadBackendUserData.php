@@ -53,8 +53,6 @@ class LoadBackendUserData extends AbstractFixture implements OrderedFixtureInter
      */
     public function load(ObjectManager $manager)
     {
-        $random = rand(11111,99999);
-        $time = time();
 
         $user = new BackendUser();
         $user->setUsername('backenduser');

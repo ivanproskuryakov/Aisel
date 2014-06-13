@@ -44,7 +44,7 @@ module.exports = function (config) {
         hostname: 'aisel.dev',
 
         // web server port
-        port: 8080,
+//        port: 8080,
 
         // level of logging
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
@@ -74,20 +74,18 @@ module.exports = function (config) {
 //            suite: 'unit'
 //        },
 
-//        proxies: {
-        //point this to the root of where your AngularJS application
-        //is being hosted locally
-//            '/': 'http://aisel.dev/'
-//        },
+        proxies: {
+//        point this to the root of where your AngularJS application
+//        is being hosted locally
+            '/': 'http://aisel.dev/'
+        },
 
 //        URL root prevent conflicts with the site root
 //        urlRoot: '_karma_',
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
-        singleRun: false,
-
-//        captureTimeout: 60000,
+        singleRun: true,
 
         colors: true
     });

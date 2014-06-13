@@ -1,10 +1,40 @@
 language: php
 
 php:
-  - 5.3.3
-  - 5.3
-  - 5.4
+    - 5.4
+    - 5.5
 
-before_script: composer install -n
+branches:
+    only:
+        - master
 
-script: phpunit -c app
+install:
+
+    # Install php packages
+    - sudo apt-get update > /dev/null
+    - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
+
+    # Create VirtualHost
+    - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
+    - sudo sed -i -e "/DocumentRoot/i\ServerName kimweighttracker.dev" /etc/apache2/sites-available/default
+    - echo "127.0.0.1 aisel.dev" | sudo tee -a /etc/hosts
+    - sudo /etc/init.d/apache2 restart
+
+    # Copy skeleton parameters file
+    - cp app/config/parameters.yml.dist app/config/parameters.yml
+
+
+
+
+#before_script:
+#    - echo '' > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+#    - echo "extension = mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+#    - echo "memory_limit=4096M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+#
+#    - composer self-update
+#    - composer install --prefer-source --no-interaction
+#
+#    - app/console doctrine:database:create --env=test > /dev/null
+#    - app/console doctrine:schema:create --env=test > /dev/null
+#    - app/console cache:warmup --env=test > /dev/null
+#    - app/console assetic:dump

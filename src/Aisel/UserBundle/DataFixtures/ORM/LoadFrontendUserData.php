@@ -52,15 +52,12 @@ class LoadFrontendUserData extends AbstractFixture implements OrderedFixtureInte
      */
     public function load(ObjectManager $manager)
     {
-        $random = rand(11111,99999);
-        $time = time();
-
         $userData = array(
             'username'=>'frontenduser',
             'password'=>'frontenduser',
             'email'=>'frontenduser@aisel.co',
             'phone'=>'+7(123)123-1234',
-            'website'=>'aisel.co',
+            'website'=>'http://aisel.co/',
             'facebook'=>'https://www.facebook.com/pages/Aisel/1439524699618478',
             'twitter'=>'https://twitter.com/aisel',
             'linkedin'=>'www.linkedin.com/pub/ivan-proskuryakov/31/200/316',
@@ -77,7 +74,7 @@ class LoadFrontendUserData extends AbstractFixture implements OrderedFixtureInte
             'password'=>'volgodark',
             'email'=>'volgodark@gmail.com',
             'phone'=>'+7(909)389-2222',
-            'website'=>'aisel.co',
+            'website'=>'http://aisel.co/',
             'facebook'=>'https://www.facebook.com/pages/Aisel/1439524699618478',
             'twitter'=>'https://twitter.com/aisel',
             'linkedin'=>'www.linkedin.com/pub/ivan-proskuryakov/31/200/316',
