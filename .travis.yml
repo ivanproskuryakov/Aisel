@@ -16,7 +16,7 @@ install:
 
     # Create VirtualHost
     - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
-    - sudo sed -i -e "/DocumentRoot/i\ServerName kimweighttracker.dev" /etc/apache2/sites-available/default
+    - sudo sed -i -e "/DocumentRoot/i\ServerName aisel.dev" /etc/apache2/sites-available/default
     - echo "127.0.0.1 aisel.dev" | sudo tee -a /etc/hosts
     - sudo /etc/init.d/apache2 restart
 
