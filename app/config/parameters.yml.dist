@@ -5,12 +5,14 @@ parameters:
     database_name:     aisel
     database_user:     root
     database_password: ~
-    website_address:   http://sandbox.aisel.co
-    website_email:     ~
 
     mailer_transport:  gmail
     mailer_user:       ~
     mailer_password:   ~
 
+    website_address:   http://sandbox.aisel.co
+    website_email:     ~
+    application_email: ~
+
     locale:            en
-    secret:            AiselSecretToken
+    secret:            SecretTokenAisel

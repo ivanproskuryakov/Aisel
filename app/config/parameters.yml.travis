@@ -1,0 +1,18 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: aisel
+    database_user: root
+    database_password: 12qw12
+
+    mailer_transport: gmail
+    mailer_user: travis
+    mailer_password: travis
+
+    website_address: http://aisel.dev
+    website_email: service@aisel.co
+    application_email: volgodark@gmail.com
+
+    locale: en
+    secret: SecretTokenAisel

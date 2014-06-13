@@ -2,7 +2,6 @@ language: php
 
 php:
     - 5.4
-    - 5.5
 
 branches:
     only:
@@ -21,20 +20,15 @@ install:
     - sudo /etc/init.d/apache2 restart
 
     # Copy skeleton parameters file
-    - cp app/config/parameters.yml.dist app/config/parameters.yml
+    - cp app/config/parameters.yml.travis app/config/parameters.yml
 
+    # Update composer
+    - composer self-update
+    - composer install --dev --prefer-dist
 
-
-
-#before_script:
-#    - echo '' > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
-#    - echo "extension = mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-#    - echo "memory_limit=4096M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-#
-#    - composer self-update
-#    - composer install --prefer-source --no-interaction
-#
-#    - app/console doctrine:database:create --env=test > /dev/null
-#    - app/console doctrine:schema:create --env=test > /dev/null
-#    - app/console cache:warmup --env=test > /dev/null
-#    - app/console assetic:dump
+    # Load Fixtures
+    - app/console doctrine:database:create --env=test > /dev/null
+    - app/console doctrine:schema:create --env=test > /dev/null
+    - app/console doctrine:fixtures:load --env=test > /dev/null
+    - app/console cache:warmup --env=test > /dev/null
+    - chmod -R 777 app/cache app/logs
