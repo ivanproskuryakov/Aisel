@@ -10,6 +10,9 @@ branches:
 before_install:
     # Install node.js
     - npm install -g grunt-cli
+    # Install node packages
+    - npm install
+    - node -v
 
 install:
 
@@ -23,10 +26,6 @@ install:
     - echo "127.0.0.1 aisel.dev" | sudo tee -a /etc/hosts
     - sudo /etc/init.d/apache2 restart
 
-    # Install node packages
-    - npm install
-    - node -v
-
 
 before_script:
     # Update composer
@@ -35,12 +34,11 @@ before_script:
 
     # Copy skeleton parameters file & Load Fixtures
     - cp app/config/parameters.yml.travis app/config/parameters.yml
-    - php app/console doctrine:database:create --env=test > /dev/null
-    - php app/console doctrine:schema:create --env=test > /dev/null
-    - php app/console doctrine:fixtures:load --env=test > /dev/null
+    - php app/console doctrine:database:create --env=test
+    - php app/console doctrine:schema:create --env=test
+    - php app/console doctrine:fixtures:load --env=test
     - php app/console assets:install web --symlink
-    - php app/console cache:warmup --env=test > /dev/null
-    - chmod -R 777 app/cache app/logs
+    - php app/console cache:warmup --env=test
     - chmod -R 777 app/cache app/logs
 
 script:
