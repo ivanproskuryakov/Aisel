@@ -24,7 +24,7 @@ before_script:
 
     # Update composer
     - composer self-update
-    - composer install --dev --prefer-dist
+    - composer install
 
     # Copy skeleton parameters file & Load Fixtures
     - cp app/config/parameters.yml.travis app/config/parameters.yml
@@ -34,4 +34,3 @@ before_script:
     - php app/console assets:install web --symlink
     - php app/console cache:warmup --env=test > /dev/null
     - chmod -R 777 app/cache app/logs
-  

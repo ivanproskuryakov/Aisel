@@ -8,7 +8,7 @@ parameters:
 
     mailer_transport: gmail
     mailer_user: travis
-    mailer_password: travis
+    mailer_password: ~
 
     website_address: http://aisel.dev
     website_email: service@aisel.co
