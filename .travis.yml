@@ -45,4 +45,4 @@ before_script:
     - bower install -f
 
 script:
-    - grunt karma:unit
+    - grunt karma
