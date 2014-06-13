@@ -7,8 +7,8 @@ Project website: http://aisel.co/<br/>
 Sandbox frontend: http://sandbox.aisel.co/ [frontenduser/frontenduser]<br/>
 Sandbox administration: http://sandbox.aisel.co/administration [backenduser/backenduser]<br/>
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)
-[![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
+![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=master)
 
 Installation
 ========================
