@@ -3,12 +3,12 @@ parameters:
     database_host: 127.0.0.1
     database_port: null
     database_name: aisel
-    database_user: root
-    database_password: 12qw12
+    database_user: travis
+    database_password: ~
 
     mailer_transport: gmail
     mailer_user: travis
-    mailer_password: ~
+    mailer_password: travis
 
     website_address: http://aisel.dev
     website_email: service@aisel.co
