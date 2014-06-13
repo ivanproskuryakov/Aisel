@@ -21,17 +21,17 @@ install:
 
 
 before_script:
-    # Copy skeleton parameters file
-    - cp app/config/parameters.yml.travis app/config/parameters.yml
 
     # Update composer
     - composer self-update
     - composer install --dev --prefer-dist
 
-    # Load Fixtures
+    # Copy skeleton parameters file & Load Fixtures
+    - cp app/config/parameters.yml.travis app/config/parameters.yml
     - php app/console doctrine:database:create --env=test > /dev/null
     - php app/console doctrine:schema:create --env=test > /dev/null
     - php app/console doctrine:fixtures:load --env=test > /dev/null
     - php app/console assets:install web --symlink
     - php app/console cache:warmup --env=test > /dev/null
     - chmod -R 777 app/cache app/logs
+  
