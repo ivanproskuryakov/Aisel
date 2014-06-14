@@ -1,13 +1,9 @@
-@page.api
+@api.page
 Feature: Pages
-  In order view page list and single page
+  In order view pages
   As a visitor
-  I want to be able to have access to Page API
+  I want to be able to have access to Page REST API
 
-  Scenario: List 2 files in a directory
-    Given is Behat installed and working "one"
-    Then I should get "one"
-      """
-      one
-      one
-      """
+  Scenario: Page API is working
+    Given Script access api_aisel_pagelist route
+    Then Content should contain valid JSON

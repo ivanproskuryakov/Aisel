@@ -1,6 +1,6 @@
 <?php
 
-namespace Aisel\PageBundle\Features\Context;
+namespace Aisel\CategoryBundle\Features\Context;
 
 use Aisel\ResourceBundle\Features\Context\DefaultContext;
 
@@ -14,11 +14,11 @@ class FeatureContext extends DefaultContext
 {
 
     /**
-     * @When /^Script access api_aisel_pagelist route$/
+     * @When /^Script access api_aisel_categorylist route$/
      */
-    public function goToPageListURI()
+    public function goToCategoryListURI()
     {
-        $this->getSession()->visit($this->generateUrl('api_aisel_pagelist'));
+        $this->getSession()->visit($this->generateUrl('api_aisel_categorylist'));
         $this->assertSession()->statusCodeEquals(200);
     }
 

@@ -23,10 +23,9 @@ module.exports = function (config) {
             'web/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
             'web/bower_components/angular-ui-utils/ui-utils.js',
             'web/bower_components/angular-notify/dist/angular-notify.min.js',
-            'web/bower_components/angular-gravatar/src/md5.js',
+            'web/bower_components/angular-gravatar/build/md5.js',
             'web/bower_components/angular-gravatar/build/angular-gravatar.js',
             'node_modules/ng-midway-tester/src/ngMidwayTester.js',
-            'node_modules/chai/chai.js',
 
             'web/scripts/app.js',
             'web/scripts/**/*.js',
@@ -38,6 +37,9 @@ module.exports = function (config) {
         ],
 
         reporters: 'dots',
+
+        // web server host
+        hostname: 'aisel.dev',
 
         // list of files / patterns to exclude
         exclude: [],
@@ -76,6 +78,7 @@ module.exports = function (config) {
         proxies: {
             '/': 'http://aisel.dev/#!/'
         },
+
         urlRoot: '_karma_',
 
         // Continuous Integration mode

@@ -25,7 +25,7 @@ module.exports = function (config) {
             'web/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
             'web/bower_components/angular-ui-utils/ui-utils.js',
             'web/bower_components/angular-notify/dist/angular-notify.min.js',
-            'web/bower_components/angular-gravatar/src/md5.js',
+            'web/bower_components/angular-gravatar/build/md5.js',
             'web/bower_components/angular-gravatar/build/angular-gravatar.js',
             'node_modules/ng-midway-tester/src/ngMidwayTester.js',
             'node_modules/chai/chai.js',

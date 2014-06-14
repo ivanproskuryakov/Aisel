@@ -45,7 +45,7 @@ class AppKernel extends Kernel
             new Aisel\ContactBundle\AiselContactBundle(),
             new Aisel\ConfigBundle\AiselConfigBundle(),
             new Aisel\SitemapBundle\AiselSitemapBundle(),
-
+            new Aisel\ResourceBundle\AiselResourceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -53,6 +53,12 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
+
+        /*
+         * PHP Fatal error:  Maximum function nesting level of '100' reached
+         * Set xDebug nesting level to 1000
+         */
+        ini_set('xdebug.max_nesting_level', 1000);
 
         return $bundles;
     }

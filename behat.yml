@@ -8,9 +8,13 @@ default:
                     selenium2: ~
             browser_name: firefox
             show_auto:    false
+            base_url: 'http://http://aisel.dev/' # this will be the url of our application
         Behat\Symfony2Extension: ~
 
     suites:
         api.page:
             contexts:
                 - Aisel\PageBundle\Features\Context\FeatureContext
+        api.category:
+            contexts:
+                - Aisel\CategoryBundle\Features\Context\FeatureContext
