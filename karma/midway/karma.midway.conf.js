@@ -30,13 +30,14 @@ module.exports = function (config) {
             'node_modules/ng-midway-tester/src/ngMidwayTester.js',
             'node_modules/chai/chai.js',
 
-            'web/app/app.js',
+            'web/app/*.js',
+            'web/app/code/core/**/*.js',
             'web/app/code/core/**/**/*.js',
             'web/app/code/core/**/**/**/*.js',
 
             'karma/midway/mocha.conf.js',
             'karma/midway/chai-helper.js',
-            'karma/midway/**/*.js',
+            'karma/midway/**/*.js'
         ],
 
         reporters: 'dots',

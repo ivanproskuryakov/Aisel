@@ -30,7 +30,8 @@ module.exports = function (config) {
             'web/bower_components/angular-gravatar/build/angular-gravatar.js',
             'node_modules/ng-midway-tester/src/ngMidwayTester.js',
 
-            'web/app/app.js',
+            'web/app/*.js',
+            'web/app/code/core/**/*.js',
             'web/app/code/core/**/**/*.js',
             'web/app/code/core/**/**/**/*.js',
             'karma/unit/**/*.js'
@@ -41,9 +42,6 @@ module.exports = function (config) {
 
         // web server host
         hostname: 'aisel.dev',
-
-        // web server port
-//        port: 8080,
 
         // level of logging
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
@@ -68,19 +66,11 @@ module.exports = function (config) {
 //            'karma-chrome-launcher'
         ],
 
-//        junitReporter: {
-//            outputFile: '/test/test_out_unit.xml',
-//            suite: 'unit'
-//        },
-
         proxies: {
 //        point this to the root of where your AngularJS application
 //        is being hosted locally
             '/': 'http://aisel.dev/'
         },
-
-//        URL root prevent conflicts with the site root
-//        urlRoot: '_karma_',
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit

@@ -4,7 +4,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
+<head>
     <meta name="fragment" content="!">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +22,8 @@
     <script data-require="prefixfree@*" data-semver="1.0.7" src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
     <link rel="stylesheet" href="styles/styles.css">
-  </head>
+</head>
+
 <body>
 
     <!--[if lt IE 7]>
@@ -74,19 +75,26 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="app/app.js"></script>
+    <script src="app/appRouter.js"></script>
+
+    <script src="app/code/core/homepage/router.js"></script>
     <script src="app/code/core/homepage/controllers/homepage.js"></script>
 
+    <script src="app/code/core/contact/router.js"></script>
     <script src="app/code/core/contact/controllers/contact.js"></script>
     <script src="app/code/core/contact/services/contact.js"></script>
 
+    <script src="app/code/core/page/router.js"></script>
     <script src="app/code/core/page/controllers/page.js"></script>
-    <script src="app/code/core/page/controllers/pagedetail.js"></script>
+    <script src="app/code/core/page/controllers/pagedetails.js"></script>
     <script src="app/code/core/page/services/page.js"></script>
 
+    <script src="app/code/core/category/router.js"></script>
     <script src="app/code/core/category/controllers/category.js"></script>
-    <script src="app/code/core/category/controllers/categorydetail.js"></script>
+    <script src="app/code/core/category/controllers/categorydetails.js"></script>
     <script src="app/code/core/category/services/category.js"></script>
 
+    <script src="app/code/core/user/router.js"></script>
     <script src="app/code/core/user/controllers/user.js"></script>
     <script src="app/code/core/user/controllers/page/edit.js"></script>
     <script src="app/code/core/user/controllers/page/add.js"></script>
@@ -99,14 +107,11 @@
     <script src="app/code/core/resource/directives/main.js"></script>
     <script src="app/code/core/resource/services/root.js"></script>
 
+    <script src="app/code/core/search/router.js"></script>
     <script src="app/code/core/search/controllers/search.js"></script>
     <script src="app/code/core/search/services/search.js"></script>
-
-
-
-
-
-
     <!-- endbuild -->
+
+
 </body>
 </html>

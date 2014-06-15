@@ -27,7 +27,8 @@ module.exports = function (config) {
             'web/bower_components/angular-gravatar/build/angular-gravatar.js',
             'node_modules/ng-midway-tester/src/ngMidwayTester.js',
 
-            'web/app/app.js',
+            'web/app/*.js',
+            'web/app/code/core/**/*.js',
             'web/app/code/core/**/**/*.js',
             'web/app/code/core/**/**/**/*.js',
 
