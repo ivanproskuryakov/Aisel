@@ -30,10 +30,9 @@ module.exports = function (config) {
             'node_modules/ng-midway-tester/src/ngMidwayTester.js',
             'node_modules/chai/chai.js',
 
-            'web/scripts/app.js',
-            'web/scripts/**/*.js',
-            'web/scripts/**/**/*.js',
-            'web/scripts/**/**/**/*.js',
+            'web/app/app.js',
+            'web/app/code/core/**/**/*.js',
+            'web/app/code/core/**/**/**/*.js',
 
             'karma/midway/mocha.conf.js',
             'karma/midway/chai-helper.js',
@@ -59,7 +58,7 @@ module.exports = function (config) {
         plugins: [
             'karma-jasmine',
             'karma-mocha',
-            'karma-chrome-launcher',
+            'karma-firefox-launcher',
             'karma-ng-scenario'
         ],
 
@@ -75,7 +74,7 @@ module.exports = function (config) {
         // - Safari (only Mac)
         // - PhantomJS
         // - IE (only Windows)
-        browsers: ['Chrome'],
+        browsers: ['Firefox'],
 
         proxies: {
             '/': 'http://aisel.dev/'

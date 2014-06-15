@@ -28,7 +28,7 @@ describe("Midway: Ensure that our contact page is working ", function() {
             var template = current.templateUrl;
 
             expect(controller).to.eql('ContactCtrl');
-            expect(template).to.eql('views/contact.html');
+            expect(template).to.eql('app/views/core/contact/contact.html');
             done();
         });
     });

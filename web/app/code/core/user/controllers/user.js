@@ -62,7 +62,7 @@ angular.module('aiselApp')
 
         $scope.openSignIn = function () {
             var modalInstance = $modal.open({
-                templateUrl: 'views/user/login.html',
+                templateUrl: 'app/views/core/user/login.html',
                 controller: LoginInstanceCtrl,
                 resolve: {
                 }

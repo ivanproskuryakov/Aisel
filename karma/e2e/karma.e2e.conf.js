@@ -27,10 +27,9 @@ module.exports = function (config) {
             'web/bower_components/angular-gravatar/build/angular-gravatar.js',
             'node_modules/ng-midway-tester/src/ngMidwayTester.js',
 
-            'web/scripts/app.js',
-            'web/scripts/**/*.js',
-            'web/scripts/**/**/*.js',
-            'web/scripts/**/**/**/*.js',
+            'web/app/app.js',
+            'web/app/code/core/**/**/*.js',
+            'web/app/code/core/**/**/**/*.js',
 
             'karma/e2e/**/*.js'
 
@@ -58,7 +57,7 @@ module.exports = function (config) {
         plugins: [
             'karma-jasmine',
             'karma-ng-scenario',
-            'karma-chrome-launcher',
+            'karma-firefox-launcher',
         ],
 
         preprocessors: {
@@ -73,7 +72,7 @@ module.exports = function (config) {
         // - Safari (only Mac)
         // - PhantomJS
         // - IE (only Windows)
-        browsers: ['Chrome'],
+        browsers: ['Firefox'],
 
         proxies: {
             '/': 'http://aisel.dev/#!/'
@@ -83,7 +82,7 @@ module.exports = function (config) {
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
-        singleRun: false,
+        singleRun: true,
 
         // If browser does not capture in given timeout [ms], kill it
         captureTimeout: 60000,

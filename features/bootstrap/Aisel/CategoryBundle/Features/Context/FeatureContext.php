@@ -28,8 +28,8 @@ class FeatureContext extends DefaultContext
     public function jsonHasTotal()
     {
         $json = $this->getSession()->getPage()->getContent();
-        $pageDetails = json_decode($json);
-        assertNotEmpty($pageDetails->total);
+        $categoryDetails = json_decode($json);
+        assertNotEmpty($categoryDetails->total);
     }
 
 }

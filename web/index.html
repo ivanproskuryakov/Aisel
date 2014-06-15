@@ -32,12 +32,12 @@
     <!-- Add your site or application content here -->
     <div class="loading-interceptor">Loading ...</div>
 
-    <header ng-include="'views/main/header.html'"></header>
+    <header ng-include="'app/views/core/resource/header.html'"></header>
     <div class="container website-content">
         <div id="dynamic-content" class="view" ng-view=""></div>
     </div>
 
-    <footer ng-include="'views/main/footer.html'"></footer>
+    <footer ng-include="'app/views/core/resource/footer.html'"></footer>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -73,30 +73,40 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/homepage.js"></script>
-    <script src="scripts/controllers/page/page.js"></script>
-    <script src="scripts/controllers/page/pagedetail.js"></script>
-    <script src="scripts/controllers/contact.js"></script>
-    <script src="scripts/controllers/category/category.js"></script>
-    <script src="scripts/controllers/category/categorydetail.js"></script>
-    <script src="scripts/controllers/user/user.js"></script>
-    <script src="scripts/controllers/user/page/edit.js"></script>
-    <script src="scripts/controllers/user/page/add.js"></script>
-    <script src="scripts/controllers/user/page/list.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/code/core/homepage/controllers/homepage.js"></script>
 
-    <script src="scripts/filters/main.js"></script>
-    <script src="scripts/controllers/search.js"></script>
-    <script src="scripts/directives/main.js"></script>
+    <script src="app/code/core/contact/controllers/contact.js"></script>
+    <script src="app/code/core/contact/services/contact.js"></script>
 
-    <script src="scripts/services/category.js"></script>
-    <script src="scripts/services/contact.js"></script>
-    <script src="scripts/services/page.js"></script>
-    <script src="scripts/services/search.js"></script>
-    <script src="scripts/services/root.js"></script>
-    <script src="scripts/services/user/user.js"></script>
-    <script src="scripts/services/user/page.js"></script>
-    <script src="scripts/services/user/category.js"></script>
+    <script src="app/code/core/page/controllers/page.js"></script>
+    <script src="app/code/core/page/controllers/pagedetail.js"></script>
+    <script src="app/code/core/page/services/page.js"></script>
+
+    <script src="app/code/core/category/controllers/category.js"></script>
+    <script src="app/code/core/category/controllers/categorydetail.js"></script>
+    <script src="app/code/core/category/services/category.js"></script>
+
+    <script src="app/code/core/user/controllers/user.js"></script>
+    <script src="app/code/core/user/controllers/page/edit.js"></script>
+    <script src="app/code/core/user/controllers/page/add.js"></script>
+    <script src="app/code/core/user/controllers/page/list.js"></script>
+    <script src="app/code/core/user/services/user/user.js"></script>
+    <script src="app/code/core/user/services/user/page.js"></script>
+    <script src="app/code/core/user/services/user/category.js"></script>
+
+    <script src="app/code/core/resource/filters/main.js"></script>
+    <script src="app/code/core/resource/directives/main.js"></script>
+    <script src="app/code/core/resource/services/root.js"></script>
+
+    <script src="app/code/core/search/controllers/search.js"></script>
+    <script src="app/code/core/search/services/search.js"></script>
+
+
+
+
+
+
     <!-- endbuild -->
 </body>
 </html>

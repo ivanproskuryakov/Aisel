@@ -32,69 +32,69 @@ var app = angular.module('aiselApp', [
         $routeProvider
             // Homepage
             .when('/', {
-                templateUrl: 'views/homepage.html',
+                templateUrl: 'app/views/core/homepage/homepage.html',
                 controller: 'HomepageCtrl'
             })
 
             // Contact
             .when('/contact/', {
-                templateUrl: 'views/contact.html',
+                templateUrl: 'app/views/core/contact/contact.html',
                 controller: 'ContactCtrl'
             })
 
             // Search
             .when('/search/:query', {
-                templateUrl: 'views/search.html',
+                templateUrl: 'app/views/core/search/search.html',
                 controller: 'SearchCtrl'
             })
 
             // Pages
             .when('/pages/', {
-                templateUrl: 'views/page.html',
+                templateUrl: 'app/views/core/page/page.html',
                 controller: 'PageCtrl'
             })
             .when('/page/:pageId/', {
-                templateUrl: 'views/page-detail.html',
+                templateUrl: 'app/views/core/page/page-detail.html',
                 controller: 'PageDetailCtrl'
             })
 
             // Categories
             .when('/categories/', {
-                templateUrl: 'views/category.html',
+                templateUrl: 'app/views/core/category/category.html',
                 controller: 'CategoryCtrl'
             })
             .when('/category/:categoryId/', {
-                templateUrl: 'views/category-detail.html',
+                templateUrl: 'app/views/core/category/category-detail.html',
                 controller: 'CategoryDetailCtrl'
             })
 
             // User operations
             .when('/user/register/', {
-                templateUrl: 'views/user/register.html',
+                templateUrl: 'app/views/core/user/register.html',
                 controller: 'UserCtrl'
             })
             .when('/user/password/forgot/', {
-                templateUrl: 'views/user/password-forgot.html',
+                templateUrl: 'app/views/core/user/password-forgot.html',
                 controller: 'UserCtrl'
             })
             .when('/user/information/', {
-                templateUrl: 'views/user/information/dashboard.html',
+                templateUrl: 'app/views/core/user/information/dashboard.html',
                 controller: 'UserCtrl'
             })
             .when('/user/information/edit/', {
-                templateUrl: 'views/user/information/edit.html',
+                templateUrl: 'app/views/core/user/information/edit.html',
                 controller: 'UserCtrl'
             })
             .when('/user/page/list/', {
-                templateUrl: 'views/user/page/list.html',
+                templateUrl: 'app/views/core/user/page/list.html',
                 controller: 'UserPageListCtrl'
             })
             .when('/user/page/add/', {
-                templateUrl: 'views/user/page/add.html',
+                templateUrl: 'app/views/core/user/page/add.html',
                 controller: 'UserPageAddCtrl'
             })
             .when('/user/page/edit/:pageId/', {
-                templateUrl: 'views/user/page/edit.html',
+                templateUrl: 'app/views/core/user/page/edit.html',
                 controller: 'UserPageEditCtrl'
             })
 
