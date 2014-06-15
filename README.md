@@ -33,6 +33,32 @@ php app/console assets:install web --symlink
 Once this steps is done you will be able to access admin section from http://websitename.dev/administration/
 and frontend at http://websitename.dev/
 
+[Behat](http://behat.org) testing
+========================
+
+Run Behat using the following command to test backend:
+
+```bash
+$ bin/behat
+
+[Karma](http://karma-runner.github.io/) testing
+========================
+
+Karma unit tests:
+```bash
+$ grunt karma:unit
+```
+
+Karma midway testing:
+```bash
+$ grunt karma:midway
+```
+
+Karma e2e testing:
+```bash
+$ grunt karma:e2e
+```
+
 Sitemap
 ========================
 Task: <b>php app/console aisel:sitemap:generate</b><br/>
