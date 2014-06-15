@@ -24,22 +24,37 @@ aiselApp.config(function ($provide, $routeProvider, $locationProvider, $httpProv
         })
         .when('/user/information/', {
             templateUrl: 'app/views/core/user/information/dashboard.html',
-            controller: 'UserCtrl'
+            controller: 'UserCtrl',
+            resolve: {
+                factory: isUserAuthenticated
+            }
         })
         .when('/user/information/edit/', {
             templateUrl: 'app/views/core/user/information/edit.html',
-            controller: 'UserCtrl'
+            controller: 'UserCtrl',
+            resolve: {
+                factory: isUserAuthenticated
+            }
         })
         .when('/user/page/list/', {
             templateUrl: 'app/views/core/user/page/list.html',
-            controller: 'UserPageListCtrl'
+            controller: 'UserPageListCtrl',
+            resolve: {
+                factory: isUserAuthenticated
+            }
         })
         .when('/user/page/add/', {
             templateUrl: 'app/views/core/user/page/add.html',
-            controller: 'UserPageAddCtrl'
+            controller: 'UserPageAddCtrl',
+            resolve: {
+                factory: isUserAuthenticated
+            }
         })
         .when('/user/page/edit/:pageId/', {
             templateUrl: 'app/views/core/user/page/edit.html',
-            controller: 'UserPageEditCtrl'
+            controller: 'UserPageEditCtrl',
+            resolve: {
+                factory: isUserAuthenticated
+            }
         })
 });

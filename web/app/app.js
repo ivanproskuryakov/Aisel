@@ -23,15 +23,16 @@ var aiselApp = angular.module('aiselApp', [
 
     .constant('API_URL', '/api')
 
-    .run(['$http', '$rootScope', 'rootService', function ($http, $rootScope, rootService) {
+    .run(['$http', '$rootScope', 'rootService', function ($http, $rootScope, rootService, $route) {
         rootService.init();
+//        $rootScope.$on("$locstionChangeStart", function(event, next, current) {
+//        });
     }])
 
     .config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
         $locationProvider
 //            .html5Mode(true)
             .hashPrefix('!');
-
 
         // Intercept http calls
         $provide.factory('requestInterceptor', function ($q) {

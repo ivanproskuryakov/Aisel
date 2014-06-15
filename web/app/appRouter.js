@@ -12,7 +12,6 @@
  */
 
 aiselApp.config(function ($provide, $routeProvider) {
-
     $routeProvider
 
         /*
@@ -23,3 +22,11 @@ aiselApp.config(function ($provide, $routeProvider) {
         });
 
 });
+
+var isUserAuthenticated = function ($q, $rootScope, $location) {
+    if ($rootScope.isAuthenticated) {
+        return true;
+    } else {
+        $location.path("/");
+    }
+};
