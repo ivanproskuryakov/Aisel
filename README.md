@@ -1,5 +1,5 @@
 About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=master)](https://travis-ci.org/ivanproskuryakov/Aisel)
-========================
+-----------------------------------
 
 Aisel is open source project based on combination Symfony2 and AngularJS for frontend.
 
@@ -10,7 +10,7 @@ Sandbox administration: http://sandbox.aisel.co/administration [backenduser/back
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
 
 Installation
-========================
+-----------------------------------
 
 1.) cd to your website directory and download composer with:  <br/>
 curl -sS https://getcomposer.org/installer | php<br/>
@@ -34,15 +34,16 @@ Once this steps is done you will be able to access admin section from http://web
 and frontend at http://websitename.dev/
 
 [Behat](http://behat.org) testing
-========================
+-----------------------------------
 
 Run Behat using the following command to test backend:
 
 ```bash
 $ bin/behat
+```
 
 [Karma](http://karma-runner.github.io/) testing
-========================
+-----------------------------------
 
 Karma unit tests:
 ```bash
@@ -60,13 +61,13 @@ $ grunt karma:e2e
 ```
 
 Sitemap
-========================
+-----------------------------------
 Task: <b>php app/console aisel:sitemap:generate</b><br/>
 This command will generate sitemap.xml<br/>
 Example: http://sandbox.aisel.co/sitemap.xml<br/>
 
 SEO for JS website
-========================
+-----------------------------------
 To make JS website indexable by Google you need to generate snapshots
 Snapshots handled by https://github.com/localnerve/html-snapshots<br/>
 To generate snapshots run in terminal: <b>node snapshots.js</b><br/>
@@ -76,7 +77,7 @@ Google index: https://www.google.ru/search?q=site%3Asandbox.aisel.co<br/>
 Full info how to make SEO for JS website read here: https://developers.google.com/webmasters/ajax-crawling/docs/specification
 
 Speed Test
-========================
+-----------------------------------
  - Clean Ubuntu with 512 RAM<br/>
  - Symfony2 in DEV environment<br/>
  - No server or MySQL tweaks<br/>
@@ -85,7 +86,7 @@ http://tools.pingdom.com/fpt/#!/b3BHG9/http://sandbox.aisel.co/#!/pages/ -  773m
 http://tools.pingdom.com/fpt/#!/dZajwY/http://sandbox.aisel.co/#!/page/userpage-10/ - 751ms
 
 Bug tracking
-========================
+-----------------------------------
 
 Project uses [GitHub issues](https://github.com/ivanproskuryakov/Aisel/issues).
 If you have found bug, please create an issue.
