@@ -1,7 +1,7 @@
 About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=master)](https://travis-ci.org/ivanproskuryakov/Aisel)
 -----------------------------------
 
-Aisel is open source project based on combination Symfony2 and AngularJS for frontend.
+Aisel is open source project based on combination Symfony2(backend) and AngularJS(frontend).
 
 Project website: http://aisel.co/<br/>
 Sandbox frontend: http://sandbox.aisel.co/ [frontenduser/frontenduser]<br/>
