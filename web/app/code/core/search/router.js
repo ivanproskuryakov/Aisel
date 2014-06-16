@@ -6,7 +6,7 @@
  * @description
  * # aiselApp
  *
- * Router update for Homepage Module
+ * Search router
  */
 
 aiselApp.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {

@@ -23,10 +23,18 @@ aiselApp.config(function ($provide, $routeProvider) {
 
 });
 
-var isUserAuthenticated = function ($q, $rootScope, $location) {
+/*
+* Simple helper functions for user ACL
+* see more at user/router.js
+*/
+
+var grantAccessAuthenticated = function ($rootScope, $location, notify) {
+    if (!$rootScope.isAuthenticated) {
+        $location.path("/");
+    }
+};
+var grantAccessGuest = function ($rootScope, $location, notify) {
     if ($rootScope.isAuthenticated) {
-        return true;
-    } else {
         $location.path("/");
     }
 };
