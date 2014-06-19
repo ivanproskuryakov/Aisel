@@ -16,7 +16,8 @@ Installation
 curl -sS https://getcomposer.org/installer | php<br/>
 2.) Create project, installer will ask you dbname, username, password, etc.. <br/>
 php composer.phar create-project -s dev aisel/aisel<br/>
-then set aisel as current directory with cd aisel/ and finish installation with commands bellow<br/><br/>
+then set aisel as current directory with cd aisel/ and finish installation with commands bellow:<br/>
+
 3.) Create database with GUI tool like phpmyadmin or with command<br/>
 php app/console doctrine:schema:create<br/>
 3.) Load initial data in database with<br/>
@@ -31,7 +32,6 @@ sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" ap
 sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
 Linux users:<br/>
 sudo chown -R www-data:www-data  app/cache app/logs<br/>
-
 8.) Add Links to CSS and JS files<br/>
 php app/console assets:install web --symlink
 
