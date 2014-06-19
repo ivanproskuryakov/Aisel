@@ -11,7 +11,6 @@ parameters:
     mailer_password:   ~
 
     website_address:   http://sandbox.aisel.co
-    website_email:     ~
     application_email: ~
 
     locale:            en

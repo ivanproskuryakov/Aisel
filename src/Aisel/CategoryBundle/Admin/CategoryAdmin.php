@@ -79,25 +79,25 @@ class CategoryAdmin extends Admin
         $id = $subject->getId();
         $formMapper
             ->with('General', array('description' => 'This section contains general settings'))
-                ->add('title', 'text', array('label' => 'Title','attr' => array('class' => 'span12')))
+                ->add('title', 'text', array('label' => 'Title','attr' => array()))
                 ->add('description', 'ckeditor',
                     array(
                         'label' => 'Content',
-                        'attr' => array('class' => 'span10 field-content'),
+                        'attr' => array('class' => 'field-content'),
                         'config' => array(
                             'styles' => 'my_styles',
                         ),
                         'styles' => array(
                             'my_styles' => array(
                                 array('name' => 'Blue Title', 'element' => 'h2', 'styles' => array('color' => 'Blue')),
-                                array('name' => 'CSS Style', 'element' => 'span', 'attributes' => array('class' => 'span10')),
+                                array('name' => 'CSS Style', 'element' => 'span', 'attributes' => array()),
                             ),
                         ),
                     ))
                 ->add('status', 'choice', array('choices'   => array(
                     '0'   => 'Disabled',
                     '1' => 'Enabled'),
-                    'label' => 'Status','attr' => array('class' => 'span3')
+                    'label' => 'Status','attr' => array()
                 ))
                 ->add('parent', 'gedmotree', array('expanded' => true,'multiple' => false,
                     'class' => 'Aisel\CategoryBundle\Entity\Category',

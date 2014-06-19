@@ -59,22 +59,22 @@ class PageAdmin extends Admin
     {
         $formMapper
             ->with('General', array('description' => 'This section contains general settings for the web page'))
-                ->add('title', 'text', array('label' => 'Post Title','attr' => array('class' => 'span12')))
+                ->add('title', 'text', array('label' => 'Post Title','attr' => array()))
                 ->add('content', 'ckeditor',
                     array(
                         'label' => 'Content',
                         'required' => true,
-                        'attr' => array('class' => 'span10 field-content')
+                        'attr' => array('class' => 'field-content')
                 ))
                 ->add('status', 'choice', array('choices'   => array(
                         '0'   => 'Disabled',
                         '1' => 'Enabled'),
-                        'label' => 'Status','attr' => array('class' => 'span3')
+                        'label' => 'Status','attr' => array()
                     ))
                 ->add('commentStatus', 'choice', array('choices'   => array(
                     '0'   => 'Disabled',
                     '1' => 'Enabled'),
-                    'label' => 'Comments','attr' => array('class' => 'span3')
+                    'label' => 'Comments','attr' => array()
                 ))
                 ->add('hidden', null, array('required' => false,'label' => 'Hidden page'))
                 ->add('frontenduser',null, array('label' => 'Assigned Frontend User'))
