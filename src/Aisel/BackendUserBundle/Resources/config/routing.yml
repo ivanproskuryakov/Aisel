@@ -1,0 +1,11 @@
+admin_login:
+    pattern:   /administration/login
+    defaults:  { _controller: AiselBackendUserBundle:Login:login }
+
+admin_login_check:
+    pattern:   /administration/login_check
+#    defaults:  { _controller: AiselAdminBundle:Login:logout }
+
+admin_logout:
+    pattern:   /administration/logout
+#    defaults:  { _controller: AiselAdminBundle:Login:check }

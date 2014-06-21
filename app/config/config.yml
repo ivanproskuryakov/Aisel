@@ -46,6 +46,11 @@ assetic:
         #yui_css:
         #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
+# Annotations
+sensio_framework_extra:
+    view:
+        annotations: false
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -80,8 +85,6 @@ stof_doctrine_extensions:
         default:
             tree: true
 
-
-
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -97,9 +100,9 @@ jms_serializer:
       AiselPageBundle:
         namespace_prefix: "Aisel\\PageBundle"
         path: "@AiselPageBundle/Resources/config/serializer/"
-      AiselUserBundle:
-        namespace_prefix: "Aisel\\UserBundle"
-        path: "@AiselUserBundle/Resources/config/serializer/"
+      AiselFrontendUserBundle:
+        namespace_prefix: "Aisel\\FrontendUserBundle"
+        path: "@AiselFrontendUserBundle/Resources/config/serializer/"
       AiselNavigationBundle:
         namespace_prefix: "Aisel\\NavigationBundle"
         path: "@AiselNavigationBundle/Resources/config/serializer/"
@@ -107,11 +110,6 @@ jms_serializer:
         namespace_prefix: "Aisel\\CategoryBundle"
         path: "@AiselCategoryBundle/Resources/config/serializer/"
 
-
-# Annotations
-sensio_framework_extra:
-    view:
-        annotations: false
 
 # REST
 fos_rest:
@@ -123,16 +121,9 @@ fos_rest:
 #    routing_loader:
 #        default_format: json
 
-fos_user:
-    db_driver:      orm # can be orm or odm
-    firewall_name:  main
-    user_class:     Aisel\UserBundle\Entity\BackendUser
-    group:
-      group_class:  Application\Sonata\UserBundle\Entity\Group
-
-sonata_user:
-    class:
-        user: Aisel\UserBundle\Entity\BackendUser
+#sonata_user:
+#    class:
+#        user: Aisel\UserBundle\Entity\BackendUser
 
 
 # Sonata section
@@ -165,24 +156,3 @@ sonata_doctrine_orm_admin:
         types:
             show:
                 tree: AiselAdminBundle:Form:tree.html.twig
-
-presta_sonata_navigation:
-    menu:
-        with_description: false
-        items:
-            system:
-                children:
-                    settings:
-                        route: config_homepage
-                    backenduser:
-                        route: admin_aisel_user_backenduser_list
-                    frontenduser:
-                        route: admin_aisel_user_frontenduser_list
-            cms:
-                children:
-                    page:
-                        route: admin_aisel_page_page_list
-                    category:
-                        route: admin_aisel_category_category_list
-                    menu:
-                        route: admin_aisel_navigation_menu_list

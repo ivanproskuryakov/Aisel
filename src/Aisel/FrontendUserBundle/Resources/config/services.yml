@@ -1,0 +1,22 @@
+services:
+#    sonata.user.admin.group:
+#        abstract: true
+#        public: false
+
+
+    aisel.user.frontend:
+        class: Aisel\FrontendUserBundle\Admin\FrontendUserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Users", label: "Frontend" }
+        arguments:
+            - ~
+            - Aisel\FrontendUserBundle\Entity\FrontendUser
+            - ~
+        calls:
+            - [ setTranslationDomain, [AiselFrontendUserBundle]]
+            - [ setEncoderFactory, [ @security.encoder_factory ] ]
+
+
+    frontend.user.manager:
+        class: Aisel\FrontendUserBundle\Manager\UserManager
+        arguments: [@doctrine.orm.entity_manager, @security.encoder_factory, @mailer, @templating, %application_email%, @security.context]

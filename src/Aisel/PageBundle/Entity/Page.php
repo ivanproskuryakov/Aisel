@@ -63,7 +63,7 @@ class Page
     private $updatedAt;
 
     /**
-     * @var \Aisel\UserBundle\Entity\FrontendUser
+     * @var \Aisel\FrontendUserBundle\Entity\FrontendUser
      */
     private $frontenduser;
 
@@ -323,10 +323,10 @@ class Page
     /**
      * Set frontenduser
      *
-     * @param  \Aisel\UserBundle\Entity\FrontendUser $frontenduser
+     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
      * @return Page
      */
-    public function setFrontenduser(\Aisel\UserBundle\Entity\FrontendUser $frontenduser = null)
+    public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
     {
         $this->frontenduser = $frontenduser;
 
@@ -336,7 +336,7 @@ class Page
     /**
      * Get frontenduser
      *
-     * @return \Aisel\UserBundle\Entity\FrontendUser
+     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
      */
     public function getFrontenduser()
     {

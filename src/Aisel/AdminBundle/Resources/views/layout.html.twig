@@ -21,3 +21,61 @@ file that was distributed with this source code.
         </ul>
     {% endif %}
 {% endblock %}
+{% block sonata_nav %}
+    {% if admin_pool is defined %}
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <div class="navbar-left">
+                {% block sonata_breadcrumb %}
+                    {% if _breadcrumb is not empty or action is defined %}
+                        <ol class="nav navbar-top-links breadcrumb">
+                            {% if _breadcrumb is empty %}
+                                {% if action is defined %}
+                                    {% for menu in admin.breadcrumbs(action) %}
+                                        {% if not loop.last  %}
+                                            <li>
+                                                {% if menu.uri is not empty %}
+                                                    <a href="{{ menu.uri }}">{{ menu.label|raw }}</a>
+                                                {% else %}
+                                                    {{ menu.label }}
+                                                {% endif %}
+                                            </li>
+                                        {% else %}
+                                            <li class="active"><span>{{ menu.label }}</span></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% else %}
+                                {{ _breadcrumb|raw }}
+                            {% endif %}
+                        </ol>
+                    {% endif %}
+                {% endblock sonata_breadcrumb %}
+            </div>
+
+            {% block sonata_top_nav_menu %}
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-plus-square fa-fw"></i> <i class="fa fa-caret-down"></i>
+                            </a>
+                            {% include admin_pool.getTemplate('add_block') %}
+                        </li>
+                        <li class="dropdown user-menu">
+                            <a onclick="javascript:location.href='{{ path('admin_logout') }}'" href="#">
+                                <i class="fa fa-sign-out"></i><span> {{ 'security.signout'|trans }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            {% endblock %}
+        </nav>
+    {% endif %}
+{% endblock sonata_nav %}

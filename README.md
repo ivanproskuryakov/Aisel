@@ -1,7 +1,7 @@
 About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=master)](https://travis-ci.org/ivanproskuryakov/Aisel)
 -----------------------------------
 
-Aisel is open source CMS for high-load projects based on combination Symfony2(backend) and AngularJS(frontend)
+Aisel is open source CMS for highload projects based on combination Symfony2(backend) and AngularJS(frontend)
 
 Project website: http://aisel.co/<br/>
 Demo frontend: http://demo.aisel.co/ [frontenduser/frontenduser]<br/>

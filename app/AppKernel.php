@@ -20,10 +20,8 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new Presta\SonataNavigationBundle\PrestaSonataNavigationBundle(),
 
             // Sonata
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -32,12 +30,11 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
-//            new Sonata\UserBundle\SonataUserBundle(),
-            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
 
-            // Local bundles
-            new Aisel\UserBundle\AiselUserBundle(),
+            // Aisel bundles
+            new Aisel\FrontendUserBundle\AiselFrontendUserBundle(),
+            new Aisel\BackendUserBundle\AiselBackendUserBundle(),
             new Aisel\AdminBundle\AiselAdminBundle(),
             new Aisel\PageBundle\AiselPageBundle(),
             new Aisel\CategoryBundle\AiselCategoryBundle(),

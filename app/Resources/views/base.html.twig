@@ -13,13 +13,36 @@ file that was distributed with this source code.
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Aisel Administration{% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        {% block stylesheets %}
+
+            {% for stylesheet in admin_pool.getOption('stylesheets', []) %}
+                <link rel="stylesheet" type="text/css"  href="{{ asset(stylesheet) }}"  />
+            {% endfor %}
+
+        {% endblock %}
+
+        {% block javascripts %}
+            <script>
+                window.SONATA_CONFIG = {
+                    CONFIRM_EXIT: {% if admin_pool is defined and admin_pool.getOption('confirm_exit') %}true{% else %}false{% endif %},
+                    USE_SELECT2: {% if admin_pool is defined and admin_pool.getOption('use_select2') %}true{% else %}false{% endif %},
+                    USE_ICHECK: {% if admin_pool is defined and admin_pool.getOption('use_icheck') %}true{% else %}false{% endif %}
+                };
+                window.SONATA_TRANSLATIONS = {
+                    CONFIRM_EXIT:  '{{ 'confirm_exit'|trans({}, 'SonataAdminBundle')|escape('js') }}'
+                };
+            </script>
+
+            {% for javascript in admin_pool.getOption('javascripts', []) %}
+            <script src="{{ asset(javascript) }}" type="text/javascript"></script>
+            {% endfor %}
+        {% endblock %}
+
     </head>
     <body>
-        base.html.twig - remove it in fist stable
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
     </body>
 </html>

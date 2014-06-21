@@ -10,7 +10,7 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
-    website_address:   http://sandbox.aisel.co
+    website_address:   http://demo.aisel.co
     application_email: ~
 
     locale:            en

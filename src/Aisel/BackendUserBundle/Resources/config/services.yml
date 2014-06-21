@@ -1,0 +1,17 @@
+services:
+    aisel.user.backend:
+        class: Aisel\BackendUserBundle\Admin\BackendUserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Users", label: "Backend" }
+        arguments:
+            - ~
+            - Aisel\BackendUserBundle\Entity\BackendUser
+            - ~
+        calls:
+            - [ setTranslationDomain, [AiselBackendUserBundle]]
+            - [ setEncoderFactory, [ @security.encoder_factory ] ]
+
+
+    backend.user.manager:
+        class: Aisel\BackendUserBundle\Manager\UserManager
+        arguments: [@doctrine.orm.entity_manager, @security.encoder_factory, @security.context]

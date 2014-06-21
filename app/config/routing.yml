@@ -18,13 +18,15 @@ aisel_admin:
     resource: "@AiselAdminBundle/Resources/config/routing.yml"
     prefix:   /
 
-aisel_user:
-    resource: "@AiselUserBundle/Resources/config/routing.yml"
+aisel_user_frontend:
+    resource: "@AiselFrontendUserBundle/Resources/config/routing.yml"
     prefix:   /
 
-sonata_user:
-    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
-    prefix: /administration
+aisel_user_backend:
+    resource: "@AiselBackendUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
@@ -39,43 +41,3 @@ aisel_config:
     resource: .
     type: extra
     prefix: /administration/settings/
-
-#sonata_user_security:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
-#
-#sonata_user_resetting:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_1.xml"
-#    prefix: /resetting
-#
-#sonata_user_profile:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
-#    prefix: /profile
-#
-#sonata_user_register:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
-#    prefix: /register
-#
-#sonata_user_change_password:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
-#    prefix: /profile
-
-
-# Don't need this, but I just wan't to leave it for a while.
-#sonata_user_security:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
-#
-#sonata_user_resetting:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_1.xml"
-#    prefix: /resetting
-#
-#sonata_user_profile:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
-#    prefix: /profile
-#
-#sonata_user_register:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
-#    prefix: /register
-#
-#sonata_user_change_password:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
-#    prefix: /profile

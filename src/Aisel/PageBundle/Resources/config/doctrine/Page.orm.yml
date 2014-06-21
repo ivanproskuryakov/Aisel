@@ -57,7 +57,7 @@ Aisel\PageBundle\Entity\Page:
 
     manyToOne:
       frontenduser:
-        targetEntity: Aisel\UserBundle\Entity\FrontendUser
+        targetEntity: Aisel\FrontendUserBundle\Entity\FrontendUser
         inversedBy: pages
         joinColumns:
           user_id:

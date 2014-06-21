@@ -1,8 +1,0 @@
-# www.robotstxt.org/
-# www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
-
-User-agent: *
-Allow: /
-Disallow: /snapshots/
-Disallow: /_wdt/
-Sitemap: http://sandbox.aisel.co/sitemap.xml

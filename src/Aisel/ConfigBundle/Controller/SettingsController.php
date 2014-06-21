@@ -78,7 +78,7 @@ class SettingsController extends Controller
     }
 
     /**
-     * @return Form
+     * @return $from
      */
     protected function populateForm($formClass, $config)
     {

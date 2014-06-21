@@ -1,9 +1,6 @@
 parameters:
     application.name: Aisel
     application.version: 0.0.2
-    sonata.user.admin.groupname: System
-    sonata.user.admin.user.entity: Aisel\UserBundle\Entity\BackendUser
-    sonata.user.admin.user.class: Aisel\UserBundle\Admin\BackendUserAdmin
 
 aisel_config:
     route_prefix: config_ # ex: config_contact
@@ -17,6 +14,8 @@ aisel_config:
         contact:
             order: 20
             controller: AiselContactBundle:Config:modify
-        category:
-            order: 30
-            controller: AiselCategoryBundle:Config:modify
+
+# for later use
+#        category:
+#            order: 30
+#            controller: AiselCategoryBundle:Config:modify

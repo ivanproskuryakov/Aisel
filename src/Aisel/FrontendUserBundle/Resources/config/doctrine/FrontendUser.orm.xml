@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Aisel\FrontendUserBundle\Entity\FrontendUser"  table="aisel_user_frontend" repository-class="Aisel\FrontendUserBundle\Entity\FrontendUserRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="tablename_seq" allocation-size="100" initial-value="1" />
+        </id>
+
+        <field name="username"      type="string"     column="username"     length="255" nullable="false" unique="true" />
+        <field name="email"         type="string"     column="email"        length="255" nullable="false" unique="true" />
+        <field name="password"      type="string"     column="password"     length="255" nullable="false" />
+        <field name="salt"          type="string"     column="salt" />
+
+        <field name="enabled"       type="boolean"    column="enabled" />
+        <field name="locked"        type="boolean"    column="locked" />
+
+        <field name="createdAt"     type="datetime"   column="created_at" />
+        <field name="updatedAt"     type="datetime"   column="updated_at" />
+        <field name="expiresAt"     type="datetime"   column="expires_at" nullable="true" />
+        <field name="lastLogin"     type="datetime"   column="last_login" />
+
+        <field name="about"         type="text"       column="about"        nullable="true" />
+        <field name="phone"         type="string"     column="phone"        length="255" nullable="true" />
+        <field name="website"       type="string"     column="website"      length="255" nullable="true" />
+        <field name="facebook"      type="string"     column="facebook"     length="255" nullable="true" />
+        <field name="twitter"       type="string"     column="twitter"      length="255" nullable="true" />
+        <field name="linkedin"      type="string"     column="linkedin"     length="255" nullable="true" />
+        <field name="googleplus"    type="string"     column="googleplus"   length="255" nullable="true" />
+        <field name="github"        type="string"     column="github"       length="255" nullable="true" />
+        <field name="behance"       type="string"     column="behance"      length="255" nullable="true" />
+
+
+        <!-- Profile fields -->
+
+        <one-to-many field="pages" target-entity="Aisel\PageBundle\Entity\Page" mapped-by="frontenduser">
+            <cascade>
+                <cascade-remove/>
+            </cascade>
+            <!--<order-by>-->
+                <!--<order-by-field name="number" direction="ASC" />-->
+            <!--</order-by>-->
+        </one-to-many>
+
+
+    </entity>
+
+</doctrine-mapping>

@@ -13,8 +13,8 @@ file that was distributed with this source code.
 {% extends 'AiselAdminBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
-    <li><a href="{{ url('sonata_admin_dashboard') }}">{% trans %}Dashboard{% endtrans %}</a><span class="divider">/</span></li>
-    <li class="active">{% trans %}Settings{% endtrans %}</li>
+    <li><a href="{{ url('sonata_admin_dashboard') }}">{% trans %}Dashboard{% endtrans %}</a></li>
+    <li class="active"><span>{% trans %}Settings{% endtrans %}</span></li>
 {% endblock %}
 
 {% block content %}
