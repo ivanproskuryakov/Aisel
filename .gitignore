@@ -5,7 +5,9 @@
 /web/robots.txt
 /web/sitemap.xml
 /web/bundles/*
+/web/snapshots/*
 /web/bower_components/*
+/web/npm-debug.log
 /web/npm-debug.log
 !/app/cache/.gitkeep
 !app/logs/.gitkeep
