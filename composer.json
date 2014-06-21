@@ -43,7 +43,7 @@
         "sonata-project/core-bundle": "~2.2@dev",
         "jms/serializer-bundle": "0.13.*@dev",
         "mopa/bootstrap-bundle": "2.3.x-dev",
-        "twbs/bootstrap": "v2.3.2",2
+        "twbs/bootstrap": "v2.3.2",
         "presta/sonata-navigation-bundle": "1.0.*@dev",
         "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
 
