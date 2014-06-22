@@ -25,10 +25,10 @@ class ApiController extends Controller
 
     private function isAuthenticated()
     {
-        if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN') === false) {
-            return $this->container->get('security.context')->isGranted('ROLE_USER');
+        $user = $this->get('security.context')->getToken()->getUser();
+        if ($user !== 'anon.') {
+            if (in_array('ROLE_USER', $user->getRoles())) return true;
         }
-
         return false;
     }
 

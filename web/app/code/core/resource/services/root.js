@@ -48,7 +48,7 @@ angular.module('aiselApp')
 
             getApplicationConfig: function() {
                 var url = API_URL+'/config/settings.json';
-//                console.log(url);
+                console.log(url);
                 return $http.get(url);
             },
             getCategoryTree: function() {

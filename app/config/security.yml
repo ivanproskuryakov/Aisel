@@ -3,7 +3,7 @@ security:
         Aisel\FrontendUserBundle\Entity\FrontendUser: sha512
         Aisel\BackendUserBundle\Entity\BackendUser: sha512
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN:       [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 #        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
 
@@ -49,12 +49,6 @@ security:
             anonymous:          true
 
     access_control:
-        # URL of FOSUserBundle which need to be available to anonymous users
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/secure_area, roles: ROLE_USER }
-
         # Admin login page needs to be access without credential
         - { path: ^/administration/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administration/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -64,4 +58,3 @@ security:
         # This config requires being logged for the whole site and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
         - { path: ^/administration/, role: [ROLE_ADMIN] }
-        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

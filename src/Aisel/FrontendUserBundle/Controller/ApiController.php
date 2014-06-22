@@ -34,10 +34,10 @@ class ApiController extends Controller
 
     private function isAuthenticated()
     {
-        if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN') === false) {
-            return $this->container->get('security.context')->isGranted('ROLE_USER');
+        $user = $this->get('security.context')->getToken()->getUser();
+        if ($user !== 'anon.') {
+            if (in_array('ROLE_USER', $user->getRoles())) return true;
         }
-
         return false;
     }
 
@@ -45,7 +45,7 @@ class ApiController extends Controller
     {
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
         $this->get('security.context')->setToken($token);
-        $this->get('session')->set('_security_main',serialize($token));
+        $this->get('session')->set('_security_main', serialize($token));
     }
 
     /**
@@ -54,7 +54,7 @@ class ApiController extends Controller
     public function loginAction(Request $request)
     {
 
-        if (! $this->isAuthenticated() ) {
+        if (!$this->isAuthenticated()) {
             $username = $request->get('username');
             $password = $request->get('password');
 
@@ -63,16 +63,16 @@ class ApiController extends Controller
             $user = $um->loadUserByUsername($username);
 
             if ((!$user instanceof FrontendUser) || (!$this->getUserManager()->checkUserPassword($user, $password)))
-                return array('message'=>'Wrong username or password!');
+                return array('message' => 'Wrong username or password!');
 
             $this->loginUser($user);
 
-            return array('status'=>true, 'message'=>'successully logged in');
+            return array('status' => true, 'message' => 'successully logged in');
         } else {
-            return array('message'=>'You already logged in. Try to refresh page');
+            return array('message' => 'You already logged in. Try to refresh page');
         }
 
-        return array('message'=>'Error in login action');
+        return array('message' => 'Error in login action');
     }
 
     /**
@@ -81,29 +81,29 @@ class ApiController extends Controller
     public function registerAction(Request $request)
     {
         if ($this->isAuthenticated())
-            return array('message'=>'You already logged in, Please logout first');
+            return array('message' => 'You already logged in, Please logout first');
 
         $userData = array(
-            'username'=>$request->get('username'),
-            'password'=>$request->get('password'),
-            'email'=>$request->get('email'),
+            'username' => $request->get('username'),
+            'password' => $request->get('password'),
+            'email' => $request->get('email'),
         );
 
         $username = $request->get('username');
         $email = $request->get('email');
 
         if ($this->getUserManager()->findUser($username, $email))
-            return array('message'=> 'Username or e-mail already taken!');
+            return array('message' => 'Username or e-mail already taken!');
 
         $user = $this->getUserManager()->registerUser($userData);
 
         if ($user) {
             $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
             $this->get('security.context')->setToken($token);
-            $this->get('session')->set('_security_main',serialize($token));
+            $this->get('session')->set('_security_main', serialize($token));
         }
 
-        return array('status'=>true,'message'=>'User has been registered ');
+        return array('status' => true, 'message' => 'User has been registered ');
     }
 
     /**
@@ -113,18 +113,18 @@ class ApiController extends Controller
     public function passwordforgotAction()
     {
         if ($this->isAuthenticated())
-            return array('message'=>'You already logged in, Please logout first');
+            return array('message' => 'You already logged in, Please logout first');
 
         $email = $this->getRequest()->get('email');
 
         if ($user = $this->getUserManager()->findUserByEmail($email)) {
             $response = $this->getUserManager()->resetPassword($user);
-            if ($response != 1) return array('message'=>$response);
+            if ($response != 1) return array('message' => $response);
         } else {
-            return array('message'=>'User not found!');
+            return array('message' => 'User not found!');
         }
 
-        return array('status'=>true,'message'=>'New password has been sent!');
+        return array('status' => true, 'message' => 'New password has been sent!');
     }
 
     /**
@@ -136,7 +136,7 @@ class ApiController extends Controller
         $this->get('security.context')->setToken($token);
         $this->get('session')->invalidate();
 
-        return array('success'=>true,'message'=>'You have been successfully logged out!');
+        return array('success' => true, 'message' => 'You have been successfully logged out!');
     }
 
     /**
@@ -161,10 +161,10 @@ class ApiController extends Controller
     {
         if ($this->isAuthenticated()) {
             $json = utf8_decode($request->get('userdata'));
-            $userData = json_decode($json,true);
+            $userData = json_decode($json, true);
             $message = $this->getUserManager()->updateDetailsCurrentUser($userData);
 
-            return array('status'=>true,'message'=>$message);
+            return array('status' => true, 'message' => $message);
 
         } else {
             return false;

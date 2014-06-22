@@ -68,10 +68,10 @@ class UserPageManager
      */
     private function isAuthenticated()
     {
-        if ($this->securityContext->isGranted('ROLE_SUPER_ADMIN') === false) {
-            return $this->securityContext->isGranted('ROLE_USER');
+        $user = $this->securityContext->getToken()->getUser();
+        if ($user !== 'anon.') {
+            if (in_array('ROLE_USER', $user->getRoles())) return true;
         }
-
         return false;
     }
 
