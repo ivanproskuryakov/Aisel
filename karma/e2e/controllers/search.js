@@ -21,7 +21,7 @@ describe("E2E: Page search", function() {
     it('Check that we have search results and pagination working', function() {
         expect(element('.pageList li').count()).toBeGreaterThan(0);
         element('.pagination li:eq(2) a').click();
-        expect(element('.pull-right.pagination').html()).toContain('Current: 2');
+        expect(element('.pagination-info').html()).toContain('Current: 2');
     });
 
 });

@@ -18,6 +18,7 @@ var aiselApp = angular.module('aiselApp', [
         'ui.utils',
         'ui.validate',
         'ui.gravatar',
+        'textAngular',
         'cgNotify'
     ])
 

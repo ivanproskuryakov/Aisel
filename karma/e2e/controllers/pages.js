@@ -21,7 +21,7 @@ describe("E2E: Check page listing is working", function() {
     it('Check that page contains at least 1 article and pagination is working', function() {
         expect(element('.pageList li').count()).toBeGreaterThan(0);
         element('.pagination li:eq(2) a').click();
-        expect(element('.pull-right.pagination').html()).toContain('Current: 2');
+        expect(element('.pagination-info').html()).toContain('Current: 2');
     });
 
 });

@@ -16,7 +16,10 @@
     "angular-bootstrap": "~0.10.0",
     "angular-ui-utils": "~0.1.1",
     "angular-notify": "*",
-    "angular-gravatar": "~0.1.4"
+    "angular-gravatar": "~0.1.4",
+    "textAngular": "1.2.1",
+    "font-awesome": "4.0.x",
+    "rangy": "1.2.x"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
