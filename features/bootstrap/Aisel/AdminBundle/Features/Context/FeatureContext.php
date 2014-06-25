@@ -1,6 +1,6 @@
 <?php
 
-namespace Aisel\NavigationBundle\Features\Context;
+namespace Aisel\AdminBundle\Features\Context;
 
 use Aisel\ResourceBundle\Features\Context\DefaultContext;
 
@@ -14,11 +14,11 @@ class FeatureContext extends DefaultContext
 {
 
     /**
-     * @When /^Script access api_aisel_navigationmenu route$/
+     * @When /^Script access api_aisel_config route$/
      */
     public function scriptAccessRoute()
     {
-        $this->getSession()->visit($this->generateUrl('api_aisel_navigationmenu'));
+        $this->getSession()->visit($this->generateUrl('api_aisel_config'));
         $this->assertSession()->statusCodeEquals(200);
     }
 
@@ -29,7 +29,7 @@ class FeatureContext extends DefaultContext
     {
         $content = $this->getSession()->getPage()->getContent();
         $json = json_decode($content);
-        assertNotEmpty($json[0]->id);
+        assertNotEmpty($json->config_contact);
     }
 
 }

@@ -15,9 +15,20 @@ default:
         api.page:
             contexts:
                 - Aisel\PageBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.page"
         api.category:
             contexts:
                 - Aisel\CategoryBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.category"
         api.navigation:
             contexts:
                 - Aisel\NavigationBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.navigation"
+        api.settings:
+            contexts:
+                - Aisel\AdminBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.settings"

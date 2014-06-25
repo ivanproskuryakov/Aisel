@@ -1,10 +1,10 @@
-<div class="row row-offcanvas row-offcanvas-right">
-        <div class="page-header">
+<div class="">
+        <div class="col-xs-12 page-header">
             <h2>{{pageDetails.page.title}}</h2>
             <p><span class="glyphicon glyphicon-calendar"></span> {{pageDetails.page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
         </div>
 
-        <div class="col-md-10">
+        <div class="col-xs-12 col-md-12">
             <p ng-bind-html="pageDetails.page.content"></p>
 
             <div class="related pageCategories" ng-if="pageDetails.categories">

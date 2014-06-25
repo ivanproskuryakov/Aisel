@@ -6,4 +6,4 @@ Feature: Pages
 
   Scenario: Page API is working
     Given Script access api_aisel_pagelist route
-    Then Content should contain valid JSON
+    Then Content contains valid JSON

@@ -6,4 +6,4 @@ Feature: Navigation
 
   Scenario: Navigation API is working
     Given Script access api_aisel_navigationmenu route
-    Then Navigation response should contain valid JSON
+    Then Content contains valid JSON

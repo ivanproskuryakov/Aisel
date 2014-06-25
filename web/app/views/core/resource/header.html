@@ -2,48 +2,56 @@
 <div class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="/#!/"><img class="header-logo" src="images/logo-white.png" title="Aisel"></a>
-
-
+        </div>
+        <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li ng-repeat="menuItem in topMenu">
                     <a ng-href="{{menuItem.url}}">{{menuItem.title}}</a>
                 </li>
             </ul>
+            <ul class="user-navbar nav navbar-nav navbar-right" ng-controller="UserCtrl">
 
-        </div>
 
-        <form class="navbar-search pull-right ng-pristine ng-valid navbar-form" role="form">
-            <div class="form-group">
-                <input type="text"a ng-search-redirect="{{search}}" ng-model="search" placeholder="search for ..." class="search-query form-control">
-            </div>
-        </form>
-        <ul class="user-navbar nav navbar-nav navbar-right" ng-controller="UserCtrl">
+                <!-- Guests -->
+                <li class="dropdown" ng-if="!isAuthenticated">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guest <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="" ng-click="openSignIn();" >Sign In</a></li>
+                        <li><a ng-href="/#!/user/register/">Create Account</a></li>
+                    </ul>
+                </li>
 
-            <!-- Guests -->
-            <li class="dropdown" ng-if="!isAuthenticated">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guest <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="" ng-click="openSignIn();" >Sign In</a></li>
-                    <li><a ng-href="/#!/user/register/">Create Account</a></li>
-                </ul>
-            </li>
+                <!-- Users -->
+                <li class="dropdown" ng-if="isAuthenticated">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img class="gavatar-navbar" gravatar-src="'{{ user.email }}'" gravatar-size="18">
+                        {{ user.username }}<b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-href="/#!/user/information/">My account</a></li>
+                        <li><a ng-href="/#!/user/page/list/">Browse pages</a></li>
+                        <li><a ng-href="/#!/user/page/add/">Add new page</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a ng-click="signOut()" >Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-search ng-pristine ng-valid navbar-form navbar-right" role="form">
+                <div class="form-group">
+                    <input type="text"a ng-search-redirect="{{search}}" ng-model="search" placeholder="search for ..." class="search-query form-control">
+                </div>
+            </form>
 
-            <!-- Users -->
-            <li class="dropdown" ng-if="isAuthenticated">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img class="gavatar-navbar" gravatar-src="'{{ user.email }}'" gravatar-size="18">
-                    {{ user.username }}<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a ng-href="/#!/user/information/">My account</a></li>
-                    <li><a ng-href="/#!/user/page/list/">Browse pages</a></li>
-                    <li><a ng-href="/#!/user/page/add/">Add new page</a></li>
-                    <li role="presentation" class="divider"></li>
-                    <li><a ng-click="signOut()" >Sign Out</a></li>
-                </ul>
-            </li>
-        </ul>
+        </div><!--/.nav-collapse -->
+
+
 
     </div>
 </div>

@@ -16,20 +16,20 @@ class FeatureContext extends DefaultContext
     /**
      * @When /^Script access api_aisel_categorylist route$/
      */
-    public function goToCategoryListURI()
+    public function scriptAccessRoute()
     {
         $this->getSession()->visit($this->generateUrl('api_aisel_categorylist'));
         $this->assertSession()->statusCodeEquals(200);
     }
 
     /**
-     * @Given /^Content should contain valid JSON$/
+     * @Given /^Content contains valid JSON$/
      */
-    public function jsonHasTotal()
+    public function contentContainsValidJSON()
     {
-        $json = $this->getSession()->getPage()->getContent();
-        $categoryDetails = json_decode($json);
-        assertNotEmpty($categoryDetails->total);
+        $content = $this->getSession()->getPage()->getContent();
+        $json = json_decode($content);
+        assertNotEmpty($json->total);
     }
 
 }

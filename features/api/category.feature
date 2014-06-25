@@ -6,4 +6,4 @@ Feature: Categories
 
   Scenario: Category API is working
     Given Script access api_aisel_categorylist route
-    Then Content should contain valid JSON
+    Then Content contains valid JSON
