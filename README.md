@@ -38,6 +38,7 @@ php app/console assets:install web --symlink
 Once this steps is done you will be able to access admin section from http://websitename.dev/administration/
 and frontend at http://websitename.dev/
 
+
 [Behat](http://behat.org) tests
 -----------------------------------
 
@@ -70,6 +71,10 @@ Sitemap
 Task: <b>php app/console aisel:sitemap:generate</b><br/>
 This command will generate sitemap.xml<br/>
 Example: http://demo.aisel.co/sitemap.xml<br/>
+
+Mobile ready
+-----------------------------------
+http://www.responsinator.com/?url=http%3A%2F%2Fdemo.aisel.co%2F%23%21%2Fpage%2Fabout-aisel%2F
 
 SEO for JS website
 -----------------------------------
