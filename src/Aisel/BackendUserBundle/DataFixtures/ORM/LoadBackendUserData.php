@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\DataFixtures\ORM;
+namespace Aisel\BackendUserBundle\DataFixtures\ORM;
 
 use Aisel\BackendUserBundle\Entity\BackendUser;
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -40,7 +40,7 @@ class LoadBackendUserData extends AbstractFixture implements OrderedFixtureInter
     }
 
     /**
-     * FOSUser user manager for our nice operations.
+     * Backend user manager for our nice operations.
      * @return \Aisel\BackendUserBundle\Manager\UserManager
      */
     protected function getUserManager()

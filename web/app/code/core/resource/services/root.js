@@ -5,9 +5,9 @@ angular.module('aiselApp')
         return {
 
             init: function() {
-
-                // Set Default Meta
+                // Set default values
                 var meta = false;
+                var disqus = false;
                 $rootScope.$on('$routeChangeStart', function (event, to, from) {
                     $rootScope.pageTitle = meta.defaultMetaTitle;
                     $rootScope.metaDescription = meta.defaultMetaDescription;
@@ -15,10 +15,16 @@ angular.module('aiselApp')
                 });
                 this.getApplicationConfig().success(
                     function(data, status) {
+                        // Meta
                         meta = JSON.parse(data.config_meta);
                         $rootScope.pageTitle = meta.defaultMetaTitle;
                         $rootScope.metaDescription = meta.defaultMetaDescription;
                         $rootScope.metaKeywords = meta.defaultMetaKeywords;
+
+                        // Disqus
+                        disqus = JSON.parse(data.config_disqus);
+                        $rootScope.disqusShortname = disqus.shortname;
+                        $rootScope.disqusStatus = disqus.status;
                     }
                 );
 

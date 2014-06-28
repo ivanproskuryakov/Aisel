@@ -15,7 +15,6 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\PageBundle\Entity\Page;
-use Aisel\CategoryBundle\Entity\Category;
 
 /**
  * Page fixtures
@@ -43,7 +42,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $hiddenPage->setContent('If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.');
         $hiddenPage->setStatus(true);
         $hiddenPage->setHidden(true);
-        $hiddenPage->setCommentStatus(false);
+        $hiddenPage->setCommentStatus(true);
         $hiddenPage->setMetaUrl('about-aisel');
         $hiddenPage->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $hiddenPage->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -72,7 +71,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setHidden(false);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('page-1');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -86,7 +85,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setHidden(false);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('page-2');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -100,7 +99,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setHidden(false);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('page-3');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -114,7 +113,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setHidden(false);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('page-4');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -128,7 +127,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setHidden(false);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('page-5');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -142,7 +141,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setHidden(false);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('page-6');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -156,7 +155,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setHidden(false);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('page-7');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -170,7 +169,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setHidden(false);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('page-8');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -184,7 +183,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setHidden(false);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('page-9');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -198,7 +197,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setHidden(false);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('page-10');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -212,7 +211,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setHidden(false);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('page-11');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -228,7 +227,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setFrontenduser($frontendUser);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('userpage-one');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -243,7 +242,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page->setFrontenduser($frontendUser);
         $page->addCategory($rootCategory);
         $page->addCategory($childCategory);
-        $page->setCommentStatus(false);
+        $page->setCommentStatus(true);
         $page->setMetaUrl('userpage-two');
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));

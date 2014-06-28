@@ -37,7 +37,13 @@ class LoadConfigData extends AbstractFixture implements OrderedFixtureInterface
 
         $config = new Config();
         $config->setEntity('config_meta');
-        $config->setValue('{"defaultMetaTitle":"Aisel - open source project","defaultMetaDescription":"Modern CMS based on shoulders of giants","defaultMetaKeywords":"Aisel, Symfony, AngularJS"}');
+        $config->setValue('{"defaultMetaTitle":"Aisel - open source project","defaultMetaDescription":"Highload CMS based on Symfony2 and AngularJS","defaultMetaKeywords":"Aisel, Symfony, AngularJS"}');
+        $manager->persist($config);
+        $manager->flush();
+
+        $config = new Config();
+        $config->setEntity('config_disqus');
+        $config->setValue('{"shortname":"demoaiselco","status":1}');
         $manager->persist($config);
         $manager->flush();
 

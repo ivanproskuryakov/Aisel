@@ -19,6 +19,7 @@ var aiselApp = angular.module('aiselApp', [
         'ui.validate',
         'ui.gravatar',
         'textAngular',
+        'ngDisqus',
         'cgNotify'
     ])
 
@@ -30,7 +31,7 @@ var aiselApp = angular.module('aiselApp', [
 //        });
     }])
 
-    .config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
+    .config(function ($provide, $routeProvider, $locationProvider, $httpProvider, $disqusProvider) {
         $locationProvider
 //            .html5Mode(true)
             .hashPrefix('!');

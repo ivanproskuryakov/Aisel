@@ -19,6 +19,7 @@
     "angular-gravatar": "~0.1.4",
     "textAngular": "1.2.1",
     "font-awesome": "4.0.x",
+    "angular-disqus": "1.1.0",
     "rangy": "1.2.x"
   },
   "devDependencies": {

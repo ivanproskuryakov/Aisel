@@ -106,8 +106,8 @@ class FrontendUserAdmin extends Admin
         $listMapper
             ->addIdentifier('username')
             ->add('email')
-            ->add('enabled', null, array('editable' => true))
-            ->add('locked', null, array('editable' => true))
+            ->add('enabled', null, array('editable' => false))
+            ->add('locked', null, array('editable' => false))
             ->add('createdAt')
 
             ->add('_action', 'actions', array(

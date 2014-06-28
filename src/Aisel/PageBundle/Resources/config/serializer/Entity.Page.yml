@@ -11,7 +11,7 @@ Aisel\PageBundle\Entity\Page:
         expose: true
     updatedAt:
         expose: true
-    comment_status:
+    commentStatus:
         expose: true
     metaUrl:
         expose: true

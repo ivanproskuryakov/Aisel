@@ -5,3 +5,4 @@ aisel_config_contact.label: Contact
 aisel_config_category.label: Category
 aisel_config_meta.label: Meta Information
 aisel_config_homepage.label: Homepage
+aisel_config_disqus.label: Disqus

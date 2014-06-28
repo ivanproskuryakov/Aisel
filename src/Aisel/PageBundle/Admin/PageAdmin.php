@@ -131,10 +131,10 @@ class PageAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('title')
-//            ->add('categories')
             ->add('frontenduser', null, array('label' => 'Frontend User'))
-            ->add('status', 'boolean', array('label' => 'Status','editable' => true))
-            ->add('hidden', 'boolean', array('label' => 'Hidden','editable' => true))
+            ->add('commentStatus', 'boolean', array('label' => 'Comments','editable' => false))
+            ->add('status', 'boolean', array('label' => 'Status','editable' => false))
+            ->add('hidden', 'boolean', array('label' => 'Hidden','editable' => false))
             ->add('updatedAt', 'datetime', array('label' => 'Date'))
             ->add('_action', 'actions', array(
                     'actions' => array(

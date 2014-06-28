@@ -94,10 +94,7 @@ class PageRepository extends EntityRepository
             $query->andWhere('p.status = :status')->setParameter('status', 1);
         }
 
-
-
         $total = $query->getQuery()->getSingleScalarResult();
-
 
         if (!$total) return 0;
         return $total;

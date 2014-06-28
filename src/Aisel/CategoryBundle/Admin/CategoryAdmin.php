@@ -60,8 +60,8 @@ class CategoryAdmin extends Admin
     {
         $query = parent::createQuery($context);
 
-        $query->orderBy('o.root', 'ASC');
-        $query->addOrderBy('o.lft', 'ASC');
+        $query->orderBy('o.root', 'DESC');
+//        $query->addOrderBy('o.lft', 'ASC');
 
         return $query;
     }
@@ -147,7 +147,7 @@ class CategoryAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id', null,array('sortable'=>false))
-            ->add('status', 'boolean', array('label' => 'Enabled','editable' => true))
+            ->add('status', 'boolean', array('label' => 'Enabled','editable' => false))
             ->add('title', null, array('template' => 'AiselCategoryBundle:Admin:title.html.twig', 'label'=>'Title','sortable'=>false))
             ->add('order', 'text', array('template' => 'AiselCategoryBundle:Admin:order.html.twig', 'label'=>'Move'))
 

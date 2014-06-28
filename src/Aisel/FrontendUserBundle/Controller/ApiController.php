@@ -38,6 +38,7 @@ class ApiController extends Controller
         if ($user !== 'anon.') {
             if (in_array('ROLE_USER', $user->getRoles())) return true;
         }
+
         return false;
     }
 

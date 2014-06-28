@@ -109,7 +109,7 @@ class NavigationAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id', null,array('sortable'=>false))
-            ->add('status', 'boolean', array('label' => 'Enabled','editable' => true))
+            ->add('status', 'boolean', array('label' => 'Enabled','editable' => false))
             ->add('title', null, array('template' => 'AiselNavigationBundle:Admin:title.html.twig', 'label'=>'Title','sortable'=>false))
             ->add('url', null, array('label'=>'URL','sortable'=>false))
             ->add('order', 'text', array('template' => 'AiselNavigationBundle:Admin:order.html.twig', 'label'=>'Move'))

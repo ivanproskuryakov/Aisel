@@ -5,14 +5,14 @@ namespace Aisel\AdminBundle\Controller;
 use Aisel\ConfigBundle\Controller\SettingsController;
 
 /**
- * Extends SettingsController for Meta settings in Backend
+ * Extends SettingsController for Disqus
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ConfigMetaController extends SettingsController
+class ConfigDisqusController extends SettingsController
 {
 
-    public $form = "\Aisel\AdminBundle\Form\Type\ConfigMetaType";
+    public $form = "\Aisel\AdminBundle\Form\Type\ConfigDisqusType";
 
     /**
      * {@inheritdoc }

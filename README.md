@@ -73,12 +73,13 @@ Example: http://demo.aisel.co/sitemap.xml<br/>
 
 SEO for JS website
 -----------------------------------
+Check Google index status: https://www.google.com/search?q=site%3Ademo.aisel.co<br/>
+
 To make JS website indexable by Google you need to generate page snapshots<br/>
 Snapshots handled by https://github.com/localnerve/html-snapshots<br/>
 To generate snapshots run in terminal: <b>node snapshots.js</b><br/>
 Task will create snapshots in directory web/snapshots. In the end you will need to test like this:<br/>
 For page http://demo.aisel.co/#!/pages/ you need type in terminal: <br/>curl http://demo.aisel.co/?_escaped_fragment_=/pages/<br/>
-Google index: https://www.google.com/search?q=site%3Ademo.aisel.co<br/>
 Full info how to make SEO for JS website read here: https://developers.google.com/webmasters/ajax-crawling/docs/specification
 
 Bug tracking

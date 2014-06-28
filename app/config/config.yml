@@ -121,10 +121,6 @@ fos_rest:
 #    routing_loader:
 #        default_format: json
 
-#sonata_user:
-#    class:
-#        user: Aisel\UserBundle\Entity\BackendUser
-
 
 # Sonata section
 sonata_block:
@@ -140,7 +136,7 @@ sonata_block:
         sonata.block.service.text:
 
 sonata_admin:
-    title:      Administration
+    title:      Backend
     templates:
         layout:              AiselAdminBundle::layout.html.twig
         search:              SonataAdminBundle:Core:search.html.twig

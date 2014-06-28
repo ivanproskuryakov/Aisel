@@ -11,8 +11,6 @@
 
 namespace Aisel\BackendUserBundle\Admin;
 
-use Sonata\UserBundle\Admin\Model\UserAdmin as BaseUserAdmin;
-
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -108,8 +106,8 @@ class BackendUserAdmin extends Admin
         $listMapper
             ->addIdentifier('username')
             ->add('email')
-            ->add('enabled', null, array('editable' => true))
-            ->add('locked', null, array('editable' => true))
+            ->add('enabled', null, array('editable' => false))
+            ->add('locked', null, array('editable' => false))
             ->add('createdAt')
 
             ->add('_action', 'actions', array(

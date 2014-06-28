@@ -92,6 +92,7 @@ class PageManager
      */
     public function getPageByURL($urlKey)
     {
+
         $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(array('metaUrl' => $urlKey));
 
         if (!($page)) {
