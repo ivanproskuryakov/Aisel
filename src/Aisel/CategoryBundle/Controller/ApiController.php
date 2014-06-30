@@ -45,7 +45,7 @@ class ApiController extends Controller
      */
     public function categoryTreeAction(Request $request)
     {
-        $categoryList = $this->container->get("aisel.category.manager")->getHTMLCategoryTree();
+        $categoryList = $this->container->get("aisel.category.manager")->getCategoryTree();
 
         return $categoryList;
     }

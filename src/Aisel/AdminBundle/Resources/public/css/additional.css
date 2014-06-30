@@ -1,6 +1,3 @@
-.sonata-bc .field-content{
-    min-height: 500px;
-}
-.sonata-bc .row-fluid .field-content {
-    min-height: 500px;
+.aisel_config_settings_modify button {
+    margin-top: 20px;
 }

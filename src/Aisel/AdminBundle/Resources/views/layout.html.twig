@@ -10,6 +10,17 @@ file that was distributed with this source code.
 #}
 
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+    filter='cssrewrite'
+    '@AiselAdminBundle/Resources/public/css/*'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block side_bar_after_nav %}
     {% if is_granted('ROLE_SONATA_ADMIN') %}
         <ul class="sidebar-menu">
@@ -21,6 +32,7 @@ file that was distributed with this source code.
         </ul>
     {% endif %}
 {% endblock %}
+
 {% block sonata_nav %}
     {% if admin_pool is defined %}
         <nav class="navbar navbar-static-top" role="navigation">

@@ -38,8 +38,9 @@ class CategoryManager
             if ($rootItem->getRoot() == $rootItem->getId()) {
                 $_category = array(
                     'id' => $rootItem->getId(),
-                    'selected' => false,
                     'title' => $rootItem->getTitle(),
+                    'url' => $rootItem->getMetaUrl(),
+                    'selected' => false,
                     'children' => $this->generatePageTree($rootItem->getChildren(), $rootItem->getId())
                 );
                 $tree[] = $_category;
@@ -50,7 +51,38 @@ class CategoryManager
     }
 
     /**
-     * Get enabled categories as HTML "ul li" tree
+     * Generate child categories for selected root
+     * @param  object $items
+     * @param  int    $pid
+     * @return array
+     */
+    public function generatePageTree($items, $pid = null)
+    {
+        $tree = array();
+        foreach ($items as $item) {
+
+            if (!$item->getStatus()) continue;
+            if ($item->getParent()) {
+                if ($parentId = $item->getParent()->getId()) {
+                    if ($parentId == $pid) {
+                        $tree[$item->getId()]['id'] = $item->getId();
+                        $tree[$item->getId()]['title'] = $item->getTitle();
+                        $tree[$item->getId()]['url'] = $item->getMetaUrl();
+                        $tree[$item->getId()]['selected'] = false;
+                        if ($item->getChildren()) {
+                            $children = $this->generatePageTree($item->getChildren(), $item->getId());
+                            $tree[$item->getId()]['children'] = $children;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $tree;
+    }
+
+    /**
+     * Get enabled categories as HTML "ul li" tree - WILL BE REMOVED
      * @return string $treeHTML
      */
     public function getHTMLCategoryTree()
@@ -75,7 +107,7 @@ class CategoryManager
     }
 
     /**
-     * Generate child categories for selected in HTML format
+     * Generate child categories for selected in HTML format - WILL BE REMOVED
      * @param  object $items
      * @param  int    $pid
      * @return array
@@ -104,36 +136,6 @@ class CategoryManager
         $treeHTML .= '</ul>';
 
         return $treeHTML;
-    }
-
-    /**
-     * Generate child categories for selected root
-     * @param  object $items
-     * @param  int    $pid
-     * @return array
-     */
-    public function generatePageTree($items, $pid = null)
-    {
-        $tree = array();
-        foreach ($items as $item) {
-
-            if (!$item->getStatus()) continue;
-            if ($item->getParent()) {
-                if ($parentId = $item->getParent()->getId()) {
-                    if ($parentId == $pid) {
-                        $tree[$item->getId()]['id'] = $item->getId();
-                        $tree[$item->getId()]['title'] = $item->getTitle();
-                        $tree[$item->getId()]['selected'] = false;
-                        if ($item->getChildren()) {
-                            $children = $this->generatePageTree($item->getChildren(), $item->getId());
-                            $tree[$item->getId()]['children'] = $children;
-                        }
-                    }
-                }
-            }
-        }
-
-        return $tree;
     }
 
     /**

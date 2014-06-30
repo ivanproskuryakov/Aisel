@@ -51,7 +51,7 @@
         "behat/symfony2-extension":          "~2.0@dev",
         "behat/mink-extension":              "~2.0@dev",
         "behat/mink-browserkit-driver":      "~1.2@dev",
-        "behat/mink-selenium2-driver":       "@dev",
+        "behat/mink-selenium2-driver":       "1.0.*",
         "behat/mink":                        "~1.6@dev",
 
         "phpspec/phpspec":                   "~2.0",

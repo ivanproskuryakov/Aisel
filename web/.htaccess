@@ -5,6 +5,11 @@
 # to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
 DirectoryIndex index.html
 
+
+# PHP Fatal error:  Maximum function nesting level of '100' reached
+# Set xDebug nesting level to 1000
+php_value	xdebug.max_nesting_level	1000
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
 

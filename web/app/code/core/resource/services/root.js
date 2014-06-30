@@ -36,7 +36,7 @@ angular.module('aiselApp')
                 );
                 this.getCategoryTree().success(
                     function(data, status) {
-                        $rootScope.categoryTree = JSON.parse(data);
+                        $rootScope.categoryTree = data;
                     }
                 );
                 this.getUserInformation().success(

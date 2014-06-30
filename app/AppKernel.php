@@ -51,12 +51,6 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
 
-        /*
-         * PHP Fatal error:  Maximum function nesting level of '100' reached
-         * Set xDebug nesting level to 1000
-         */
-        ini_set('xdebug.max_nesting_level', 1000);
-
         return $bundles;
     }
 
