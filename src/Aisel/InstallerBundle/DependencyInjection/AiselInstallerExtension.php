@@ -9,8 +9,7 @@
  * file that was distributed with this source code.
  */
 
-
-namespace Aisel\ResourceBundle\DependencyInjection;
+namespace Aisel\InstallerBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -22,7 +21,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class AiselResourceExtension extends Extension
+class AiselInstallerExtension extends Extension
 {
     /**
      * {@inheritDoc}

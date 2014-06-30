@@ -142,8 +142,8 @@ sonata_admin:
         search:              SonataAdminBundle:Core:search.html.twig
         search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
     options:
-        html5_validate: false # does not use html5 validation
-        confirm_exit:   false # disable confirmation when quitting with unsaved changes
+        html5_validate: true # does not use html5 validation
+        confirm_exit:   true # disable confirmation when quitting with unsaved changes
 
 
 sonata_doctrine_orm_admin:

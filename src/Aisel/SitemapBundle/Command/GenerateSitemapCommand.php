@@ -33,7 +33,7 @@ class GenerateSitemapCommand extends ContainerAwareCommand
         $this
             ->setName('aisel:sitemap:generate')
             ->setHelp(<<<EOT
-The <info>aisel:sitemap:generate</info> command generates sitemap with list of categories and pages:
+The <info>aisel:sitemap:generate</info> command generates sitemap with list of categories and pages.
 EOT
             );
     }

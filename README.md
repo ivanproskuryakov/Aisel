@@ -13,30 +13,36 @@ Installation
 -----------------------------------
 
 1.) cd to your website directory and download composer with:  <br/>
-curl -sS https://getcomposer.org/installer | php<br/>
+```bash
+curl -sS https://getcomposer.org/installer | php
+```
 2.) Create project, installer will ask you dbname, username, password, etc.. <br/>
-php composer.phar create-project -s dev aisel/aisel<br/>
+```bash
+php composer.phar create-project -s dev aisel/aisel
+```
 then set aisel as current directory with cd aisel/ and finish installation with commands bellow:<br/>
-
-3.) Create database with GUI tool like phpmyadmin or with command<br/>
-php app/console doctrine:schema:create<br/>
-3.) Load initial data in database with<br/>
-php app/console doctrine:fixtures:load<br/>
-5.) Clear Symfony cache directory<br/>
-php app/console cache:clear --env=dev<br/>
-6.) Install frontend dependencies with<br/>
-bower install<br/>
-7.) Important: webserver needs permissions to write cache in aisel/app/cache/<br/>
+Important: webserver needs permissions to write cache in aisel/app/cache/<br/>
 Mac users:<br/>
+```bash
 sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
 sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
+```
 Linux users:<br/>
+```bash
 sudo chown -R www-data:www-data  app/cache app/logs<br/>
-8.) Add Links to CSS and JS files<br/>
-php app/console assets:install web --symlink
+```
 
-Once this steps is done you will be able to access admin section from http://websitename.dev/administration/
-and frontend at http://websitename.dev/
+4.) Launch installation with command:<br/>
+```bash
+php app/console aisel:install
+```
+5.) Install frontend dependencies with Bower<br/>
+```bash
+bower install
+```
+
+Once this steps is done you will be able to access admin section from http://yourwebsitename.dev/administration/
+and frontend at http://yourwebsitename.dev/
 
 
 [Behat](http://behat.org) tests

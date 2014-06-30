@@ -14,7 +14,6 @@ file that was distributed with this source code.
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets
-    filter='cssrewrite'
     '@AiselAdminBundle/Resources/public/css/*'
     %}
     <link rel="stylesheet" href="{{ asset_url }}" />

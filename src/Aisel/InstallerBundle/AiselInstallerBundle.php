@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle;
+namespace Aisel\InstallerBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AiselResourceBundle extends Bundle
+class AiselInstallerBundle extends Bundle
 {
 }

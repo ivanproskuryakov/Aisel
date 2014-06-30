@@ -60,8 +60,9 @@ class CategoryAdmin extends Admin
     {
         $query = parent::createQuery($context);
 
-        $query->orderBy('o.root', 'DESC');
-//        $query->addOrderBy('o.lft', 'ASC');
+        $query->orderBy('o.root', 'ASC');
+        $query->addOrderBy('o.lft', 'ASC');
+        $query->addOrderBy('o.title', 'ASC');
 
         return $query;
     }
@@ -79,20 +80,11 @@ class CategoryAdmin extends Admin
         $id = $subject->getId();
         $formMapper
             ->with('General', array('description' => 'This section contains general settings'))
-                ->add('title', 'text', array('label' => 'Title','attr' => array()))
+                ->add('title', 'text', array('label' => 'Title'))
                 ->add('description', 'ckeditor',
                     array(
                         'label' => 'Content',
-                        'attr' => array('class' => 'field-content'),
-                        'config' => array(
-                            'styles' => 'my_styles',
-                        ),
-                        'styles' => array(
-                            'my_styles' => array(
-                                array('name' => 'Blue Title', 'element' => 'h2', 'styles' => array('color' => 'Blue')),
-                                array('name' => 'CSS Style', 'element' => 'span', 'attributes' => array()),
-                            ),
-                        ),
+                        'required' => true,
                     ))
                 ->add('status', 'choice', array('choices'   => array(
                     '0'   => 'Disabled',
@@ -115,9 +107,9 @@ class CategoryAdmin extends Admin
 
             ->with('Meta', array('description' => 'Meta description for search engines'))
                 ->add('metaUrl', 'text', array('label' => 'Url','help'=>'note: URL value must be unique'))
-                ->add('metaTitle', 'text', array('label' => 'Title'))
-                ->add('metaDescription', 'textarea', array('label' => 'Description'))
-                ->add('metaKeywords', 'textarea', array('label' => 'Keywords'))
+                ->add('metaTitle', 'text', array('label' => 'Title','required' => false))
+                ->add('metaDescription', 'textarea', array('label' => 'Description','required' => false))
+                ->add('metaKeywords', 'textarea', array('label' => 'Keywords','required' => false))
             ->end();
 
     }
@@ -146,8 +138,8 @@ class CategoryAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id', null,array('sortable'=>false))
-            ->add('status', 'boolean', array('label' => 'Enabled','editable' => false))
+            ->addIdentifier('id', null,array('sortable'=>true))
+            ->add('status', 'boolean', array('label' => 'Enabled','editable' => false,'sortable'=>false))
             ->add('title', null, array('template' => 'AiselCategoryBundle:Admin:title.html.twig', 'label'=>'Title','sortable'=>false))
             ->add('order', 'text', array('template' => 'AiselCategoryBundle:Admin:order.html.twig', 'label'=>'Move'))
 

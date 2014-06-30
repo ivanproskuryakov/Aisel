@@ -52,6 +52,7 @@ class NavigationAdmin extends Admin
 
         $query->orderBy('o.root', 'ASC');
         $query->addOrderBy('o.lft', 'ASC');
+        $query->addOrderBy('o.title', 'ASC');
 
         return $query;
     }
@@ -108,8 +109,8 @@ class NavigationAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id', null,array('sortable'=>false))
-            ->add('status', 'boolean', array('label' => 'Enabled','editable' => false))
+            ->addIdentifier('id', null,array('sortable'=>true))
+            ->add('status', 'boolean', array('label' => 'Enabled','editable' => false,'sortable'=>false))
             ->add('title', null, array('template' => 'AiselNavigationBundle:Admin:title.html.twig', 'label'=>'Title','sortable'=>false))
             ->add('url', null, array('label'=>'URL','sortable'=>false))
             ->add('order', 'text', array('template' => 'AiselNavigationBundle:Admin:order.html.twig', 'label'=>'Move'))
