@@ -21,11 +21,11 @@ curl -sS https://getcomposer.org/installer | php
 php composer.phar create-project -s dev aisel/aisel
 ```
 then set aisel as current directory with cd aisel/ and finish installation with commands bellow:<br/>
-Important: webserver needs permissions to write cache in aisel/app/cache/<br/>
+Important: webserver needs permissions to save cache, logs and sessions<br/>
 Mac users:<br/>
 ```bash
 sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
-sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
+sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs app/var<br/>
 ```
 Linux users:<br/>
 ```bash
@@ -40,6 +40,9 @@ php app/console aisel:install
 ```bash
 bower install
 ```
+Bower is a command line utility. Install it with npm.<br/>
+$ npm install -g bower<br/>
+
 
 Once this steps is done you will be able to access admin section from http://yourwebsitename.dev/administration/
 and frontend at http://yourwebsitename.dev/
