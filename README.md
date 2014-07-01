@@ -12,7 +12,7 @@ Demo administration: http://demo.aisel.co/administration [backenduser/backenduse
 Installation
 -----------------------------------
 
-1.) cd to your website directory and download composer with:  <br/>
+1.) Download composer<br/>
 ```bash
 curl -sS https://getcomposer.org/installer | php
 ```
@@ -20,8 +20,19 @@ curl -sS https://getcomposer.org/installer | php
 ```bash
 php composer.phar create-project -s dev aisel/aisel
 ```
-then set aisel as current directory with cd aisel/ and finish installation with commands bellow:<br/>
-Important: webserver needs permissions to save cache, logs and sessions<br/>
+then cd aisel/ and finish installation with commands bellow:<br/>
+4.) Launch installation:<br/>
+```bash
+php app/console aisel:install
+```
+5.) Install frontend dependencies with Bower<br/>
+```bash
+bower install
+```
+Bower is a command line utility. Install it with npm.<br/>
+$ npm install -g bower<br/>
+
+Important!: webserver needs permissions to save cache, logs and sessions<br/>
 Mac users:<br/>
 ```bash
 sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
@@ -32,16 +43,6 @@ Linux users:<br/>
 sudo chown -R www-data:www-data  app/cache app/logs<br/>
 ```
 
-4.) Launch installation with command:<br/>
-```bash
-php app/console aisel:install
-```
-5.) Install frontend dependencies with Bower<br/>
-```bash
-bower install
-```
-Bower is a command line utility. Install it with npm.<br/>
-$ npm install -g bower<br/>
 
 
 Once this steps is done you will be able to access admin section from http://yourwebsitename.dev/administration/
