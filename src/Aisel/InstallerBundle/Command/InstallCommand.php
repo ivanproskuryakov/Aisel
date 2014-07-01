@@ -14,6 +14,8 @@ namespace Aisel\InstallerBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 /**
  * Install Aisel CMS
@@ -72,6 +74,7 @@ EOT
         $output->writeln('<info>Backend user setup.</info>');
 
         $this->setupBackendUser($output);
+        $this->setupFiles($output);
 
         $output->writeln('');
 
@@ -121,6 +124,17 @@ EOT
             'email' => $email,
         );
         $userManager->registerFixturesUser($userData);
+    }
+
+    /**
+     * Copy logos, robots.txt from from distributions
+     */
+    protected function setupFiles(OutputInterface $output)
+    {
+        $fs           = new Filesystem();
+        $web          = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../web');
+        $fs->copy($web.'/robots.txt.dist', $web.'/robots.txt');
+        $fs->copy($web.'/images/logo.png.dist', $web.'/images/logo.png');
     }
 
     protected function runCommand($command, InputInterface $input, OutputInterface $output)

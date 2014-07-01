@@ -28,7 +28,6 @@ api_aisel_search:
 
 # User specific actions
 
-
 api_aisel_user_pagedetails_by_id:
     pattern:  /api/user/page/details/id/{pageId}.json
     defaults: { _controller: AiselPageBundle:ApiUserCRUD:pageDetails, _format: json }
@@ -39,17 +38,17 @@ api_aisel_user_pagedetails_by_id:
 api_aisel_user_page_edit:
     pattern:  /api/user/page/edit/{pageId}.json
     defaults: { _controller: AiselPageBundle:ApiUserCRUD:pageEdit, _format: json }
-#    requirements:
-#        _method: POST
+    requirements:
+        _method: GET
 
 api_aisel_user_page_add:
     pattern:  /api/user/page/add.json
     defaults: { _controller: AiselPageBundle:ApiUserCRUD:pageAdd, _format: json }
-#    requirements:
-#        _method: POST
+    requirements:
+        _method: GET
 
 api_aisel_user_page_delete:
     pattern:  /api/user/page/delete/{pageId}.json
     defaults: { _controller: AiselPageBundle:ApiUserCRUD:pageDelete, _format: json }
-#    requirements:
-#        _method: POST
+    requirements:
+        _method: GET
