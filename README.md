@@ -21,18 +21,20 @@ curl -sS https://getcomposer.org/installer | php
 php composer.phar create-project -s dev aisel/aisel
 ```
 then cd aisel/ and finish installation with commands bellow:<br/>
-4.) Launch installation:<br/>
+3.) Launch installation:<br/>
 ```bash
 php app/console aisel:install
 ```
-5.) Install frontend dependencies with Bower<br/>
+4.) Install frontend dependencies with Bower<br/>
 ```bash
 bower install
 ```
+
+Important:<br/>
 Bower is a command line utility. Install it with npm.<br/>
 $ npm install -g bower<br/>
 
-Important!: webserver needs permissions to save cache, logs and sessions<br/>
+webserver needs permissions to save cache, logs and sessions<br/>
 Mac users:<br/>
 ```bash
 sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
