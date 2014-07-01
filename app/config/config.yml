@@ -22,7 +22,10 @@ framework:
     trusted_proxies: ~
     session:
         # handler_id set to null will use default session handler from php.ini
-        handler_id:  ~
+#        handler_id:  ~
+        cookie_lifetime: 0
+        save_path: %kernel.root_dir%/var/sessions
+        name: AISELSESSID
     fragments:       ~
     http_method_override: true
 

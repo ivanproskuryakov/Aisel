@@ -1,5 +1,6 @@
 /app/bootstrap.php.cache
 /app/cache/*
+/app/var/*
 /app/config/parameters.yml
 /app/logs/*
 /web/robots.txt
