@@ -52,7 +52,7 @@ file that was distributed with this source code.
                                         {% if not loop.last  %}
                                             <li>
                                                 {% if menu.uri is not empty %}
-                                                    <a href="{{ menu.uri }}">{{ menu.label }}</a>
+                                                    <a href="{{ menu.uri }}">{{ menu.label|raw }}</a>
                                                 {% else %}
                                                     {{ menu.label }}
                                                 {% endif %}
@@ -63,7 +63,7 @@ file that was distributed with this source code.
                                     {% endfor %}
                                 {% endif %}
                             {% else %}
-                                {{ _breadcrumb }}
+                                {{ _breadcrumb|raw }}
                             {% endif %}
                         </ol>
                     {% endif %}

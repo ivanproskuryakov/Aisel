@@ -1,6 +1,6 @@
 parameters:
     application.name: Aisel
-    application.version: 0.0.3
+    application.version: 0.1.0
 
 aisel_config:
     route_prefix: config_ # ex: config_contact
@@ -17,8 +17,3 @@ aisel_config:
         disqus:
             order: 30
             controller: AiselAdminBundle:ConfigDisqus:modify
-
-# for later use
-#        category:
-#            order: 30
-#            controller: AiselCategoryBundle:Config:modify
