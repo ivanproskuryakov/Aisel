@@ -5,7 +5,7 @@ services:
     sonata.admin.cart:
         class: Aisel\CartBundle\Admin\CartAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Sales", label: "Shopping carts" }
+            - { name: sonata.admin, manager_type: orm, group: "Sales", label: "Carts" }
         arguments:
             - ~
             - Aisel\CartBundle\Entity\Cart

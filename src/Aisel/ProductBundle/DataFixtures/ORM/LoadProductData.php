@@ -35,24 +35,24 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $childCategory = $this->getReference('child-category');
 
         // Nike Baseball Hat
-        $hiddenProduct = new Product();
-        $hiddenProduct->setName('Nike Baseball Hat');
-        $hiddenProduct->setPrice(100);
-        $hiddenProduct->setSku('P0001');
-        $hiddenProduct->setDescriptionShort('');
-        $hiddenProduct->setDescription($loremIpsumText);
-        $hiddenProduct->setStatus(true);
-        $hiddenProduct->setHidden(true);
-        $hiddenProduct->setCommentStatus(false);
-        $hiddenProduct->addCategory($rootCategory)
-                      ->addCategory($childCategory);
+        $product = new Product();
+        $product->setName('Nike Baseball Hat');
+        $product->setPrice(100);
+        $product->setSku('P0001');
+        $product->setDescriptionShort('');
+        $product->setDescription($loremIpsumText);
+        $product->setStatus(true);
+        $product->setHidden(true);
+        $product->setCommentStatus(false);
+        $product->addCategory($rootCategory)
+            ->addCategory($childCategory);
 
-        $hiddenProduct->setMetaUrl('nike-baseball-hat');
-        $hiddenProduct->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $hiddenProduct->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $manager->persist($hiddenProduct);
+        $product->setMetaUrl('nike-baseball-hat');
+        $product->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $product->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $manager->persist($product);
         $manager->flush();
-        $this->addReference('about-product', $hiddenProduct);
+        $this->addReference('about-product', $product);
 
     }
 
@@ -61,6 +61,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 2;
+        return 100;
     }
 }

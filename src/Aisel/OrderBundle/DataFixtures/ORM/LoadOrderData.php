@@ -28,32 +28,12 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-
-        $loremIpsumText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur dolor eget viverra commodo. Ut vehicula volutpat massa. Maecenas congue sed risus ut semper. Fusce blandit sem nunc, nec facilisis neque eleifend eget. Pellentesque fringilla velit enim, vel convallis libero ultrices vel. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas consectetur lacus et nibh facilisis, non vulputate urna convallis. Donec quis dictum magna, id dictum urna. Aliquam euismod sit amet arcu vulputate laoreet. Vivamus at leo nibh. Proin scelerisque orci sit amet sem varius, a porttitor tortor iaculis. Aenean sollicitudin diam sed euismod varius. Duis commodo a metus eu scelerisque. Etiam porttitor placerat urna vel tincidunt. Quisque congue tellus quam, non volutpat justo eleifend vehicula. Phasellus cursus convallis aliquam. Morbi adipiscing vulputate tellus, id auctor metus interdum a. Fusce diam tellus, varius commodo tincidunt in, ornare a mauris. Phasellus interdum, metus non fringilla rhoncus, odio massa pharetra orci, in semper tortor enim nec quam. Duis consectetur quis nibh at convallis. Integer tincidunt ligula sem, vitae bibendum sem elementum nec. Etiam ornare nisl lacinia, facilisis nisl a, mollis sem. Aliquam erat volutpat.';
-
-        $rootCategory = $this->getReference('root-category');
-        $childCategory = $this->getReference('child-category');
-
-        // Nike Baseball Hat
-        $hiddenOrder = new Order();
-        $hiddenOrder->setName('Nike Baseball Hat');
-        $hiddenOrder->setPrice(100);
-        $hiddenOrder->setSku('P0001');
-        $hiddenOrder->setDescriptionShort('');
-        $hiddenOrder->setDescription($loremIpsumText);
-        $hiddenOrder->setStatus(true);
-        $hiddenOrder->setHidden(true);
-        $hiddenOrder->setCommentStatus(false);
-        $hiddenOrder->addCategory($rootCategory)
-            ->addCategory($childCategory);
-
-        $hiddenOrder->setMetaUrl('nike-baseball-hat');
-        $hiddenOrder->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $hiddenOrder->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $manager->persist($hiddenOrder);
+        $order = new Order();
+        $order->setStatus('new');
+        $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $manager->persist($order);
         $manager->flush();
-        $this->addReference('about-order', $hiddenOrder);
-
     }
 
     /**
@@ -61,6 +41,6 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 2;
+        return 200;
     }
 }

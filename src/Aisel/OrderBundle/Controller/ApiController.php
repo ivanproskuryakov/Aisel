@@ -23,48 +23,5 @@ use Symfony\Component\HttpFoundation\Request;
 class ApiController extends Controller
 {
 
-    private function isAuthenticated()
-    {
-        $user = $this->get('security.context')->getToken()->getUser();
-        if ($user !== 'anon.') {
-            if (in_array('ROLE_USER', $user->getRoles())) return true;
-        }
 
-        return false;
-    }
-
-    /**
-     * @Rest\View
-     * /api/order/list.json?limit=2&current=3
-     */
-    public function orderListAction(Request $request)
-    {
-
-        $params = array(
-            'current' => $request->get('current'),
-            'limit' => $request->get('limit'),
-            'category' => $request->get('category')
-        );
-
-        if ($request->get('user') && $this->isAuthenticated()) {
-            $userid = $this->get('security.context')->getToken()->getUser()->getId();
-            $params['userid'] = $userid;
-        }
-
-        $orderList = $this->container->get("aisel.order.manager")->getOrders($params);
-
-        return $orderList;
-
-    }
-
-    /**
-     * @Rest\View
-     */
-    public function orderViewByURLAction($urlKey)
-    {
-        /** @var \Aisel\OrderBundle\Entity\Order $order */
-        $order = $this->container->get("aisel.order.manager")->getOrderByURL($urlKey);
-
-        return $order;
-    }
 }

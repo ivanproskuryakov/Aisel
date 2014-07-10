@@ -9,80 +9,6 @@ Aisel\CartBundle\Entity\Cart:
             generator:
                 strategy: AUTO
     fields:
-        name:
-            type: string
-            length: 255
-        sku:
-            type: string
-            length: 255
-
-        price:
-            type: float
-            column: price
-        priceSpecial:
-            type: float
-            nullable: true
-            column: price_special
-        priceSpecialFrom:
-            type: datetime
-            nullable: true
-            column: price_special_from
-        priceSpecialTo:
-            type: datetime
-            nullable: true
-            column: price_special_to
-
-        new:
-            type: boolean
-            nullable: true
-            column: is_new
-        newFrom:
-            type: datetime
-            nullable: true
-            column: new_from
-        newTo:
-            type: datetime
-            nullable: true
-            column: new_to
-
-        descriptionShort:
-            type: text
-            column: description_short
-        description:
-            type: text
-            column: description
-        status:
-            type: boolean
-            column: status
-        hidden:
-            type: boolean
-            column: is_hidden
-        commentStatus:
-            type: boolean
-            nullable: true
-            column: comment_status
-
-        metaUrl:
-            type: string
-            unique: true
-            length: 255
-            column: meta_url
-        metaTitle:
-            type: string
-            nullable: true
-            length: 255
-            column: meta_title
-        metaDescription:
-            nullable: true
-            type: string
-            length: 255
-            column: meta_description
-        metaKeywords:
-            type: string
-            nullable: true
-            length: 255
-            column: meta_keywords
-
         createdAt:
             type: datetime
             column: created_at
@@ -97,15 +23,3 @@ Aisel\CartBundle\Entity\Cart:
         joinColumns:
           user_id:
             referencedColumnName: id
-
-    manyToMany:
-      categories:
-        targetEntity: Aisel\CategoryBundle\Entity\Category
-        joinTable:
-          name: aisel_cart_category
-          joinColumns:
-            cart_id:
-              referencedColumnName: id
-          inverseJoinColumns:
-            category_id:
-              referencedColumnName: id

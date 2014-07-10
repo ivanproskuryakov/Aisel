@@ -42,7 +42,7 @@ class CategoryRepository extends NestedTreeRepository
      * Get total active categories
      *
      * @return int value
-     *             */
+     */
 
     public function getTotalFromRequest($params)
     {
@@ -146,7 +146,7 @@ class CategoryRepository extends NestedTreeRepository
      * Find categories by url
      *
      * @return int value
-     *             */
+     */
 
     public function findTotalByURL($url, $categoryId = null)
     {

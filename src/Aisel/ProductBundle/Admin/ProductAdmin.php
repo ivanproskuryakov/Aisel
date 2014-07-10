@@ -185,6 +185,6 @@ class ProductAdmin extends Admin
      */
     public function toString($object)
     {
-        return $object->getId() ? $object->getName() : $this->trans('link_add', array(), 'SonataAdminBundle');
+        return $object->getId() ? $object->getSku() : $this->trans('link_add', array(), 'SonataAdminBundle');
     }
 }
