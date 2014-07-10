@@ -133,6 +133,7 @@ EOT
     {
         $fs           = new Filesystem();
         $web          = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../web');
+        $fs->copy($web.'/.htaccess.dist', $web.'/.htaccess');
         $fs->copy($web.'/robots.txt.dist', $web.'/robots.txt');
         $fs->copy($web.'/images/logo.png.dist', $web.'/images/logo.png');
     }

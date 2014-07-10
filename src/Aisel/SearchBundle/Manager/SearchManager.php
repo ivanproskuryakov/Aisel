@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Manager;
+namespace Aisel\SearchBundle\Manager;
 
 /**
- * Manager for page search in REST API
+ * Manager for search search in REST API
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -33,7 +33,7 @@ class SearchManager
     public function search($params)
     {
         $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params);
-        $pages = $this->em->getRepository('AiselPageBundle:Page')->searchFromRequest($params);
+        $pages = $this->em->getRepository('AiselPageBundle:page')->searchFromRequest($params);
 
         $return = array (
             'total'=> $total,

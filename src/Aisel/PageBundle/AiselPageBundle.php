@@ -14,7 +14,7 @@ namespace Aisel\PageBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Aisel page managent bundle. Contains page entity and API controller which communicative by JSON
+ * Aisel page management bundle. Contains page entity and API controller which communicative by JSON
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

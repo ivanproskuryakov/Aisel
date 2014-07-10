@@ -1,0 +1,5 @@
+Aisel\ProductBundle\Entity\Product:
+  exclusion_policy: ALL
+  properties:
+    id:
+        expose: true

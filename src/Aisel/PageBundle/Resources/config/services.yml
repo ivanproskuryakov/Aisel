@@ -1,6 +1,5 @@
 parameters:
     aisel_page_manager.class: Aisel\PageBundle\Manager\PageManager
-    aisel_search_manager.class: Aisel\PageBundle\Manager\SearchManager
     aisel_userpage_manager.class: Aisel\PageBundle\Manager\UserPageManager
 
 services:
@@ -19,21 +18,6 @@ services:
         class: %aisel_page_manager.class%
         arguments: [@service_container, @doctrine.orm.entity_manager]
 
-    aisel.search.manager:
-        class: %aisel_search_manager.class%
-        arguments: [@doctrine.orm.entity_manager]
-
     aisel.userpage.manager:
         class: %aisel_userpage_manager.class%
         arguments: [@service_container, @doctrine.orm.entity_manager, @security.context, @aisel.page.manager]
-
-#    aisel.page.admin:
-#        class: Aisel\PageBundle\Admin\PageAdmin
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Page" }
-#        arguments:
-#            - ~
-#            - Aisel\PageBundle\Entity\Page
-#            - ~
-#        calls:
-#            - [ setPageManager, ['@doctrine.orm.entity_manager']]

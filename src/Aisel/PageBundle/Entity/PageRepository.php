@@ -104,7 +104,7 @@ class PageRepository extends EntityRepository
      * Get pages based on limit, current pagination and search query
      * @param  array                         $params
      * @return \Aisel\PageBundle\Entity\Page
-     *                                              */
+     */
     public function searchFromRequest($params)
     {
 

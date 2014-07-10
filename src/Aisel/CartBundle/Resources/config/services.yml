@@ -1,0 +1,19 @@
+parameters:
+    aisel_cart_manager.class: Aisel\CartBundle\Manager\CartManager
+
+services:
+    sonata.admin.cart:
+        class: Aisel\CartBundle\Admin\CartAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Sales", label: "Shopping carts" }
+        arguments:
+            - ~
+            - Aisel\CartBundle\Entity\Cart
+            - ~
+        calls:
+            - [ setTranslationDomain, [AiselCartBundle]]
+            - [ setManager, [@aisel.cart.manager]]
+
+    aisel.cart.manager:
+        class: %aisel_cart_manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager]

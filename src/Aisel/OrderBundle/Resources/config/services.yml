@@ -1,0 +1,18 @@
+parameters:
+    aisel_order_manager.class: Aisel\OrderBundle\Manager\OrderManager
+
+services:
+    sonata.admin.order:
+        class: Aisel\OrderBundle\Admin\OrderAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Sales", label: "Orders" }
+        arguments:
+            - ~
+            - Aisel\OrderBundle\Entity\Order
+            - ~
+        calls:
+            - [ setTranslationDomain, [AiselOrderBundle]]
+            - [ setManager, [@aisel.order.manager]]
+    aisel.order.manager:
+        class: %aisel_order_manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager]

@@ -9,9 +9,6 @@ Aisel\PageBundle\Entity\Page:
             generator:
                 strategy: AUTO
     fields:
-#        user_id:
-#            type: integer
-#            nullable: true
         title:
             type: string
             length: 255

@@ -3,6 +3,7 @@
 /app/var/*
 /app/config/parameters.yml
 /app/logs/*
+/web/.htaccess
 /web/robots.txt
 /web/sitemap.xml
 /web/images/logo.png

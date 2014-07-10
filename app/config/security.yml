@@ -49,7 +49,7 @@ security:
             anonymous:          true
 
     access_control:
-        # Admin login page needs to be access without credential
+        # Admin login needs to have access without any roles assigned
         - { path: ^/administration/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administration/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administration/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }

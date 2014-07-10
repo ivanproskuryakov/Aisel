@@ -1,0 +1,5 @@
+Aisel\OrderBundle\Entity\Order:
+  exclusion_policy: ALL
+  properties:
+    id:
+        expose: true

@@ -20,7 +20,8 @@
     "textAngular": "1.2.1",
     "font-awesome": "4.0.x",
     "angular-disqus": "1.1.0",
-    "rangy": "1.2.x"
+    "rangy": "1.2.x",
+    "angular-translate": "2.2.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

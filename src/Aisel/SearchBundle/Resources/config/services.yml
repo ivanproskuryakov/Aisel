@@ -1,0 +1,7 @@
+parameters:
+    aisel_search_manager.class: Aisel\SearchBundle\Manager\SearchManager
+
+services:
+    aisel.search.manager:
+        class: %aisel_search_manager.class%
+        arguments: [@doctrine.orm.entity_manager]

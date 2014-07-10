@@ -14,6 +14,18 @@ aisel_page:
     resource: "@AiselPageBundle/Resources/config/routing.yml"
     prefix:   /
 
+aisel_product:
+    resource: "@AiselProductBundle/Resources/config/routing.yml"
+    prefix:   /
+
+aisel_cart:
+    resource: "@AiselCartBundle/Resources/config/routing.yml"
+    prefix:   /
+
+aisel_order:
+    resource: "@AiselOrderBundle/Resources/config/routing.yml"
+    prefix:   /
+
 aisel_admin:
     resource: "@AiselAdminBundle/Resources/config/routing.yml"
     prefix:   /

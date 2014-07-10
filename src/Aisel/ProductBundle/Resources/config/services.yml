@@ -1,0 +1,18 @@
+parameters:
+    aisel_product_manager.class: Aisel\ProductBundle\Manager\ProductManager
+
+services:
+    sonata.admin.product:
+        class: Aisel\ProductBundle\Admin\ProductAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Catalog", label: "Products" }
+        arguments:
+            - ~
+            - Aisel\ProductBundle\Entity\Product
+            - ~
+        calls:
+            - [ setTranslationDomain, [AiselProductBundle]]
+            - [ setManager, [@aisel.product.manager]]
+    aisel.product.manager:
+        class: %aisel_product_manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager]

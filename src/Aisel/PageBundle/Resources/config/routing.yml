@@ -18,13 +18,6 @@ api_aisel_pageview_by_url:
         _method: GET
 #        id: "\d+"
 
-api_aisel_search:
-    pattern:  /api/search/
-    defaults: { _controller: AiselPageBundle:Api:search, _format: json }
-    requirements:
-        _method: GET
-#        id: "\d+"
-
 
 # User specific actions
 

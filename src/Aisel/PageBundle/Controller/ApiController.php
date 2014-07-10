@@ -33,30 +33,6 @@ class ApiController extends Controller
         return false;
     }
 
-    /**
-     * @Rest\View
-     * /api/search/?query=abc
-     */
-    public function searchAction(Request $request)
-    {
-        $params = array(
-            'current' => $request->get('current'),
-            'limit' => $request->get('limit'),
-            'query' => $request->get('query'),
-            'order' => $request->get('order'),
-            'orderby' => $request->get('orderby')
-        );
-
-        if ($request->get('user') && $this->isAuthenticated()) {
-            $userid = $this->get('security.context')->getToken()->getUser()->getId();
-            $params['userid'] = $userid;
-        }
-
-        $searchResult = $this->container->get("aisel.search.manager")->search($params);
-
-        return $searchResult;
-
-    }
 
     /**
      * @Rest\View

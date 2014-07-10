@@ -1,0 +1,12 @@
+api_aisel_cartlist:
+    pattern:  /api/cart/list.json
+    defaults: { _controller: AiselCartBundle:Api:cartList, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_cartview_by_url:
+    pattern:  /api/cart/view/url/{urlKey}.json
+    defaults: { _controller: AiselCartBundle:Api:cartViewByURL, _format: json }
+    requirements:
+        _method: GET
+#        id: "\d+"

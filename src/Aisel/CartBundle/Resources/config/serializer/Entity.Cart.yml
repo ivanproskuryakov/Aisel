@@ -1,0 +1,5 @@
+Aisel\CartBundle\Entity\Cart:
+  exclusion_policy: ALL
+  properties:
+    id:
+        expose: true
