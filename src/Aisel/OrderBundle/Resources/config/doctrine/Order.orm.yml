@@ -21,10 +21,20 @@ Aisel\OrderBundle\Entity\Order:
             column: updated_at
 
 
-    manyToOne:
+    oneToOne:
       frontenduser:
         targetEntity: Aisel\FrontendUserBundle\Entity\FrontendUser
         inversedBy: orders
         joinColumns:
           user_id:
             referencedColumnName: id
+
+    oneToMany:
+      item:
+        targetEntity: Aisel\OrderBundle\Entity\OrderItem
+        mappedBy: order
+
+    oneToMany:
+      invoice:
+        targetEntity: Aisel\Bundle\Entity\OrderInvoice
+        mappedBy: order

@@ -1,0 +1,38 @@
+Aisel\ProductBundle\Entity\Image:
+    type: entity
+    table: aisel_product_image
+    repositoryClass: Aisel\ProductBundle\Entity\ImageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            nullable: true
+            length: 255
+            column: title
+        alt:
+            type: string
+            nullable: true
+            length: 255
+            column: alt
+        order:
+            type: integer
+            nullable: true
+            column: order
+        file:
+            type: array
+            nullable: true
+            column: icon
+            column: file
+
+    manyToOne:
+      product:
+        targetEntity: Aisel\ProductBundle\Entity\Product
+        inversedBy: images
+        joinColumns:
+          product_id:
+            referencedColumnName: id

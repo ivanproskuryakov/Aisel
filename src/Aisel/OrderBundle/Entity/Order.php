@@ -751,4 +751,80 @@ class Order
     {
         return $this->description;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $image;
+
+
+    /**
+     * Add image
+     *
+     * @param \Aisel\OrderBundle\Entity\OrderItem $image
+     * @return Order
+     */
+    public function addImage(\Aisel\OrderBundle\Entity\OrderItem $image)
+    {
+        $this->image[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \Aisel\OrderBundle\Entity\OrderItem $image
+     */
+    public function removeImage(\Aisel\OrderBundle\Entity\OrderItem $image)
+    {
+        $this->image->removeElement($image);
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $item;
+
+
+    /**
+     * Add item
+     *
+     * @param \Aisel\OrderBundle\Entity\OrderItem $item
+     * @return Order
+     */
+    public function addItem(\Aisel\OrderBundle\Entity\OrderItem $item)
+    {
+        $this->item[] = $item;
+
+        return $this;
+    }
+
+    /**
+     * Remove item
+     *
+     * @param \Aisel\OrderBundle\Entity\OrderItem $item
+     */
+    public function removeItem(\Aisel\OrderBundle\Entity\OrderItem $item)
+    {
+        $this->item->removeElement($item);
+    }
+
+    /**
+     * Get item
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getItem()
+    {
+        return $this->item;
+    }
 }

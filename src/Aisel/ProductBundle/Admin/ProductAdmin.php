@@ -57,19 +57,10 @@ class ProductAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+
             ->with('General')
             ->add('name', 'text', array('label' => 'Name', 'attr' => array()))
             ->add('sku', 'text', array('label' => 'Sku', 'attr' => array()))
-            ->add('price', 'money', array('label' => 'Price', 'attr' => array()))
-            ->add('priceSpecial', 'money', array('label' => 'Special Price', 'required' => false, 'attr' => array()))
-            ->add('priceSpecialFrom', 'datetime', array('label' => 'Special Price From', 'attr' => array()))
-            ->add('priceSpecialTo', 'datetime', array('label' => 'Special Price To', 'attr' => array()))
-            ->add('new', 'choice', array('choices' => array(
-                '0' => 'Disabled',
-                '1' => 'Enabled'),
-                'label' => 'New', 'attr' => array()))
-            ->add('newFrom', 'datetime', array('label' => 'New From', 'attr' => array()))
-            ->add('newTo', 'datetime', array('label' => 'New To', 'attr' => array()))
             ->add('descriptionShort', 'ckeditor',
                 array(
                     'label' => 'Short Description',
@@ -82,28 +73,27 @@ class ProductAdmin extends Admin
                     'required' => true,
                     'attr' => array('class' => 'field-content')
                 ))
-            ->add('status', 'choice', array('choices' => array(
+            ->with('Pricing')
+            ->add('price', 'money', array('label' => 'Price', 'attr' => array()))
+            ->add('priceSpecial', 'money', array('label' => 'Special Price', 'required' => false, 'attr' => array()))
+            ->add('priceSpecialFrom', 'datetime', array('label' => 'Special Price From', 'attr' => array()))
+            ->add('priceSpecialTo', 'datetime', array('label' => 'Special Price To', 'attr' => array()))
+            ->add('new', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
-                'label' => 'Status', 'attr' => array()
-            ))
-            ->add('commentStatus', 'choice', array('choices' => array(
-                '0' => 'Disabled',
-                '1' => 'Enabled'),
-                'label' => 'Comments', 'attr' => array()
-            ))
-            ->add('hidden', null, array('required' => false, 'label' => 'Hidden product'))
-
+                'label' => 'New', 'attr' => array()))
+            ->add('newFrom', 'datetime', array('label' => 'New From', 'attr' => array()))
+            ->add('newTo', 'datetime', array('label' => 'New To', 'attr' => array()))
             ->with('Categories', array('description' => 'Select related categories'))
             ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
                 'class' => 'Aisel\CategoryBundle\Entity\Category',
             ))
-
+            ->with('Images')
             ->with('Meta', array('description' => 'Meta description for search engines'))
-            ->add('metaUrl', 'text', array('label' => 'Url','required' => true, 'help' => 'note: URL value must be unique'))
-            ->add('metaTitle', 'text', array('label' => 'Title','required' => false))
-            ->add('metaDescription', 'textarea', array('label' => 'Description','required' => false))
-            ->add('metaKeywords', 'textarea', array('label' => 'Keywords','required' => false))
+            ->add('metaUrl', 'text', array('label' => 'Url', 'required' => true, 'help' => 'note: URL value must be unique'))
+            ->add('metaTitle', 'text', array('label' => 'Title', 'required' => false))
+            ->add('metaDescription', 'textarea', array('label' => 'Description', 'required' => false))
+            ->add('metaKeywords', 'textarea', array('label' => 'Keywords', 'required' => false))
             ->end();
 
     }

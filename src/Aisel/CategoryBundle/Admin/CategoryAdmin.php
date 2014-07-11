@@ -79,7 +79,7 @@ class CategoryAdmin extends Admin
         $subject = $this->getSubject();
         $id = $subject->getId();
         $formMapper
-            ->with('General', array('description' => 'This section contains general settings'))
+            ->with('General')
                 ->add('title', 'text', array('label' => 'Title'))
                 ->add('description', 'ckeditor',
                     array(
@@ -105,7 +105,7 @@ class CategoryAdmin extends Admin
 
                 ))
 
-            ->with('Meta', array('description' => 'Meta description for search engines'))
+            ->with('Metadata')
                 ->add('metaUrl', 'text', array('label' => 'Url','help'=>'note: URL value must be unique'))
                 ->add('metaTitle', 'text', array('label' => 'Title','required' => false))
                 ->add('metaDescription', 'textarea', array('label' => 'Description','required' => false))

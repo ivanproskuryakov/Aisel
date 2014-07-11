@@ -143,9 +143,9 @@ sonata_admin:
         search:              SonataAdminBundle:Core:search.html.twig
         search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
 
-        list:    SonataAdminBundle:CRUD:list.html.twig
-        show:    SonataAdminBundle:CRUD:show.html.twig
-        edit:    SonataAdminBundle:CRUD:edit.html.twig
+        list:    AiselAdminBundle:CRUD:list.html.twig
+        show:    AiselAdminBundle:CRUD:show.html.twig
+        edit:    AiselAdminBundle:CRUD:edit.html.twig
     options:
         html5_validate: true # does not use html5 validation
         confirm_exit:   true # disable confirmation when quitting with unsaved changes

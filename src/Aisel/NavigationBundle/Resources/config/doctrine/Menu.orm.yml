@@ -1,7 +1,7 @@
 Aisel\NavigationBundle\Entity\Menu:
     type: entity
     repositoryClass: Aisel\NavigationBundle\Entity\MenuRepository
-    table: aisel_menu
+    table: aisel_menu_top
     gedmo:
       tree:
         type: nested

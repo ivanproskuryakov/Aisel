@@ -747,4 +747,70 @@ class Product
     {
         return $this->description;
     }
+    /**
+     * @var integer
+     */
+    private $qty;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $image;
+
+
+    /**
+     * Set qty
+     *
+     * @param integer $qty
+     * @return Product
+     */
+    public function setQty($qty)
+    {
+        $this->qty = $qty;
+
+        return $this;
+    }
+
+    /**
+     * Get qty
+     *
+     * @return integer 
+     */
+    public function getQty()
+    {
+        return $this->qty;
+    }
+
+    /**
+     * Add image
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\Image $image
+     * @return Product
+     */
+    public function addImage(\Aisel\FrontendUserBundle\Entity\Image $image)
+    {
+        $this->image[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\Image $image
+     */
+    public function removeImage(\Aisel\FrontendUserBundle\Entity\Image $image)
+    {
+        $this->image->removeElement($image);
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 }

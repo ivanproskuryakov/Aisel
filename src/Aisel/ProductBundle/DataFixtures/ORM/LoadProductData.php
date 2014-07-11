@@ -38,6 +38,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $product = new Product();
         $product->setName('Nike Baseball Hat');
         $product->setPrice(100);
+        $product->setQty(0);
         $product->setSku('P0001');
         $product->setDescriptionShort('');
         $product->setDescription($loremIpsumText);

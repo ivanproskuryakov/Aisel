@@ -1,0 +1,26 @@
+Aisel\OrderBundle\Entity\OrderItem:
+    type: entity
+    table: aisel_order_item
+    repositoryClass: Aisel\OrderBundle\Entity\OrderItemRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    fields:
+        createdAt:
+            type: datetime
+            column: created_at
+        updatedAt:
+            type: datetime
+            column: updated_at
+
+    manyToOne:
+      product:
+        targetEntity: Aisel\OrderBundle\Entity\Order
+        inversedBy: items
+        joinColumns:
+          order_id:
+            referencedColumnName: id

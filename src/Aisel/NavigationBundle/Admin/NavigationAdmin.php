@@ -69,7 +69,7 @@ class NavigationAdmin extends Admin
         $id = $subject->getId();
 
         $formMapper
-            ->with('General', array('description' => 'This section contains general settings'))
+            ->with('General')
             ->add('title', 'text', array('label' => 'Title'))
             ->add('url', 'text', array('label' => 'URL'))
             ->add('status', 'choice', array('choices'   => array(

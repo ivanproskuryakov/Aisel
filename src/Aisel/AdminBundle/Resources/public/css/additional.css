@@ -1,3 +1,7 @@
 .aisel_config_settings_modify button {
     margin-top: 20px;
 }
+
+.box.update {
+    border-top: 0;
+}

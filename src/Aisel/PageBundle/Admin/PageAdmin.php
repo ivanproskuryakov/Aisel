@@ -58,7 +58,7 @@ class PageAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General', array('description' => 'This section contains general settings for the web page'))
+            ->with('General')
                 ->add('title', 'text', array('label' => 'Post Title','attr' => array()))
                 ->add('content', 'ckeditor',
                     array(
@@ -79,11 +79,11 @@ class PageAdmin extends Admin
                 ->add('hidden', null, array('required' => false,'label' => 'Hidden page'))
                 ->add('frontenduser',null, array('label' => 'Assigned Frontend User'))
 
-            ->with('Categories', array('description' => 'Select related categories'))
+            ->with('Categories')
                 ->add('categories', 'gedmotree', array('expanded' => true,'multiple' => true,
                     'class' => 'Aisel\CategoryBundle\Entity\Category',
                 ))
-            ->with('Meta', array('description' => 'Meta description for search engines'))
+            ->with('Metadata')
                 ->add('metaUrl', 'text', array('label' => 'Url','help'=>'note: URL value must be unique'))
                 ->add('metaTitle', 'text', array('label' => 'Title'))
                 ->add('metaDescription', 'textarea', array('label' => 'Description'))
@@ -131,10 +131,8 @@ class PageAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('title')
-            ->add('frontenduser', null, array('label' => 'Frontend User'))
-            ->add('commentStatus', 'boolean', array('label' => 'Comments','editable' => false))
+            ->add('frontenduser', null, array('label' => 'User'))
             ->add('status', 'boolean', array('label' => 'Status','editable' => false))
-            ->add('hidden', 'boolean', array('label' => 'Hidden','editable' => false))
             ->add('updatedAt', 'datetime', array('label' => 'Date'))
             ->add('_action', 'actions', array(
                     'actions' => array(
