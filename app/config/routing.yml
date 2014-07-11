@@ -44,14 +44,14 @@ aisel_admin:
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /administration
+    prefix: /%website_admin%
 
 _sonata_admin:
     resource: .
     type: sonata_admin
-    prefix: /administration
+    prefix: /%website_admin%
 
 aisel_config:
     resource: .
     type: extra
-    prefix: /administration/settings/
+    prefix: /%website_admin%/settings/

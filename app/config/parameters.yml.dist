@@ -11,7 +11,8 @@ parameters:
     mailer_password:   ~
 
     website_address:   http://demo.aisel.co
-    application_email: ~
+    website_admin:     administration
+    website_email: ~
 
     locale:            en
     secret:            SecretTokenAisel

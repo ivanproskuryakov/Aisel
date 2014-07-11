@@ -12,7 +12,7 @@ parameters:
 
     website_address: http://aisel.dev
     website_email: service@aisel.co
-    application_email: volgodark@gmail.com
+    website_admin:     administration
 
     locale: en
     secret: SecretTokenAisel

@@ -43,7 +43,7 @@ class ProductAdmin extends Admin
             ->with('name')
             ->assertNotBlank()
             ->end()
-            ->with('content')
+            ->with('descriptionShort')
             ->assertNotBlank()
             ->end()
             ->with('metaUrl')
@@ -60,8 +60,8 @@ class ProductAdmin extends Admin
             ->with('General')
             ->add('name', 'text', array('label' => 'Name', 'attr' => array()))
             ->add('sku', 'text', array('label' => 'Sku', 'attr' => array()))
-            ->add('price', 'text', array('label' => 'Price', 'attr' => array()))
-            ->add('priceSpecial', 'text', array('label' => 'Special Price', 'attr' => array()))
+            ->add('price', 'money', array('label' => 'Price', 'attr' => array()))
+            ->add('priceSpecial', 'money', array('label' => 'Special Price', 'required' => false, 'attr' => array()))
             ->add('priceSpecialFrom', 'datetime', array('label' => 'Special Price From', 'attr' => array()))
             ->add('priceSpecialTo', 'datetime', array('label' => 'Special Price To', 'attr' => array()))
             ->add('new', 'choice', array('choices' => array(
@@ -100,10 +100,10 @@ class ProductAdmin extends Admin
             ))
 
             ->with('Meta', array('description' => 'Meta description for search engines'))
-            ->add('metaUrl', 'text', array('label' => 'Url', 'help' => 'note: URL value must be unique'))
-            ->add('metaTitle', 'text', array('label' => 'Title'))
-            ->add('metaDescription', 'textarea', array('label' => 'Description'))
-            ->add('metaKeywords', 'textarea', array('label' => 'Keywords'))
+            ->add('metaUrl', 'text', array('label' => 'Url','required' => true, 'help' => 'note: URL value must be unique'))
+            ->add('metaTitle', 'text', array('label' => 'Title','required' => false))
+            ->add('metaDescription', 'textarea', array('label' => 'Description','required' => false))
+            ->add('metaKeywords', 'textarea', array('label' => 'Keywords','required' => false))
             ->end();
 
     }
@@ -112,14 +112,6 @@ class ProductAdmin extends Admin
     {
         return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
     }
-
-//    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-//    {
-//        $datagridMapper
-//            ->add('title')
-//            ->add('content')
-//        ;
-//    }
 
     public function prePersist($product)
     {
@@ -141,7 +133,6 @@ class ProductAdmin extends Admin
         $product->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
-    // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
