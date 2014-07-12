@@ -92,8 +92,8 @@ class InvoiceAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-                ->add('id')
-                ->add('status');
+            ->add('id')
+            ->add('status');
     }
 
     /**

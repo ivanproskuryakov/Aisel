@@ -56,7 +56,7 @@ EOT
 
     /**
      * Launch setup process
-    */
+     */
     protected function launchSetup(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('<info>Database settings.</info>');
@@ -112,11 +112,11 @@ EOT
      */
     protected function setupBackendUser(OutputInterface $output)
     {
-        $dialog      = $this->getHelperSet()->get('dialog');
+        $dialog = $this->getHelperSet()->get('dialog');
         $userManager = $this->getContainer()->get('backend.user.manager');
-        $username    = $dialog->ask($output, '<question>Username:</question>');
-        $password    = $dialog->ask($output, '<question>Password:</question>');
-        $email       = $dialog->ask($output, '<question>Email:</question>');
+        $username = $dialog->ask($output, '<question>Username:</question>');
+        $password = $dialog->ask($output, '<question>Password:</question>');
+        $email = $dialog->ask($output, '<question>Email:</question>');
 
         $userData = array(
             'username' => $username,
@@ -131,11 +131,11 @@ EOT
      */
     protected function setupFiles(OutputInterface $output)
     {
-        $fs           = new Filesystem();
-        $web          = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../web');
-        $fs->copy($web.'/.htaccess.dist', $web.'/.htaccess');
-        $fs->copy($web.'/robots.txt.dist', $web.'/robots.txt');
-        $fs->copy($web.'/images/logo.png.dist', $web.'/images/logo.png');
+        $fs = new Filesystem();
+        $web = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../web');
+        $fs->copy($web . '/.htaccess.dist', $web . '/.htaccess');
+        $fs->copy($web . '/robots.txt.dist', $web . '/robots.txt');
+        $fs->copy($web . '/images/logo.png.dist', $web . '/images/logo.png');
     }
 
     protected function runCommand($command, InputInterface $input, OutputInterface $output)

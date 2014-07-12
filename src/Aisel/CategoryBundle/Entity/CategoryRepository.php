@@ -27,15 +27,15 @@ class CategoryRepository extends NestedTreeRepository
 
     private function mapRequest($params)
     {
-        if ( isset($params['current'])) {
+        if (isset($params['current'])) {
             $this->pageCurrent = $params['current'];
         }
 
-        if ( isset($params['limit'])) {
+        if (isset($params['limit'])) {
             $this->pageLimit = $params['limit'];
         }
 
-        $this->pageSkip = ($this->pageCurrent-1) * $this->pageLimit;
+        $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
     }
 
     /*
@@ -157,7 +157,7 @@ class CategoryRepository extends NestedTreeRepository
             ->where('c.metaUrl = :url')->setParameter('url', $url);
 
         if ($categoryId) {
-            $qb->andWhere('c.id != :categoryId')->setParameter('categoryId',$categoryId);
+            $qb->andWhere('c.id != :categoryId')->setParameter('categoryId', $categoryId);
         }
         $found = $qb->getQuery()->getSingleScalarResult();
 

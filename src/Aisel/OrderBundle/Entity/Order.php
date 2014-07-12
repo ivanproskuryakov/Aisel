@@ -751,6 +751,7 @@ class Order
     {
         return $this->description;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -783,12 +784,13 @@ class Order
     /**
      * Get image
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getImage()
     {
         return $this->image;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -821,7 +823,7 @@ class Order
     /**
      * Get item
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getItem()
     {

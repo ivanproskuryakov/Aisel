@@ -64,7 +64,7 @@ class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
         // Pinned
         $menu = new Menu();
         $menu->setTitle('About');
-        $menu->setUrl('/#!/page/'.$pinned->getMetaUrl());
+        $menu->setUrl('/#!/page/' . $pinned->getMetaUrl());
         $menu->setStatus(true);
         $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));

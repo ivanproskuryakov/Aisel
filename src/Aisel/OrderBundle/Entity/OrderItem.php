@@ -33,7 +33,7 @@ class OrderItem
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -56,7 +56,7 @@ class OrderItem
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -79,7 +79,7 @@ class OrderItem
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -102,7 +102,7 @@ class OrderItem
     /**
      * Get product
      *
-     * @return \Aisel\OrderBundle\Entity\Order 
+     * @return \Aisel\OrderBundle\Entity\Order
      */
     public function getProduct()
     {

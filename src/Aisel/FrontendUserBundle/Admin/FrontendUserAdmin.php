@@ -36,10 +36,9 @@ class FrontendUserAdmin extends Admin
     {
         $showMapper
             ->with('General')
-                ->add('username')
-                ->add('email')
-            ->end()
-        ;
+            ->add('username')
+            ->add('email')
+            ->end();
     }
 
     /**
@@ -49,21 +48,19 @@ class FrontendUserAdmin extends Admin
     {
         $errorElement
             ->with('username')
-                ->assertNotBlank()
+            ->assertNotBlank()
             ->end()
             ->with('email')
-                ->assertNotBlank()
-                ->assertNotNull()
-                ->assertEmail()
-            ->end()
-        ;
+            ->assertNotBlank()
+            ->assertNotNull()
+            ->assertEmail()
+            ->end();
         if (!$object->getId()) {
 
             $errorElement
                 ->with('plainPassword')
                 ->assertNotBlank()
-                ->end()
-            ;
+                ->end();
         }
     }
 
@@ -74,16 +71,15 @@ class FrontendUserAdmin extends Admin
     {
         $formMapper
             ->with('General')
-                ->add('username', 'text', array('required' => true))
-                ->add('email')
-                ->add('plainPassword', 'text', array(
-                    'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
-                ))
-                ->add('locked', null, array('required' => false))
-                ->add('enabled', null, array('required' => false))
+            ->add('username', 'text', array('required' => true))
+            ->add('email')
+            ->add('plainPassword', 'text', array(
+                'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
+            ))
+            ->add('locked', null, array('required' => false))
+            ->add('enabled', null, array('required' => false))
 
-            ->end()
-        ;
+            ->end();
     }
 
     /**
@@ -94,8 +90,7 @@ class FrontendUserAdmin extends Admin
         $filterMapper
             ->add('id')
             ->add('username')
-            ->add('email')
-        ;
+            ->add('email');
     }
 
     /**
@@ -162,7 +157,7 @@ class FrontendUserAdmin extends Admin
      */
     public function toString($object)
     {
-        return $object->getId() ? $object->getUsername() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
+        return $object->getId() ? $object->getUsername() : $this->trans('link_add', array(), 'SonataAdminBundle');
     }
 
 }

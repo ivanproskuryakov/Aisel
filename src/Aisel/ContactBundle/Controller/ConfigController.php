@@ -29,8 +29,8 @@ class ConfigController extends SettingsController
     protected function getTemplateVariables()
     {
         $this->templateVariables['base_template'] = 'AiselAdminBundle::layout.html.twig';
-        $this->templateVariables['admin_pool']    = $this->container->get('sonata.admin.pool');
-        $this->templateVariables['blocks']        = $this->container->getParameter('sonata.admin.configuration.dashboard_blocks');
+        $this->templateVariables['admin_pool'] = $this->container->get('sonata.admin.pool');
+        $this->templateVariables['blocks'] = $this->container->getParameter('sonata.admin.configuration.dashboard_blocks');
 
         return $this->templateVariables;
     }

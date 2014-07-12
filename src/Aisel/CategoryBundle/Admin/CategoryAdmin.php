@@ -32,7 +32,7 @@ class CategoryAdmin extends Admin
 
     public function setManager($categoryManager)
     {
-        $this->categoryManager = $categoryManager ;
+        $this->categoryManager = $categoryManager;
     }
 
     /**
@@ -42,15 +42,14 @@ class CategoryAdmin extends Admin
     {
         $errorElement
             ->with('title')
-                ->assertNotBlank()
+            ->assertNotBlank()
             ->end()
             ->with('description')
-                ->assertNotBlank()
+            ->assertNotBlank()
             ->end()
             ->with('metaUrl')
-                ->assertNotBlank()
-            ->end()
-        ;
+            ->assertNotBlank()
+            ->end();
     }
 
     /**
@@ -80,36 +79,36 @@ class CategoryAdmin extends Admin
         $id = $subject->getId();
         $formMapper
             ->with('General')
-                ->add('title', 'text', array('label' => 'Title'))
-                ->add('description', 'ckeditor',
-                    array(
-                        'label' => 'Content',
-                        'required' => true,
-                    ))
-                ->add('status', 'choice', array('choices'   => array(
-                    '0'   => 'Disabled',
-                    '1' => 'Enabled'),
-                    'label' => 'Status','attr' => array()
+            ->add('title', 'text', array('label' => 'Title'))
+            ->add('description', 'ckeditor',
+                array(
+                    'label' => 'Content',
+                    'required' => true,
                 ))
-                ->add('parent', 'gedmotree', array('expanded' => true,'multiple' => false,
-                    'class' => 'Aisel\CategoryBundle\Entity\Category',
-                    'query_builder' => function ($er) use ($id) {
+            ->add('status', 'choice', array('choices' => array(
+                '0' => 'Disabled',
+                '1' => 'Enabled'),
+                'label' => 'Status', 'attr' => array()
+            ))
+            ->add('parent', 'gedmotree', array('expanded' => true, 'multiple' => false,
+                'class' => 'Aisel\CategoryBundle\Entity\Category',
+                'query_builder' => function ($er) use ($id) {
                         $qb = $er->createQueryBuilder('p');
                         if ($id) {
-                            $qb ->where('p.id <> :id')->setParameter('id', $id);
+                            $qb->where('p.id <> :id')->setParameter('id', $id);
                         }
-                        $qb ->orderBy('p.root, p.lft', 'ASC');
+                        $qb->orderBy('p.root, p.lft', 'ASC');
 
                         return $qb;
                     }, 'empty_value' => 'no parent'
 
-                ))
+            ))
 
             ->with('Metadata')
-                ->add('metaUrl', 'text', array('label' => 'Url','help'=>'note: URL value must be unique'))
-                ->add('metaTitle', 'text', array('label' => 'Title','required' => false))
-                ->add('metaDescription', 'textarea', array('label' => 'Description','required' => false))
-                ->add('metaKeywords', 'textarea', array('label' => 'Keywords','required' => false))
+            ->add('metaUrl', 'text', array('label' => 'Url', 'help' => 'note: URL value must be unique'))
+            ->add('metaTitle', 'text', array('label' => 'Title', 'required' => false))
+            ->add('metaDescription', 'textarea', array('label' => 'Description', 'required' => false))
+            ->add('metaKeywords', 'textarea', array('label' => 'Keywords', 'required' => false))
             ->end();
 
     }
@@ -138,17 +137,17 @@ class CategoryAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id', null,array('sortable'=>true))
-            ->add('status', 'boolean', array('label' => 'Enabled','editable' => false,'sortable'=>false))
-            ->add('title', null, array('template' => 'AiselCategoryBundle:Admin:title.html.twig', 'label'=>'Title','sortable'=>false))
-            ->add('order', 'text', array('template' => 'AiselCategoryBundle:Admin:order.html.twig', 'label'=>'Move'))
+            ->addIdentifier('id', null, array('sortable' => true))
+            ->add('status', 'boolean', array('label' => 'Enabled', 'editable' => false, 'sortable' => false))
+            ->add('title', null, array('template' => 'AiselCategoryBundle:Admin:title.html.twig', 'label' => 'Title', 'sortable' => false))
+            ->add('order', 'text', array('template' => 'AiselCategoryBundle:Admin:order.html.twig', 'label' => 'Move'))
 
             ->add('_action', 'actions', array(
-                'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
-                    'delete' => array(),
-                ))
+                    'actions' => array(
+                        'show' => array(),
+                        'edit' => array(),
+                        'delete' => array(),
+                    ))
             );
     }
 
@@ -161,16 +160,15 @@ class CategoryAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-                ->add('updatedAt')
-                ->add('status')
+            ->add('updatedAt')
+            ->add('status')
             ->with('Meta')
-                ->add('metaUrl')
-                ->add('metaTitle')
-                ->add('metaDescription')
-                ->add('metaKeywords')
+            ->add('metaUrl')
+            ->add('metaTitle')
+            ->add('metaDescription')
+            ->add('metaKeywords')
             ->with('General')
-                ->add('id')
-        ;
+            ->add('id');
     }
 
     /**
@@ -178,7 +176,7 @@ class CategoryAdmin extends Admin
      */
     public function toString($object)
     {
-        return $object->getId() ? $object->getTitle() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
+        return $object->getId() ? $object->getTitle() : $this->trans('link_add', array(), 'SonataAdminBundle');
     }
 
 }

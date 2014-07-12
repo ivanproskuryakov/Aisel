@@ -32,7 +32,9 @@ class PageManager
 
     /**
      * Get categories in array for page
-     * @param  int   $page
+     *
+     * @param  int $page
+     *
      * @return array $categories
      */
     public function getPageCategories($page)
@@ -51,7 +53,9 @@ class PageManager
 
     /**
      * Get list of all pages
+     *
      * @param  array $params
+     *
      * @return array
      */
     public function getPages($params)
@@ -59,9 +63,9 @@ class PageManager
         $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params);
         $pages = $this->em->getRepository('AiselPageBundle:Page')->getCurrentPagesFromRequest($params);
 
-        $return = array (
-            'total'=> $total,
-            'pages'=> $pages
+        $return = array(
+            'total' => $total,
+            'pages' => $pages
         );
 
         return $return;
@@ -69,8 +73,12 @@ class PageManager
 
     /**
      * Get single detailed page with category by ID
-     * @param  int                           $id
+     *
+     * @param  int $id
+     *
      * @return \Aisel\PageBundle\Entity\Page $pageDetails
+     *
+     * @throws NotFoundHttpException
      */
     public function getPage($id)
     {
@@ -80,15 +88,19 @@ class PageManager
             throw new NotFoundHttpException('Nothing found');
         }
 
-        $pageDetails = array('page'=>$page,'categories'=>$this->getPageCategories($page));
+        $pageDetails = array('page' => $page, 'categories' => $this->getPageCategories($page));
 
         return $pageDetails;
     }
 
     /**
      * Get single detailed page with category by URLKey
-     * @param  string                        $urlKey
+     *
+     * @param  string $urlKey
+     *
      * @return \Aisel\PageBundle\Entity\Page $page
+     *
+     * @throws NotFoundHttpException
      */
     public function getPageByURL($urlKey)
     {
@@ -99,15 +111,18 @@ class PageManager
             throw new NotFoundHttpException('Nothing found');
         }
 
-        $pageDetails = array('page'=>$page,'categories'=>$this->getPageCategories($page));
+        $pageDetails = array('page' => $page, 'categories' => $this->getPageCategories($page));
 
         return $pageDetails;
     }
 
     /**
      * validate metaUrl for Page Entity and return one we can use
+     *
      * @param  string $url
-     * @param  int    $pageId
+     *
+     * @param  int $pageId
+     *
      * @return string $validUrl
      */
     public function normalizePageUrl($url, $pageId = null)
@@ -116,7 +131,7 @@ class PageManager
         $utility = new UrlUtility();
         $validUrl = $utility->process($url);
         if ($page) {
-            $validUrl = $validUrl. '-'. time();
+            $validUrl = $validUrl . '-' . time();
         }
 
         return $validUrl;
@@ -124,6 +139,7 @@ class PageManager
 
     /**
      * Get List of all pages, except disabled
+     *
      * @return string
      */
     public function getEnabledPages()

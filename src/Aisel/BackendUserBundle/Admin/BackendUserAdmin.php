@@ -38,8 +38,7 @@ class BackendUserAdmin extends Admin
             ->with('General')
             ->add('username')
             ->add('email')
-            ->end()
-        ;
+            ->end();
     }
 
     /**
@@ -55,15 +54,13 @@ class BackendUserAdmin extends Admin
             ->assertNotBlank()
             ->assertNotNull()
             ->assertEmail()
-            ->end()
-        ;
+            ->end();
         if (!$object->getId()) {
 
             $errorElement
                 ->with('plainPassword')
                 ->assertNotBlank()
-                ->end()
-            ;
+                ->end();
         }
     }
 
@@ -82,8 +79,7 @@ class BackendUserAdmin extends Admin
             ->add('locked', null, array('required' => false))
             ->add('enabled', null, array('required' => false))
 
-            ->end()
-        ;
+            ->end();
     }
 
     /**
@@ -94,8 +90,7 @@ class BackendUserAdmin extends Admin
         $filterMapper
             ->add('id')
             ->add('username')
-            ->add('email')
-        ;
+            ->add('email');
     }
 
     /**
@@ -162,7 +157,7 @@ class BackendUserAdmin extends Admin
      */
     public function toString($object)
     {
-        return $object->getId() ? $object->getUsername() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
+        return $object->getId() ? $object->getUsername() : $this->trans('link_add', array(), 'SonataAdminBundle');
     }
 
 }

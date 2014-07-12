@@ -18,7 +18,7 @@ class ConfigHomepageType extends AbstractType
 
         $builder
             ->add('content', 'ckeditor', array('label' => 'Content'))
-            ->add('save', 'submit', array('label' => 'Save', 'attr'=> array( 'class'=>'btn btn-primary')));
+            ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')));
 
     }
 

@@ -16,21 +16,27 @@ file that was distributed with this source code.
             </div>
             <div class="col-md-4">
                 <h1 class="text-center">Aisel Backend.</h1>
+
                 <div class="jumbotron">
                     <div class="container">
-                        <form action="{{ path("admin_login_check") }}"  class="form-data" method="post">
+                        <form action="{{ path("admin_login_check") }}" class="form-data" method="post">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input id="username" name="_username" type="text" class="form-control" placeholder="{{ 'security.login.username'|trans }}" required="required" >
+                                <input id="username" name="_username" type="text" class="form-control"
+                                       placeholder="{{ 'security.login.username'|trans }}" required="required">
                             </div>
                             <br/>
+
                             <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                                <input id="password" name="_password" type="password" class="form-control" placeholder="{{ 'security.login.password'|trans }}" required="required" >
+                                <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-asterisk"></span></span>
+                                <input id="password" name="_password" type="password" class="form-control"
+                                       placeholder="{{ 'security.login.password'|trans }}" required="required">
                             </div>
                             <br/>
-                            <input type="submit" id="_submit" name="_submit" class="btn btn-primary" value="{{ 'security.login.submit'|trans }}" />
+                            <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
+                                   value="{{ 'security.login.submit'|trans }}"/>
 
                         </form>
 

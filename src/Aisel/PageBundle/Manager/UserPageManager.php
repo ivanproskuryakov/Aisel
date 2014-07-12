@@ -78,8 +78,12 @@ class UserPageManager
 
     /**
      * Load page by Id
-     * @param  int   $pageId
+     *
+     * @param  int $pageId
+     *
      * @return array $page
+     *
+     * @throws NotFoundHttpException
      */
     private function loadPage($pageId)
     {
@@ -93,7 +97,7 @@ class UserPageManager
 
     /**
      * Get single detailed page with category by URLKey
-     * @param  int   $pageId
+     * @param  int $pageId
      * @return array $page
      */
     public function getPageDetailsById($pageId)
@@ -107,17 +111,17 @@ class UserPageManager
 
     /**
      * Update page by given Id
-     * @param  int   $pageId
+     * @param  int $pageId
      * @param  array $details
      * @return array $pageDetails
      */
     public function updatePageId($pageId, $details)
     {
-        $jsonDetails    = utf8_decode($details);
-        $pageDetails    = json_decode($jsonDetails);
-        $page           = $this->loadPage($pageId);
-        $url            = $page->getMetaUrl();
-        $normalUrl      = $this->pageManager->normalizePageUrl($url, $pageId);
+        $jsonDetails = utf8_decode($details);
+        $pageDetails = json_decode($jsonDetails);
+        $page = $this->loadPage($pageId);
+        $url = $page->getMetaUrl();
+        $normalUrl = $this->pageManager->normalizePageUrl($url, $pageId);
 
         if (isset($pageDetails->page->title)) $page->setTitle($pageDetails->page->title);
         if (isset($pageDetails->page->content)) $page->setContent($pageDetails->page->content);
@@ -153,7 +157,7 @@ class UserPageManager
 
     /**
      * Add page from frontend
-     * @param  object                        $pageDetails
+     * @param  object $pageDetails
      * @return \Aisel\PageBundle\Entity\Page $page
      */
     public function addPage($pageDetails)

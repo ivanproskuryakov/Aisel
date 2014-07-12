@@ -17,13 +17,13 @@ class ConfigDisqusType extends AbstractType
     {
 
         $builder
-            ->add('shortname', 'text', array('label' => 'Shortname','attr' => array('class'=>'form-control')))
-            ->add('status', 'choice', array('choices'   => array(
-                '0'   => 'Disabled',
+            ->add('shortname', 'text', array('label' => 'Shortname', 'attr' => array('class' => 'form-control')))
+            ->add('status', 'choice', array('choices' => array(
+                '0' => 'Disabled',
                 '1' => 'Enabled'),
-                'label' => 'Status','attr' => array('class'=>'form-control')
+                'label' => 'Status', 'attr' => array('class' => 'form-control')
             ))
-            ->add('save', 'submit', array('label' => 'Save', 'attr'=> array( 'class'=>'btn btn-primary')));
+            ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')));
 
     }
 

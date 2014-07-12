@@ -36,11 +36,10 @@ class NavigationAdmin extends Admin
     {
         $errorElement
             ->with('title')
-                ->assertNotBlank()
+            ->assertNotBlank()
             ->with('url')
-                ->assertNotBlank()
-            ->end()
-        ;
+            ->assertNotBlank()
+            ->end();
     }
 
     /**
@@ -72,24 +71,24 @@ class NavigationAdmin extends Admin
             ->with('General')
             ->add('title', 'text', array('label' => 'Title'))
             ->add('url', 'text', array('label' => 'URL'))
-            ->add('status', 'choice', array('choices'   => array(
-                    '0'   => 'Disabled',
-                    '1' => 'Enabled'),
-                    'label' => 'Status'
-                ))
-                ->add('parent', 'gedmotree', array('expanded' => true,'multiple' => false,
-                    'class' => 'Aisel\NavigationBundle\Entity\Menu',
-                    'query_builder' => function ($er) use ($id) {
+            ->add('status', 'choice', array('choices' => array(
+                '0' => 'Disabled',
+                '1' => 'Enabled'),
+                'label' => 'Status'
+            ))
+            ->add('parent', 'gedmotree', array('expanded' => true, 'multiple' => false,
+                'class' => 'Aisel\NavigationBundle\Entity\Menu',
+                'query_builder' => function ($er) use ($id) {
                         $qb = $er->createQueryBuilder('p');
                         if ($id) {
-                            $qb ->where('p.id <> :id')->setParameter('id', $id);
+                            $qb->where('p.id <> :id')->setParameter('id', $id);
                         }
-                        $qb ->orderBy('p.root, p.lft', 'ASC');
+                        $qb->orderBy('p.root, p.lft', 'ASC');
 
                         return $qb;
                     }, 'empty_value' => 'no parent'
 
-                ))
+            ))
             ->end();
 
     }
@@ -109,18 +108,18 @@ class NavigationAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id', null,array('sortable'=>true))
-            ->add('status', 'boolean', array('label' => 'Enabled','editable' => false,'sortable'=>false))
-            ->add('title', null, array('template' => 'AiselNavigationBundle:Admin:title.html.twig', 'label'=>'Title','sortable'=>false))
-            ->add('url', null, array('label'=>'URL','sortable'=>false))
-            ->add('order', 'text', array('template' => 'AiselNavigationBundle:Admin:order.html.twig', 'label'=>'Move'))
+            ->addIdentifier('id', null, array('sortable' => true))
+            ->add('status', 'boolean', array('label' => 'Enabled', 'editable' => false, 'sortable' => false))
+            ->add('title', null, array('template' => 'AiselNavigationBundle:Admin:title.html.twig', 'label' => 'Title', 'sortable' => false))
+            ->add('url', null, array('label' => 'URL', 'sortable' => false))
+            ->add('order', 'text', array('template' => 'AiselNavigationBundle:Admin:order.html.twig', 'label' => 'Move'))
 
             ->add('_action', 'actions', array(
-                'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
-                    'delete' => array(),
-                ))
+                    'actions' => array(
+                        'show' => array(),
+                        'edit' => array(),
+                        'delete' => array(),
+                    ))
             );
     }
 
@@ -133,11 +132,10 @@ class NavigationAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-                ->add('updatedAt')
-                ->add('status')
+            ->add('updatedAt')
+            ->add('status')
             ->with('General')
-                ->add('id')
-        ;
+            ->add('id');
     }
 
     /**
@@ -145,7 +143,7 @@ class NavigationAdmin extends Admin
      */
     public function toString($object)
     {
-        return $object->getId() ? $object->getTitle() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
+        return $object->getId() ? $object->getTitle() : $this->trans('link_add', array(), 'SonataAdminBundle');
     }
 
 }

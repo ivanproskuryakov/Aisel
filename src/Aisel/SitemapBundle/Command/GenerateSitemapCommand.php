@@ -21,7 +21,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-
 class GenerateSitemapCommand extends ContainerAwareCommand
 {
 
@@ -53,26 +52,26 @@ EOT
         $urls[] = '/#!/pages/';
         $pages = $this->getContainer()->get('aisel.page.manager')->getEnabledPages();
         foreach ($pages as $p) {
-            $urls[] = '/#!/page/'.$p->getMetaUrl().'/';
+            $urls[] = '/#!/page/' . $p->getMetaUrl() . '/';
         }
 
         //Categories
         $urls[] = '/#!/categories/';
         $categories = $this->getContainer()->get('aisel.category.manager')->getEnabledCategories();
         foreach ($categories as $c) {
-            $urls[] = '/#!/category/'.$c->getMetaUrl().'/';
+            $urls[] = '/#!/category/' . $c->getMetaUrl() . '/';
         }
 
         // Render sitemap template and save
         $sitemapContents = $this->getContainer()->get('templating')->render(
             'AiselSitemapBundle:Default:sitemap.txt.twig',
-            array('urls'  => $urls)
+            array('urls' => $urls)
         );
-        $webFolder = realpath($this->getContainer()->get('kernel')->getRootDir().'/../web/');
-        $sitemapFile = $webFolder.'/sitemap.xml';
-        file_put_contents($sitemapFile,$sitemapContents);
+        $webFolder = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../web/');
+        $sitemapFile = $webFolder . '/sitemap.xml';
+        file_put_contents($sitemapFile, $sitemapContents);
 
-        $output->writeln(sprintf('URL total: %s',count($urls)));
+        $output->writeln(sprintf('URL total: %s', count($urls)));
         $output->writeln(sprintf('File sitemap.xml generated!'));
 
     }

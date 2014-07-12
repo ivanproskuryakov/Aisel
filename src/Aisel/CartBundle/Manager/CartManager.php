@@ -32,8 +32,12 @@ class CartManager
 
     /**
      * Get single detailed cart object
+     *
      * @param  int $id
+     *
      * @return \Aisel\CartBundle\Entity\Cart $cart
+     *
+     * @throws NotFoundHttpException
      */
     public function getCart($id)
     {

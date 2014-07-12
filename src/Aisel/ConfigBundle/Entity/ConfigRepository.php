@@ -38,7 +38,7 @@ class ConfigRepository extends EntityRepository
             ->execute();
 
         $config = array();
-        foreach ($values as $k=>$v) {
+        foreach ($values as $k => $v) {
             $config[$v['entity']] = $v['value'];
         }
 

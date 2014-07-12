@@ -29,20 +29,20 @@ class ApiController extends Controller
     public function sendAction(Request $request)
     {
         $params = array(
-            'name'=>$request->query->get('name'),
-            'email'=>$request->query->get('email'),
-            'phone'=>$request->query->get('phone'),
-            'message'=>$request->query->get('message'),
+            'name' => $request->query->get('name'),
+            'email' => $request->query->get('email'),
+            'phone' => $request->query->get('phone'),
+            'message' => $request->query->get('message'),
         );
 
         $response = $this->container->get("aisel.contact.manager")->sendMail($params);
 
         // Set default error message, if something went wrong;
-        $status = array('message'=>'Someting went wrong, please get in contact with us directly!');
+        $status = array('message' => 'Someting went wrong, please get in contact with us directly!');
         if ($response == 1) {
-            $status = array('status'=>true,'message'=>'Your message has been sent!');
+            $status = array('status' => true, 'message' => 'Your message has been sent!');
         } else {
-            $status = array('message'=>$response);
+            $status = array('message' => $response);
         }
 
         return $status;

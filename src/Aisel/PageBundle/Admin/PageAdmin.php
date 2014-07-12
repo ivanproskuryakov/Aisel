@@ -31,7 +31,7 @@ class PageAdmin extends Admin
 
     public function setManager($pageManager)
     {
-        $this->pageManager = $pageManager ;
+        $this->pageManager = $pageManager;
     }
 
     /**
@@ -41,15 +41,14 @@ class PageAdmin extends Admin
     {
         $errorElement
             ->with('title')
-                ->assertNotBlank()
+            ->assertNotBlank()
             ->end()
             ->with('content')
-                ->assertNotBlank()
+            ->assertNotBlank()
             ->end()
             ->with('metaUrl')
-                ->assertNotBlank()
-            ->end()
-        ;
+            ->assertNotBlank()
+            ->end();
     }
 
     /**
@@ -59,35 +58,35 @@ class PageAdmin extends Admin
     {
         $formMapper
             ->with('General')
-                ->add('title', 'text', array('label' => 'Post Title','attr' => array()))
-                ->add('content', 'ckeditor',
-                    array(
-                        'label' => 'Content',
-                        'required' => true,
-                        'attr' => array('class' => 'field-content')
+            ->add('title', 'text', array('label' => 'Post Title', 'attr' => array()))
+            ->add('content', 'ckeditor',
+                array(
+                    'label' => 'Content',
+                    'required' => true,
+                    'attr' => array('class' => 'field-content')
                 ))
-                ->add('status', 'choice', array('choices'   => array(
-                        '0'   => 'Disabled',
-                        '1' => 'Enabled'),
-                        'label' => 'Status','attr' => array()
-                    ))
-                ->add('commentStatus', 'choice', array('choices'   => array(
-                    '0'   => 'Disabled',
-                    '1' => 'Enabled'),
-                    'label' => 'Comments','attr' => array()
-                ))
-                ->add('hidden', null, array('required' => false,'label' => 'Hidden page'))
-                ->add('frontenduser',null, array('label' => 'Assigned Frontend User'))
+            ->add('status', 'choice', array('choices' => array(
+                '0' => 'Disabled',
+                '1' => 'Enabled'),
+                'label' => 'Status', 'attr' => array()
+            ))
+            ->add('commentStatus', 'choice', array('choices' => array(
+                '0' => 'Disabled',
+                '1' => 'Enabled'),
+                'label' => 'Comments', 'attr' => array()
+            ))
+            ->add('hidden', null, array('required' => false, 'label' => 'Hidden page'))
+            ->add('frontenduser', null, array('label' => 'Assigned Frontend User'))
 
             ->with('Categories')
-                ->add('categories', 'gedmotree', array('expanded' => true,'multiple' => true,
-                    'class' => 'Aisel\CategoryBundle\Entity\Category',
-                ))
+            ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
+                'class' => 'Aisel\CategoryBundle\Entity\Category',
+            ))
             ->with('Metadata')
-                ->add('metaUrl', 'text', array('label' => 'Url','help'=>'note: URL value must be unique'))
-                ->add('metaTitle', 'text', array('label' => 'Title'))
-                ->add('metaDescription', 'textarea', array('label' => 'Description'))
-                ->add('metaKeywords', 'textarea', array('label' => 'Keywords'))
+            ->add('metaUrl', 'text', array('label' => 'Url', 'help' => 'note: URL value must be unique'))
+            ->add('metaTitle', 'text', array('label' => 'Title'))
+            ->add('metaDescription', 'textarea', array('label' => 'Description'))
+            ->add('metaKeywords', 'textarea', array('label' => 'Keywords'))
             ->end();
 
     }
@@ -101,8 +100,7 @@ class PageAdmin extends Admin
     {
         $datagridMapper
             ->add('title')
-            ->add('content')
-        ;
+            ->add('content');
     }
 
     public function prePersist($page)
@@ -132,7 +130,7 @@ class PageAdmin extends Admin
             ->addIdentifier('id')
             ->add('title')
             ->add('frontenduser', null, array('label' => 'User'))
-            ->add('status', 'boolean', array('label' => 'Status','editable' => false))
+            ->add('status', 'boolean', array('label' => 'Status', 'editable' => false))
             ->add('updatedAt', 'datetime', array('label' => 'Date'))
             ->add('_action', 'actions', array(
                     'actions' => array(
@@ -140,8 +138,7 @@ class PageAdmin extends Admin
                         'edit' => array(),
                         'delete' => array(),
                     ))
-            );
-        ;
+            );;
     }
 
     /**
@@ -153,19 +150,18 @@ class PageAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-                ->add('content')
-                ->add('updatedAt')
-                ->add('status','boolean')
+            ->add('content')
+            ->add('updatedAt')
+            ->add('status', 'boolean')
             ->with('Categories')
-                ->add('categories','tree')
+            ->add('categories', 'tree')
             ->with('Meta')
-                ->add('metaUrl')
-                ->add('metaTitle')
-                ->add('metaDescription')
-                ->add('metaKeywords')
+            ->add('metaUrl')
+            ->add('metaTitle')
+            ->add('metaDescription')
+            ->add('metaKeywords')
             ->with('General')
-                ->add('id')
-        ;
+            ->add('id');
     }
 
     /**
@@ -173,6 +169,6 @@ class PageAdmin extends Admin
      */
     public function toString($object)
     {
-        return $object->getId() ? $object->getTitle() : $this->trans('link_add', array(), 'SonataAdminBundle')  ;
+        return $object->getId() ? $object->getTitle() : $this->trans('link_add', array(), 'SonataAdminBundle');
     }
 }

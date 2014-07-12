@@ -335,6 +335,7 @@ class Menu
     {
         return $this->updatedAt;
     }
+
     /**
      * @var string
      */

@@ -55,17 +55,17 @@ class LoadBackendUserData extends AbstractFixture implements OrderedFixtureInter
     {
 
         $userData = array(
-            'username'=>'backenduser',
-            'password'=>'backenduser',
-            'email'=>'backenduser@aisel.co',
+            'username' => 'backenduser',
+            'password' => 'backenduser',
+            'email' => 'backenduser@aisel.co',
         );
 
         $this->getUserManager()->registerFixturesUser($userData);
 
         $userData = array(
-            'username'=>'service',
-            'password'=>'service',
-            'email'=>'service@aisel.co',
+            'username' => 'service',
+            'password' => 'service',
+            'email' => 'service@aisel.co',
         );
 
         $this->getUserManager()->registerFixturesUser($userData);

@@ -22,7 +22,7 @@ use Aisel\ResourceBundle\Utility\PasswordUtility;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class UserManager  implements UserProviderInterface
+class UserManager implements UserProviderInterface
 {
     protected $encoder;
     protected $em;
@@ -31,7 +31,7 @@ class UserManager  implements UserProviderInterface
     protected $websiteEmail;
     protected $securityContext;
 
-    public function __construct($em, $encoder,$mailer,$templating,$websiteEmail,$securityContext)
+    public function __construct($em, $encoder, $mailer, $templating, $websiteEmail, $securityContext)
     {
         $this->mailer = $mailer;
         $this->templating = $templating;
@@ -111,7 +111,7 @@ class UserManager  implements UserProviderInterface
 
     /**
      * Update User details
-     * @param  array  $userData
+     * @param  array $userData
      * @return string $message
      */
     public function updateDetailsCurrentUser(Array $userData)
@@ -119,22 +119,22 @@ class UserManager  implements UserProviderInterface
         try {
             $user = $this->securityContext->getToken()->getUser();
 
-            if ($userData['phone'])         $user->setPhone($userData['phone']);
-            if ($userData['website'])       $user->setWebsite($userData['website']);
-            if ($userData['about'])         $user->setAbout($userData['about']);
+            if ($userData['phone']) $user->setPhone($userData['phone']);
+            if ($userData['website']) $user->setWebsite($userData['website']);
+            if ($userData['about']) $user->setAbout($userData['about']);
 
-            if ($userData['facebook'])      $user->setFacebook($userData['facebook']);
-            if ($userData['twitter'])       $user->setTwitter($userData['twitter']);
-            if ($userData['linkedin'])      $user->setLinkedin($userData['linkedin']);
-            if ($userData['googleplus'])    $user->setGoogleplus($userData['googleplus']);
-            if ($userData['github'])        $user->setGithub($userData['github']);
-            if ($userData['behance'])       $user->setBehance($userData['behance']);
+            if ($userData['facebook']) $user->setFacebook($userData['facebook']);
+            if ($userData['twitter']) $user->setTwitter($userData['twitter']);
+            if ($userData['linkedin']) $user->setLinkedin($userData['linkedin']);
+            if ($userData['googleplus']) $user->setGoogleplus($userData['googleplus']);
+            if ($userData['github']) $user->setGithub($userData['github']);
+            if ($userData['behance']) $user->setBehance($userData['behance']);
 
             $this->em->persist($user);
             $this->em->flush();
             $message = 'Information successfully updated!';
         } catch (\Swift_TransportException $e) {
-            $message = $e->getMessage() ;
+            $message = $e->getMessage();
         }
 
         return $message;
@@ -175,9 +175,9 @@ class UserManager  implements UserProviderInterface
                         $this->getTemplating()->render(
                             'AiselFrontendUserBundle:Email:registration.txt.twig',
                             array(
-                                'username'  => $user->getUsername(),
-                                'password'  => $userData['password'],
-                                'email'  => $user->getEmail(),
+                                'username' => $user->getUsername(),
+                                'password' => $userData['password'],
+                                'email' => $user->getEmail(),
                             )
                         )
                     );
@@ -218,14 +218,14 @@ class UserManager  implements UserProviderInterface
                         $this->getTemplating()->render(
                             'AiselFrontendUserBundle:Email:newPassword.txt.twig',
                             array(
-                                'username'  => $user->getUsername(),
-                                'password'  => $password,
+                                'username' => $user->getUsername(),
+                                'password' => $password,
                             )
                         )
                     );
                 $response = $this->getMailer()->send($message);
             } catch (\Swift_TransportException $e) {
-                $response = $e->getMessage() ;
+                $response = $e->getMessage();
             }
 
             $this->em->persist($user);

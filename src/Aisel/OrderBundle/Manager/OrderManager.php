@@ -33,8 +33,12 @@ class OrderManager
 
     /**
      * Get single detailed order by Id
+     *
      * @param  int $id
+     *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     *
+     * @throws NotFoundHttpException*
      */
     public function getOrder($id)
     {

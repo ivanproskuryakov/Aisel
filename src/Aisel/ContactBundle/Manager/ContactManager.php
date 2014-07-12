@@ -23,7 +23,7 @@ class ContactManager
     protected $appEmail;
     protected $templating;
 
-    public function __construct($em, $mailer ,$templating, $appEmail)
+    public function __construct($em, $mailer, $templating, $appEmail)
     {
         $this->em = $em;
         $this->mailer = $mailer;
@@ -64,17 +64,17 @@ class ContactManager
                     $this->getTemplating()->render(
                         'AiselContactBundle:Default:email.txt.twig',
                         array(
-                            'name'      => $params['name'],
-                            'email'     => $params['email'],
-                            'phone'     => $params['phone'],
-                            'message'   => $params['message']
+                            'name' => $params['name'],
+                            'email' => $params['email'],
+                            'phone' => $params['phone'],
+                            'message' => $params['message']
                         )
                     )
                 );
 
             $response = $this->getMailer()->send($message);
         } catch (\Swift_TransportException $e) {
-            $response = $e->getMessage() ;
+            $response = $e->getMessage();
         }
 
         return $response;

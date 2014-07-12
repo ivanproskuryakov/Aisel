@@ -384,6 +384,7 @@ class Product
     {
         return $this->categories;
     }
+
     /**
      * @var boolean
      */
@@ -411,6 +412,7 @@ class Product
     {
         return $this->hidden;
     }
+
     /**
      * @var string
      */
@@ -468,7 +470,7 @@ class Product
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -491,7 +493,7 @@ class Product
     /**
      * Get sku
      *
-     * @return string 
+     * @return string
      */
     public function getSku()
     {
@@ -514,7 +516,7 @@ class Product
     /**
      * Get price
      *
-     * @return float 
+     * @return float
      */
     public function getPrice()
     {
@@ -537,7 +539,7 @@ class Product
     /**
      * Get priceSpecial
      *
-     * @return float 
+     * @return float
      */
     public function getPriceSpecial()
     {
@@ -560,7 +562,7 @@ class Product
     /**
      * Get priceSpecialFrom
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPriceSpecialFrom()
     {
@@ -583,7 +585,7 @@ class Product
     /**
      * Get priceSpecialTo
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPriceSpecialTo()
     {
@@ -606,7 +608,7 @@ class Product
     /**
      * Get descriptionShort
      *
-     * @return string 
+     * @return string
      */
     public function getDescriptionShort()
     {
@@ -629,12 +631,13 @@ class Product
     /**
      * Get descriptionFull
      *
-     * @return string 
+     * @return string
      */
     public function getDescriptionFull()
     {
         return $this->descriptionFull;
     }
+
     /**
      * @var boolean
      */
@@ -667,7 +670,7 @@ class Product
     /**
      * Get new
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getNew()
     {
@@ -690,7 +693,7 @@ class Product
     /**
      * Get newFrom
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getNewFrom()
     {
@@ -713,12 +716,13 @@ class Product
     /**
      * Get newTo
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getNewTo()
     {
         return $this->newTo;
     }
+
     /**
      * @var string
      */
@@ -741,12 +745,13 @@ class Product
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
         return $this->description;
     }
+
     /**
      * @var integer
      */
@@ -774,7 +779,7 @@ class Product
     /**
      * Get qty
      *
-     * @return integer 
+     * @return integer
      */
     public function getQty()
     {
@@ -807,7 +812,7 @@ class Product
     /**
      * Get image
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getImage()
     {

@@ -38,7 +38,7 @@ class LoginController extends Controller
         return $this->render('AiselBackendUserBundle:Security:login.html.twig', array(
             // last username entered by the user
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
-            'error'         => $error,
+            'error' => $error,
             'admin_pool' => $this->container->get('sonata.admin.pool'),
         ));
     }

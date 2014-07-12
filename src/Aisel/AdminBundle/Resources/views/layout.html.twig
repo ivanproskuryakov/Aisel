@@ -14,9 +14,8 @@ file that was distributed with this source code.
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets
-    '@AiselAdminBundle/Resources/public/css/*'
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+    '@AiselAdminBundle/Resources/public/css/*' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
 {% endblock %}
 
@@ -49,7 +48,7 @@ file that was distributed with this source code.
                             {% if _breadcrumb is empty %}
                                 {% if action is defined %}
                                     {% for menu in admin.breadcrumbs(action) %}
-                                        {% if not loop.last  %}
+                                        {% if not loop.last %}
                                             <li>
                                                 {% if menu.uri is not empty %}
                                                     <a href="{{ menu.uri }}">{{ menu.label|raw }}</a>

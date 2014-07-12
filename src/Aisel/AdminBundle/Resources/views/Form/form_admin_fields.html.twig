@@ -12,53 +12,53 @@ file that was distributed with this source code.
 
 {% extends 'SonataAdminBundle:Form:form_admin_fields.html.twig' %}
 {% block choice_widget %}
-{% spaceless %}
-    <!-- Aisel choice widget-->
-    {% if compound %}
-        <ul {{ block('widget_container_attributes_choice_widget') }}>
+    {% spaceless %}
+        <!-- Aisel choice widget-->
+        {% if compound %}
+            <ul {{ block('widget_container_attributes_choice_widget') }}>
 
-            {% for child in form %}
+                {% for child in form %}
 
-                {# Override to make a tree #}
-                {% if child.vars.value %}
-                    {% set margin = form.vars.choices[child.vars.value].data.lvl * 30 %}
-                {% else %}
-                    {% set margin = 0 %}
-                {% endif %}
+                    {# Override to make a tree #}
+                    {% if child.vars.value %}
+                        {% set margin = form.vars.choices[child.vars.value].data.lvl * 30 %}
+                    {% else %}
+                        {% set margin = 0 %}
+                    {% endif %}
 
-                {#{{ dump(child.vars.value) }}#}
-                {#{{ dump(form.vars.choices[child.vars.value].data.lvl) }}#}
+                    {#{{ dump(child.vars.value) }}#}
+                    {#{{ dump(form.vars.choices[child.vars.value].data.lvl) }}#}
 
 
-                <li style="margin-left: {{ margin }}px;">
-                    {% set form_widget_content %}
+                    <li style="margin-left: {{ margin }}px;">
+                        {% set form_widget_content %}
                         {{ form_widget(child) }}
-                    {% endset %}
-                    {{ form_label(child, child.vars.label|default(null), { 'in_list_checkbox' : true, 'widget' : form_widget_content } ) }}
-                </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
-        {% if empty_value is not none %}
-            <option value="">
-                {% if not sonata_admin.admin %}
-                    {{- empty_value|trans({}, translation_domain) -}}
-                {% else %}
-                    {{- empty_value|trans({}, sonata_admin.field_description.translationDomain) -}}
-                {% endif%}
-            </option>
+                        {% endset %}
+                        {{ form_label(child, child.vars.label|default(null), { 'in_list_checkbox' : true, 'widget' : form_widget_content } ) }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+                {% if empty_value is not none %}
+                    <option value="">
+                        {% if not sonata_admin.admin %}
+                            {{- empty_value|trans({}, translation_domain) -}}
+                        {% else %}
+                            {{- empty_value|trans({}, sonata_admin.field_description.translationDomain) -}}
+                        {% endif %}
+                    </option>
+                {% endif %}
+                {% if preferred_choices|length > 0 %}
+                    {% set options = preferred_choices %}
+                    {{ block('choice_widget_options') }}
+                    {% if choices|length > 0 %}
+                        <option disabled="disabled">{{ separator }}</option>
+                    {% endif %}
+                {% endif %}
+                {% set options = choices %}
+                {{ block('choice_widget_options') }}
+            </select>
         {% endif %}
-        {% if preferred_choices|length > 0 %}
-            {% set options = preferred_choices %}
-            {{ block('choice_widget_options') }}
-            {% if choices|length > 0 %}
-                <option disabled="disabled">{{ separator }}</option>
-            {% endif %}
-        {% endif %}
-        {% set options = choices %}
-        {{ block('choice_widget_options') }}
-    </select>
-    {% endif %}
-{% endspaceless %}
+    {% endspaceless %}
 {% endblock choice_widget %}

@@ -25,16 +25,16 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('aisel_config');
         $rootNode
             ->children()
-                ->scalarNode('route_prefix')
-                    ->defaultValue('config_')
-                ->end()
-                ->arrayNode('entities')
-                    ->requiresAtLeastOneElement()
-                    ->useAttributeAsKey('name')
-                    ->prototype('array')
-                            ->children()
-                                ->scalarNode('order')->end()
-                                ->scalarNode('controller')->end()
+            ->scalarNode('route_prefix')
+            ->defaultValue('config_')
+            ->end()
+            ->arrayNode('entities')
+            ->requiresAtLeastOneElement()
+            ->useAttributeAsKey('name')
+            ->prototype('array')
+            ->children()
+            ->scalarNode('order')->end()
+            ->scalarNode('controller')->end()
             ->end();
 
         return $treeBuilder;

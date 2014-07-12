@@ -384,6 +384,7 @@ class Page
     {
         return $this->categories;
     }
+
     /**
      * @var boolean
      */

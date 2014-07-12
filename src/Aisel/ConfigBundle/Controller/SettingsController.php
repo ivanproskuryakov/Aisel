@@ -47,7 +47,7 @@ class SettingsController extends Controller
 
                 if ($this->getRepository()->setConfig($routeId, $formJson)) {
                     $this->get('session')->getFlashBag()
-                        ->set('notice',$this->get('translator')->trans('settings_changed.label', array(), 'AiselConfigBundle'));
+                        ->set('notice', $this->get('translator')->trans('settings_changed.label', array(), 'AiselConfigBundle'));
                 }
             }
         }
@@ -87,7 +87,7 @@ class SettingsController extends Controller
             $formArray = json_decode($config->getValue(), true);
         }
 
-        $form = $this->createForm(new $this->form(),$formArray);
+        $form = $this->createForm(new $this->form(), $formArray);
 
         return $form;
     }
@@ -107,8 +107,8 @@ class SettingsController extends Controller
         foreach ($configEntities as $name => $value) {
 
             $_route = Array();
-            $_route['name'] = 'aisel_config_'.$name.'.label';
-            $_route['path'] = $prefix.$name;
+            $_route['name'] = 'aisel_config_' . $name . '.label';
+            $_route['path'] = $prefix . $name;
 
             $routes[] = $_route;
         }
@@ -123,7 +123,7 @@ class SettingsController extends Controller
      */
     protected function getConfigNameLabel()
     {
-        $label =  'aisel_'.$this->get('request')->get('_route').'.label';
+        $label = 'aisel_' . $this->get('request')->get('_route') . '.label';
 
         return $label;
     }

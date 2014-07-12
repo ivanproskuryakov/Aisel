@@ -29,8 +29,10 @@ class AdminConfigManager
 
     /**
      * Get all setting
-     * @param  array $params
-     * @return array
+     *
+     * @return array $config
+     *
+     * @throws NotFoundHttpException
      */
     public function getConfig()
     {

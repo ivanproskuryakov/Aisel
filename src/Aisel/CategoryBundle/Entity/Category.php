@@ -95,9 +95,9 @@ class Category
 
     public function getSpacedTitle()
     {
-        $prefix = str_repeat('--',$this->getLvl());
+        $prefix = str_repeat('--', $this->getLvl());
 
-        return $prefix.$this->getTitle();
+        return $prefix . $this->getTitle();
     }
 
     /**
@@ -121,7 +121,7 @@ class Category
     /**
      * Set title
      *
-     * @param  string   $title
+     * @param  string $title
      * @return Category
      */
     public function setTitle($title)
@@ -144,7 +144,7 @@ class Category
     /**
      * Set lft
      *
-     * @param  integer  $lft
+     * @param  integer $lft
      * @return Category
      */
     public function setLft($lft)
@@ -167,7 +167,7 @@ class Category
     /**
      * Set rgt
      *
-     * @param  integer  $rgt
+     * @param  integer $rgt
      * @return Category
      */
     public function setRgt($rgt)
@@ -190,7 +190,7 @@ class Category
     /**
      * Set root
      *
-     * @param  integer  $root
+     * @param  integer $root
      * @return Category
      */
     public function setRoot($root)
@@ -213,7 +213,7 @@ class Category
     /**
      * Set lvl
      *
-     * @param  integer  $lvl
+     * @param  integer $lvl
      * @return Category
      */
     public function setLvl($lvl)
@@ -292,7 +292,7 @@ class Category
     /**
      * Set description
      *
-     * @param  string   $description
+     * @param  string $description
      * @return Category
      */
     public function setDescription($description)
@@ -315,7 +315,7 @@ class Category
     /**
      * Set status
      *
-     * @param  boolean  $status
+     * @param  boolean $status
      * @return Category
      */
     public function setStatus($status)
@@ -338,7 +338,7 @@ class Category
     /**
      * Set metaUrl
      *
-     * @param  string   $metaUrl
+     * @param  string $metaUrl
      * @return Category
      */
     public function setMetaUrl($metaUrl)
@@ -361,7 +361,7 @@ class Category
     /**
      * Set metaTitle
      *
-     * @param  string   $metaTitle
+     * @param  string $metaTitle
      * @return Category
      */
     public function setMetaTitle($metaTitle)
@@ -384,7 +384,7 @@ class Category
     /**
      * Set metaDescription
      *
-     * @param  string   $metaDescription
+     * @param  string $metaDescription
      * @return Category
      */
     public function setMetaDescription($metaDescription)
@@ -407,7 +407,7 @@ class Category
     /**
      * Set metaKeywords
      *
-     * @param  string   $metaKeywords
+     * @param  string $metaKeywords
      * @return Category
      */
     public function setMetaKeywords($metaKeywords)

@@ -33,7 +33,7 @@ class OrderInvoice
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -56,7 +56,7 @@ class OrderInvoice
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -79,7 +79,7 @@ class OrderInvoice
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -102,12 +102,13 @@ class OrderInvoice
     /**
      * Get product
      *
-     * @return \Aisel\OrderBundle\Entity\Order 
+     * @return \Aisel\OrderBundle\Entity\Order
      */
     public function getProduct()
     {
         return $this->product;
     }
+
     /**
      * @var string
      */
@@ -147,7 +148,7 @@ class OrderInvoice
     /**
      * Get status
      *
-     * @return string 
+     * @return string
      */
     public function getStatus()
     {
@@ -170,7 +171,7 @@ class OrderInvoice
     /**
      * Get frontenduser
      *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser 
+     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
      */
     public function getFrontenduser()
     {
@@ -203,7 +204,7 @@ class OrderInvoice
     /**
      * Get item
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getItem()
     {

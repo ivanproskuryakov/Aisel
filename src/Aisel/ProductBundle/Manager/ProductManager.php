@@ -32,7 +32,7 @@ class ProductManager
 
     /**
      * Get categories in array for product
-     * @param  int   $product
+     * @param  int $product
      * @return array $categories
      */
     public function getProductCategories($product)
@@ -59,9 +59,9 @@ class ProductManager
         $total = $this->em->getRepository('AiselProductBundle:Product')->getTotalFromRequest($params);
         $products = $this->em->getRepository('AiselProductBundle:Product')->getCurrentProductsFromRequest($params);
 
-        $return = array (
-            'total'=> $total,
-            'products'=> $products
+        $return = array(
+            'total' => $total,
+            'products' => $products
         );
 
         return $return;
@@ -69,8 +69,12 @@ class ProductManager
 
     /**
      * Get single detailed product with category by ID
-     * @param  int                           $id
+     *
+     * @param  int $id
+     *
      * @return \Aisel\ProductBundle\Entity\Product $productDetails
+     *
+     * @throws NotFoundHttpException
      */
     public function getProduct($id)
     {
@@ -80,15 +84,19 @@ class ProductManager
             throw new NotFoundHttpException('Nothing found');
         }
 
-        $productDetails = array('product'=>$product,'categories'=>$this->getProductCategories($product));
+        $productDetails = array('product' => $product, 'categories' => $this->getProductCategories($product));
 
         return $productDetails;
     }
 
     /**
      * Get single detailed product with category by URLKey
-     * @param  string                        $urlKey
+     *
+     * @param  string $urlKey
+     *
      * @return \Aisel\ProductBundle\Entity\Product $product
+     *
+     * @throws NotFoundHttpException
      */
     public function getProductByURL($urlKey)
     {
@@ -99,15 +107,18 @@ class ProductManager
             throw new NotFoundHttpException('Nothing found');
         }
 
-        $productDetails = array('product'=>$product,'categories'=>$this->getProductCategories($product));
+        $productDetails = array('product' => $product, 'categories' => $this->getProductCategories($product));
 
         return $productDetails;
     }
 
     /**
      * validate metaUrl for Product Entity and return one we can use
+     *
      * @param  string $url
-     * @param  int    $productId
+     *
+     * @param  int $productId
+     *
      * @return string $validUrl
      */
     public function normalizeProductUrl($url, $productId = null)
@@ -116,7 +127,7 @@ class ProductManager
         $utility = new UrlUtility();
         $validUrl = $utility->process($url);
         if ($product) {
-            $validUrl = $validUrl. '-'. time();
+            $validUrl = $validUrl . '-' . time();
         }
 
         return $validUrl;

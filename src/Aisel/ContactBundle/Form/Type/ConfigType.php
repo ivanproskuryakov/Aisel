@@ -24,12 +24,12 @@ class ConfigType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Name', 'text', array('label' => 'Name','attr' => array('class'=>'form-control')))
-            ->add('Email', 'email', array('label' => 'E-mail','attr' => array('class'=>'form-control')))
-            ->add('AddressLine1', 'text', array('label' => 'Address Line 1','attr' => array('class'=>'form-control')))
-            ->add('AddressLine2', 'text', array('label' => 'Address Line 2', 'required'=>false,'attr' => array('class'=>'form-control')))
-            ->add('information', 'ckeditor', array('label' => 'Some Information' ,'attr' => array('class'=>'form-control')))
-            ->add('save', 'submit', array('label' => 'Save', 'attr'=> array( 'class'=>'btn btn-primary')));
+            ->add('Name', 'text', array('label' => 'Name', 'attr' => array('class' => 'form-control')))
+            ->add('Email', 'email', array('label' => 'E-mail', 'attr' => array('class' => 'form-control')))
+            ->add('AddressLine1', 'text', array('label' => 'Address Line 1', 'attr' => array('class' => 'form-control')))
+            ->add('AddressLine2', 'text', array('label' => 'Address Line 2', 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('information', 'ckeditor', array('label' => 'Some Information', 'attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')));
 
     }
 

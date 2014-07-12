@@ -30,8 +30,8 @@ class ApiController extends Controller
     public function categoryListAction(Request $request)
     {
         $params = array(
-            'current'=>$request->query->get('current'),
-            'limit'=>$request->query->get('limit'),
+            'current' => $request->query->get('current'),
+            'limit' => $request->query->get('limit'),
         );
 
         $categoryList = $this->container->get("aisel.category.manager")->getCategories($params);

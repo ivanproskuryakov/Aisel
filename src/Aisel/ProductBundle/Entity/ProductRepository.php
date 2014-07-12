@@ -102,7 +102,7 @@ class ProductRepository extends EntityRepository
 
     /**
      * Get products based on limit, current pagination and search query
-     * @param  array                         $params
+     * @param  array $params
      * @return \Aisel\ProductBundle\Entity\Product
      *                                              */
     public function searchFromRequest($params)
@@ -143,7 +143,7 @@ class ProductRepository extends EntityRepository
 
     /**
      * Get products based on limit, current pagination and search query
-     * @param  array                         $params
+     * @param  array $params
      * @return \Aisel\ProductBundle\Entity\Product $products
      */
     public function getCurrentProductsFromRequest($params)
@@ -179,7 +179,7 @@ class ProductRepository extends EntityRepository
 
     /**
      * Get products filtered by category
-     * @param  int                           $categoryId
+     * @param  int $categoryId
      * @return \Aisel\ProductBundle\Entity\Product $products
      */
     public function getProductsByCategory($categoryId)
@@ -201,7 +201,7 @@ class ProductRepository extends EntityRepository
     /**
      * Find products by URL
      * @param  string $url
-     * @param  int    $productId
+     * @param  int $productId
      * @return int    $found
      */
     public function findTotalByURL($url, $productId = null)

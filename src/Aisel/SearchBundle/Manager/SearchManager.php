@@ -27,7 +27,9 @@ class SearchManager
 
     /**
      * Get list of results
+     *
      * @param  array $params
+     *
      * @return array $return
      */
     public function search($params)
@@ -35,9 +37,9 @@ class SearchManager
         $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params);
         $pages = $this->em->getRepository('AiselPageBundle:page')->searchFromRequest($params);
 
-        $return = array (
-            'total'=> $total,
-            'pages'=> $pages
+        $return = array(
+            'total' => $total,
+            'pages' => $pages
         );
 
         return $return;

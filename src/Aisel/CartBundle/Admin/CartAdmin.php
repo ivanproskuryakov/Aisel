@@ -52,7 +52,7 @@ class CartAdmin extends Admin
     {
         $formMapper
             ->with('General')
-                ->add('status', 'text', array('label' => 'Status', 'attr' => array()))
+            ->add('status', 'text', array('label' => 'Status', 'attr' => array()))
             ->end();
 
     }

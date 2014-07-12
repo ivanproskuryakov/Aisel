@@ -38,7 +38,7 @@ class Image
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -61,7 +61,7 @@ class Image
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -84,7 +84,7 @@ class Image
     /**
      * Get alt
      *
-     * @return string 
+     * @return string
      */
     public function getAlt()
     {
@@ -107,7 +107,7 @@ class Image
     /**
      * Get order
      *
-     * @return integer 
+     * @return integer
      */
     public function getOrder()
     {
@@ -130,12 +130,13 @@ class Image
     /**
      * Get product
      *
-     * @return \Aisel\FrontendUserBundle\Entity\Product 
+     * @return \Aisel\FrontendUserBundle\Entity\Product
      */
     public function getProduct()
     {
         return $this->product;
     }
+
     /**
      * @var array
      */
@@ -158,7 +159,7 @@ class Image
     /**
      * Get file
      *
-     * @return array 
+     * @return array
      */
     public function getFile()
     {

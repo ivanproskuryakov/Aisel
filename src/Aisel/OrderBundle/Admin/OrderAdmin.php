@@ -41,7 +41,7 @@ class OrderAdmin extends Admin
     {
         $errorElement
             ->with('name')
-                ->assertNotBlank()
+            ->assertNotBlank()
             ->end();
     }
 
@@ -52,7 +52,7 @@ class OrderAdmin extends Admin
     {
         $formMapper
             ->with('General')
-                ->add('name', 'text', array('label' => 'Name', 'attr' => array()))
+            ->add('name', 'text', array('label' => 'Name', 'attr' => array()))
             ->end();
 
     }
@@ -97,8 +97,8 @@ class OrderAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-                ->add('id')
-                ->add('status');
+            ->add('id')
+            ->add('status');
     }
 
     /**

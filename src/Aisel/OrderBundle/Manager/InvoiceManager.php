@@ -33,8 +33,12 @@ class InvoiceManager
 
     /**
      * Get single invoice by Id
+     *
      * @param  int $id
+     *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     *
+     * @throws NotFoundHttpException*
      */
     public function getInvoice($id)
     {
