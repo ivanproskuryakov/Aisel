@@ -30,6 +30,10 @@ aisel_order:
     resource: "@AiselOrderBundle/Resources/config/routing.yml"
     prefix:   /
 
+aisel_adressing:
+    resource: "@AiselAddressingBundle/Resources/config/routing.yml"
+    prefix:   /
+
 aisel_user_frontend:
     resource: "@AiselFrontendUserBundle/Resources/config/routing.yml"
     prefix:   /

@@ -13,6 +13,7 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AiselCategoryBundle]]
+            - [ setTemplate, [list, AiselAdminBundle:Tree:list.html.twig]]
             - [ setManager, [@aisel.category.manager]]
 
     aisel.category.manager:

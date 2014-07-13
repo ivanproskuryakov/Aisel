@@ -1,0 +1,20 @@
+Aisel\AddressingBundle\Entity\Addressing:
+    type: entity
+    table: aisel_addressing
+    repositoryClass: Aisel\AddressingBundle\Entity\AddressingRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        address:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+            column: created_at
+        updatedAt:
+            type: datetime
+            column: updated_at

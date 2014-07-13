@@ -112,8 +112,6 @@ class NavigationAdmin extends Admin
             ->add('status', 'boolean', array('label' => 'Enabled', 'editable' => false, 'sortable' => false))
             ->add('title', null, array('template' => 'AiselNavigationBundle:Admin:title.html.twig', 'label' => 'Title', 'sortable' => false))
             ->add('url', null, array('label' => 'URL', 'sortable' => false))
-            ->add('order', 'text', array('template' => 'AiselNavigationBundle:Admin:order.html.twig', 'label' => 'Move'))
-
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),

@@ -829,4 +829,60 @@ class Order
     {
         return $this->item;
     }
+    /**
+     * @var integer
+     */
+    private $subtotal;
+
+    /**
+     * @var integer
+     */
+    private $grandtotal;
+
+
+    /**
+     * Set subtotal
+     *
+     * @param integer $subtotal
+     * @return Order
+     */
+    public function setSubtotal($subtotal)
+    {
+        $this->subtotal = $subtotal;
+
+        return $this;
+    }
+
+    /**
+     * Get subtotal
+     *
+     * @return integer 
+     */
+    public function getSubtotal()
+    {
+        return $this->subtotal;
+    }
+
+    /**
+     * Set grandtotal
+     *
+     * @param integer $grandtotal
+     * @return Order
+     */
+    public function setGrandtotal($grandtotal)
+    {
+        $this->grandtotal = $grandtotal;
+
+        return $this;
+    }
+
+    /**
+     * Get grandtotal
+     *
+     * @return integer 
+     */
+    public function getGrandtotal()
+    {
+        return $this->grandtotal;
+    }
 }

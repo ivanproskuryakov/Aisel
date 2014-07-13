@@ -12,14 +12,16 @@ Aisel\OrderBundle\Entity\Order:
         status:
             type: string
             length: 255
-
+        subtotal:
+            type: integer
+        grandtotal:
+            type: integer
         createdAt:
             type: datetime
             column: created_at
         updatedAt:
             type: datetime
             column: updated_at
-
 
     oneToOne:
       frontenduser:
