@@ -1,0 +1,14 @@
+Aisel\AddressingBundle\Entity\Region:
+    type: entity
+    table: aisel_region
+    repositoryClass: Aisel\AddressingBundle\Entity\RegionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255

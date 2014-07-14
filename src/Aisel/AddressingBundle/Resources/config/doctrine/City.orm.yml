@@ -1,0 +1,14 @@
+Aisel\AddressingBundle\Entity\City:
+    type: entity
+    table: aisel_city
+    repositoryClass: Aisel\AddressingBundle\Entity\CityRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255

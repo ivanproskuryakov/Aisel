@@ -1,7 +1,7 @@
-Aisel\AddressingBundle\Entity\Addressing:
+Aisel\AddressingBundle\Entity\Address:
     type: entity
-    table: aisel_addressing
-    repositoryClass: Aisel\AddressingBundle\Entity\AddressingRepository
+    table: aisel_address
+    repositoryClass: Aisel\AddressingBundle\Entity\AddressRepository
     id:
         id:
             type: integer
@@ -12,6 +12,7 @@ Aisel\AddressingBundle\Entity\Addressing:
         address:
             type: string
             length: 255
+
         createdAt:
             type: datetime
             column: created_at

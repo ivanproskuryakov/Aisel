@@ -1,0 +1,14 @@
+Aisel\AddressingBundle\Entity\Country:
+    type: entity
+    table: aisel_contry
+    repositoryClass: Aisel\AddressingBundle\Entity\CountryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
