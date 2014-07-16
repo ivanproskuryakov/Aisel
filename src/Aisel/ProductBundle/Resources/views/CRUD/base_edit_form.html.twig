@@ -13,6 +13,8 @@
                 role="form"
                 action="{{ admin.generateUrl(url, {'id': admin.id(object), 'uniqid': admin.uniqid, 'subclass': app.request.get('subclass')}) }}" {{ form_enctype(form) }}
                 method="POST"
+                enctype="multipart/form-data"
+                id="fileupload"
                 {% if not admin_pool.getOption('html5_validate') %}novalidate="novalidate"{% endif %}
                 >
             {% if form.vars.errors|length > 0 %}
@@ -46,6 +48,9 @@
                                         <div class="box-body">
                                             <div class="sonata-ba-collapsed-fields">
 
+                                                {% if name == 'Gallery' %}
+                                                    {% include 'AiselProductBundle:Media:base.html.twig' %}
+                                                {% endif %}
                                                 {% if form_group.description != false %}
                                                     <p>{{ form_group.description|raw }}</p>
                                                 {% endif %}

@@ -2,18 +2,17 @@ api_aisel_productlist:
     pattern:  /api/product/list.json
     defaults: { _controller: AiselProductBundle:Api:productList, _format: json }
     requirements:
-        _method: GET
+        _method: GET|POST
 
 api_aisel_productview_by_url:
     pattern:  /api/product/view/url/{urlKey}.json
     defaults: { _controller: AiselProductBundle:Api:productViewByURL, _format: json }
     requirements:
-        _method: GET
-#        id: "\d+"
+        _method: GET|POST
 
 admin_aisel_product_media_upload:
     pattern:  /%website_admin%/product/media/{productId}/
     defaults: { _controller: AiselProductBundle:Media:upload, _format: json }
     requirements:
-        _method:  POST|GET
+        _method:  OPTIONS|HEAD|GET|POST|PUT|PATCH|DELETE
         productId: "\d+"

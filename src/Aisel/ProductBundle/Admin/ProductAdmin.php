@@ -73,6 +73,7 @@ class ProductAdmin extends Admin
                     'required' => true,
                     'attr' => array('class' => 'field-content')
                 ))
+
             ->with('Pricing')
             ->add('price', 'money', array('label' => 'Price', 'attr' => array()))
             ->add('priceSpecial', 'money', array('label' => 'Special Price', 'required' => false, 'attr' => array()))
@@ -84,10 +85,17 @@ class ProductAdmin extends Admin
                 'label' => 'New', 'attr' => array()))
             ->add('newFrom', 'datetime', array('label' => 'New From', 'attr' => array()))
             ->add('newTo', 'datetime', array('label' => 'New To', 'attr' => array()))
+            ->with('Gallery')
             ->with('Categories')
             ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
                 'class' => 'Aisel\CategoryBundle\Entity\Category',
             ))
+            ->with('Stock')
+            ->add('inStock', 'choice', array('choices' => array(
+                '0' => 'No',
+                '1' => 'Yes'),
+                'label' => 'In Stock', 'attr' => array()))
+            ->add('qty', 'integer', array('label' => 'Qty', 'attr' => array()))
             ->with('Meta')
             ->add('metaUrl', 'text', array('label' => 'Url', 'required' => true, 'help' => 'note: URL value must be unique'))
             ->add('metaTitle', 'text', array('label' => 'Title', 'required' => false))
@@ -128,6 +136,7 @@ class ProductAdmin extends Admin
             ->addIdentifier('id')
             ->add('name')
             ->add('price')
+            ->add('qty')
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -146,7 +155,12 @@ class ProductAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-            ->add('content')
+            ->add('name')
+            ->add('qty')
+            ->add('inStock')
+            ->add('description')
+            ->add('descriptionShort')
+            ->add('createdAt')
             ->add('updatedAt')
             ->add('status', 'boolean')
             ->with('Categories')

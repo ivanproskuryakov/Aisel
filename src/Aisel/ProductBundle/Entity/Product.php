@@ -818,4 +818,32 @@ class Product
     {
         return $this->image;
     }
+    /**
+     * @var boolean
+     */
+    private $inStock;
+
+
+    /**
+     * Set inStock
+     *
+     * @param boolean $inStock
+     * @return Product
+     */
+    public function setInStock($inStock)
+    {
+        $this->inStock = $inStock;
+
+        return $this;
+    }
+
+    /**
+     * Get inStock
+     *
+     * @return boolean 
+     */
+    public function getInStock()
+    {
+        return $this->inStock;
+    }
 }

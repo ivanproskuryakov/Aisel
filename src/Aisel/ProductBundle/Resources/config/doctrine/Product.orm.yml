@@ -15,9 +15,6 @@ Aisel\ProductBundle\Entity\Product:
         sku:
             type: string
             length: 255
-        qty:
-            type: integer
-            column: qty
         price:
             type: float
             column: price
@@ -46,6 +43,12 @@ Aisel\ProductBundle\Entity\Product:
             type: datetime
             nullable: true
             column: new_to
+
+        inStock:
+            type: boolean
+            nullable: true
+            column: in_stock
+
 
         descriptionShort:
             type: text
