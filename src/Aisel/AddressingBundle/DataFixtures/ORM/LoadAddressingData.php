@@ -12,24 +12,24 @@
 namespace Aisel\AddressingBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\AddressingedFixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\AddressingBundle\Entity\Addressing;
+use Aisel\AddressingBundle\Entity\Address;
 
 /**
  * Addressing fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadAddressingData extends AbstractFixture implements AddressingedFixtureInterface
+class LoadAddressingData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        $addressing = new Addressing();
-        $addressing->setStatus('new');
+        $addressing = new Address();
+        $addressing->setAddress('Calle de Santa Isabel, 52, 28012 Madrid, Spain');
         $addressing->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $addressing->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $manager->persist($addressing);
@@ -39,8 +39,8 @@ class LoadAddressingData extends AbstractFixture implements AddressingedFixtureI
     /**
      * {@inheritDoc}
      */
-    public function getAddressing()
+    public function getOrder()
     {
-        return 200;
+        return 500;
     }
 }

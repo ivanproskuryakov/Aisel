@@ -84,12 +84,11 @@ class ProductAdmin extends Admin
                 'label' => 'New', 'attr' => array()))
             ->add('newFrom', 'datetime', array('label' => 'New From', 'attr' => array()))
             ->add('newTo', 'datetime', array('label' => 'New To', 'attr' => array()))
-            ->with('Categories', array('description' => 'Select related categories'))
+            ->with('Categories')
             ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
                 'class' => 'Aisel\CategoryBundle\Entity\Category',
             ))
-            ->with('Images')
-            ->with('Meta', array('description' => 'Meta description for search engines'))
+            ->with('Meta')
             ->add('metaUrl', 'text', array('label' => 'Url', 'required' => true, 'help' => 'note: URL value must be unique'))
             ->add('metaTitle', 'text', array('label' => 'Title', 'required' => false))
             ->add('metaDescription', 'textarea', array('label' => 'Description', 'required' => false))

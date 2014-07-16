@@ -41,6 +41,7 @@ assetic:
     debug:          "%kernel.debug%"
     use_controller: false
     bundles:        [AiselAdminBundle]
+    bundles:        [AiselProductBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

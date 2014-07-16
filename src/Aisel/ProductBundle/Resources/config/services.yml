@@ -13,6 +13,7 @@ services:
         calls:
             - [ setTranslationDomain, [AiselProductBundle]]
             - [ setManager, [@aisel.product.manager]]
+            - [ setTemplate, [edit, AiselProductBundle:CRUD:edit.html.twig]]
     aisel.product.manager:
         class: %aisel_product_manager.class%
         arguments: [@service_container, @doctrine.orm.entity_manager]

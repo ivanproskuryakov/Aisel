@@ -14,8 +14,12 @@ Aisel\OrderBundle\Entity\Order:
             length: 255
         subtotal:
             type: integer
+            default: 0
+            nullable: true
         grandtotal:
             type: integer
+            default: 0
+            nullable: true
         createdAt:
             type: datetime
             column: created_at

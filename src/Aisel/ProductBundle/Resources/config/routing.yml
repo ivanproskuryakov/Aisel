@@ -10,3 +10,7 @@ api_aisel_productview_by_url:
     requirements:
         _method: GET
 #        id: "\d+"
+
+admin_aisel_product_media_upload:
+    pattern:  /%website_admin%/product/media/upload/
+    defaults: { _controller: AiselProductBundle:Media:upload, _format: ~ }
