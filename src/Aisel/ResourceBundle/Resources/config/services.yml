@@ -1,0 +1,14 @@
+parameters:
+    aisel_media_product_extension.class: Aisel\ResourceBundle\Twig\MediaProductExtension
+    aisel_resource_manager.class: Aisel\ResourceBundle\Manager\ResourceManager
+
+services:
+    aisel.resource.manager:
+        class: %aisel_resource_manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager]
+
+    aisel.twig.media_product_extension:
+            class: %aisel_media_product_extension.class%
+            arguments: [@service_container, %application.media.product.path%, %website_address% ]
+            tags:
+                - { name: twig.extension }

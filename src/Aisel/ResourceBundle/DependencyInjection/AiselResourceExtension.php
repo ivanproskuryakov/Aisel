@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Aisel\ResourceBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
