@@ -48,7 +48,7 @@ class MediaManager
         $mediaParams = $this->mapParamsForProductId($productId);
         $options = array(
             'script_url' => $mediaParams['script_url'],
-            'upload_dir' => $mediaParams['upload_dir'],//$fullPath . $productDir . '/1/',
+            'upload_dir' => $mediaParams['upload_dir'], //$fullPath . $productDir . '/1/',
             'upload_url' => $mediaParams['upload_url'], //$productDir . '/1/',
         );
 
@@ -58,14 +58,15 @@ class MediaManager
          * use ob_start and ob_get_contents
          */
 
-        //@todo - FIX IT!
-//        ob_start();
+        ob_start();
         $uploadHandler = new UploadHandler($options);
-        exit();
-//        $outputContents = ob_get_contents();
-//        $outputContents = stripslashes(ob_get_contents());
-//        ob_end_clean();
-
+        $outputContents = stripslashes(ob_get_contents());
+        ob_end_clean();
+        $mediaFiles = json_decode($outputContents);
+        foreach ($mediaFiles->files as $_file) {
+            // @todo: finis savind to database
+            //print_r($_file->name);
+        }
         return $outputContents;
     }
 
