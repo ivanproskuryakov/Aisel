@@ -104,9 +104,9 @@ jms_serializer:
       AiselPageBundle:
         namespace_prefix: "Aisel\\PageBundle"
         path: "@AiselPageBundle/Resources/config/serializer/"
-      AiselProductBundle:
-        namespace_prefix: "Aisel\\Product"
-        path: "@AiselProductBundle/Resources/config/serializer/"
+#      AiselProductBundle:
+#        namespace_prefix: "Aisel\\Product"
+#        path: "@AiselProductBundle/Resources/config/serializer/"
       AiselFrontendUserBundle:
         namespace_prefix: "Aisel\\FrontendUserBundle"
         path: "@AiselFrontendUserBundle/Resources/config/serializer/"

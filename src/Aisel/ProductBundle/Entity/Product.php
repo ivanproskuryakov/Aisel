@@ -1,15 +1,8 @@
 <?php
 
-/*
- * This file is part of the Aisel package.
- *
- * (c) Ivan Proskuryakov
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Aisel\ProductBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Product
@@ -24,17 +17,77 @@ class Product
     /**
      * @var string
      */
-    private $title;
+    private $name;
 
     /**
      * @var string
      */
-    private $content;
+    private $sku;
+
+    /**
+     * @var float
+     */
+    private $price;
+
+    /**
+     * @var float
+     */
+    private $priceSpecial;
+
+    /**
+     * @var \DateTime
+     */
+    private $priceSpecialFrom;
+
+    /**
+     * @var \DateTime
+     */
+    private $priceSpecialTo;
+
+    /**
+     * @var boolean
+     */
+    private $new;
+
+    /**
+     * @var \DateTime
+     */
+    private $newFrom;
+
+    /**
+     * @var \DateTime
+     */
+    private $newTo;
+
+    /**
+     * @var integer
+     */
+    private $qty;
+
+    /**
+     * @var boolean
+     */
+    private $inStock;
+
+    /**
+     * @var string
+     */
+    private $descriptionShort;
+
+    /**
+     * @var string
+     */
+    private $description;
 
     /**
      * @var boolean
      */
     private $status;
+
+    /**
+     * @var boolean
+     */
+    private $hidden;
 
     /**
      * @var boolean
@@ -72,9 +125,9 @@ class Product
     private $updatedAt;
 
     /**
-     * @var \Aisel\FrontendUserBundle\Entity\FrontendUser
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $frontenduser;
+    private $image;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -86,373 +139,19 @@ class Product
      */
     public function __construct()
     {
+        $this->image = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
         return $this->id;
     }
-
-    /**
-     * Set title
-     *
-     * @param  string $title
-     * @return Product
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set content
-     *
-     * @param  string $content
-     * @return Product
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Get content
-     *
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * Set status
-     *
-     * @param  boolean $status
-     * @return Product
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return boolean
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set commentStatus
-     *
-     * @param  boolean $commentStatus
-     * @return Product
-     */
-    public function setCommentStatus($commentStatus)
-    {
-        $this->commentStatus = $commentStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get commentStatus
-     *
-     * @return boolean
-     */
-    public function getCommentStatus()
-    {
-        return $this->commentStatus;
-    }
-
-    /**
-     * Set metaUrl
-     *
-     * @param  string $metaUrl
-     * @return Product
-     */
-    public function setMetaUrl($metaUrl)
-    {
-        $this->metaUrl = $metaUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get metaUrl
-     *
-     * @return string
-     */
-    public function getMetaUrl()
-    {
-        return $this->metaUrl;
-    }
-
-    /**
-     * Set metaTitle
-     *
-     * @param  string $metaTitle
-     * @return Product
-     */
-    public function setMetaTitle($metaTitle)
-    {
-        $this->metaTitle = $metaTitle;
-
-        return $this;
-    }
-
-    /**
-     * Get metaTitle
-     *
-     * @return string
-     */
-    public function getMetaTitle()
-    {
-        return $this->metaTitle;
-    }
-
-    /**
-     * Set metaDescription
-     *
-     * @param  string $metaDescription
-     * @return Product
-     */
-    public function setMetaDescription($metaDescription)
-    {
-        $this->metaDescription = $metaDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get metaDescription
-     *
-     * @return string
-     */
-    public function getMetaDescription()
-    {
-        return $this->metaDescription;
-    }
-
-    /**
-     * Set metaKeywords
-     *
-     * @param  string $metaKeywords
-     * @return Product
-     */
-    public function setMetaKeywords($metaKeywords)
-    {
-        $this->metaKeywords = $metaKeywords;
-
-        return $this;
-    }
-
-    /**
-     * Get metaKeywords
-     *
-     * @return string
-     */
-    public function getMetaKeywords()
-    {
-        return $this->metaKeywords;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return Product
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param  \DateTime $updatedAt
-     * @return Product
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * Set frontenduser
-     *
-     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
-     * @return Product
-     */
-    public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
-    {
-        $this->frontenduser = $frontenduser;
-
-        return $this;
-    }
-
-    /**
-     * Get frontenduser
-     *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
-     */
-    public function getFrontenduser()
-    {
-        return $this->frontenduser;
-    }
-
-    /**
-     * Add categories
-     *
-     * @param  \Aisel\CategoryBundle\Entity\Category $categories
-     * @return Product
-     */
-    public function addCategory(\Aisel\CategoryBundle\Entity\Category $categories)
-    {
-        $this->categories[] = $categories;
-
-        return $this;
-    }
-
-    /**
-     * Remove categories
-     *
-     * @param \Aisel\CategoryBundle\Entity\Category $categories
-     */
-    public function removeCategory(\Aisel\CategoryBundle\Entity\Category $categories)
-    {
-        $this->categories->removeElement($categories);
-    }
-
-    /**
-     * Get categories
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }
-
-    /**
-     * @var boolean
-     */
-    private $hidden;
-
-    /**
-     * Set hidden
-     *
-     * @param  boolean $hidden
-     * @return Product
-     */
-    public function setHidden($hidden)
-    {
-        $this->hidden = $hidden;
-
-        return $this;
-    }
-
-    /**
-     * Get hidden
-     *
-     * @return boolean
-     */
-    public function getHidden()
-    {
-        return $this->hidden;
-    }
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $sku;
-
-    /**
-     * @var float
-     */
-    private $price;
-
-    /**
-     * @var float
-     */
-    private $priceSpecial;
-
-    /**
-     * @var \DateTime
-     */
-    private $priceSpecialFrom;
-
-    /**
-     * @var \DateTime
-     */
-    private $priceSpecialTo;
-
-    /**
-     * @var string
-     */
-    private $descriptionShort;
-
-    /**
-     * @var string
-     */
-    private $descriptionFull;
-
 
     /**
      * Set name
@@ -470,7 +169,7 @@ class Product
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
@@ -493,7 +192,7 @@ class Product
     /**
      * Get sku
      *
-     * @return string
+     * @return string 
      */
     public function getSku()
     {
@@ -516,7 +215,7 @@ class Product
     /**
      * Get price
      *
-     * @return float
+     * @return float 
      */
     public function getPrice()
     {
@@ -539,7 +238,7 @@ class Product
     /**
      * Get priceSpecial
      *
-     * @return float
+     * @return float 
      */
     public function getPriceSpecial()
     {
@@ -562,7 +261,7 @@ class Product
     /**
      * Get priceSpecialFrom
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getPriceSpecialFrom()
     {
@@ -585,74 +284,12 @@ class Product
     /**
      * Get priceSpecialTo
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getPriceSpecialTo()
     {
         return $this->priceSpecialTo;
     }
-
-    /**
-     * Set descriptionShort
-     *
-     * @param string $descriptionShort
-     * @return Product
-     */
-    public function setDescriptionShort($descriptionShort)
-    {
-        $this->descriptionShort = $descriptionShort;
-
-        return $this;
-    }
-
-    /**
-     * Get descriptionShort
-     *
-     * @return string
-     */
-    public function getDescriptionShort()
-    {
-        return $this->descriptionShort;
-    }
-
-    /**
-     * Set descriptionFull
-     *
-     * @param string $descriptionFull
-     * @return Product
-     */
-    public function setDescriptionFull($descriptionFull)
-    {
-        $this->descriptionFull = $descriptionFull;
-
-        return $this;
-    }
-
-    /**
-     * Get descriptionFull
-     *
-     * @return string
-     */
-    public function getDescriptionFull()
-    {
-        return $this->descriptionFull;
-    }
-
-    /**
-     * @var boolean
-     */
-    private $new;
-
-    /**
-     * @var \DateTime
-     */
-    private $newFrom;
-
-    /**
-     * @var \DateTime
-     */
-    private $newTo;
-
 
     /**
      * Set new
@@ -670,7 +307,7 @@ class Product
     /**
      * Get new
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getNew()
     {
@@ -693,7 +330,7 @@ class Product
     /**
      * Get newFrom
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getNewFrom()
     {
@@ -716,52 +353,12 @@ class Product
     /**
      * Get newTo
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getNewTo()
     {
         return $this->newTo;
     }
-
-    /**
-     * @var string
-     */
-    private $description;
-
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Product
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @var integer
-     */
-    private $qty;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $image;
-
 
     /**
      * Set qty
@@ -779,50 +376,12 @@ class Product
     /**
      * Get qty
      *
-     * @return integer
+     * @return integer 
      */
     public function getQty()
     {
         return $this->qty;
     }
-
-    /**
-     * Add image
-     *
-     * @param \Aisel\FrontendUserBundle\Entity\Image $image
-     * @return Product
-     */
-    public function addImage(\Aisel\FrontendUserBundle\Entity\Image $image)
-    {
-        $this->image[] = $image;
-
-        return $this;
-    }
-
-    /**
-     * Remove image
-     *
-     * @param \Aisel\FrontendUserBundle\Entity\Image $image
-     */
-    public function removeImage(\Aisel\FrontendUserBundle\Entity\Image $image)
-    {
-        $this->image->removeElement($image);
-    }
-
-    /**
-     * Get image
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-    /**
-     * @var boolean
-     */
-    private $inStock;
-
 
     /**
      * Set inStock
@@ -845,5 +404,324 @@ class Product
     public function getInStock()
     {
         return $this->inStock;
+    }
+
+    /**
+     * Set descriptionShort
+     *
+     * @param string $descriptionShort
+     * @return Product
+     */
+    public function setDescriptionShort($descriptionShort)
+    {
+        $this->descriptionShort = $descriptionShort;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionShort
+     *
+     * @return string 
+     */
+    public function getDescriptionShort()
+    {
+        return $this->descriptionShort;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Product
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     * @return Product
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set hidden
+     *
+     * @param boolean $hidden
+     * @return Product
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+
+        return $this;
+    }
+
+    /**
+     * Get hidden
+     *
+     * @return boolean 
+     */
+    public function getHidden()
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * Set commentStatus
+     *
+     * @param boolean $commentStatus
+     * @return Product
+     */
+    public function setCommentStatus($commentStatus)
+    {
+        $this->commentStatus = $commentStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get commentStatus
+     *
+     * @return boolean 
+     */
+    public function getCommentStatus()
+    {
+        return $this->commentStatus;
+    }
+
+    /**
+     * Set metaUrl
+     *
+     * @param string $metaUrl
+     * @return Product
+     */
+    public function setMetaUrl($metaUrl)
+    {
+        $this->metaUrl = $metaUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get metaUrl
+     *
+     * @return string 
+     */
+    public function getMetaUrl()
+    {
+        return $this->metaUrl;
+    }
+
+    /**
+     * Set metaTitle
+     *
+     * @param string $metaTitle
+     * @return Product
+     */
+    public function setMetaTitle($metaTitle)
+    {
+        $this->metaTitle = $metaTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get metaTitle
+     *
+     * @return string 
+     */
+    public function getMetaTitle()
+    {
+        return $this->metaTitle;
+    }
+
+    /**
+     * Set metaDescription
+     *
+     * @param string $metaDescription
+     * @return Product
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get metaDescription
+     *
+     * @return string 
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * Set metaKeywords
+     *
+     * @param string $metaKeywords
+     * @return Product
+     */
+    public function setMetaKeywords($metaKeywords)
+    {
+        $this->metaKeywords = $metaKeywords;
+
+        return $this;
+    }
+
+    /**
+     * Get metaKeywords
+     *
+     * @return string 
+     */
+    public function getMetaKeywords()
+    {
+        return $this->metaKeywords;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Product
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Product
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Add image
+     *
+     * @param \Aisel\ProductBundle\Entity\Image $image
+     * @return Product
+     */
+    public function addImage(\Aisel\ProductBundle\Entity\Image $image)
+    {
+        $this->image[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \Aisel\ProductBundle\Entity\Image $image
+     */
+    public function removeImage(\Aisel\ProductBundle\Entity\Image $image)
+    {
+        $this->image->removeElement($image);
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \Aisel\CategoryBundle\Entity\Category $categories
+     * @return Product
+     */
+    public function addCategory(\Aisel\CategoryBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \Aisel\CategoryBundle\Entity\Category $categories
+     */
+    public function removeCategory(\Aisel\CategoryBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

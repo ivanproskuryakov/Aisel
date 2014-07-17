@@ -12,7 +12,7 @@ api_aisel_productview_by_url:
 
 admin_aisel_product_media_upload:
     pattern:  /%website_admin%/product/media/{productId}/
-    defaults: { _controller: AiselProductBundle:Media:upload }
+    defaults: { _controller: AiselProductBundle:Media:upload, productId: 0 }
     requirements:
         _method:  OPTIONS|HEAD|GET|POST|PUT|PATCH|DELETE
         productId: "\d+"

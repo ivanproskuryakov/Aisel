@@ -44,6 +44,10 @@ Aisel\ProductBundle\Entity\Product:
             nullable: true
             column: new_to
 
+        qty:
+            type: integer
+            nullable: true
+            column: qty
         inStock:
             type: boolean
             nullable: true
@@ -95,13 +99,13 @@ Aisel\ProductBundle\Entity\Product:
             type: datetime
             column: updated_at
 
-    manyToOne:
-      frontenduser:
-        targetEntity: Aisel\FrontendUserBundle\Entity\FrontendUser
-        inversedBy: products
-        joinColumns:
-          user_id:
-            referencedColumnName: id
+#    manyToOne:
+#      frontenduser:
+#        targetEntity: Aisel\FrontendUserBundle\Entity\FrontendUser
+#        inversedBy: products
+#        joinColumns:
+#          user_id:
+#            referencedColumnName: id
 
     oneToMany:
       image:

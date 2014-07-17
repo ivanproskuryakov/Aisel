@@ -17,20 +17,10 @@ class Image
     /**
      * @var string
      */
-    private $title;
+    private $filename;
 
     /**
-     * @var string
-     */
-    private $alt;
-
-    /**
-     * @var integer
-     */
-    private $order;
-
-    /**
-     * @var \Aisel\FrontendUserBundle\Entity\Product
+     * @var \Aisel\ProductBundle\Entity\Product
      */
     private $product;
 
@@ -38,7 +28,7 @@ class Image
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -46,81 +36,35 @@ class Image
     }
 
     /**
-     * Set title
+     * Set filename
      *
-     * @param string $title
+     * @param string $filename
      * @return Image
      */
-    public function setTitle($title)
+    public function setFilename($filename)
     {
-        $this->title = $title;
+        $this->filename = $filename;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get filename
      *
-     * @return string
+     * @return string 
      */
-    public function getTitle()
+    public function getFilename()
     {
-        return $this->title;
-    }
-
-    /**
-     * Set alt
-     *
-     * @param string $alt
-     * @return Image
-     */
-    public function setAlt($alt)
-    {
-        $this->alt = $alt;
-
-        return $this;
-    }
-
-    /**
-     * Get alt
-     *
-     * @return string
-     */
-    public function getAlt()
-    {
-        return $this->alt;
-    }
-
-    /**
-     * Set order
-     *
-     * @param integer $order
-     * @return Image
-     */
-    public function setOrder($order)
-    {
-        $this->order = $order;
-
-        return $this;
-    }
-
-    /**
-     * Get order
-     *
-     * @return integer
-     */
-    public function getOrder()
-    {
-        return $this->order;
+        return $this->filename;
     }
 
     /**
      * Set product
      *
-     * @param \Aisel\FrontendUserBundle\Entity\Product $product
+     * @param \Aisel\ProductBundle\Entity\Product $product
      * @return Image
      */
-    public function setProduct(\Aisel\FrontendUserBundle\Entity\Product $product = null)
+    public function setProduct(\Aisel\ProductBundle\Entity\Product $product = null)
     {
         $this->product = $product;
 
@@ -130,39 +74,10 @@ class Image
     /**
      * Get product
      *
-     * @return \Aisel\FrontendUserBundle\Entity\Product
+     * @return \Aisel\ProductBundle\Entity\Product 
      */
     public function getProduct()
     {
         return $this->product;
-    }
-
-    /**
-     * @var array
-     */
-    private $file;
-
-
-    /**
-     * Set file
-     *
-     * @param array $file
-     * @return Image
-     */
-    public function setFile($file)
-    {
-        $this->file = $file;
-
-        return $this;
-    }
-
-    /**
-     * Get file
-     *
-     * @return array
-     */
-    public function getFile()
-    {
-        return $this->file;
     }
 }

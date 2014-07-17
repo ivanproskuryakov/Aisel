@@ -1,12 +1,11 @@
 {% include 'AiselProductBundle:Media:upload_css.html.twig' %}
 {% include 'AiselProductBundle:Media:upload_js.html.twig' %}
-
 <script type="text/javascript">
     $(function () {
         'use strict';
         // Initialize the jQuery File Upload widget:
         $('#fileupload').fileupload({
-            url: '{{ 1 | mediaProductURI }}'
+            url: '{{app.request.attributes.get('id')| mediaProductURI }}'
         });
 
         // Load existing files:

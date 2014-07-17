@@ -9,25 +9,10 @@ Aisel\ProductBundle\Entity\Image:
             generator:
                 strategy: AUTO
     fields:
-        title:
+        filename:
             type: string
             nullable: true
-            length: 255
-            column: title
-        alt:
-            type: string
-            nullable: true
-            length: 255
-            column: alt
-        order:
-            type: integer
-            nullable: true
-            column: order
-        file:
-            type: array
-            nullable: true
-            column: icon
-            column: file
+            column: filename
 
     manyToOne:
       product:

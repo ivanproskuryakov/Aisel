@@ -15,6 +15,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\ProductBundle\Entity\Product;
+use Aisel\ProductBundle\Entity\Image;
 
 /**
  * Product fixtures
@@ -54,6 +55,19 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($product);
         $manager->flush();
         $this->addReference('about-product', $product);
+
+        // Images for our nice product
+        $image1 = new Image();
+        $image1->setFilename('test1.jpg')
+                ->setProduct($product);
+        $manager->persist($image1);
+        $manager->flush();
+
+        $image2 = new Image();
+        $image2->setFilename('test2.jpg')
+                ->setProduct($product);
+        $manager->persist($image2);
+        $manager->flush();
 
     }
 
