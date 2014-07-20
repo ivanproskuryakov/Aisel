@@ -12,4 +12,27 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
+
+    /**
+     * Find product by URL
+     * @param  string $url
+     * @param  int $pageId
+     * @return int    $found
+     */
+    public function findTotalByURL($url, $productId = null)
+    {
+        $query = $this->getEntityManager()->createQueryBuilder();
+
+        $query->select('COUNT(p.id)')
+            ->from('AiselProductBundle:Product', 'p')
+            ->where('p.metaUrl = :url')->setParameter('url', $url);
+
+        if ($productId) {
+            $query->andWhere('p.id != :pageId')->setParameter('pageId', $productId);
+        }
+        $found = $query->getQuery()->getSingleScalarResult();
+
+        return $found;
+    }
+
 }

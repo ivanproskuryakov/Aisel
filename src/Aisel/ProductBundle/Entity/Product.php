@@ -724,4 +724,32 @@ class Product
     {
         return $this->categories;
     }
+    /**
+     * @var \Aisel\ProductBundle\Entity\Cart
+     */
+    private $cart;
+
+
+    /**
+     * Set cart
+     *
+     * @param \Aisel\ProductBundle\Entity\Cart $cart
+     * @return Product
+     */
+    public function setCart(\Aisel\ProductBundle\Entity\Cart $cart = null)
+    {
+        $this->cart = $cart;
+
+        return $this;
+    }
+
+    /**
+     * Get cart
+     *
+     * @return \Aisel\ProductBundle\Entity\Cart 
+     */
+    public function getCart()
+    {
+        return $this->cart;
+    }
 }

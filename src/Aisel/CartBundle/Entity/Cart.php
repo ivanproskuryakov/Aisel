@@ -751,4 +751,80 @@ class Cart
     {
         return $this->description;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $image;
+
+
+    /**
+     * Add image
+     *
+     * @param \Aisel\CartBundle\Entity\Cart $image
+     * @return Cart
+     */
+    public function addImage(\Aisel\CartBundle\Entity\Cart $image)
+    {
+        $this->image[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \Aisel\CartBundle\Entity\Cart $image
+     */
+    public function removeImage(\Aisel\CartBundle\Entity\Cart $image)
+    {
+        $this->image->removeElement($image);
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $products;
+
+
+    /**
+     * Add products
+     *
+     * @param \Aisel\ProductBundle\Entity\Products $products
+     * @return Cart
+     */
+    public function addProduct(\Aisel\ProductBundle\Entity\Products $products)
+    {
+        $this->products[] = $products;
+
+        return $this;
+    }
+
+    /**
+     * Remove products
+     *
+     * @param \Aisel\ProductBundle\Entity\Products $products
+     */
+    public function removeProduct(\Aisel\ProductBundle\Entity\Products $products)
+    {
+        $this->products->removeElement($products);
+    }
+
+    /**
+     * Get products
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
 }

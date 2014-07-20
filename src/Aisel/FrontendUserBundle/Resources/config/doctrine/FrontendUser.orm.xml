@@ -36,8 +36,6 @@
         <field name="behance" type="string" column="behance" length="255" nullable="true"/>
 
 
-        <!-- Profile fields -->
-
         <one-to-many field="pages" target-entity="Aisel\PageBundle\Entity\Page" mapped-by="frontenduser">
             <cascade>
                 <cascade-remove/>
@@ -45,6 +43,12 @@
             <!--<order-by>-->
             <!--<order-by-field name="number" direction="ASC" />-->
             <!--</order-by>-->
+        </one-to-many>
+
+        <one-to-many field="addresses" target-entity="Aisel\AddressingBundle\Entity\Address" mapped-by="frontenduser">
+            <cascade>
+                <cascade-remove/>
+            </cascade>
         </one-to-many>
 
 

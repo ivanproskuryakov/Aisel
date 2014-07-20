@@ -78,6 +78,7 @@ Aisel\CategoryBundle\Entity\Category:
           onDelete: CASCADE
         gedmo:
           - treeParent
+
     oneToMany:
       children:
         targetEntity: Aisel\CategoryBundle\Entity\Category

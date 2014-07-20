@@ -698,4 +698,42 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     {
         return $this->about;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $addresses;
+
+
+    /**
+     * Add addresses
+     *
+     * @param \Aisel\AddressingBundle\Entity\Address $addresses
+     * @return FrontendUser
+     */
+    public function addAddress(\Aisel\AddressingBundle\Entity\Address $addresses)
+    {
+        $this->addresses[] = $addresses;
+
+        return $this;
+    }
+
+    /**
+     * Remove addresses
+     *
+     * @param \Aisel\AddressingBundle\Entity\Address $addresses
+     */
+    public function removeAddress(\Aisel\AddressingBundle\Entity\Address $addresses)
+    {
+        $this->addresses->removeElement($addresses);
+    }
+
+    /**
+     * Get addresses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
 }

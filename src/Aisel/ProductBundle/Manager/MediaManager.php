@@ -61,6 +61,7 @@ class MediaManager
 
         ob_start();
         $uploadHandler = new UploadHandler($options);
+        exit();
         $outputContents = stripslashes(ob_get_contents());
         ob_end_clean();
         $mediaFiles = json_decode($outputContents);
@@ -69,7 +70,7 @@ class MediaManager
         $product = $this->em->getRepository('AiselProductBundle:Product')->find($productId);
         $result = $this->em->getRepository('AiselProductBundle:Image')->removeImageForProduct($productId);
 
-        // @todo: finis saving to database
+        // @todo: finish with saving to db
 
         if (isset($mediaFiles->files)) {
             foreach ($mediaFiles->files as $f) {

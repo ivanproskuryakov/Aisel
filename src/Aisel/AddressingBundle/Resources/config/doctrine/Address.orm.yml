@@ -9,9 +9,17 @@ Aisel\AddressingBundle\Entity\Address:
             generator:
                 strategy: AUTO
     fields:
-        address:
+        phone:
             type: string
             length: 255
+        street:
+            type: string
+            length: 255
+        zip:
+            type: string
+            length: 255
+        comment:
+            type: text
 
         createdAt:
             type: datetime
@@ -19,3 +27,35 @@ Aisel\AddressingBundle\Entity\Address:
         updatedAt:
             type: datetime
             column: updated_at
+
+    #User
+    manyToOne:
+      frontenduser:
+        targetEntity: Aisel\FrontendUserBundle\Entity\FrontendUser
+        inversedBy: addresses
+        joinColumns:
+          user_id:
+            referencedColumnName: id
+
+    #Country
+    oneToOne:
+      country:
+        targetEntity: Aisel\AddressingBundle\Entity\Country
+        inversedBy: address
+        joinColumns:
+          country_id:
+            referencedColumnName: id
+
+      region:
+        targetEntity: Aisel\AddressingBundle\Entity\Region
+        inversedBy: address
+        joinColumns:
+          region_id:
+            referencedColumnName: id
+
+      city:
+        targetEntity: Aisel\AddressingBundle\Entity\City
+        inversedBy: address
+        joinColumns:
+          city_id:
+            referencedColumnName: id

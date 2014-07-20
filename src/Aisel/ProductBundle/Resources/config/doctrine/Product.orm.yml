@@ -107,12 +107,13 @@ Aisel\ProductBundle\Entity\Product:
 #          user_id:
 #            referencedColumnName: id
 
+    # Images
     oneToMany:
       image:
         targetEntity: Aisel\ProductBundle\Entity\Image
         mappedBy: product
 
-
+    # Categories
     manyToMany:
       categories:
         targetEntity: Aisel\CategoryBundle\Entity\Category
