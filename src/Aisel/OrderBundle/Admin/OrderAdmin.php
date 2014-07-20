@@ -52,7 +52,7 @@ class OrderAdmin extends Admin
     {
         $formMapper
             ->with('General')
-            ->add('name', 'text', array('label' => 'Name', 'attr' => array()))
+                ->add('name', 'text', array('label' => 'Name', 'attr' => array()))
             ->end();
 
     }
@@ -79,6 +79,9 @@ class OrderAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('status')
+            ->add('frontenduser', null, array('label' => 'User'))
+            ->add('invoice', null, array('label' => 'Invoice'))
+            ->add('createdAt', 'datetime', array('label' => 'Created At'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),

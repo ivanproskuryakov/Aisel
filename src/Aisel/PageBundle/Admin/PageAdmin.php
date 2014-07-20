@@ -76,7 +76,7 @@ class PageAdmin extends Admin
                 'label' => 'Comments', 'attr' => array()
             ))
             ->add('hidden', null, array('required' => false, 'label' => 'Hidden page'))
-            ->add('frontenduser', null, array('label' => 'Assigned Frontend User'))
+            ->add('frontenduser', null, array('label' => 'User'))
 
             ->with('Categories')
             ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
