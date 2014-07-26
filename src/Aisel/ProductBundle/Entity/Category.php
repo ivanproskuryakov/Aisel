@@ -1,13 +1,13 @@
 <?php
 
-namespace Aisel\PageBundle\Entity;
+namespace Aisel\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Page
+ * Category
  */
-class Page
+class Category
 {
     /**
      * @var integer
@@ -20,24 +20,34 @@ class Page
     private $title;
 
     /**
+     * @var integer
+     */
+    private $lft;
+
+    /**
+     * @var integer
+     */
+    private $rgt;
+
+    /**
+     * @var integer
+     */
+    private $root;
+
+    /**
+     * @var integer
+     */
+    private $lvl;
+
+    /**
      * @var string
      */
-    private $content;
+    private $description;
 
     /**
      * @var boolean
      */
     private $status;
-
-    /**
-     * @var boolean
-     */
-    private $hidden;
-
-    /**
-     * @var boolean
-     */
-    private $commentStatus;
 
     /**
      * @var string
@@ -70,27 +80,32 @@ class Page
     private $updatedAt;
 
     /**
-     * @var \Aisel\FrontendUserBundle\Entity\FrontendUser
-     */
-    private $frontenduser;
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $categories;
+    private $children;
+
+    /**
+     * @var \Aisel\ProductBundle\Entity\Category
+     */
+    private $parent;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -101,7 +116,7 @@ class Page
      * Set title
      *
      * @param string $title
-     * @return Page
+     * @return Category
      */
     public function setTitle($title)
     {
@@ -113,7 +128,7 @@ class Page
     /**
      * Get title
      *
-     * @return string
+     * @return string 
      */
     public function getTitle()
     {
@@ -121,33 +136,125 @@ class Page
     }
 
     /**
-     * Set content
+     * Set lft
      *
-     * @param string $content
-     * @return Page
+     * @param integer $lft
+     * @return Category
      */
-    public function setContent($content)
+    public function setLft($lft)
     {
-        $this->content = $content;
+        $this->lft = $lft;
 
         return $this;
     }
 
     /**
-     * Get content
+     * Get lft
      *
-     * @return string
+     * @return integer 
      */
-    public function getContent()
+    public function getLft()
     {
-        return $this->content;
+        return $this->lft;
+    }
+
+    /**
+     * Set rgt
+     *
+     * @param integer $rgt
+     * @return Category
+     */
+    public function setRgt($rgt)
+    {
+        $this->rgt = $rgt;
+
+        return $this;
+    }
+
+    /**
+     * Get rgt
+     *
+     * @return integer 
+     */
+    public function getRgt()
+    {
+        return $this->rgt;
+    }
+
+    /**
+     * Set root
+     *
+     * @param integer $root
+     * @return Category
+     */
+    public function setRoot($root)
+    {
+        $this->root = $root;
+
+        return $this;
+    }
+
+    /**
+     * Get root
+     *
+     * @return integer 
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    /**
+     * Set lvl
+     *
+     * @param integer $lvl
+     * @return Category
+     */
+    public function setLvl($lvl)
+    {
+        $this->lvl = $lvl;
+
+        return $this;
+    }
+
+    /**
+     * Get lvl
+     *
+     * @return integer 
+     */
+    public function getLvl()
+    {
+        return $this->lvl;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Category
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**
      * Set status
      *
      * @param boolean $status
-     * @return Page
+     * @return Category
      */
     public function setStatus($status)
     {
@@ -159,7 +266,7 @@ class Page
     /**
      * Get status
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getStatus()
     {
@@ -167,56 +274,10 @@ class Page
     }
 
     /**
-     * Set hidden
-     *
-     * @param boolean $hidden
-     * @return Page
-     */
-    public function setHidden($hidden)
-    {
-        $this->hidden = $hidden;
-
-        return $this;
-    }
-
-    /**
-     * Get hidden
-     *
-     * @return boolean
-     */
-    public function getHidden()
-    {
-        return $this->hidden;
-    }
-
-    /**
-     * Set commentStatus
-     *
-     * @param boolean $commentStatus
-     * @return Page
-     */
-    public function setCommentStatus($commentStatus)
-    {
-        $this->commentStatus = $commentStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get commentStatus
-     *
-     * @return boolean
-     */
-    public function getCommentStatus()
-    {
-        return $this->commentStatus;
-    }
-
-    /**
      * Set metaUrl
      *
      * @param string $metaUrl
-     * @return Page
+     * @return Category
      */
     public function setMetaUrl($metaUrl)
     {
@@ -228,7 +289,7 @@ class Page
     /**
      * Get metaUrl
      *
-     * @return string
+     * @return string 
      */
     public function getMetaUrl()
     {
@@ -239,7 +300,7 @@ class Page
      * Set metaTitle
      *
      * @param string $metaTitle
-     * @return Page
+     * @return Category
      */
     public function setMetaTitle($metaTitle)
     {
@@ -251,7 +312,7 @@ class Page
     /**
      * Get metaTitle
      *
-     * @return string
+     * @return string 
      */
     public function getMetaTitle()
     {
@@ -262,7 +323,7 @@ class Page
      * Set metaDescription
      *
      * @param string $metaDescription
-     * @return Page
+     * @return Category
      */
     public function setMetaDescription($metaDescription)
     {
@@ -274,7 +335,7 @@ class Page
     /**
      * Get metaDescription
      *
-     * @return string
+     * @return string 
      */
     public function getMetaDescription()
     {
@@ -285,7 +346,7 @@ class Page
      * Set metaKeywords
      *
      * @param string $metaKeywords
-     * @return Page
+     * @return Category
      */
     public function setMetaKeywords($metaKeywords)
     {
@@ -297,7 +358,7 @@ class Page
     /**
      * Get metaKeywords
      *
-     * @return string
+     * @return string 
      */
     public function getMetaKeywords()
     {
@@ -308,7 +369,7 @@ class Page
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Page
+     * @return Category
      */
     public function setCreatedAt($createdAt)
     {
@@ -320,7 +381,7 @@ class Page
     /**
      * Get createdAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -331,7 +392,7 @@ class Page
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Page
+     * @return Category
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -343,7 +404,7 @@ class Page
     /**
      * Get updatedAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -351,58 +412,58 @@ class Page
     }
 
     /**
-     * Set frontenduser
+     * Add children
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
-     * @return Page
+     * @param \Aisel\ProductBundle\Entity\Category $children
+     * @return Category
      */
-    public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
+    public function addChild(\Aisel\ProductBundle\Entity\Category $children)
     {
-        $this->frontenduser = $frontenduser;
+        $this->children[] = $children;
 
         return $this;
     }
 
     /**
-     * Get frontenduser
+     * Remove children
      *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
+     * @param \Aisel\ProductBundle\Entity\Category $children
      */
-    public function getFrontenduser()
+    public function removeChild(\Aisel\ProductBundle\Entity\Category $children)
     {
-        return $this->frontenduser;
+        $this->children->removeElement($children);
     }
 
     /**
-     * Add categories
+     * Get children
      *
-     * @param \Aisel\PageBundle\Entity\Category $categories
-     * @return Page
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function addCategory(\Aisel\PageBundle\Entity\Category $categories)
+    public function getChildren()
     {
-        $this->categories[] = $categories;
+        return $this->children;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Aisel\ProductBundle\Entity\Category $parent
+     * @return Category
+     */
+    public function setParent(\Aisel\ProductBundle\Entity\Category $parent = null)
+    {
+        $this->parent = $parent;
 
         return $this;
     }
 
     /**
-     * Remove categories
+     * Get parent
      *
-     * @param \Aisel\PageBundle\Entity\Category $categories
+     * @return \Aisel\ProductBundle\Entity\Category 
      */
-    public function removeCategory(\Aisel\PageBundle\Entity\Category $categories)
+    public function getParent()
     {
-        $this->categories->removeElement($categories);
-    }
-
-    /**
-     * Get categories
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCategories()
-    {
-        return $this->categories;
+        return $this->parent;
     }
 }

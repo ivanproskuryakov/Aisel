@@ -116,9 +116,9 @@ Aisel\ProductBundle\Entity\Product:
     # Categories
     manyToMany:
       categories:
-        targetEntity: Aisel\CategoryBundle\Entity\Category
+        targetEntity: Aisel\ProductBundle\Entity\Category
         joinTable:
-          name: aisel_product_category
+          name: aisel_product_product_category
           joinColumns:
             product_id:
               referencedColumnName: id

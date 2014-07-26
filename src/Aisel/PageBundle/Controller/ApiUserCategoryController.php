@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiUserController extends Controller
+class ApiUserCategoryController extends Controller
 {
 
     /**
@@ -29,7 +29,7 @@ class ApiUserController extends Controller
      */
     public function categoryTreeAction(Request $request)
     {
-        $categoryList = $this->container->get("aisel.usercategory.manager")->getCategoryTree();
+        $categoryList = $this->container->get("aisel.pagecategory.manager")->getCategoryTree();
 
         return $categoryList;
     }

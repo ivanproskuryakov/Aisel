@@ -12,14 +12,18 @@ Aisel\AddressingBundle\Entity\Address:
         phone:
             type: string
             length: 255
+            nullable: true
         street:
             type: string
             length: 255
+            nullable: true
         zip:
             type: string
             length: 255
+            nullable: true
         comment:
             type: text
+            nullable: true
 
         createdAt:
             type: datetime

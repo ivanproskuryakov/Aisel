@@ -13,10 +13,13 @@ namespace Aisel\CategoryBundle\Manager;
 
 use Aisel\AdminBundle\Utility\UrlUtility;
 
-class CategoryManager
+class AbstractCategoryManager
 {
     protected $sc;
     protected $em;
+    protected $categoryEntity = 'AiselCategoryBundle:Category';
+
+
 
     public function __construct($sc, $em)
     {
@@ -30,7 +33,7 @@ class CategoryManager
      */
     public function getCategoryTree()
     {
-        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
+        $categories = $this->em->getRepository($this->categoryEntity)->getEnabledCategoriesAsTree();
         $tree = array();
         foreach ($categories as $rootItem) {
 
@@ -87,7 +90,7 @@ class CategoryManager
      */
     public function getHTMLCategoryTree()
     {
-        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
+        $categories = $this->em->getRepository($this->categoryEntity)->getEnabledCategoriesAsTree();
         $treeHTML = '<ul>';
 
         foreach ($categories as $rootItem) {
@@ -145,8 +148,8 @@ class CategoryManager
      */
     public function getCategories($params)
     {
-        $total = $this->em->getRepository('AiselCategoryBundle:Category')->getTotalFromRequest($params);
-        $categories = $this->em->getRepository('AiselCategoryBundle:Category')->getCurrentCategoriesFromRequest($params);
+        $total = $this->em->getRepository($this->categoryEntity)->getTotalFromRequest($params);
+        $categories = $this->em->getRepository($this->categoryEntity)->getCurrentCategoriesFromRequest($params);
 
         $return = array(
             'total' => $total,
@@ -163,7 +166,7 @@ class CategoryManager
      */
     public function getCategoryByURL($urlKey)
     {
-        $category = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoryByUrl($urlKey);
+        $category = $this->em->getRepository($this->categoryEntity)->getEnabledCategoryByUrl($urlKey);
 
         if (!($category)) {
             throw $this->createNotFoundException();
@@ -182,7 +185,7 @@ class CategoryManager
      */
     public function getCategory($id)
     {
-        $category = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategory($id);
+        $category = $this->em->getRepository($this->categoryEntity)->getEnabledCategory($id);
 
         if (!($category)) {
             throw $this->createNotFoundException();
@@ -197,7 +200,7 @@ class CategoryManager
      */
     public function getEnabledCategories()
     {
-        $pageList = $this->em->getRepository('AiselCategoryBundle:Category')->getEnabledCategoriesAsTree();
+        $pageList = $this->em->getRepository($this->categoryEntity)->getEnabledCategoriesAsTree();
 
         return $pageList;
     }
@@ -210,7 +213,7 @@ class CategoryManager
      */
     public function normalizeCategoryUrl($url, $categoryId = null)
     {
-        $category = $this->em->getRepository('AiselCategoryBundle:Category')->findTotalByURL($url, $categoryId);
+        $category = $this->em->getRepository($this->categoryEntity)->findTotalByURL($url, $categoryId);
         $utility = new UrlUtility();
         $validUrl = $utility->process($url);
 

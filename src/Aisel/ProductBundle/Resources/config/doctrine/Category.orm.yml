@@ -1,0 +1,87 @@
+Aisel\ProductBundle\Entity\Category:
+    type: entity
+    repositoryClass: Aisel\ProductBundle\Entity\CategoryRepository
+    table: aisel_product_category
+    gedmo:
+      tree:
+        type: nested
+    id:
+      id:
+        type: integer
+        generator:
+          strategy: AUTO
+    fields:
+      title:
+        type: string
+        length: 64
+      lft:
+        type: integer
+        gedmo:
+          - treeLeft
+      rgt:
+        type: integer
+        gedmo:
+          - treeRight
+      root:
+        type: integer
+        nullable: true
+        gedmo:
+          - treeRoot
+      lvl:
+        type: integer
+        gedmo:
+          - treeLevel
+
+      #GENERAL
+      description:
+          type: text
+      status:
+          type: boolean
+          column: status
+
+      #META
+      metaUrl:
+          type: string
+          unique: true
+          length: 255
+          column: meta_url
+      metaTitle:
+          type: string
+          nullable: true
+          length: 255
+          column: meta_title
+      metaDescription:
+          type: string
+          nullable: true
+          length: 255
+          column: meta_description
+      metaKeywords:
+          type: string
+          nullable: true
+          length: 255
+          column: meta_keywords
+
+      createdAt:
+          type: datetime
+          column: created_at
+      updatedAt:
+          type: datetime
+          column: updated_at
+
+    manyToOne:
+      parent:
+        targetEntity: Aisel\ProductBundle\Entity\Category
+        inversedBy: children
+        joinColumn:
+          name: parent_id
+          referencedColumnName: id
+          onDelete: CASCADE
+        gedmo:
+          - treeParent
+
+    oneToMany:
+      children:
+        targetEntity: Aisel\ProductBundle\Entity\Category
+        mappedBy: parent
+        orderBy:
+          lft: ASC

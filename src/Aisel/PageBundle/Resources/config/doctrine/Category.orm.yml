@@ -1,7 +1,7 @@
-Aisel\CategoryBundle\Entity\Category:
+Aisel\PageBundle\Entity\Category:
     type: entity
-    repositoryClass: Aisel\CategoryBundle\Entity\CategoryRepository
-    table: aisel_category
+    repositoryClass: Aisel\PageBundle\Entity\CategoryRepository
+    table: aisel_page_category
     gedmo:
       tree:
         type: nested
@@ -70,7 +70,7 @@ Aisel\CategoryBundle\Entity\Category:
 
     manyToOne:
       parent:
-        targetEntity: Aisel\CategoryBundle\Entity\Category
+        targetEntity: Aisel\PageBundle\Entity\Category
         inversedBy: children
         joinColumn:
           name: parent_id
@@ -81,7 +81,7 @@ Aisel\CategoryBundle\Entity\Category:
 
     oneToMany:
       children:
-        targetEntity: Aisel\CategoryBundle\Entity\Category
+        targetEntity: Aisel\PageBundle\Entity\Category
         mappedBy: parent
         orderBy:
           lft: ASC

@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiUserCRUDController extends Controller
+class ApiUserPageController extends Controller
 {
 
     /**

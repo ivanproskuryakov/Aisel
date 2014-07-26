@@ -1,8 +1,21 @@
 parameters:
     aisel_product_manager.class: Aisel\ProductBundle\Manager\ProductManager
     aisel_product_media_manager.class: Aisel\ProductBundle\Manager\MediaManager
+    aisel_product_category_manager.class: Aisel\ProductBundle\Manager\ProductCategoryManager
 
 services:
+    aisel.product.manager:
+        class: %aisel_product_manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager]
+
+    aisel.product.media.manager:
+        class: %aisel_product_media_manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager, %application.media.product.path%, %website_address%]
+
+    aisel.productcategory.manager:
+        class: %aisel_product_category_manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager]
+
     sonata.admin.product:
         class: Aisel\ProductBundle\Admin\ProductAdmin
         tags:
@@ -16,10 +29,15 @@ services:
             - [ setManager, [@aisel.product.manager]]
             - [ setTemplate, [edit, AiselProductBundle:CRUD:edit.html.twig]]
 
-    aisel.product.manager:
-        class: %aisel_product_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager]
-
-    aisel.product.media.manager:
-        class: %aisel_product_media_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager, %application.media.product.path%, %website_address%]
+    sonata.admin.product.category:
+        class: Aisel\ProductBundle\Admin\ProductCategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Catalog", label: "Categories" }
+        arguments:
+            - ~
+            - Aisel\ProductBundle\Entity\Category
+            - ~
+        calls:
+            - [ setTranslationDomain, [AiselProductBundle]]
+            - [ setTemplate, [list, AiselAdminBundle:Tree:list.html.twig]]
+            - [ setManager, [@aisel.productcategory.manager]]

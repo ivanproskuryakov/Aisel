@@ -80,7 +80,7 @@ class PageAdmin extends Admin
 
             ->with('Categories')
             ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
-                'class' => 'Aisel\CategoryBundle\Entity\Category',
+                'class' => 'Aisel\PageBundle\Entity\Category',
             ))
             ->with('Metadata')
             ->add('metaUrl', 'text', array('label' => 'Url', 'help' => 'note: URL value must be unique'))

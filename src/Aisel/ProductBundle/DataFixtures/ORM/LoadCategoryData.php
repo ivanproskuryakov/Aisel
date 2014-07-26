@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\CategoryBundle\DataFixtures\ORM;
+namespace Aisel\ProductBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\CategoryBundle\Entity\Category;
+use Aisel\ProductBundle\Entity\Category;
 
 /**
  * Category fixtures
@@ -128,8 +128,8 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $manager->persist($nestedCategory);
         $manager->flush();
 
-        $this->addReference('root-category', $rootCategory);
-        $this->addReference('child-category', $childCategory);
+        $this->addReference('product-root-category', $rootCategory);
+        $this->addReference('product-child-category', $childCategory);
 
     }
 

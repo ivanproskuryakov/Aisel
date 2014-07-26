@@ -113,9 +113,9 @@ jms_serializer:
       AiselNavigationBundle:
         namespace_prefix: "Aisel\\NavigationBundle"
         path: "@AiselNavigationBundle/Resources/config/serializer/"
-      AiselCategoryBundle:
-        namespace_prefix: "Aisel\\CategoryBundle"
-        path: "@AiselCategoryBundle/Resources/config/serializer/"
+#      AiselCategoryBundle:
+#        namespace_prefix: "Aisel\\CategoryBundle"
+#        path: "@AiselCategoryBundle/Resources/config/serializer/"
 
 
 # REST

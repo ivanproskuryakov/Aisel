@@ -1,25 +1,12 @@
-parameters:
-    aisel_category_manager.class: Aisel\CategoryBundle\Manager\CategoryManager
-    aisel_usercategory_manager.class: Aisel\CategoryBundle\Manager\UserCategoryManager
-
-services:
-    sonata.admin.category:
-        class: Aisel\CategoryBundle\Admin\CategoryAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Categories" }
-        arguments:
-            - ~
-            - Aisel\CategoryBundle\Entity\Category
-            - ~
-        calls:
-            - [ setTranslationDomain, [AiselCategoryBundle]]
-            - [ setTemplate, [list, AiselAdminBundle:Tree:list.html.twig]]
-            - [ setManager, [@aisel.category.manager]]
-
-    aisel.category.manager:
-        class: %aisel_category_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager]
-
-    aisel.usercategory.manager:
-        class: %aisel_category_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager, @security.context]
+#parameters:
+#    aisel_category_manager.class: Aisel\CategoryBundle\Manager\CategoryManager
+#    aisel_usercategory_manager.class: Aisel\CategoryBundle\Manager\UserCategoryManager
+#
+#services:
+#    aisel.category.manager:
+#        class: %aisel_category_manager.class%
+#        arguments: [@service_container, @doctrine.orm.entity_manager]
+#
+#    aisel.usercategory.manager:
+#        class: %aisel_category_manager.class%
+#        arguments: [@service_container, @doctrine.orm.entity_manager, @security.context]

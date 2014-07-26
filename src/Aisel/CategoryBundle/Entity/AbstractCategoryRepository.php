@@ -18,12 +18,13 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class CategoryRepository extends NestedTreeRepository
+class AbstractCategoryRepository extends NestedTreeRepository
 {
 
     private $pageCurrent = 1;
     private $pageLimit = 5;
     private $pageSkip = 1;
+    private $categoryEntity = 'AiselCategoryBundle:Category';
 
     private function mapRequest($params)
     {
@@ -38,7 +39,7 @@ class CategoryRepository extends NestedTreeRepository
         $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
     }
 
-    /*
+    /**
      * Get total active categories
      *
      * @return int value
@@ -51,7 +52,7 @@ class CategoryRepository extends NestedTreeRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
 
         $r = $qb->select('COUNT(c.id)')
-            ->from('AiselCategoryBundle:Category', 'c')
+            ->from($this->categoryEntity, 'c')
             ->where('c.status = :status')
             ->setParameter('status', 1)
             ->getQuery()->getSingleScalarResult();
@@ -60,17 +61,17 @@ class CategoryRepository extends NestedTreeRepository
         return $r;
     }
 
-    /*
+    /**
      * Returns enabled categories
      *
      * @return object
-     *                */
+     */
 
     public function getEnabledCategoryByUrl($urlKey)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $r = $qb->select('c')
-            ->from('AiselCategoryBundle:Category', 'c')
+            ->from($this->categoryEntity, 'c')
             ->where('c.metaUrl = :metaUrl')->setParameter('metaUrl', $urlKey)
             ->andWhere('c.status = 1')
             ->getQuery()
@@ -79,17 +80,17 @@ class CategoryRepository extends NestedTreeRepository
         return $r;
     }
 
-    /*
+    /**
      * Returns enabled categories
      *
      * @return object
-     *                */
+     */
 
     public function getEnabledCategory($categoryId)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $r = $qb->select('c')
-            ->from('AiselCategoryBundle:Category', 'c')
+            ->from($this->categoryEntity, 'c')
             ->where('c.id = :categoryId')->setParameter('categoryId', $categoryId)
             ->andWhere('c.status = 1')
             ->getQuery()
@@ -98,11 +99,11 @@ class CategoryRepository extends NestedTreeRepository
         return $r;
     }
 
-    /*
+    /**
      * Returns enabled categories sorted as tree
      *
      * @return object
-     *                */
+     */
 
     public function getCurrentCategoriesFromRequest($params)
     {
@@ -110,7 +111,7 @@ class CategoryRepository extends NestedTreeRepository
 
         $qb = $this->getEntityManager()->createQueryBuilder();
         $r = $qb->select('c')
-            ->from('AiselCategoryBundle:Category', 'c')
+            ->from($this->categoryEntity, 'c')
             ->where('c.status = 1')
             ->addOrderBy('c.title', 'ASC')
             ->setMaxResults($this->pageLimit)
@@ -122,17 +123,17 @@ class CategoryRepository extends NestedTreeRepository
 
     }
 
-    /*
+    /**
      * Returns enabled categories sorted as tree
      *
      * @return object
-     *                */
+     */
 
     public function getEnabledCategoriesAsTree()
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $r = $qb->select('c')
-            ->from('AiselCategoryBundle:Category', 'c')
+            ->from($this->categoryEntity, 'c')
             ->where('c.status = 1')
             ->orderBy('c.root', 'ASC')
             ->addOrderBy('c.lft', 'ASC')
@@ -142,7 +143,8 @@ class CategoryRepository extends NestedTreeRepository
         return $r;
     }
 
-    /*
+
+    /**
      * Find categories by url
      *
      * @return int value
@@ -153,7 +155,7 @@ class CategoryRepository extends NestedTreeRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
 
         $qb->select('COUNT(c.id)')
-            ->from('AiselCategoryBundle:Category', 'c')
+            ->from($this->categoryEntity, 'c')
             ->where('c.metaUrl = :url')->setParameter('url', $url);
 
         if ($categoryId) {

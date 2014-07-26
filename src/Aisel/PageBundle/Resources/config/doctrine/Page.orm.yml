@@ -62,15 +62,16 @@ Aisel\PageBundle\Entity\Page:
 
     manyToMany:
       categories:
-        targetEntity: Aisel\CategoryBundle\Entity\Category
+        targetEntity: Aisel\PageBundle\Entity\Category
         joinTable:
-          name: aisel_page_category
+          name: aisel_page_page_category
           joinColumns:
             page_id:
               referencedColumnName: id
           inverseJoinColumns:
             category_id:
               referencedColumnName: id
+
 #    lifecycleCallbacks: {  }
 #    lifecycleCallbacks:
 #      prePersist: [ doStuffOnPrePersist, doOtherStuffOnPrePersistToo ]

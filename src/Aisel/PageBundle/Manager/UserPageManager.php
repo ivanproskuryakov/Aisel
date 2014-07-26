@@ -142,7 +142,7 @@ class UserPageManager
                 $page->removeCategory($c);
             }
             foreach ($this->categories as $k => $v) {
-                $category = $this->em->getRepository('AiselCategoryBundle:Category')->find($k);
+                $category = $this->em->getRepository('AiselPageBundle:Category')->find($k);
                 $page->addCategory($category);
             }
         }
@@ -187,7 +187,7 @@ class UserPageManager
             $this->flatCategories($cats, array());
 
             foreach ($this->categories as $k => $v) {
-                $category = $this->em->getRepository('AiselCategoryBundle:Category')->find($k);
+                $category = $this->em->getRepository('AiselPageBundle:Category')->find($k);
                 $page->addCategory($category);
             }
         }

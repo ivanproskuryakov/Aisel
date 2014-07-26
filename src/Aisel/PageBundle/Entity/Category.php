@@ -1,20 +1,11 @@
 <?php
 
-/*
- * This file is part of the Aisel package.
- *
- * (c) Ivan Proskuryakov
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace Aisel\PageBundle\Entity;
 
-namespace Aisel\CategoryBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category enitity
- *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * Category
  */
 class Category
 {
@@ -49,16 +40,6 @@ class Category
     private $lvl;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $children;
-
-    /**
-     * @var \Aisel\CategoryBundle\Entity\Category
-     */
-    private $parent;
-
-    /**
      * @var string
      */
     private $description;
@@ -88,17 +69,25 @@ class Category
      */
     private $metaKeywords;
 
-    public function __toString()
-    {
-        return $this->getTitle();
-    }
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
 
-    public function getSpacedTitle()
-    {
-        $prefix = str_repeat('--', $this->getLvl());
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
 
-        return $prefix . $this->getTitle();
-    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $children;
+
+    /**
+     * @var \Aisel\PageBundle\Entity\Category
+     */
+    private $parent;
 
     /**
      * Constructor
@@ -106,6 +95,11 @@ class Category
     public function __construct()
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
     /**
@@ -121,7 +115,7 @@ class Category
     /**
      * Set title
      *
-     * @param  string $title
+     * @param string $title
      * @return Category
      */
     public function setTitle($title)
@@ -144,7 +138,7 @@ class Category
     /**
      * Set lft
      *
-     * @param  integer $lft
+     * @param integer $lft
      * @return Category
      */
     public function setLft($lft)
@@ -167,7 +161,7 @@ class Category
     /**
      * Set rgt
      *
-     * @param  integer $rgt
+     * @param integer $rgt
      * @return Category
      */
     public function setRgt($rgt)
@@ -190,7 +184,7 @@ class Category
     /**
      * Set root
      *
-     * @param  integer $root
+     * @param integer $root
      * @return Category
      */
     public function setRoot($root)
@@ -213,7 +207,7 @@ class Category
     /**
      * Set lvl
      *
-     * @param  integer $lvl
+     * @param integer $lvl
      * @return Category
      */
     public function setLvl($lvl)
@@ -234,65 +228,9 @@ class Category
     }
 
     /**
-     * Add children
-     *
-     * @param  \Aisel\CategoryBundle\Entity\Category $children
-     * @return Category
-     */
-    public function addChild(\Aisel\CategoryBundle\Entity\Category $children)
-    {
-        $this->children[] = $children;
-
-        return $this;
-    }
-
-    /**
-     * Remove children
-     *
-     * @param \Aisel\CategoryBundle\Entity\Category $children
-     */
-    public function removeChild(\Aisel\CategoryBundle\Entity\Category $children)
-    {
-        $this->children->removeElement($children);
-    }
-
-    /**
-     * Get children
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getChildren()
-    {
-        return $this->children;
-    }
-
-    /**
-     * Set parent
-     *
-     * @param  \Aisel\CategoryBundle\Entity\Category $parent
-     * @return Category
-     */
-    public function setParent(\Aisel\CategoryBundle\Entity\Category $parent = null)
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * Get parent
-     *
-     * @return \Aisel\CategoryBundle\Entity\Category
-     */
-    public function getParent()
-    {
-        return $this->parent;
-    }
-
-    /**
      * Set description
      *
-     * @param  string $description
+     * @param string $description
      * @return Category
      */
     public function setDescription($description)
@@ -315,7 +253,7 @@ class Category
     /**
      * Set status
      *
-     * @param  boolean $status
+     * @param boolean $status
      * @return Category
      */
     public function setStatus($status)
@@ -338,7 +276,7 @@ class Category
     /**
      * Set metaUrl
      *
-     * @param  string $metaUrl
+     * @param string $metaUrl
      * @return Category
      */
     public function setMetaUrl($metaUrl)
@@ -361,7 +299,7 @@ class Category
     /**
      * Set metaTitle
      *
-     * @param  string $metaTitle
+     * @param string $metaTitle
      * @return Category
      */
     public function setMetaTitle($metaTitle)
@@ -384,7 +322,7 @@ class Category
     /**
      * Set metaDescription
      *
-     * @param  string $metaDescription
+     * @param string $metaDescription
      * @return Category
      */
     public function setMetaDescription($metaDescription)
@@ -407,7 +345,7 @@ class Category
     /**
      * Set metaKeywords
      *
-     * @param  string $metaKeywords
+     * @param string $metaKeywords
      * @return Category
      */
     public function setMetaKeywords($metaKeywords)
@@ -428,19 +366,9 @@ class Category
     }
 
     /**
-     * @var \DateTime
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    private $updatedAt;
-
-    /**
      * Set createdAt
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
      * @return Category
      */
     public function setCreatedAt($createdAt)
@@ -463,7 +391,7 @@ class Category
     /**
      * Set updatedAt
      *
-     * @param  \DateTime $updatedAt
+     * @param \DateTime $updatedAt
      * @return Category
      */
     public function setUpdatedAt($updatedAt)
@@ -481,5 +409,61 @@ class Category
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Add children
+     *
+     * @param \Aisel\PageBundle\Entity\Category $children
+     * @return Category
+     */
+    public function addChild(\Aisel\PageBundle\Entity\Category $children)
+    {
+        $this->children[] = $children;
+
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param \Aisel\PageBundle\Entity\Category $children
+     */
+    public function removeChild(\Aisel\PageBundle\Entity\Category $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Aisel\PageBundle\Entity\Category $parent
+     * @return Category
+     */
+    public function setParent(\Aisel\PageBundle\Entity\Category $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Aisel\PageBundle\Entity\Category
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 }

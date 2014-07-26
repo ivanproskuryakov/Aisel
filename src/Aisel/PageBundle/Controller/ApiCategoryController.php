@@ -34,7 +34,7 @@ class ApiController extends Controller
             'limit' => $request->query->get('limit'),
         );
 
-        $categoryList = $this->container->get("aisel.category.manager")->getCategories($params);
+        $categoryList = $this->container->get("aisel.pagecategory.manager")->getCategories($params);
 
         return $categoryList;
     }
@@ -45,7 +45,7 @@ class ApiController extends Controller
      */
     public function categoryTreeAction(Request $request)
     {
-        $categoryList = $this->container->get("aisel.category.manager")->getCategoryTree();
+        $categoryList = $this->container->get("aisel.pagecategory.manager")->getCategoryTree();
 
         return $categoryList;
     }
@@ -56,7 +56,7 @@ class ApiController extends Controller
      */
     public function categoryViewAction($urlKey)
     {
-        $category = $this->container->get("aisel.category.manager")->getCategoryByUrl($urlKey);
+        $category = $this->container->get("aisel.pagecategory.manager")->getCategoryByUrl($urlKey);
 
         return $category;
     }

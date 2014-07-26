@@ -1,4 +1,4 @@
-Aisel\CategoryBundle\Entity\Category:
+Aisel\PageBundle\Entity\Category:
   exclusion_policy: ALL
   properties:
     id:

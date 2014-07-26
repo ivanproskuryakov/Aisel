@@ -137,16 +137,8 @@ class CategoryAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-//            ->add('status', 'boolean', array('label' => 'Enabled', 'editable' => false, 'sortable' => false))
             ->add('title', null,
                 array('label' => 'Title', 'sortable' => false));
-//            ->add('_action', 'actions', array(
-//                    'actions' => array(
-//                        'show' => array(),
-//                        'edit' => array(),
-//                        'delete' => array(),
-//                    ))
-//            );
     }
 
     /**
