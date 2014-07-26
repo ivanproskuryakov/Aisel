@@ -19,8 +19,6 @@ class AbstractCategoryManager
     protected $em;
     protected $categoryEntity = 'AiselCategoryBundle:Category';
 
-
-
     public function __construct($sc, $em)
     {
         $this->sc = $sc;

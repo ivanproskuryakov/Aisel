@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\CategoryBundle\Controller;
+namespace Aisel\PageBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,12 +20,12 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiController extends Controller
+class ApiCategoryController extends Controller
 {
 
     /**
      * @Rest\View
-     * /api/category/list.json?limit=2&current=3
+     * /api/page/category/list.json?limit=2&current=3
      */
     public function categoryListAction(Request $request)
     {
@@ -41,7 +41,7 @@ class ApiController extends Controller
 
     /**
      * @Rest\View
-     * /api/category/tree.json
+     * /api/page/category/tree.json
      */
     public function categoryTreeAction(Request $request)
     {
@@ -52,7 +52,7 @@ class ApiController extends Controller
 
     /**
      * @Rest\View
-     * /api/category/view/{$$urlKey}.json
+     * /api/page/category/view/{$$urlKey}.json
      */
     public function categoryViewAction($urlKey)
     {

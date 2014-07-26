@@ -13,5 +13,5 @@ use Aisel\CategoryBundle\Entity\AbstractCategoryRepository;
  */
 class CategoryRepository extends AbstractCategoryRepository
 {
-    private $categoryEntity = 'AiselPageBundle:Category';
+    protected $categoryEntity = 'AiselPageBundle:Category';
 }

@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiController extends Controller
+class ApiPageController extends Controller
 {
 
     private function isAuthenticated()

@@ -24,7 +24,8 @@ class AbstractCategoryRepository extends NestedTreeRepository
     private $pageCurrent = 1;
     private $pageLimit = 5;
     private $pageSkip = 1;
-    private $categoryEntity = 'AiselCategoryBundle:Category';
+
+    protected $categoryEntity = 'AiselCategoryBundle:Category';
 
     private function mapRequest($params)
     {
