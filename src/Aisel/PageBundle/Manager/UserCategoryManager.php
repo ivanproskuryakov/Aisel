@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\CategoryBundle\Manager;
+namespace Aisel\PageBundle\Manager;
 
 /**
  * Category Manager for user specific actions

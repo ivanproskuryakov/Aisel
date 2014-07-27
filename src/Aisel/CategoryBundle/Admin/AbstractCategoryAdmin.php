@@ -23,7 +23,7 @@ use Sonata\AdminBundle\Validator\ErrorElement;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class CategoryAdmin extends Admin
+class AbstractCategoryAdmin extends Admin
 {
     protected $categoryManager;
     protected $baseRoutePattern = 'category';

@@ -1,7 +1,9 @@
 parameters:
     aisel_page_manager.class: Aisel\PageBundle\Manager\PageManager
-    aisel_userpage_manager.class: Aisel\PageBundle\Manager\UserPageManager
     aisel_page_category_manager.class: Aisel\PageBundle\Manager\CategoryManager
+    aisel_userpage_manager.class: Aisel\PageBundle\Manager\UserPageManager
+    aisel_usercategory_manager.class: Aisel\PageBundle\Manager\UserCategoryManager
+
 
 services:
     aisel.page.manager:
@@ -14,6 +16,10 @@ services:
 
     aisel.userpage.manager:
         class: %aisel_userpage_manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager, @security.context, @aisel.page.manager]
+
+    aisel.usercategory.manager:
+        class: %aisel_usercategory_manager.class%
         arguments: [@service_container, @doctrine.orm.entity_manager, @security.context, @aisel.page.manager]
 
 

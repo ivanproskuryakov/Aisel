@@ -11,14 +11,14 @@
 
 namespace Aisel\ProductBundle\Admin;
 
-use Aisel\CategoryBundle\Admin\CategoryAdmin;
+use Aisel\CategoryBundle\Admin\AbstractCategoryAdmin;
 
 /**
  * Page Category CRUD configuration for Backend
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ProductCategoryAdmin extends CategoryAdmin
+class ProductCategoryAdmin extends AbstractCategoryAdmin
 {
     protected $baseRoutePattern = 'productcategory';
 
