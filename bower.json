@@ -23,7 +23,8 @@
     "rangy": "1.2.x",
     "angular-translate": "2.2.0",
     "blueimp-file-upload": "9.5.8",
-    "blueimp-gallery": "2.15.1"
+    "blueimp-gallery": "2.15.1",
+    "fancytree": "2.2.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

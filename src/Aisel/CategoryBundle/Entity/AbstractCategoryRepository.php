@@ -42,8 +42,8 @@ class AbstractCategoryRepository extends NestedTreeRepository
 
     /**
      * Get total active categories
-     *
-     * @return int value
+     * @param  array $params
+     * @return mixed
      */
 
     public function getTotalFromRequest($params)

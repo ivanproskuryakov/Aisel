@@ -88,7 +88,7 @@ class ProductAdmin extends Admin
             ->with('Gallery')
             ->with('Categories')
             ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
-                'class' => 'Aisel\CategoryBundle\Entity\Category',
+                'class' => 'Aisel\ProductBundle\Entity\Category',
             ))
             ->with('Stock')
             ->add('inStock', 'choice', array('choices' => array(
