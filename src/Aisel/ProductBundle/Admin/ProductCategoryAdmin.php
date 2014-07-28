@@ -20,6 +20,6 @@ use Aisel\CategoryBundle\Admin\AbstractCategoryAdmin;
  */
 class ProductCategoryAdmin extends AbstractCategoryAdmin
 {
-    protected $baseRoutePattern = 'productcategory';
+    protected $baseRoutePattern = 'product/category';
 
 }
