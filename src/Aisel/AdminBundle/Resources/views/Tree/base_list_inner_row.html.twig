@@ -9,23 +9,23 @@ file that was distributed with this source code.
 
 #}
 
-{#{% for field_description in admin.list.elements %}#}
-{##}
-    {#{{ field_description.name }}#}
-    {#{% if field_description.name == '_action' and app.request.isXmlHttpRequest %}#}
-        {#&#123;&#35; Action buttons disabled in ajax view! &#35;&#125;#}
-    {#{% elseif field_description.getOption('ajax_hidden') == true and app.request.isXmlHttpRequest %}#}
-        {#&#123;&#35; Disable fields with 'ajax_hidden' option set to true &#35;&#125;#}
-    {#{% else %}#}
-        {#&#123;&#35;{{ dump(field_description.name) }}&#35;&#125;#}
-        {#&#123;&#35;{{ field_description.name }}&#35;&#125;#}
-        {#{{ object|render_list_element(field_description) }}#}
-    {#{% endif %}#}
-{#{% endfor %}#}
-{#{{ dump(admin.list.elements) }}#}
-
 {% for field_description in admin.list.elements %}
-    {% if (field_description.name != 'batch') %}
-        {{ dump(field_description) }}
+
+    {% if field_description.name == '_action' and app.request.isXmlHttpRequest %}
+        {# Action buttons disabled in ajax view! #}
+    {% elseif field_description.getOption('ajax_hidden') == true and app.request.isXmlHttpRequest %}
+        {# Disable fields with 'ajax_hidden' option set to true #}
+    {% else %}
+        {#{{ dump(field_description.type) }}#}
+        {#{{ object|render_list_element(field_description) }}#}
+
     {% endif %}
 {% endfor %}
+
+{#{{ dump(admin.list.elements) }}#}
+{#{% for field_description in admin.list.elements %}#}
+    {#{% if (field_description.name != 'batch') %}#}
+        {#{{ field_description.name }}#}
+        {#{{ dump(field_description) }}#}
+    {#{% endif %}#}
+{#{% endfor %}#}

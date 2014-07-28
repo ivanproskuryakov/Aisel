@@ -36,42 +36,42 @@ file that was distributed with this source code.
         <div class="box-body table-responsive no-padding">
             <div class="row">
                 <div class="col-md-12">
-                    {% include 'AiselAdminBundle:Tree:category_data.html.twig' %}
+                    {{ sonata_block_render_event('sonata.admin.list.table.top', { 'admin': admin }) }}
+
+                    {% block list_header %}{% endblock %}
+                    {% set batchactions = admin.batchactions %}
+                    {% if admin.datagrid.results|length > 0 %}
+
+                        {% include 'AiselAdminBundle:Tree:category_data.html.twig' %}
+
+                        <table class="table table-bordered table-striped">
+                            {% block table_header %}
+                            {% endblock %}
+
+                            {% block table_body %}
+                                <tbody>
+                                {% for object in admin.datagrid.results %}
+                                    <tr>
+                                        {% include 'AiselAdminBundle:Tree:base_list_inner_row.html.twig' %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            {% endblock %}
+
+                            {% block table_footer %}
+
+                            {% endblock %}
+                        </table>
+                    {% else %}
+                        <div class="callout callout-info">
+                            {{ 'no_result'|trans({}, 'SonataAdminBundle') }}
+                        </div>
+                    {% endif %}
+
                 </div>
             </div>
         </div>
     </div>
-
-
-    {#{{ sonata_block_render_event('sonata.admin.list.table.top', { 'admin': admin }) }}#}
-
-    {#{% block list_header %}{% endblock %}#}
-    {#{% set batchactions = admin.batchactions %}#}
-    {#{% if admin.datagrid.results|length > 0 %}#}
-    {#<table class="table table-bordered table-striped">#}
-    {#{% block table_header %}#}
-    {#{% endblock %}#}
-
-    {#{% block table_body %}#}
-    {#<tbody>#}
-    {#{% for object in admin.datagrid.results %}#}
-    {#<tr>#}
-    {#{% include 'AiselAdminBundle:Tree:base_list_inner_row.html.twig' %}#}
-    {#</tr>#}
-    {#{% endfor %}#}
-    {#</tbody>#}
-    {#{% endblock %}#}
-
-    {#{% block table_footer %}#}
-
-    {#{% endblock %}#}
-    {#</table>#}
-    {#{% else %}#}
-    {#<div class="callout callout-info">#}
-    {#{{ 'no_result'|trans({}, 'SonataAdminBundle') }}#}
-    {#</div>#}
-    {#{% endif %}#}
-
 
 
 {% endblock %}
