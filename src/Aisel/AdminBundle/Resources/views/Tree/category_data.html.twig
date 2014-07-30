@@ -1,19 +1,38 @@
+
 <script type="text/javascript">
 var SORUCE = [
-            {title: "node 1", folder: true, expanded: true, children: [
-                {title: "node 1.1"},
-                {title: "node 1.2"}
-            ]},
-            {title: "node 2", folder: true, expanded: false, children: [
-                {title: "node 2.1"},
-                {title: "node 2.2"}
-            ]}
+
+            {% set categories = admin.datagrid.results %}
+
+            {% macro recursiveCategory(category) %}
+
+                {% if category.children|length == 0%}
+                    {title: "{{ category.title }}", folder: false},
+                {% endif %}
+
+                {% if category.children|length %}
+                    {title: "{{ category.title }}", folder: true, expanded: true, children: [
+                        {% for child in category.children %}
+                            {{ _self.recursiveCategory(child) }}
+                        {% endfor %}
+                    ]},
+                {% endif %}
+            {% endmacro %}
+
+            {% if categories %}
+                {% for category in categories %}
+                    {% if category.lvl == 0 %}
+                        {{ _self.recursiveCategory(category) }}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
         ],
         CLIPBOARD = null;
 
 $(function () {
 
-    $("#tree").fancytree({
+    $("#categoryTree").fancytree({
         checkbox: true,
         titlesTabbable: true,     // Add all node titles to TAB chain
         source: SORUCE,
@@ -40,7 +59,7 @@ $(function () {
         },
         table: {
             indentation: 20,
-            nodeColumnIdx: 2,
+            nodeColumnIdx: 1,
             checkboxColumnIdx: 0
         },
         gridnav: {
@@ -49,26 +68,27 @@ $(function () {
         },
 
 
-        lazyLoad: function (event, data) {
-            data.result = {url: "../demo/ajax-sub2.json"};
-        },
+//        lazyLoad: function (event, data) {
+//            data.result = {url: "../demo/ajax-sub2.json"};
+//        },
         renderColumns: function (event, data) {
             var node = data.node,
-                    $select = $("<select />"),
+                    $select = $("<select class='form-control' />"),
                     $tdList = $(node.tr).find(">td");
 
             // (index #0 is rendered by fancytree by adding the checkbox)
-            if (node.isFolder()) {
+//            if (node.isFolder()) {
                 // make the title cell span the remaining columns, if it is a folder:
-                $tdList.eq(2)
-                        .prop("colspan", 6)
-                        .nextAll().remove();
-            }
+//                $tdList.eq(2)
+//                        .prop("colspan", 6)
+//                        .nextAll().remove();
+//            }
 
-            $tdList.eq(1).text(node.getIndexHier()).addClass("alignRight");
-            $("<option />", {text: "a", value: "a"}).appendTo($select);
-            $("<option />", {text: "b"}).appendTo($select);
-            $tdList.eq(3).html($select);
+//            $tdList.eq(1).text(node.getIndexHier()).addClass("alignRight");
+            $("<option />", {text: "view", value: "view"}).appendTo($select);
+            $("<option />", {text: "edit", value: "edit"}).appendTo($select);
+            $("<option />", {text: "delete"}).appendTo($select);
+            $tdList.eq(2).html($select);
         }
     }).on("nodeCommand",function (event, data) {
         // Custom event handler that is triggered by keydown-handler and
@@ -181,7 +201,7 @@ $(function () {
     /*
      * Context menu (https://github.com/mar10/jquery-ui-contextmenu)
      */
-    $("#tree").contextmenu({
+    $("#categoryTree").contextmenu({
         delegate: "span.fancytree-title",
         menu: [
             {title: "Edit", cmd: "rename", uiIcon: "ui-icon-pencil" },
@@ -196,7 +216,7 @@ $(function () {
         ],
         beforeOpen: function (event, ui) {
             var node = $.ui.fancytree.getNode(ui.target);
-            $("#tree").contextmenu("enableEntry", "paste", !!CLIPBOARD);
+            $("#categoryTree").contextmenu("enableEntry", "paste", !!CLIPBOARD);
             node.setActive();
         },
         select: function (event, ui) {
@@ -212,17 +232,15 @@ $(function () {
 </script>
 </head>
 
-<table id="tree" class="table table-bordered table-striped col-md-12">
+<table id="categoryTree" class="table table-bordered table-striped col-md-12">
     <colgroup>
-        <col width="30px"></col>
-        <col width="50px"></col>
-        <col width="250px"></col>
-        <col width="50px"></col>
+        <col class="col-md-1"></col>
+        <col class="col-md-9"></col>
+        <col class="col-md-3"></col>
     </colgroup>
     <thead>
     <tr>
         <th></th>
-        <th>Id</th>
         <th>Name</th>
         <th>Action</th>
     </tr>
