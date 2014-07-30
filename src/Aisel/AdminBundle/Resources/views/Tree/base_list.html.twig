@@ -18,11 +18,13 @@ file that was distributed with this source code.
     <script src="{{ asset('/bower_components/fancytree/dist/src/jquery.fancytree.edit.js') }}"></script>
     <script src="{{ asset('/bower_components/fancytree/dist/src/jquery.fancytree.gridnav.js') }}"></script>
     <script src="{{ asset('/bower_components/fancytree/dist/src/jquery.fancytree.table.js') }}"></script>
+    <script src="{{ asset('/bower_components/fancytree/dist/src/jquery.fancytree.glyph.js') }}"></script>
+    <script src="{{ asset('/bower_components/fancytree/dist/src/jquery.fancytree.filter.js') }}"></script>
     <script src="{{ asset('/bower_components/ui-contextmenu/jquery.ui-contextmenu.js') }}"></script>
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('/bower_components/fancytree/dist/skin-lion/ui.fancytree.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/bower_components/fancytree/dist/skin-bootstrap/ui.fancytree.min.css') }}"/>
 {% endblock %}
 
 {% block actions %}
