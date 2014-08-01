@@ -45,5 +45,5 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AiselPageBundle]]
-            - [ setTemplate, [list, AiselAdminBundle:Tree:list.html.twig]]
+            - [ setTemplate, [list, AiselPageBundle:Tree:list.html.twig]]
             - [ setManager, [@aisel.pagecategory.manager]]

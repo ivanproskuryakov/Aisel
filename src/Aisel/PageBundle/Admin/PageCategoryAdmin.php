@@ -21,5 +21,5 @@ use Aisel\CategoryBundle\Admin\AbstractCategoryAdmin;
 class PageCategoryAdmin extends AbstractCategoryAdmin
 {
     protected $baseRoutePattern = 'page/category';
-
+    protected $categoryEntity = 'Aisel\PageBundle\Entity\Category';
 }

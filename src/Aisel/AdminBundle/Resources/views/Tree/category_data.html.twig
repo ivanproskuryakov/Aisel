@@ -106,24 +106,13 @@ $(function () {
             handleCursorKeys: true
         },
 
-
-//        lazyLoad: function (event, data) {
-//            data.result = {url: "../demo/ajax-sub2.json"};
-//        },
         renderColumns: function (event, data) {
             var node = data.node,
-                    $select = $("<select class='form-control' />"),
+                    $select = $("<select data-id='"+node.key+"' id='category-"+node.key+"' class='category-action form-control' />"),
                     $tdList = $(node.tr).find(">td");
 
-            // (index #0 is rendered by fancytree by adding the checkbox)
-//            if (node.isFolder()) {
-                // make the title cell span the remaining columns, if it is a folder:
-//                $tdList.eq(2)
-//                        .prop("colspan", 6)
-//                        .nextAll().remove();
-//            }
-
             $tdList.eq(0).text(node.key).addClass("alignRight");
+            $("<option />", {text: "", value: "please-select"}).appendTo($select);
             $("<option />", {text: "view", value: "view"}).appendTo($select);
             $("<option />", {text: "edit", value: "edit"}).appendTo($select);
             $("<option />", {text: "delete"}).appendTo($select);
@@ -234,6 +223,30 @@ $(function () {
         if (cmd) {
             $(this).trigger("nodeCommand", {cmd: cmd});
             return false;
+        }
+    });
+
+
+    // Category Actions
+    var routeCategoryShow = '{{ categoryShow }}';
+    var routeCategoryEdit = '{{ categoryEdit }}';
+    var routeCategory = '';
+
+    $( ".category-action" ).change(function() {
+
+        if ($(this).val() == 'view') {
+            routeCategory = routeCategoryShow.replace('__CATEGORYID__',$(this).data("id"));
+        }
+        if ($(this).val() == 'edit') {
+            routeCategory = routeCategoryEdit.replace('__CATEGORYID__',$(this).data("id"));
+        }
+//        if ($(this).val() == 'delete') {
+            {#routeRaw = '{{ path('admin_aisel_page_category_delete', {'id': '__CATEGORYID__'}) }}';#}
+//            routeCategory = routeRaw.replace('__CATEGORYID__',$(this).data("id"));
+//        }
+
+        if (routeCategory) {
+            window.location.href = routeCategory;
         }
     });
 

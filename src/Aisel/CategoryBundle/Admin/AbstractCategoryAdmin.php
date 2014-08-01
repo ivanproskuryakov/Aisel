@@ -29,6 +29,7 @@ class AbstractCategoryAdmin extends Admin
     protected $baseRoutePattern = 'category';
     protected $maxPerPage = 500;
     protected $maxPageLinks = 500;
+    protected $categoryEntity = 'Aisel\PageBundle\Entity\Category';
 
     public function setManager($categoryManager)
     {
@@ -91,7 +92,7 @@ class AbstractCategoryAdmin extends Admin
                 'label' => 'Status', 'attr' => array()
             ))
             ->add('parent', 'gedmotree', array('expanded' => true, 'multiple' => false,
-                'class' => 'Aisel\CategoryBundle\Entity\Category',
+                'class' => $this->categoryEntity,
                 'query_builder' => function ($er) use ($id) {
                         $qb = $er->createQueryBuilder('p');
                         if ($id) {
