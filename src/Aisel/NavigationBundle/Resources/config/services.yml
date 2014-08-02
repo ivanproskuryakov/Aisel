@@ -2,6 +2,10 @@ parameters:
     aisel_navigation_manager.class: Aisel\NavigationBundle\Manager\NavigationManager
 
 services:
+    aisel.navigation.manager:
+        class: %aisel_navigation_manager.class%
+        arguments: [@service_container, @doctrine.orm.entity_manager]
+
     sonata.admin.navigation:
         class: Aisel\NavigationBundle\Admin\NavigationAdmin
         tags:
@@ -12,7 +16,4 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AiselNavigationBundle]]
-
-    aisel.navigation.manager:
-        class: %aisel_navigation_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager]
+            - [ setTemplate, [list, AiselNavigationBundle:Tree:list.html.twig]]
