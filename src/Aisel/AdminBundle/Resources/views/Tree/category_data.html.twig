@@ -152,7 +152,7 @@ $(function () {
                 break;
             case "addChild":
                 refNode = node.addChildren({
-                    title: "New node",
+                    title: "New node __",
                     isNew: true
                 });
                 node.setExpanded();
@@ -160,7 +160,7 @@ $(function () {
                 break;
             case "addSibling":
                 refNode = node.getParent().addChildren({
-                    title: "New node",
+                    title: "New node __",
                     isNew: true
                 }, node.getNextSibling());
                 refNode.editStart();
@@ -230,7 +230,8 @@ $(function () {
     // Category Actions
     var routeCategoryShow = '{{ categoryShow }}';
     var routeCategoryEdit = '{{ categoryEdit }}';
-    var routeCategory = '';
+    var routeCategoryDelete = '{{ categoryDelete }}';
+    var routeCategory = null;
 
     $( ".category-action" ).change(function() {
 
@@ -240,10 +241,11 @@ $(function () {
         if ($(this).val() == 'edit') {
             routeCategory = routeCategoryEdit.replace('__CATEGORYID__',$(this).data("id"));
         }
-//        if ($(this).val() == 'delete') {
+        if ($(this).val() == 'delete') {
             {#routeRaw = '{{ path('admin_aisel_page_category_delete', {'id': '__CATEGORYID__'}) }}';#}
 //            routeCategory = routeRaw.replace('__CATEGORYID__',$(this).data("id"));
-//        }
+            routeCategory = routeCategoryDelete.replace('__CATEGORYID__',$(this).data("id"));
+        }
 
         if (routeCategory) {
             window.location.href = routeCategory;

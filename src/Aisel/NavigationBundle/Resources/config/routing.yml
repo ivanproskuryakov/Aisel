@@ -4,14 +4,8 @@ api_aisel_navigationmenu:
     requirements:
         _method: GET
 
-aisel_menu_tree_up:
-    pattern:  /administration/aisel/navigation/menu/up/{id}
-    defaults:  { _controller: AiselNavigationBundle:MenuSort:up }
-    requirements:
-        _method: GET
-
-aisel_menu_tree_down:
-    pattern:  /administration/aisel/navigation/menu/down/{id}
-    defaults:  { _controller: AiselNavigationBundle:MenuSort:down }
+admin_aisel_navigation_menu_update:
+    pattern:   /administration/navigation/menu/{id}/update.json
+    defaults:  { _controller: AiselNavigationBundle:Admin:update, _format: json }
     requirements:
         _method: GET

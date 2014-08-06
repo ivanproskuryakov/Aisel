@@ -39,4 +39,26 @@ class NavigationManager
         return $menu;
     }
 
+    /**
+     * Updates single menu object
+     *
+     * @return object
+     *
+     * @throws NotFoundHttpException
+     */
+    public function updateItem($id)
+    {
+        $menu = $this->em->getRepository('AiselNavigationBundle:Menu')->find($id);
+
+        if (!($menu)) {
+            throw new NotFoundHttpException('Nothing found');
+        }
+        $menu->setTitle('123');
+
+        $this->em->persist($menu);
+        $this->em->flush();
+
+        return $menu;
+    }
+
 }
