@@ -12,6 +12,7 @@
 namespace Aisel\NavigationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Page sort for Backend
@@ -23,14 +24,22 @@ class AdminController extends Controller
 
     /**
      * REST update action for menu with $id
+     *
      * @param int $id
+     * @param Request $request
      *
      */
-    public function updateAction($id)
+    public function updateAction(Request $request)
     {
-        $menu = $this->container->get("aisel.navigation.manager")->updateItem($id);
-        return $menu;
-    }
+        $params = array(
+            'name' => $request->query->get('name'),
+            'id' => $request->query->get('id'),
+        );
 
+        $menu = $this->container->get("aisel.navigation.manager")->updateItem($params);
+        return $menu;
+
+
+    }
 
 }

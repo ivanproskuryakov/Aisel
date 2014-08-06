@@ -42,19 +42,21 @@ class NavigationManager
     /**
      * Updates single menu object
      *
+     * @param array $params
      * @return object
      *
      * @throws NotFoundHttpException
      */
-    public function updateItem($id)
+    public function updateItem($params)
     {
-        $menu = $this->em->getRepository('AiselNavigationBundle:Menu')->find($id);
-
-        if (!($menu)) {
-            throw new NotFoundHttpException('Nothing found');
+        if ($categoryId = $params['id']) {
+            $menu = $this->em->getRepository('AiselNavigationBundle:Menu')->find($categoryId);
+            if (!($menu)) {
+                throw new NotFoundHttpException('Nothing found');
+            }
         }
-        $menu->setTitle('123');
 
+        if ($params['name']) $menu->setTitle($params['name']);
         $this->em->persist($menu);
         $this->em->flush();
 

@@ -1,29 +1,36 @@
 <script type="text/javascript">
+
+var routeCategoryShow = '{{ categoryShow }}';
+var routeCategoryEdit = '{{ categoryEdit }}';
+var routeCategoryDelete = '{{ categoryDelete }}';
+var routeCategoryAjaxUpdate = '{{ categoryAjaxUpdate }}';
+var routeCategory = null;
+
 var SORUCE = [
 
             {% set categories = admin.datagrid.results %}
 
             {% macro recursiveCategory(category) %}
 
-                {% if category.children|length == 0%}
-                    {title: "{{ category.title }}", key: "{{ category.id }}", folder: false},
-                {% endif %}
+            {% if category.children|length == 0%}
+            {title: "{{ category.title }}", key: "{{ category.id }}", folder: false},
+            {% endif %}
 
-                {% if category.children|length %}
-                    {title: "{{ category.title }}", key: "{{ category.id }}", folder: true, expanded: true, children: [
-                        {% for child in category.children %}
-                            {{ _self.recursiveCategory(child) }}
-                        {% endfor %}
-                    ]},
-                {% endif %}
+            {% if category.children|length %}
+            {title: "{{ category.title }}", key: "{{ category.id }}", folder: true, expanded: true, children: [
+                {% for child in category.children %}
+                {{ _self.recursiveCategory(child) }}
+                {% endfor %}
+            ]},
+            {% endif %}
             {% endmacro %}
 
             {% if categories %}
-                {% for category in categories %}
-                    {% if category.lvl == 0 %}
-                        {{ _self.recursiveCategory(category) }}
-                    {% endif %}
-                {% endfor %}
+            {% for category in categories %}
+            {% if category.lvl == 0 %}
+            {{ _self.recursiveCategory(category) }}
+            {% endif %}
+            {% endfor %}
             {% endif %}
 
         ],
@@ -34,7 +41,7 @@ $(function () {
     $("#categoryTree").fancytree({
 
         // extensions: ["edit", "table", "gridnav"],
-        extensions: ["edit", "dnd", "table", "gridnav", "glyph","filter"],
+        extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter"],
         checkbox: true,
         titlesTabbable: true,     // Add all node titles to TAB chain
         source: SORUCE,
@@ -79,21 +86,25 @@ $(function () {
         },
         edit: {
             triggerStart: ["f2", "dblclick", "shift+click", "mac+enter"],
-            beforeClose: function(event, data){
+            beforeClose: function (event, data) {
                 // Return false to prevent cancel/save (data.input is available)
             },
-            beforeEdit: function(event, data){
+            beforeEdit: function (event, data) {
                 // Return false to prevent edit mode
             },
-            close: function(event, data){
+            close: function (event, data) {
                 // Editor was removed
             },
-            edit: function(event, data){
+            edit: function (event, data) {
                 // Editor was opened (available as data.input)
             },
-            save: function(event, data){
-                // Save data.input.val() or return false to keep editor open
-                alert("save " + data.input.val());
+            save: function (event, data) {
+                var categoryId = data.node.key;
+                var categoryTitle = data.value;
+                $.get(routeCategoryAjaxUpdate, { name:categoryTitle , id: categoryId})
+                    .done(function (data) {
+                        alert("Data Updated!");
+                    });
             }
         },
         table: {
@@ -108,7 +119,7 @@ $(function () {
 
         renderColumns: function (event, data) {
             var node = data.node,
-                    $select = $("<select data-id='"+node.key+"' id='category-"+node.key+"' class='category-action form-control' />"),
+                    $select = $("<select data-id='" + node.key + "' id='category-" + node.key + "' class='category-action form-control' />"),
                     $tdList = $(node.tr).find(">td");
 
             $tdList.eq(0).text(node.key).addClass("alignRight");
@@ -157,6 +168,17 @@ $(function () {
                 });
                 node.setExpanded();
                 refNode.editStart();
+
+                console.log(node.key);
+                console.log(refNode.title);
+                var categoryId = data.node.key;
+                var categoryTitle = data.value;
+                $.get(routeCategoryAjaxUpdate, { name:categoryTitle , id: categoryId})
+                        .done(function (data) {
+                            alert("Data Updated!");
+                        });
+
+
                 break;
             case "addSibling":
                 refNode = node.getParent().addChildren({
@@ -228,23 +250,18 @@ $(function () {
 
 
     // Category Actions
-    var routeCategoryShow = '{{ categoryShow }}';
-    var routeCategoryEdit = '{{ categoryEdit }}';
-    var routeCategoryDelete = '{{ categoryDelete }}';
-    var routeCategory = null;
-
-    $( ".category-action" ).change(function() {
+    $(".category-action").change(function () {
 
         if ($(this).val() == 'view') {
-            routeCategory = routeCategoryShow.replace('__CATEGORYID__',$(this).data("id"));
+            routeCategory = routeCategoryShow.replace('__CATEGORYID__', $(this).data("id"));
         }
         if ($(this).val() == 'edit') {
-            routeCategory = routeCategoryEdit.replace('__CATEGORYID__',$(this).data("id"));
+            routeCategory = routeCategoryEdit.replace('__CATEGORYID__', $(this).data("id"));
         }
         if ($(this).val() == 'delete') {
             {#routeRaw = '{{ path('admin_aisel_page_category_delete', {'id': '__CATEGORYID__'}) }}';#}
 //            routeCategory = routeRaw.replace('__CATEGORYID__',$(this).data("id"));
-            routeCategory = routeCategoryDelete.replace('__CATEGORYID__',$(this).data("id"));
+            routeCategory = routeCategoryDelete.replace('__CATEGORYID__', $(this).data("id"));
         }
 
         if (routeCategory) {
