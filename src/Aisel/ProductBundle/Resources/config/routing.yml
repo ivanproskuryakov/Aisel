@@ -16,3 +16,10 @@ admin_aisel_product_media_upload:
     requirements:
         _method:  OPTIONS|HEAD|GET|POST|PUT|PATCH|DELETE
         productId: "\d+"
+
+
+admin_aisel_product_category_update:
+    pattern:   /administration/product/category/update.json
+    defaults:  { _controller: AiselProductBundle:Admin/Node:update, _format: json }
+    requirements:
+        _method: GET

@@ -9,21 +9,23 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\NavigationBundle\Controller;
+namespace Aisel\ProductBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Page sort for Backend
+ * Backend AJAX actions for product categories
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class AdminController extends Controller
+class NodeController extends Controller
 {
 
+    protected $nodeManager = "aisel.productcategory.node.manager";
+
     /**
-     * REST update action for menu with $id
+     * AJAX update action for node with $id
      *
      * @param int $id
      * @param Request $request
@@ -40,19 +42,19 @@ class AdminController extends Controller
 
         switch ($params['action']) {
             case 'save':
-                $menu = $this->container->get("aisel.navigation.manager")->save($params);
+                $menu = $this->container->get($this->nodeManager)->save($params);
                 break;
             case 'remove':
-                $menu = $this->container->get("aisel.navigation.manager")->remove($params);
+                $menu = $this->container->get($this->nodeManager)->remove($params);
                 break;
             case 'addChild':
-                $menu = $this->container->get("aisel.navigation.manager")->addChild($params);
+                $menu = $this->container->get($this->nodeManager)->addChild($params);
                 break;
             case 'addSibling':
-                $menu = $this->container->get("aisel.navigation.manager")->addSibling($params);
+                $menu = $this->container->get($this->nodeManager)->addSibling($params);
                 break;
             case 'dragDrop':
-                $menu = $this->container->get("aisel.navigation.manager")->updateParent($params);
+                $menu = $this->container->get($this->nodeManager)->updateParent($params);
                 break;
             default:
                 $menu = null;

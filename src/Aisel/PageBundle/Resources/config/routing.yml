@@ -31,7 +31,13 @@ api_aisel_page_categoryview:
         _method: GET
         id: "\d+"
 
-# User specific actions
+admin_aisel_page_category_update:
+    pattern:   /administration/page/category/update.json
+    defaults:  { _controller: AiselPageBundle:Admin/Node:update, _format: json }
+    requirements:
+        _method: GET
+
+
 
 # User specific actions
 api_aisel_user_pagedetails_by_id:

@@ -6,6 +6,6 @@ api_aisel_navigationmenu:
 
 admin_aisel_navigation_menu_update:
     pattern:   /administration/navigation/menu/update.json
-    defaults:  { _controller: AiselNavigationBundle:Admin:update, _format: json }
+    defaults:  { _controller: AiselNavigationBundle:Admin/Node:update, _format: json }
     requirements:
         _method: GET
