@@ -34,9 +34,30 @@ class AdminController extends Controller
         $params = array(
             'name' => $request->query->get('name'),
             'id' => $request->query->get('id'),
+            'parentId' => $request->query->get('parentId'),
+            'action' => $request->query->get('action'),
         );
 
-        $menu = $this->container->get("aisel.navigation.manager")->updateItem($params);
+        switch ($params['action']) {
+            case 'save':
+                $menu = $this->container->get("aisel.navigation.manager")->save($params);
+                break;
+            case 'remove':
+                $menu = $this->container->get("aisel.navigation.manager")->remove($params);
+                break;
+            case 'addChild':
+                $menu = $this->container->get("aisel.navigation.manager")->addChild($params);
+                break;
+            case 'addSibling':
+                $menu = $this->container->get("aisel.navigation.manager")->addSibling($params);
+                break;
+            case 'dragDrop':
+                $menu = $this->container->get("aisel.navigation.manager")->updateParent($params);
+                break;
+            default:
+                $menu = null;
+        }
+
         return $menu;
 
 

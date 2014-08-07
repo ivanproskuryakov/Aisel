@@ -59,13 +59,13 @@ $(function () {
                 error: "glyphicon glyphicon-warning-sign",
                 expanderClosed: "glyphicon glyphicon-plus-sign",
                 expanderLazy: "glyphicon glyphicon-plus-sign",
-                // expanderLazy: "glyphicon glyphicon-expand",
+                expanderLazy: "glyphicon glyphicon-expand",
                 expanderOpen: "glyphicon glyphicon-minus-sign",
                 // expanderOpen: "glyphicon glyphicon-collapse-down",
                 folder: "glyphicon glyphicon-folder-close",
                 folderOpen: "glyphicon glyphicon-folder-open",
-                loading: "glyphicon glyphicon-refresh"
-                // loading: "icon-spinner icon-spin"
+//                loading: "glyphicon glyphicon-refresh",
+                loading: "icon-spinner icon-spin"
             }
         },
 
@@ -81,7 +81,18 @@ $(function () {
                 return true;
             },
             dragDrop: function (node, data) {
+                console.log(node.key);
+                console.log(data.otherNode.key);
                 data.otherNode.moveTo(node, data.hitMode);
+
+                var categoryId = data.otherNode.key;
+                var categoryParentId = node.key;
+
+                $.get(routeCategoryAjaxUpdate, { action: 'dragDrop', id: categoryId, parentId: categoryParentId})
+                        .done(function (data) {
+                            console.log('AJAX done');
+                        });
+
             }
         },
         edit: {
@@ -101,10 +112,10 @@ $(function () {
             save: function (event, data) {
                 var categoryId = data.node.key;
                 var categoryTitle = data.value;
-                $.get(routeCategoryAjaxUpdate, { name:categoryTitle , id: categoryId})
-                    .done(function (data) {
-                        alert("Data Updated!");
-                    });
+                $.get(routeCategoryAjaxUpdate, { action: 'save', name: categoryTitle, id: categoryId})
+                        .done(function (data) {
+                            console.log('AJAX done');
+                        });
             }
         },
         table: {
@@ -159,57 +170,69 @@ $(function () {
                 node.editStart();
                 break;
             case "remove":
+                var categoryId = node.key;
+                $.get(routeCategoryAjaxUpdate, { action: 'remove', id: categoryId})
+                        .done(function (data) {
+                            console.log('AJAX done');
+                        });
                 node.remove();
                 break;
             case "addChild":
                 refNode = node.addChildren({
-                    title: "New node __",
+                    title: "New child node",
                     isNew: true
                 });
                 node.setExpanded();
                 refNode.editStart();
 
-                console.log(node.key);
-                console.log(refNode.title);
-                var categoryId = data.node.key;
-                var categoryTitle = data.value;
-                $.get(routeCategoryAjaxUpdate, { name:categoryTitle , id: categoryId})
+                var categoryId = node.key;
+                var categoryTitle = refNode.title;
+                $.get(routeCategoryAjaxUpdate, { action: 'addChild', name: categoryTitle, parentId: categoryId})
                         .done(function (data) {
-                            alert("Data Updated!");
+                            console.log('AJAX done');
                         });
 
 
                 break;
             case "addSibling":
                 refNode = node.getParent().addChildren({
-                    title: "New node __",
+                    title: "New node",
                     isNew: true
                 }, node.getNextSibling());
+
+                var categoryTitle = refNode.title;
+                $.get(routeCategoryAjaxUpdate, { action: 'addSibling', name: categoryTitle})
+                        .done(function (data) {
+                            console.log('AJAX done');
+                        });
+
+
                 refNode.editStart();
                 break;
-            case "cut":
-                CLIPBOARD = {mode: data.cmd, data: node};
-                break;
-            case "copy":
-                CLIPBOARD = {
-                    mode: data.cmd,
-                    data: node.toDict(function (n) {
-                        delete n.key;
-                    })
-                };
-                break;
-            case "clear":
-                CLIPBOARD = null;
-                break;
-            case "paste":
-                if (CLIPBOARD.mode === "cut") {
-                    // refNode = node.getPrevSibling();
-                    CLIPBOARD.data.moveTo(node, "child");
-                    CLIPBOARD.data.setActive();
-                } else if (CLIPBOARD.mode === "copy") {
-                    node.addChildren(CLIPBOARD.data).setActive();
-                }
-                break;
+//            case "cut":
+//                CLIPBOARD = {mode: data.cmd, data: node};
+//
+//                break;
+//            case "copy":
+//                CLIPBOARD = {
+//                    mode: data.cmd,
+//                    data: node.toDict(function (n) {
+//                        delete n.key;
+//                    })
+//                };
+//                break;
+//            case "clear":
+//                CLIPBOARD = null;
+//                break;
+//            case "paste":
+//                if (CLIPBOARD.mode === "cut") {
+//                    // refNode = node.getPrevSibling();
+//                    CLIPBOARD.data.moveTo(node, "child");
+//                    CLIPBOARD.data.setActive();
+//                } else if (CLIPBOARD.mode === "copy") {
+//                    node.addChildren(CLIPBOARD.data).setActive();
+//                }
+//                break;
             default:
                 alert("Unhandled command: " + data.cmd);
                 return;
@@ -221,12 +244,12 @@ $(function () {
 
         if (c === "N" && e.ctrlKey && e.shiftKey) {
             cmd = "addChild";
-        } else if (c === "C" && e.ctrlKey) {
-            cmd = "copy";
-        } else if (c === "V" && e.ctrlKey) {
-            cmd = "paste";
-        } else if (c === "X" && e.ctrlKey) {
-            cmd = "cut";
+//        } else if (c === "C" && e.ctrlKey) {
+//            cmd = "copy";
+//        } else if (c === "V" && e.ctrlKey) {
+//            cmd = "paste";
+//        } else if (c === "X" && e.ctrlKey) {
+//            cmd = "cut";
         } else if (c === "N" && e.ctrlKey) {
             cmd = "addSibling";
         } else if (e.which === $.ui.keyCode.DELETE) {
@@ -259,8 +282,6 @@ $(function () {
             routeCategory = routeCategoryEdit.replace('__CATEGORYID__', $(this).data("id"));
         }
         if ($(this).val() == 'delete') {
-            {#routeRaw = '{{ path('admin_aisel_page_category_delete', {'id': '__CATEGORYID__'}) }}';#}
-//            routeCategory = routeRaw.replace('__CATEGORYID__',$(this).data("id"));
             routeCategory = routeCategoryDelete.replace('__CATEGORYID__', $(this).data("id"));
         }
 
@@ -278,12 +299,12 @@ $(function () {
             {title: "Edit", cmd: "rename", uiIcon: "ui-icon-pencil" },
             {title: "Delete", cmd: "remove", uiIcon: "ui-icon-trash" },
             {title: "----"},
-            {title: "New node", cmd: "addChild", uiIcon: "ui-icon-plus" },
+            {title: "New node", cmd: "addSibling", uiIcon: "ui-icon-plus" },
             {title: "New child node", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e" },
-            {title: "----"},
-            {title: "Cut", cmd: "cut", uiIcon: "ui-icon-scissors"},
-            {title: "Copy", cmd: "copy", uiIcon: "ui-icon-copy"},
-            {title: "Paste", cmd: "paste", uiIcon: "ui-icon-clipboard", disabled: true }
+//            {title: "----"},
+//            {title: "Cut", cmd: "cut", uiIcon: "ui-icon-scissors"},
+//            {title: "Copy", cmd: "copy", uiIcon: "ui-icon-copy"},
+//            {title: "Paste", cmd: "paste", uiIcon: "ui-icon-clipboard", disabled: true }
         ],
         beforeOpen: function (event, ui) {
             var node = $.ui.fancytree.getNode(ui.target);
