@@ -9,8 +9,6 @@ file that was distributed with this source code.
 
 #}
 
-{% include 'AiselAdminBundle:Tree:base_category_js.html.twig' %}
-
 <script type="text/javascript">
 
 var routeCategoryShow = '{{ categoryShow }}';
@@ -256,7 +254,7 @@ $(function () {
     });
 });
 </script>
-
+{% include 'AiselAdminBundle:Tree:base_category_js.html.twig' %}
 <table id="adminNodeTree" class="table table-bordered table-striped col-md-12">
     <colgroup>
         <col class="col-md-0"></col>

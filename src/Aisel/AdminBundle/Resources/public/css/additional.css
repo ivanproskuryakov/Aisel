@@ -22,7 +22,7 @@ table.fancytree-ext-table *:focus {
 }
 .nodetree-container span.fancytree-childcounter {
     color: #fff;
-    background: rgba(41, 123, 246, 0.93);
+    background: rgba(246, 22, 0, 0.93);
     position: absolute;
     top: -11px;
     right: -6px;

@@ -27,8 +27,9 @@ class NodeController extends Controller
     /**
      * AJAX update action for menu with $id
      *
-     * @param int $id
      * @param Request $request
+     *
+     * @return $menu
      *
      */
     public function updateAction(Request $request)
@@ -38,6 +39,7 @@ class NodeController extends Controller
             'id' => $request->query->get('id'),
             'parentId' => $request->query->get('parentId'),
             'action' => $request->query->get('action'),
+            'url' => $request->query->get('url'),
         );
 
         switch ($params['action']) {

@@ -9,8 +9,6 @@ file that was distributed with this source code.
 
 #}
 
-{% include 'AiselAdminBundle:Tree:base_category_js.html.twig' %}
-
 <script type="text/javascript">
 
 var routeCategoryShow = '{{ categoryShow }}';
@@ -51,7 +49,6 @@ var SORUCE = [
 
 $(function () {
 
-    console.log(SORUCE);
     $("#adminNodeTree").fancytree({
 
         extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter","childcounter"],
@@ -128,9 +125,11 @@ $(function () {
                 // Editor was opened (available as data.input)
             },
             save: function (event, data) {
+                console.log(data.node);
+                var categoryUrl = data.node.data.url;
                 var categoryId = data.node.key;
                 var categoryTitle = data.value;
-                $.get(routeCategoryAjaxUpdate, { action: 'save', name: categoryTitle, id: categoryId})
+                $.get(routeCategoryAjaxUpdate, { action: 'save', name: categoryTitle, id: categoryId, url: categoryUrl})
                         .done(function (data) {
                             console.log('AJAX done');
                         });
@@ -147,13 +146,12 @@ $(function () {
         },
 
         renderColumns: function (event, data) {
-            console.log(data);
             var node = data.node,
                     $select = $("<select data-id='" + node.key + "' id='category-" + node.key + "' class='category-action form-control' />"),
                     $tdList = $(node.tr).find(">td");
 
             $tdList.eq(0).text(node.key).addClass("alignRight");
-            $tdList.eq(2).html("<input type='input' class='form-control' value='" + node.data.url + "'>");
+            $tdList.eq(2).html("<input type='input' disabled class='form-control' value='" + node.data.url + "'>");
             $("<option />", {text: "", value: "please-select"}).appendTo($select);
             $("<option />", {text: "view", value: "view"}).appendTo($select);
             $("<option />", {text: "edit", value: "edit"}).appendTo($select);
@@ -260,13 +258,14 @@ $(function () {
     });
 });
 </script>
+{% include 'AiselAdminBundle:Tree:base_category_js.html.twig' %}
 
 <table id="adminNodeTree" class="table table-bordered table-striped col-md-12">
     <colgroup>
         <col class="col-md-0"></col>
-        <col class="col-md-5"></col>
+        <col class="col-md-6"></col>
         <col class="col-md-4"></col>
-        <col class="col-md-3"></col>
+        <col class="col-md-2"></col>
     </colgroup>
     <thead>
     <tr>
