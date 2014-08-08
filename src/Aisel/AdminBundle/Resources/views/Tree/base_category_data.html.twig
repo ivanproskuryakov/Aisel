@@ -1,0 +1,275 @@
+{#
+
+This file is part of the Aisel package.
+
+(c) Ivan Proskuryakov
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% include 'AiselAdminBundle:Tree:base_category_js.html.twig' %}
+
+<script type="text/javascript">
+
+var routeCategoryShow = '{{ categoryShow }}';
+var routeCategoryEdit = '{{ categoryEdit }}';
+var routeCategoryDelete = '{{ categoryDelete }}';
+var routeCategoryAjaxUpdate = '{{ categoryAjaxUpdate }}';
+var routeCategory = null;
+
+var SORUCE = [
+
+            {% set categories = admin.datagrid.results %}
+
+            {% macro recursiveCategory(category) %}
+
+            {% if category.children|length == 0%}
+            {title: "{{ category.title }}", key: "{{ category.id }}", folder: false},
+            {% endif %}
+
+            {% if category.children|length %}
+            {title: "{{ category.title }}", key: "{{ category.id }}", folder: true, expanded: true, children: [
+                {% for child in category.children %}
+                {{ _self.recursiveCategory(child) }}
+                {% endfor %}
+            ]},
+            {% endif %}
+            {% endmacro %}
+
+            {% if categories %}
+            {% for category in categories %}
+            {% if category.lvl == 0 %}
+            {{ _self.recursiveCategory(category) }}
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+
+        ],
+        CLIPBOARD = null;
+
+$(function () {
+
+    $("#adminNodeTree").fancytree({
+
+        extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter", "childcounter"],
+        childcounter: {
+            deep: true,
+            hideZeros: true,
+            hideExpanded: true
+        },
+        checkbox: false,
+        titlesTabbable: true,     // Add all node titles to TAB chain
+        source: SORUCE,
+        selectMode: 2,
+        filter: {
+            mode: "hide"
+        },
+        glyph: {
+            map: {
+                doc: "glyphicon glyphicon-file",
+                docOpen: "glyphicon glyphicon-file",
+                checkbox: "glyphicon glyphicon-unchecked",
+                checkboxSelected: "glyphicon glyphicon-check",
+                checkboxUnknown: "glyphicon glyphicon-share",
+                error: "glyphicon glyphicon-warning-sign",
+                expanderClosed: "glyphicon glyphicon-plus-sign",
+                expanderLazy: "glyphicon glyphicon-plus-sign",
+                expanderLazy: "glyphicon glyphicon-expand",
+                expanderOpen: "glyphicon glyphicon-minus-sign",
+                // expanderOpen: "glyphicon glyphicon-collapse-down",
+                folder: "glyphicon glyphicon-folder-close",
+                folderOpen: "glyphicon glyphicon-folder-open",
+//                loading: "glyphicon glyphicon-refresh",
+                loading: "icon-spinner icon-spin"
+            }
+        },
+
+        dnd: {
+            preventVoidMoves: true,
+            preventRecursiveMoves: true,
+            autoExpandMS: 400,
+            dragStart: function (node, data) {
+                return true;
+            },
+            dragEnter: function (node, data) {
+                // return ["before", "after"];
+                return true;
+            },
+            dragDrop: function (node, data) {
+                console.log(node.key);
+                console.log(data.otherNode.key);
+                data.otherNode.moveTo(node, data.hitMode);
+
+                var categoryId = data.otherNode.key;
+                var categoryParentId = node.key;
+
+                $.get(routeCategoryAjaxUpdate, { action: 'dragDrop', id: categoryId, parentId: categoryParentId})
+                        .done(function (data) {
+                            console.log('AJAX done');
+                        });
+
+            }
+        },
+        edit: {
+            triggerStart: ["f2", "dblclick", "shift+click", "mac+enter"],
+            beforeClose: function (event, data) {
+                // Return false to prevent cancel/save (data.input is available)
+            },
+            beforeEdit: function (event, data) {
+                // Return false to prevent edit mode
+            },
+            close: function (event, data) {
+                // Editor was removed
+            },
+            edit: function (event, data) {
+                // Editor was opened (available as data.input)
+            },
+            save: function (event, data) {
+                var categoryId = data.node.key;
+                var categoryTitle = data.value;
+                $.get(routeCategoryAjaxUpdate, { action: 'save', name: categoryTitle, id: categoryId})
+                        .done(function (data) {
+                            console.log('AJAX done');
+                        });
+            }
+        },
+        table: {
+            indentation: 20,
+            nodeColumnIdx: 1,
+//            checkboxColumnIdx: 0
+        },
+        gridnav: {
+            autofocusInput: false,
+            handleCursorKeys: true
+        },
+
+        renderColumns: function (event, data) {
+            var node = data.node,
+                    $select = $("<select data-id='" + node.key + "' id='category-" + node.key + "' class='category-action form-control' />"),
+                    $tdList = $(node.tr).find(">td");
+
+            $tdList.eq(0).text(node.key).addClass("alignRight");
+//            $tdList.eq(2).html("<input type='input' class='form-control' value='" + node.key + "'>");
+            $("<option />", {text: "", value: "please-select"}).appendTo($select);
+            $("<option />", {text: "view", value: "view"}).appendTo($select);
+            $("<option />", {text: "edit", value: "edit"}).appendTo($select);
+            $("<option />", {text: "delete"}).appendTo($select);
+            $tdList.eq(2).html($select);
+        }
+    }).on("nodeCommand",function (event, data) {
+        var refNode, moveMode,
+                tree = $(this).fancytree("getTree"),
+                node = tree.getActiveNode();
+
+        switch (data.cmd) {
+            case "moveUp":
+                node.moveTo(node.getPrevSibling(), "before");
+                node.setActive();
+                break;
+            case "moveDown":
+                node.moveTo(node.getNextSibling(), "after");
+                node.setActive();
+                break;
+            case "indent":
+                refNode = node.getPrevSibling();
+                node.moveTo(refNode, "child");
+                refNode.setExpanded();
+                node.setActive();
+                break;
+            case "outdent":
+                node.moveTo(node.getParent(), "after");
+                node.setActive();
+                break;
+            case "rename":
+                node.editStart();
+                break;
+            case "remove":
+                var categoryId = node.key;
+                $.get(routeCategoryAjaxUpdate, { action: 'remove', id: categoryId})
+                        .done(function (data) {
+                            console.log('AJAX done');
+                        });
+                node.remove();
+                break;
+            case "addChild":
+                refNode = node.addChildren({
+                    title: "New child node",
+                    isNew: true
+                });
+                node.setExpanded();
+                refNode.editStart();
+
+                var categoryId = node.key;
+                var categoryTitle = refNode.title;
+                $.get(routeCategoryAjaxUpdate, { action: 'addChild', name: categoryTitle, parentId: categoryId})
+                        .done(function (data) {
+                            console.log('AJAX done');
+                        });
+
+
+                break;
+            case "addSibling":
+                refNode = node.getParent().addChildren({
+                    title: "New node",
+                    isNew: true
+                }, node.getNextSibling());
+
+                var categoryTitle = refNode.title;
+                $.get(routeCategoryAjaxUpdate, { action: 'addSibling', name: categoryTitle})
+                        .done(function (data) {
+                            console.log('AJAX done');
+                        });
+                refNode.editStart();
+                break;
+            default:
+                alert("Unhandled command: " + data.cmd);
+                return;
+        }
+
+    }).on("keydown", function (e) {
+        var c = String.fromCharCode(e.which),
+                cmd = null;
+
+        if (c === "N" && e.ctrlKey && e.shiftKey) {
+            cmd = "addChild";
+        } else if (c === "N" && e.ctrlKey) {
+            cmd = "addSibling";
+        } else if (e.which === $.ui.keyCode.DELETE) {
+            cmd = "remove";
+        } else if (e.which === $.ui.keyCode.F2) {
+            cmd = "rename";
+        } else if (e.which === $.ui.keyCode.UP && e.ctrlKey) {
+            cmd = "moveUp";
+        } else if (e.which === $.ui.keyCode.DOWN && e.ctrlKey) {
+            cmd = "moveDown";
+        } else if (e.which === $.ui.keyCode.RIGHT && e.ctrlKey) {
+            cmd = "indent";
+        } else if (e.which === $.ui.keyCode.LEFT && e.ctrlKey) {
+            cmd = "outdent";
+        }
+        if (cmd) {
+            $(this).trigger("nodeCommand", {cmd: cmd});
+            return false;
+        }
+    });
+});
+</script>
+
+<table id="adminNodeTree" class="table table-bordered table-striped col-md-12">
+    <colgroup>
+        <col class="col-md-0"></col>
+        <col class="col-md-9"></col>
+        <col class="col-md-3"></col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>

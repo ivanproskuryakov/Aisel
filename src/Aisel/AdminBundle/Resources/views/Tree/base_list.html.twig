@@ -23,6 +23,7 @@ file that was distributed with this source code.
     <script src="{{ asset('/bower_components/fancytree/dist/src/jquery.fancytree.childcounter.js') }}"></script>
     <script src="{{ asset('/bower_components/ui-contextmenu/jquery.ui-contextmenu.js') }}"></script>
 {% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('/bower_components/fancytree/dist/skin-bootstrap/ui.fancytree.min.css') }}"/>
@@ -42,7 +43,7 @@ file that was distributed with this source code.
                 <div class="col-md-12">
                     <div class="table-actions col-md-12">
                         <button type="submit" id="btnExpandAll" class="btn btn-sm btn-primary">Expand all</button>
-                        <button type="submit" id="btnCollapseAll" class="btn btn-sm btn-warning">Collapse all</button>
+                        <button id="btnCollapseAll" class="btn btn-sm btn-warning">Collapse all</button>
                     </div>
                     {{ sonata_block_render_event('sonata.admin.list.table.top', { 'admin': admin }) }}
 
@@ -50,7 +51,14 @@ file that was distributed with this source code.
                     {% set batchactions = admin.batchactions %}
                     {% if admin.datagrid.results|length > 0 %}
 
-                        {% include 'AiselAdminBundle:Tree:category_data.html.twig' %}
+                        {% block node_template %}
+                            {% set categoryShow = '' %}
+                            {% set categoryEdit = '' %}
+                            {% set categoryDelete = '' %}
+                            {% set categoryAjaxUpdate = '' %}
+                            {% include 'AiselAdminBundle:Tree:category_data.html.twig' %}
+                        {% endblock %}
+
                     {% else %}
                         <div class="callout callout-info">
                             {{ 'no_result'|trans({}, 'SonataAdminBundle') }}
@@ -61,10 +69,5 @@ file that was distributed with this source code.
             </div>
         </div>
     </div>
-
-
-{% endblock %}
-
-{% block list_filters %}
 
 {% endblock %}

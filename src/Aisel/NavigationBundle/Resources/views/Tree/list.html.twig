@@ -9,9 +9,13 @@ file that was distributed with this source code.
 
 #}
 
-
-{% set categoryShow = path('admin_aisel_navigation_menu_show', {'id': '__CATEGORYID__'}) %}
-{% set categoryEdit = path('admin_aisel_navigation_menu_edit', {'id': '__CATEGORYID__'}) %}
-{% set categoryDelete = path('admin_aisel_navigation_menu_delete', {'id': '__CATEGORYID__'}) %}
-{% set categoryAjaxUpdate = path('admin_aisel_navigation_menu_update') %}
 {% extends 'AiselAdminBundle:Tree:base_list.html.twig' %}
+
+{% block node_template %}
+    {% set categoryShow = path('admin_aisel_navigation_menu_show', {'id': '__CATEGORYID__'}) %}
+    {% set categoryEdit = path('admin_aisel_navigation_menu_edit', {'id': '__CATEGORYID__'}) %}
+    {% set categoryDelete = path('admin_aisel_navigation_menu_delete', {'id': '__CATEGORYID__'}) %}
+    {% set categoryAjaxUpdate = path('admin_aisel_navigation_menu_update') %}
+
+    {% include 'AiselNavigationBundle:Tree:category_data.html.twig' %}
+{% endblock %}
