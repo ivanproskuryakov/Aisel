@@ -11,12 +11,32 @@ table.fancytree-ext-table tbody tr.fancytree-active {
 }
 
 table.fancytree-ext-table *:focus {
-    /*border: none;*/
-    /*box-shadow: none;*/
-    /*border-color: rgba(82,168,236,.8);*/
-    /*outline: 0;*/
-    /*outline: thin dotted \9;*/
     -moz-box-shadow: 0 0 1px rgba(82,168,236,1);
     box-shadow: 0 0 1px rgba(82,168,236,1);
     padding-right: 10px;
+}
+
+
+.nodetree-container span.fancytree-icon {
+    position: relative;
+}
+.nodetree-container span.fancytree-childcounter {
+    color: #fff;
+    background: rgba(41, 123, 246, 0.93);
+    position: absolute;
+    top: -11px;
+    right: -6px;
+    min-width: 17px;
+    height: 17px;
+    line-height: 1;
+    vertical-align: baseline;
+    border-radius: 10px;
+    padding: 2px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.nodetree-container .table-actions {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

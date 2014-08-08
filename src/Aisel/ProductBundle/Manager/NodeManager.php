@@ -35,10 +35,13 @@ class NodeManager extends AbstractNodeManager
             }
         }
 
+        $url = time();
         $node = new $this->nodeEntity;
         $node->setTitle($params['name']);
         $node->setParent($nodeParent);
         $node->setStatus(false);
+        $node->setDescription('');
+        $node->setMetaUrl($url);
         $node->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $node->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 

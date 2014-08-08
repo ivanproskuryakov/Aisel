@@ -1,3 +1,14 @@
+{#
+
+This file is part of the Aisel package.
+
+(c) Ivan Proskuryakov
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
 <script type="text/javascript">
 
 var routeCategoryShow = '{{ categoryShow }}';
@@ -38,11 +49,16 @@ var SORUCE = [
 
 $(function () {
 
-    $("#categoryTree").fancytree({
+    $("#adminNodeTree").fancytree({
 
         // extensions: ["edit", "table", "gridnav"],
-        extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter"],
-        checkbox: true,
+        extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter","childcounter"],
+        childcounter: {
+            deep: true,
+            hideZeros: true,
+            hideExpanded: true
+        },
+        checkbox: false,
         titlesTabbable: true,     // Add all node titles to TAB chain
         source: SORUCE,
         selectMode: 2,
@@ -293,7 +309,7 @@ $(function () {
     /*
      * Context menu (https://github.com/mar10/jquery-ui-contextmenu)
      */
-    $("#categoryTree").contextmenu({
+    $("#adminNodeTree").contextmenu({
         delegate: "span.fancytree-title",
         menu: [
             {title: "Edit", cmd: "rename", uiIcon: "ui-icon-pencil" },
@@ -308,7 +324,7 @@ $(function () {
         ],
         beforeOpen: function (event, ui) {
             var node = $.ui.fancytree.getNode(ui.target);
-            $("#categoryTree").contextmenu("enableEntry", "paste", !!CLIPBOARD);
+            $("#adminNodeTree").contextmenu("enableEntry", "paste", !!CLIPBOARD);
             node.setActive();
         },
         select: function (event, ui) {
@@ -320,10 +336,20 @@ $(function () {
             }, 100);
         }
     });
+
+    $("#btnExpandAll").click(function(){
+        $("#adminNodeTree").fancytree("getTree").visit(function(node){
+            node.setExpanded(true);
+        });
+    });
+    $("#btnCollapseAll").click(function(){
+        $("#adminNodeTree").fancytree("getTree").visit(function(node){
+            node.setExpanded(false);
+        });
+    });
 });
 </script>
-
-<table id="categoryTree" class="table table-bordered table-striped col-md-12">
+<table id="adminNodeTree" class="table table-bordered table-striped col-md-12">
     <colgroup>
         <col class="col-md-0"></col>
         <col class="col-md-9"></col>
