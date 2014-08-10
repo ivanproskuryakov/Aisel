@@ -1,5 +1,28 @@
-{% include 'AiselProductBundle:Media:upload_css.html.twig' %}
-{% include 'AiselProductBundle:Media:upload_js.html.twig' %}
+{% block javascripts %}
+    <script src="{{ asset('/bower_components/blueimp-tmpl/js/tmpl.min.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-load-image/js/load-image.min.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.min.js') }}"></script>
+    <script src="{{ asset('/bower_components/sass-bootstrap/dist/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-gallery/js/blueimp-gallery.min.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-file-upload/js/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-file-upload/js//jquery.fileupload.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-file-upload/js//jquery.fileupload-process.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-file-upload/js/jquery.fileupload-image.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-file-upload/js/jquery.fileupload-audio.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-file-upload/js/jquery.fileupload-video.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js') }}"></script>
+    <script src="{{ asset('/bower_components/blueimp-file-upload/js/cors/jquery.xdr-transport.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/bower_components/blueimp-gallery/css/blueimp-gallery.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/bower_components/blueimp-file-upload/css/jquery.fileupload.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/bower_components/blueimp-file-upload/css/jquery.fileupload-ui.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/bower_components/blueimp-file-upload/css/jquery.fileupload.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/bower_components/blueimp-file-upload/css/jquery.fileupload-ui-noscript.css') }}"/>
+{% endblock %}
+
 <script type="text/javascript">
     $(function () {
         'use strict';

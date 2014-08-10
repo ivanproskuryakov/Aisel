@@ -5,13 +5,13 @@ angular.module('aiselApp')
         return {
 
             getCategories: function($scope) {
-                var url = API_URL+'/category/list.json?limit='+$scope.pageLimit+'&current='+$scope.paginationPage;
+                var url = API_URL+'/page/category/list.json?limit='+$scope.pageLimit+'&current='+$scope.paginationPage;
                 console.log(url);
                 return $http.get(url);
             },
 
             getCategory: function(categoryId) {
-                var url = API_URL+'/category/view/'+categoryId+'.json';
+                var url = API_URL+'/page/category/view/'+categoryId+'.json';
                 console.log(url);
                 return $http.get(url);
             }

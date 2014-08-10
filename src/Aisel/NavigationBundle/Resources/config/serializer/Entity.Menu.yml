@@ -5,8 +5,6 @@ Aisel\NavigationBundle\Entity\Menu:
 #        expose: true
 #    title:
 #        expose: true
-#    url:
-#        expose: true
 #    metaUrl:
 #        expose: true
 #    description:

@@ -47,10 +47,6 @@
                                         {#<div class="box{% if loop.first %} in{% endif %}" id="{{ admin.uniqid }}_{{ loop.index }}">#}
                                         <div class="box-body">
                                             <div class="sonata-ba-collapsed-fields">
-
-                                                {% if name == 'Gallery' %}
-                                                    {% include 'AiselProductBundle:Media:base.html.twig' %}
-                                                {% endif %}
                                                 {% if form_group.description != false %}
                                                     <p>{{ form_group.description|raw }}</p>
                                                 {% endif %}
@@ -60,6 +56,10 @@
                                                         {{ form_row(form[field_name]) }}
                                                     {% endif %}
                                                 {% endfor %}
+
+                                                {% if name == 'Gallery' %}
+                                                    {% include 'AiselProductBundle:Media:base.html.twig' %}
+                                                {% endif %}
                                             </div>
                                         </div>
                                         {#</div>#}

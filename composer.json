@@ -46,6 +46,7 @@
         "twbs/bootstrap": "v2.3.2",
         "presta/sonata-navigation-bundle": "1.0.*@dev",
         "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
+        "iphp/filestore-bundle" : "dev-master",
 
         "behat/behat":                       "~3.0.7",
         "behat/symfony2-extension":          "~2.0@dev",

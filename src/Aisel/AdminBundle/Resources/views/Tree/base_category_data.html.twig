@@ -24,11 +24,11 @@ var SORUCE = [
             {% macro recursiveCategory(category) %}
 
             {% if category.children|length == 0%}
-            {title: "{{ category.title }}", key: "{{ category.id }}", folder: false},
+            {title: "{{ category.title }}", url: "{{ category.metaUrl }}", key: "{{ category.id }}", folder: false},
             {% endif %}
 
             {% if category.children|length %}
-            {title: "{{ category.title }}", key: "{{ category.id }}", folder: true, expanded: true, children: [
+            {title: "{{ category.title }}", url: "{{ category.metaUrl }}", key: "{{ category.id }}", folder: true, expanded: true, children: [
                 {% for child in category.children %}
                 {{ _self.recursiveCategory(child) }}
                 {% endfor %}
@@ -51,7 +51,7 @@ $(function () {
 
     $("#adminNodeTree").fancytree({
 
-        extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter", "childcounter"],
+        extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter","childcounter"],
         childcounter: {
             deep: true,
             hideZeros: true,
@@ -125,9 +125,11 @@ $(function () {
                 // Editor was opened (available as data.input)
             },
             save: function (event, data) {
+                console.log(data.node);
+                var categoryUrl = data.node.data.url;
                 var categoryId = data.node.key;
                 var categoryTitle = data.value;
-                $.get(routeCategoryAjaxUpdate, { action: 'save', name: categoryTitle, id: categoryId})
+                $.get(routeCategoryAjaxUpdate, { action: 'save', name: categoryTitle, id: categoryId, url: categoryUrl})
                         .done(function (data) {
                             console.log('AJAX done');
                         });
@@ -149,12 +151,12 @@ $(function () {
                     $tdList = $(node.tr).find(">td");
 
             $tdList.eq(0).text(node.key).addClass("alignRight");
-//            $tdList.eq(2).html("<input type='input' class='form-control' value='" + node.key + "'>");
+            $tdList.eq(2).html("<input type='input' disabled class='form-control' value='" + node.data.url + "'>");
             $("<option />", {text: "", value: "please-select"}).appendTo($select);
             $("<option />", {text: "view", value: "view"}).appendTo($select);
             $("<option />", {text: "edit", value: "edit"}).appendTo($select);
             $("<option />", {text: "delete"}).appendTo($select);
-            $tdList.eq(2).html($select);
+            $tdList.eq(3).html($select);
         }
     }).on("nodeCommand",function (event, data) {
         var refNode, moveMode,
@@ -194,6 +196,7 @@ $(function () {
             case "addChild":
                 refNode = node.addChildren({
                     title: "New child node",
+                    url: "/#!/",
                     isNew: true
                 });
                 node.setExpanded();
@@ -211,6 +214,7 @@ $(function () {
             case "addSibling":
                 refNode = node.getParent().addChildren({
                     title: "New node",
+                    url: "/#!/",
                     isNew: true
                 }, node.getNextSibling());
 
@@ -255,16 +259,19 @@ $(function () {
 });
 </script>
 {% include 'AiselAdminBundle:Tree:base_category_js.html.twig' %}
+
 <table id="adminNodeTree" class="table table-bordered table-striped col-md-12">
     <colgroup>
         <col class="col-md-0"></col>
-        <col class="col-md-9"></col>
-        <col class="col-md-3"></col>
+        <col class="col-md-6"></col>
+        <col class="col-md-4"></col>
+        <col class="col-md-2"></col>
     </colgroup>
     <thead>
     <tr>
         <th>Id</th>
         <th>Name</th>
+        <th>Url</th>
         <th>Action</th>
     </tr>
     </thead>

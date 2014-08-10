@@ -34,7 +34,7 @@ Aisel\NavigationBundle\Entity\Menu:
         nullable: false
         type: string
         length: 255
-      url:
+      metaUrl:
           type: text
       status:
           type: boolean

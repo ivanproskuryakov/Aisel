@@ -12,6 +12,7 @@
 /web/bower_components/*
 /web/npm-debug.log
 /web/media/product/*
+/web/photo/*
 !/app/cache/.gitkeep
 !app/logs/.gitkeep
 /build/

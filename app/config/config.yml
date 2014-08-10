@@ -158,3 +158,9 @@ sonata_doctrine_orm_admin:
         types:
             show:
                 tree: AiselAdminBundle:Form:tree.html.twig
+
+iphp_file_store:
+    mappings:
+       mainImage:
+           upload_dir: %application.media.product.path%/main
+           upload_path: %application.media.product.path%/main

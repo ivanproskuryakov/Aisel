@@ -58,7 +58,7 @@ angular.module('aiselApp')
                 return $http.get(url);
             },
             getCategoryTree: function() {
-                var url = API_URL+'/category/tree.json';
+                var url = API_URL+'/page/category/tree.json';
 //                console.log(url);
                 return $http.get(url);
             },

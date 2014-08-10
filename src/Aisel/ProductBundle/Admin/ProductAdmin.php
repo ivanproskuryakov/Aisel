@@ -86,6 +86,7 @@ class ProductAdmin extends Admin
             ->add('newFrom', 'datetime', array('label' => 'New From', 'attr' => array()))
             ->add('newTo', 'datetime', array('label' => 'New To', 'attr' => array()))
             ->with('Gallery')
+                ->add('mainImage', 'iphp_file', array('label' => 'Main Image', 'required' => false, 'attr' => array('class'=>'form-control')))
             ->with('Categories')
             ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
                 'class' => 'Aisel\ProductBundle\Entity\Category',

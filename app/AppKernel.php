@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Iphp\FileStoreBundle\IphpFileStoreBundle(),
 
             // Aisel bundles
             new Aisel\FrontendUserBundle\AiselFrontendUserBundle(),
@@ -42,7 +43,6 @@ class AppKernel extends Kernel
             new Aisel\ProductBundle\AiselProductBundle(),
             new Aisel\CartBundle\AiselCartBundle(),
             new Aisel\OrderBundle\AiselOrderBundle(),
-//            new Aisel\CategoryBundle\AiselCategoryBundle(),
             new Aisel\NavigationBundle\AiselNavigationBundle(),
             new Aisel\ContactBundle\AiselContactBundle(),
             new Aisel\ConfigBundle\AiselConfigBundle(),

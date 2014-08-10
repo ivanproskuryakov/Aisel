@@ -99,6 +99,11 @@ Aisel\ProductBundle\Entity\Product:
             type: datetime
             column: updated_at
 
+        mainImage:
+            type: array
+            nullable: true
+            column: main_image
+
 #    manyToOne:
 #      frontenduser:
 #        targetEntity: Aisel\FrontendUserBundle\Entity\FrontendUser

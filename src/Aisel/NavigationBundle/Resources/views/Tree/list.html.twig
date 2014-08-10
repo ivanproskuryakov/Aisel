@@ -17,5 +17,5 @@ file that was distributed with this source code.
     {% set categoryDelete = path('admin_aisel_navigation_menu_delete', {'id': '__CATEGORYID__'}) %}
     {% set categoryAjaxUpdate = path('admin_aisel_navigation_menu_update') %}
 
-    {% include 'AiselNavigationBundle:Tree:category_data.html.twig' %}
+    {% include 'AiselAdminBundle:Tree:base_category_data.html.twig' %}
 {% endblock %}

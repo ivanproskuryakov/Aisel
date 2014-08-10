@@ -37,7 +37,7 @@ class NavigationAdmin extends Admin
         $errorElement
             ->with('title')
             ->assertNotBlank()
-            ->with('url')
+            ->with('metaUrl')
             ->assertNotBlank()
             ->end();
     }
@@ -70,7 +70,7 @@ class NavigationAdmin extends Admin
         $formMapper
             ->with('General')
             ->add('title', 'text', array('label' => 'Title'))
-            ->add('url', 'text', array('label' => 'URL'))
+            ->add('metaUrl', 'text', array('label' => 'URL'))
             ->add('status', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
@@ -102,23 +102,6 @@ class NavigationAdmin extends Admin
     public function preUpdate($page)
     {
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-    }
-
-    // Fields to be shown on lists
-    protected function configureListFields(ListMapper $listMapper)
-    {
-        $listMapper
-            ->addIdentifier('id', null, array('sortable' => true))
-            ->add('status', 'boolean', array('label' => 'Enabled', 'editable' => false, 'sortable' => false))
-            ->add('title', null, array('template' => 'AiselNavigationBundle:Admin:title.html.twig', 'label' => 'Title', 'sortable' => false))
-            ->add('url', null, array('label' => 'URL', 'sortable' => false))
-            ->add('_action', 'actions', array(
-                    'actions' => array(
-                        'show' => array(),
-                        'edit' => array(),
-                        'delete' => array(),
-                    ))
-            );
     }
 
     /**

@@ -337,30 +337,31 @@ class Menu
     }
 
     /**
-     * @var string
-     */
-    private $url;
-
-    /**
-     * Set url
+     * Set metaUrl
      *
-     * @param  string $url
+     * @param string $metaUrl
      * @return Menu
      */
-    public function setUrl($url)
+    public function setMetaUrl($metaUrl)
     {
-        $this->url = $url;
+        $this->metaUrl = $metaUrl;
 
         return $this;
     }
 
     /**
-     * Get url
+     * Get metaUrl
      *
-     * @return string
+     * @return string 
      */
-    public function getUrl()
+    public function getMetaUrl()
     {
-        return $this->url;
+        return $this->metaUrl;
     }
+    /**
+     * @var string
+     */
+    private $metaUrl;
+
+
 }
