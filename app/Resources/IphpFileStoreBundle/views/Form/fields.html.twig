@@ -1,0 +1,39 @@
+{% block iphp_file_widget %}
+
+    {% set fileData = value %}
+    <div class="iphp_file_widget_container" {{ block('widget_container_attributes') }}>
+
+        <div class="iphp_file_widget_file">{{ form_widget(form.file) }}</div>
+        {# if was upload error value is uploadedFile and originalName no exists#}
+        {% if fileData and fileData.originalName is defined %}
+            {% set fileUrl =  fileData.path %}
+
+            {# |url_encode() #}
+
+            <div class="row iphp_file_widget_attach">
+                <div class="col-md-3">
+                    {% if fileData.width is defined %}
+                        <a href="{{ fileUrl }}" target="_blank" class="full-img-link">
+                            <img src="{{ fileUrl }}"
+                                 width="{{ fileData.width > 200 ? 200 : fileData.width }}"
+                                 border="0"></a>
+                    {% endif %}
+                </div>
+                <div class="col-md-7">
+
+                    <a href="{{ fileUrl }}" target="_blank" class="full-img-link">{{ fileData.fileName }}</a>
+                    <br>{{ fileData.size /1000 }} Kb
+                    {{ fileData.width is defined ? ', ' ~ fileData.width ~ 'x' ~ fileData.height : "" }}
+
+                    {% if fileData.originalName !=  fileData.fileName %}
+                        <br>{% trans %}Original file name{% endtrans %}: {{ fileData.originalName }}
+                    {% endif %}
+
+
+                    {{ form_row (form.delete, {'label_attr' : { 'class' :'iphp_file_widget_delete ' }})}}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock iphp_file_widget %}

@@ -40,3 +40,33 @@ table.fancytree-ext-table *:focus {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.mainImage {
+    margin-bottom: 80px;
+    clear: both;
+    float: left;
+    display: inline-block;
+}
+.additionalImages {
+    clear: both;
+}
+
+/*
+* Additional styles for IphpFileStoreBundle
+*/
+.iphp_file_widget_container {
+    margin-bottom: 20px;
+}
+.iphp_file_widget_file {
+    clear: both;
+}
+.iphp_file_widget_attach {
+    clear: both;
+    margin-top: 10px;
+}
+.iphp_file_widget_delete {
+    width: auto;
+    padding-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
