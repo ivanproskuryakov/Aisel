@@ -757,4 +757,32 @@ class Product
     {
         return $this->mainImage;
     }
+    /**
+     * @var boolean
+     */
+    private $manageStock;
+
+
+    /**
+     * Set manageStock
+     *
+     * @param boolean $manageStock
+     * @return Product
+     */
+    public function setManageStock($manageStock)
+    {
+        $this->manageStock = $manageStock;
+
+        return $this;
+    }
+
+    /**
+     * Get manageStock
+     *
+     * @return boolean 
+     */
+    public function getManageStock()
+    {
+        return $this->manageStock;
+    }
 }

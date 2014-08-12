@@ -11,15 +11,15 @@ table.fancytree-ext-table tbody tr.fancytree-active {
 }
 
 table.fancytree-ext-table *:focus {
-    -moz-box-shadow: 0 0 1px rgba(82,168,236,1);
-    box-shadow: 0 0 1px rgba(82,168,236,1);
+    -moz-box-shadow: 0 0 1px rgba(82, 168, 236, 1);
+    box-shadow: 0 0 1px rgba(82, 168, 236, 1);
     padding-right: 10px;
 }
-
 
 .nodetree-container span.fancytree-icon {
     position: relative;
 }
+
 .nodetree-container span.fancytree-childcounter {
     color: #fff;
     background: rgba(246, 22, 0, 0.93);
@@ -47,6 +47,7 @@ table.fancytree-ext-table *:focus {
     float: left;
     display: inline-block;
 }
+
 .additionalImages {
     clear: both;
 }
@@ -57,16 +58,32 @@ table.fancytree-ext-table *:focus {
 .iphp_file_widget_container {
     margin-bottom: 20px;
 }
+
 .iphp_file_widget_file {
     clear: both;
 }
+
 .iphp_file_widget_attach {
     clear: both;
     margin-top: 10px;
 }
+
 .iphp_file_widget_delete {
     width: auto;
     padding-right: 10px;
     margin-top: 10px;
     margin-bottom: 0;
+}
+
+.productMainImage-container {
+}
+
+.productMainImage-container .productMainImage-href {
+    width: 200px;
+    display: inline-block;
+}
+
+.productMainImage-container .productMainImage {
+    height: 100%;
+    width: 100%;
 }

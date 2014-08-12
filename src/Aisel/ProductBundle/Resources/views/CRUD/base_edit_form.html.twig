@@ -1,3 +1,14 @@
+{#
+
+This file is part of the Aisel package.
+
+(c) Ivan Proskuryakov
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
 {% block form %}
     {{ sonata_block_render_event('sonata.admin.edit.form.top', { 'admin': admin, 'object': object }) }}
 
@@ -14,7 +25,7 @@
                 action="{{ admin.generateUrl(url, {'id': admin.id(object), 'uniqid': admin.uniqid, 'subclass': app.request.get('subclass')}) }}" {{ form_enctype(form) }}
                 method="POST"
                 enctype="multipart/form-data"
-                id="fileupload"
+                id="media-images"
                 {% if not admin_pool.getOption('html5_validate') %}novalidate="novalidate"{% endif %}
                 >
             {% if form.vars.errors|length > 0 %}

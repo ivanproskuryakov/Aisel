@@ -163,4 +163,4 @@ iphp_file_store:
     mappings:
        mainImage:
            upload_dir: %kernel.root_dir%/../web/%application.media.product.main.path%
-           upload_path: %website_address%/%application.media.product.main.path%
+           upload_path: %website_address%%application.media.product.main.path%

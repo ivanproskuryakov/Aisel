@@ -92,6 +92,10 @@ class ProductAdmin extends Admin
                 'class' => 'Aisel\ProductBundle\Entity\Category',
             ))
             ->with('Stock')
+            ->add('manageStock', 'choice', array('choices' => array(
+                '0' => 'No',
+                '1' => 'Yes'),
+                'label' => 'Use Stock', 'attr' => array()))
             ->add('inStock', 'choice', array('choices' => array(
                 '0' => 'No',
                 '1' => 'Yes'),
@@ -135,6 +139,7 @@ class ProductAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
+            ->add('mainImage','boolean', array('template' => 'AiselProductBundle:Media:list_field_image.html.twig'))
             ->add('name')
             ->add('price')
             ->add('qty')

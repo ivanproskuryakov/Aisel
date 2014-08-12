@@ -52,6 +52,10 @@ Aisel\ProductBundle\Entity\Product:
             type: boolean
             nullable: true
             column: in_stock
+        manageStock:
+            type: boolean
+            nullable: true
+            column: manage_stock
 
 
         descriptionShort:
