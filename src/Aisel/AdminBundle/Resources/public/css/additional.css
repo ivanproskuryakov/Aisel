@@ -87,3 +87,10 @@ table.fancytree-ext-table *:focus {
     height: 100%;
     width: 100%;
 }
+.productMainImage-noimage {
+    padding: 2px 6px;
+    font-size: 10px;
+    background: #868686;
+    color: #fff;
+    border-radius: 4px;
+}

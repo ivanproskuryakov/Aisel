@@ -12,14 +12,17 @@ file that was distributed with this source code.
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
 {% block field %}
-    <div class="productMainImage-container">
-        {% if (object.mainImage) %}
+    {% if (object.mainImage) %}
+        <div class="productMainImage-container">
             <a href="{{ object.mainImage.path }}" target="_blank" title="{{ object.mainImage.fileName }}"
                class="productMainImage-href">
                 <img class="productMainImage" src="{{ object.mainImage.path }}" title="{{ object.mainImage.fileName }}">
             </a>
             <br/>
-        {% endif %}
-        {#{{ dump(object.mainImage) }}#}
-    </div>
+        </div>
+    {% else %}
+        <span class="productMainImage-noimage">no image</span>
+    {% endif %}
+    {#{{ dump(object.mainImage) }}#}
+
 {% endblock %}

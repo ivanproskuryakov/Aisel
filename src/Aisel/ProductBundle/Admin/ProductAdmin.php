@@ -85,7 +85,7 @@ class ProductAdmin extends Admin
                 'label' => 'New', 'attr' => array()))
             ->add('newFrom', 'datetime', array('label' => 'New From', 'attr' => array()))
             ->add('newTo', 'datetime', array('label' => 'New To', 'attr' => array()))
-            ->with('Gallery')
+            ->with('Media')
                 ->add('mainImage', 'iphp_file', array('label' => 'Main Image', 'required' => false, 'attr' => array('class'=>'mainImage')))
             ->with('Categories')
             ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
@@ -139,7 +139,7 @@ class ProductAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('mainImage','boolean', array('template' => 'AiselProductBundle:Media:list_field_image.html.twig'))
+            ->add('mainImage','boolean', array('name' => 'Is published?', 'template' => 'AiselProductBundle:Media:list_field_image.html.twig'))
             ->add('name')
             ->add('price')
             ->add('qty')
