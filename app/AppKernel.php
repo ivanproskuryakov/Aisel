@@ -38,17 +38,18 @@ class AppKernel extends Kernel
             new Aisel\BackendUserBundle\AiselBackendUserBundle(),
             new Aisel\AdminBundle\AiselAdminBundle(),
             new Aisel\PageBundle\AiselPageBundle(),
-            new Aisel\AddressingBundle\AiselAddressingBundle(),
             new Aisel\SearchBundle\AiselSearchBundle(),
             new Aisel\ProductBundle\AiselProductBundle(),
             new Aisel\CartBundle\AiselCartBundle(),
             new Aisel\OrderBundle\AiselOrderBundle(),
             new Aisel\NavigationBundle\AiselNavigationBundle(),
+            new Aisel\AddressingBundle\AiselAddressingBundle(),
             new Aisel\ContactBundle\AiselContactBundle(),
             new Aisel\ConfigBundle\AiselConfigBundle(),
             new Aisel\SitemapBundle\AiselSitemapBundle(),
             new Aisel\ResourceBundle\AiselResourceBundle(),
             new Aisel\InstallerBundle\AiselInstallerBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

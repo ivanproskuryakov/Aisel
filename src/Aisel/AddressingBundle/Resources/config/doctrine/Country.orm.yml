@@ -38,3 +38,10 @@ Aisel\AddressingBundle\Entity\Country:
             type: string
             length: 10
             column: cct_id
+
+        createdAt:
+            type: datetime
+            column: created_at
+        updatedAt:
+            type: datetime
+            column: updated_at

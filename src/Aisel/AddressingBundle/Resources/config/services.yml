@@ -1,7 +1,19 @@
 parameters:
     aisel_addressing_manager.class: Aisel\AddressingBundle\Manager\AddressingManager
+    aisel_addressing_country.class: Aisel\AddressingBundle\Admin\CountryAdmin
 
 services:
     aisel.addressing.manager:
         class: %aisel_addressing_manager.class%
         arguments: [@service_container, @doctrine.orm.entity_manager]
+
+    sonata.admin.addressing.country:
+        class: %aisel_addressing_country.class%
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Addressing", label: "Country" }
+        arguments:
+            - ~
+            - Aisel\AddressingBundle\Entity\Country
+            - ~
+        calls:
+            - [ setTranslationDomain, [AiselAddressingBundle]]

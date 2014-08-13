@@ -10,7 +10,6 @@ api_aisel_pageview_by_url:
     requirements:
         _method: GET
 
-
 #Categories
 api_aisel_page_categorylist:
     pattern:  /api/page/category/list.json
@@ -31,8 +30,9 @@ api_aisel_page_categoryview:
         _method: GET
         id: "\d+"
 
+# Administration
 admin_aisel_page_category_update:
-    pattern:   /administration/page/category/update.json
+    pattern:   /%website_admin%/page/category/update.json
     defaults:  { _controller: AiselPageBundle:Admin/Node:update, _format: json }
     requirements:
         _method: GET

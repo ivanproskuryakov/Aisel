@@ -2,10 +2,6 @@ aisel_contact:
     resource: "@AiselContactBundle/Resources/config/routing.yml"
     prefix:   /
 
-#aisel_category:
-#    resource: "@AiselCategoryBundle/Resources/config/routing.yml"
-#    prefix:   /
-
 aisel_navigation:
     resource: "@AiselNavigationBundle/Resources/config/routing.yml"
     prefix:   /
@@ -30,7 +26,7 @@ aisel_order:
     resource: "@AiselOrderBundle/Resources/config/routing.yml"
     prefix:   /
 
-aisel_adressing:
+aisel_addressing:
     resource: "@AiselAddressingBundle/Resources/config/routing.yml"
     prefix:   /
 
