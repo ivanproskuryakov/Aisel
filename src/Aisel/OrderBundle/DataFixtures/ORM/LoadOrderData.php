@@ -28,10 +28,12 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $frontendUser = $this->getReference('frontenduser');
         $order = new Order();
         $order->setStatus('new');
         $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $order->setFrontenduser($frontendUser);
         $manager->persist($order);
         $manager->flush();
     }
@@ -41,6 +43,6 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 200;
+        return 600;
     }
 }

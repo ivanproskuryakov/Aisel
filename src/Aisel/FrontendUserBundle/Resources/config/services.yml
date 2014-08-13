@@ -1,9 +1,4 @@
 services:
-#    sonata.user.admin.group:
-#        abstract: true
-#        public: false
-
-
     aisel.user.frontend:
         class: Aisel\FrontendUserBundle\Admin\FrontendUserAdmin
         tags:
@@ -15,7 +10,6 @@ services:
         calls:
             - [ setTranslationDomain, [AiselFrontendUserBundle]]
             - [ setEncoderFactory, [ @security.encoder_factory ] ]
-
 
     frontend.user.manager:
         class: Aisel\FrontendUserBundle\Manager\UserManager

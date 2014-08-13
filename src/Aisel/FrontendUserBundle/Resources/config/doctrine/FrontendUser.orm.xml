@@ -40,9 +40,9 @@
             <cascade>
                 <cascade-remove/>
             </cascade>
-            <!--<order-by>-->
-            <!--<order-by-field name="number" direction="ASC" />-->
-            <!--</order-by>-->
+        </one-to-many>
+
+        <one-to-many field="orders" target-entity="Aisel\OrderBundle\Entity\Order" mapped-by="frontenduser">
         </one-to-many>
 
         <one-to-many field="addresses" target-entity="Aisel\AddressingBundle\Entity\Address" mapped-by="frontenduser">

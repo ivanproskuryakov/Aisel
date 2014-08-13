@@ -61,6 +61,10 @@ class ProductAdmin extends Admin
             ->with('General')
             ->add('name', 'text', array('label' => 'Name', 'attr' => array()))
             ->add('sku', 'text', array('label' => 'Sku', 'attr' => array()))
+            ->add('status', 'choice', array('choices' => array(
+                '0' => 'Disabled',
+                '1' => 'Enabled'),
+                'label' => 'Status', 'attr' => array()))
             ->add('descriptionShort', 'ckeditor',
                 array(
                     'label' => 'Short Description',
@@ -70,7 +74,7 @@ class ProductAdmin extends Admin
             ->add('description', 'ckeditor',
                 array(
                     'label' => 'Description',
-                    'required' => true,
+                    'required' => false,
                     'attr' => array('class' => 'field-content')
                 ))
 
@@ -80,8 +84,8 @@ class ProductAdmin extends Admin
             ->add('priceSpecialFrom', 'datetime', array('label' => 'Special Price From', 'attr' => array()))
             ->add('priceSpecialTo', 'datetime', array('label' => 'Special Price To', 'attr' => array()))
             ->add('new', 'choice', array('choices' => array(
-                '0' => 'Disabled',
-                '1' => 'Enabled'),
+                '0' => 'No',
+                '1' => 'Yes'),
                 'label' => 'New', 'attr' => array()))
             ->add('newFrom', 'datetime', array('label' => 'New From', 'attr' => array()))
             ->add('newTo', 'datetime', array('label' => 'New To', 'attr' => array()))
@@ -141,8 +145,10 @@ class ProductAdmin extends Admin
             ->addIdentifier('id')
             ->add('mainImage','boolean', array('name' => 'Is published?', 'template' => 'AiselProductBundle:Media:list_field_image.html.twig'))
             ->add('name')
+            ->add('sku')
             ->add('price')
             ->add('qty')
+            ->add('new')
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),

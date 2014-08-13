@@ -16,12 +16,6 @@ DirectoryIndex index.html
     RewriteCond %{REQUEST_URI} !^/snapshots/views/ [NC]
     RewriteRule ^(.*)/?$ /snapshots/views/%1 [L]
 
-#    RewriteRule ^/administration/(.*)$ /app_dev.php [L]
-#    RewriteRule ^administration/(.*)$ /app_dev.php$1
-
-#    RewriteCond %{REQUEST_URI} !^/administration.*
-#    RewriteRule ^.*$ app_dev.php [NC,L] # Send off as-is to index.php
-
 #    # Determine the RewriteBase automatically and set it as environment variable.
 #    # If you are using Apache aliases to do mass virtual hosting or installed the
 #    # project in a subdirectory, the base path will be prepended to allow proper
@@ -53,8 +47,8 @@ DirectoryIndex index.html
 #
 #    # Rewrite all other queries to the front controller.
 #    RewriteRule .? %{ENV:BASE}/app_dev.php [L]
-#</IfModule>
-#
+</IfModule>
+
 <IfModule !mod_rewrite.c>
     <IfModule mod_alias.c>
         # When mod_rewrite is not available, we instruct a temporary redirect of

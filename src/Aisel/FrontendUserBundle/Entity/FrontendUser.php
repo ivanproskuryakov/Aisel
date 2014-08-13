@@ -736,4 +736,42 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     {
         return $this->addresses;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orders;
+
+
+    /**
+     * Add orders
+     *
+     * @param \Aisel\OrderBundle\Entity\Order $orders
+     * @return FrontendUser
+     */
+    public function addOrder(\Aisel\OrderBundle\Entity\Order $orders)
+    {
+        $this->orders[] = $orders;
+
+        return $this;
+    }
+
+    /**
+     * Remove orders
+     *
+     * @param \Aisel\OrderBundle\Entity\Order $orders
+     */
+    public function removeOrder(\Aisel\OrderBundle\Entity\Order $orders)
+    {
+        $this->orders->removeElement($orders);
+    }
+
+    /**
+     * Get orders
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
 }

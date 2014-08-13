@@ -1,6 +1,6 @@
 Aisel\AddressingBundle\Entity\Country:
     type: entity
-    table: aisel_contry
+    table: aisel_country
     repositoryClass: Aisel\AddressingBundle\Entity\CountryRepository
     id:
         id:
@@ -9,6 +9,32 @@ Aisel\AddressingBundle\Entity\Country:
             generator:
                 strategy: AUTO
     fields:
-        name:
+        iso2:
+            type: string
+            length: 2
+        iso3:
+            type: string
+            length: 3
+        shortName:
             type: string
             length: 255
+            column: short_name
+        longName:
+            type: string
+            length: 255
+            column: long_name
+        numcode:
+            type: string
+            length: 10
+            column: numcode
+        unMember:
+            type: boolean
+            column: un_member
+        callingCode:
+            type: string
+            length: 10
+            column: calling_code
+        cctld:
+            type: string
+            length: 10
+            column: cct_id

@@ -69,7 +69,9 @@ file that was distributed with this source code.
                                                 {% endfor %}
 
                                                 {% if name == 'Media' %}
-                                                    {% include 'AiselProductBundle:Media:base.html.twig' %}
+                                                    {% if app.request.attributes.get('id') %}
+                                                        {% include 'AiselProductBundle:Media:base.html.twig' %}
+                                                    {% endif %}
                                                 {% endif %}
                                             </div>
                                         </div>
