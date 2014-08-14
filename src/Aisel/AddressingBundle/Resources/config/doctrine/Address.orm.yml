@@ -45,21 +45,19 @@ Aisel\AddressingBundle\Entity\Address:
     oneToOne:
       country:
         targetEntity: Aisel\AddressingBundle\Entity\Country
-        inversedBy: address
-        joinColumns:
-          country_id:
-            referencedColumnName: id
+        joinColumn:
+          name: county_id
+          referencedColumnName: id
 
       region:
         targetEntity: Aisel\AddressingBundle\Entity\Region
-        inversedBy: address
-        joinColumns:
-          region_id:
-            referencedColumnName: id
+        joinColumn:
+          name: region_id
+          referencedColumnName: id
 
       city:
         targetEntity: Aisel\AddressingBundle\Entity\City
-        inversedBy: address
-        joinColumns:
-          city_id:
-            referencedColumnName: id
+        joinColumn:
+          name: city_id
+          referencedColumnName: id
+

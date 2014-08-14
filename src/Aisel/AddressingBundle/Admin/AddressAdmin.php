@@ -20,13 +20,13 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
 /**
- * Country CRUD for backend administration
+ * Address CRUD for backend administration
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class CountryAdmin extends Admin
+class AddressAdmin extends Admin
 {
-    protected $baseRoutePattern = 'addressing/country';
+    protected $baseRoutePattern = 'addressing/address';
     protected $encoderFactory;
 
     /**
@@ -36,7 +36,7 @@ class CountryAdmin extends Admin
     {
         $showMapper
             ->with('General')
-            ->add('iso2')
+            ->add('phone')
             ->end();
     }
 
@@ -54,7 +54,7 @@ class CountryAdmin extends Admin
     {
         $formMapper
             ->with('General')
-            ->add('iso2', 'text', array('required' => true))
+            ->add('phone', 'text', array('required' => true))
             ->end();
     }
 
@@ -64,7 +64,7 @@ class CountryAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
         $filterMapper
-            ->add('iso2');
+            ->add('phone');
     }
 
     /**
@@ -74,11 +74,14 @@ class CountryAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->addIdentifier('iso2')
-            ->addIdentifier('iso3')
-            ->addIdentifier('shortName')
-            ->addIdentifier('cctld')
-
+            ->add('phone')
+            ->add('street')
+            ->add('zip')
+            ->add('comment')
+            ->add('country', null, array('label' => 'Country'))
+            ->add('region', null, array('label' => 'Region'))
+            ->add('city', null, array('label' => 'City'))
+            ->add('frontenduser', null, array('label' => 'User'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -91,18 +94,18 @@ class CountryAdmin extends Admin
     /**
      * {@inheritdoc}
      */
-    public function prePersist($user)
+    public function prePersist($entity)
     {
-        $user->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $entity->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $entity->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function preUpdate($user)
+    public function preUpdate($entity)
     {
-        $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $entity->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
     /**
@@ -110,7 +113,7 @@ class CountryAdmin extends Admin
      */
     public function toString($object)
     {
-        return $object->getId() ? $object->getIso2() : $this->trans('link_add', array(), 'SonataAdminBundle');
+        return $object->getId() ? $object->getId() : $this->trans('link_add', array(), 'SonataAdminBundle');
     }
 
 }

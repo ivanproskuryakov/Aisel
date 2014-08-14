@@ -19,7 +19,20 @@ class City
      */
     private $name;
 
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
 
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
     /**
      * Get id
      *
@@ -52,16 +65,6 @@ class City
     {
         return $this->name;
     }
-    /**
-     * @var \DateTime
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    private $updatedAt;
-
 
     /**
      * Set createdAt

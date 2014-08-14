@@ -54,7 +54,10 @@ class Country
      */
     private $cctld;
 
-
+    public function __toString()
+    {
+        return $this->getShortName();
+    }
     /**
      * Get id
      *

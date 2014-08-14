@@ -19,6 +19,20 @@ class Region
      */
     private $name;
 
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
     /**
      * Get id
@@ -52,16 +66,6 @@ class Region
     {
         return $this->name;
     }
-    /**
-     * @var \DateTime
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    private $updatedAt;
-
 
     /**
      * Set createdAt
