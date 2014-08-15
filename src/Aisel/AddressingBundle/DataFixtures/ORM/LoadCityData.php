@@ -29,8 +29,12 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
 
+        // references
+        $region = $this->getReference('region');
+
         $city = new City();
         $city->setName('Madrid');
+        $city->setRegion($region);
         $city->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $city->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $manager->persist($city);
@@ -44,6 +48,6 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 500;
+        return 520;
     }
 }

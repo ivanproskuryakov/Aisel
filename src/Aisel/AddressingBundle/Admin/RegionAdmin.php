@@ -54,6 +54,8 @@ class RegionAdmin extends Admin
     {
         $formMapper
             ->with('General')
+            ->add('region', null, array('label' => 'Region'))
+            ->add('country', null, array('label' => 'Region'))
             ->add('name', 'text', array('required' => true))
             ->end();
     }
@@ -75,7 +77,7 @@ class RegionAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->addIdentifier('name')
-
+            ->add('country', null, array('label' => 'Country'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),

@@ -20,3 +20,10 @@ Aisel\AddressingBundle\Entity\Region:
         updatedAt:
             type: datetime
             column: updated_at
+
+    oneToOne:
+      country:
+        targetEntity: Aisel\AddressingBundle\Entity\Country
+        joinColumn:
+          name: county_id
+          referencedColumnName: id

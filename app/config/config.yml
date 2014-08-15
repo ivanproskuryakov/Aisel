@@ -138,15 +138,22 @@ sonata_block:
         sonata.block.service.text:
 
 sonata_admin:
-    title:      Backend
+    title:  Backend
     templates:
+        #Base layout
         layout:              AiselAdminBundle::layout.html.twig
         search:              SonataAdminBundle:Core:search.html.twig
         search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
 
-        list:    AiselAdminBundle:CRUD:list.html.twig
-        show:    AiselAdminBundle:CRUD:show.html.twig
-        edit:    AiselAdminBundle:CRUD:edit.html.twig
+        #CRUD
+        list:                AiselAdminBundle:CRUD:list.html.twig
+        show:                AiselAdminBundle:CRUD:show.html.twig
+        edit:                AiselAdminBundle:CRUD:edit.html.twig
+
+        #Dashboard
+        dashboard:           AiselAdminBundle:Core:dashboard.html.twig
+        list_block:          AiselAdminBundle:Block:block_admin_list.html.twig
+
     options:
         html5_validate: true # does not use html5 validation
         confirm_exit:   true # disable confirmation when quitting with unsaved changes

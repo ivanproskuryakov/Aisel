@@ -112,4 +112,32 @@ class Region
     {
         return $this->updatedAt;
     }
+    /**
+     * @var \Aisel\AddressingBundle\Entity\Country
+     */
+    private $country;
+
+
+    /**
+     * Set country
+     *
+     * @param \Aisel\AddressingBundle\Entity\Country $country
+     * @return Region
+     */
+    public function setCountry(\Aisel\AddressingBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Aisel\AddressingBundle\Entity\Country 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
 }

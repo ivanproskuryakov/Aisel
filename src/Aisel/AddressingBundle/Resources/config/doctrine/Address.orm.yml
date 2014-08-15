@@ -41,7 +41,6 @@ Aisel\AddressingBundle\Entity\Address:
           user_id:
             referencedColumnName: id
 
-    #Country
     oneToOne:
       country:
         targetEntity: Aisel\AddressingBundle\Entity\Country

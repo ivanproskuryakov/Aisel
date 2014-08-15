@@ -105,16 +105,21 @@ Bug tracking
 Project uses [GitHub issues](https://github.com/ivanproskuryakov/Aisel/issues).
 If you have found bug, please create an issue.
 
+
 MIT License
------------
+-----------------------------------
 
 License can be found [here](https://github.com/ivanproskuryakov/Aisel/blob/master/LICENSE).
 
 Authors
--------
+-----------------------------------
 
 Aisel was originally created by [Ivan Proskuryakov](http://www.magazento.com).
-See the list of [contributors](https://github.com/ivanproskuryakov/Aisel/graphs/contributors).
+List of [contributors](https://github.com/ivanproskuryakov/Aisel/graphs/contributors).
+
+BTC Donations
+-----------------------------------
+To support ongoing development you may send BitCoin to 1DmBssUeNGXC8VC3BFm3VB3Qc9wmSB7DrK
 
 Speed Test
 -----------------------------------

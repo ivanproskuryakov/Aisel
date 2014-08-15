@@ -55,6 +55,8 @@ class CityAdmin extends Admin
         $formMapper
             ->with('General')
             ->add('name', 'text', array('required' => true))
+            ->add('region', null, array('label' => 'Region', 'attr' => array('class' => 'form-control')))
+            ->add('country', null, array('label' => 'Country','attr' => array('class' => 'form-control')))
             ->end();
     }
 
@@ -75,7 +77,8 @@ class CityAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->addIdentifier('name')
-
+            ->add('country', null, array('label' => 'Country'))
+            ->add('region', null, array('label' => 'Region'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),

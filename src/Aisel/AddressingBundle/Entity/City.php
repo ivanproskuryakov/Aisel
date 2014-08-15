@@ -111,4 +111,60 @@ class City
     {
         return $this->updatedAt;
     }
+    /**
+     * @var \Aisel\AddressingBundle\Entity\Country
+     */
+    private $country;
+
+    /**
+     * @var \Aisel\AddressingBundle\Entity\Region
+     */
+    private $region;
+
+
+    /**
+     * Set country
+     *
+     * @param \Aisel\AddressingBundle\Entity\Country $country
+     * @return City
+     */
+    public function setCountry(\Aisel\AddressingBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Aisel\AddressingBundle\Entity\Country 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set region
+     *
+     * @param \Aisel\AddressingBundle\Entity\Region $region
+     * @return City
+     */
+    public function setRegion(\Aisel\AddressingBundle\Entity\Region $region = null)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return \Aisel\AddressingBundle\Entity\Region 
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
 }

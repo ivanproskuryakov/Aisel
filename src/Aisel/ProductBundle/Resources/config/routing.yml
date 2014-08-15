@@ -19,7 +19,7 @@ admin_aisel_product_media_upload:
 
 
 admin_aisel_product_category_update:
-    pattern:   /administration/product/category/update.json
+    pattern:   /%website_admin%/product/category/update.json
     defaults:  { _controller: AiselProductBundle:Admin/Node:update, _format: json }
     requirements:
         _method: GET

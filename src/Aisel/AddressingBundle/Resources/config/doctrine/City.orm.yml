@@ -18,3 +18,16 @@ Aisel\AddressingBundle\Entity\City:
         updatedAt:
             type: datetime
             column: updated_at
+
+    oneToOne:
+      country:
+        targetEntity: Aisel\AddressingBundle\Entity\Country
+        joinColumn:
+          name: county_id
+          referencedColumnName: id
+
+      region:
+        targetEntity: Aisel\AddressingBundle\Entity\Region
+        joinColumn:
+          name: region_id
+          referencedColumnName: id

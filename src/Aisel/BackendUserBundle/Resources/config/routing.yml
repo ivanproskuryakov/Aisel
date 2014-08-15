@@ -1,13 +1,13 @@
 admin_login:
-    pattern:   /administration/login
+    pattern:   /%website_admin%/login
     defaults:  { _controller: AiselBackendUserBundle:Login:login }
     requirements:
         _method: GET
 
 admin_login_check:
-    pattern:   /administration/login_check
+    pattern:   /%website_admin%/login_check
 #    defaults:  { _controller: AiselAdminBundle:Login:logout }
 
 admin_logout:
-    pattern:   /administration/logout
+    pattern:   /%website_admin%/logout
 #    defaults:  { _controller: AiselAdminBundle:Login:check }
