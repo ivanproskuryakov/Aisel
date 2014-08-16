@@ -28,8 +28,12 @@ class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        // references
+        $country = $this->getReference('country');
+
         $region = new Region();
         $region->setName('Comunidad de Madrid');
+        $region->setCountry($country);
         $region->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $region->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $manager->persist($region);

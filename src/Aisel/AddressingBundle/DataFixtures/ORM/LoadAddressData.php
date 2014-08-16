@@ -30,8 +30,9 @@ class LoadAddressData extends AbstractFixture implements OrderedFixtureInterface
     {
         // references
         $frontendUser = $this->getReference('frontenduser');
-        $city = $this->getReference('city');
+        $country = $this->getReference('country');
         $region = $this->getReference('region');
+        $city = $this->getReference('city');
 
         $address = new Address();
         $address->setPhone('+34 917 74 10 00');
@@ -39,6 +40,7 @@ class LoadAddressData extends AbstractFixture implements OrderedFixtureInterface
         $address->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $address->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $address->setFrontenduser($frontendUser);
+        $address->setCountry($country);
         $address->setRegion($region);
         $address->setCity($city);
         $address->setZip('28012');

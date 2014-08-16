@@ -30,11 +30,13 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
     {
 
         // references
+        $country = $this->getReference('country');
         $region = $this->getReference('region');
 
         $city = new City();
         $city->setName('Madrid');
         $city->setRegion($region);
+        $city->setCountry($country);
         $city->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $city->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $manager->persist($city);
