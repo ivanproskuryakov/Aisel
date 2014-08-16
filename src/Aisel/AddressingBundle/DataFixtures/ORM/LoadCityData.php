@@ -11,38 +11,50 @@
 
 namespace Aisel\AddressingBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
 use Aisel\AddressingBundle\Entity\City;
 
 /**
- * Addressing fixtures
+ * City fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
+class LoadCityData extends AbstractFixtureData implements OrderedFixtureInterface
 {
+
+    protected $fixturesName = 'aisel_city.xml';
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-
-        // references
+        // Hardcoded references
         $country = $this->getReference('country');
         $region = $this->getReference('region');
 
-        $city = new City();
-        $city->setName('Madrid');
-        $city->setRegion($region);
-        $city->setCountry($country);
-        $city->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $city->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $manager->persist($city);
-        $manager->flush();
+        if (file_exists($this->fixturesFile)) {
+            $contents = file_get_contents($this->fixturesFile);
+            $XML = simplexml_load_string($contents);
+            $city = null;
 
-        $this->addReference('city', $city);
+            foreach ($XML->database->table as $table) {
+                $city = new City();
+                $city->setName($table->column[1]);
+                $city->setRegion($region);
+                $city->setCountry($country);
+                $city->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $city->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $manager->persist($city);
+                $manager->flush();
+            }
+            $this->addReference('city', $city);
+        }
     }
 
     /**
@@ -50,6 +62,6 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 520;
+        return 530;
     }
 }

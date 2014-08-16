@@ -11,9 +11,12 @@
 
 namespace Aisel\AddressingBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
 use Aisel\AddressingBundle\Entity\Address;
 
 /**
@@ -21,32 +24,45 @@ use Aisel\AddressingBundle\Entity\Address;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadAddressData extends AbstractFixture implements OrderedFixtureInterface
+class LoadAddressData extends AbstractFixtureData implements OrderedFixtureInterface
 {
+
+    protected $fixturesName = 'aisel_address.xml';
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        // references
+        // Hardcoded references
         $frontendUser = $this->getReference('frontenduser');
         $country = $this->getReference('country');
         $region = $this->getReference('region');
         $city = $this->getReference('city');
 
-        $address = new Address();
-        $address->setPhone('+34 917 74 10 00');
-        $address->setStreet('Calle de Santa Isabel, 52');
-        $address->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $address->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $address->setFrontenduser($frontendUser);
-        $address->setCountry($country);
-        $address->setRegion($region);
-        $address->setCity($city);
-        $address->setZip('28012');
-        $address->setComment('The Museo Nacional Centro de Arte Reina Sofía is Spain\'s');
-        $manager->persist($address);
-        $manager->flush();
+        if (file_exists($this->fixturesFile)) {
+            $contents = file_get_contents($this->fixturesFile);
+            $XML = simplexml_load_string($contents);
+            $address = null;
+
+            foreach ($XML->database->table as $table) {
+                $address = new Address();
+                $address->setPhone($table->column[5]);
+                $address->setStreet($table->column[6]);
+                $address->setZip($table->column[7]);
+                $address->setComment($table->column[8]);
+                $address->setFrontenduser($frontendUser);
+                $address->setCountry($country);
+                $address->setRegion($region);
+                $address->setCity($city);
+                $address->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $address->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $manager->persist($address);
+                $manager->flush();
+            }
+            $this->addReference('address', $address);
+
+        }
     }
 
     /**
@@ -54,6 +70,6 @@ class LoadAddressData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 550;
+        return 540;
     }
 }

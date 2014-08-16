@@ -4,6 +4,7 @@ parameters:
     application.media.path: /media
     application.media.product.path: /media/product
     application.media.product.main.path: /media/product
+    application.dump.xml.path: /dump/xml
 
 aisel_config:
     route_prefix: config_ # ex: config_contact

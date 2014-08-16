@@ -11,35 +11,49 @@
 
 namespace Aisel\AddressingBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
 use Aisel\AddressingBundle\Entity\Region;
 
 /**
- * Addressing fixtures
+ * Region fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface
+class LoadRegionData extends AbstractFixtureData implements OrderedFixtureInterface
 {
+
+    protected $fixturesName = 'aisel_region.xml';
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        // references
+        // Hardcoded references
         $country = $this->getReference('country');
 
-        $region = new Region();
-        $region->setName('Comunidad de Madrid');
-        $region->setCountry($country);
-        $region->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $region->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $manager->persist($region);
-        $manager->flush();
+        if (file_exists($this->fixturesFile)) {
+            $contents = file_get_contents($this->fixturesFile);
+            $XML = simplexml_load_string($contents);
+            $region = null;
 
-        $this->addReference('region', $region);
+            foreach ($XML->database->table as $table) {
+                $country = $this->em->getRepository('AiselAddressingBundle:Country')->find((int)$table->column[4]);
+                $region = new Region();
+                $region->setName($table->column[1]);
+                $region->setCountry($country);
+                $region->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $region->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $manager->persist($region);
+                $manager->flush();
+            }
+            $this->addReference('region', $region);
+        }
 
     }
 
@@ -48,6 +62,6 @@ class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 510;
+        return 520;
     }
 }
