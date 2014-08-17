@@ -12,7 +12,6 @@
 namespace Aisel\OrderBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Aisel\AdminBundle\Utility\UrlUtility;
 
 /**
  * Manager for Orders, mostly used in REST API
@@ -30,11 +29,10 @@ class OrderManager
         $this->em = $em;
     }
 
-
     /**
      * Get single detailed order by Id
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      *
@@ -50,6 +48,5 @@ class OrderManager
 
         return $order;
     }
-
 
 }

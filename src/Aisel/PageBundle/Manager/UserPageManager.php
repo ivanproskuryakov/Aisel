@@ -79,7 +79,7 @@ class UserPageManager
     /**
      * Load page by Id
      *
-     * @param  int $pageId
+     * @param int $pageId
      *
      * @return array $page
      *
@@ -97,7 +97,7 @@ class UserPageManager
 
     /**
      * Get single detailed page with category by URLKey
-     * @param  int $pageId
+     * @param  int   $pageId
      * @return array $page
      */
     public function getPageDetailsById($pageId)
@@ -111,7 +111,7 @@ class UserPageManager
 
     /**
      * Update page by given Id
-     * @param  int $pageId
+     * @param  int   $pageId
      * @param  array $details
      * @return array $pageDetails
      */
@@ -157,7 +157,7 @@ class UserPageManager
 
     /**
      * Add page from frontend
-     * @param  object $pageDetails
+     * @param  object                        $pageDetails
      * @return \Aisel\PageBundle\Entity\Page $page
      */
     public function addPage($pageDetails)

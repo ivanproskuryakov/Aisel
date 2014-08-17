@@ -2,8 +2,6 @@
 
 namespace Aisel\AddressingBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Region
  */
@@ -37,7 +35,7 @@ class Region
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -47,7 +45,7 @@ class Region
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Region
      */
     public function setName($name)
@@ -60,7 +58,7 @@ class Region
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -70,7 +68,7 @@ class Region
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Region
      */
     public function setCreatedAt($createdAt)
@@ -83,7 +81,7 @@ class Region
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -93,7 +91,7 @@ class Region
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Region
      */
     public function setUpdatedAt($updatedAt)
@@ -106,7 +104,7 @@ class Region
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -117,11 +115,10 @@ class Region
      */
     private $country;
 
-
     /**
      * Set country
      *
-     * @param \Aisel\AddressingBundle\Entity\Country $country
+     * @param  \Aisel\AddressingBundle\Entity\Country $country
      * @return Region
      */
     public function setCountry(\Aisel\AddressingBundle\Entity\Country $country = null)
@@ -134,7 +131,7 @@ class Region
     /**
      * Get country
      *
-     * @return \Aisel\AddressingBundle\Entity\Country 
+     * @return \Aisel\AddressingBundle\Entity\Country
      */
     public function getCountry()
     {

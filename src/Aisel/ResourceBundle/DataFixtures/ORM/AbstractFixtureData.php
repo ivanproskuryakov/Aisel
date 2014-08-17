@@ -13,7 +13,6 @@ namespace Aisel\ResourceBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -26,8 +25,8 @@ abstract class AbstractFixtureData extends AbstractFixture implements OrderedFix
 {
 
     protected $fixturesName = null;
+    protected $container;
     protected $em;
-
 
     /**
      * {@inheritDoc}
@@ -39,6 +38,7 @@ abstract class AbstractFixtureData extends AbstractFixture implements OrderedFix
             $container->getParameter('application.dump.xml.path') . DIRECTORY_SEPARATOR .
             $this->fixturesName;
 
+        $this->container = $container;
         $this->em = $container->get('doctrine.orm.entity_manager');
     }
 

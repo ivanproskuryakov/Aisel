@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Aisel\InstallerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;

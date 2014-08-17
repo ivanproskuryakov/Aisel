@@ -23,5 +23,4 @@ class OrderRepository extends EntityRepository
     private $orderOrder = 'id';
     private $orderOrderBy = 'DESC';
 
-
 }

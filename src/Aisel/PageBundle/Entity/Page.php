@@ -2,8 +2,6 @@
 
 namespace Aisel\PageBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Page
  */
@@ -100,7 +98,7 @@ class Page
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Page
      */
     public function setTitle($title)
@@ -123,7 +121,7 @@ class Page
     /**
      * Set content
      *
-     * @param string $content
+     * @param  string $content
      * @return Page
      */
     public function setContent($content)
@@ -146,7 +144,7 @@ class Page
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param  boolean $status
      * @return Page
      */
     public function setStatus($status)
@@ -169,7 +167,7 @@ class Page
     /**
      * Set hidden
      *
-     * @param boolean $hidden
+     * @param  boolean $hidden
      * @return Page
      */
     public function setHidden($hidden)
@@ -192,7 +190,7 @@ class Page
     /**
      * Set commentStatus
      *
-     * @param boolean $commentStatus
+     * @param  boolean $commentStatus
      * @return Page
      */
     public function setCommentStatus($commentStatus)
@@ -215,7 +213,7 @@ class Page
     /**
      * Set metaUrl
      *
-     * @param string $metaUrl
+     * @param  string $metaUrl
      * @return Page
      */
     public function setMetaUrl($metaUrl)
@@ -238,7 +236,7 @@ class Page
     /**
      * Set metaTitle
      *
-     * @param string $metaTitle
+     * @param  string $metaTitle
      * @return Page
      */
     public function setMetaTitle($metaTitle)
@@ -261,7 +259,7 @@ class Page
     /**
      * Set metaDescription
      *
-     * @param string $metaDescription
+     * @param  string $metaDescription
      * @return Page
      */
     public function setMetaDescription($metaDescription)
@@ -284,7 +282,7 @@ class Page
     /**
      * Set metaKeywords
      *
-     * @param string $metaKeywords
+     * @param  string $metaKeywords
      * @return Page
      */
     public function setMetaKeywords($metaKeywords)
@@ -307,7 +305,7 @@ class Page
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Page
      */
     public function setCreatedAt($createdAt)
@@ -330,7 +328,7 @@ class Page
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Page
      */
     public function setUpdatedAt($updatedAt)
@@ -353,7 +351,7 @@ class Page
     /**
      * Set frontenduser
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
+     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
      * @return Page
      */
     public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
@@ -376,7 +374,7 @@ class Page
     /**
      * Add categories
      *
-     * @param \Aisel\PageBundle\Entity\Category $categories
+     * @param  \Aisel\PageBundle\Entity\Category $categories
      * @return Page
      */
     public function addCategory(\Aisel\PageBundle\Entity\Category $categories)

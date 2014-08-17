@@ -28,7 +28,7 @@ class SearchManager
     /**
      * Get list of results
      *
-     * @param  array $params
+     * @param array $params
      *
      * @return array $return
      */

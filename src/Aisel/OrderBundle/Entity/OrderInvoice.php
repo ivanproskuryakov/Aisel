@@ -2,8 +2,6 @@
 
 namespace Aisel\OrderBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * OrderInvoice
  */
@@ -29,7 +27,6 @@ class OrderInvoice
      */
     private $product;
 
-
     /**
      * Get id
      *
@@ -43,7 +40,7 @@ class OrderInvoice
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime    $createdAt
      * @return OrderInvoice
      */
     public function setCreatedAt($createdAt)
@@ -66,7 +63,7 @@ class OrderInvoice
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime    $updatedAt
      * @return OrderInvoice
      */
     public function setUpdatedAt($updatedAt)
@@ -89,7 +86,7 @@ class OrderInvoice
     /**
      * Set product
      *
-     * @param \Aisel\OrderBundle\Entity\Order $product
+     * @param  \Aisel\OrderBundle\Entity\Order $product
      * @return OrderInvoice
      */
     public function setProduct(\Aisel\OrderBundle\Entity\Order $product = null)
@@ -135,7 +132,7 @@ class OrderInvoice
     /**
      * Set status
      *
-     * @param string $status
+     * @param  string       $status
      * @return OrderInvoice
      */
     public function setStatus($status)
@@ -158,7 +155,7 @@ class OrderInvoice
     /**
      * Set frontenduser
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
+     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
      * @return OrderInvoice
      */
     public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
@@ -181,7 +178,7 @@ class OrderInvoice
     /**
      * Add item
      *
-     * @param \Aisel\OrderBundle\Entity\OrderItem $item
+     * @param  \Aisel\OrderBundle\Entity\OrderItem $item
      * @return OrderInvoice
      */
     public function addItem(\Aisel\OrderBundle\Entity\OrderItem $item)

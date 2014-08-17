@@ -2,8 +2,6 @@
 
 namespace Aisel\AddressingBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * City
  */
@@ -36,7 +34,7 @@ class City
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -46,7 +44,7 @@ class City
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return City
      */
     public function setName($name)
@@ -59,7 +57,7 @@ class City
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -69,7 +67,7 @@ class City
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return City
      */
     public function setCreatedAt($createdAt)
@@ -82,7 +80,7 @@ class City
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -92,7 +90,7 @@ class City
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return City
      */
     public function setUpdatedAt($updatedAt)
@@ -105,7 +103,7 @@ class City
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -121,11 +119,10 @@ class City
      */
     private $region;
 
-
     /**
      * Set country
      *
-     * @param \Aisel\AddressingBundle\Entity\Country $country
+     * @param  \Aisel\AddressingBundle\Entity\Country $country
      * @return City
      */
     public function setCountry(\Aisel\AddressingBundle\Entity\Country $country = null)
@@ -138,7 +135,7 @@ class City
     /**
      * Get country
      *
-     * @return \Aisel\AddressingBundle\Entity\Country 
+     * @return \Aisel\AddressingBundle\Entity\Country
      */
     public function getCountry()
     {
@@ -148,7 +145,7 @@ class City
     /**
      * Set region
      *
-     * @param \Aisel\AddressingBundle\Entity\Region $region
+     * @param  \Aisel\AddressingBundle\Entity\Region $region
      * @return City
      */
     public function setRegion(\Aisel\AddressingBundle\Entity\Region $region = null)
@@ -161,7 +158,7 @@ class City
     /**
      * Get region
      *
-     * @return \Aisel\AddressingBundle\Entity\Region 
+     * @return \Aisel\AddressingBundle\Entity\Region
      */
     public function getRegion()
     {

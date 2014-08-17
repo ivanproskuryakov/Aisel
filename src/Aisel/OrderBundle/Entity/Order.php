@@ -453,11 +453,10 @@ class Order
      */
     private $descriptionFull;
 
-
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Order
      */
     public function setName($name)
@@ -480,7 +479,7 @@ class Order
     /**
      * Set sku
      *
-     * @param string $sku
+     * @param  string $sku
      * @return Order
      */
     public function setSku($sku)
@@ -503,7 +502,7 @@ class Order
     /**
      * Set price
      *
-     * @param float $price
+     * @param  float $price
      * @return Order
      */
     public function setPrice($price)
@@ -526,7 +525,7 @@ class Order
     /**
      * Set priceSpecial
      *
-     * @param float $priceSpecial
+     * @param  float $priceSpecial
      * @return Order
      */
     public function setPriceSpecial($priceSpecial)
@@ -549,7 +548,7 @@ class Order
     /**
      * Set priceSpecialFrom
      *
-     * @param \DateTime $priceSpecialFrom
+     * @param  \DateTime $priceSpecialFrom
      * @return Order
      */
     public function setPriceSpecialFrom($priceSpecialFrom)
@@ -572,7 +571,7 @@ class Order
     /**
      * Set priceSpecialTo
      *
-     * @param \DateTime $priceSpecialTo
+     * @param  \DateTime $priceSpecialTo
      * @return Order
      */
     public function setPriceSpecialTo($priceSpecialTo)
@@ -595,7 +594,7 @@ class Order
     /**
      * Set descriptionShort
      *
-     * @param string $descriptionShort
+     * @param  string $descriptionShort
      * @return Order
      */
     public function setDescriptionShort($descriptionShort)
@@ -618,7 +617,7 @@ class Order
     /**
      * Set descriptionFull
      *
-     * @param string $descriptionFull
+     * @param  string $descriptionFull
      * @return Order
      */
     public function setDescriptionFull($descriptionFull)
@@ -653,11 +652,10 @@ class Order
      */
     private $newTo;
 
-
     /**
      * Set new
      *
-     * @param boolean $new
+     * @param  boolean $new
      * @return Order
      */
     public function setNew($new)
@@ -680,7 +678,7 @@ class Order
     /**
      * Set newFrom
      *
-     * @param \DateTime $newFrom
+     * @param  \DateTime $newFrom
      * @return Order
      */
     public function setNewFrom($newFrom)
@@ -703,7 +701,7 @@ class Order
     /**
      * Set newTo
      *
-     * @param \DateTime $newTo
+     * @param  \DateTime $newTo
      * @return Order
      */
     public function setNewTo($newTo)
@@ -728,11 +726,10 @@ class Order
      */
     private $description;
 
-
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string $description
      * @return Order
      */
     public function setDescription($description)
@@ -757,11 +754,10 @@ class Order
      */
     private $image;
 
-
     /**
      * Add image
      *
-     * @param \Aisel\OrderBundle\Entity\OrderItem $image
+     * @param  \Aisel\OrderBundle\Entity\OrderItem $image
      * @return Order
      */
     public function addImage(\Aisel\OrderBundle\Entity\OrderItem $image)
@@ -796,11 +792,10 @@ class Order
      */
     private $item;
 
-
     /**
      * Add item
      *
-     * @param \Aisel\OrderBundle\Entity\OrderItem $item
+     * @param  \Aisel\OrderBundle\Entity\OrderItem $item
      * @return Order
      */
     public function addItem(\Aisel\OrderBundle\Entity\OrderItem $item)
@@ -839,11 +834,10 @@ class Order
      */
     private $grandtotal;
 
-
     /**
      * Set subtotal
      *
-     * @param integer $subtotal
+     * @param  integer $subtotal
      * @return Order
      */
     public function setSubtotal($subtotal)
@@ -856,7 +850,7 @@ class Order
     /**
      * Get subtotal
      *
-     * @return integer 
+     * @return integer
      */
     public function getSubtotal()
     {
@@ -866,7 +860,7 @@ class Order
     /**
      * Set grandtotal
      *
-     * @param integer $grandtotal
+     * @param  integer $grandtotal
      * @return Order
      */
     public function setGrandtotal($grandtotal)
@@ -879,7 +873,7 @@ class Order
     /**
      * Get grandtotal
      *
-     * @return integer 
+     * @return integer
      */
     public function getGrandtotal()
     {

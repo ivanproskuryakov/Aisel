@@ -2,8 +2,6 @@
 
 namespace Aisel\OrderBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * OrderItem
  */
@@ -29,7 +27,6 @@ class OrderItem
      */
     private $product;
 
-
     /**
      * Get id
      *
@@ -43,7 +40,7 @@ class OrderItem
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return OrderItem
      */
     public function setCreatedAt($createdAt)
@@ -66,7 +63,7 @@ class OrderItem
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return OrderItem
      */
     public function setUpdatedAt($updatedAt)
@@ -89,7 +86,7 @@ class OrderItem
     /**
      * Set product
      *
-     * @param \Aisel\OrderBundle\Entity\Order $product
+     * @param  \Aisel\OrderBundle\Entity\Order $product
      * @return OrderItem
      */
     public function setProduct(\Aisel\OrderBundle\Entity\Order $product = null)

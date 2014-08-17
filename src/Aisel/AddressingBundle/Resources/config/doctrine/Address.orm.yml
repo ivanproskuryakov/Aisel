@@ -59,4 +59,3 @@ Aisel\AddressingBundle\Entity\Address:
         joinColumn:
           name: city_id
           referencedColumnName: id
-

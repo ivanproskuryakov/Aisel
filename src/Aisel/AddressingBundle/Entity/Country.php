@@ -2,8 +2,6 @@
 
 namespace Aisel\AddressingBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Country
  */
@@ -61,7 +59,7 @@ class Country
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,7 +69,7 @@ class Country
     /**
      * Set iso2
      *
-     * @param string $iso2
+     * @param  string  $iso2
      * @return Country
      */
     public function setIso2($iso2)
@@ -84,7 +82,7 @@ class Country
     /**
      * Get iso2
      *
-     * @return string 
+     * @return string
      */
     public function getIso2()
     {
@@ -94,7 +92,7 @@ class Country
     /**
      * Set iso3
      *
-     * @param string $iso3
+     * @param  string  $iso3
      * @return Country
      */
     public function setIso3($iso3)
@@ -107,7 +105,7 @@ class Country
     /**
      * Get iso3
      *
-     * @return string 
+     * @return string
      */
     public function getIso3()
     {
@@ -117,7 +115,7 @@ class Country
     /**
      * Set shortName
      *
-     * @param string $shortName
+     * @param  string  $shortName
      * @return Country
      */
     public function setShortName($shortName)
@@ -130,7 +128,7 @@ class Country
     /**
      * Get shortName
      *
-     * @return string 
+     * @return string
      */
     public function getShortName()
     {
@@ -140,7 +138,7 @@ class Country
     /**
      * Set longName
      *
-     * @param string $longName
+     * @param  string  $longName
      * @return Country
      */
     public function setLongName($longName)
@@ -153,7 +151,7 @@ class Country
     /**
      * Get longName
      *
-     * @return string 
+     * @return string
      */
     public function getLongName()
     {
@@ -163,7 +161,7 @@ class Country
     /**
      * Set numcode
      *
-     * @param string $numcode
+     * @param  string  $numcode
      * @return Country
      */
     public function setNumcode($numcode)
@@ -176,7 +174,7 @@ class Country
     /**
      * Get numcode
      *
-     * @return string 
+     * @return string
      */
     public function getNumcode()
     {
@@ -186,7 +184,7 @@ class Country
     /**
      * Set unMember
      *
-     * @param boolean $unMember
+     * @param  boolean $unMember
      * @return Country
      */
     public function setUnMember($unMember)
@@ -199,7 +197,7 @@ class Country
     /**
      * Get unMember
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getUnMember()
     {
@@ -209,7 +207,7 @@ class Country
     /**
      * Set callingCode
      *
-     * @param string $callingCode
+     * @param  string  $callingCode
      * @return Country
      */
     public function setCallingCode($callingCode)
@@ -222,7 +220,7 @@ class Country
     /**
      * Get callingCode
      *
-     * @return string 
+     * @return string
      */
     public function getCallingCode()
     {
@@ -232,7 +230,7 @@ class Country
     /**
      * Set cctld
      *
-     * @param string $cctld
+     * @param  string  $cctld
      * @return Country
      */
     public function setCctld($cctld)
@@ -245,7 +243,7 @@ class Country
     /**
      * Get cctld
      *
-     * @return string 
+     * @return string
      */
     public function getCctld()
     {
@@ -261,11 +259,10 @@ class Country
      */
     private $updatedAt;
 
-
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Country
      */
     public function setCreatedAt($createdAt)
@@ -278,7 +275,7 @@ class Country
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -288,7 +285,7 @@ class Country
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Country
      */
     public function setUpdatedAt($updatedAt)
@@ -301,7 +298,7 @@ class Country
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {

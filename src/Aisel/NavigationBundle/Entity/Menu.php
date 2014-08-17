@@ -339,7 +339,7 @@ class Menu
     /**
      * Set metaUrl
      *
-     * @param string $metaUrl
+     * @param  string $metaUrl
      * @return Menu
      */
     public function setMetaUrl($metaUrl)
@@ -352,7 +352,7 @@ class Menu
     /**
      * Get metaUrl
      *
-     * @return string 
+     * @return string
      */
     public function getMetaUrl()
     {
@@ -362,6 +362,5 @@ class Menu
      * @var string
      */
     private $metaUrl;
-
 
 }

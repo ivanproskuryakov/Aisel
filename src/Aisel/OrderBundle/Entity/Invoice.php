@@ -2,8 +2,6 @@
 
 namespace Aisel\OrderBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Invoice
  */
@@ -29,7 +27,6 @@ class Invoice
      */
     private $product;
 
-
     /**
      * Get id
      *
@@ -43,7 +40,7 @@ class Invoice
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Invoice
      */
     public function setCreatedAt($createdAt)
@@ -66,7 +63,7 @@ class Invoice
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Invoice
      */
     public function setUpdatedAt($updatedAt)
@@ -89,7 +86,7 @@ class Invoice
     /**
      * Set product
      *
-     * @param \Aisel\OrderBundle\Entity\Order $product
+     * @param  \Aisel\OrderBundle\Entity\Order $product
      * @return Invoice
      */
     public function setProduct(\Aisel\OrderBundle\Entity\Order $product = null)

@@ -35,7 +35,7 @@ class MediaProductExtension extends \Twig_Extension
 
     /**
      * Get product media directory
-     * @param int $productId
+     * @param  int    $productId
      * @return string
      */
     public function mediaProductURI($productId)
@@ -43,6 +43,7 @@ class MediaProductExtension extends \Twig_Extension
         if (!$productId) $productId = 0;
         $mediaProductURI = $this->sc->get('router')
             ->generate('admin_aisel_product_media_upload', array('productId' => $productId));
+
         return $mediaProductURI;
     }
 

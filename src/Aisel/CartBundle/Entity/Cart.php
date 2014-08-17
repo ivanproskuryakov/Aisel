@@ -453,11 +453,10 @@ class Cart
      */
     private $descriptionFull;
 
-
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Cart
      */
     public function setName($name)
@@ -480,7 +479,7 @@ class Cart
     /**
      * Set sku
      *
-     * @param string $sku
+     * @param  string $sku
      * @return Cart
      */
     public function setSku($sku)
@@ -503,7 +502,7 @@ class Cart
     /**
      * Set price
      *
-     * @param float $price
+     * @param  float $price
      * @return Cart
      */
     public function setPrice($price)
@@ -526,7 +525,7 @@ class Cart
     /**
      * Set priceSpecial
      *
-     * @param float $priceSpecial
+     * @param  float $priceSpecial
      * @return Cart
      */
     public function setPriceSpecial($priceSpecial)
@@ -549,7 +548,7 @@ class Cart
     /**
      * Set priceSpecialFrom
      *
-     * @param \DateTime $priceSpecialFrom
+     * @param  \DateTime $priceSpecialFrom
      * @return Cart
      */
     public function setPriceSpecialFrom($priceSpecialFrom)
@@ -572,7 +571,7 @@ class Cart
     /**
      * Set priceSpecialTo
      *
-     * @param \DateTime $priceSpecialTo
+     * @param  \DateTime $priceSpecialTo
      * @return Cart
      */
     public function setPriceSpecialTo($priceSpecialTo)
@@ -595,7 +594,7 @@ class Cart
     /**
      * Set descriptionShort
      *
-     * @param string $descriptionShort
+     * @param  string $descriptionShort
      * @return Cart
      */
     public function setDescriptionShort($descriptionShort)
@@ -618,7 +617,7 @@ class Cart
     /**
      * Set descriptionFull
      *
-     * @param string $descriptionFull
+     * @param  string $descriptionFull
      * @return Cart
      */
     public function setDescriptionFull($descriptionFull)
@@ -653,11 +652,10 @@ class Cart
      */
     private $newTo;
 
-
     /**
      * Set new
      *
-     * @param boolean $new
+     * @param  boolean $new
      * @return Cart
      */
     public function setNew($new)
@@ -680,7 +678,7 @@ class Cart
     /**
      * Set newFrom
      *
-     * @param \DateTime $newFrom
+     * @param  \DateTime $newFrom
      * @return Cart
      */
     public function setNewFrom($newFrom)
@@ -703,7 +701,7 @@ class Cart
     /**
      * Set newTo
      *
-     * @param \DateTime $newTo
+     * @param  \DateTime $newTo
      * @return Cart
      */
     public function setNewTo($newTo)
@@ -728,11 +726,10 @@ class Cart
      */
     private $description;
 
-
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string $description
      * @return Cart
      */
     public function setDescription($description)
@@ -756,11 +753,10 @@ class Cart
      */
     private $image;
 
-
     /**
      * Add image
      *
-     * @param \Aisel\CartBundle\Entity\Cart $image
+     * @param  \Aisel\CartBundle\Entity\Cart $image
      * @return Cart
      */
     public function addImage(\Aisel\CartBundle\Entity\Cart $image)
@@ -783,7 +779,7 @@ class Cart
     /**
      * Get image
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getImage()
     {
@@ -794,11 +790,10 @@ class Cart
      */
     private $products;
 
-
     /**
      * Add products
      *
-     * @param \Aisel\ProductBundle\Entity\Products $products
+     * @param  \Aisel\ProductBundle\Entity\Products $products
      * @return Cart
      */
     public function addProduct(\Aisel\ProductBundle\Entity\Products $products)
@@ -821,7 +816,7 @@ class Cart
     /**
      * Get products
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProducts()
     {

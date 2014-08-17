@@ -12,7 +12,6 @@
 namespace Aisel\AddressingBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Aisel\AdminBundle\Utility\UrlUtility;
 
 /**
  * Manager for Addressings, mostly used in REST API
@@ -30,11 +29,10 @@ class AddressingManager
         $this->em = $em;
     }
 
-
     /**
      * Get single detailed addressing by Id
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Aisel\AddressingBundle\Entity\Addressing $addressingDetails
      *
@@ -50,6 +48,5 @@ class AddressingManager
 
         return $addressing;
     }
-
 
 }

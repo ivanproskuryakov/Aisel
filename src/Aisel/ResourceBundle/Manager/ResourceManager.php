@@ -16,7 +16,7 @@ namespace Aisel\ResourceBundle\Manager;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class MediaManager
+class ResourceManager
 {
     protected $sc;
     protected $em;

@@ -23,7 +23,6 @@ class NodeManager extends AbstractNodeManager
     protected $repository = 'AiselNavigationBundle:Menu';
     protected $nodeEntity = 'Aisel\NavigationBundle\Entity\Menu';
 
-
     /**
      * {@inheritDoc}
      */

@@ -86,8 +86,8 @@ class UserManager implements UserProviderInterface
         $user->setEmail($userData['email']);
         $user->setUsername($userData['username']);
         $user->setPassword($encodedPassword);
-        $user->setEnabled(true);
-        $user->setLocked(false);
+        $user->setEnabled($userData['enabled']);
+        $user->setLocked($userData['locked']);
 
         $user->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -111,7 +111,7 @@ class UserManager implements UserProviderInterface
 
     /**
      * Update User details
-     * @param  array $userData
+     * @param  array  $userData
      * @return string $message
      */
     public function updateDetailsCurrentUser(Array $userData)

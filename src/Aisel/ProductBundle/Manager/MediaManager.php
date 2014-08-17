@@ -35,7 +35,6 @@ class MediaManager
 
     }
 
-
     /**
      * Uploader for product with id $productId
      *
@@ -83,7 +82,6 @@ class MediaManager
             }
 
         }
-
 
         return $outputContents;
     }

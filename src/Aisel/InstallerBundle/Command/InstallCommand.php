@@ -15,7 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 /**
  * Install Aisel CMS
@@ -52,7 +51,6 @@ EOT
         $this->launchSetup($input, $output);
         $output->writeln('<info>Installation finished.</info>');
     }
-
 
     /**
      * Launch setup process

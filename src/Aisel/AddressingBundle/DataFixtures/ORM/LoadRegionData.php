@@ -13,8 +13,6 @@ namespace Aisel\AddressingBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
 use Aisel\AddressingBundle\Entity\Region;
@@ -43,7 +41,7 @@ class LoadRegionData extends AbstractFixtureData implements OrderedFixtureInterf
             $region = null;
 
             foreach ($XML->database->table as $table) {
-                $country = $this->em->getRepository('AiselAddressingBundle:Country')->find((int)$table->column[4]);
+                $country = $this->em->getRepository('AiselAddressingBundle:Country')->find((int) $table->column[4]);
                 $region = new Region();
                 $region->setName($table->column[1]);
                 $region->setCountry($country);

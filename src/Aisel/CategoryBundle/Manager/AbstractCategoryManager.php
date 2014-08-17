@@ -54,7 +54,7 @@ class AbstractCategoryManager
     /**
      * Generate child categories for selected root
      * @param  object $items
-     * @param  int $pid
+     * @param  int    $pid
      * @return array
      */
     public function generatePageTree($items, $pid = null)
@@ -110,7 +110,7 @@ class AbstractCategoryManager
     /**
      * Generate child categories for selected in HTML format - WILL BE REMOVED
      * @param  object $items
-     * @param  int $pid
+     * @param  int    $pid
      * @return array
      */
     public function generatePageTreeHTML($items, $pid = null)
@@ -178,7 +178,7 @@ class AbstractCategoryManager
 
     /**
      * Get single category
-     * @param  int $id
+     * @param  int    $id
      * @return object
      */
     public function getCategory($id)
@@ -206,7 +206,7 @@ class AbstractCategoryManager
     /**
      * validate metaUrl for Category Entity and return one we can use
      * @param  string $url
-     * @param  int $categoryId
+     * @param  int    $categoryId
      * @return string
      */
     public function normalizeCategoryUrl($url, $categoryId = null)

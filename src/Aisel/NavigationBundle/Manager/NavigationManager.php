@@ -41,5 +41,4 @@ class NavigationManager
         return $menu;
     }
 
-
 }

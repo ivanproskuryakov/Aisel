@@ -2,7 +2,6 @@
 
 namespace Aisel\ProductBundle\Entity;
 
-use Doctrine\ORM\EntityRepository;
 use Aisel\CategoryBundle\Entity\AbstractCategoryRepository;
 
 /**

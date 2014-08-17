@@ -64,7 +64,6 @@ class NodeController extends Controller
 
         return $menu;
 
-
     }
 
 }

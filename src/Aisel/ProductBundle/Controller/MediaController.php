@@ -35,6 +35,7 @@ class MediaController extends Controller
 
         $json = $this->container->get("aisel.product.media.manager")
             ->launchMediaUploaderForProductId($productId);
+
         return new Response($json);
     }
 }

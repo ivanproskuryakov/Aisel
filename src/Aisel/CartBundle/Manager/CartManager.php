@@ -12,7 +12,6 @@
 namespace Aisel\CartBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Aisel\AdminBundle\Utility\UrlUtility;
 
 /**
  * Manager for Cart, mostly used in REST API
@@ -33,7 +32,7 @@ class CartManager
     /**
      * Get single detailed cart object
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Aisel\CartBundle\Entity\Cart $cart
      *

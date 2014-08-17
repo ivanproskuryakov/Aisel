@@ -33,7 +33,6 @@ class ApiPageController extends Controller
         return false;
     }
 
-
     /**
      * @Rest\View
      * /api/page/list.json?limit=2&current=3

@@ -27,7 +27,7 @@ class NodeController extends Controller
     /**
      * AJAX update action for node with $id
      *
-     * @param int $id
+     * @param int     $id
      * @param Request $request
      *
      */
@@ -61,7 +61,6 @@ class NodeController extends Controller
         }
 
         return $menu;
-
 
     }
 

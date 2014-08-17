@@ -21,7 +21,7 @@ use Aisel\ConfigBundle\Entity\Config;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadConfigData extends AbstractFixture implements OrderedFixtureInterface
+class LoadAdminConfigData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * {@inheritDoc}

@@ -2,8 +2,6 @@
 
 namespace Aisel\AddressingBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Address
  */
@@ -34,11 +32,10 @@ class Address
      */
     private $frontenduser;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -48,7 +45,7 @@ class Address
     /**
      * Set address
      *
-     * @param string $address
+     * @param  string  $address
      * @return Address
      */
     public function setAddress($address)
@@ -61,7 +58,7 @@ class Address
     /**
      * Get address
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -71,7 +68,7 @@ class Address
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Address
      */
     public function setCreatedAt($createdAt)
@@ -84,7 +81,7 @@ class Address
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -94,7 +91,7 @@ class Address
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Address
      */
     public function setUpdatedAt($updatedAt)
@@ -107,7 +104,7 @@ class Address
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -117,7 +114,7 @@ class Address
     /**
      * Set frontenduser
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
+     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
      * @return Address
      */
     public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
@@ -130,7 +127,7 @@ class Address
     /**
      * Get frontenduser
      *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser 
+     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
      */
     public function getFrontenduser()
     {
@@ -151,11 +148,10 @@ class Address
      */
     private $country;
 
-
     /**
      * Set street
      *
-     * @param string $street
+     * @param  string  $street
      * @return Address
      */
     public function setStreet($street)
@@ -168,7 +164,7 @@ class Address
     /**
      * Get street
      *
-     * @return string 
+     * @return string
      */
     public function getStreet()
     {
@@ -178,7 +174,7 @@ class Address
     /**
      * Set zip
      *
-     * @param string $zip
+     * @param  string  $zip
      * @return Address
      */
     public function setZip($zip)
@@ -191,7 +187,7 @@ class Address
     /**
      * Get zip
      *
-     * @return string 
+     * @return string
      */
     public function getZip()
     {
@@ -201,7 +197,7 @@ class Address
     /**
      * Set country
      *
-     * @param \Aisel\AddressingBundle\Entity\Country $country
+     * @param  \Aisel\AddressingBundle\Entity\Country $country
      * @return Address
      */
     public function setCountry(\Aisel\AddressingBundle\Entity\Country $country = null)
@@ -214,7 +210,7 @@ class Address
     /**
      * Get country
      *
-     * @return \Aisel\AddressingBundle\Entity\Country 
+     * @return \Aisel\AddressingBundle\Entity\Country
      */
     public function getCountry()
     {
@@ -225,11 +221,10 @@ class Address
      */
     private $region;
 
-
     /**
      * Set region
      *
-     * @param \Aisel\AddressingBundle\Entity\Region $region
+     * @param  \Aisel\AddressingBundle\Entity\Region $region
      * @return Address
      */
     public function setRegion(\Aisel\AddressingBundle\Entity\Region $region = null)
@@ -242,7 +237,7 @@ class Address
     /**
      * Get region
      *
-     * @return \Aisel\AddressingBundle\Entity\Region 
+     * @return \Aisel\AddressingBundle\Entity\Region
      */
     public function getRegion()
     {
@@ -253,11 +248,10 @@ class Address
      */
     private $city;
 
-
     /**
      * Set city
      *
-     * @param \Aisel\AddressingBundle\Entity\City $city
+     * @param  \Aisel\AddressingBundle\Entity\City $city
      * @return Address
      */
     public function setCity(\Aisel\AddressingBundle\Entity\City $city = null)
@@ -270,7 +264,7 @@ class Address
     /**
      * Get city
      *
-     * @return \Aisel\AddressingBundle\Entity\City 
+     * @return \Aisel\AddressingBundle\Entity\City
      */
     public function getCity()
     {
@@ -286,11 +280,10 @@ class Address
      */
     private $comment;
 
-
     /**
      * Set phone
      *
-     * @param string $phone
+     * @param  string  $phone
      * @return Address
      */
     public function setPhone($phone)
@@ -303,7 +296,7 @@ class Address
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -313,7 +306,7 @@ class Address
     /**
      * Set comment
      *
-     * @param string $comment
+     * @param  string  $comment
      * @return Address
      */
     public function setComment($comment)
@@ -326,7 +319,7 @@ class Address
     /**
      * Get comment
      *
-     * @return string 
+     * @return string
      */
     public function getComment()
     {

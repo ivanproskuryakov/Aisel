@@ -2,8 +2,6 @@
 
 namespace Aisel\ProductBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Image
  */
@@ -24,11 +22,10 @@ class Image
      */
     private $product;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -38,7 +35,7 @@ class Image
     /**
      * Set filename
      *
-     * @param string $filename
+     * @param  string $filename
      * @return Image
      */
     public function setFilename($filename)
@@ -51,7 +48,7 @@ class Image
     /**
      * Get filename
      *
-     * @return string 
+     * @return string
      */
     public function getFilename()
     {
@@ -61,7 +58,7 @@ class Image
     /**
      * Set product
      *
-     * @param \Aisel\ProductBundle\Entity\Product $product
+     * @param  \Aisel\ProductBundle\Entity\Product $product
      * @return Image
      */
     public function setProduct(\Aisel\ProductBundle\Entity\Product $product = null)
@@ -74,7 +71,7 @@ class Image
     /**
      * Get product
      *
-     * @return \Aisel\ProductBundle\Entity\Product 
+     * @return \Aisel\ProductBundle\Entity\Product
      */
     public function getProduct()
     {

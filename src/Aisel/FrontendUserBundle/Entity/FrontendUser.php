@@ -109,7 +109,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set lastLogin
      *
-     * @param  \DateTime $lastLogin
+     * @param  \DateTime    $lastLogin
      * @return FrontendUser
      */
     public function setLastLogin($lastLogin)
@@ -132,7 +132,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set expiresAt
      *
-     * @param  \DateTime $expiresAt
+     * @param  \DateTime    $expiresAt
      * @return FrontendUser
      */
     public function setExpiresAt($expiresAt)
@@ -155,7 +155,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set enabled
      *
-     * @param  boolean $enabled
+     * @param  boolean      $enabled
      * @return FrontendUser
      */
     public function setEnabled($enabled)
@@ -178,7 +178,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set locked
      *
-     * @param  boolean $locked
+     * @param  boolean      $locked
      * @return FrontendUser
      */
     public function setLocked($locked)
@@ -247,7 +247,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set username
      *
-     * @param  string $username
+     * @param  string    $username
      * @return FrontUser
      */
     public function setUsername($username)
@@ -270,7 +270,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set password
      *
-     * @param  string $password
+     * @param  string    $password
      * @return FrontUser
      */
     public function setPassword($password)
@@ -293,7 +293,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set email
      *
-     * @param  string $email
+     * @param  string    $email
      * @return FrontUser
      */
     public function setEmail($email)
@@ -336,7 +336,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set salt
      *
-     * @param  string $salt
+     * @param  string       $salt
      * @return FrontendUser
      */
     public function setSalt($salt)
@@ -490,7 +490,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set phone
      *
-     * @param  string $phone
+     * @param  string       $phone
      * @return FrontendUser
      */
     public function setPhone($phone)
@@ -513,7 +513,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set website
      *
-     * @param  string $website
+     * @param  string       $website
      * @return FrontendUser
      */
     public function setWebsite($website)
@@ -536,7 +536,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set facebook
      *
-     * @param  string $facebook
+     * @param  string       $facebook
      * @return FrontendUser
      */
     public function setFacebook($facebook)
@@ -559,7 +559,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set twitter
      *
-     * @param  string $twitter
+     * @param  string       $twitter
      * @return FrontendUser
      */
     public function setTwitter($twitter)
@@ -582,7 +582,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set linkedin
      *
-     * @param  string $linkedin
+     * @param  string       $linkedin
      * @return FrontendUser
      */
     public function setLinkedin($linkedin)
@@ -605,7 +605,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set googleplus
      *
-     * @param  string $googleplus
+     * @param  string       $googleplus
      * @return FrontendUser
      */
     public function setGoogleplus($googleplus)
@@ -628,7 +628,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set github
      *
-     * @param  string $github
+     * @param  string       $github
      * @return FrontendUser
      */
     public function setGithub($github)
@@ -651,7 +651,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set behance
      *
-     * @param  string $behance
+     * @param  string       $behance
      * @return FrontendUser
      */
     public function setBehance($behance)
@@ -679,7 +679,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Set about
      *
-     * @param  string $about
+     * @param  string       $about
      * @return FrontendUser
      */
     public function setAbout($about)
@@ -703,11 +703,10 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
      */
     private $addresses;
 
-
     /**
      * Add addresses
      *
-     * @param \Aisel\AddressingBundle\Entity\Address $addresses
+     * @param  \Aisel\AddressingBundle\Entity\Address $addresses
      * @return FrontendUser
      */
     public function addAddress(\Aisel\AddressingBundle\Entity\Address $addresses)
@@ -730,7 +729,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get addresses
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAddresses()
     {
@@ -741,11 +740,10 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
      */
     private $orders;
 
-
     /**
      * Add orders
      *
-     * @param \Aisel\OrderBundle\Entity\Order $orders
+     * @param  \Aisel\OrderBundle\Entity\Order $orders
      * @return FrontendUser
      */
     public function addOrder(\Aisel\OrderBundle\Entity\Order $orders)
@@ -768,7 +766,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get orders
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getOrders()
     {

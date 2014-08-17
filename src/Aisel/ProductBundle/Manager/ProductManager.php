@@ -32,7 +32,7 @@ class ProductManager
 
     /**
      * Get categories in array for product
-     * @param  int $product
+     * @param  int   $product
      * @return array $categories
      */
     public function getProductCategories($product)
@@ -70,7 +70,7 @@ class ProductManager
     /**
      * Get single detailed product with category by ID
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Aisel\ProductBundle\Entity\Product $productDetails
      *
@@ -92,7 +92,7 @@ class ProductManager
     /**
      * Get single detailed product with category by URLKey
      *
-     * @param  string $urlKey
+     * @param string $urlKey
      *
      * @return \Aisel\ProductBundle\Entity\Product $product
      *
@@ -115,9 +115,9 @@ class ProductManager
     /**
      * validate metaUrl for Product Entity and return one we can use
      *
-     * @param  string $url
+     * @param string $url
      *
-     * @param  int $productId
+     * @param int $productId
      *
      * @return string $validUrl
      */

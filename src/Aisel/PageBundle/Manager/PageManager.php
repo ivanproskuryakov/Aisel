@@ -33,7 +33,7 @@ class PageManager
     /**
      * Get categories in array for page
      *
-     * @param  int $page
+     * @param int $page
      *
      * @return array $categories
      */
@@ -54,7 +54,7 @@ class PageManager
     /**
      * Get list of all pages
      *
-     * @param  array $params
+     * @param array $params
      *
      * @return array
      */
@@ -74,7 +74,7 @@ class PageManager
     /**
      * Get single detailed page with category by ID
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Aisel\PageBundle\Entity\Page $pageDetails
      *
@@ -96,7 +96,7 @@ class PageManager
     /**
      * Get single detailed page with category by URLKey
      *
-     * @param  string $urlKey
+     * @param string $urlKey
      *
      * @return \Aisel\PageBundle\Entity\Page $page
      *
@@ -119,9 +119,9 @@ class PageManager
     /**
      * validate metaUrl for Page Entity and return one we can use
      *
-     * @param  string $url
+     * @param string $url
      *
-     * @param  int $pageId
+     * @param int $pageId
      *
      * @return string $validUrl
      */

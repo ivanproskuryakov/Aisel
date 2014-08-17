@@ -11,36 +11,22 @@
 
 namespace Aisel\BackendUserBundle\DataFixtures\ORM;
 
-use Aisel\BackendUserBundle\Entity\BackendUser;
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+
+use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
 
 /**
  * Backend users fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadBackendUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadBackendUserData extends AbstractFixtureData implements OrderedFixtureInterface
 {
+    protected $fixturesName = 'aisel_user_backend.xml';
 
     /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
-    /**
-     * Backend user manager for our nice operations.
+     * Backend user manager
      * @return \Aisel\BackendUserBundle\Manager\UserManager
      */
     protected function getUserManager()
@@ -53,23 +39,19 @@ class LoadBackendUserData extends AbstractFixture implements OrderedFixtureInter
      */
     public function load(ObjectManager $manager)
     {
+        if (file_exists($this->fixturesFile)) {
+            $contents = file_get_contents($this->fixturesFile);
+            $XML = simplexml_load_string($contents);
 
-        $userData = array(
-            'username' => 'backenduser',
-            'password' => 'backenduser',
-            'email' => 'backenduser@aisel.co',
-        );
-
-        $this->getUserManager()->registerFixturesUser($userData);
-
-        $userData = array(
-            'username' => 'service',
-            'password' => 'service',
-            'email' => 'service@aisel.co',
-        );
-
-        $this->getUserManager()->registerFixturesUser($userData);
-
+            foreach ($XML->database->table as $table) {
+                $userData = array(
+                    'username' => (string)$table->column[1],
+                    'email' => (string)$table->column[2],
+                    'password' => (string)$table->column[3],
+                );
+                $this->getUserManager()->registerFixturesUser($userData);
+            }
+        }
     }
 
     /**
@@ -77,6 +59,6 @@ class LoadBackendUserData extends AbstractFixture implements OrderedFixtureInter
      */
     public function getOrder()
     {
-        return 1;
+        return 110;
     }
 }

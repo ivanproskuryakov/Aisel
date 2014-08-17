@@ -144,7 +144,6 @@ class AbstractCategoryRepository extends NestedTreeRepository
         return $r;
     }
 
-
     /**
      * Find categories by url
      *

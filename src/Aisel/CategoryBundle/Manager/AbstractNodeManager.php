@@ -32,7 +32,7 @@ class AbstractNodeManager
     /**
      * Save name for single node
      *
-     * @param array $params
+     * @param  array  $params
      * @return object
      *
      * @throws NotFoundHttpException
@@ -56,7 +56,7 @@ class AbstractNodeManager
     /**
      * Remove single node
      *
-     * @param array $params
+     * @param  array  $params
      * @return object
      *
      * @throws NotFoundHttpException
@@ -79,7 +79,7 @@ class AbstractNodeManager
     /**
      * Creates child node
      *
-     * @param array $params
+     * @param  array  $params
      * @return object
      *
      * @throws NotFoundHttpException
@@ -109,7 +109,7 @@ class AbstractNodeManager
     /**
      * Creates Node
      *
-     * @param array $params
+     * @param  array  $params
      * @return object
      *
      * @throws NotFoundHttpException
@@ -128,11 +128,10 @@ class AbstractNodeManager
         return $node;
     }
 
-
     /**
      * Update parent for Node
      *
-     * @param array $params
+     * @param  array  $params
      * @return object
      *
      * @throws NotFoundHttpException
