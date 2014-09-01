@@ -63,7 +63,7 @@ class LoadFrontendUserData extends AbstractFixtureData implements OrderedFixture
 
                 );
                 $user = $this->getUserManager()->registerFixturesUser($userData);
-                $this->addReference($userData['username'], $user);
+                $this->addReference('frontenduser_' . $table->column[0], $user);
             }
         }
 

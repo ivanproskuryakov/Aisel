@@ -32,11 +32,6 @@ class LoadAddressData extends AbstractFixtureData implements OrderedFixtureInter
      */
     public function load(ObjectManager $manager)
     {
-        // Hardcoded references
-        $frontendUser = $this->getReference('frontenduser');
-        $country = $this->getReference('country');
-        $region = $this->getReference('region');
-        $city = $this->getReference('city');
 
         if (file_exists($this->fixturesFile)) {
             $contents = file_get_contents($this->fixturesFile);
@@ -44,6 +39,11 @@ class LoadAddressData extends AbstractFixtureData implements OrderedFixtureInter
             $address = null;
 
             foreach ($XML->database->table as $table) {
+                $country = $this->getReference('country_' . $table->column[1]); // Spain
+                $region = $this->getReference('region_' . $table->column[2]); // City of Madrid
+                $city = $this->getReference('city_' . $table->column[3]); // Madrid
+                $frontendUser = $this->getReference('frontenduser_' . $table->column[4]); // FrontendUser
+
                 $address = new Address();
                 $address->setPhone($table->column[5]);
                 $address->setStreet($table->column[6]);
@@ -58,7 +58,6 @@ class LoadAddressData extends AbstractFixtureData implements OrderedFixtureInter
                 $manager->persist($address);
                 $manager->flush();
             }
-            $this->addReference('address', $address);
 
         }
     }

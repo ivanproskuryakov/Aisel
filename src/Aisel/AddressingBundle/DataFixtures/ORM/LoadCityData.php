@@ -32,16 +32,15 @@ class LoadCityData extends AbstractFixtureData implements OrderedFixtureInterfac
      */
     public function load(ObjectManager $manager)
     {
-        // Hardcoded references
-        $country = $this->getReference('country');
-        $region = $this->getReference('region');
-
         if (file_exists($this->fixturesFile)) {
             $contents = file_get_contents($this->fixturesFile);
             $XML = simplexml_load_string($contents);
             $city = null;
 
             foreach ($XML->database->table as $table) {
+                $country = $this->getReference('country_' . $table->column[4]); // Spain
+                $region = $this->getReference('region_' . $table->column[5]); // City of Madrid
+
                 $city = new City();
                 $city->setName($table->column[1]);
                 $city->setRegion($region);
@@ -51,7 +50,7 @@ class LoadCityData extends AbstractFixtureData implements OrderedFixtureInterfac
                 $manager->persist($city);
                 $manager->flush();
             }
-            $this->addReference('city', $city);
+            $this->addReference('city_' . $table->column[0], $city);
         }
     }
 

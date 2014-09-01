@@ -50,6 +50,7 @@ class LoadBackendUserData extends AbstractFixtureData implements OrderedFixtureI
                     'password' => (string)$table->column[3],
                 );
                 $this->getUserManager()->registerFixturesUser($userData);
+
             }
         }
     }

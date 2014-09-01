@@ -28,7 +28,7 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $frontendUser = $this->getReference('frontenduser');
+        $frontendUser = $this->getReference('frontenduser_149'); // FrontendUser
         $order = new Order();
         $order->setStatus('new');
         $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));

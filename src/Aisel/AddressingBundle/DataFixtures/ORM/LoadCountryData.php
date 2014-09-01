@@ -50,8 +50,7 @@ class LoadCountryData extends AbstractFixtureData implements OrderedFixtureInter
                 $country->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                 $manager->persist($country);
                 $manager->flush();
-
-                if ($country->getIso2() == 'ES') $this->addReference('country', $country);
+                $this->addReference('country_' . $table->column[0], $country);
             }
         }
 

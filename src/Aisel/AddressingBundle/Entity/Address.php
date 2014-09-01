@@ -325,4 +325,32 @@ class Address
     {
         return $this->comment;
     }
+    /**
+     * @var integer
+     */
+    private $fixtureId;
+
+
+    /**
+     * Set fixtureId
+     *
+     * @param integer $fixtureId
+     * @return Address
+     */
+    public function setFixtureId($fixtureId)
+    {
+        $this->fixtureId = $fixtureId;
+
+        return $this;
+    }
+
+    /**
+     * Get fixtureId
+     *
+     * @return integer 
+     */
+    public function getFixtureId()
+    {
+        return $this->fixtureId;
+    }
 }

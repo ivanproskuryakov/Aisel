@@ -32,16 +32,14 @@ class LoadRegionData extends AbstractFixtureData implements OrderedFixtureInterf
      */
     public function load(ObjectManager $manager)
     {
-        // Hardcoded references
-        $country = $this->getReference('country');
-
         if (file_exists($this->fixturesFile)) {
             $contents = file_get_contents($this->fixturesFile);
             $XML = simplexml_load_string($contents);
             $region = null;
 
             foreach ($XML->database->table as $table) {
-                $country = $this->em->getRepository('AiselAddressingBundle:Country')->find((int) $table->column[4]);
+                $country = $this->getReference('country_' . $table->column[4]); // Spain
+
                 $region = new Region();
                 $region->setName($table->column[1]);
                 $region->setCountry($country);
@@ -50,7 +48,7 @@ class LoadRegionData extends AbstractFixtureData implements OrderedFixtureInterf
                 $manager->persist($region);
                 $manager->flush();
             }
-            $this->addReference('region', $region);
+            $this->addReference('region_' . $table->column[0], $region);
         }
 
     }

@@ -18,10 +18,10 @@
         <!-- Table aisel_address -->
         <table name="aisel_address">
             <column name="id">8</column>
-            <column name="county_id">959</column>
+            <column name="county_id">209</column>
             <column name="region_id">8</column>
             <column name="city_id">8</column>
-            <column name="user_id">43</column>
+            <column name="user_id">149</column>
             <column name="phone">+34 917 74 10 00</column>
             <column name="street">Calle de Santa Isabel, 52</column>
             <column name="zip">28012</column>
