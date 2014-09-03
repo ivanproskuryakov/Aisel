@@ -44,9 +44,9 @@ class LoadBackendUserData extends AbstractFixtureData implements OrderedFixtureI
 
             foreach ($XML->database->table as $table) {
                 $userData = array(
-                    'username' => (string)$table->column[1],
-                    'email' => (string)$table->column[2],
-                    'password' => (string)$table->column[3],
+                    'username' => (string) $table->column[1],
+                    'email' => (string) $table->column[2],
+                    'password' => (string) $table->column[3],
                 );
                 $this->getUserManager()->registerFixturesUser($userData);
 

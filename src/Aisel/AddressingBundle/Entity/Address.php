@@ -330,11 +330,10 @@ class Address
      */
     private $fixtureId;
 
-
     /**
      * Set fixtureId
      *
-     * @param integer $fixtureId
+     * @param  integer $fixtureId
      * @return Address
      */
     public function setFixtureId($fixtureId)
@@ -347,7 +346,7 @@ class Address
     /**
      * Get fixtureId
      *
-     * @return integer 
+     * @return integer
      */
     public function getFixtureId()
     {

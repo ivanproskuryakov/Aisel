@@ -24,7 +24,6 @@ use Aisel\NavigationBundle\Entity\Menu;
 class LoadMenuData extends AbstractFixtureData implements OrderedFixtureInterface
 {
 
-
     protected $fixturesName = 'aisel_menu_top.xml';
 
     /**

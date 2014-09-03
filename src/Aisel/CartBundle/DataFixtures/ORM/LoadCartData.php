@@ -35,7 +35,6 @@ class LoadCartData extends AbstractFixtureData implements OrderedFixtureInterfac
             $XML = simplexml_load_string($contents);
 
             foreach ($XML->database->table as $table) {
-
                 $cart = new Cart();
                 $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
                 $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));

@@ -15,7 +15,6 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
 use Aisel\ProductBundle\Entity\Product;
-use Aisel\ProductBundle\Entity\Image;
 
 /**
  * Product fixtures
@@ -37,22 +36,20 @@ class LoadProductData extends AbstractFixtureData implements OrderedFixtureInter
             $XML = simplexml_load_string($contents);
 
             foreach ($XML->database->table as $table) {
-
                 $product = new Product();
                 $product->setName($table->column[1]);
                 $product->setSku($table->column[2]);
-                $product->setPrice((float)$table->column[3]);
-                $product->setQty((int)$table->column[10]);
+                $product->setPrice((float) $table->column[3]);
+                $product->setQty((int) $table->column[10]);
                 $product->setDescriptionShort($table->column[13]);
                 $product->setDescription($table->column[14]);
-                $product->setStatus((int)$table->column[15]);
+                $product->setStatus((int) $table->column[15]);
                 $product->setMetaUrl($table->column[17]);
-                $product->setCommentStatus((int)$table->column[18]);
+                $product->setCommentStatus((int) $table->column[18]);
                 $product->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
                 $product->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                 $manager->persist($product);
                 $manager->flush();
-
                 $this->addReference('product_' . $table->column[0], $product);
             }
         }
