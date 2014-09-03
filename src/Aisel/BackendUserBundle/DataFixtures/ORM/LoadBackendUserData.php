@@ -13,7 +13,6 @@ namespace Aisel\BackendUserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
 
 /**

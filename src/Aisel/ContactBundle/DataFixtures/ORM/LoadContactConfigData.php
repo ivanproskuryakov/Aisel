@@ -11,28 +11,39 @@
 
 namespace Aisel\ContactBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
 use Aisel\ConfigBundle\Entity\Config;
 
 /**
- * Contact fixtures
+ * Config fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadContactConfigData extends AbstractFixture implements OrderedFixtureInterface
+class LoadContactConfigData extends AbstractFixtureData implements OrderedFixtureInterface
 {
+    protected $fixturesName = 'aisel_config_contact.xml';
+
     /**
-     * Set default settings for Contacts
+     * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        $config = new Config();
-        $config->setEntity('config_contact');
-        $config->setValue('{"Name":"Aisel Co.","Email":"service@email.com","AddressLine1":"1234 South Manhattan Place, LA","AddressLine2":null,"information":"<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.<\/p>"}');
-        $manager->persist($config);
-        $manager->flush();
+        if (file_exists($this->fixturesFile)) {
+            $contents = file_get_contents($this->fixturesFile);
+            $XML = simplexml_load_string($contents);
+            $city = null;
+
+            foreach ($XML->database->table as $table) {
+
+                $config = new Config();
+                $config->setEntity($table->column[1]);
+                $config->setValue($table->column[2]);
+                $manager->persist($config);
+                $manager->flush();
+            }
+        }
 
     }
 

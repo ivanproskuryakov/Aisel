@@ -11,9 +11,9 @@
 
 namespace Aisel\ProductBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
 use Aisel\ProductBundle\Entity\Product;
 use Aisel\ProductBundle\Entity\Image;
 
@@ -22,53 +22,40 @@ use Aisel\ProductBundle\Entity\Image;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
+class LoadProductData extends AbstractFixtureData implements OrderedFixtureInterface
 {
+
+    protected $fixturesName = 'aisel_product.xml';
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
+        if (file_exists($this->fixturesFile)) {
+            $contents = file_get_contents($this->fixturesFile);
+            $XML = simplexml_load_string($contents);
 
-        $loremIpsumText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur dolor eget viverra commodo. Ut vehicula volutpat massa. Maecenas congue sed risus ut semper. Fusce blandit sem nunc, nec facilisis neque eleifend eget. Pellentesque fringilla velit enim, vel convallis libero ultrices vel. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas consectetur lacus et nibh facilisis, non vulputate urna convallis. Donec quis dictum magna, id dictum urna. Aliquam euismod sit amet arcu vulputate laoreet. Vivamus at leo nibh. Proin scelerisque orci sit amet sem varius, a porttitor tortor iaculis. Aenean sollicitudin diam sed euismod varius. Duis commodo a metus eu scelerisque. Etiam porttitor placerat urna vel tincidunt. Quisque congue tellus quam, non volutpat justo eleifend vehicula. Phasellus cursus convallis aliquam. Morbi adipiscing vulputate tellus, id auctor metus interdum a. Fusce diam tellus, varius commodo tincidunt in, ornare a mauris. Phasellus interdum, metus non fringilla rhoncus, odio massa pharetra orci, in semper tortor enim nec quam. Duis consectetur quis nibh at convallis. Integer tincidunt ligula sem, vitae bibendum sem elementum nec. Etiam ornare nisl lacinia, facilisis nisl a, mollis sem. Aliquam erat volutpat.';
+            foreach ($XML->database->table as $table) {
 
-        $rootCategory = $this->getReference('product-root-category');
-        $childCategory = $this->getReference('product-child-category');
+                $product = new Product();
+                $product->setName($table->column[1]);
+                $product->setSku($table->column[2]);
+                $product->setPrice((float)$table->column[3]);
+                $product->setQty((int)$table->column[10]);
+                $product->setDescriptionShort($table->column[13]);
+                $product->setDescription($table->column[14]);
+                $product->setStatus((int)$table->column[15]);
+                $product->setMetaUrl($table->column[17]);
+                $product->setCommentStatus((int)$table->column[18]);
+                $product->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $product->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $manager->persist($product);
+                $manager->flush();
 
-        // Nike Baseball Hat
-        $product = new Product();
-        $product->setName('Nike Baseball Hat');
-        $product->setPrice(100);
-        $product->setQty(0);
-        $product->setSku('P0001');
-        $product->setDescriptionShort('');
-        $product->setDescription($loremIpsumText);
-        $product->setStatus(true);
-        $product->setHidden(true);
-        $product->setCommentStatus(false);
-        $product->addCategory($rootCategory)
-            ->addCategory($childCategory);
-
-        $product->setMetaUrl('nike-baseball-hat');
-        $product->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $product->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $manager->persist($product);
-        $manager->flush();
-        $this->addReference('about-product', $product);
-
-        // Images for our nice product
-        $image1 = new Image();
-        $image1->setFilename('test1.jpg')
-                ->setProduct($product);
-        $manager->persist($image1);
-        $manager->flush();
-
-        $image2 = new Image();
-        $image2->setFilename('test2.jpg')
-                ->setProduct($product);
-        $manager->persist($image2);
-        $manager->flush();
-
+                $this->addReference('product_' . $table->column[0], $product);
+            }
+        }
     }
 
     /**

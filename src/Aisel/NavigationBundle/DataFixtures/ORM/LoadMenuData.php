@@ -11,9 +11,9 @@
 
 namespace Aisel\NavigationBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
 use Aisel\NavigationBundle\Entity\Menu;
 
 /**
@@ -21,55 +21,43 @@ use Aisel\NavigationBundle\Entity\Menu;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadMenuData extends AbstractFixture implements OrderedFixtureInterface
+class LoadMenuData extends AbstractFixtureData implements OrderedFixtureInterface
 {
+
+
+    protected $fixturesName = 'aisel_menu_top.xml';
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        // referenced Page
-        $pinned = $this->getReference('about-page');
+        if (file_exists($this->fixturesFile)) {
+            $contents = file_get_contents($this->fixturesFile);
+            $XML = simplexml_load_string($contents);
 
-        // Blog
-        $menu = new Menu();
-        $menu->setTitle('Blog');
-        $menu->setMetaUrl('/#!/pages/');
-        $menu->setStatus(true);
-        $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $manager->persist($menu);
-        $manager->flush();
+            foreach ($XML->database->table as $table) {
 
-        // Categories
-        $menu = new Menu();
-        $menu->setTitle('Categories');
-        $menu->setMetaUrl('/#!/categories/');
-        $menu->setStatus(true);
-        $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $manager->persist($menu);
-        $manager->flush();
+                $rootCategory = null;
 
-        // Contact
-        $menu = new Menu();
-        $menu->setTitle('Contact');
-        $menu->setMetaUrl('/#!/contact/');
-        $menu->setStatus(true);
-        $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $manager->persist($menu);
-        $manager->flush();
+                if ($table->column[1] != 'NULL') {
+                    $rootCategory = $this->getReference('menu_top_' . $table->column[1]);
+                }
+                $menu = new Menu();
+                $menu->setTitle($table->column[6]);
+                $menu->setMetaUrl($table->column[7]);
+                $menu->setStatus($table->column[8]);
+                $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
-        // Pinned
-        $menu = new Menu();
-        $menu->setTitle('About');
-        $menu->setMetaUrl('/#!/page/' . $pinned->getMetaUrl());
-        $menu->setStatus(true);
-        $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $manager->persist($menu);
-        $manager->flush();
+                if ($rootCategory) {
+                    $menu->setParent($rootCategory);
+                }
+                $manager->persist($menu);
+                $manager->flush();
+                $this->addReference('menu_top_' . $table->column[0], $menu);
+            }
+        }
     }
 
     /**

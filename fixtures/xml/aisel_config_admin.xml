@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.1.9
+- http://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Sep 01, 2014 at 04:42 PM
+- Server version: 5.6.16
+- PHP Version: 5.4.24
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Database: 'aisel'
+    -->
+    <database name="aisel">
+        <!-- Table aisel_config -->
+        <table name="aisel_config">
+            <column name="id">182</column>
+            <column name="entity">config_homepage</column>
+            <column name="value">{&quot;content&quot;:&quot;&lt;div class=\&quot;jumbotron\&quot;&gt;\r\n&lt;h1&gt;This is Homepage&lt;\/h1&gt;\r\n\r\n&lt;p&gt;Our Macbook mockups are available in high quality 1024x768 resolution for maximum detail and enhanced visuals. It can be difficult to simply explain an app to a client, which is why a visual representation like the kind a mockup can offer is so useful. Whatever type of application you have created, it will be important that you represent it properly to the clients. You will find that our Macbook mockups come in a variety of angles with different backgrounds to choose from so you can find the perfect one for your presentation.&lt;\/p&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\&quot;row marketing\&quot;&gt;\r\n&lt;div class=\&quot;col-lg-6\&quot;&gt;\r\n&lt;h4&gt;Subheading&lt;\/h4&gt;\r\n\r\n&lt;p&gt;Every application designer needs to have high quality mockups for the device that they are designing it for, which is where we come in. We have the best Apple device mockups on the&amp;nbsp;&lt;\/p&gt;\r\n\r\n&lt;h4&gt;Subheading&lt;\/h4&gt;\r\n\r\n&lt;p&gt;internet, including those which are for the Macbook Pro and Air, for designers who really want to impress their clients. All you have to do is simply choose a photo or screen shot of your app&amp;nbsp;&lt;\/p&gt;\r\n\r\n&lt;h4&gt;Subheading&lt;\/h4&gt;\r\n\r\n&lt;p&gt;and in minutes you will receive the finished product to use in your presentation. We take pride in providing our customers with high quality products which have been used by countless designers&amp;nbsp;&lt;\/p&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\&quot;col-lg-6\&quot;&gt;\r\n&lt;h4&gt;Subheading&lt;\/h4&gt;\r\n\r\n&lt;p&gt;Anyone who has designed an application and needs to showcase it to clients will need to consider the immense benefits of using a Macbook mockup. These mockups are realistic high&amp;nbsp;&lt;\/p&gt;\r\n\r\n&lt;h4&gt;Subheading&lt;\/h4&gt;\r\n\r\n&lt;p&gt;quality representations of Apple devices which can be very useful when it comes to showing clients what you have created. Whether it is an app for finding restaurants in a given area or&amp;nbsp;&lt;\/p&gt;\r\n\r\n&lt;h4&gt;Subheading&lt;\/h4&gt;\r\n\r\n&lt;p&gt;One of the primary benefits of the Macbook mockups we offer is that they are able to save designers a lot of time, which can be a great thing, especially considering all of the work that&amp;nbsp;&lt;\/p&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;&quot;}</column>
+        </table>
+        <table name="aisel_config">
+            <column name="id">183</column>
+            <column name="entity">config_meta</column>
+            <column name="value">{&quot;defaultMetaTitle&quot;:&quot;Aisel - open source project&quot;,&quot;defaultMetaDescription&quot;:&quot;Highload CMS based on Symfony2 and AngularJS&quot;,&quot;defaultMetaKeywords&quot;:&quot;Aisel, Symfony, AngularJS&quot;}</column>
+        </table>
+        <table name="aisel_config">
+            <column name="id">184</column>
+            <column name="entity">config_disqus</column>
+            <column name="value">{&quot;shortname&quot;:&quot;demoaiselco&quot;,&quot;status&quot;:1}</column>
+        </table>
+    </database>
+</pma_xml_export>

@@ -11,27 +11,39 @@
 
 namespace Aisel\CartBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
 use Aisel\CartBundle\Entity\Cart;
 
 /**
  * Cart fixtures
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadCartData extends AbstractFixture implements OrderedFixtureInterface
+class LoadCartData extends AbstractFixtureData implements OrderedFixtureInterface
 {
+
+    protected $fixturesName = 'aisel_cart.xml';
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        $cart = new Cart();
-        $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $manager->persist($cart);
-        $manager->flush();
+        if (file_exists($this->fixturesFile)) {
+            $contents = file_get_contents($this->fixturesFile);
+            $XML = simplexml_load_string($contents);
+
+            foreach ($XML->database->table as $table) {
+
+                $cart = new Cart();
+                $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $manager->persist($cart);
+                $manager->flush();
+            }
+            $this->addReference('cart_' . $table->column[0], $cart);
+        }
     }
 
     /**
