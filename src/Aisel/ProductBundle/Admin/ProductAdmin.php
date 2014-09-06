@@ -109,6 +109,10 @@ class ProductAdmin extends Admin
             ->add('metaTitle', 'text', array('label' => 'Title', 'required' => false))
             ->add('metaDescription', 'textarea', array('label' => 'Description', 'required' => false))
             ->add('metaKeywords', 'textarea', array('label' => 'Keywords', 'required' => false))
+            ->with('Dates')
+            ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+
             ->end();
 
     }

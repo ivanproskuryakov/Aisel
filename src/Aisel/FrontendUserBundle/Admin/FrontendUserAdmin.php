@@ -71,13 +71,17 @@ class FrontendUserAdmin extends Admin
     {
         $formMapper
             ->with('General')
-            ->add('username', 'text', array('required' => true))
-            ->add('email')
-            ->add('plainPassword', 'text', array(
-                'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
-            ))
-            ->add('locked', null, array('required' => false))
-            ->add('enabled', null, array('required' => false))
+                ->add('id', 'integer', array('label' => 'Id','disabled' => true, 'attr' => array()))
+                ->add('username', 'text', array('required' => true))
+                ->add('email')
+                ->add('plainPassword', 'text', array(
+                    'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
+                ))
+                ->add('locked', null, array('required' => false))
+                ->add('enabled', null, array('required' => false))
+            ->with('Dates')
+                ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+                ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
 
             ->end();
     }

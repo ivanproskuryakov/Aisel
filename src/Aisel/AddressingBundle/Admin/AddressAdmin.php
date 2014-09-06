@@ -55,6 +55,10 @@ class AddressAdmin extends Admin
         $formMapper
             ->with('General')
             ->add('phone', 'text', array('required' => true))
+            ->with('Dates')
+            ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+
             ->end();
     }
 

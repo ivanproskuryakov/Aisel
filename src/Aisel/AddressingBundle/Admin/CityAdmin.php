@@ -57,6 +57,10 @@ class CityAdmin extends Admin
             ->add('name', 'text', array('required' => true))
             ->add('region', null, array('label' => 'Region', 'attr' => array('class' => 'form-control')))
             ->add('country', null, array('label' => 'Country','attr' => array('class' => 'form-control')))
+            ->with('Dates')
+            ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+
             ->end();
     }
 

@@ -49,10 +49,13 @@ class CartAdmin extends Admin
     {
         $formMapper
             ->with('General')
-                ->add('id', 'integer', array('label' => 'Cart Id','disabled' => true, 'attr' => array()))
+                ->add('id', 'integer', array('label' => 'Id','disabled' => true, 'attr' => array()))
                 ->add('products', null,
                 array('label' => 'Products', 'expanded' => true,
                     'by_reference' => false, 'multiple' => true))
+            ->with('Dates')
+                ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+                ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
             ->end();
 
     }

@@ -88,6 +88,10 @@ class NavigationAdmin extends Admin
                     }, 'empty_value' => 'no parent'
 
             ))
+            ->with('Dates')
+            ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+
             ->end();
 
     }
