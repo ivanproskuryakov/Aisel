@@ -1,15 +1,8 @@
 <?php
 
-/*
- * This file is part of the Aisel package.
- *
- * (c) Ivan Proskuryakov
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Aisel\CartBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Cart
@@ -20,46 +13,6 @@ class Cart
      * @var integer
      */
     private $id;
-
-    /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var string
-     */
-    private $content;
-
-    /**
-     * @var boolean
-     */
-    private $status;
-
-    /**
-     * @var boolean
-     */
-    private $commentStatus;
-
-    /**
-     * @var string
-     */
-    private $metaUrl;
-
-    /**
-     * @var string
-     */
-    private $metaTitle;
-
-    /**
-     * @var string
-     */
-    private $metaDescription;
-
-    /**
-     * @var string
-     */
-    private $metaKeywords;
 
     /**
      * @var \DateTime
@@ -79,20 +32,20 @@ class Cart
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $categories;
+    private $products;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -100,193 +53,9 @@ class Cart
     }
 
     /**
-     * Set title
-     *
-     * @param  string $title
-     * @return Cart
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set content
-     *
-     * @param  string $content
-     * @return Cart
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Get content
-     *
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * Set status
-     *
-     * @param  boolean $status
-     * @return Cart
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return boolean
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set commentStatus
-     *
-     * @param  boolean $commentStatus
-     * @return Cart
-     */
-    public function setCommentStatus($commentStatus)
-    {
-        $this->commentStatus = $commentStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get commentStatus
-     *
-     * @return boolean
-     */
-    public function getCommentStatus()
-    {
-        return $this->commentStatus;
-    }
-
-    /**
-     * Set metaUrl
-     *
-     * @param  string $metaUrl
-     * @return Cart
-     */
-    public function setMetaUrl($metaUrl)
-    {
-        $this->metaUrl = $metaUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get metaUrl
-     *
-     * @return string
-     */
-    public function getMetaUrl()
-    {
-        return $this->metaUrl;
-    }
-
-    /**
-     * Set metaTitle
-     *
-     * @param  string $metaTitle
-     * @return Cart
-     */
-    public function setMetaTitle($metaTitle)
-    {
-        $this->metaTitle = $metaTitle;
-
-        return $this;
-    }
-
-    /**
-     * Get metaTitle
-     *
-     * @return string
-     */
-    public function getMetaTitle()
-    {
-        return $this->metaTitle;
-    }
-
-    /**
-     * Set metaDescription
-     *
-     * @param  string $metaDescription
-     * @return Cart
-     */
-    public function setMetaDescription($metaDescription)
-    {
-        $this->metaDescription = $metaDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get metaDescription
-     *
-     * @return string
-     */
-    public function getMetaDescription()
-    {
-        return $this->metaDescription;
-    }
-
-    /**
-     * Set metaKeywords
-     *
-     * @param  string $metaKeywords
-     * @return Cart
-     */
-    public function setMetaKeywords($metaKeywords)
-    {
-        $this->metaKeywords = $metaKeywords;
-
-        return $this;
-    }
-
-    /**
-     * Get metaKeywords
-     *
-     * @return string
-     */
-    public function getMetaKeywords()
-    {
-        return $this->metaKeywords;
-    }
-
-    /**
      * Set createdAt
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
      * @return Cart
      */
     public function setCreatedAt($createdAt)
@@ -299,7 +68,7 @@ class Cart
     /**
      * Get createdAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -309,7 +78,7 @@ class Cart
     /**
      * Set updatedAt
      *
-     * @param  \DateTime $updatedAt
+     * @param \DateTime $updatedAt
      * @return Cart
      */
     public function setUpdatedAt($updatedAt)
@@ -322,7 +91,7 @@ class Cart
     /**
      * Get updatedAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -332,7 +101,7 @@ class Cart
     /**
      * Set frontenduser
      *
-     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
      * @return Cart
      */
     public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
@@ -345,7 +114,7 @@ class Cart
     /**
      * Get frontenduser
      *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
+     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser 
      */
     public function getFrontenduser()
     {
@@ -353,450 +122,12 @@ class Cart
     }
 
     /**
-     * Add categories
-     *
-     * @param  \Aisel\CategoryBundle\Entity\Category $categories
-     * @return Cart
-     */
-    public function addCategory(\Aisel\CategoryBundle\Entity\Category $categories)
-    {
-        $this->categories[] = $categories;
-
-        return $this;
-    }
-
-    /**
-     * Remove categories
-     *
-     * @param \Aisel\CategoryBundle\Entity\Category $categories
-     */
-    public function removeCategory(\Aisel\CategoryBundle\Entity\Category $categories)
-    {
-        $this->categories->removeElement($categories);
-    }
-
-    /**
-     * Get categories
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }
-
-    /**
-     * @var boolean
-     */
-    private $hidden;
-
-    /**
-     * Set hidden
-     *
-     * @param  boolean $hidden
-     * @return Cart
-     */
-    public function setHidden($hidden)
-    {
-        $this->hidden = $hidden;
-
-        return $this;
-    }
-
-    /**
-     * Get hidden
-     *
-     * @return boolean
-     */
-    public function getHidden()
-    {
-        return $this->hidden;
-    }
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $sku;
-
-    /**
-     * @var float
-     */
-    private $price;
-
-    /**
-     * @var float
-     */
-    private $priceSpecial;
-
-    /**
-     * @var \DateTime
-     */
-    private $priceSpecialFrom;
-
-    /**
-     * @var \DateTime
-     */
-    private $priceSpecialTo;
-
-    /**
-     * @var string
-     */
-    private $descriptionShort;
-
-    /**
-     * @var string
-     */
-    private $descriptionFull;
-
-    /**
-     * Set name
-     *
-     * @param  string $name
-     * @return Cart
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set sku
-     *
-     * @param  string $sku
-     * @return Cart
-     */
-    public function setSku($sku)
-    {
-        $this->sku = $sku;
-
-        return $this;
-    }
-
-    /**
-     * Get sku
-     *
-     * @return string
-     */
-    public function getSku()
-    {
-        return $this->sku;
-    }
-
-    /**
-     * Set price
-     *
-     * @param  float $price
-     * @return Cart
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Set priceSpecial
-     *
-     * @param  float $priceSpecial
-     * @return Cart
-     */
-    public function setPriceSpecial($priceSpecial)
-    {
-        $this->priceSpecial = $priceSpecial;
-
-        return $this;
-    }
-
-    /**
-     * Get priceSpecial
-     *
-     * @return float
-     */
-    public function getPriceSpecial()
-    {
-        return $this->priceSpecial;
-    }
-
-    /**
-     * Set priceSpecialFrom
-     *
-     * @param  \DateTime $priceSpecialFrom
-     * @return Cart
-     */
-    public function setPriceSpecialFrom($priceSpecialFrom)
-    {
-        $this->priceSpecialFrom = $priceSpecialFrom;
-
-        return $this;
-    }
-
-    /**
-     * Get priceSpecialFrom
-     *
-     * @return \DateTime
-     */
-    public function getPriceSpecialFrom()
-    {
-        return $this->priceSpecialFrom;
-    }
-
-    /**
-     * Set priceSpecialTo
-     *
-     * @param  \DateTime $priceSpecialTo
-     * @return Cart
-     */
-    public function setPriceSpecialTo($priceSpecialTo)
-    {
-        $this->priceSpecialTo = $priceSpecialTo;
-
-        return $this;
-    }
-
-    /**
-     * Get priceSpecialTo
-     *
-     * @return \DateTime
-     */
-    public function getPriceSpecialTo()
-    {
-        return $this->priceSpecialTo;
-    }
-
-    /**
-     * Set descriptionShort
-     *
-     * @param  string $descriptionShort
-     * @return Cart
-     */
-    public function setDescriptionShort($descriptionShort)
-    {
-        $this->descriptionShort = $descriptionShort;
-
-        return $this;
-    }
-
-    /**
-     * Get descriptionShort
-     *
-     * @return string
-     */
-    public function getDescriptionShort()
-    {
-        return $this->descriptionShort;
-    }
-
-    /**
-     * Set descriptionFull
-     *
-     * @param  string $descriptionFull
-     * @return Cart
-     */
-    public function setDescriptionFull($descriptionFull)
-    {
-        $this->descriptionFull = $descriptionFull;
-
-        return $this;
-    }
-
-    /**
-     * Get descriptionFull
-     *
-     * @return string
-     */
-    public function getDescriptionFull()
-    {
-        return $this->descriptionFull;
-    }
-
-    /**
-     * @var boolean
-     */
-    private $new;
-
-    /**
-     * @var \DateTime
-     */
-    private $newFrom;
-
-    /**
-     * @var \DateTime
-     */
-    private $newTo;
-
-    /**
-     * Set new
-     *
-     * @param  boolean $new
-     * @return Cart
-     */
-    public function setNew($new)
-    {
-        $this->new = $new;
-
-        return $this;
-    }
-
-    /**
-     * Get new
-     *
-     * @return boolean
-     */
-    public function getNew()
-    {
-        return $this->new;
-    }
-
-    /**
-     * Set newFrom
-     *
-     * @param  \DateTime $newFrom
-     * @return Cart
-     */
-    public function setNewFrom($newFrom)
-    {
-        $this->newFrom = $newFrom;
-
-        return $this;
-    }
-
-    /**
-     * Get newFrom
-     *
-     * @return \DateTime
-     */
-    public function getNewFrom()
-    {
-        return $this->newFrom;
-    }
-
-    /**
-     * Set newTo
-     *
-     * @param  \DateTime $newTo
-     * @return Cart
-     */
-    public function setNewTo($newTo)
-    {
-        $this->newTo = $newTo;
-
-        return $this;
-    }
-
-    /**
-     * Get newTo
-     *
-     * @return \DateTime
-     */
-    public function getNewTo()
-    {
-        return $this->newTo;
-    }
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * Set description
-     *
-     * @param  string $description
-     * @return Cart
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $image;
-
-    /**
-     * Add image
-     *
-     * @param  \Aisel\CartBundle\Entity\Cart $image
-     * @return Cart
-     */
-    public function addImage(\Aisel\CartBundle\Entity\Cart $image)
-    {
-        $this->image[] = $image;
-
-        return $this;
-    }
-
-    /**
-     * Remove image
-     *
-     * @param \Aisel\CartBundle\Entity\Cart $image
-     */
-    public function removeImage(\Aisel\CartBundle\Entity\Cart $image)
-    {
-        $this->image->removeElement($image);
-    }
-
-    /**
-     * Get image
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $products;
-
-    /**
      * Add products
      *
-     * @param  \Aisel\ProductBundle\Entity\Products $products
+     * @param \Aisel\ProductBundle\Entity\Product $products
      * @return Cart
      */
-    public function addProduct(\Aisel\ProductBundle\Entity\Products $products)
+    public function addProduct(\Aisel\ProductBundle\Entity\Product $products)
     {
         $this->products[] = $products;
 
@@ -806,9 +137,9 @@ class Cart
     /**
      * Remove products
      *
-     * @param \Aisel\ProductBundle\Entity\Products $products
+     * @param \Aisel\ProductBundle\Entity\Product $products
      */
-    public function removeProduct(\Aisel\ProductBundle\Entity\Products $products)
+    public function removeProduct(\Aisel\ProductBundle\Entity\Product $products)
     {
         $this->products->removeElement($products);
     }
@@ -816,7 +147,7 @@ class Cart
     /**
      * Get products
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getProducts()
     {

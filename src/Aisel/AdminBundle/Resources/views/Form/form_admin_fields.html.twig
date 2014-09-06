@@ -20,13 +20,16 @@ file that was distributed with this source code.
                 {% for child in form %}
 
                     {# Override to make a tree #}
+                    {% set margin = 0 %}
                     {% if child.vars.value %}
-                        {% set margin = form.vars.choices[child.vars.value].data.lvl * 30 %}
+                        {% if form.vars.choices[child.vars.value].data.lvl is defined %}
+                            {% set margin = form.vars.choices[child.vars.value].data.lvl * 30 %}
+                        {% endif %}
                     {% else %}
                         {% set margin = 0 %}
                     {% endif %}
 
-                    {#{{ dump(child.vars.value) }}#}
+                    {#{{ du mp(child.vars.value) }}#}
                     {#{{ dump(form.vars.choices[child.vars.value].data.lvl) }}#}
 
                     <li style="margin-left: {{ margin }}px;">

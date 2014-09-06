@@ -1,15 +1,8 @@
 <?php
 
-/*
- * This file is part of the Aisel package.
- *
- * (c) Ivan Proskuryakov
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Aisel\OrderBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Order
@@ -24,42 +17,17 @@ class Order
     /**
      * @var string
      */
-    private $title;
-
-    /**
-     * @var string
-     */
-    private $content;
-
-    /**
-     * @var boolean
-     */
     private $status;
 
     /**
-     * @var boolean
+     * @var integer
      */
-    private $commentStatus;
+    private $subtotal;
 
     /**
-     * @var string
+     * @var integer
      */
-    private $metaUrl;
-
-    /**
-     * @var string
-     */
-    private $metaTitle;
-
-    /**
-     * @var string
-     */
-    private $metaDescription;
-
-    /**
-     * @var string
-     */
-    private $metaKeywords;
+    private $grandtotal;
 
     /**
      * @var \DateTime
@@ -77,22 +45,27 @@ class Order
     private $frontenduser;
 
     /**
+     * @var \Aisel\OrderBundle\Entity\Invoice
+     */
+    private $invoice;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $categories;
+    private $item;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->item = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -100,55 +73,9 @@ class Order
     }
 
     /**
-     * Set title
-     *
-     * @param  string $title
-     * @return Order
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set content
-     *
-     * @param  string $content
-     * @return Order
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Get content
-     *
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
      * Set status
      *
-     * @param  boolean $status
+     * @param string $status
      * @return Order
      */
     public function setStatus($status)
@@ -161,7 +88,7 @@ class Order
     /**
      * Get status
      *
-     * @return boolean
+     * @return string 
      */
     public function getStatus()
     {
@@ -169,124 +96,55 @@ class Order
     }
 
     /**
-     * Set commentStatus
+     * Set subtotal
      *
-     * @param  boolean $commentStatus
+     * @param integer $subtotal
      * @return Order
      */
-    public function setCommentStatus($commentStatus)
+    public function setSubtotal($subtotal)
     {
-        $this->commentStatus = $commentStatus;
+        $this->subtotal = $subtotal;
 
         return $this;
     }
 
     /**
-     * Get commentStatus
+     * Get subtotal
      *
-     * @return boolean
+     * @return integer 
      */
-    public function getCommentStatus()
+    public function getSubtotal()
     {
-        return $this->commentStatus;
+        return $this->subtotal;
     }
 
     /**
-     * Set metaUrl
+     * Set grandtotal
      *
-     * @param  string $metaUrl
+     * @param integer $grandtotal
      * @return Order
      */
-    public function setMetaUrl($metaUrl)
+    public function setGrandtotal($grandtotal)
     {
-        $this->metaUrl = $metaUrl;
+        $this->grandtotal = $grandtotal;
 
         return $this;
     }
 
     /**
-     * Get metaUrl
+     * Get grandtotal
      *
-     * @return string
+     * @return integer 
      */
-    public function getMetaUrl()
+    public function getGrandtotal()
     {
-        return $this->metaUrl;
-    }
-
-    /**
-     * Set metaTitle
-     *
-     * @param  string $metaTitle
-     * @return Order
-     */
-    public function setMetaTitle($metaTitle)
-    {
-        $this->metaTitle = $metaTitle;
-
-        return $this;
-    }
-
-    /**
-     * Get metaTitle
-     *
-     * @return string
-     */
-    public function getMetaTitle()
-    {
-        return $this->metaTitle;
-    }
-
-    /**
-     * Set metaDescription
-     *
-     * @param  string $metaDescription
-     * @return Order
-     */
-    public function setMetaDescription($metaDescription)
-    {
-        $this->metaDescription = $metaDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get metaDescription
-     *
-     * @return string
-     */
-    public function getMetaDescription()
-    {
-        return $this->metaDescription;
-    }
-
-    /**
-     * Set metaKeywords
-     *
-     * @param  string $metaKeywords
-     * @return Order
-     */
-    public function setMetaKeywords($metaKeywords)
-    {
-        $this->metaKeywords = $metaKeywords;
-
-        return $this;
-    }
-
-    /**
-     * Get metaKeywords
-     *
-     * @return string
-     */
-    public function getMetaKeywords()
-    {
-        return $this->metaKeywords;
+        return $this->grandtotal;
     }
 
     /**
      * Set createdAt
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
      * @return Order
      */
     public function setCreatedAt($createdAt)
@@ -299,7 +157,7 @@ class Order
     /**
      * Get createdAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -309,7 +167,7 @@ class Order
     /**
      * Set updatedAt
      *
-     * @param  \DateTime $updatedAt
+     * @param \DateTime $updatedAt
      * @return Order
      */
     public function setUpdatedAt($updatedAt)
@@ -322,7 +180,7 @@ class Order
     /**
      * Get updatedAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -332,7 +190,7 @@ class Order
     /**
      * Set frontenduser
      *
-     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
      * @return Order
      */
     public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
@@ -345,7 +203,7 @@ class Order
     /**
      * Get frontenduser
      *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
+     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser 
      */
     public function getFrontenduser()
     {
@@ -353,449 +211,32 @@ class Order
     }
 
     /**
-     * Add categories
+     * Set invoice
      *
-     * @param  \Aisel\CategoryBundle\Entity\Category $categories
+     * @param \Aisel\OrderBundle\Entity\Invoice $invoice
      * @return Order
      */
-    public function addCategory(\Aisel\CategoryBundle\Entity\Category $categories)
+    public function setInvoice(\Aisel\OrderBundle\Entity\Invoice $invoice = null)
     {
-        $this->categories[] = $categories;
+        $this->invoice = $invoice;
 
         return $this;
     }
 
     /**
-     * Remove categories
+     * Get invoice
      *
-     * @param \Aisel\CategoryBundle\Entity\Category $categories
+     * @return \Aisel\OrderBundle\Entity\Invoice 
      */
-    public function removeCategory(\Aisel\CategoryBundle\Entity\Category $categories)
+    public function getInvoice()
     {
-        $this->categories->removeElement($categories);
+        return $this->invoice;
     }
-
-    /**
-     * Get categories
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }
-
-    /**
-     * @var boolean
-     */
-    private $hidden;
-
-    /**
-     * Set hidden
-     *
-     * @param  boolean $hidden
-     * @return Order
-     */
-    public function setHidden($hidden)
-    {
-        $this->hidden = $hidden;
-
-        return $this;
-    }
-
-    /**
-     * Get hidden
-     *
-     * @return boolean
-     */
-    public function getHidden()
-    {
-        return $this->hidden;
-    }
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $sku;
-
-    /**
-     * @var float
-     */
-    private $price;
-
-    /**
-     * @var float
-     */
-    private $priceSpecial;
-
-    /**
-     * @var \DateTime
-     */
-    private $priceSpecialFrom;
-
-    /**
-     * @var \DateTime
-     */
-    private $priceSpecialTo;
-
-    /**
-     * @var string
-     */
-    private $descriptionShort;
-
-    /**
-     * @var string
-     */
-    private $descriptionFull;
-
-    /**
-     * Set name
-     *
-     * @param  string $name
-     * @return Order
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set sku
-     *
-     * @param  string $sku
-     * @return Order
-     */
-    public function setSku($sku)
-    {
-        $this->sku = $sku;
-
-        return $this;
-    }
-
-    /**
-     * Get sku
-     *
-     * @return string
-     */
-    public function getSku()
-    {
-        return $this->sku;
-    }
-
-    /**
-     * Set price
-     *
-     * @param  float $price
-     * @return Order
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Set priceSpecial
-     *
-     * @param  float $priceSpecial
-     * @return Order
-     */
-    public function setPriceSpecial($priceSpecial)
-    {
-        $this->priceSpecial = $priceSpecial;
-
-        return $this;
-    }
-
-    /**
-     * Get priceSpecial
-     *
-     * @return float
-     */
-    public function getPriceSpecial()
-    {
-        return $this->priceSpecial;
-    }
-
-    /**
-     * Set priceSpecialFrom
-     *
-     * @param  \DateTime $priceSpecialFrom
-     * @return Order
-     */
-    public function setPriceSpecialFrom($priceSpecialFrom)
-    {
-        $this->priceSpecialFrom = $priceSpecialFrom;
-
-        return $this;
-    }
-
-    /**
-     * Get priceSpecialFrom
-     *
-     * @return \DateTime
-     */
-    public function getPriceSpecialFrom()
-    {
-        return $this->priceSpecialFrom;
-    }
-
-    /**
-     * Set priceSpecialTo
-     *
-     * @param  \DateTime $priceSpecialTo
-     * @return Order
-     */
-    public function setPriceSpecialTo($priceSpecialTo)
-    {
-        $this->priceSpecialTo = $priceSpecialTo;
-
-        return $this;
-    }
-
-    /**
-     * Get priceSpecialTo
-     *
-     * @return \DateTime
-     */
-    public function getPriceSpecialTo()
-    {
-        return $this->priceSpecialTo;
-    }
-
-    /**
-     * Set descriptionShort
-     *
-     * @param  string $descriptionShort
-     * @return Order
-     */
-    public function setDescriptionShort($descriptionShort)
-    {
-        $this->descriptionShort = $descriptionShort;
-
-        return $this;
-    }
-
-    /**
-     * Get descriptionShort
-     *
-     * @return string
-     */
-    public function getDescriptionShort()
-    {
-        return $this->descriptionShort;
-    }
-
-    /**
-     * Set descriptionFull
-     *
-     * @param  string $descriptionFull
-     * @return Order
-     */
-    public function setDescriptionFull($descriptionFull)
-    {
-        $this->descriptionFull = $descriptionFull;
-
-        return $this;
-    }
-
-    /**
-     * Get descriptionFull
-     *
-     * @return string
-     */
-    public function getDescriptionFull()
-    {
-        return $this->descriptionFull;
-    }
-
-    /**
-     * @var boolean
-     */
-    private $new;
-
-    /**
-     * @var \DateTime
-     */
-    private $newFrom;
-
-    /**
-     * @var \DateTime
-     */
-    private $newTo;
-
-    /**
-     * Set new
-     *
-     * @param  boolean $new
-     * @return Order
-     */
-    public function setNew($new)
-    {
-        $this->new = $new;
-
-        return $this;
-    }
-
-    /**
-     * Get new
-     *
-     * @return boolean
-     */
-    public function getNew()
-    {
-        return $this->new;
-    }
-
-    /**
-     * Set newFrom
-     *
-     * @param  \DateTime $newFrom
-     * @return Order
-     */
-    public function setNewFrom($newFrom)
-    {
-        $this->newFrom = $newFrom;
-
-        return $this;
-    }
-
-    /**
-     * Get newFrom
-     *
-     * @return \DateTime
-     */
-    public function getNewFrom()
-    {
-        return $this->newFrom;
-    }
-
-    /**
-     * Set newTo
-     *
-     * @param  \DateTime $newTo
-     * @return Order
-     */
-    public function setNewTo($newTo)
-    {
-        $this->newTo = $newTo;
-
-        return $this;
-    }
-
-    /**
-     * Get newTo
-     *
-     * @return \DateTime
-     */
-    public function getNewTo()
-    {
-        return $this->newTo;
-    }
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * Set description
-     *
-     * @param  string $description
-     * @return Order
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $image;
-
-    /**
-     * Add image
-     *
-     * @param  \Aisel\OrderBundle\Entity\OrderItem $image
-     * @return Order
-     */
-    public function addImage(\Aisel\OrderBundle\Entity\OrderItem $image)
-    {
-        $this->image[] = $image;
-
-        return $this;
-    }
-
-    /**
-     * Remove image
-     *
-     * @param \Aisel\OrderBundle\Entity\OrderItem $image
-     */
-    public function removeImage(\Aisel\OrderBundle\Entity\OrderItem $image)
-    {
-        $this->image->removeElement($image);
-    }
-
-    /**
-     * Get image
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $item;
 
     /**
      * Add item
      *
-     * @param  \Aisel\OrderBundle\Entity\OrderItem $item
+     * @param \Aisel\OrderBundle\Entity\OrderItem $item
      * @return Order
      */
     public function addItem(\Aisel\OrderBundle\Entity\OrderItem $item)
@@ -818,65 +259,10 @@ class Order
     /**
      * Get item
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getItem()
     {
         return $this->item;
-    }
-    /**
-     * @var integer
-     */
-    private $subtotal;
-
-    /**
-     * @var integer
-     */
-    private $grandtotal;
-
-    /**
-     * Set subtotal
-     *
-     * @param  integer $subtotal
-     * @return Order
-     */
-    public function setSubtotal($subtotal)
-    {
-        $this->subtotal = $subtotal;
-
-        return $this;
-    }
-
-    /**
-     * Get subtotal
-     *
-     * @return integer
-     */
-    public function getSubtotal()
-    {
-        return $this->subtotal;
-    }
-
-    /**
-     * Set grandtotal
-     *
-     * @param  integer $grandtotal
-     * @return Order
-     */
-    public function setGrandtotal($grandtotal)
-    {
-        $this->grandtotal = $grandtotal;
-
-        return $this;
-    }
-
-    /**
-     * Get grandtotal
-     *
-     * @return integer
-     */
-    public function getGrandtotal()
-    {
-        return $this->grandtotal;
     }
 }

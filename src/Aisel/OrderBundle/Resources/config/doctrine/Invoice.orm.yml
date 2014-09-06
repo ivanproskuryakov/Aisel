@@ -16,11 +16,3 @@ Aisel\OrderBundle\Entity\Invoice:
         updatedAt:
             type: datetime
             column: updated_at
-
-    manyToOne:
-      product:
-        targetEntity: Aisel\OrderBundle\Entity\Order
-        inversedBy: invoices
-        joinColumns:
-          order_id:
-            referencedColumnName: id

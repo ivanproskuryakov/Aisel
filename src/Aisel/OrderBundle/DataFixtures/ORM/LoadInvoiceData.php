@@ -14,17 +14,17 @@ namespace Aisel\OrderBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\ResourceBundle\DataFixtures\ORM\AbstractFixtureData;
-use Aisel\OrderBundle\Entity\Order;
+use Aisel\OrderBundle\Entity\Invoice;
 
 /**
  * Order fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadOrderData extends AbstractFixtureData implements OrderedFixtureInterface
+class LoadInvoiceData extends AbstractFixtureData implements OrderedFixtureInterface
 {
 
-    protected $fixturesName = 'aisel_order.xml';
+    protected $fixturesName = 'aisel_invoice.xml';
 
     /**
      * {@inheritDoc}
@@ -36,19 +36,12 @@ class LoadOrderData extends AbstractFixtureData implements OrderedFixtureInterfa
             $XML = simplexml_load_string($contents);
 
             foreach ($XML->database->table as $table) {
-                $frontendUser = $this->getReference('frontenduser_'.$table->column[1]);
-                $invoice = $this->getReference('invoice_'.$table->column[2]);
-                $order = new Order();
-                $order->setStatus($table->column[2]);
-                $order->setSubtotal((float) $table->column[3]);
-                $order->getGrandtotal((float) $table->column[4]);
-                $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                $order->setFrontenduser($frontendUser);
-                $order->setInvoice($invoice);
-                $manager->persist($order);
+                $invoice = new Invoice();
+                $invoice->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $invoice->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $manager->persist($invoice);
                 $manager->flush();
-                $this->addReference('order_' . $table->column[0], $order);
+                $this->addReference('invoice_' . $table->column[0], $invoice);
             }
         }
     }
@@ -58,6 +51,6 @@ class LoadOrderData extends AbstractFixtureData implements OrderedFixtureInterfa
      */
     public function getOrder()
     {
-        return 610;
+        return 600;
     }
 }

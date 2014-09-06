@@ -51,7 +51,11 @@ class OrderAdmin extends Admin
     {
         $formMapper
             ->with('General')
-                ->add('name', 'text', array('label' => 'Name', 'attr' => array()))
+                ->add('id', 'integer', array('label' => 'Id','disabled' => true, 'attr' => array()))
+                ->add('status', 'text', array('label' => 'Status', 'attr' => array()))
+            ->with('Dates')
+                ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+                ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
             ->end();
 
     }

@@ -30,17 +30,18 @@ Aisel\OrderBundle\Entity\Order:
     oneToOne:
       frontenduser:
         targetEntity: Aisel\FrontendUserBundle\Entity\FrontendUser
-        inversedBy: orders
-        joinColumns:
-          user_id:
-            referencedColumnName: id
+        joinColumn:
+          name: user_id
+          referencedColumnName: id
+
+      invoice:
+        targetEntity: Aisel\OrderBundle\Entity\Invoice
+        joinColumn:
+          name: invoice_id
+          referencedColumnName: id
+
 
     oneToMany:
       item:
         targetEntity: Aisel\OrderBundle\Entity\OrderItem
-        mappedBy: order
-
-    oneToMany:
-      invoice:
-        targetEntity: Aisel\Bundle\Entity\OrderInvoice
         mappedBy: order

@@ -213,7 +213,7 @@
         </table>
         <table name="aisel_page">
             <column name="id">1934</column>
-            <column name="user_id">271</column>
+            <column name="user_id">149</column>
             <column name="title">Sample User Page One</column>
             <column name="content">Using a mockup can also help with the design process by helping the developer identify flaws which can be fixed before the actual work begins. Chances are your clients will want something to look at the initial stages of the design/development of your application, which is why mockups can be so useful. Anyone who needs an iPhone mockup made will be able to rely on us to provide ones that are extremely high quality with a resolution of 640x1136. The quality of your mockups will definitely be important, which is why we make sure that all of ours have an enhanced look for clear visibility.</column>
             <column name="status">1</column>
@@ -228,7 +228,7 @@
         </table>
         <table name="aisel_page">
             <column name="id">1935</column>
-            <column name="user_id">271</column>
+            <column name="user_id">149</column>
             <column name="title">Sample User Page Two</column>
             <column name="content">Whether you need a mockup for the iPhone 4 or 5, we can provide you with exactly what you are looking for. When it comes to program designing, mockups are an essential aspect of presentation. If you want to showcase your work to clients, this is most definitely the way to do it. Your mockups will provide your clients with a first glance at what your apps look like on the actual phone without having to actually spend the money on one of these devices. All of our mockups are free and offer everything that you need as a professional designer. </column>
             <column name="status">1</column>

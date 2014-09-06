@@ -39,8 +39,6 @@ class CartAdmin extends Admin
     public function validate(ErrorElement $errorElement, $object)
     {
         $errorElement
-            ->with('status')
-            ->assertNotBlank()
             ->end();
     }
 
@@ -51,7 +49,10 @@ class CartAdmin extends Admin
     {
         $formMapper
             ->with('General')
-            ->add('status', 'text', array('label' => 'Status', 'attr' => array()))
+                ->add('id', 'integer', array('label' => 'Cart Id','disabled' => true, 'attr' => array()))
+                ->add('products', null,
+                array('label' => 'Products', 'expanded' => true,
+                    'by_reference' => false, 'multiple' => true))
             ->end();
 
     }
@@ -77,6 +78,8 @@ class CartAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
+            ->add('products')
+            ->add('createdAt', 'datetime', array('label' => 'Created At'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),

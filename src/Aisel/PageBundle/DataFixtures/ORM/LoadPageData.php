@@ -39,6 +39,12 @@ class LoadPageData extends AbstractFixtureData implements OrderedFixtureInterfac
             $category = $this->getReference('page_category_1270');
             foreach ($XML->database->table as $table) {
                 $page = new Page();
+
+                if ($table->column[1] != 'NULL') {
+                    $user = $this->getReference('frontenduser_' . $table->column[1]);
+                    $page->setFrontenduser($user);
+                }
+
                 $page->setTitle($table->column[2]);
                 $page->setContent($table->column[3]);
                 $page->setStatus($table->column[4]);

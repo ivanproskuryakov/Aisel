@@ -146,6 +146,14 @@ class Product
     }
 
     /**
+     * __toString
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
      * Get id
      *
      * @return integer

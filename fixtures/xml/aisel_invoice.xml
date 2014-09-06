@@ -16,13 +16,8 @@
     -->
     <database name="aisel">
         <!-- Table aisel_order -->
-        <table name="aisel_order">
-            <column name="id">59</column>
-            <column name="user_id">149</column>
-            <column name="invoice_id">123</column>
-            <column name="status">new</column>
-            <column name="subtotal">NULL</column>
-            <column name="grandtotal">NULL</column>
+        <table name="aisel_invoice">
+            <column name="id">123</column>
             <column name="created_at">2014-09-03 09:40:15</column>
             <column name="updated_at">2014-09-03 09:40:15</column>
         </table>

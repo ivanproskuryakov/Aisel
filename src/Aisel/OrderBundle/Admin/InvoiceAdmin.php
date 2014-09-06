@@ -48,6 +48,11 @@ class InvoiceAdmin extends Admin
     {
         $formMapper
             ->with('General')
+                ->add('id', 'integer', array('label' => 'Id','disabled' => true, 'attr' => array()))
+            ->with('Dates')
+                ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+                ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+
             ->end();
 
     }
@@ -73,6 +78,8 @@ class InvoiceAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
+            ->add('createdAt', 'datetime', array('label' => 'Created At'))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -91,8 +98,7 @@ class InvoiceAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-            ->add('id')
-            ->add('status');
+            ->add('id');
     }
 
     /**
