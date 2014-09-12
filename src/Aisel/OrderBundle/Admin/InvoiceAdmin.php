@@ -50,9 +50,8 @@ class InvoiceAdmin extends Admin
             ->with('General')
                 ->add('id', 'integer', array('label' => 'Id','disabled' => true, 'attr' => array()))
             ->with('Dates')
-                ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-                ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-
+            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
             ->end();
 
     }
@@ -98,7 +97,10 @@ class InvoiceAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-            ->add('id');
+            ->add('id')
+            ->with('Dates')
+            ->add('createdAt')
+            ->add('updatedAt');
     }
 
     /**

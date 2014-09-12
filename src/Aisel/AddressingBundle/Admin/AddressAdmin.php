@@ -36,7 +36,13 @@ class AddressAdmin extends Admin
     {
         $showMapper
             ->with('General')
-            ->add('phone')
+            ->add('id')
+            ->add('street')
+            ->add('zip')
+            ->add('country')
+            ->add('region')
+            ->add('city')
+            ->add('frontenduser')
             ->end();
     }
 
@@ -56,8 +62,8 @@ class AddressAdmin extends Admin
             ->with('General')
             ->add('phone', 'text', array('required' => true))
             ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
 
             ->end();
     }
@@ -68,7 +74,14 @@ class AddressAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
         $filterMapper
-            ->add('phone');
+            ->add('phone')
+            ->add('street')
+            ->add('zip')
+            ->add('comment')
+            ->add('country')
+            ->add('region')
+            ->add('city')
+            ->add('frontenduser');
     }
 
     /**

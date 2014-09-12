@@ -54,8 +54,8 @@ class CartAdmin extends Admin
                 array('label' => 'Products', 'expanded' => true,
                     'by_reference' => false, 'multiple' => true))
             ->with('Dates')
-                ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-                ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+                ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+                ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
             ->end();
 
     }
@@ -101,7 +101,11 @@ class CartAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-            ->add('id');
+            ->add('id')
+            ->add('products')
+            ->with('Dates')
+            ->add('createdAt')
+            ->add('updatedAt');
     }
 
     /**

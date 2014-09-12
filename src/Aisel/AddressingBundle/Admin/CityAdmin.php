@@ -37,7 +37,9 @@ class CityAdmin extends Admin
         $showMapper
             ->with('General')
             ->add('name')
-            ->end();
+            ->with('Dates')
+            ->add('createdAt')
+            ->add('updatedAt');
     }
 
     /**
@@ -58,8 +60,8 @@ class CityAdmin extends Admin
             ->add('region', null, array('label' => 'Region', 'attr' => array('class' => 'form-control')))
             ->add('country', null, array('label' => 'Country','attr' => array('class' => 'form-control')))
             ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
 
             ->end();
     }

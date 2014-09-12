@@ -36,9 +36,12 @@ class BackendUserAdmin extends Admin
     {
         $showMapper
             ->with('General')
+            ->add('id')
             ->add('username')
             ->add('email')
-            ->end();
+            ->with('Dates')
+            ->add('createdAt')
+            ->add('updatedAt');
     }
 
     /**
@@ -71,7 +74,7 @@ class BackendUserAdmin extends Admin
     {
         $formMapper
             ->with('General')
-            ->add('id', 'integer', array('label' => 'Id','disabled' => true, 'attr' => array()))
+            ->add('id', 'integer', array('label' => 'Id', 'disabled' => true, 'attr' => array()))
             ->add('username', 'text', array('required' => true))
             ->add('email')
             ->add('plainPassword', 'text', array(
@@ -80,8 +83,8 @@ class BackendUserAdmin extends Admin
             ->add('locked', null, array('required' => false))
             ->add('enabled', null, array('required' => false))
             ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
 
             ->end();
     }

@@ -60,22 +60,22 @@ class ProductAdmin extends Admin
             ->with('General')
             ->add('name', 'text', array('label' => 'Name', 'attr' => array()))
             ->add('sku', 'text', array('label' => 'Sku', 'attr' => array()))
-            ->add('status', 'choice', array('choices' => array(
-                '0' => 'Disabled',
-                '1' => 'Enabled'),
-                'label' => 'Status', 'attr' => array()))
-            ->add('descriptionShort', 'ckeditor',
-                array(
-                    'label' => 'Short Description',
-                    'required' => true,
-                    'attr' => array('class' => 'field-content')
-                ))
-            ->add('description', 'ckeditor',
-                array(
-                    'label' => 'Description',
-                    'required' => false,
-                    'attr' => array('class' => 'field-content')
-                ))
+//            ->add('status', 'choice', array('choices' => array(
+//                '0' => 'Disabled',
+//                '1' => 'Enabled'),
+//                'label' => 'Status', 'attr' => array()))
+//            ->add('descriptionShort', 'ckeditor',
+//                array(
+//                    'label' => 'Short Description',
+//                    'required' => true,
+//                    'attr' => array('class' => 'field-content')
+//                ))
+//            ->add('description', 'ckeditor',
+//                array(
+//                    'label' => 'Description',
+//                    'required' => false,
+//                    'attr' => array('class' => 'field-content')
+//                ))
 
             ->with('Pricing')
             ->add('price', 'money', array('label' => 'Price', 'attr' => array()))
@@ -110,8 +110,8 @@ class ProductAdmin extends Admin
             ->add('metaDescription', 'textarea', array('label' => 'Description', 'required' => false))
             ->add('metaKeywords', 'textarea', array('label' => 'Keywords', 'required' => false))
             ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
 
             ->end();
 
@@ -170,6 +170,7 @@ class ProductAdmin extends Admin
     {
         $showMapper
             ->with('Information')
+            ->add('id')
             ->add('name')
             ->add('qty')
             ->add('inStock')
@@ -185,8 +186,9 @@ class ProductAdmin extends Admin
             ->add('metaTitle')
             ->add('metaDescription')
             ->add('metaKeywords')
-            ->with('General')
-            ->add('id');
+            ->with('Dates')
+            ->add('createdAt')
+            ->add('updatedAt');
     }
 
     /**

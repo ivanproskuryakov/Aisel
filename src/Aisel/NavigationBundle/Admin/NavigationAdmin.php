@@ -89,8 +89,8 @@ class NavigationAdmin extends Admin
 
             ))
             ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
 
             ->end();
 
@@ -116,10 +116,13 @@ class NavigationAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-            ->add('updatedAt')
+            ->add('id')
+            ->add('title')
+            ->add('metaUrl')
             ->add('status')
-            ->with('General')
-            ->add('id');
+            ->with('Dates')
+            ->add('createdAt')
+            ->add('updatedAt');
     }
 
     /**

@@ -37,7 +37,12 @@ class CountryAdmin extends Admin
         $showMapper
             ->with('General')
             ->add('iso2')
-            ->end();
+            ->add('iso3')
+            ->add('shortName')
+            ->add('cctld')
+            ->with('Dates')
+            ->add('createdAt')
+            ->add('updatedAt');
     }
 
     /**
@@ -56,8 +61,8 @@ class CountryAdmin extends Admin
             ->with('General')
             ->add('iso2', 'text', array('required' => true))
             ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
 
             ->end();
     }
@@ -68,7 +73,10 @@ class CountryAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
         $filterMapper
-            ->add('iso2');
+            ->add('iso2')
+            ->add('iso3')
+            ->add('shortName')
+            ->add('cctld');
     }
 
     /**
@@ -78,10 +86,10 @@ class CountryAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->addIdentifier('iso2')
-            ->addIdentifier('iso3')
-            ->addIdentifier('shortName')
-            ->addIdentifier('cctld')
+            ->add('iso2')
+            ->add('iso3')
+            ->add('shortName')
+            ->add('cctld')
 
             ->add('_action', 'actions', array(
                     'actions' => array(

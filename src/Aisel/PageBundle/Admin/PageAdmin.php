@@ -88,8 +88,8 @@ class PageAdmin extends Admin
             ->add('metaDescription', 'textarea', array('label' => 'Description','required' => false))
             ->add('metaKeywords', 'textarea', array('label' => 'Keywords','required' => false))
             ->with('Dates')
-                ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-                ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
 
             ->end();
 
@@ -135,7 +135,7 @@ class PageAdmin extends Admin
             ->add('title')
             ->add('frontenduser', null, array('label' => 'User'))
             ->add('status', 'boolean', array('label' => 'Status', 'editable' => false))
-            ->add('updatedAt', 'datetime', array('label' => 'Date'))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -154,8 +154,9 @@ class PageAdmin extends Admin
     {
         $showMapper
             ->with('Information')
+            ->add('id')
             ->add('content')
-            ->add('updatedAt')
+            ->add('frontenduser')
             ->add('status', 'boolean')
             ->with('Categories')
             ->add('categories', 'tree')
@@ -164,8 +165,10 @@ class PageAdmin extends Admin
             ->add('metaTitle')
             ->add('metaDescription')
             ->add('metaKeywords')
-            ->with('General')
-            ->add('id');
+            ->with('Dates')
+            ->add('createdAt')
+            ->add('updatedAt');
+
     }
 
     /**

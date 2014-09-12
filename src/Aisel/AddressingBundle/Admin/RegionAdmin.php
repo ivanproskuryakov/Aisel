@@ -38,10 +38,8 @@ class RegionAdmin extends Admin
             ->with('General')
             ->add('name')
             ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-
-            ->end();
+            ->add('createdAt')
+            ->add('updatedAt');
     }
 
     /**

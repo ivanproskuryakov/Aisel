@@ -110,6 +110,9 @@ class AbstractCategoryAdmin extends Admin
             ->add('metaTitle', 'text', array('label' => 'Title', 'required' => false))
             ->add('metaDescription', 'textarea', array('label' => 'Description', 'required' => false))
             ->add('metaKeywords', 'textarea', array('label' => 'Keywords', 'required' => false))
+            ->with('Dates')
+            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
             ->end();
 
     }
@@ -151,7 +154,7 @@ class AbstractCategoryAdmin extends Admin
     {
         $showMapper
             ->with('Information')
-            ->add('updatedAt')
+            ->add('id')
             ->add('status')
             ->with('Meta')
             ->add('metaUrl')
@@ -159,7 +162,9 @@ class AbstractCategoryAdmin extends Admin
             ->add('metaDescription')
             ->add('metaKeywords')
             ->with('General')
-            ->add('id');
+            ->with('Dates')
+            ->add('createdAt')
+            ->add('updatedAt');
     }
 
     /**

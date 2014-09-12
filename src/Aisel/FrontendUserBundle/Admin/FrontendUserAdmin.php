@@ -38,7 +38,9 @@ class FrontendUserAdmin extends Admin
             ->with('General')
             ->add('username')
             ->add('email')
-            ->end();
+            ->with('Dates')
+            ->add('createdAt')
+            ->add('updatedAt');
     }
 
     /**
@@ -80,8 +82,8 @@ class FrontendUserAdmin extends Admin
                 ->add('locked', null, array('required' => false))
                 ->add('enabled', null, array('required' => false))
             ->with('Dates')
-                ->add('createdAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
-                ->add('updatedAt', 'datetime', array('label' => 'Created At', 'attr' => array()))
+                ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+                ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
 
             ->end();
     }
