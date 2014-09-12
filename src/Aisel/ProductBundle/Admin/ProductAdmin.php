@@ -25,9 +25,13 @@ use Sonata\AdminBundle\Validator\ErrorElement;
  */
 class ProductAdmin extends Admin
 {
+    
     protected $productManager;
     protected $baseRoutePattern = 'product';
 
+    /**
+     * Pass product manager for later use
+     */
     public function setManager($productManager)
     {
         $this->productManager = $productManager;
@@ -60,22 +64,22 @@ class ProductAdmin extends Admin
             ->with('General')
             ->add('name', 'text', array('label' => 'Name', 'attr' => array()))
             ->add('sku', 'text', array('label' => 'Sku', 'attr' => array()))
-//            ->add('status', 'choice', array('choices' => array(
-//                '0' => 'Disabled',
-//                '1' => 'Enabled'),
-//                'label' => 'Status', 'attr' => array()))
-//            ->add('descriptionShort', 'ckeditor',
-//                array(
-//                    'label' => 'Short Description',
-//                    'required' => true,
-//                    'attr' => array('class' => 'field-content')
-//                ))
-//            ->add('description', 'ckeditor',
-//                array(
-//                    'label' => 'Description',
-//                    'required' => false,
-//                    'attr' => array('class' => 'field-content')
-//                ))
+            ->add('status', 'choice', array('choices' => array(
+                '0' => 'Disabled',
+                '1' => 'Enabled'),
+                'label' => 'Status', 'attr' => array()))
+            ->add('descriptionShort', 'ckeditor',
+                array(
+                    'label' => 'Short Description',
+                    'required' => true,
+                    'attr' => array('class' => 'field-content')
+                ))
+            ->add('description', 'ckeditor',
+                array(
+                    'label' => 'Description',
+                    'required' => false,
+                    'attr' => array('class' => 'field-content')
+                ))
 
             ->with('Pricing')
             ->add('price', 'money', array('label' => 'Price', 'attr' => array()))
@@ -89,7 +93,7 @@ class ProductAdmin extends Admin
             ->add('newFrom', 'datetime', array('label' => 'New From', 'attr' => array()))
             ->add('newTo', 'datetime', array('label' => 'New To', 'attr' => array()))
             ->with('Media')
-                ->add('mainImage', 'iphp_file', array('label' => 'Main Image', 'required' => false, 'attr' => array('class'=>'mainImage')))
+            ->add('mainImage', 'iphp_file', array('label' => 'Main Image', 'required' => false, 'attr' => array('class' => 'mainImage')))
             ->with('Categories')
             ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
                 'class' => 'Aisel\ProductBundle\Entity\Category',
@@ -110,18 +114,16 @@ class ProductAdmin extends Admin
             ->add('metaDescription', 'textarea', array('label' => 'Description', 'required' => false))
             ->add('metaKeywords', 'textarea', array('label' => 'Keywords', 'required' => false))
             ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
+            ->add('createdAt', 'datetime', array('label' => 'Created At', 'disabled' => true, 'attr' => array()))
             ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
 
             ->end();
 
     }
 
-    public function getFormTheme()
-    {
-        return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function prePersist($product)
     {
         $url = $product->getMetaUrl();
@@ -132,6 +134,9 @@ class ProductAdmin extends Admin
         $product->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function preUpdate($product)
     {
         $url = $product->getMetaUrl();
@@ -142,11 +147,14 @@ class ProductAdmin extends Admin
         $product->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('mainImage','boolean', array('name' => 'Is published?', 'template' => 'AiselProductBundle:Media:list_field_image.html.twig'))
+            ->add('mainImage', 'boolean', array('name' => 'Is published?', 'template' => 'AiselProductBundle:Media:list_field_image.html.twig'))
             ->add('name')
             ->add('sku')
             ->add('price')
@@ -162,9 +170,7 @@ class ProductAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {
@@ -176,8 +182,6 @@ class ProductAdmin extends Admin
             ->add('inStock')
             ->add('description')
             ->add('descriptionShort')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('status', 'boolean')
             ->with('Categories')
             ->add('categories', 'tree')
@@ -186,6 +190,7 @@ class ProductAdmin extends Admin
             ->add('metaTitle')
             ->add('metaDescription')
             ->add('metaKeywords')
+            ->with('General')
             ->with('Dates')
             ->add('createdAt')
             ->add('updatedAt');
