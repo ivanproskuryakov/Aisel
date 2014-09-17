@@ -68,7 +68,7 @@ class PageAdmin extends Admin
             ->add('status', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
-                'label' => 'aisel.page.status', 'attr' => array()
+                'label' => 'aisel.page.status', 'attr' => array('required' => false)
             ))
             ->add('commentStatus', 'choice', array('choices' => array(
                 '0' => 'Disabled',
@@ -83,14 +83,14 @@ class PageAdmin extends Admin
                 'class' => 'Aisel\PageBundle\Entity\Category',
                 'label' => 'aisel.page.categories'
             ))
-            ->with('aisel.page.metadata')
+            ->with('aisel.page.meta_data')
             ->add('metaUrl', 'text', array('label' => 'aisel.page.url','required' => true, 'help' => 'note: URL value must be unique'))
-            ->add('metaTitle', 'text', array('label' => 'aisel.page.title','required' => false))
-            ->add('metaDescription', 'textarea', array('label' => 'aisel.page.description','required' => false))
-            ->add('metaKeywords', 'textarea', array('label' => 'aisel.page.keywords','required' => false))
+            ->add('metaTitle', 'text', array('label' => 'aisel.page.meta_title','required' => false))
+            ->add('metaDescription', 'textarea', array('label' => 'aisel.page.meta_description','required' => false))
+            ->add('metaKeywords', 'textarea', array('label' => 'aisel.page.meta_keywords','required' => false))
             ->with('aisel.page.dates')
-            ->add('createdAt', 'datetime', array('label' => 'aisel.page.created_at','disabled' => true, 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'aisel.page.updated_at', 'attr' => array()))
+            ->add('createdAt', 'datetime', array('label' => 'aisel.page.created_at','required' => false, 'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'aisel.page.updated_at','required' => false, 'attr' => array()))
 
             ->end();
 
@@ -104,8 +104,8 @@ class PageAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
-            ->add('content');
+            ->add('title', null, array('label' => 'aisel.page.title'))
+            ->add('content', null, array('label' => 'aisel.page.content'));
     }
 
     public function prePersist($page)
@@ -132,11 +132,11 @@ class PageAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->add('title')
-            ->add('frontenduser', null, array('label' => 'User'))
-            ->add('status', 'boolean', array('label' => 'Status', 'editable' => false))
-            ->add('updatedAt', 'datetime', array('label' => 'Updated At'))
+            ->addIdentifier('id', null, array('label' => 'aisel.page.id'))
+            ->add('title', null, array('label' => 'aisel.page.title'))
+            ->add('frontenduser', null, array('label' => 'aisel.page.user'))
+            ->add('status', 'boolean', array('label' => 'aisel.page.status', 'editable' => false))
+            ->add('updatedAt', 'datetime', array('label' => 'aisel.page.updated_at'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -154,21 +154,21 @@ class PageAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Information')
-            ->add('id')
-            ->add('content')
-            ->add('frontenduser')
-            ->add('status', 'boolean')
-            ->with('Categories')
-            ->add('categories', 'tree')
-            ->with('Meta')
-            ->add('metaUrl')
-            ->add('metaTitle')
-            ->add('metaDescription')
-            ->add('metaKeywords')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.page.information')
+            ->add('id', null, array('label' => 'aisel.page.id'))
+            ->add('content', null, array('label' => 'aisel.page.content'))
+            ->add('user', null, array('label' => 'aisel.page.user'))
+            ->add('status', 'boolean', array('label' => 'aisel.page.id'))
+            ->with('aisel.page.categories')
+            ->add('categories', 'tree', array('label' => 'aisel.page.id'))
+            ->with('aisel.page.meta_data')
+            ->add('metaUrl', null, array('label' => 'aisel.page.url'))
+            ->add('metaTitle', null, array('label' => 'aisel.page.meta_title'))
+            ->add('metaDescription', null, array('label' => 'aisel.page.meta_description'))
+            ->add('metaKeywords', null, array('label' => 'aisel.page.meta_keywords'))
+            ->with('aisel.page.dates')
+            ->add('createdAt', null, array('label' => 'aisel.page.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.page.updated_at'));
 
     }
 

@@ -7,6 +7,7 @@
 
 aisel:
   page:
+    id: Id
     general: General
     title: Title
     status: Status
@@ -14,12 +15,16 @@ aisel:
     comments: Comments
     hidden_page: Hidden
     categories: Categories
-    metadata: Meta
+    meta_data: Meta
+    meta_url: Meta URL
+    meta_title: Meta Title
+    meta_description: Meta Description
+    meta_keywords: Meta Keywords
     url: URL
-    title: Title
     description: Description
     keywords: Keywords
     dates: Dates
     created_at: Created At
     updated_at: Updated At
     user: User
+    information: Information
