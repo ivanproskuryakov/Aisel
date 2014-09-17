@@ -57,39 +57,40 @@ class PageAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
-            ->add('title', 'text', array('label' => 'Post Title', 'attr' => array()))
+            ->with('aisel.page.general')
+            ->add('title', 'text', array('label' => 'aisel.page.title', 'attr' => array()))
             ->add('content', 'ckeditor',
                 array(
-                    'label' => 'Content',
+                    'label' => 'aisel.page.content',
                     'required' => true,
                     'attr' => array('class' => 'field-content')
                 ))
             ->add('status', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
-                'label' => 'Status', 'attr' => array()
+                'label' => 'aisel.page.status', 'attr' => array()
             ))
             ->add('commentStatus', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
-                'label' => 'Comments', 'attr' => array()
+                'label' => 'aisel.page.comments', 'attr' => array()
             ))
-            ->add('hidden', null, array('required' => false, 'label' => 'Hidden page'))
-            ->add('frontenduser', null, array('label' => 'User'))
+            ->add('hidden', null, array('required' => false, 'label' => 'aisel.page.hidden_page'))
+            ->add('frontenduser', null, array('label' => 'aisel.page.user'))
 
-            ->with('Categories')
+            ->with('aisel.page.categories')
             ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
                 'class' => 'Aisel\PageBundle\Entity\Category',
+                'label' => 'aisel.page.categories'
             ))
-            ->with('Metadata')
-            ->add('metaUrl', 'text', array('label' => 'Url','required' => true, 'help' => 'note: URL value must be unique'))
-            ->add('metaTitle', 'text', array('label' => 'Title','required' => false))
-            ->add('metaDescription', 'textarea', array('label' => 'Description','required' => false))
-            ->add('metaKeywords', 'textarea', array('label' => 'Keywords','required' => false))
-            ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
+            ->with('aisel.page.metadata')
+            ->add('metaUrl', 'text', array('label' => 'aisel.page.url','required' => true, 'help' => 'note: URL value must be unique'))
+            ->add('metaTitle', 'text', array('label' => 'aisel.page.title','required' => false))
+            ->add('metaDescription', 'textarea', array('label' => 'aisel.page.description','required' => false))
+            ->add('metaKeywords', 'textarea', array('label' => 'aisel.page.keywords','required' => false))
+            ->with('aisel.page.dates')
+            ->add('createdAt', 'datetime', array('label' => 'aisel.page.created_at','disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'aisel.page.updated_at', 'attr' => array()))
 
             ->end();
 

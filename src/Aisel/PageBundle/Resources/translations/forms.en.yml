@@ -1,0 +1,25 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+aisel:
+  page:
+    general: General
+    title: Title
+    status: Status
+    content: Content
+    comments: Comments
+    hidden_page: Hidden
+    categories: Categories
+    metadata: Meta
+    url: URL
+    title: Title
+    description: Description
+    keywords: Keywords
+    dates: Dates
+    created_at: Created At
+    updated_at: Updated At
+    user: User

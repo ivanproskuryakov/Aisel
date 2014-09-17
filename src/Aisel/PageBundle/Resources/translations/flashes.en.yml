@@ -1,0 +1,20 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+aisel:
+  flash:
+    error:
+    notice:
+    success:
+
+a000111: a0000
+aisel:
+  page:
+    form:
+      general: General
+      post_title: Post Title
+    exception:

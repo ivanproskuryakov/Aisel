@@ -14,5 +14,6 @@ parameters:
     website_admin:     administration
     website_email: ~
 
-    locale:            en
+    locale: en
+    locales: en|ru
     secret:            SecretTokenAisel

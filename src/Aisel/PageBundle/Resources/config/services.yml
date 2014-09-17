@@ -37,7 +37,7 @@ services:
             - Aisel\PageBundle\Entity\Page
             - ~
         calls:
-            - [ setTranslationDomain, [AiselPageBundle]]
+            - [ setTranslationDomain, [forms]]
             - [ setManager, [@aisel.page.manager]]
 
     sonata.admin.page.category:
@@ -49,6 +49,6 @@ services:
             - Aisel\PageBundle\Entity\Category
             - ~
         calls:
-            - [ setTranslationDomain, [AiselPageBundle]]
+            - [ setTranslationDomain, [forms]]
             - [ setTemplate, [list, AiselPageBundle:Tree:list.html.twig]]
             - [ setManager, [@aisel.pagecategory.manager]]
