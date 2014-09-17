@@ -11,6 +11,11 @@ Aisel\PageBundle\Entity\Category:
         generator:
           strategy: AUTO
     fields:
+      locale:
+          type: string
+          length: 25
+          nullable: false
+
       title:
         type: string
         length: 64
@@ -31,15 +36,11 @@ Aisel\PageBundle\Entity\Category:
         type: integer
         gedmo:
           - treeLevel
-
-      #GENERAL
       description:
           type: text
       status:
           type: boolean
           column: status
-
-      #META
       metaUrl:
           type: string
           unique: true

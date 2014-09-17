@@ -1,6 +1,8 @@
 parameters:
     aisel_media_product_extension.class: Aisel\ResourceBundle\Twig\MediaProductExtension
     aisel_resource_manager.class: Aisel\ResourceBundle\Manager\ResourceManager
+    aisel_resource_form_tree.class: Aisel\ResourceBundle\Form\Type\TreeType
+    aisel_resource_form_locale.class:  Aisel\ResourceBundle\Form\Type\LocaleType
 
 services:
     aisel.resource.manager:
@@ -12,3 +14,27 @@ services:
             arguments: [@service_container, %application.media.product.path%, %website_address% ]
             tags:
                 - { name: twig.extension }
+
+    aisel.adminconfig.manager:
+        class: %aisel_adminconfig_manager.class%
+        arguments: [@doctrine.orm.entity_manager ]
+
+    aisel.resource.form.tree:
+        class: Aisel\ResourceBundle\Form\Type\TreeType
+        arguments:
+            -
+                prefixAttributeName: "gedmotree"
+                treeLevelField: "lvl"
+                orderColumns:
+                  - root
+                  - lft
+        tags:
+            - { name: form.type, alias: aisel_gedmotree }
+
+    aisel.resource.form.locale:
+        class: Aisel\ResourceBundle\Form\Type\LocaleType
+        arguments:
+            -
+              locales: "%locales%"
+        tags:
+            - { name: form.type, alias: aisel_locale }

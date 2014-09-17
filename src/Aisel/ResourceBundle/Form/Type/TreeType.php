@@ -9,12 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\Symfony\Form\Type;
+namespace Aisel\ResourceBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -28,6 +27,9 @@ class TreeType extends AbstractType
 {
     protected $options;
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct(array $options = array())
     {
         $optionsResolver = new OptionsResolver();
@@ -48,6 +50,9 @@ class TreeType extends AbstractType
         $this->options = $optionsResolver->resolve($options);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $levelPrefix = $this->options['levelPrefix'];
@@ -71,6 +76,9 @@ class TreeType extends AbstractType
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $orderColumns = $this->options['orderColumns'];
@@ -94,14 +102,20 @@ class TreeType extends AbstractType
         ));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getParent()
     {
         return 'entity';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
-        return 'gedmotree';
+        return 'aisel_gedmotree';
     }
 
 }

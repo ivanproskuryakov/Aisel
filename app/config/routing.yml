@@ -46,7 +46,6 @@ admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /{_locale}/%website_admin%
     requirements:
-      _method: GET
       _locale: %locales%
 
 _sonata_admin:
@@ -54,7 +53,6 @@ _sonata_admin:
     type: sonata_admin
     prefix: /{_locale}/%website_admin%
     requirements:
-      _method: GET
       _locale: %locales%
 
 aisel_config:
@@ -62,5 +60,4 @@ aisel_config:
     type: extra
     prefix: /{_locale}/%website_admin%/settings/
     requirements:
-      _method: GET
       _locale: %locales%

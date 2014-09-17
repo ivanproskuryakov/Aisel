@@ -13,6 +13,7 @@ aisel:
     status: Status
     content: Content
     comments: Comments
+    locale: Locale
     hidden_page: Hidden
     categories: Categories
     meta_data: Meta

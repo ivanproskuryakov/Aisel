@@ -9,6 +9,11 @@ Aisel\PageBundle\Entity\Page:
             generator:
                 strategy: AUTO
     fields:
+        locale:
+            type: string
+            length: 25
+            nullable: false
+
         title:
             type: string
             length: 255

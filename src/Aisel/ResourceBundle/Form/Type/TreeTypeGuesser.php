@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\Symfony\Form\Type;
+namespace Aisel\ResourceBundle\Form\Type;
 
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\ORM\EntityManager;

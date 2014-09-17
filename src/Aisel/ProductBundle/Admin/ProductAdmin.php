@@ -95,7 +95,7 @@ class ProductAdmin extends Admin
             ->with('Media')
             ->add('mainImage', 'iphp_file', array('label' => 'Main Image', 'required' => false, 'attr' => array('class' => 'mainImage')))
             ->with('Categories')
-            ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
+            ->add('categories', 'aisel_gedmotree', array('expanded' => true, 'multiple' => true,
                 'class' => 'Aisel\ProductBundle\Entity\Category',
             ))
             ->with('Stock')

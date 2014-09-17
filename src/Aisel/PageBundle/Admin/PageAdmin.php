@@ -65,6 +65,7 @@ class PageAdmin extends Admin
                     'required' => true,
                     'attr' => array('class' => 'field-content')
                 ))
+            ->add('locale', 'aisel_locale', array('label' => 'aisel.page.locale', 'attr' => array()))
             ->add('status', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
@@ -79,7 +80,7 @@ class PageAdmin extends Admin
             ->add('frontenduser', null, array('label' => 'aisel.page.user'))
 
             ->with('aisel.page.categories')
-            ->add('categories', 'gedmotree', array('expanded' => true, 'multiple' => true,
+            ->add('categories', 'aisel_gedmotree', array('expanded' => true, 'multiple' => true,
                 'class' => 'Aisel\PageBundle\Entity\Category',
                 'label' => 'aisel.page.categories'
             ))
@@ -108,6 +109,9 @@ class PageAdmin extends Admin
             ->add('content', null, array('label' => 'aisel.page.content'));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function prePersist($page)
     {
         $url = $page->getMetaUrl();
@@ -117,7 +121,9 @@ class PageAdmin extends Admin
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public function preUpdate($page)
     {
         $url = $page->getMetaUrl();
@@ -128,7 +134,9 @@ class PageAdmin extends Admin
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
-    // Fields to be shown on lists
+    /**
+     * {@inheritDoc}
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -136,6 +144,7 @@ class PageAdmin extends Admin
             ->add('title', null, array('label' => 'aisel.page.title'))
             ->add('frontenduser', null, array('label' => 'aisel.page.user'))
             ->add('status', 'boolean', array('label' => 'aisel.page.status', 'editable' => false))
+            ->add('locale', 'text', array('label' => 'aisel.page.locale'))
             ->add('updatedAt', 'datetime', array('label' => 'aisel.page.updated_at'))
             ->add('_action', 'actions', array(
                     'actions' => array(

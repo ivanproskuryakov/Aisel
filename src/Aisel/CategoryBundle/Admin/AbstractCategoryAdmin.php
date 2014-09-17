@@ -91,7 +91,7 @@ class AbstractCategoryAdmin extends Admin
                 '1' => 'Enabled'),
                 'label' => 'Status', 'attr' => array()
             ))
-            ->add('parent', 'gedmotree', array('expanded' => true, 'multiple' => false,
+            ->add('parent', 'aisel_gedmotree', array('expanded' => true, 'multiple' => false,
                 'class' => $this->categoryEntity,
                 'query_builder' => function ($er) use ($id) {
                         $qb = $er->createQueryBuilder('p');

@@ -75,7 +75,7 @@ class NavigationAdmin extends Admin
                 '1' => 'Enabled'),
                 'label' => 'Status'
             ))
-            ->add('parent', 'gedmotree', array('expanded' => true, 'multiple' => false,
+            ->add('parent', 'aisel_gedmotree', array('expanded' => true, 'multiple' => false,
                 'class' => 'Aisel\NavigationBundle\Entity\Menu',
                 'query_builder' => function ($er) use ($id) {
                         $qb = $er->createQueryBuilder('p');
