@@ -165,9 +165,9 @@ class PageAdmin extends Admin
         $showMapper
             ->with('aisel.page.information')
             ->add('id', null, array('label' => 'aisel.page.id'))
+            ->add('locale', null, array('label' => 'aisel.page.locale'))
             ->add('content', null, array('label' => 'aisel.page.content'))
-            ->add('user', null, array('label' => 'aisel.page.user'))
-            ->add('status', 'boolean', array('label' => 'aisel.page.id'))
+            ->add('status', 'boolean', array('label' => 'aisel.page.status'))
             ->with('aisel.page.categories')
             ->add('categories', 'tree', array('label' => 'aisel.page.id'))
             ->with('aisel.page.meta_data')

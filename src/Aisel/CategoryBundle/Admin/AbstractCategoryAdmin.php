@@ -86,11 +86,11 @@ class AbstractCategoryAdmin extends Admin
                     'label' => 'Content',
                     'required' => true,
                 ))
+            ->add('locale', 'aisel_locale', array('label' => 'aisel.page.locale', 'attr' => array('class' => 'form-control')))
             ->add('status', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
-                'label' => 'Status', 'attr' => array()
-            ))
+                'label' => 'aisel.page.status', 'attr' => array('class' => 'form-control')))
             ->add('parent', 'aisel_gedmotree', array('expanded' => true, 'multiple' => false,
                 'class' => $this->categoryEntity,
                 'query_builder' => function ($er) use ($id) {
@@ -137,14 +137,6 @@ class AbstractCategoryAdmin extends Admin
         $category->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
-    // Fields to be shown on lists
-    protected function configureListFields(ListMapper $listMapper)
-    {
-        $listMapper
-            ->add('title', null,
-                array('label' => 'Title', 'sortable' => false));
-    }
-
     /**
      * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
      *
@@ -153,18 +145,19 @@ class AbstractCategoryAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Information')
-            ->add('id')
-            ->add('status')
-            ->with('Meta')
-            ->add('metaUrl')
-            ->add('metaTitle')
-            ->add('metaDescription')
-            ->add('metaKeywords')
-            ->with('General')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.category.information')
+            ->add('id', null, array('label' => 'aisel.page.id'))
+            ->add('locale', null, array('label' => 'aisel.page.locale'))
+            ->add('status', 'boolean', array('label' => 'aisel.page.status'))
+            ->with('aisel.category.meta')
+            ->add('metaUrl', null, array('label' => 'aisel.page.url'))
+            ->add('metaTitle', null, array('label' => 'aisel.category.meta_title'))
+            ->add('metaDescription', null, array('label' => 'aisel.category.meta_description'))
+            ->add('metaKeywords', null, array('label' => 'aisel.category.meta_keywords'))
+            ->with('aisel.category.general')
+            ->with('aisel.category.dates')
+            ->add('createdAt', null, array('label' => 'aisel.category.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.category.updated_at'));
     }
 
     /**

@@ -24,11 +24,18 @@ var SORUCE = [
             {% macro recursiveCategory(category) %}
 
             {% if category.children|length == 0%}
-            {title: "{{ category.title }}", url: "{{ category.metaUrl }}", key: "{{ category.id }}", folder: false},
+            {title: "{{ category.title }}",
+                url: "{{ category.metaUrl }}",
+                locale: "{{ category.locale }}",
+                key: "{{ category.id }}", folder: false},
             {% endif %}
 
             {% if category.children|length %}
-            {title: "{{ category.title }}", url: "{{ category.metaUrl }}", key: "{{ category.id }}", folder: true, expanded: true, children: [
+            {title: "{{ category.title }}",
+                url: "{{ category.metaUrl }}",
+                locale: "{{ category.locale }}",
+                key: "{{ category.id }}",
+                folder: true, expanded: true, children: [
                 {% for child in category.children %}
                 {{ _self.recursiveCategory(child) }}
                 {% endfor %}
@@ -137,7 +144,7 @@ $(function () {
         },
         table: {
             indentation: 20,
-            nodeColumnIdx: 1,
+            nodeColumnIdx: 2,
 //            checkboxColumnIdx: 0
         },
         gridnav: {
@@ -151,12 +158,13 @@ $(function () {
                     $tdList = $(node.tr).find(">td");
 
             $tdList.eq(0).text(node.key).addClass("alignRight");
-            $tdList.eq(2).html("<input type='input' disabled class='form-control' value='" + node.data.url + "'>");
+            $tdList.eq(1).html(node.data.locale);
+            $tdList.eq(3).html("<input type='input' disabled class='form-control' value='" + node.data.url + "'>");
             $("<option />", {text: "", value: "please-select"}).appendTo($select);
             $("<option />", {text: "view", value: "view"}).appendTo($select);
             $("<option />", {text: "edit", value: "edit"}).appendTo($select);
             $("<option />", {text: "delete"}).appendTo($select);
-            $tdList.eq(3).html($select);
+            $tdList.eq(4).html($select);
         }
     }).on("nodeCommand",function (event, data) {
         var refNode, moveMode,
@@ -263,14 +271,16 @@ $(function () {
 <table id="adminNodeTree" class="table table-bordered table-striped col-md-12">
     <colgroup>
         <col class="col-md-0"></col>
-        <col class="col-md-6"></col>
+        <col class="col-md-1"></col>
+        <col class="col-md-5"></col>
         <col class="col-md-4"></col>
         <col class="col-md-2"></col>
     </colgroup>
     <thead>
     <tr>
         <th>Id</th>
-        <th>Name</th>
+        <th>Locale</th>
+        <th>Title</th>
         <th>Url</th>
         <th>Action</th>
     </tr>
