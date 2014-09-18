@@ -79,20 +79,25 @@ class AbstractCategoryAdmin extends Admin
         $subject = $this->getSubject();
         $id = $subject->getId();
         $formMapper
-            ->with('General')
-            ->add('title', 'text', array('label' => 'Title'))
+            ->with('aisel.default.general')
+            ->add('title', 'text', array('label' => 'aisel.default.title'))
             ->add('description', 'ckeditor',
                 array(
-                    'label' => 'Content',
+                    'label' => 'aisel.default.description',
                     'required' => true,
                 ))
-            ->add('locale', 'aisel_locale', array('label' => 'aisel.page.locale', 'attr' => array('class' => 'form-control')))
             ->add('status', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
-                'label' => 'aisel.page.status', 'attr' => array('class' => 'form-control')))
-            ->add('parent', 'aisel_gedmotree', array('expanded' => true, 'multiple' => false,
+                'required' => false,
+                'label' => 'aisel.default.status',
+                'attr' => array('class'=>'form-control')
+            ))
+            ->add('parent', 'aisel_gedmotree', array(
+                'expanded' => true,
+                'multiple' => false,
                 'class' => $this->categoryEntity,
+                'label' => 'aisel.default.parent',
                 'query_builder' => function ($er) use ($id) {
                         $qb = $er->createQueryBuilder('p');
                         if ($id) {
@@ -104,15 +109,14 @@ class AbstractCategoryAdmin extends Admin
                     }, 'empty_value' => 'no parent'
 
             ))
-
-            ->with('Metadata')
-            ->add('metaUrl', 'text', array('label' => 'Url', 'help' => 'note: URL value must be unique'))
-            ->add('metaTitle', 'text', array('label' => 'Title', 'required' => false))
-            ->add('metaDescription', 'textarea', array('label' => 'Description', 'required' => false))
-            ->add('metaKeywords', 'textarea', array('label' => 'Keywords', 'required' => false))
-            ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
+            ->with('aisel.default.meta_data')
+            ->add('metaUrl', 'text', array('label' => 'aisel.default.url','required' => true, 'help' => 'note: URL value must be unique'))
+            ->add('metaTitle', 'text', array('label' => 'aisel.default.meta_title','required' => false))
+            ->add('metaDescription', 'textarea', array('label' => 'aisel.default.meta_description','required' => false))
+            ->add('metaKeywords', 'textarea', array('label' => 'aisel.default.meta_keywords','required' => false))
+            ->with('aisel.default.dates')
+            ->add('createdAt', 'datetime', array('label' => 'aisel.default.created_at','required' => false, 'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at','required' => false, 'attr' => array()))
             ->end();
 
     }
@@ -137,6 +141,14 @@ class AbstractCategoryAdmin extends Admin
         $category->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
+    // Fields to be shown on lists
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->add('title', null,
+                array('label' => 'Title', 'sortable' => false));
+    }
+
     /**
      * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
      *
@@ -145,19 +157,18 @@ class AbstractCategoryAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('aisel.category.information')
-            ->add('id', null, array('label' => 'aisel.page.id'))
-            ->add('locale', null, array('label' => 'aisel.page.locale'))
-            ->add('status', 'boolean', array('label' => 'aisel.page.status'))
-            ->with('aisel.category.meta')
-            ->add('metaUrl', null, array('label' => 'aisel.page.url'))
-            ->add('metaTitle', null, array('label' => 'aisel.category.meta_title'))
-            ->add('metaDescription', null, array('label' => 'aisel.category.meta_description'))
-            ->add('metaKeywords', null, array('label' => 'aisel.category.meta_keywords'))
-            ->with('aisel.category.general')
-            ->with('aisel.category.dates')
-            ->add('createdAt', null, array('label' => 'aisel.category.created_at'))
-            ->add('updatedAt', null, array('label' => 'aisel.category.updated_at'));
+            ->with('Information')
+            ->add('id')
+            ->add('status')
+            ->with('Meta')
+            ->add('metaUrl')
+            ->add('metaTitle')
+            ->add('metaDescription')
+            ->add('metaKeywords')
+            ->with('General')
+            ->with('Dates')
+            ->add('createdAt')
+            ->add('updatedAt');
     }
 
     /**

@@ -57,41 +57,47 @@ class PageAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('aisel.page.general')
-            ->add('title', 'text', array('label' => 'aisel.page.title', 'attr' => array('class' => 'form-control')))
+            ->with('aisel.default.general')
+            ->add('title', 'text', array('label' => 'aisel.default.title', 'attr' => array()))
             ->add('content', 'ckeditor',
                 array(
-                    'label' => 'aisel.page.content',
+                    'label' => 'aisel.default.content',
                     'required' => true,
                     'attr' => array('class' => 'field-content')
                 ))
-            ->add('locale', 'aisel_locale', array('label' => 'aisel.page.locale', 'attr' => array('class' => 'form-control')))
+            ->add('locale', 'aisel_locale', array('label' => 'aisel.default.locale',
+                'required' => false,
+                'attr' => array('class'=>'form-control')))
             ->add('status', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
-                'label' => 'aisel.page.status', 'attr' => array('required' => false, 'class' => 'form-control')
+                'required' => false,
+                'label' => 'aisel.default.status',
+                'attr' => array('class'=>'form-control')
             ))
             ->add('commentStatus', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
-                'label' => 'aisel.page.comments', 'attr' => array('class' => 'form-control')))
-            ->add('hidden', null, array('required' => false, 'label' => 'aisel.page.hidden_page','attr' => array('class' => 'form-control')))
-            ->add('frontenduser', null, array('label' => 'aisel.page.user'))
+                'label' => 'aisel.default.comments',
+                'required' => false,
+                'attr' => array('class'=>'form-control')
+            ))
+            ->add('hidden', null, array('required' => false, 'label' => 'aisel.default.hidden_page'))
 
-            ->with('aisel.page.categories')
+            ->with('aisel.default.categories')
             ->add('categories', 'aisel_gedmotree', array('expanded' => true, 'multiple' => true,
                 'class' => 'Aisel\PageBundle\Entity\Category',
-                'label' => 'aisel.page.categories',
-                'attr' => array('class' => '')
+                'label' => 'aisel.default.categories'
             ))
-            ->with('aisel.page.meta_data')
-            ->add('metaUrl', 'text', array('label' => 'aisel.page.url','required' => true, 'help' => 'note: URL value must be unique'))
-            ->add('metaTitle', 'text', array('label' => 'aisel.page.meta_title','required' => false))
-            ->add('metaDescription', 'textarea', array('label' => 'aisel.page.meta_description','required' => false))
-            ->add('metaKeywords', 'textarea', array('label' => 'aisel.page.meta_keywords','required' => false))
-            ->with('aisel.page.dates')
-            ->add('createdAt', 'datetime', array('label' => 'aisel.page.created_at','required' => false, 'disabled' => true, 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'aisel.page.updated_at','required' => false, 'attr' => array()))
+            ->with('aisel.default.meta_data')
+            ->add('metaUrl', 'text', array('label' => 'aisel.default.url','required' => true, 'help' => 'note: URL value must be unique'))
+            ->add('metaTitle', 'text', array('label' => 'aisel.default.meta_title','required' => false))
+            ->add('metaDescription', 'textarea', array('label' => 'aisel.default.meta_description','required' => false))
+            ->add('metaKeywords', 'textarea', array('label' => 'aisel.default.meta_keywords','required' => false))
+            ->with('aisel.default.dates')
+            ->add('createdAt', 'datetime', array('label' => 'aisel.default.created_at','required' => false, 'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at','required' => false, 'attr' => array()))
+
             ->end();
 
     }
@@ -104,9 +110,8 @@ class PageAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title', null, array('label' => 'aisel.page.title'))
-            ->add('content', null, array('label' => 'aisel.page.content'))
-            ->add('locale', null, array('label' => 'aisel.page.locale', 'field_type' => 'aisel_locale', 'attr' => array()));
+            ->add('title', null, array('label' => 'aisel.default.title'))
+            ->add('content', null, array('label' => 'aisel.default.content'));
     }
 
     /**
@@ -140,12 +145,11 @@ class PageAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id', null, array('label' => 'aisel.page.id'))
-            ->add('title', null, array('label' => 'aisel.page.title'))
-            ->add('frontenduser', null, array('label' => 'aisel.page.user'))
-            ->add('status', 'boolean', array('label' => 'aisel.page.status', 'editable' => false))
-            ->add('locale', 'text', array('label' => 'aisel.page.locale'))
-            ->add('updatedAt', 'datetime', array('label' => 'aisel.page.updated_at'))
+            ->addIdentifier('id', null, array('label' => 'aisel.default.id'))
+            ->add('title', null, array('label' => 'aisel.default.title'))
+            ->add('status', 'boolean', array('label' => 'aisel.default.status', 'editable' => false))
+            ->add('locale', 'text', array('label' => 'aisel.default.locale'))
+            ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -163,21 +167,21 @@ class PageAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('aisel.page.information')
-            ->add('id', null, array('label' => 'aisel.page.id'))
-            ->add('locale', null, array('label' => 'aisel.page.locale'))
-            ->add('content', null, array('label' => 'aisel.page.content'))
-            ->add('status', 'boolean', array('label' => 'aisel.page.status'))
-            ->with('aisel.page.categories')
-            ->add('categories', 'tree', array('label' => 'aisel.page.id'))
-            ->with('aisel.page.meta_data')
-            ->add('metaUrl', null, array('label' => 'aisel.page.url'))
-            ->add('metaTitle', null, array('label' => 'aisel.page.meta_title'))
-            ->add('metaDescription', null, array('label' => 'aisel.page.meta_description'))
-            ->add('metaKeywords', null, array('label' => 'aisel.page.meta_keywords'))
-            ->with('aisel.page.dates')
-            ->add('createdAt', null, array('label' => 'aisel.page.created_at'))
-            ->add('updatedAt', null, array('label' => 'aisel.page.updated_at'));
+            ->with('aisel.default.information')
+            ->add('id', null, array('label' => 'aisel.default.id'))
+            ->add('content', null, array('label' => 'aisel.default.content'))
+            ->add('user', null, array('label' => 'aisel.default.user'))
+            ->add('status', 'boolean', array('label' => 'aisel.default.id'))
+            ->with('aisel.default.categories')
+            ->add('categories', 'tree', array('label' => 'aisel.default.id'))
+            ->with('aisel.default.meta_data')
+            ->add('metaUrl', null, array('label' => 'aisel.default.url'))
+            ->add('metaTitle', null, array('label' => 'aisel.default.meta_title'))
+            ->add('metaDescription', null, array('label' => 'aisel.default.meta_description'))
+            ->add('metaKeywords', null, array('label' => 'aisel.default.meta_keywords'))
+            ->with('aisel.default.dates')
+            ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
 
     }
 

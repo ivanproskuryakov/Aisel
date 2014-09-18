@@ -38,7 +38,7 @@ file that was distributed with this source code.
     {{ knp_menu_render(admin.sidemenu(action), {'currentClass' : 'active'}, 'list') }}
 {% endblock %}
 
-{% use 'AiselProductBundle:CRUD:base_edit_form.html.twig' with form as parentForm %}
+{% use 'AiselAdminBundle:CRUD:base_edit_form.html.twig' with form as parentForm %}
 
 {% block form %}
     {{ block('parentForm') }}

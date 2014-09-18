@@ -6,5 +6,8 @@
 # file that was distributed with this source code.
 
 aisel:
-  page:
-    exception:
+  default:
+    flash:
+      error:
+      notice:
+      success:

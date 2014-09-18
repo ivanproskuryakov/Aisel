@@ -6,5 +6,5 @@
 # file that was distributed with this source code.
 
 aisel:
-  page:
-    notBlank: Это поле не должно быть пустым
+  default:
+    exception:
