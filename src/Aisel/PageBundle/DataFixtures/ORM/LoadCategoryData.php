@@ -38,14 +38,15 @@ class LoadCategoryData extends AbstractFixtureData implements OrderedFixtureInte
             foreach ($XML->database->table as $table) {
                 $rootCategory = null;
 
-                if ($table->column[1] != 'NULL') {
-                    $rootCategory = $this->getReference('page_category_' . $table->column[1]);
+                if ($table->column[2] != 'NULL') {
+                    $rootCategory = $this->getReference('page_category_' . $table->column[2]);
                 }
                 $category = new Category();
-                $category->setTitle($table->column[2]);
-                $category->setDescription($table->column[7]);
-                $category->setStatus($table->column[8]);
-                $category->setMetaUrl($table->column[9]);
+                $category->setLocale('en');
+                $category->setTitle($table->column[3]);
+                $category->setDescription($table->column[8]);
+                $category->setStatus($table->column[9]);
+                $category->setMetaUrl($table->column[10]);
                 $category->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
                 $category->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 

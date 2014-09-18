@@ -13,7 +13,7 @@ Aisel\PageBundle\Entity\Category:
     fields:
       locale:
           type: string
-          length: 25
+          length: 2
           nullable: false
 
       title:

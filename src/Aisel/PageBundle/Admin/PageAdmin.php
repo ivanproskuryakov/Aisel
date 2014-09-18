@@ -58,31 +58,31 @@ class PageAdmin extends Admin
     {
         $formMapper
             ->with('aisel.page.general')
-            ->add('title', 'text', array('label' => 'aisel.page.title', 'attr' => array()))
+            ->add('title', 'text', array('label' => 'aisel.page.title', 'attr' => array('class' => 'form-control')))
             ->add('content', 'ckeditor',
                 array(
                     'label' => 'aisel.page.content',
                     'required' => true,
                     'attr' => array('class' => 'field-content')
                 ))
-            ->add('locale', 'aisel_locale', array('label' => 'aisel.page.locale', 'attr' => array()))
+            ->add('locale', 'aisel_locale', array('label' => 'aisel.page.locale', 'attr' => array('class' => 'form-control')))
             ->add('status', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
-                'label' => 'aisel.page.status', 'attr' => array('required' => false)
+                'label' => 'aisel.page.status', 'attr' => array('required' => false, 'class' => 'form-control')
             ))
             ->add('commentStatus', 'choice', array('choices' => array(
                 '0' => 'Disabled',
                 '1' => 'Enabled'),
-                'label' => 'aisel.page.comments', 'attr' => array()
-            ))
-            ->add('hidden', null, array('required' => false, 'label' => 'aisel.page.hidden_page'))
+                'label' => 'aisel.page.comments', 'attr' => array('class' => 'form-control')))
+            ->add('hidden', null, array('required' => false, 'label' => 'aisel.page.hidden_page','attr' => array('class' => 'form-control')))
             ->add('frontenduser', null, array('label' => 'aisel.page.user'))
 
             ->with('aisel.page.categories')
             ->add('categories', 'aisel_gedmotree', array('expanded' => true, 'multiple' => true,
                 'class' => 'Aisel\PageBundle\Entity\Category',
-                'label' => 'aisel.page.categories'
+                'label' => 'aisel.page.categories',
+                'attr' => array('class' => '')
             ))
             ->with('aisel.page.meta_data')
             ->add('metaUrl', 'text', array('label' => 'aisel.page.url','required' => true, 'help' => 'note: URL value must be unique'))
@@ -92,7 +92,6 @@ class PageAdmin extends Admin
             ->with('aisel.page.dates')
             ->add('createdAt', 'datetime', array('label' => 'aisel.page.created_at','required' => false, 'disabled' => true, 'attr' => array()))
             ->add('updatedAt', 'datetime', array('label' => 'aisel.page.updated_at','required' => false, 'attr' => array()))
-
             ->end();
 
     }
@@ -106,7 +105,8 @@ class PageAdmin extends Admin
     {
         $datagridMapper
             ->add('title', null, array('label' => 'aisel.page.title'))
-            ->add('content', null, array('label' => 'aisel.page.content'));
+            ->add('content', null, array('label' => 'aisel.page.content'))
+            ->add('locale', null, array('label' => 'aisel.page.locale', 'field_type' => 'aisel_locale', 'attr' => array()));
     }
 
     /**

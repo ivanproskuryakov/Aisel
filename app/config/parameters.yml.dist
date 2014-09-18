@@ -17,3 +17,9 @@ parameters:
     locale: en
     locales: en|ru
     secret:            SecretTokenAisel
+
+#   Note:
+#   Locales & locale parameter only
+#   2 symbols(ISO2), otherwise you
+#   will need to change filed length
+#   in database.
