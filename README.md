@@ -1,7 +1,7 @@
 About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=master)](https://travis-ci.org/ivanproskuryakov/Aisel)
 -----------------------------------
 
-Aisel is open source CMS for highload projects based on combination Symfony2(backend) and AngularJS(frontend)
+Aisel is open-source CMS for highload projects based on combination of Symfony2, RESTAPI and AngularJS
 
 Project website: http://aisel.co/<br/>
 Demo frontend: http://demo.aisel.co/ [frontenduser/frontenduser]<br/>
@@ -47,8 +47,8 @@ sudo chown -R www-data:www-data  app/cache app/logs<br/>
 
 
 
-Once this steps is done you will be able to access admin section from http://yourwebsitename.dev/administration/
-and frontend at http://yourwebsitename.dev/
+Once this steps is done you will be able to access backend, similar to example bellow:
+http://ecommmerce.aisel.dev/en/administration/<br/>
 
 
 [Behat](http://behat.org) tests

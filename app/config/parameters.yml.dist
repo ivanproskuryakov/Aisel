@@ -10,7 +10,7 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
-    website_address:   http://demo.aisel.co
+    website_address:   http://ecommmerce.aisel.co
     website_admin:     administration
     website_email: ~
 

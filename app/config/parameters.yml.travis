@@ -10,7 +10,7 @@ parameters:
     mailer_user: travis
     mailer_password: travis
 
-    website_address: http://aisel.dev
+    website_address: http://ecommmerce.aisel.dev
     website_email: service@aisel.co
     website_admin:     administration
 
