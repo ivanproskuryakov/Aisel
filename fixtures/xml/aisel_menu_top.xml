@@ -19,6 +19,7 @@
         <!-- Table aisel_menu_top -->
         <table name="aisel_menu_top">
             <column name="id">209</column>
+            <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="lft">1</column>
             <column name="rgt">2</column>
@@ -32,6 +33,7 @@
         </table>
         <table name="aisel_menu_top">
             <column name="id">210</column>
+            <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="lft">1</column>
             <column name="rgt">2</column>
@@ -45,6 +47,7 @@
         </table>
         <table name="aisel_menu_top">
             <column name="id">211</column>
+            <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="lft">1</column>
             <column name="rgt">2</column>
@@ -58,6 +61,7 @@
         </table>
         <table name="aisel_menu_top">
             <column name="id">212</column>
+            <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="lft">1</column>
             <column name="rgt">2</column>

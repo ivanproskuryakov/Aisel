@@ -9,6 +9,11 @@ Aisel\ProductBundle\Entity\Product:
             generator:
                 strategy: AUTO
     fields:
+        locale:
+            type: string
+            length: 2
+            nullable: false
+
         name:
             type: string
             length: 255

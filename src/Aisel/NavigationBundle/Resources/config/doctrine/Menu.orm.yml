@@ -11,6 +11,11 @@ Aisel\NavigationBundle\Entity\Menu:
         generator:
           strategy: AUTO
     fields:
+      locale:
+          type: string
+          length: 2
+          nullable: false
+
       lft:
         type: integer
         gedmo:
@@ -29,7 +34,6 @@ Aisel\NavigationBundle\Entity\Menu:
         gedmo:
           - treeLevel
 
-      #GENERAL
       title:
         nullable: false
         type: string

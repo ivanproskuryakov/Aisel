@@ -11,6 +11,11 @@ Aisel\ProductBundle\Entity\Category:
         generator:
           strategy: AUTO
     fields:
+      locale:
+          type: string
+          length: 2
+          nullable: false
+
       title:
         type: string
         length: 64

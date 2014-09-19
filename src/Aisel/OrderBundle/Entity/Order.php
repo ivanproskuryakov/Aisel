@@ -17,6 +17,11 @@ class Order
     /**
      * @var string
      */
+    private $locale;
+
+    /**
+     * @var string
+     */
     private $status;
 
     /**
@@ -70,6 +75,29 @@ class Order
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set locale
+     *
+     * @param string $locale
+     * @return Order
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * Get locale
+     *
+     * @return string 
+     */
+    public function getLocale()
+    {
+        return $this->locale;
     }
 
     /**

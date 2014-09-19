@@ -9,6 +9,11 @@ Aisel\OrderBundle\Entity\Order:
             generator:
                 strategy: AUTO
     fields:
+        locale:
+            type: string
+            length: 2
+            nullable: false
+
         status:
             type: string
             length: 255

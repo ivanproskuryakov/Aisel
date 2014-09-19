@@ -18,6 +18,7 @@
         <!-- Table aisel_product -->
         <table name="aisel_product">
             <column name="id">109</column>
+            <column name="locale">en</column>
             <column name="name">Nike Baseball Hat</column>
             <column name="sku">P0001</column>
             <column name="price">100</column>

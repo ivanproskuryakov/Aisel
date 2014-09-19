@@ -363,4 +363,32 @@ class Menu
      */
     private $metaUrl;
 
+    /**
+     * @var string
+     */
+    private $locale;
+
+
+    /**
+     * Set locale
+     *
+     * @param string $locale
+     * @return Menu
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * Get locale
+     *
+     * @return string 
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
 }

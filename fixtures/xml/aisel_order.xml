@@ -18,6 +18,7 @@
         <!-- Table aisel_order -->
         <table name="aisel_order">
             <column name="id">59</column>
+            <column name="locale">en</column>
             <column name="user_id">149</column>
             <column name="invoice_id">123</column>
             <column name="status">new</column>
