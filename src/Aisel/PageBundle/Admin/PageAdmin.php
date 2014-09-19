@@ -29,6 +29,9 @@ class PageAdmin extends Admin
     protected $pageManager;
     protected $baseRoutePattern = 'page';
 
+    /**
+     * Set page manager for Sonata
+     */
     public function setManager($pageManager)
     {
         $this->pageManager = $pageManager;
@@ -67,46 +70,61 @@ class PageAdmin extends Admin
                 ))
             ->add('locale', 'aisel_locale', array('label' => 'aisel.default.locale',
                 'required' => false,
-                'attr' => array('class'=>'form-control')))
+                'attr' => array('class' => 'form-control')))
             ->add('status', 'choice', array('choices' => array(
-                '0' => 'Disabled',
-                '1' => 'Enabled'),
+                '0' => $this->trans('aisel.default.disabled'),
+                '1' => $this->trans('aisel.default.enabled')),
                 'required' => false,
                 'label' => 'aisel.default.status',
-                'attr' => array('class'=>'form-control')
+                'attr' => array('class' => 'form-control')
             ))
             ->add('commentStatus', 'choice', array('choices' => array(
-                '0' => 'Disabled',
-                '1' => 'Enabled'),
+                '0' => $this->trans('aisel.default.disabled'),
+                '1' => $this->trans('aisel.default.enabled')),
                 'label' => 'aisel.default.comments',
                 'required' => false,
-                'attr' => array('class'=>'form-control')
+                'attr' => array('class' => 'form-control')
             ))
             ->add('hidden', null, array('required' => false, 'label' => 'aisel.default.hidden_page'))
 
             ->with('aisel.default.categories')
-            ->add('categories', 'aisel_gedmotree', array('expanded' => true, 'multiple' => true,
+            ->add('categories', 'aisel_gedmotree', array(
+                'expanded' => true,
+                'multiple' => true,
                 'class' => 'Aisel\PageBundle\Entity\Category',
                 'label' => 'aisel.default.categories'
             ))
+
             ->with('aisel.default.meta_data')
-            ->add('metaUrl', 'text', array('label' => 'aisel.default.url','required' => true, 'help' => 'note: URL value must be unique'))
-            ->add('metaTitle', 'text', array('label' => 'aisel.default.meta_title','required' => false))
-            ->add('metaDescription', 'textarea', array('label' => 'aisel.default.meta_description','required' => false))
-            ->add('metaKeywords', 'textarea', array('label' => 'aisel.default.meta_keywords','required' => false))
+            ->add('metaUrl', 'text', array('label' => 'aisel.default.url',
+                'required' => true,
+                'help' => $this->trans('aisel.default.url_must_be_unique')))
+            ->add('metaTitle', 'text', array('label' => 'aisel.default.meta_title',
+                'required' => false))
+            ->add('metaDescription', 'textarea', array(
+                'label' => 'aisel.default.meta_description',
+                'required' => false))
+            ->add('metaKeywords', 'textarea', array(
+                'label' => 'aisel.default.meta_keywords',
+                'required' => false))
+
             ->with('aisel.default.dates')
-            ->add('createdAt', 'datetime', array('label' => 'aisel.default.created_at','required' => false, 'disabled' => true, 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at','required' => false, 'attr' => array()))
+            ->add('createdAt', 'datetime', array(
+                'label' => 'aisel.default.created_at',
+                'required' => false,
+                'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array(
+                'label' => 'aisel.default.updated_at',
+                'required' => false,
+                'attr' => array()))
 
             ->end();
 
     }
 
-    public function getFormTheme()
-    {
-        return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -126,6 +144,7 @@ class PageAdmin extends Admin
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
+
     /**
      * {@inheritDoc}
      */

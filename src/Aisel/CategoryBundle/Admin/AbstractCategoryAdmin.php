@@ -19,7 +19,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
 /**
- * Category CRUD configuration for Backend
+ * Abstract Category CRUD class for Backend categories
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -31,6 +31,10 @@ class AbstractCategoryAdmin extends Admin
     protected $maxPageLinks = 500;
     protected $categoryEntity = 'Aisel\PageBundle\Entity\Category';
 
+
+    /**
+     * Set category manager for Sonata Admin
+     */
     public function setManager($categoryManager)
     {
         $this->categoryManager = $categoryManager;
@@ -67,12 +71,9 @@ class AbstractCategoryAdmin extends Admin
         return $query;
     }
 
-    public function getFormTheme()
-    {
-        return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
-    }
-
-    // Fields to be shown on create/edit forms
+    /**
+     * {@inheritDoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
 
@@ -87,11 +88,11 @@ class AbstractCategoryAdmin extends Admin
                     'required' => true,
                 ))
             ->add('status', 'choice', array('choices' => array(
-                '0' => 'Disabled',
-                '1' => 'Enabled'),
+                '0' => $this->trans('aisel.default.disabled'),
+                '1' => $this->trans('aisel.default.enabled')),
                 'required' => false,
                 'label' => 'aisel.default.status',
-                'attr' => array('class'=>'form-control')
+                'attr' => array('class' => 'form-control')
             ))
             ->add('parent', 'aisel_gedmotree', array(
                 'expanded' => true,
@@ -106,21 +107,25 @@ class AbstractCategoryAdmin extends Admin
                         $qb->orderBy('p.root, p.lft', 'ASC');
 
                         return $qb;
-                    }, 'empty_value' => 'no parent'
+                    }, 'empty_value' => $this->trans('aisel.default.no_parent_category')
 
             ))
             ->with('aisel.default.meta_data')
-            ->add('metaUrl', 'text', array('label' => 'aisel.default.url','required' => true, 'help' => 'note: URL value must be unique'))
-            ->add('metaTitle', 'text', array('label' => 'aisel.default.meta_title','required' => false))
-            ->add('metaDescription', 'textarea', array('label' => 'aisel.default.meta_description','required' => false))
-            ->add('metaKeywords', 'textarea', array('label' => 'aisel.default.meta_keywords','required' => false))
+            ->add('metaUrl', 'text', array('label' => 'aisel.default.url', 'required' => true,
+                'help' => $this->trans('aisel.default.url_must_be_unique')))
+            ->add('metaTitle', 'text', array('label' => 'aisel.default.meta_title', 'required' => false))
+            ->add('metaDescription', 'textarea', array('label' => 'aisel.default.meta_description', 'required' => false))
+            ->add('metaKeywords', 'textarea', array('label' => 'aisel.default.meta_keywords', 'required' => false))
             ->with('aisel.default.dates')
-            ->add('createdAt', 'datetime', array('label' => 'aisel.default.created_at','required' => false, 'disabled' => true, 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at','required' => false, 'attr' => array()))
+            ->add('createdAt', 'datetime', array('label' => 'aisel.default.created_at', 'required' => false, 'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at', 'required' => false, 'attr' => array()))
             ->end();
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function prePersist($category)
     {
         $url = $category->getMetaUrl();
@@ -131,6 +136,9 @@ class AbstractCategoryAdmin extends Admin
         $category->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function preUpdate($category)
     {
         $url = $category->getMetaUrl();
@@ -141,7 +149,9 @@ class AbstractCategoryAdmin extends Admin
         $category->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
-    // Fields to be shown on lists
+    /**
+     * Fields to be shown on lists
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -149,10 +159,9 @@ class AbstractCategoryAdmin extends Admin
                 array('label' => 'Title', 'sortable' => false));
     }
 
+
     /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
+     * {@inheritDoc}
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {

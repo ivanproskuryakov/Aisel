@@ -29,3 +29,7 @@ aisel:
     updated_at: Updated At
     user: User
     information: Information
+    disabled: Disabled
+    enabled: Enabled
+    no_parent_category: No Parent Category
+    url_must_be_unique: note: URL value must be unique
