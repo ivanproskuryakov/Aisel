@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\DataFixtures\ORM;
+namespace Aisel\FixtureBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -17,11 +17,11 @@ use Aisel\FixtureBundle\DataFixtures\XMLFixtureData;
 use Aisel\ProductBundle\Entity\Category;
 
 /**
- * Product Category fixtures
+ * Product Categories
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadCategoryData extends XMLFixtureData implements OrderedFixtureInterface
+class LoadProductCategoryData extends XMLFixtureData implements OrderedFixtureInterface
 {
 
     protected $fixturesName = 'aisel_product_category.xml';
@@ -43,7 +43,7 @@ class LoadCategoryData extends XMLFixtureData implements OrderedFixtureInterface
                     $rootCategory = $this->getReference('product_category_' . $table->column[2]);
                 }
                 $category = new Category();
-                $category->setLocale($table->column[2]);
+                $category->setLocale($table->column[1]);
                 $category->setTitle($table->column[3]);
                 $category->setDescription($table->column[8]);
                 $category->setStatus($table->column[9]);
