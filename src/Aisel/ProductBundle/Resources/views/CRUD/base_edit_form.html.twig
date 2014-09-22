@@ -43,8 +43,9 @@ file that was distributed with this source code.
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
                             {% for name, form_group in admin.formgroups %}
-                                <li class="{% if loop.first %} active{% endif %}"><a href="#{{ name }}" role="tab"
-                                                                                     data-toggle="tab">{{ admin.trans(name, {}, form_group.translation_domain) }}</a>
+                                <li class="{% if loop.first %} active{% endif %}">
+                                    <a href="#tab{{ loop.index }}" role="tab"
+                                       data-toggle="tab">{{ admin.trans(name, {}, form_group.translation_domain) }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -52,7 +53,7 @@ file that was distributed with this source code.
                         <!-- Tab panes -->
                         <div class="tab-content">
                             {% for name, form_group in admin.formgroups %}
-                                <div class="tab-pane {% if loop.first %} active{% endif %}" id="{{ name }}">
+                                <div class="tab-pane {% if loop.first %} active{% endif %}" id="tab{{ loop.index }}">
 
                                     <div class="box update">
                                         {#<div class="box{% if loop.first %} in{% endif %}" id="{{ admin.uniqid }}_{{ loop.index }}">#}

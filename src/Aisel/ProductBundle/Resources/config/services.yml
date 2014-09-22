@@ -30,7 +30,7 @@ services:
             - Aisel\ProductBundle\Entity\Product
             - ~
         calls:
-            - [ setTranslationDomain, [AiselProductBundle]]
+            - [ setTranslationDomain, [forms]]
             - [ setManager, [@aisel.product.manager]]
             - [ setTemplate, [edit, AiselProductBundle:CRUD:edit.html.twig]]
 
@@ -43,6 +43,6 @@ services:
             - Aisel\ProductBundle\Entity\Category
             - ~
         calls:
-            - [ setTranslationDomain, [AiselProductBundle]]
+            - [ setTranslationDomain, [forms]]
             - [ setTemplate, [list, AiselProductBundle:Tree:list.html.twig]]
             - [ setManager, [@aisel.productcategory.manager]]

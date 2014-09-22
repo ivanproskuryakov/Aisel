@@ -95,6 +95,14 @@ class Category
     private $parent;
 
     /**
+     * @inheritdoc
+     */
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+    /**
      * Constructor
      */
     public function __construct()

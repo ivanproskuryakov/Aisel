@@ -25,7 +25,7 @@ use Sonata\AdminBundle\Validator\ErrorElement;
  */
 class ProductAdmin extends Admin
 {
-    
+
     protected $productManager;
     protected $baseRoutePattern = 'product';
 
@@ -61,61 +61,90 @@ class ProductAdmin extends Admin
     {
         $formMapper
 
-            ->with('General')
-            ->add('name', 'text', array('label' => 'Name', 'attr' => array()))
-            ->add('sku', 'text', array('label' => 'Sku', 'attr' => array()))
+            ->with('aisel.default.general')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('name', 'text', array('label' => 'aisel.default.name', 'attr' => array('class' => 'form-control')))
+            ->add('sku', 'text', array('label' => 'aisel.default.sku', 'attr' => array('class' => 'form-control')))
             ->add('status', 'choice', array('choices' => array(
-                '0' => 'Disabled',
-                '1' => 'Enabled'),
-                'label' => 'Status', 'attr' => array()))
+                '0' => $this->trans('aisel.default.disabled'),
+                '1' => $this->trans('aisel.default.enabled')),
+                'required' => false,
+                'label' => 'aisel.default.status', 'attr' => array('class' => 'form-control')))
             ->add('descriptionShort', 'ckeditor',
                 array(
-                    'label' => 'Short Description',
+                    'label' => 'aisel.default.short_description',
                     'required' => true,
                     'attr' => array('class' => 'field-content')
                 ))
             ->add('description', 'ckeditor',
                 array(
-                    'label' => 'Description',
+                    'label' => 'aisel.default.description',
                     'required' => false,
                     'attr' => array('class' => 'field-content')
                 ))
 
-            ->with('Pricing')
-            ->add('price', 'money', array('label' => 'Price', 'attr' => array()))
-            ->add('priceSpecial', 'money', array('label' => 'Special Price', 'required' => false, 'attr' => array()))
-            ->add('priceSpecialFrom', 'datetime', array('label' => 'Special Price From', 'attr' => array()))
-            ->add('priceSpecialTo', 'datetime', array('label' => 'Special Price To', 'attr' => array()))
+            ->with('aisel.product.pricing')
+            ->add('price', 'money', array('label' => 'aisel.product.price', 'attr' => array('class' => 'form-control')))
+            ->add('priceSpecial', 'money', array('label' => 'aisel.product.special_price', 'required' => false, 'attr' => array()))
+            ->add('priceSpecialFrom', 'datetime', array('label' => 'aisel.product.special_price_from', 'required' => false, 'attr' => array()))
+            ->add('priceSpecialTo', 'datetime', array('label' => 'aisel.product.special_price_to', 'required' => false, 'attr' => array()))
             ->add('new', 'choice', array('choices' => array(
-                '0' => 'No',
-                '1' => 'Yes'),
-                'label' => 'New', 'attr' => array()))
-            ->add('newFrom', 'datetime', array('label' => 'New From', 'attr' => array()))
-            ->add('newTo', 'datetime', array('label' => 'New To', 'attr' => array()))
-            ->with('Media')
-            ->add('mainImage', 'iphp_file', array('label' => 'Main Image', 'required' => false, 'attr' => array('class' => 'mainImage')))
-            ->with('Categories')
-            ->add('categories', 'aisel_gedmotree', array('expanded' => true, 'multiple' => true,
+                    '0' => $this->trans('aisel.default.no'),
+                    '1' => $this->trans('aisel.default.yes')),
+                    'label' => 'aisel.default.new',
+                    'required' => false,
+                    'attr' => array('class' => 'form-control'))
+            )
+            ->add('newFrom', 'datetime', array('label' => 'aisel.default.new_from', 'required' => false, 'attr' => array()))
+            ->add('newTo', 'datetime', array('label' => 'aisel.default.new_to', 'required' => false, 'attr' => array()))
+
+            ->with('aisel.default.media')
+            ->add('mainImage', 'iphp_file',
+                array('label' => 'aisel.product.main_image',
+                    'required' => false,
+                    'attr' => array('class' => 'mainImage')))
+            ->with('aisel.default.categories')
+            ->add('categories', 'aisel_gedmotree', array('expanded' => true,
+                'multiple' => true,
                 'class' => 'Aisel\ProductBundle\Entity\Category',
             ))
-            ->with('Stock')
+
+            ->with('aisel.product.stock')
             ->add('manageStock', 'choice', array('choices' => array(
-                '0' => 'No',
-                '1' => 'Yes'),
-                'label' => 'Use Stock', 'attr' => array()))
+                '0' => $this->trans('aisel.default.no'),
+                '1' => $this->trans('aisel.default.yes')),
+                'required' => false,
+                'label' => 'aisel.product.use_stock',
+                'attr' => array('class' => 'form-control')
+            ))
             ->add('inStock', 'choice', array('choices' => array(
-                '0' => 'No',
-                '1' => 'Yes'),
-                'label' => 'In Stock', 'attr' => array()))
-            ->add('qty', 'integer', array('label' => 'Qty', 'attr' => array()))
-            ->with('Meta')
-            ->add('metaUrl', 'text', array('label' => 'Url', 'required' => true, 'help' => 'note: URL value must be unique'))
-            ->add('metaTitle', 'text', array('label' => 'Title', 'required' => false))
-            ->add('metaDescription', 'textarea', array('label' => 'Description', 'required' => false))
-            ->add('metaKeywords', 'textarea', array('label' => 'Keywords', 'required' => false))
-            ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At', 'disabled' => true, 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
+                '0' => $this->trans('aisel.default.no'),
+                '1' => $this->trans('aisel.default.yes')),
+                'required' => false,
+                'label' => 'aisel.product.in_stock',
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('qty', 'integer', array(
+                'label' => 'aisel.default.qty',
+                'attr' => array('class' => 'form-control')))
+
+            ->with('aisel.default.meta_data')
+            ->add('metaUrl', 'text', array('label' => 'aisel.default.url',
+                'required' => true,
+                'help' => $this->trans('aisel.default.url_must_be_unique')))
+            ->add('metaTitle', 'text', array('label' => 'aisel.default.title', 'required' => false))
+            ->add('metaDescription', 'textarea', array('label' => 'aisel.default.description', 'required' => false))
+            ->add('metaKeywords', 'textarea', array('label' => 'aisel.default.keywords', 'required' => false))
+
+            ->with('aisel.default.dates')
+            ->add('createdAt', 'datetime', array(
+                'label' => 'aisel.default.created_at',
+                'required' => false,
+                'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array(
+                'label' => 'aisel.default.updated_at',
+                'required' => false,
+                'attr' => array()))
 
             ->end();
 
@@ -154,12 +183,11 @@ class ProductAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('mainImage', 'boolean', array('name' => 'Is published?', 'template' => 'AiselProductBundle:Media:list_field_image.html.twig'))
-            ->add('name')
-            ->add('sku')
-            ->add('price')
-            ->add('qty')
-            ->add('new')
+            ->add('mainImage', 'boolean', array('label' => 'aisel.product.main_image', 'template' => 'AiselProductBundle:Media:list_field_image.html.twig'))->add('name', null, array('label' => 'aisel.default.name'))
+            ->add('sku', null, array('label' => 'aisel.default.sku'))
+            ->add('price', null, array('label' => 'aisel.default.price'))
+            ->add('qty', null, array('label' => 'aisel.default.qty'))
+            ->add('new', null, array('label' => 'aisel.default.new'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -175,25 +203,24 @@ class ProductAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Information')
-            ->add('id')
-            ->add('name')
-            ->add('qty')
-            ->add('inStock')
-            ->add('description')
-            ->add('descriptionShort')
-            ->add('status', 'boolean')
-            ->with('Categories')
-            ->add('categories', 'tree')
-            ->with('Meta')
-            ->add('metaUrl')
-            ->add('metaTitle')
-            ->add('metaDescription')
-            ->add('metaKeywords')
-            ->with('General')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.default.information')
+            ->add('id', null, array('label' => 'aisel.default.id'))
+            ->add('name', null, array('label' => 'aisel.default.name'))
+            ->add('qty', null, array('label' => 'aisel.default.qty'))
+            ->add('inStock', null, array('label' => 'aisel.default.description'))
+            ->add('description', null, array('label' => 'aisel.default.description'))
+            ->add('descriptionShort', null, array('label' => 'aisel.default.short_description'))
+            ->add('status', 'boolean', array('label' => 'aisel.default.id'))
+            ->with('aisel.default.categories')
+            ->add('categories', 'tree', array('label' => 'aisel.default.categories'))
+            ->with('aisel.default.meta_data')
+            ->add('metaUrl', null, array('label' => 'aisel.default.url'))
+            ->add('metaTitle', null, array('label' => 'aisel.default.meta_title'))
+            ->add('metaDescription', null, array('label' => 'aisel.default.meta_description'))
+            ->add('metaKeywords', null, array('label' => 'aisel.default.meta_keywords'))
+            ->with('aisel.default.dates')
+            ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
     }
 
     /**
