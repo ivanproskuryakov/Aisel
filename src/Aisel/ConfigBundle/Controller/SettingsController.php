@@ -22,14 +22,13 @@ class SettingsController extends Controller
 {
 
     protected $form = null;
-
+    protected $locales = null;
     protected $template = 'AiselConfigBundle:Settings:modify.html.twig';
-
     protected $templateVariables = array();
 
-    /*
-     * Main and single action
-     * */
+    /**
+     * Main and the single action
+     */
     public function modifyAction()
     {
         $request = $this->get('request');
@@ -52,6 +51,7 @@ class SettingsController extends Controller
             }
         }
 
+        $this->templateVariables['locales'] = $this->getLocales();
         $this->templateVariables['form'] = $form->createView();
         $this->templateVariables['routes'] = $this->getRoutes();
         $this->templateVariables['config_name'] = $this->getConfigNameLabel();
@@ -126,6 +126,20 @@ class SettingsController extends Controller
         $label = 'aisel_' . $this->get('request')->get('_route') . '.label';
 
         return $label;
+    }
+
+    /**
+     * Get locales param from parameters
+     * @return array
+     */
+    protected function getLocales()
+    {
+        $localesParam = $this->container->getParameter('locales');
+        $locales = explode('|', $localesParam);
+        foreach ($locales as $locale) {
+            $this->locales[$locale] = $locale;
+        }
+        return $this->locales = $locales;
     }
 
 }

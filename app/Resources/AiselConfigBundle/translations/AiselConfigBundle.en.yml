@@ -1,8 +1,14 @@
 no_settings.label: There are no settings defined yet.
 settings_changed.label: The settings has been saved in database.
-settings.label: Sections
+no_settings.label: There are no settings defined yet.
+settings_changed.label: The settings has been saved in database.
 aisel_config_contact.label: Contact
 aisel_config_category.label: Category
 aisel_config_meta.label: Metadata
 aisel_config_homepage.label: Homepage
 aisel_config_disqus.label: Disqus
+settings.label: Sections
+settings:
+  label:
+    ru: Russian
+    en: English

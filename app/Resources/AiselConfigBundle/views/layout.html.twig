@@ -11,6 +11,14 @@ file that was distributed with this source code.
 
 {% extends 'AiselAdminBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+    '@AiselConfigBundle/Resources/public/css/*' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}
+
 {% block breadcrumb %}
     <li><a href="{{ url('sonata_admin_dashboard') }}">{% trans %}Dashboard{% endtrans %}</a></li>
     <li class="active"><span>{% trans %}Settings{% endtrans %}</span></li>
