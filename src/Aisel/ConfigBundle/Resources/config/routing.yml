@@ -5,8 +5,10 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-api_aisel_config:
-    pattern:  /api/config/settings.json
-    defaults: { _controller: AiselAdminBundle:Api:config, _format: json }
+aisel_config:
+    resource: .
+    type: extra
+    prefix: /{_locale}/%website_admin%/settings/{editLocale}/
     requirements:
-        _method: GET
+      _locale: %locales%
+      editLocale: %locales%

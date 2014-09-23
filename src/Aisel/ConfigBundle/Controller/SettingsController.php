@@ -14,8 +14,8 @@ namespace Aisel\ConfigBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * To implement settings fuctionality extend this class and set protected values
- *
+ * To implement settings functionality extend class
+ * and override protected vars
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class SettingsController extends Controller
@@ -27,41 +27,38 @@ class SettingsController extends Controller
     protected $templateVariables = array();
 
     /**
-     * Main and the single action
+     * Controller to save and read data
      */
     public function modifyAction()
     {
         $request = $this->get('request');
         $routeId = $request->get('_route');
-
-        $config = $this->getRepository()->getConfig($routeId);
+        $editLocale = $request->get('editLocale');
+        $config = $this->getRepository()->getConfig($editLocale, $routeId);
         $form = $this->populateForm(new $this->form(), $config);
 
-        $request = $this->get('request');
         if ($request->getMethod() === 'POST') {
             $form->bind($request);
 
             if ($form->isValid()) {
                 $formJson = json_encode($form->getData());
 
-                if ($this->getRepository()->setConfig($routeId, $formJson)) {
+                if ($this->getRepository()->setConfig($editLocale, $routeId, $formJson)) {
                     $this->get('session')->getFlashBag()
                         ->set('notice', $this->get('translator')->trans('settings_changed.label', array(), 'AiselConfigBundle'));
                 }
             }
         }
-
         $this->templateVariables['locales'] = $this->getLocales();
         $this->templateVariables['form'] = $form->createView();
         $this->templateVariables['routes'] = $this->getRoutes();
         $this->templateVariables['config_name'] = $this->getConfigNameLabel();
 
         return $this->render($this->template, $this->getTemplateVariables());
-
     }
 
     /**
-     * Use this method if you need to pass additional variables for twig, in Aisel I use it to pass some Sonata vars
+     * Pass vars to template and later use
      * @return array
      */
     protected function getTemplateVariables()
@@ -70,6 +67,7 @@ class SettingsController extends Controller
     }
 
     /**
+     * Repository for config
      * @return ConfigRepository
      */
     protected function getRepository()
@@ -78,24 +76,25 @@ class SettingsController extends Controller
     }
 
     /**
-     * @return $from
+     * Populate form with values from database
+     * @param string $formClass
+     * @param string $config
+     * @return $form
      */
     protected function populateForm($formClass, $config)
     {
         $formArray = array();
-        if ($config) {
-            $formArray = json_decode($config->getValue(), true);
+        if ($config && $config[0]['value']) {
+            $formArray = json_decode($config[0]['value']);
         }
-
         $form = $this->createForm(new $this->form(), $formArray);
-
         return $form;
     }
 
     /**
      * Return routes with their names
      *
-     * @return Array
+     * @return Array $routes
      */
     protected function getRoutes()
     {

@@ -22,12 +22,11 @@ use Symfony\Component\Security\Core\Exception;
 class ConfigRepository extends EntityRepository
 {
 
-    /*
-      * Get all settings
-      *
-      * @return int value
-      * */
-
+    /**
+     * Get all settings from database
+     *
+     * @return int value
+     */
     public function getAllSettings()
     {
 
@@ -45,20 +44,43 @@ class ConfigRepository extends EntityRepository
         return $config;
     }
 
-    public function getConfig($entity)
+    /**
+     * Get config data for current entity & locale
+     * @param $editLocale
+     * @param $entity
+     * @return array $entity
+     */
+    public function getConfig($editLocale, $entity)
     {
-        return $this->findOneBy(array('entity' => $entity));
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $entity = $qb->select('c.entity, c.value')
+            ->from('AiselConfigBundle:Config', 'c')
+            ->where('c.locale = :locale')->setParameter('locale', $editLocale)
+            ->andWhere('c.entity = :entity')->setParameter('entity', $entity)
+            ->getQuery()
+            ->execute();
+
+        return $entity;
     }
 
-    public function setConfig($entity, $value)
+    /**
+     * Set config data for current entity & locale
+     * @param sting $editLocale
+     * @param sting $entity
+     * @param sting $value
+     * @return boolean $entity
+     */
+    public function setConfig($editLocale, $entity, $value)
     {
-        $config = $this->getConfig($entity);
+        $config = $this->getConfig($editLocale, $entity);
 
         if (!$config) {
             $config = new Config();
         }
 
         try {
+            $config->setlocale($editLocale);
             $config->setEntity($entity);
             $config->setValue($value);
             $this->_em->persist($config);

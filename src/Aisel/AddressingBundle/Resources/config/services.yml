@@ -1,3 +1,10 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
 parameters:
     aisel_addressing_manager.class: Aisel\AddressingBundle\Manager\AddressingManager
     aisel_addressing_country.class: Aisel\AddressingBundle\Admin\CountryAdmin

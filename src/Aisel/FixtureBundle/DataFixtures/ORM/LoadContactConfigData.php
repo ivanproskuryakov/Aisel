@@ -38,8 +38,9 @@ class LoadContactConfigData extends XMLFixtureData implements OrderedFixtureInte
             foreach ($XML->database->table as $table) {
 
                 $config = new Config();
-                $config->setEntity($table->column[1]);
-                $config->setValue($table->column[2]);
+                $config->setlocale($table->column[1]);
+                $config->setEntity($table->column[2]);
+                $config->setValue($table->column[3]);
                 $manager->persist($config);
                 $manager->flush();
             }
