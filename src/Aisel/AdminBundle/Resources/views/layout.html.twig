@@ -23,8 +23,8 @@ file that was distributed with this source code.
     {% if is_granted('ROLE_SONATA_ADMIN') %}
         <ul class="sidebar-menu">
             <li class="treeview">
-                <a onclick="javascript:location.href='{{ path('config_homepage') }}'" href="#">
-                    <i class="fa fa-wrench"></i><span> Settings</span>
+                <a onclick="javascript:location.href='{{ path('config_homepage', {'editLocale':  app.request.locale}) }}'" href="#">
+                <i class="fa fa-wrench"></i><span> Settings</span>
                 </a>
             </li>
         </ul>

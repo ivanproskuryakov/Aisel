@@ -58,6 +58,7 @@ _sonata_admin:
 aisel_config:
     resource: .
     type: extra
-    prefix: /{_locale}/%website_admin%/settings/
+    prefix: /{_locale}/%website_admin%/settings/{editLocale}/
     requirements:
       _locale: %locales%
+      editLocale: %locales%

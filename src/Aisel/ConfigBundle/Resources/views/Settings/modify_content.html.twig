@@ -23,7 +23,7 @@ file that was distributed with this source code.
                     {% set configClass = '' %}
                 {% endif %}
                 <li class="{{ configClass }}">
-                    <a href="{{ path(route.path) }}">
+                    <a href="{{ path(route.path, {'editLocale': app.request.get('editLocale')}) }}">
                         {{ route.name | trans({}, 'AiselConfigBundle') }}
                     </a>
                 </li>
@@ -34,8 +34,10 @@ file that was distributed with this source code.
     <div class="config-form col-md-12">
         <ul class="aisel-settings-locale nav nav-pills">
             {% for locale in locales %}
-                <li class="{% if loop.first %} active{% endif %}">
-                    <a href="#tab{{ loop.index }}" role="tab"
+                <li class="{% if locale == app.request.get('editLocale') %} active{% endif %}">
+                    <a onclick="javascript:location.href='{{ path(app.request.attributes.get('_route'), {'editLocale': locale}) }}'"
+                       href="#"
+                       role="tab"
                        data-toggle="tab">
                         {{ ['settings.label.', locale]|join | trans({}, 'AiselConfigBundle') }}
                     </a>
