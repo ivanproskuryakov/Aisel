@@ -81,6 +81,7 @@ class AbstractCategoryAdmin extends Admin
         $id = $subject->getId();
         $formMapper
             ->with('aisel.default.general')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('title', 'text', array('label' => 'aisel.default.title'))
             ->add('description', 'ckeditor',
                 array(

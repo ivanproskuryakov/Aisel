@@ -56,6 +56,7 @@ class RegionAdmin extends Admin
     {
         $formMapper
             ->with('General')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('region', null, array('label' => 'Region'))
             ->add('country', null, array('label' => 'Region'))
             ->add('name', 'text', array('required' => true))

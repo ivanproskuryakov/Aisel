@@ -74,7 +74,7 @@ class BackendUserAdmin extends Admin
     {
         $formMapper
             ->with('General')
-            ->add('id', 'integer', array('label' => 'Id', 'disabled' => true, 'attr' => array()))
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('username', 'text', array('required' => true))
             ->add('email')
             ->add('plainPassword', 'text', array(

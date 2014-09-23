@@ -19,7 +19,7 @@ services:
             - Aisel\OrderBundle\Entity\Order
             - ~
         calls:
-            - [ setTranslationDomain, [AiselOrderBundle]]
+            - [ setTranslationDomain, [forms]]
             - [ setManager, [@aisel.order.manager]]
 
     sonata.admin.invoice:
@@ -31,7 +31,7 @@ services:
             - Aisel\OrderBundle\Entity\Invoice
             - ~
         calls:
-            - [ setTranslationDomain, [AiselOrderBundle]]
+            - [ setTranslationDomain, [forms]]
             - [ setManager, [@aisel.invoice.manager]]
 
     aisel.order.manager:

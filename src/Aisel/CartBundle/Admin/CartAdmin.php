@@ -49,7 +49,7 @@ class CartAdmin extends Admin
     {
         $formMapper
             ->with('General')
-                ->add('id', 'integer', array('label' => 'Id','disabled' => true, 'attr' => array()))
+                ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
                 ->add('products', null,
                 array('label' => 'Products', 'expanded' => true,
                     'by_reference' => false, 'multiple' => true))

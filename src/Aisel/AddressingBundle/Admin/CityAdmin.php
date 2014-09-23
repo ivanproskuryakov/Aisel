@@ -56,6 +56,7 @@ class CityAdmin extends Admin
     {
         $formMapper
             ->with('General')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('name', 'text', array('required' => true))
             ->add('region', null, array('label' => 'Region', 'attr' => array('class' => 'form-control')))
             ->add('country', null, array('label' => 'Country','attr' => array('class' => 'form-control')))

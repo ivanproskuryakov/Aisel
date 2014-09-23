@@ -18,7 +18,7 @@ services:
             - Aisel\CartBundle\Entity\Cart
             - ~
         calls:
-            - [ setTranslationDomain, [AiselCartBundle]]
+            - [ setTranslationDomain, [forms]]
             - [ setManager, [@aisel.cart.manager]]
 
     aisel.cart.manager:

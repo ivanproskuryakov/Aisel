@@ -15,7 +15,7 @@ services:
             - Aisel\BackendUserBundle\Entity\BackendUser
             - ~
         calls:
-            - [ setTranslationDomain, [AiselBackendUserBundle]]
+            - [ setTranslationDomain, [forms]]
             - [ setEncoderFactory, [ @security.encoder_factory ] ]
 
 

@@ -15,7 +15,7 @@ services:
             - Aisel\FrontendUserBundle\Entity\FrontendUser
             - ~
         calls:
-            - [ setTranslationDomain, [AiselFrontendUserBundle]]
+            - [ setTranslationDomain, [forms]]
             - [ setEncoderFactory, [ @security.encoder_factory ] ]
 
     frontend.user.manager:

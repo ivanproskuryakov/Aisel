@@ -61,6 +61,7 @@ class PageAdmin extends Admin
     {
         $formMapper
             ->with('aisel.default.general')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('title', 'text', array('label' => 'aisel.default.title', 'attr' => array()))
             ->add('content', 'ckeditor',
                 array(

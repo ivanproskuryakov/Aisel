@@ -27,5 +27,5 @@ services:
             - Aisel\NavigationBundle\Entity\Menu
             - ~
         calls:
-            - [ setTranslationDomain, [AiselNavigationBundle]]
+            - [ setTranslationDomain, [forms]]
             - [ setTemplate, [list, AiselNavigationBundle:Tree:list.html.twig]]

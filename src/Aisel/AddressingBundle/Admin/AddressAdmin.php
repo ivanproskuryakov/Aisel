@@ -60,6 +60,7 @@ class AddressAdmin extends Admin
     {
         $formMapper
             ->with('General')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('phone', 'text', array('required' => true))
             ->with('Dates')
             ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
