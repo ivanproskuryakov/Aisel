@@ -25,7 +25,7 @@ class NodeController extends Controller
     protected $nodeManager = "aisel.navigation.node.manager";
 
     /**
-     * AJAX update action for menu with $id
+     * Updates menu with $id
      *
      * @param Request $request
      *

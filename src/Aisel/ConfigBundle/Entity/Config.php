@@ -12,7 +12,7 @@
 namespace Aisel\ConfigBundle\Entity;
 
 /**
- * Config Repository
+ * Config Entity
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

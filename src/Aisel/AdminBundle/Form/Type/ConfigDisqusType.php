@@ -13,9 +13,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 class ConfigDisqusType extends AbstractType
 {
 
+    /**
+     * {@inheritDoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
             ->add('shortname', 'text', array('label' => 'Shortname', 'attr' => array('class' => 'form-control')))
             ->add('status', 'choice', array('choices' => array(
@@ -24,9 +26,11 @@ class ConfigDisqusType extends AbstractType
                 'label' => 'Status', 'attr' => array('class' => 'form-control')
             ))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')));
-
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
         return 'config_meta';

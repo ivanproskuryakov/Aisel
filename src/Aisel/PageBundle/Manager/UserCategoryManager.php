@@ -23,6 +23,9 @@ class UserCategoryManager
     protected $em;
     protected $securityContext;
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($sc, $em, $securityContext)
     {
         $this->sc = $sc;

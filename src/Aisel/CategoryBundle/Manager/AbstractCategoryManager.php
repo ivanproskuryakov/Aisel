@@ -19,6 +19,9 @@ class AbstractCategoryManager
     protected $em;
     protected $categoryEntity = 'AiselCategoryBundle:Category';
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($sc, $em)
     {
         $this->sc = $sc;
@@ -27,6 +30,7 @@ class AbstractCategoryManager
 
     /**
      * Get tree array of enabled categories
+     *
      * @return array $tree
      */
     public function getCategoryTree()
@@ -53,8 +57,10 @@ class AbstractCategoryManager
 
     /**
      * Generate child categories for selected root
+     *
      * @param  object $items
-     * @param  int    $pid
+     * @param  int $pid
+     *
      * @return array
      */
     public function generatePageTree($items, $pid = null)
@@ -84,6 +90,7 @@ class AbstractCategoryManager
 
     /**
      * Get enabled categories as HTML "ul li" tree - WILL BE REMOVED
+     *
      * @return string $treeHTML
      */
     public function getHTMLCategoryTree()
@@ -109,8 +116,10 @@ class AbstractCategoryManager
 
     /**
      * Generate child categories for selected in HTML format - WILL BE REMOVED
+     *
      * @param  object $items
-     * @param  int    $pid
+     * @param  int $pid
+     *
      * @return array
      */
     public function generatePageTreeHTML($items, $pid = null)
@@ -141,7 +150,9 @@ class AbstractCategoryManager
 
     /**
      * Get list of all categories
+     *
      * @param  array $params
+     *
      * @return mixed
      */
     public function getCategories($params)
@@ -159,7 +170,9 @@ class AbstractCategoryManager
 
     /**
      * Get single detailed category by URLKey
+     *
      * @param  string $urlKey
+     *
      * @return mixed
      */
     public function getCategoryByURL($urlKey)
@@ -178,7 +191,9 @@ class AbstractCategoryManager
 
     /**
      * Get single category
-     * @param  int    $id
+     *
+     * @param  int $id
+     *
      * @return object
      */
     public function getCategory($id)
@@ -194,6 +209,7 @@ class AbstractCategoryManager
 
     /**
      * Get List of all categories, except disabled
+     *
      * @return string
      */
     public function getEnabledCategories()
@@ -205,8 +221,10 @@ class AbstractCategoryManager
 
     /**
      * validate metaUrl for Category Entity and return one we can use
+     *
      * @param  string $url
-     * @param  int    $categoryId
+     * @param  int $categoryId
+     *
      * @return string
      */
     public function normalizeCategoryUrl($url, $categoryId = null)

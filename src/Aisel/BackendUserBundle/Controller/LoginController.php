@@ -14,6 +14,11 @@ namespace Aisel\BackendUserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
+/**
+ * Backend user controller, authorize users
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ */
 class LoginController extends Controller
 {
 
@@ -22,6 +27,11 @@ class LoginController extends Controller
         return $this->get('backend.user.manager');
     }
 
+    /**
+     * Displays login related data
+     *
+     * @return Response
+     */
     public function loginAction()
     {
         $request = $this->getRequest();

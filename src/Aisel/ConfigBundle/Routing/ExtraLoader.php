@@ -26,6 +26,9 @@ class ExtraLoader implements LoaderInterface
     private $loaded = false;
     private $container;
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($container)
     {
         $this->container = $container;
@@ -61,10 +64,16 @@ class ExtraLoader implements LoaderInterface
         return 'extra' === $type;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getResolver()
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function setResolver(LoaderResolverInterface $resolver)
     {
         // irrelevant to us, since we don't need a resolver

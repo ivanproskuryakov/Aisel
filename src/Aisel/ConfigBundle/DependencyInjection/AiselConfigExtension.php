@@ -18,6 +18,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class AiselConfigExtension extends Extension
 {
+
     /**
      * {@inheritDoc}
      */
@@ -34,6 +35,9 @@ class AiselConfigExtension extends Extension
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getAlias()
     {
         return 'aisel_config';

@@ -60,23 +60,26 @@ class OrderAdmin extends Admin
 
     }
 
-    public function getFormTheme()
-    {
-        return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     public function prePersist($order)
     {
         $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
+    /**
+     * {@inheritDoc}
+     */
 
     public function preUpdate($order)
     {
         $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
-    // Fields to be shown on lists
+    /**
+     * {@inheritDoc}
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -95,9 +98,7 @@ class OrderAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
+     * {@inheritDoc}
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {

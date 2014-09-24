@@ -1,3 +1,10 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
 no_settings.label: There are no settings defined yet.
 settings_changed.label: The settings has been saved in database.
 no_settings.label: There are no settings defined yet.

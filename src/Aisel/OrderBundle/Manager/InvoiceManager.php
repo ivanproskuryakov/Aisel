@@ -23,6 +23,9 @@ class InvoiceManager
     protected $sc;
     protected $em;
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($sc, $em)
     {
         $this->sc = $sc;

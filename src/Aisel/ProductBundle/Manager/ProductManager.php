@@ -24,6 +24,9 @@ class ProductManager
     protected $sc;
     protected $em;
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($sc, $em)
     {
         $this->sc = $sc;
@@ -32,7 +35,7 @@ class ProductManager
 
     /**
      * Get categories in array for product
-     * @param  int   $product
+     * @param  int $product
      * @return array $categories
      */
     public function getProductCategories($product)

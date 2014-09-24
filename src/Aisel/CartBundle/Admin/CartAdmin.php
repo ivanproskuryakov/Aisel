@@ -49,34 +49,45 @@ class CartAdmin extends Admin
     {
         $formMapper
             ->with('General')
-                ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
-                ->add('products', null,
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('products', null,
                 array('label' => 'Products', 'expanded' => true,
                     'by_reference' => false, 'multiple' => true))
             ->with('Dates')
-                ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
-                ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
+            ->add('createdAt', 'datetime', array('label' => 'Created At', 'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
             ->end();
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getFormTheme()
     {
         return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function prePersist($cart)
     {
         $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function preUpdate($cart)
     {
         $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
-    // Fields to be shown on lists
+    /**
+     * {@inheritDoc}
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -93,9 +104,7 @@ class CartAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
+     * {@inheritDoc}
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {

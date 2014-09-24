@@ -23,9 +23,9 @@ class ConfigRepository extends EntityRepository
 {
 
     /**
-     * Get all settings from database
+     * Returns all stored settings
      *
-     * @return int value
+     * @return array $config
      */
     public function getAllSettings()
     {
@@ -46,8 +46,10 @@ class ConfigRepository extends EntityRepository
 
     /**
      * Get config data for current entity & locale
+     *
      * @param $editLocale
      * @param $entity
+     *
      * @return array $entity
      */
     public function getConfig($editLocale, $entity)
@@ -66,10 +68,14 @@ class ConfigRepository extends EntityRepository
 
     /**
      * Set config data for current entity & locale
+     *
      * @param sting $editLocale
      * @param sting $entity
      * @param sting $value
+     *
      * @return boolean $entity
+     *
+     * @throws \RuntimeException
      */
     public function setConfig($editLocale, $entity, $value)
     {
@@ -87,7 +93,7 @@ class ConfigRepository extends EntityRepository
             $this->_em->flush();
 
         } catch (Exception $e) {
-            throw new Exception($e);
+            throw new \RuntimeException($e);
         }
 
         return true;

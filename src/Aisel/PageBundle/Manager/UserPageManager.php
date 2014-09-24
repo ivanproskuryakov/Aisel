@@ -28,6 +28,9 @@ class UserPageManager
     protected $user;
     protected $categories = array();
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($sc, $em, $securityContext, $pageManager)
     {
         $this->sc = $sc;

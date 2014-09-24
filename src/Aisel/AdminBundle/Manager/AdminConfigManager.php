@@ -22,6 +22,9 @@ class AdminConfigManager
 {
     protected $em;
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($em)
     {
         $this->em = $em;

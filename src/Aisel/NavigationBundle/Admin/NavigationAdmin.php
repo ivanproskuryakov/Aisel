@@ -55,11 +55,9 @@ class NavigationAdmin extends Admin
         return $query;
     }
 
-    public function getFormTheme()
-    {
-        return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
 
@@ -96,21 +94,25 @@ class NavigationAdmin extends Admin
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function prePersist($page)
     {
         $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function preUpdate($page)
     {
         $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
     /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
+     * {@inheritDoc}
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {
@@ -126,7 +128,7 @@ class NavigationAdmin extends Admin
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toString($object)
     {

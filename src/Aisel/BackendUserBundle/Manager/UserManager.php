@@ -27,6 +27,9 @@ class UserManager implements UserProviderInterface
     protected $em;
     protected $securityContext;
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($em, $encoder, $securityContext)
     {
         $this->encoder = $encoder;
@@ -40,7 +43,11 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * Create User, specially for fixtures
+     * Creates User, specially for fixtures
+     *
+     * @param array $userData
+     *
+     * @return \Aisel\BackendUserBundle\Entity\BackendUser $user
      */
     public function registerFixturesUser(Array $userData)
     {
@@ -64,6 +71,13 @@ class UserManager implements UserProviderInterface
         return $user;
     }
 
+    /**
+     * Loads user by username $username
+     *
+     * @param array $username
+     *
+     * @return \Aisel\BackendUserBundle\Entity\BackendUser $user
+     */
     public function loadUserByUsername($username)
     {
         $user = $this->getRepository()->findOneBy(array('username' => $username));
@@ -71,6 +85,13 @@ class UserManager implements UserProviderInterface
         return $user;
     }
 
+    /**
+     * Loads user by email $email
+     *
+     * @param array $email
+     *
+     * @return \Aisel\BackendUserBundle\Entity\BackendUser $user
+     */
     public function findUserByEmail($email)
     {
         $user = $this->getRepository()->findOneBy(array('email' => $email));
@@ -78,6 +99,14 @@ class UserManager implements UserProviderInterface
         return $user;
     }
 
+    /**
+     * Returns user object by combination of username and email
+     *
+     * @param array $username
+     * @param array $email
+     *
+     * @return \Aisel\BackendUserBundle\Entity\BackendUser $user
+     */
     public function findUser($username, $email)
     {
         $user = $this->em->getRepository('AiselBackendUserBundle:BackendUser')->findUser($username, $email);
@@ -85,6 +114,9 @@ class UserManager implements UserProviderInterface
         return $user;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function refreshUser(UserInterface $user)
     {
         $class = get_class($user);
@@ -101,6 +133,9 @@ class UserManager implements UserProviderInterface
         return $this->find($user->getId());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function supportsClass($class)
     {
         return $this->getEntityName() === $class

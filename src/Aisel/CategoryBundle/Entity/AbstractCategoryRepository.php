@@ -27,6 +27,11 @@ class AbstractCategoryRepository extends NestedTreeRepository
 
     protected $categoryEntity = 'AiselCategoryBundle:Category';
 
+    /**
+     * Update vars with values from request
+     *
+     * @param  array $params
+     */
     private function mapRequest($params)
     {
         if (isset($params['current'])) {
@@ -36,82 +41,83 @@ class AbstractCategoryRepository extends NestedTreeRepository
         if (isset($params['limit'])) {
             $this->pageLimit = $params['limit'];
         }
-
         $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
     }
 
     /**
      * Get total active categories
+     *
      * @param  array $params
-     * @return mixed
+     *
+     * @return array|int $result
      */
-
     public function getTotalFromRequest($params)
     {
         $this->mapRequest($params);
-
         $qb = $this->getEntityManager()->createQueryBuilder();
-
-        $r = $qb->select('COUNT(c.id)')
+        $result = $qb->select('COUNT(c.id)')
             ->from($this->categoryEntity, 'c')
             ->where('c.status = :status')
             ->setParameter('status', 1)
             ->getQuery()->getSingleScalarResult();
 
-        if (!$r) return 0;
-        return $r;
+        if (!$result) return 0;
+
+        return $result;
     }
 
     /**
      * Returns enabled categories
      *
-     * @return object
+     * @param  string $urlKey
+     *
+     * @return array $result
      */
-
     public function getEnabledCategoryByUrl($urlKey)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $r = $qb->select('c')
+        $result = $qb->select('c')
             ->from($this->categoryEntity, 'c')
             ->where('c.metaUrl = :metaUrl')->setParameter('metaUrl', $urlKey)
             ->andWhere('c.status = 1')
             ->getQuery()
             ->getSingleResult();
 
-        return $r;
+        return $result;
     }
 
     /**
      * Returns enabled categories
      *
-     * @return object
+     * @param  int $categoryId
+     *
+     * @return array $result
      */
-
     public function getEnabledCategory($categoryId)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $r = $qb->select('c')
+        $result = $qb->select('c')
             ->from($this->categoryEntity, 'c')
             ->where('c.id = :categoryId')->setParameter('categoryId', $categoryId)
             ->andWhere('c.status = 1')
             ->getQuery()
             ->getSingleResult();
 
-        return $r;
+        return $result;
     }
 
     /**
      * Returns enabled categories sorted as tree
      *
-     * @return object
+     * @param  array $params
+     *
+     * @return array $result
      */
-
     public function getCurrentCategoriesFromRequest($params)
     {
         $this->mapRequest($params);
-
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $r = $qb->select('c')
+        $result = $qb->select('c')
             ->from($this->categoryEntity, 'c')
             ->where('c.status = 1')
             ->addOrderBy('c.title', 'ASC')
@@ -120,20 +126,19 @@ class AbstractCategoryRepository extends NestedTreeRepository
             ->getQuery()
             ->execute();
 
-        return $r;
+        return $result;
 
     }
 
     /**
      * Returns enabled categories sorted as tree
      *
-     * @return object
+     * @return array $result
      */
-
     public function getEnabledCategoriesAsTree()
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $r = $qb->select('c')
+        $result = $qb->select('c')
             ->from($this->categoryEntity, 'c')
             ->where('c.status = 1')
             ->orderBy('c.root', 'ASC')
@@ -141,19 +146,20 @@ class AbstractCategoryRepository extends NestedTreeRepository
             ->getQuery()
             ->execute();
 
-        return $r;
+        return $result;
     }
 
     /**
      * Find categories by url
      *
-     * @return int value
+     * @param  string $url
+     * @param  int|null $categoryId
+     *
+     * @return int $result
      */
-
     public function findTotalByURL($url, $categoryId = null)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
-
         $qb->select('COUNT(c.id)')
             ->from($this->categoryEntity, 'c')
             ->where('c.metaUrl = :url')->setParameter('url', $url);
@@ -161,9 +167,9 @@ class AbstractCategoryRepository extends NestedTreeRepository
         if ($categoryId) {
             $qb->andWhere('c.id != :categoryId')->setParameter('categoryId', $categoryId);
         }
-        $found = $qb->getQuery()->getSingleScalarResult();
+        $result = $qb->getQuery()->getSingleScalarResult();
 
-        return $found;
+        return $result;
     }
 
 }

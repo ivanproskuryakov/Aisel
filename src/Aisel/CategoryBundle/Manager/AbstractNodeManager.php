@@ -23,6 +23,9 @@ class AbstractNodeManager
     protected $repository = null;
     protected $nodeEntity = null;
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($sc, $em)
     {
         $this->sc = $sc;
@@ -32,7 +35,7 @@ class AbstractNodeManager
     /**
      * Save name for single node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws NotFoundHttpException
@@ -56,7 +59,7 @@ class AbstractNodeManager
     /**
      * Remove single node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws NotFoundHttpException
@@ -79,7 +82,7 @@ class AbstractNodeManager
     /**
      * Creates child node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws NotFoundHttpException
@@ -109,7 +112,7 @@ class AbstractNodeManager
     /**
      * Creates Node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws NotFoundHttpException
@@ -131,7 +134,7 @@ class AbstractNodeManager
     /**
      * Update parent for Node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws NotFoundHttpException

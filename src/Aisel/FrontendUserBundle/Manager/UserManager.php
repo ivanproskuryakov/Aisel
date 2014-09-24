@@ -31,6 +31,9 @@ class UserManager implements UserProviderInterface
     protected $websiteEmail;
     protected $securityContext;
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($em, $encoder, $mailer, $templating, $websiteEmail, $securityContext)
     {
         $this->mailer = $mailer;
@@ -75,7 +78,7 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * Create User, specially for fixtures
+     * Creates User, specially for fixtures
      */
     public function registerFixturesUser(Array $userData)
     {
@@ -111,7 +114,9 @@ class UserManager implements UserProviderInterface
 
     /**
      * Update User details
-     * @param  array  $userData
+     *
+     * @param  array $userData
+     *
      * @return string $message
      */
     public function updateDetailsCurrentUser(Array $userData)

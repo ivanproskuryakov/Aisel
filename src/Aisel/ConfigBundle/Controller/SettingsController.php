@@ -27,7 +27,9 @@ class SettingsController extends Controller
     protected $templateVariables = array();
 
     /**
-     * Controller to save and read data
+     * Saves & reads config data
+     *
+     * @return Response
      */
     public function modifyAction()
     {
@@ -59,6 +61,7 @@ class SettingsController extends Controller
 
     /**
      * Pass vars to template and later use
+     *
      * @return array
      */
     protected function getTemplateVariables()
@@ -77,32 +80,36 @@ class SettingsController extends Controller
 
     /**
      * Populate form with values from database
+     *
      * @param string $formClass
      * @param string $config
-     * @return $form
+     *
+     * @return $this->form
      */
     protected function populateForm($formClass, $config)
     {
         $formArray = array();
+
         if ($config && $config[0]['value']) {
             $formArray = json_decode($config[0]['value']);
         }
         $form = $this->createForm(new $this->form(), $formArray);
+
         return $form;
     }
 
     /**
      * Return routes with their names
      *
-     * @return Array $routes
+     * @return array $routes
      */
     protected function getRoutes()
     {
         $configEntities = $this->container->getParameter('aisel_config.entities');
         $prefix = $this->container->getParameter('aisel_config.route_prefix');
-
         $routes = Array();
         asort($configEntities);
+
         foreach ($configEntities as $name => $value) {
 
             $_route = Array();
@@ -129,16 +136,20 @@ class SettingsController extends Controller
 
     /**
      * Get locales param from parameters
-     * @return array
+     *
+     * @return array $this->locales
      */
     protected function getLocales()
     {
         $localesParam = $this->container->getParameter('locales');
         $locales = explode('|', $localesParam);
+
         foreach ($locales as $locale) {
             $this->locales[$locale] = $locale;
         }
-        return $this->locales = $locales;
+        $this->locales = $locales;
+
+        return $this->locales;
     }
 
 }

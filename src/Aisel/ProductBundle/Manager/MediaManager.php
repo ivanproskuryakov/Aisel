@@ -26,6 +26,9 @@ class MediaManager
     protected $appMediaProductPath;
     protected $websiteAddress;
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($sc, $em, $appMediaProductPath, $websiteAddress)
     {
         $this->sc = $sc;

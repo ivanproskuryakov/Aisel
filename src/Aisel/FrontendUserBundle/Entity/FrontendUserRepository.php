@@ -21,12 +21,14 @@ use Doctrine\ORM\EntityRepository;
 class FrontendUserRepository extends EntityRepository
 {
 
-    /*
+    /**
      * Find user by Username and Email
+     *
+     * @param string $username
+     * @param string $email
      *
      * @return int value
      */
-
     public function findUser($username, $email)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();

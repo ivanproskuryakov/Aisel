@@ -53,7 +53,7 @@ EOT
     }
 
     /**
-     * Launch setup process
+     * Launches setup process
      */
     protected function launchSetup(InputInterface $input, OutputInterface $output)
     {

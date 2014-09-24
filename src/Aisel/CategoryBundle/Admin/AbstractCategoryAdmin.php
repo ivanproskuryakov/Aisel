@@ -151,7 +151,7 @@ class AbstractCategoryAdmin extends Admin
     }
 
     /**
-     * Fields to be shown on lists
+     * {@inheritDoc}
      */
     protected function configureListFields(ListMapper $listMapper)
     {

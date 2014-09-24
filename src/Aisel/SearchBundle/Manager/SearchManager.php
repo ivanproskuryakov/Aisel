@@ -20,6 +20,9 @@ class SearchManager
 {
     protected $em;
 
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($em)
     {
         $this->em = $em;
