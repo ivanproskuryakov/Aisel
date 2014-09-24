@@ -99,9 +99,16 @@ class InvoiceAdmin extends Admin
         $showMapper
             ->with('Information')
             ->add('id')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.default.dates')
+            ->add('createdAt', 'datetime', array(
+                'label' => 'aisel.default.created_at',
+                'required' => false,
+                'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array(
+                'label' => 'aisel.default.updated_at',
+                'required' => false,
+                'attr' => array()))
+            ->end();
     }
 
     /**

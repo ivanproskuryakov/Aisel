@@ -118,8 +118,14 @@ class AbstractCategoryAdmin extends Admin
             ->add('metaDescription', 'textarea', array('label' => 'aisel.default.meta_description', 'required' => false))
             ->add('metaKeywords', 'textarea', array('label' => 'aisel.default.meta_keywords', 'required' => false))
             ->with('aisel.default.dates')
-            ->add('createdAt', 'datetime', array('label' => 'aisel.default.created_at', 'required' => false, 'disabled' => true, 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at', 'required' => false, 'attr' => array()))
+            ->add('createdAt', 'datetime', array(
+                'label' => 'aisel.default.created_at',
+                'required' => false,
+                'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array(
+                'label' => 'aisel.default.updated_at',
+                'required' => false,
+                'attr' => array()))
             ->end();
 
     }

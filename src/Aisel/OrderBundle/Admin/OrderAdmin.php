@@ -106,9 +106,16 @@ class OrderAdmin extends Admin
             ->with('Information')
             ->add('id')
             ->add('status')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.default.dates')
+            ->add('createdAt', 'datetime', array(
+                'label' => 'aisel.default.created_at',
+                'required' => false,
+                'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array(
+                'label' => 'aisel.default.updated_at',
+                'required' => false,
+                'attr' => array()))
+            ->end();
     }
 
     /**

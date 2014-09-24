@@ -60,10 +60,15 @@ class CityAdmin extends Admin
             ->add('name', 'text', array('required' => true))
             ->add('region', null, array('label' => 'Region', 'attr' => array('class' => 'form-control')))
             ->add('country', null, array('label' => 'Country','attr' => array('class' => 'form-control')))
-            ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
-
+            ->with('aisel.default.dates')
+            ->add('createdAt', 'datetime', array(
+                'label' => 'aisel.default.created_at',
+                'required' => false,
+                'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array(
+                'label' => 'aisel.default.updated_at',
+                'required' => false,
+                'attr' => array()))
             ->end();
     }
 

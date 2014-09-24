@@ -145,6 +145,14 @@ class Product
     private $categories;
 
     /**
+     * @inheritdoc
+     */
+    public function __toString()
+    {
+        return $this->getSku();
+    }
+
+    /**
      * Constructor
      */
     public function __construct()
