@@ -6,6 +6,6 @@
 # file that was distributed with this source code.
 
 aisel:
-  category:
-    id: Id
-    parent: Parent
+  navigation:
+    no_parent: no parent
+    menu: Menu

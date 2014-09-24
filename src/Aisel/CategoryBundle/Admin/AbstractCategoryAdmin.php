@@ -99,7 +99,7 @@ class AbstractCategoryAdmin extends Admin
                 'expanded' => true,
                 'multiple' => false,
                 'class' => $this->categoryEntity,
-                'label' => 'aisel.default.parent',
+                'label' => 'aisel.category.parent',
                 'query_builder' => function ($er) use ($id) {
                         $qb = $er->createQueryBuilder('p');
                         if ($id) {
@@ -108,7 +108,7 @@ class AbstractCategoryAdmin extends Admin
                         $qb->orderBy('p.root, p.lft', 'ASC');
 
                         return $qb;
-                    }, 'empty_value' => $this->trans('aisel.default.no_parent_category')
+                    }, 'empty_value' => $this->trans('aisel.default.no_parent')
 
             ))
             ->with('aisel.default.meta_data')

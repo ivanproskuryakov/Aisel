@@ -31,7 +31,8 @@ aisel:
     information: Information
     disabled: Disabled
     enabled: Enabled
-    no_parent_category: No Parent Category
+    enabled: Enabled
+    no_parent: no parent
     url_must_be_unique: note: URL value must be unique
     no: No
     yes: Yes

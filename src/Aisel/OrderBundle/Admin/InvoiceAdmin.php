@@ -47,11 +47,19 @@ class InvoiceAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
-                ->add('id', 'integer', array('label' => 'Id','disabled' => true, 'attr' => array()))
-            ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
+            ->with('aisel.default.general')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true,
+                'required' => false, 'attr' => array('class' => 'form-control')))
+            ->with('aisel.default.dates')
+            ->add('createdAt', 'datetime', array(
+                'label' => 'aisel.default.created_at',
+                'required' => false,
+                'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array(
+                'label' => 'aisel.default.updated_at',
+                'required' => false,
+                'attr' => array()))
+
             ->end();
 
     }
@@ -79,9 +87,9 @@ class InvoiceAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->add('createdAt', 'datetime', array('label' => 'Created At'))
-            ->add('updatedAt', 'datetime', array('label' => 'Updated At'))
+            ->addIdentifier('id', null, array('label' => 'aisel.default.id'))
+            ->add('createdAt', 'datetime', array('label' => 'aisel.default.created_at'))
+            ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -97,8 +105,8 @@ class InvoiceAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Information')
-            ->add('id')
+            ->with('aisel.default.general')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',

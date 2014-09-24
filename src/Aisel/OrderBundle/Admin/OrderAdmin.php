@@ -50,12 +50,19 @@ class OrderAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
-                ->add('id', 'integer', array('label' => 'Id','disabled' => true, 'attr' => array()))
-                ->add('status', 'text', array('label' => 'Status', 'attr' => array()))
-            ->with('Dates')
-            ->add('createdAt', 'datetime', array('label' => 'Created At','disabled' => true, 'attr' => array()))
-            ->add('updatedAt', 'datetime', array('label' => 'Updated At', 'attr' => array()))
+            ->with('aisel.default.general')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('status', 'text', array('label' => 'aisel.default.status', 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->with('aisel.default.dates')
+            ->add('createdAt', 'datetime', array(
+                'label' => 'aisel.default.created_at',
+                'required' => false,
+                'disabled' => true, 'attr' => array()))
+            ->add('updatedAt', 'datetime', array(
+                'label' => 'aisel.default.updated_at',
+                'required' => false,
+                'attr' => array()))
+
             ->end();
 
     }
@@ -83,11 +90,11 @@ class OrderAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->add('status')
-            ->add('frontenduser', null, array('label' => 'User'))
-            ->add('invoice', null, array('label' => 'Invoice'))
-            ->add('createdAt', 'datetime', array('label' => 'Created At'))
+            ->addIdentifier('id', null, array('label' => 'aisel.default.id'))
+            ->add('status', 'boolean', array('label' => 'aisel.default.status', 'editable' => false))
+            ->add('frontenduser', null, array('label' => 'aisel.default.user'))
+            ->add('invoice', null, array('label' => 'aisel.order.invoice'))
+            ->add('createdAt', 'datetime', array('label' => 'aisel.default.created_at'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -103,9 +110,15 @@ class OrderAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Information')
-            ->add('id')
-            ->add('status')
+            ->with('aisel.default.general')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('status', 'choice', array('choices' => array(
+                '0' => $this->trans('aisel.default.disabled'),
+                '1' => $this->trans('aisel.default.enabled')),
+                'required' => false,
+                'label' => 'aisel.default.status',
+                'attr' => array('class' => 'form-control')
+            ))
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',

@@ -65,14 +65,18 @@ class NavigationAdmin extends Admin
         $id = $subject->getId();
 
         $formMapper
-            ->with('General')
-            ->add('title', 'text', array('label' => 'Title'))
-            ->add('metaUrl', 'text', array('label' => 'URL'))
+            ->with('aisel.default.general')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('title', 'text', array('label' => 'aisel.default.title', 'attr' => array()))
+            ->add('metaUrl', 'text', array('label' => 'aisel.default.url', 'required' => true))
             ->add('status', 'choice', array('choices' => array(
-                '0' => 'Disabled',
-                '1' => 'Enabled'),
-                'label' => 'Status'
+                '0' => $this->trans('aisel.default.disabled'),
+                '1' => $this->trans('aisel.default.enabled')),
+                'required' => false,
+                'label' => 'aisel.default.status',
+                'attr' => array('class' => 'form-control')
             ))
+            ->with('aisel.navigation.menu')
             ->add('parent', 'aisel_gedmotree', array('expanded' => true, 'multiple' => false,
                 'class' => 'Aisel\NavigationBundle\Entity\Menu',
                 'query_builder' => function ($er) use ($id) {
@@ -83,7 +87,9 @@ class NavigationAdmin extends Admin
                         $qb->orderBy('p.root, p.lft', 'ASC');
 
                         return $qb;
-                    }, 'empty_value' => 'no parent'
+                    },
+                'label' => 'aisel.category.parent',
+                'empty_value' => $this->trans('aisel.default.no_parent')
 
             ))
             ->with('aisel.default.dates')
@@ -122,14 +128,14 @@ class NavigationAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Information')
-            ->add('id')
-            ->add('title')
-            ->add('metaUrl')
-            ->add('status')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.default.information')
+            ->add('id', null, array('label' => 'aisel.default.id'))
+            ->add('metaTitle', null, array('label' => 'aisel.default.meta_title'))
+            ->add('metaUrl', null, array('label' => 'aisel.default.url'))
+            ->add('status', 'boolean', array('label' => 'aisel.default.id'))
+            ->with('aisel.default.dates')
+            ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
     }
 
     /**

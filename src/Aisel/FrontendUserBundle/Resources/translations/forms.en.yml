@@ -6,6 +6,7 @@
 # file that was distributed with this source code.
 
 aisel:
-  category:
-    id: Id
-    parent: Parent
+  frontenduser:
+    username: Username
+    email: E-Mail
+    plain_password: Plain Password

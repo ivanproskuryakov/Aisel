@@ -72,10 +72,11 @@ class FrontendUserAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
-            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
-                ->add('username', 'text', array('required' => true))
-                ->add('email')
+            ->with('aisel.default.general')
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true,
+                'required' => false, 'attr' => array('class' => 'form-control')))
+                ->add('username', 'text', array('label' => 'aisel.frontenduser.username', 'required' => true, 'attr' => array('class' => 'form-control')))
+                ->add('email', 'email', array('label' => 'aisel.frontenduser.email', 'required' => true, 'attr' => array('class' => 'form-control')))
                 ->add('plainPassword', 'text', array(
                     'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
                 ))
