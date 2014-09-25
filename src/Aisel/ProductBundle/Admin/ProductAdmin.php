@@ -185,7 +185,7 @@ class ProductAdmin extends Admin
             ->addIdentifier('id')
             ->add('mainImage', 'boolean', array('label' => 'aisel.product.main_image', 'template' => 'AiselProductBundle:Media:list_field_image.html.twig'))->add('name', null, array('label' => 'aisel.default.name'))
             ->add('sku', null, array('label' => 'aisel.default.sku'))
-            ->add('price', null, array('label' => 'aisel.default.price'))
+            ->add('price', null, array('label' => 'aisel.product.price'))
             ->add('qty', null, array('label' => 'aisel.default.qty'))
             ->add('new', null, array('label' => 'aisel.default.new'))
             ->add('_action', 'actions', array(

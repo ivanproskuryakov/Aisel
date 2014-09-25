@@ -190,7 +190,7 @@ class PageAdmin extends Admin
             ->with('aisel.default.information')
             ->add('id', null, array('label' => 'aisel.default.id'))
             ->add('content', null, array('label' => 'aisel.default.content'))
-            ->add('status', 'boolean', array('label' => 'aisel.default.id'))
+            ->add('status', 'boolean', array('label' => 'aisel.default.status'))
             ->with('aisel.default.categories')
             ->add('categories', 'tree', array('label' => 'aisel.default.categories'))
             ->with('aisel.default.meta_data')

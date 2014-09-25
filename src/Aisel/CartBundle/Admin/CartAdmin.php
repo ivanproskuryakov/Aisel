@@ -48,10 +48,10 @@ class CartAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
+            ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('products', null,
-                array('label' => 'Products', 'expanded' => true,
+                array('label' => 'aisel.cart.products', 'expanded' => true,
                     'by_reference' => false, 'multiple' => true))
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
@@ -64,14 +64,6 @@ class CartAdmin extends Admin
                 'attr' => array()))
             ->end();
 
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFormTheme()
-    {
-        return array('AiselAdminBundle:Form:form_admin_fields.html.twig');
     }
 
     /**
@@ -97,9 +89,9 @@ class CartAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->add('products')
-            ->add('createdAt', 'datetime', array('label' => 'Created At'))
+            ->addIdentifier('id', null, array('label' => 'aisel.default.id'))
+            ->add('products', null, array('label' => 'aisel.cart.products'))
+            ->add('createdAt', 'datetime', array('label' => 'aisel.default.created_at'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -115,12 +107,12 @@ class CartAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Information')
-            ->add('id')
-            ->add('products')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.default.information')
+            ->add('id', null, array('label' => 'aisel.default.id'))
+            ->add('products', null, array('label' => 'aisel.cart.products'))
+            ->with('aisel.default.dates')
+            ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
     }
 
     /**

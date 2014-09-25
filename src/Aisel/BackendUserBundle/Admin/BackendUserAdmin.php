@@ -112,7 +112,7 @@ class BackendUserAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('username', null, array('label' => 'aisel.backenduser.username'))
-            ->add('email', null, array('label' => 'aisel.backenduser.username'))
+            ->add('email', null, array('label' => 'aisel.backenduser.email'))
             ->add('enabled', null, array('label' => 'aisel.default.enabled', 'editable' => false))
             ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at'))
             ->add('_action', 'actions', array(

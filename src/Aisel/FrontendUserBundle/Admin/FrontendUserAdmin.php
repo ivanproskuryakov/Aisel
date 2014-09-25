@@ -35,12 +35,13 @@ class FrontendUserAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('General')
-            ->add('username')
-            ->add('email')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.default.information')
+            ->add('id', null, array('label' => 'aisel.default.id'))
+            ->add('username', null, array('label' => 'aisel.frontenduser.username'))
+            ->add('email', null, array('label' => 'aisel.frontenduser.email'))
+            ->with('aisel.default.dates')
+            ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
     }
 
     /**
@@ -110,10 +111,9 @@ class FrontendUserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('username')
-            ->add('email')
-            ->add('enabled', null, array('editable' => false))
-            ->add('locked', null, array('editable' => false))
+            ->addIdentifier('username', null, array('label' => 'aisel.frontenduser.username'))
+            ->add('email', null, array('label' => 'aisel.frontenduser.email'))
+            ->add('enabled', null, array('label' => 'aisel.default.enabled','editable' => false))
             ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at'))
             ->add('_action', 'actions', array(
                     'actions' => array(

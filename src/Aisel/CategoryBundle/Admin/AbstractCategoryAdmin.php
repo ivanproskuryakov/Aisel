@@ -173,18 +173,19 @@ class AbstractCategoryAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Information')
-            ->add('id')
-            ->add('status')
-            ->with('Meta')
-            ->add('metaUrl')
-            ->add('metaTitle')
-            ->add('metaDescription')
-            ->add('metaKeywords')
-            ->with('General')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.default.information')
+            ->add('id', null, array('label' => 'aisel.default.id'))
+            ->add('title', 'text', array('label' => 'aisel.default.title'))
+            ->add('status', 'boolean', array('label' => 'aisel.default.status'))
+            ->with('aisel.default.meta_data')
+            ->add('metaUrl', null, array('label' => 'aisel.default.url'))
+            ->add('metaTitle', null, array('label' => 'aisel.default.meta_title'))
+            ->add('metaDescription', null, array('label' => 'aisel.default.meta_description'))
+            ->add('metaKeywords', null, array('label' => 'aisel.default.meta_keywords'))
+            ->with('aisel.default.dates')
+            ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
+
     }
 
     /**
