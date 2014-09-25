@@ -58,8 +58,8 @@ class AbstractCategoryManager
     /**
      * Generate child categories for selected root
      *
-     * @param  object $items
-     * @param  int $pid
+     * @param object $items
+     * @param int    $pid
      *
      * @return array
      */
@@ -117,8 +117,8 @@ class AbstractCategoryManager
     /**
      * Generate child categories for selected in HTML format - WILL BE REMOVED
      *
-     * @param  object $items
-     * @param  int $pid
+     * @param object $items
+     * @param int    $pid
      *
      * @return array
      */
@@ -151,7 +151,7 @@ class AbstractCategoryManager
     /**
      * Get list of all categories
      *
-     * @param  array $params
+     * @param array $params
      *
      * @return mixed
      */
@@ -171,7 +171,7 @@ class AbstractCategoryManager
     /**
      * Get single detailed category by URLKey
      *
-     * @param  string $urlKey
+     * @param string $urlKey
      *
      * @return mixed
      */
@@ -192,7 +192,7 @@ class AbstractCategoryManager
     /**
      * Get single category
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return object
      */
@@ -222,8 +222,8 @@ class AbstractCategoryManager
     /**
      * validate metaUrl for Category Entity and return one we can use
      *
-     * @param  string $url
-     * @param  int $categoryId
+     * @param string $url
+     * @param int    $categoryId
      *
      * @return string
      */

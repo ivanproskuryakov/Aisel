@@ -35,7 +35,7 @@ class AbstractNodeManager
     /**
      * Save name for single node
      *
-     * @param  array $params
+     * @param  array  $params
      * @return object
      *
      * @throws NotFoundHttpException
@@ -59,7 +59,7 @@ class AbstractNodeManager
     /**
      * Remove single node
      *
-     * @param  array $params
+     * @param  array  $params
      * @return object
      *
      * @throws NotFoundHttpException
@@ -82,7 +82,7 @@ class AbstractNodeManager
     /**
      * Creates child node
      *
-     * @param  array $params
+     * @param  array  $params
      * @return object
      *
      * @throws NotFoundHttpException
@@ -96,7 +96,7 @@ class AbstractNodeManager
             }
         }
 
-        $node = new $this->nodeEntity;
+        $node = new $this->nodeEntity();
         $node->setTitle($params['name']);
         $node->setParent($nodeParent);
         $node->setStatus(false);
@@ -112,14 +112,14 @@ class AbstractNodeManager
     /**
      * Creates Node
      *
-     * @param  array $params
+     * @param  array  $params
      * @return object
      *
      * @throws NotFoundHttpException
      */
     public function addSibling($params)
     {
-        $node = new $this->nodeEntity;
+        $node = new $this->nodeEntity();
         $node->setTitle($params['name']);
         $node->setStatus(false);
         $node->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -134,7 +134,7 @@ class AbstractNodeManager
     /**
      * Update parent for Node
      *
-     * @param  array $params
+     * @param  array  $params
      * @return object
      *
      * @throws NotFoundHttpException

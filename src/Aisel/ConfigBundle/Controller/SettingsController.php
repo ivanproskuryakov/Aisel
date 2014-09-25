@@ -107,12 +107,12 @@ class SettingsController extends Controller
     {
         $configEntities = $this->container->getParameter('aisel_config.entities');
         $prefix = $this->container->getParameter('aisel_config.route_prefix');
-        $routes = Array();
+        $routes = array();
         asort($configEntities);
 
         foreach ($configEntities as $name => $value) {
 
-            $_route = Array();
+            $_route = array();
             $_route['name'] = 'aisel_config_' . $name . '.label';
             $_route['path'] = $prefix . $name;
 

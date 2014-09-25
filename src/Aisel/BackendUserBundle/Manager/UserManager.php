@@ -49,7 +49,7 @@ class UserManager implements UserProviderInterface
      *
      * @return \Aisel\BackendUserBundle\Entity\BackendUser $user
      */
-    public function registerFixturesUser(Array $userData)
+    public function registerFixturesUser(array $userData)
     {
         $user = new BackendUser();
         $encoder = $this->encoder->getEncoder($user);

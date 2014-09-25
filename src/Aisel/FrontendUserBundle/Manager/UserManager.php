@@ -80,7 +80,7 @@ class UserManager implements UserProviderInterface
     /**
      * Creates User, specially for fixtures
      */
-    public function registerFixturesUser(Array $userData)
+    public function registerFixturesUser(array $userData)
     {
         $user = new FrontendUser();
         $encoder = $this->encoder->getEncoder($user);
@@ -115,11 +115,11 @@ class UserManager implements UserProviderInterface
     /**
      * Update User details
      *
-     * @param  array $userData
+     * @param array $userData
      *
      * @return string $message
      */
-    public function updateDetailsCurrentUser(Array $userData)
+    public function updateDetailsCurrentUser(array $userData)
     {
         try {
             $user = $this->securityContext->getToken()->getUser();
@@ -148,7 +148,7 @@ class UserManager implements UserProviderInterface
     /**
      *   Register user and send userinfo by email
      */
-    public function registerUser(Array $userData)
+    public function registerUser(array $userData)
     {
         $user = $this->loadUserByUsername($userData['username']);
 

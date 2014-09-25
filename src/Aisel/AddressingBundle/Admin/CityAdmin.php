@@ -43,7 +43,6 @@ class CityAdmin extends Admin
             ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
     }
 
-
     /**
      * {@inheritdoc}
      */

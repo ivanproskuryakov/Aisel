@@ -30,7 +30,7 @@ class AbstractCategoryRepository extends NestedTreeRepository
     /**
      * Update vars with values from request
      *
-     * @param  array $params
+     * @param array $params
      */
     private function mapRequest($params)
     {
@@ -47,7 +47,7 @@ class AbstractCategoryRepository extends NestedTreeRepository
     /**
      * Get total active categories
      *
-     * @param  array $params
+     * @param array $params
      *
      * @return array|int $result
      */
@@ -62,14 +62,13 @@ class AbstractCategoryRepository extends NestedTreeRepository
             ->getQuery()->getSingleScalarResult();
 
         if (!$result) return 0;
-
         return $result;
     }
 
     /**
      * Returns enabled categories
      *
-     * @param  string $urlKey
+     * @param string $urlKey
      *
      * @return array $result
      */
@@ -89,7 +88,7 @@ class AbstractCategoryRepository extends NestedTreeRepository
     /**
      * Returns enabled categories
      *
-     * @param  int $categoryId
+     * @param int $categoryId
      *
      * @return array $result
      */
@@ -109,7 +108,7 @@ class AbstractCategoryRepository extends NestedTreeRepository
     /**
      * Returns enabled categories sorted as tree
      *
-     * @param  array $params
+     * @param array $params
      *
      * @return array $result
      */
@@ -152,8 +151,8 @@ class AbstractCategoryRepository extends NestedTreeRepository
     /**
      * Find categories by url
      *
-     * @param  string $url
-     * @param  int|null $categoryId
+     * @param string   $url
+     * @param int|null $categoryId
      *
      * @return int $result
      */

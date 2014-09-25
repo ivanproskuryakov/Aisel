@@ -2,8 +2,6 @@
 
 namespace Aisel\ProductBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Product
  */
@@ -164,7 +162,7 @@ class Product
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -174,7 +172,7 @@ class Product
     /**
      * Set locale
      *
-     * @param string $locale
+     * @param  string  $locale
      * @return Product
      */
     public function setLocale($locale)
@@ -187,7 +185,7 @@ class Product
     /**
      * Get locale
      *
-     * @return string 
+     * @return string
      */
     public function getLocale()
     {
@@ -197,7 +195,7 @@ class Product
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string  $name
      * @return Product
      */
     public function setName($name)
@@ -210,7 +208,7 @@ class Product
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -220,7 +218,7 @@ class Product
     /**
      * Set sku
      *
-     * @param string $sku
+     * @param  string  $sku
      * @return Product
      */
     public function setSku($sku)
@@ -233,7 +231,7 @@ class Product
     /**
      * Get sku
      *
-     * @return string 
+     * @return string
      */
     public function getSku()
     {
@@ -243,7 +241,7 @@ class Product
     /**
      * Set price
      *
-     * @param float $price
+     * @param  float   $price
      * @return Product
      */
     public function setPrice($price)
@@ -256,7 +254,7 @@ class Product
     /**
      * Get price
      *
-     * @return float 
+     * @return float
      */
     public function getPrice()
     {
@@ -266,7 +264,7 @@ class Product
     /**
      * Set priceSpecial
      *
-     * @param float $priceSpecial
+     * @param  float   $priceSpecial
      * @return Product
      */
     public function setPriceSpecial($priceSpecial)
@@ -279,7 +277,7 @@ class Product
     /**
      * Get priceSpecial
      *
-     * @return float 
+     * @return float
      */
     public function getPriceSpecial()
     {
@@ -289,7 +287,7 @@ class Product
     /**
      * Set priceSpecialFrom
      *
-     * @param \DateTime $priceSpecialFrom
+     * @param  \DateTime $priceSpecialFrom
      * @return Product
      */
     public function setPriceSpecialFrom($priceSpecialFrom)
@@ -302,7 +300,7 @@ class Product
     /**
      * Get priceSpecialFrom
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPriceSpecialFrom()
     {
@@ -312,7 +310,7 @@ class Product
     /**
      * Set priceSpecialTo
      *
-     * @param \DateTime $priceSpecialTo
+     * @param  \DateTime $priceSpecialTo
      * @return Product
      */
     public function setPriceSpecialTo($priceSpecialTo)
@@ -325,7 +323,7 @@ class Product
     /**
      * Get priceSpecialTo
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPriceSpecialTo()
     {
@@ -335,7 +333,7 @@ class Product
     /**
      * Set new
      *
-     * @param boolean $new
+     * @param  boolean $new
      * @return Product
      */
     public function setNew($new)
@@ -348,7 +346,7 @@ class Product
     /**
      * Get new
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getNew()
     {
@@ -358,7 +356,7 @@ class Product
     /**
      * Set newFrom
      *
-     * @param \DateTime $newFrom
+     * @param  \DateTime $newFrom
      * @return Product
      */
     public function setNewFrom($newFrom)
@@ -371,7 +369,7 @@ class Product
     /**
      * Get newFrom
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getNewFrom()
     {
@@ -381,7 +379,7 @@ class Product
     /**
      * Set newTo
      *
-     * @param \DateTime $newTo
+     * @param  \DateTime $newTo
      * @return Product
      */
     public function setNewTo($newTo)
@@ -394,7 +392,7 @@ class Product
     /**
      * Get newTo
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getNewTo()
     {
@@ -404,7 +402,7 @@ class Product
     /**
      * Set qty
      *
-     * @param integer $qty
+     * @param  integer $qty
      * @return Product
      */
     public function setQty($qty)
@@ -417,7 +415,7 @@ class Product
     /**
      * Get qty
      *
-     * @return integer 
+     * @return integer
      */
     public function getQty()
     {
@@ -427,7 +425,7 @@ class Product
     /**
      * Set inStock
      *
-     * @param boolean $inStock
+     * @param  boolean $inStock
      * @return Product
      */
     public function setInStock($inStock)
@@ -440,7 +438,7 @@ class Product
     /**
      * Get inStock
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getInStock()
     {
@@ -450,7 +448,7 @@ class Product
     /**
      * Set manageStock
      *
-     * @param boolean $manageStock
+     * @param  boolean $manageStock
      * @return Product
      */
     public function setManageStock($manageStock)
@@ -463,7 +461,7 @@ class Product
     /**
      * Get manageStock
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getManageStock()
     {
@@ -473,7 +471,7 @@ class Product
     /**
      * Set descriptionShort
      *
-     * @param string $descriptionShort
+     * @param  string  $descriptionShort
      * @return Product
      */
     public function setDescriptionShort($descriptionShort)
@@ -486,7 +484,7 @@ class Product
     /**
      * Get descriptionShort
      *
-     * @return string 
+     * @return string
      */
     public function getDescriptionShort()
     {
@@ -496,7 +494,7 @@ class Product
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string  $description
      * @return Product
      */
     public function setDescription($description)
@@ -509,7 +507,7 @@ class Product
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -519,7 +517,7 @@ class Product
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param  boolean $status
      * @return Product
      */
     public function setStatus($status)
@@ -532,7 +530,7 @@ class Product
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -542,7 +540,7 @@ class Product
     /**
      * Set commentStatus
      *
-     * @param boolean $commentStatus
+     * @param  boolean $commentStatus
      * @return Product
      */
     public function setCommentStatus($commentStatus)
@@ -555,7 +553,7 @@ class Product
     /**
      * Get commentStatus
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getCommentStatus()
     {
@@ -565,7 +563,7 @@ class Product
     /**
      * Set metaUrl
      *
-     * @param string $metaUrl
+     * @param  string  $metaUrl
      * @return Product
      */
     public function setMetaUrl($metaUrl)
@@ -578,7 +576,7 @@ class Product
     /**
      * Get metaUrl
      *
-     * @return string 
+     * @return string
      */
     public function getMetaUrl()
     {
@@ -588,7 +586,7 @@ class Product
     /**
      * Set metaTitle
      *
-     * @param string $metaTitle
+     * @param  string  $metaTitle
      * @return Product
      */
     public function setMetaTitle($metaTitle)
@@ -601,7 +599,7 @@ class Product
     /**
      * Get metaTitle
      *
-     * @return string 
+     * @return string
      */
     public function getMetaTitle()
     {
@@ -611,7 +609,7 @@ class Product
     /**
      * Set metaDescription
      *
-     * @param string $metaDescription
+     * @param  string  $metaDescription
      * @return Product
      */
     public function setMetaDescription($metaDescription)
@@ -624,7 +622,7 @@ class Product
     /**
      * Get metaDescription
      *
-     * @return string 
+     * @return string
      */
     public function getMetaDescription()
     {
@@ -634,7 +632,7 @@ class Product
     /**
      * Set metaKeywords
      *
-     * @param string $metaKeywords
+     * @param  string  $metaKeywords
      * @return Product
      */
     public function setMetaKeywords($metaKeywords)
@@ -647,7 +645,7 @@ class Product
     /**
      * Get metaKeywords
      *
-     * @return string 
+     * @return string
      */
     public function getMetaKeywords()
     {
@@ -657,7 +655,7 @@ class Product
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Product
      */
     public function setCreatedAt($createdAt)
@@ -670,7 +668,7 @@ class Product
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -680,7 +678,7 @@ class Product
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Product
      */
     public function setUpdatedAt($updatedAt)
@@ -693,7 +691,7 @@ class Product
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -703,7 +701,7 @@ class Product
     /**
      * Set mainImage
      *
-     * @param array $mainImage
+     * @param  array   $mainImage
      * @return Product
      */
     public function setMainImage($mainImage)
@@ -716,7 +714,7 @@ class Product
     /**
      * Get mainImage
      *
-     * @return array 
+     * @return array
      */
     public function getMainImage()
     {
@@ -726,7 +724,7 @@ class Product
     /**
      * Add image
      *
-     * @param \Aisel\ProductBundle\Entity\Image $image
+     * @param  \Aisel\ProductBundle\Entity\Image $image
      * @return Product
      */
     public function addImage(\Aisel\ProductBundle\Entity\Image $image)
@@ -749,7 +747,7 @@ class Product
     /**
      * Get image
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getImage()
     {
@@ -759,7 +757,7 @@ class Product
     /**
      * Add categories
      *
-     * @param \Aisel\ProductBundle\Entity\Category $categories
+     * @param  \Aisel\ProductBundle\Entity\Category $categories
      * @return Product
      */
     public function addCategory(\Aisel\ProductBundle\Entity\Category $categories)
@@ -782,7 +780,7 @@ class Product
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {

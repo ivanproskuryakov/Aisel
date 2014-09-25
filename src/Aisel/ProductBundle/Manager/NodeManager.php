@@ -36,7 +36,7 @@ class NodeManager extends AbstractNodeManager
         }
 
         $url = time();
-        $node = new $this->nodeEntity;
+        $node = new $this->nodeEntity();
         $node->setTitle($params['name']);
         $node->setParent($nodeParent);
         $node->setStatus(false);
@@ -57,7 +57,7 @@ class NodeManager extends AbstractNodeManager
     public function addSibling($params)
     {
         $url = time();
-        $node = new $this->nodeEntity;
+        $node = new $this->nodeEntity();
         $node->setTitle($params['name']);
         $node->setStatus(false);
         $node->setDescription('');

@@ -9,10 +9,7 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Aisel\CartBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Cart
@@ -55,7 +52,7 @@ class Cart
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -65,7 +62,7 @@ class Cart
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Cart
      */
     public function setCreatedAt($createdAt)
@@ -78,7 +75,7 @@ class Cart
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -88,7 +85,7 @@ class Cart
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Cart
      */
     public function setUpdatedAt($updatedAt)
@@ -101,7 +98,7 @@ class Cart
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -111,7 +108,7 @@ class Cart
     /**
      * Set frontenduser
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
+     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
      * @return Cart
      */
     public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
@@ -124,7 +121,7 @@ class Cart
     /**
      * Get frontenduser
      *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser 
+     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
      */
     public function getFrontenduser()
     {
@@ -134,7 +131,7 @@ class Cart
     /**
      * Add products
      *
-     * @param \Aisel\ProductBundle\Entity\Product $products
+     * @param  \Aisel\ProductBundle\Entity\Product $products
      * @return Cart
      */
     public function addProduct(\Aisel\ProductBundle\Entity\Product $products)
@@ -157,7 +154,7 @@ class Cart
     /**
      * Get products
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProducts()
     {

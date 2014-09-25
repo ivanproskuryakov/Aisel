@@ -368,11 +368,10 @@ class Menu
      */
     private $locale;
 
-
     /**
      * Set locale
      *
-     * @param string $locale
+     * @param  string $locale
      * @return Menu
      */
     public function setLocale($locale)
@@ -385,7 +384,7 @@ class Menu
     /**
      * Get locale
      *
-     * @return string 
+     * @return string
      */
     public function getLocale()
     {

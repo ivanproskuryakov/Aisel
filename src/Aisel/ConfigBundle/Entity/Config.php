@@ -93,11 +93,10 @@ class Config
      */
     private $locale;
 
-
     /**
      * Set locale
      *
-     * @param string $locale
+     * @param  string $locale
      * @return Config
      */
     public function setLocale($locale)
@@ -110,7 +109,7 @@ class Config
     /**
      * Get locale
      *
-     * @return string 
+     * @return string
      */
     public function getLocale()
     {

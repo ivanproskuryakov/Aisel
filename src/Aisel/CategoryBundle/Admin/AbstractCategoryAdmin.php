@@ -31,7 +31,6 @@ class AbstractCategoryAdmin extends Admin
     protected $maxPageLinks = 500;
     protected $categoryEntity = 'Aisel\PageBundle\Entity\Category';
 
-
     /**
      * Set category manager for Sonata Admin
      */
@@ -165,7 +164,6 @@ class AbstractCategoryAdmin extends Admin
             ->add('title', null,
                 array('label' => 'Title', 'sortable' => false));
     }
-
 
     /**
      * {@inheritDoc}

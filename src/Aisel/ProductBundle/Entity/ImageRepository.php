@@ -16,7 +16,7 @@ class ImageRepository extends EntityRepository
     /**
      * Get pages based on limit, current pagination and search query
      *
-     * @param  int $productId
+     * @param int $productId
      *
      * @return boolean $result
      */

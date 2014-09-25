@@ -35,7 +35,7 @@ class ProductManager
 
     /**
      * Get categories in array for product
-     * @param  int $product
+     * @param  int   $product
      * @return array $categories
      */
     public function getProductCategories($product)

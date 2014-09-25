@@ -16,10 +16,10 @@ class ProductRepository extends EntityRepository
     /**
      * Find product by URL
      *
-     * @param  string $url
-     * @param  int|null    $productId
+     * @param string   $url
+     * @param int|null $productId
      *
-     * @return int    $found
+     * @return int $found
      */
     public function findTotalByURL($url, $productId = null)
     {
