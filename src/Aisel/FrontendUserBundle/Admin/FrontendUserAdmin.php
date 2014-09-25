@@ -73,15 +73,15 @@ class FrontendUserAdmin extends Admin
     {
         $formMapper
             ->with('aisel.default.general')
-            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true,
+                ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true,
                 'required' => false, 'attr' => array('class' => 'form-control')))
                 ->add('username', 'text', array('label' => 'aisel.frontenduser.username', 'required' => true, 'attr' => array('class' => 'form-control')))
                 ->add('email', 'email', array('label' => 'aisel.frontenduser.email', 'required' => true, 'attr' => array('class' => 'form-control')))
                 ->add('plainPassword', 'text', array(
+                    'label' => 'aisel.frontenduser.plain_password',
                     'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
                 ))
-                ->add('locked', null, array('required' => false))
-                ->add('enabled', null, array('required' => false))
+            ->add('enabled', null, array('label' => 'aisel.default.enabled','required' => false))
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -100,9 +100,8 @@ class FrontendUserAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
         $filterMapper
-            ->add('id')
-            ->add('username')
-            ->add('email');
+            ->add('username', null, array('label' => 'aisel.frontenduser.username'))
+            ->add('email', null, array('label' => 'aisel.frontenduser.email'));
     }
 
     /**
@@ -115,8 +114,7 @@ class FrontendUserAdmin extends Admin
             ->add('email')
             ->add('enabled', null, array('editable' => false))
             ->add('locked', null, array('editable' => false))
-            ->add('createdAt')
-
+            ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),

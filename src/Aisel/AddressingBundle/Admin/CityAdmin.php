@@ -35,12 +35,14 @@ class CityAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('General')
-            ->add('name')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.default.general')
+            ->add('id', null, array('label' => 'aisel.default.id'))
+            ->add('name', null, array('label' => 'aisel.default.name'))
+            ->with('aisel.default.dates')
+            ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
     }
+
 
     /**
      * {@inheritdoc}
@@ -55,11 +57,11 @@ class CityAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
+            ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
-            ->add('name', 'text', array('required' => true))
-            ->add('region', null, array('label' => 'Region', 'attr' => array('class' => 'form-control')))
-            ->add('country', null, array('label' => 'Country','attr' => array('class' => 'form-control')))
+            ->add('name', 'text', array('label' => 'aisel.default.name', 'required' => true))
+            ->add('region', null, array('label' => 'aisel.addressing.region', 'attr' => array('class' => 'form-control')))
+            ->add('country', null, array('label' => 'aisel.addressing.country','attr' => array('class' => 'form-control')))
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -78,7 +80,7 @@ class CityAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
         $filterMapper
-            ->add('name');
+            ->add('name', null, array('label' => 'aisel.default.name'));
     }
 
     /**
@@ -87,10 +89,10 @@ class CityAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->addIdentifier('name')
-            ->add('country', null, array('label' => 'Country'))
-            ->add('region', null, array('label' => 'Region'))
+            ->addIdentifier('id', null, array('label' => 'aisel.default.id'))
+            ->add('name', null, array('label' => 'aisel.default.name'))
+            ->add('country', null, array('label' => 'aisel.addressing.country'))
+            ->add('region', null, array('label' => 'aisel.addressing.region'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),

@@ -37,7 +37,7 @@ services:
             - Aisel\AddressingBundle\Entity\Country
             - ~
         calls:
-            - [ setTranslationDomain, [AiselAddressingBundle]]
+            - [ setTranslationDomain, [forms]]
 
     sonata.admin.addressing.region:
         class: %aisel_addressing_region.class%

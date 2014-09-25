@@ -14,7 +14,7 @@ namespace Aisel\AddressingBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Aisel addressing management bundle. Contains addressing entity and API controller which communicative by JSON
+ * Aisel addressing management bundle. REST API, Entities, etc ..
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

@@ -35,14 +35,14 @@ class CountryAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('General')
-            ->add('iso2')
-            ->add('iso3')
-            ->add('shortName')
-            ->add('cctld')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.default.general')
+            ->add('iso2', null, array('label' => 'aisel.addressing.iso2'))
+            ->add('iso3', null, array('label' => 'aisel.addressing.iso3'))
+            ->add('shortName', null, array('label' => 'aisel.addressing.short_name'))
+            ->add('cctld', null, array('label' => 'aisel.addressing.cctld'))
+            ->with('aisel.default.dates')
+            ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
     }
 
     /**
@@ -58,9 +58,18 @@ class CountryAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
-            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
-            ->add('iso2', 'text', array('required' => true))
+            ->with('aisel.default.general')
+            ->add('id', 'text', array('label' => 'aisel.default.id',
+                'disabled' => true, 'required' => false,
+                'attr' => array('class' => 'form-control')))
+            ->add('iso2', 'text', array('label' => 'aisel.addressing.iso2', 'required' => true))
+            ->add('iso3', 'text', array('label' => 'aisel.addressing.iso3', 'required' => true))
+            ->add('cctld', 'text', array('label' => 'aisel.addressing.cctld', 'required' => true))
+            ->add('shortName', 'text', array('label' => 'aisel.addressing.short_name', 'required' => true))
+            ->add('longName', 'text', array('label' => 'aisel.addressing.long_name', 'required' => true))
+            ->add('numcode', 'text', array('label' => 'aisel.addressing.numcode', 'required' => true))
+            ->add('callingCode', 'text', array('label' => 'aisel.addressing.calling_code', 'required' => true))
+            ->add('unMember', null, array('label' => 'aisel.addressing.un_member', 'required' => true))
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -79,10 +88,8 @@ class CountryAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
         $filterMapper
-            ->add('iso2')
-            ->add('iso3')
-            ->add('shortName')
-            ->add('cctld');
+            ->add('iso2', null, array('label' => 'aisel.addressing.iso2'))
+            ->add('shortName', null, array('label' => 'aisel.addressing.short_name'));
     }
 
     /**
@@ -91,12 +98,11 @@ class CountryAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->add('iso2')
-            ->add('iso3')
-            ->add('shortName')
-            ->add('cctld')
-
+            ->addIdentifier('id', null, array('label' => 'aisel.default.id'))
+            ->add('iso2', null, array('label' => 'aisel.addressing.iso2'))
+            ->add('iso3', null, array('label' => 'aisel.addressing.iso3'))
+            ->add('shortName', null, array('label' => 'aisel.addressing.short_name'))
+            ->add('cctld', null, array('label' => 'aisel.addressing.cctld'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),

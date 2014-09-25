@@ -32,23 +32,6 @@ class AddressAdmin extends Admin
     /**
      * {@inheritdoc}
      */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->with('General')
-            ->add('id')
-            ->add('street')
-            ->add('zip')
-            ->add('country')
-            ->add('region')
-            ->add('city')
-            ->add('frontenduser')
-            ->end();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function validate(ErrorElement $errorElement, $object)
     {
     }
@@ -59,9 +42,9 @@ class AddressAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
+            ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
-            ->add('phone', 'text', array('required' => true))
+            ->add('phone', 'text', array('label' => 'aisel.addressing.phone', 'attr' => array()))
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -80,14 +63,14 @@ class AddressAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
         $filterMapper
-            ->add('phone')
-            ->add('street')
-            ->add('zip')
-            ->add('comment')
-            ->add('country')
-            ->add('region')
-            ->add('city')
-            ->add('frontenduser');
+            ->add('phone', null, array('label' => 'aisel.addressing.phone'))
+            ->add('street', null, array('label' => 'aisel.addressing.street'))
+            ->add('zip', null, array('label' => 'aisel.addressing.zip'))
+            ->add('comment', null, array('label' => 'aisel.addressing.comment'))
+            ->add('country', null, array('label' => 'aisel.addressing.country'))
+            ->add('region', null, array('label' => 'aisel.addressing.region'))
+            ->add('city', null, array('label' => 'aisel.addressing.city'))
+            ->add('frontenduser', null, array('label' => 'aisel.default.user'));
     }
 
     /**
@@ -97,14 +80,14 @@ class AddressAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('phone')
-            ->add('street')
-            ->add('zip')
-            ->add('comment')
-            ->add('country', null, array('label' => 'Country'))
-            ->add('region', null, array('label' => 'Region'))
-            ->add('city', null, array('label' => 'City'))
-            ->add('frontenduser', null, array('label' => 'User'))
+            ->add('phone', null, array('label' => 'aisel.addressing.phone'))
+            ->add('street', null, array('label' => 'aisel.addressing.street'))
+            ->add('zip', null, array('label' => 'aisel.addressing.zip'))
+            ->add('comment', null, array('label' => 'aisel.addressing.comment'))
+            ->add('country', null, array('label' => 'aisel.addressing.country'))
+            ->add('region', null, array('label' => 'aisel.addressing.region'))
+            ->add('city', null, array('label' => 'aisel.addressing.city'))
+            ->add('frontenduser', null, array('label' => 'aisel.default.user'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -137,6 +120,26 @@ class AddressAdmin extends Admin
     public function toString($object)
     {
         return $object->getId() ? $object->getId() : $this->trans('link_add', array(), 'SonataAdminBundle');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->with('aisel.default.general')
+            ->add('id', null, array('label' => 'aisel.default.id'))
+            ->add('street', null, array('label' => 'aisel.addressing.street'))
+            ->add('zip', null, array('label' => 'aisel.addressing.zip'))
+            ->add('country', null, array('label' => 'aisel.addressing.country'))
+            ->add('region', null, array('label' => 'aisel.addressing.region'))
+            ->add('city', null, array('label' => 'aisel.addressing.city'))
+            ->add('frontenduser', null, array('label' => 'aisel.default.user'))
+            ->with('aisel.default.dates')
+            ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'))
+            ->end();
     }
 
 }

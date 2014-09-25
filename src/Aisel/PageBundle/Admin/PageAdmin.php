@@ -171,12 +171,12 @@ class PageAdmin extends Admin
             ->add('locale', 'text', array('label' => 'aisel.default.locale'))
             ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at'))
             ->add('_action', 'actions', array(
-                    'actions' => array(
-                        'show' => array(),
-                        'edit' => array(),
-                        'delete' => array(),
-                    ))
-            );;
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                ))
+            );
     }
 
     /**

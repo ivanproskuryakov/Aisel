@@ -20,7 +20,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
 /**
- * Backend users CRUD configuration for Backend
+ * Backend users CRUD configuration
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -35,13 +35,14 @@ class BackendUserAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('General')
-            ->add('id')
-            ->add('username')
-            ->add('email')
-            ->with('Dates')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->with('aisel.default.information')
+            ->add('id', null, array('label' => 'aisel.default.id'))
+            ->add('username', null, array('label' => 'aisel.backenduser.username'))
+            ->add('email', null, array('label' => 'aisel.backenduser.email'))
+            ->with('aisel.default.dates')
+            ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
+
     }
 
     /**
@@ -73,15 +74,15 @@ class BackendUserAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
+            ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
-            ->add('username', 'text', array('required' => true))
-            ->add('email')
+            ->add('username', 'text', array('label' => 'aisel.backenduser.username', 'required' => true, 'attr' => array('class' => 'form-control')))
+            ->add('email', 'email', array('label' => 'aisel.backenduser.email', 'required' => true, 'attr' => array('class' => 'form-control')))
             ->add('plainPassword', 'text', array(
+                'label' => 'aisel.backenduser.plain_password',
                 'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
             ))
-            ->add('locked', null, array('required' => false))
-            ->add('enabled', null, array('required' => false))
+            ->add('enabled', null, array('label' => 'aisel.default.enabled', 'required' => false))
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -100,9 +101,8 @@ class BackendUserAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
         $filterMapper
-            ->add('id')
-            ->add('username')
-            ->add('email');
+            ->add('username', null, array('label' => 'aisel.backenduser.username'))
+            ->add('email', null, array('label' => 'aisel.backenduser.email'));
     }
 
     /**
@@ -111,12 +111,10 @@ class BackendUserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('username')
-            ->add('email')
-            ->add('enabled', null, array('editable' => false))
-            ->add('locked', null, array('editable' => false))
-            ->add('createdAt')
-
+            ->addIdentifier('username', null, array('label' => 'aisel.backenduser.username'))
+            ->add('email', null, array('label' => 'aisel.backenduser.username'))
+            ->add('enabled', null, array('label' => 'aisel.default.enabled', 'editable' => false))
+            ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at'))
             ->add('_action', 'actions', array(
                     'actions' => array(
                         'show' => array(),
@@ -134,7 +132,6 @@ class BackendUserAdmin extends Admin
         $encoder = $this->getEncoderFactory()->getEncoder($user);
         $encodedPassword = $encoder->encodePassword($user->getPlainPassword(), $user->getSalt());
         $user->setPassword($encodedPassword);
-
         $user->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
