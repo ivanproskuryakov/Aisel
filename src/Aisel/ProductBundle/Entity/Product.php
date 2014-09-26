@@ -2,7 +2,12 @@
 
 namespace Aisel\ProductBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
+ * @FileStore\Uploadable
  * Product
  */
 class Product
@@ -129,6 +134,8 @@ class Product
 
     /**
      * @var array
+     * @Assert\Image( maxSize="10M")
+     * @FileStore\UploadableField(mapping="mainImage")
      */
     private $mainImage;
 

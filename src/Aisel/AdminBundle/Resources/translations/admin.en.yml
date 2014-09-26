@@ -19,6 +19,13 @@ aisel:
     action_delete: Delete
     action_expand_all: Expand all
     action_collapse_all: Collapse all
+    media:
+      media_gallery:  Media Gallery
+      no_image:  no image
+      add_files:  Add files...
+      start_upload:  Start upload
+      cancel_upload:  Cancel upload
+      delete:  Delete
     node:
       new_child_node: New child node
       new_node: New node

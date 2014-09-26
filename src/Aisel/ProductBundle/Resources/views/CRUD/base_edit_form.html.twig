@@ -68,8 +68,7 @@ file that was distributed with this source code.
                                                         {{ form_row(form[field_name]) }}
                                                     {% endif %}
                                                 {% endfor %}
-
-                                                {% if name == 'Media' %}
+                                                {% if name == 'aisel.default.media' %}
                                                     {% if app.request.attributes.get('id') %}
                                                         {% include 'AiselProductBundle:Media:base.html.twig' %}
                                                     {% endif %}

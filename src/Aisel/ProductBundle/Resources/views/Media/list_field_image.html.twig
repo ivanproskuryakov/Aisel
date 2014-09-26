@@ -21,7 +21,7 @@ file that was distributed with this source code.
             <br/>
         </div>
     {% else %}
-        <span class="productMainImage-noimage">no image</span>
+        <span class="productMainImage-noimage">{{ 'aisel.admin.no_image'|trans({}, 'admin') }}</span>
     {% endif %}
     {#{{ dump(object.mainImage) }}#}
 
