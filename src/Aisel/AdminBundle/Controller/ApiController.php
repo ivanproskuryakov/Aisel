@@ -31,7 +31,6 @@ class ApiController extends Controller
         $config = $this->container->get("aisel.adminconfig.manager")->getConfig();
 
         return $config;
-
     }
 
 }

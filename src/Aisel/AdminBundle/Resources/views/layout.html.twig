@@ -24,7 +24,7 @@ file that was distributed with this source code.
         <ul class="sidebar-menu">
             <li class="treeview">
                 <a onclick="javascript:location.href='{{ path('config_homepage', {'editLocale':  app.request.locale}) }}'" href="#">
-                <i class="fa fa-wrench"></i><span> Settings</span>
+                <i class="fa fa-wrench"></i><span>{{ 'aisel.admin.settings'|trans({}, 'admin') }}</span>
                 </a>
             </li>
         </ul>

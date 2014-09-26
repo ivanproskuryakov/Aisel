@@ -141,17 +141,16 @@ sonata_block:
 
 sonata_admin:
     title:  Backend
+#    title_logo:
     templates:
         #Base layout
         layout:              AiselAdminBundle::layout.html.twig
         search:              SonataAdminBundle:Core:search.html.twig
         search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
-
         #CRUD
         list:                AiselAdminBundle:CRUD:list.html.twig
         show:                AiselAdminBundle:CRUD:show.html.twig
         edit:                AiselAdminBundle:CRUD:edit.html.twig
-
         #Dashboard
         dashboard:           AiselAdminBundle:Core:dashboard.html.twig
         list_block:          AiselAdminBundle:Block:block_admin_list.html.twig

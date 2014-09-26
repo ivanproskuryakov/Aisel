@@ -42,8 +42,8 @@ file that was distributed with this source code.
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-actions col-md-12">
-                        <button type="submit" id="btnExpandAll" class="btn btn-sm btn-primary">Expand all</button>
-                        <button id="btnCollapseAll" class="btn btn-sm btn-warning">Collapse all</button>
+                        <button type="submit" id="btnExpandAll" class="btn btn-sm btn-primary">{{ 'aisel.admin.action_expand_all'|trans({}, 'admin') }}</button>
+                        <button id="btnCollapseAll" class="btn btn-sm btn-warning">{{ 'aisel.admin.action_collapse_all'|trans({}, 'admin') }}</button>
                     </div>
                     {{ sonata_block_render_event('sonata.admin.list.table.top', { 'admin': admin }) }}
 

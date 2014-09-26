@@ -12,7 +12,7 @@
 namespace Aisel\AdminBundle\Utility;
 
 /**
- * Url manipulations, check and return normilized RUL
+ * Url manipulations, check and return normalized RUL
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -20,7 +20,7 @@ class UrlUtility
 {
 
     /**
-     * Symbol convert table
+     * Symbol conversion table
      *
      * @var array
      */
@@ -83,7 +83,9 @@ class UrlUtility
 
     /**
      * Process string based on conversion table
+     *
      * @param  string $str
+     *
      * @return string $normalUrl
      */
     public function process($str)

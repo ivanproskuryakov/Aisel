@@ -35,12 +35,11 @@ file that was distributed with this source code.
         $("#adminNodeTree").contextmenu({
             delegate: "span.fancytree-title",
             menu: [
-                {title: "Edit", cmd: "rename", uiIcon: "ui-icon-pencil" },
-                {title: "Delete", cmd: "remove", uiIcon: "ui-icon-trash" },
+                {title: "{{ 'aisel.admin.node.edit'|trans({}, 'admin') }}", cmd: "rename", uiIcon: "ui-icon-pencil" },
+                {title: "{{ 'aisel.admin.node.delete'|trans({}, 'admin') }}", cmd: "remove", uiIcon: "ui-icon-trash" },
                 {title: "----"},
-                {title: "New node", cmd: "addSibling", uiIcon: "ui-icon-plus" },
-                {title: "New child node", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e" },
-            ],
+                {title: "{{ 'aisel.admin.node.new_node'|trans({}, 'admin') }}", cmd: "addSibling", uiIcon: "ui-icon-plus" },
+                {title: "{{ 'aisel.admin.node.new_child_node'|trans({}, 'admin') }}", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e" },            ],
             beforeOpen: function (event, ui) {
                 var node = $.ui.fancytree.getNode(ui.target);
                 $("#adminNodeTree").contextmenu("enableEntry", "paste", !!CLIPBOARD);
