@@ -6,13 +6,13 @@
 # file that was distributed with this source code.
 
 api_aisel_productlist:
-    pattern:  /api/product/list.json
+    pattern:  /%website_api%/product/list.json
     defaults: { _controller: AiselProductBundle:Api:productList, _format: json }
     requirements:
         _method: GET|POST
 
 api_aisel_productview_by_url:
-    pattern:  /api/product/view/url/{urlKey}.json
+    pattern:  /%website_api%/product/view/url/{urlKey}.json
     defaults: { _controller: AiselProductBundle:Api:productViewByURL, _format: json }
     requirements:
         _method: GET|POST

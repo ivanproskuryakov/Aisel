@@ -9,17 +9,18 @@ parameters:
     mailer_transport:  gmail
     mailer_user:       ~
     mailer_password:   ~
+    website_email: ~
 
     website_address:   http://ecommmerce.aisel.co
     website_admin:     administration
-    website_email: ~
+    website_api:       api
 
     locale: en
     locales: en|ru
     secret:            SecretTokenAisel
 
-#   Note:
-#   Locales & locale parameter only
-#   2 symbols(ISO2), otherwise you
-#   will need to change filed length
-#   in database.
+    #   Note:
+    #   Locales & locale parameter only
+    #   2 symbols(ISO2), otherwise you
+    #   will need to change filed length
+    #   in database.

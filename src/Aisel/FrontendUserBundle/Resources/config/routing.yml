@@ -6,37 +6,37 @@
 # file that was distributed with this source code.
 
 api_aisel_user_login:
-    pattern:  /api/user/login.json
+    pattern:  /%website_api%/user/login.json
     defaults: { _controller: AiselFrontendUserBundle:Api:login, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_logout:
-    pattern:  /api/user/logout.json
+    pattern:  /%website_api%/user/logout.json
     defaults: { _controller: AiselFrontendUserBundle:Api:logout, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_information:
-    pattern:  /api/user/information.json
+    pattern:  /%website_api%/user/information.json
     defaults: { _controller: AiselFrontendUserBundle:Api:information, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_editdetails:
-    pattern:  /api/user/editdetails.json
+    pattern:  /%website_api%/user/editdetails.json
     defaults: { _controller: AiselFrontendUserBundle:Api:editdetails, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_register:
-    pattern:  /api/user/register.json
+    pattern:  /%website_api%/user/register.json
     defaults: { _controller: AiselFrontendUserBundle:Api:register, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_passwordforgot:
-    pattern:  /api/user/passwordforgot.json
+    pattern:  /%website_api%/user/passwordforgot.json
     defaults: { _controller: AiselFrontendUserBundle:Api:passwordforgot, _format: json }
     requirements:
         _method: GET

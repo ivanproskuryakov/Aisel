@@ -6,7 +6,7 @@
 # file that was distributed with this source code.
 
 api_aisel_config:
-    pattern:  /api/config/settings.json
+    pattern:  /%website_api%/config/settings.json
     defaults: { _controller: AiselAdminBundle:Api:config, _format: json }
     requirements:
         _method: GET
