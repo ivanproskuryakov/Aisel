@@ -124,3 +124,11 @@ table.fancytree-ext-table *:focus {
 .aisel-settings-locale.nav-pills > li {
     float: right;
 }
+
+.aisel-sidebar-copyright{
+    color: #999;
+    position: absolute;
+    left: 25px;
+    bottom: 10px;
+    font-size: 12px;
+}

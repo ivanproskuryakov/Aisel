@@ -141,7 +141,6 @@ sonata_block:
 
 sonata_admin:
     title:  Backend
-#    title_logo:
     templates:
         #Base layout
         layout:              AiselAdminBundle::layout.html.twig
@@ -156,6 +155,7 @@ sonata_admin:
         list_block:          AiselAdminBundle:Block:block_admin_list.html.twig
 
     options:
+        title_mode: "single_text"
         html5_validate: true # does not use html5 validation
         confirm_exit:   true # disable confirmation when quitting with unsaved changes
 

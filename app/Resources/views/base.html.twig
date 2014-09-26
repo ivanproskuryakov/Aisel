@@ -17,11 +17,14 @@ file that was distributed with this source code.
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
         {% block stylesheets %}
+            {% stylesheets
+            '@AiselBackendUserBundle/Resources/public/css/*' %}
+            <link rel="stylesheet" href="{{ asset_url }}"/>
+            {% endstylesheets %}
 
             {% for stylesheet in admin_pool.getOption('stylesheets', []) %}
                 <link rel="stylesheet" type="text/css"  href="{{ asset(stylesheet) }}"  />
             {% endfor %}
-
         {% endblock %}
 
         {% block javascripts %}

@@ -10,7 +10,7 @@ file that was distributed with this source code.
 #}
 {% extends '::base.html.twig' %}
     {% block body %}
-        <div class="row" style="margin-top: 100px;">
+        <div class="row aisel-login" style="">
 
             <div class="col-md-4">
             </div>
@@ -35,12 +35,15 @@ file that was distributed with this source code.
                                        placeholder="{{ 'security.login.password'|trans }}" required="required">
                             </div>
                             <br/>
-                            <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
+                            <input type="submit" id="_submit" name="_submit" class="btn btn-primary pull-right"
                                    value="{{ 'security.login.submit'|trans }}"/>
 
                         </form>
 
                     </div>
+                </div>
+                <div class="pull-right copyright">
+                    Copyright © Aisel 2014
                 </div>
 
             </div>
