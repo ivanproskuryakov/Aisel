@@ -76,6 +76,8 @@ class UserPageManager
             if (in_array('ROLE_USER', $user->getRoles())) return true;
         }
 
+        $this->getUserManager()->isAuthenticated();
+
         return false;
     }
 

@@ -60,11 +60,37 @@ class UserManager implements UserProviderInterface
         return $this->mailer;
     }
 
+    /**
+     * Get User repository
+     */
     protected function getRepository()
     {
         return $this->em->getRepository('AiselFrontendUserBundle:FrontendUser');
     }
 
+    /**
+     * Is frontend user user authenticated
+     *
+     * @return boolean
+     */
+    private function isAuthenticated()
+    {
+        $user =$this->securityContext->getToken()->getUser();
+
+        if ($user !== 'anon.') {
+            if (in_array('ROLE_USER', $user->getRoles())) return true;
+        }
+        return false;
+    }
+
+    /**
+     * Is user password correct
+     *
+     * @param FrontendUser $user
+     * @param string $password
+     *
+     * @return boolean $isValid
+     */
     public function checkUserPassword(FrontendUser $user, $password)
     {
         $encoder = $this->encoder->getEncoder($user);
@@ -73,12 +99,15 @@ class UserManager implements UserProviderInterface
             return false;
         }
         $isValid = $encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt());
-
         return $isValid;
     }
 
     /**
-     * Creates User, specially for fixtures
+     * Creates user, specially for fixtures
+     *
+     * @param array $userData
+     *
+     * @param FrontendUser $user
      */
     public function registerFixturesUser(array $userData)
     {
@@ -108,7 +137,6 @@ class UserManager implements UserProviderInterface
 
         $this->em->persist($user);
         $this->em->flush();
-
         return $user;
     }
 
@@ -246,21 +274,18 @@ class UserManager implements UserProviderInterface
     public function loadUserByUsername($username)
     {
         $user = $this->getRepository()->findOneBy(array('username' => $username));
-
         return $user;
     }
 
     public function findUserByEmail($email)
     {
         $user = $this->getRepository()->findOneBy(array('email' => $email));
-
         return $user;
     }
 
     public function findUser($username, $email)
     {
         $user = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->findUser($username, $email);
-
         return $user;
     }
 
@@ -276,7 +301,6 @@ class UserManager implements UserProviderInterface
                 )
             );
         }
-
         return $this->find($user->getId());
     }
 

@@ -22,15 +22,14 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ApiController extends Controller
 {
-
+    /**
+     * Is User Authenticated
+     *
+     * @return boolean
+     */
     private function isAuthenticated()
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-        if ($user !== 'anon.') {
-            if (in_array('ROLE_USER', $user->getRoles())) return true;
-        }
-
-        return false;
+        return $this->get('frontend.user.manager')->isAuthenticated();
     }
 
     /**

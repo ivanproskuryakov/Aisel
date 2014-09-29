@@ -4,7 +4,7 @@ About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=mast
 Aisel is open-source CMS for highload projects based on combination of Symfony2, RESTAPI and AngularJS
 
 Project website: http://aisel.co/<br/>
-Demo frontend: http://demo.aisel.co/ [frontenduser/frontenduser]<br/>
+Demo frontend: http://ecommerce.aisel.co/ [frontenduser/frontenduser]<br/>
 Demo administration: http://demo.aisel.co/administration [backenduser/backenduser]<br/>
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
@@ -16,11 +16,11 @@ Installation
 ```bash
 curl -sS https://getcomposer.org/installer | php
 ```
-2.) Create project, installer will ask you dbname, username, password, etc.. <br/>
+2.) Create project with installer <br/>
 ```bash
 php composer.phar create-project -s dev aisel/aisel
 ```
-then cd aisel/ and finish installation with commands bellow:<br/>
+cd to aisel/ and finish installation with commands bellow:<br/>
 3.) Launch installation:<br/>
 ```bash
 php app/console aisel:install
@@ -31,18 +31,18 @@ bower install
 ```
 
 Important:<br/>
-Bower is a command line utility. Install it with npm.<br/>
+Bower is a command line utility.Install it with npm.<br/>
 $ npm install -g bower<br/>
 
 webserver needs permissions to save cache, logs and sessions<br/>
 Mac users:<br/>
 ```bash
-sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br/>
-sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs app/var<br/>
+sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
+sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs app/var
 ```
 Linux users:<br/>
 ```bash
-sudo chown -R www-data:www-data  app/cache app/logs<br/>
+sudo chown -R www-data:www-data  app/cache app/logs
 ```
 
 
@@ -82,22 +82,11 @@ Sitemap
 -----------------------------------
 Task: <b>php app/console aisel:sitemap:generate</b><br/>
 This command will generate sitemap.xml<br/>
-Example: http://demo.aisel.co/sitemap.xml<br/>
+Example: http://ecommerce.aisel.co/sitemap.xml<br/>
 
 Mobile ready
 -----------------------------------
 http://www.responsinator.com/?url=http%3A%2F%2Fdemo.aisel.co%2F%23%21%2Fpage%2Fabout-aisel%2F
-
-SEO for JS website
------------------------------------
-Check Google index status: https://www.google.com/search?q=site%3Ademo.aisel.co<br/>
-
-To make JS website indexable by Google you need to generate page snapshots<br/>
-Snapshots handled by https://github.com/localnerve/html-snapshots<br/>
-To generate snapshots run in terminal: <b>node snapshots.js</b><br/>
-Task will create snapshots in directory web/snapshots. In the end you will need to test like this:<br/>
-For page http://demo.aisel.co/#!/pages/ you need type in terminal: <br/>curl http://demo.aisel.co/?_escaped_fragment_=/pages/<br/>
-Full info how to make SEO for JS website read here: https://developers.google.com/webmasters/ajax-crawling/docs/specification
 
 Bug tracking
 -----------------------------------
@@ -120,12 +109,3 @@ List of [contributors](https://github.com/ivanproskuryakov/Aisel/graphs/contribu
 BTC Donations
 -----------------------------------
 To support ongoing development you may send BitCoin to 1DmBssUeNGXC8VC3BFm3VB3Qc9wmSB7DrK
-
-Speed Test
------------------------------------
-Clean Ubuntu with 512 RAM<br/>
-Symfony2 in DEV environment<br/>
-No server or MySQL tweaks<br/>
-http://tools.pingdom.com/fpt/#!/dpgreK/http://demo.aisel.co/#!/ - 539ms
-http://tools.pingdom.com/fpt/#!/OVkNs/http://demo.aisel.co/#!/pages/ -  1.05s
-http://tools.pingdom.com/fpt/#!/c7MfRS/http://demo.aisel.co/#!/page/userpage-10/ - 501ms
