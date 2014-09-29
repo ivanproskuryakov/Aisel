@@ -4,3 +4,15 @@
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
+
+api_aisel_addressing_city_list:
+    pattern:  /%website_api%/addressing/city/list.json
+    defaults: { _controller: AddressingBundle:ApiCity:cityList, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_addressing_city_details:
+    pattern:  /%website_api%/addressing/city/{id}.json
+    defaults: { _controller: AddressingBundle:ApiCity:cityDetails, _format: json }
+    requirements:
+        _method: GET

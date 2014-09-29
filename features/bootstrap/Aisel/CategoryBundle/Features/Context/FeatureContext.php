@@ -4,9 +4,6 @@ namespace Aisel\CategoryBundle\Features\Context;
 
 use Aisel\ResourceBundle\Features\Context\DefaultContext;
 
-require_once 'PHPUnit/Autoload.php';
-require_once 'PHPUnit/Framework/Assert/Functions.php';
-
 /**
  * Behat context class.
  */
@@ -18,7 +15,7 @@ class FeatureContext extends DefaultContext
      */
     public function scriptAccessRoute()
     {
-        $this->getSession()->visit($this->generateUrl('api_aisel_categorylist'));
+        $this->getSession()->visit($this->generateUrl('api_aisel_page_categorylist'));
         $this->assertSession()->statusCodeEquals(200);
     }
 

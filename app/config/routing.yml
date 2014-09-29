@@ -46,6 +46,7 @@ aisel_config:
     resource: "@AiselConfigBundle/Resources/config/routing.yml"
     prefix:   /
 
+
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /{_locale}/%website_admin%

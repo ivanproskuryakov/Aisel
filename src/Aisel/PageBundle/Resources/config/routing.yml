@@ -44,8 +44,6 @@ admin_aisel_page_category_update:
     requirements:
         _method: GET
 
-
-
 # User specific actions
 api_aisel_user_pagedetails_by_id:
     pattern:  /%website_api%/user/page/details/id/{pageId}.json
