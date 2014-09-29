@@ -27,14 +27,15 @@ class MediaController extends Controller
      * @Rest\View
      * /%website_admin%/product/media/{productId}/
      */
-    public function uploadAction(Request $request,$productId)
+    public function uploadAction(Request $request, $productId)
     {
 
         $logger = $this->get('logger');
         $logger->info($request->get('files'));
-
+        $pathInfo = $request->get('request')->getPathInfo();
+        $documentRoot = realpath($this->sc->get('request')->server->get('DOCUMENT_ROOT'));
         $json = $this->container->get("aisel.product.media.manager")
-            ->launchMediaUploaderForProductId($productId);
+            ->launchMediaUploaderForProductId($productId, $pathInfo, $documentRoot);
 
         return new Response($json);
     }

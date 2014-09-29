@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AdminBundle\Utility;
+namespace Aisel\ResourceBundle\Utility;
 
 /**
  * Url manipulations, check and return normalized RUL

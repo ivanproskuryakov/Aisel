@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Aisel package.
  *
@@ -8,20 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AdminBundle\Tests\Utility;
+namespace Aisel\ResourceBundle\Tests\Utility;
 
-use Aisel\AdminBundle\Utility\UrlUtility;
+use Aisel\ResourceBundle\Utility\UrlUtility;
+use Aisel\ResourceBundle\PHPUnit\BaseTestCase;
 
 /**
- * Url manipulations, check and return normilized RUL
+ * Url manipulations test case
  */
-class UrlUtilityTest extends \PHPUnit_Framework_TestCase
+class UrlUtilityTest extends BaseTestCase
 {
 
     /**
      * URL conversion tests
      *
-     * @var array
+     * @return null
      */
     public function testProcess()
     {

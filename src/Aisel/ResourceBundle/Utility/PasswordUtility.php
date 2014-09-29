@@ -18,16 +18,16 @@ class PasswordUtility
 {
 
     /**
-     * Generates password
+     * Generate password string
      *
-     * @param  string $string
-     * @return string
+     * @param string $length
+     *
+     * @return string $password
      */
     public function generatePassword($length = 8)
     {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
         $password = substr(str_shuffle($chars), 0, $length);
-
         return $password;
     }
 

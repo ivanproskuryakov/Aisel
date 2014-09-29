@@ -69,16 +69,22 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * Is frontend user user authenticated
+     * Is frontend user authenticated
      *
      * @return boolean
      */
-    private function isAuthenticated()
+    public function isAuthenticated()
     {
-        $user =$this->securityContext->getToken()->getUser();
+        $userToken = $this->securityContext->getToken();
 
-        if ($user !== 'anon.') {
-            if (in_array('ROLE_USER', $user->getRoles())) return true;
+        if ($userToken) {
+            $user = $userToken->getUser();
+
+            if ($user !== 'anon.') {
+                $roles = $user->getRoles();
+                
+                if (in_array('ROLE_USER', $roles)) return true;
+            }
         }
         return false;
     }
@@ -289,6 +295,9 @@ class UserManager implements UserProviderInterface
         return $user;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function refreshUser(UserInterface $user)
     {
         $class = get_class($user);
@@ -304,6 +313,9 @@ class UserManager implements UserProviderInterface
         return $this->find($user->getId());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function supportsClass($class)
     {
         return $this->getEntityName() === $class

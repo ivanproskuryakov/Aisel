@@ -12,7 +12,7 @@
 namespace Aisel\ProductBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Aisel\AdminBundle\Utility\UrlUtility;
+use Aisel\ResourceBundle\Utility\UrlUtility;
 
 /**
  * Manager for Products, mostly used in REST API

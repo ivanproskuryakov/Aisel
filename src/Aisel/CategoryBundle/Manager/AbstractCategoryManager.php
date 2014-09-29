@@ -11,7 +11,7 @@
 
 namespace Aisel\CategoryBundle\Manager;
 
-use Aisel\AdminBundle\Utility\UrlUtility;
+use Aisel\ResourceBundle\Utility\UrlUtility;
 
 class AbstractCategoryManager
 {

@@ -39,16 +39,25 @@ class MediaManager
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function getServiceContainer()
+    {
+        return $this->sc;
+    }
+
+    /**
      * Uploader for product with id $productId
      *
      * @var int $productId
+     * @var array $pathInfo
+     * @var array $documentRoot
      *
      * @return string
      */
-    public function launchMediaUploaderForProductId($productId)
+    public function launchMediaUploaderForProductId($productId, $pathInfo, $documentRoot)
     {
-
-        $mediaParams = $this->mapParamsForProductId($productId);
+        $mediaParams = $this->mapParamsForProductId($productId, $pathInfo, $documentRoot);
         $options = array(
             'script_url' => $mediaParams['script_url'],
             'upload_dir' => $mediaParams['upload_dir'], //$fullPath . $productDir . '/1/',
@@ -60,7 +69,6 @@ class MediaManager
          * we don't want to modify existing class so just
          * use ob_start and ob_get_contents
          */
-
         ob_start();
         $uploadHandler = new UploadHandler($options);
         exit();
@@ -93,17 +101,19 @@ class MediaManager
      * Map product media URI and paths for product Id
      *
      * @var int $productId
+     * @var array $pathInfo
+     * @var array $doctumentRoot
      *
      * @return array $mediaParams
      */
-    private function mapParamsForProductId($productId)
+    public function mapParamsForProductId($productId, $pathInfo, $documentRoot)
     {
         $productMedia = $this->appMediaProductPath . DIRECTORY_SEPARATOR . $productId . DIRECTORY_SEPARATOR;
 
         $media = array(
             'upload_url' => $this->websiteAddress . $productMedia,
-            'script_url' => $this->websiteAddress . $this->sc->get('request')->getPathInfo(),
-            'upload_dir' => realpath($this->sc->get('request')->server->get('DOCUMENT_ROOT')) . $productMedia,
+            'script_url' => $this->websiteAddress . $pathInfo,
+            'upload_dir' => $documentRoot . $productMedia,
         );
 
         return $media;

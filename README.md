@@ -78,6 +78,13 @@ Karma e2e testing:
 $ grunt karma:e2e
 ```
 
+PHPUnit tests
+-----------------------------------
+````
+cd Symfony
+php phpunit.phar -c app/
+````
+
 Sitemap
 -----------------------------------
 Task: <b>php app/console aisel:sitemap:generate</b><br/>
@@ -93,7 +100,6 @@ Bug tracking
 
 Project uses [GitHub issues](https://github.com/ivanproskuryakov/Aisel/issues).
 If you have found bug, please create an issue.
-
 
 MIT License
 -----------------------------------
