@@ -14,14 +14,25 @@ default:
     suites:
         api.page:
             contexts:
-                - Aisel\PageBundle\Features\Context\FeatureContext
+                - Aisel\PageBundle\Features\Context\PageContext
+                - Aisel\PageBundle\Features\Context\PageCategoryContext
             filters:
                 tags: "@api.page"
-        api.category:
+        api.addressing:
             contexts:
-                - Aisel\CategoryBundle\Features\Context\FeatureContext
+                - Aisel\AddressingBundle\Features\Context\FeatureContext
             filters:
-                tags: "@api.category"
+                tags: "@api.addressing"
+        api.cart:
+            contexts:
+                - Aisel\CartBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.cart"
+        api.product:
+            contexts:
+                - Aisel\ProductBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.product"
         api.navigation:
             contexts:
                 - Aisel\NavigationBundle\Features\Context\FeatureContext
