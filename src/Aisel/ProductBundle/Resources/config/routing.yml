@@ -5,28 +5,50 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-api_aisel_productlist:
-    pattern:  /%website_api%/product/list.json
-    defaults: { _controller: AiselProductBundle:Api:productList, _format: json }
-    requirements:
-        _method: GET|POST
-
-api_aisel_productview_by_url:
-    pattern:  /%website_api%/product/view/url/{urlKey}.json
-    defaults: { _controller: AiselProductBundle:Api:productViewByURL, _format: json }
-    requirements:
-        _method: GET|POST
-
+# Admin
 admin_aisel_product_media_upload:
     pattern:  /%website_admin%/product/media/{productId}/
-    defaults: { _controller: AiselProductBundle:Media:upload, productId: 0 }
+    defaults: { _controller: AiselProductBundle:Admin/Media:upload, productId: 0 }
     requirements:
         _method:  OPTIONS|HEAD|GET|POST|PUT|PATCH|DELETE
         productId: "\d+"
-
 
 admin_aisel_product_category_update:
     pattern:   /%website_admin%/product/category/update.json
     defaults:  { _controller: AiselProductBundle:Admin/Node:update, _format: json }
     requirements:
         _method: GET
+
+# Api
+# Product
+api_aisel_productlist:
+    pattern:  /%website_api%/product/list.json
+    defaults: { _controller: AiselProductBundle:ApiProduct:productList, _format: json }
+    requirements:
+        _method: GET|POST
+
+api_aisel_productview_by_url:
+    pattern:  /%website_api%/product/view/url/{urlKey}.json
+    defaults: { _controller: AiselProductBundle:ApiProduct:productViewByURL, _format: json }
+    requirements:
+        _method: GET|POST
+        
+# Categories
+api_aisel_product_categorylist:
+    pattern:  /%website_api%/product/category/list.json
+    defaults: { _controller: AiselProductBundle:ApiCategory:categoryList, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_product_categorytree:
+    pattern:  /%website_api%/product/category/tree.json
+    defaults: { _controller: AiselProductBundle:ApiCategory:categoryTree, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_product_categoryview:
+    pattern:  /%website_api%/product/category/view/{urlKey}.json
+    defaults: { _controller: AiselProductBundle:ApiCategory:categoryView, _format: json }
+    requirements:
+        _method: GET
+        id: "\d+"

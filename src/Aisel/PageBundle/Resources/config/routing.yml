@@ -5,6 +5,14 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
+# Administration
+admin_aisel_page_category_update:
+    pattern:   /%website_admin%/page/category/update.json
+    defaults:  { _controller: AiselPageBundle:Admin/Node:update, _format: json }
+    requirements:
+        _method: GET
+# Api
+# Product
 api_aisel_pagelist:
     pattern:  /%website_api%/page/list.json
     defaults: { _controller: AiselPageBundle:ApiPage:pageList, _format: json }
@@ -17,7 +25,7 @@ api_aisel_pageview_by_url:
     requirements:
         _method: GET
 
-#Categories
+# Categories
 api_aisel_page_categorylist:
     pattern:  /%website_api%/page/category/list.json
     defaults: { _controller: AiselPageBundle:ApiCategory:categoryList, _format: json }
@@ -36,13 +44,6 @@ api_aisel_page_categoryview:
     requirements:
         _method: GET
         id: "\d+"
-
-# Administration
-admin_aisel_page_category_update:
-    pattern:   /%website_admin%/page/category/update.json
-    defaults:  { _controller: AiselPageBundle:Admin/Node:update, _format: json }
-    requirements:
-        _method: GET
 
 # User specific actions
 api_aisel_user_pagedetails_by_id:

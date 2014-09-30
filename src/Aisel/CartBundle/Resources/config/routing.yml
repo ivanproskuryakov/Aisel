@@ -4,3 +4,9 @@
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
+
+api_aisel_cart_details:
+    pattern:  /%website_api%/cart.json
+    defaults: { _controller: AiselCartBundle:ApiCart:cartDetails, _format: json }
+    requirements:
+        _method: GET

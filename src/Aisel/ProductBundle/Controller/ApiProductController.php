@@ -20,17 +20,8 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiController extends Controller
+class ApiProductController extends Controller
 {
-    /**
-     * Is User Authenticated
-     *
-     * @return boolean
-     */
-    private function isAuthenticated()
-    {
-        return $this->get('frontend.user.manager')->isAuthenticated();
-    }
 
     /**
      * @Rest\View
@@ -38,22 +29,8 @@ class ApiController extends Controller
      */
     public function productListAction(Request $request)
     {
-
-        $params = array(
-            'current' => $request->get('current'),
-            'limit' => $request->get('limit'),
-            'category' => $request->get('category')
-        );
-
-        if ($request->get('user') && $this->isAuthenticated()) {
-            $userid = $this->get('security.context')->getToken()->getUser()->getId();
-            $params['userid'] = $userid;
-        }
-
-        $productList = $this->container->get("aisel.product.manager")->getProducts($params);
-
+        $productList = false;
         return $productList;
-
     }
 
     /**
@@ -63,7 +40,6 @@ class ApiController extends Controller
     {
         /** @var \Aisel\ProductBundle\Entity\Product $product */
         $product = $this->container->get("aisel.product.manager")->getProductByURL($urlKey);
-
         return $product;
     }
 }

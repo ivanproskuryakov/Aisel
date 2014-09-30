@@ -16,29 +16,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Frontend Addressing Cities REST API controller
+ * Frontend Addressing Regions REST API controller
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiCityController extends Controller
+class ApiRegionController extends Controller
 {
 
     /**
      * @Rest\View
-     * /%website_api%/addressing/city/list.json
+     * /%website_api%/addressing/region/list.json
      */
-    public function cityListAction(Request $request)
+    public function regionListAction(Request $request)
     {
-        $cityList = true;
-        return $cityList;
+        $regionList = false;
+        return $regionList;
     }
 
     /**
-     * /%website_api%/addressing/city/{id}.json
+     * /%website_api%/addressing/region/{id}.json
      */
-    public function cityDetailsAction($id)
+    public function regionDetailsAction($id)
     {
-        $cityDetails = $id;
-        return $cityDetails;
+        $regionDetails = $id;
+        return $regionDetails;
     }
 }
