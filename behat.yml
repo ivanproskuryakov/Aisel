@@ -12,22 +12,17 @@ default:
         Behat\Symfony2Extension: ~
 
     suites:
+        api.settings:
+            contexts:
+                - Aisel\AdminBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.settings"
         api.page:
             contexts:
                 - Aisel\PageBundle\Features\Context\PageContext
                 - Aisel\PageBundle\Features\Context\PageCategoryContext
             filters:
                 tags: "@api.page"
-        api.addressing:
-            contexts:
-                - Aisel\AddressingBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.addressing"
-        api.cart:
-            contexts:
-                - Aisel\CartBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.cart"
         api.product:
             contexts:
                 - Aisel\ProductBundle\Features\Context\FeatureContext
@@ -38,8 +33,18 @@ default:
                 - Aisel\NavigationBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.navigation"
-        api.settings:
+        api.addressing:
             contexts:
-                - Aisel\AdminBundle\Features\Context\FeatureContext
+                - Aisel\AddressingBundle\Features\Context\FeatureContext
             filters:
-                tags: "@api.settings"
+                tags: "@api.addressing"
+        api.cart:
+            contexts:
+                - Aisel\CartBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.cart"
+        api.order:
+            contexts:
+                - Aisel\OrderBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.order"

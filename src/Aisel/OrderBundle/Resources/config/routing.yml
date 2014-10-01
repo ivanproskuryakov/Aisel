@@ -7,13 +7,13 @@
 
 api_aisel_orderlist:
     pattern:  /%website_api%/order/list.json
-    defaults: { _controller: AiselOrderBundle:Api:orderList, _format: json }
+    defaults: { _controller: AiselOrderBundle:ApiOrder:orderList, _format: json }
     requirements:
         _method: GET
 
-api_aisel_orderview_by_url:
-    pattern:  /%website_api%/order/view/url/{urlKey}.json
-    defaults: { _controller: AiselOrderBundle:Api:orderViewByURL, _format: json }
+api_aisel_orderview_by_id:
+    pattern:  /%website_api%/order/view/{id}.json
+    defaults: { _controller: AiselOrderBundle:ApiOrder:orderViewById, _format: json }
     requirements:
         _method: GET
 #        id: "\d+"
