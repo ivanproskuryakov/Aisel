@@ -1,6 +1,6 @@
 <?php
 
-namespace Aisel\PageBundle\Features\Context;
+namespace Aisel\CartBundle\Features\Context;
 
 use Aisel\ResourceBundle\Features\Context\DefaultContext;
 
@@ -11,11 +11,11 @@ class FeatureContext extends DefaultContext
 {
 
     /**
-     * @When /^Script access api_aisel_pagelist route$/
+     * @When /^Script access api_aisel_cart_details route$/
      */
     public function scriptAccessRoute()
     {
-        $this->getSession()->visit($this->generateUrl('api_aisel_pagelist'));
+        $this->getSession()->visit($this->generateUrl('api_aisel_cart_details'));
         $this->assertSession()->statusCodeEquals(200);
     }
 
@@ -26,7 +26,7 @@ class FeatureContext extends DefaultContext
     {
         $content = $this->getSession()->getPage()->getContent();
         $json = json_decode($content);
-        assertNotEmpty($json->total);
+        assertEquals($json, false);
     }
 
 }
