@@ -27,7 +27,7 @@
             <column name="lvl">0</column>
             <column name="description">Mockups can be a very important part of a presentation, especially for those who design applications for mobile devices or computers. Our MacBook Air and Pro mockups are designed </column>
             <column name="status">1</column>
-            <column name="meta_url">product-product-root-category-one</column>
+            <column name="meta_url">product-root-category-one</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>

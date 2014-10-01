@@ -36,12 +36,6 @@ class LoadProductCategoryData extends XMLFixtureData implements OrderedFixtureIn
             $XML = simplexml_load_string($contents);
 
             foreach ($XML->database->table as $table) {
-
-                $rootCategory = null;
-
-                if ($table->column[2] != 'NULL') {
-                    $rootCategory = $this->getReference('product_category_' . $table->column[2]);
-                }
                 $category = new Category();
                 $category->setLocale($table->column[1]);
                 $category->setTitle($table->column[3]);
@@ -51,7 +45,8 @@ class LoadProductCategoryData extends XMLFixtureData implements OrderedFixtureIn
                 $category->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
                 $category->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
-                if ($rootCategory) {
+                if ($table->column[2] != 'NULL') {
+                    $rootCategory = $this->getReference('product_category_' . $table->column[2]);
                     $category->setParent($rootCategory);
                 }
                 $manager->persist($category);

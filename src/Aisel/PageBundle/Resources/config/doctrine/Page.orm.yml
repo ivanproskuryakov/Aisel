@@ -36,6 +36,7 @@ Aisel\PageBundle\Entity\Page:
             type: boolean
             nullable: true
             column: comment_status
+
         metaUrl:
             type: string
             unique: true

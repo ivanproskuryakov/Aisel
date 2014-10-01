@@ -38,7 +38,6 @@ class LoadMenuTopData extends XMLFixtureData implements OrderedFixtureInterface
             foreach ($XML->database->table as $table) {
 
                 $rootCategory = null;
-
                 if ($table->column[2] != 'NULL') {
                     $rootCategory = $this->getReference('menu_top_' . $table->column[2]);
                 }
