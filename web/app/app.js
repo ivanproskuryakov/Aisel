@@ -32,9 +32,9 @@ var aiselApp = angular.module('aiselApp', [
     }])
 
     .config(function ($provide, $routeProvider, $locationProvider, $httpProvider, $disqusProvider) {
-        $locationProvider
+//        $locationProvider
 //            .html5Mode(true)
-            .hashPrefix('!');
+//            .hashPrefix('!');
 
         // Intercept http calls
         $provide.factory('requestInterceptor', function ($q) {

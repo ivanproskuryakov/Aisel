@@ -6,7 +6,7 @@
         <div class="col-xs-12 col-md-12">
             <ul class="pageList">
                 <li ng-repeat="category in categoryList.categories">
-                    <h2><a href="#!/category/{{category.meta_url}}/" class="thumb">{{category.title}}</a></h2>
+                    <h2><a href="#/category/{{category.meta_url}}/" class="thumb">{{category.title}}</a></h2>
                     <p ng-bind-html="category.description"></p>
                     <hr/>
                 </li>

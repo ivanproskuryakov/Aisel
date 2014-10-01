@@ -6,7 +6,7 @@
         <div class="panel-body">
             <div class="categoryTree">
                 <script type="text/ng-template" id="field_renderer.html">
-                    <a id="link-6" ng-href="#!/category/{{ category.url}}/">{{ category.title}}</a>
+                    <a id="link-6" ng-href="#/category/{{ category.url}}/">{{ category.title}}</a>
 
                     <ul>
                         <li ng-repeat="category in category.children" ng-include="'field_renderer.html'"></li>

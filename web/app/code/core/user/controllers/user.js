@@ -27,7 +27,7 @@ angular.module('aiselApp')
                     function(data, status) {
                         notify(data.message);
 //                        if (data.status) {
-//                            window.location = "/#!/user/information/";
+//                            window.location = "/#/user/information/";
 //                        }
                     }
                 );
@@ -42,7 +42,7 @@ angular.module('aiselApp')
                         notify(data.message);
                         if (data.status) {
 //                            window.location = "/";
-                            window.location = "/#!/";
+                            window.location = "/#/";
                         }
                     }
                 );
