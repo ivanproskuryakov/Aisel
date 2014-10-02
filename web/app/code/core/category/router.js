@@ -14,11 +14,11 @@ aiselApp.config(function ($provide, $routeProvider, $locationProvider, $httpProv
     $routeProvider
 
         // Categories
-        .when('/categories/', {
+        .when('/:locale/categories/', {
             templateUrl: 'app/views/core/category/category.html',
             controller: 'CategoryCtrl'
         })
-        .when('/category/:categoryId/', {
+        .when('/:locale/category/:categoryId/', {
             templateUrl: 'app/views/core/category/category-detail.html',
             controller: 'CategoryDetailCtrl'
         })

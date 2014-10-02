@@ -14,11 +14,11 @@ aiselApp.config(function ($provide, $routeProvider, $locationProvider, $httpProv
     $routeProvider
 
         // Pages
-        .when('/pages/', {
+        .when('/:locale/pages/', {
             templateUrl: 'app/views/core/page/page.html',
             controller: 'PageCtrl'
         })
-        .when('/page/:pageId/', {
+        .when('/:locale/page/:pageId/', {
             templateUrl: 'app/views/core/page/page-detail.html',
             controller: 'PageDetailCtrl'
         })

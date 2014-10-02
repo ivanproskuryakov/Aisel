@@ -14,14 +14,14 @@ aiselApp.config(function ($provide, $routeProvider, $locationProvider, $httpProv
     $routeProvider
 
         // Actions only for guest users
-        .when('/user/register/', {
+        .when('/:locale/user/register/', {
             templateUrl: 'app/views/core/user/register.html',
             controller: 'UserCtrl',
             resolve: {
                 factory: grantAccessGuest
             }
         })
-        .when('/user/password/forgot/', {
+        .when('/:locale/user/password/forgot/', {
             templateUrl: 'app/views/core/user/password-forgot.html',
             controller: 'UserCtrl',
             resolve: {
@@ -30,35 +30,35 @@ aiselApp.config(function ($provide, $routeProvider, $locationProvider, $httpProv
         })
 
         // Authenticated users actions
-        .when('/user/information/', {
+        .when('/:locale/user/information/', {
             templateUrl: 'app/views/core/user/information/dashboard.html',
             controller: 'UserCtrl',
             resolve: {
                 factory: grantAccessAuthenticated
             }
         })
-        .when('/user/information/edit/', {
+        .when('/:locale/user/information/edit/', {
             templateUrl: 'app/views/core/user/information/edit.html',
             controller: 'UserCtrl',
             resolve: {
                 factory: grantAccessAuthenticated
             }
         })
-        .when('/user/page/list/', {
+        .when('/:locale/user/page/list/', {
             templateUrl: 'app/views/core/user/page/list.html',
             controller: 'UserPageListCtrl',
             resolve: {
                 factory: grantAccessAuthenticated
             }
         })
-        .when('/user/page/add/', {
+        .when('/:locale/user/page/add/', {
             templateUrl: 'app/views/core/user/page/add.html',
             controller: 'UserPageAddCtrl',
             resolve: {
                 factory: grantAccessAuthenticated
             }
         })
-        .when('/user/page/edit/:pageId/', {
+        .when('/:locale/user/page/edit/:pageId/', {
             templateUrl: 'app/views/core/user/page/edit.html',
             controller: 'UserPageEditCtrl',
             resolve: {

@@ -14,7 +14,7 @@ aiselApp.config(function ($provide, $routeProvider) {
     $routeProvider
 
         // Homepage
-        .when('/', {
+        .when('/:locale/', {
             templateUrl: 'app/views/core/homepage/homepage.html',
             controller: 'HomepageCtrl'
         })

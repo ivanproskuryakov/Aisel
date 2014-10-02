@@ -24,6 +24,8 @@ var aiselApp = angular.module('aiselApp', [
     ])
 
     .constant('API_URL', '/api')
+    .constant('LOCALE', 'en')
+    .constant('LOCALES', ['en', 'ru'])
 
     .run(['$http', '$rootScope', 'rootService', function ($http, $rootScope, rootService, $route) {
         rootService.init();
@@ -36,7 +38,9 @@ var aiselApp = angular.module('aiselApp', [
 //            .html5Mode(true)
 //            .hashPrefix('!');
 
-        // Intercept http calls
+        /**
+         * HTTP calls Interception
+         */
         $provide.factory('requestInterceptor', function ($q) {
             return {
                 request: function (config) {
@@ -58,6 +62,4 @@ var aiselApp = angular.module('aiselApp', [
             };
         });
         $httpProvider.interceptors.push('requestInterceptor');
-
-
     });

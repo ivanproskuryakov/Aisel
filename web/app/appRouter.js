@@ -14,20 +14,18 @@
 aiselApp.config(function ($provide, $routeProvider) {
     $routeProvider
 
-        /*
-         * Default route. Redirect to homepage if nothing was found
-         */
+    /**
+     * Default route. Redirect to homepage if nothing was found
+     */
         .otherwise({
-            redirectTo: '/'
+            redirectTo: '/en/'
         });
-
 });
 
-/*
-* Simple helper functions for user ACL
-* see more at user/router.js
-*/
-
+/**
+ * Simple helper functions for user ACL
+ * see more at user/router.js
+ */
 var grantAccessAuthenticated = function ($rootScope, $location, notify) {
     if (!$rootScope.isAuthenticated) {
         $location.path("/");

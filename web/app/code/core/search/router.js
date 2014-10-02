@@ -13,7 +13,7 @@ aiselApp.config(function ($provide, $routeProvider, $locationProvider, $httpProv
 
     $routeProvider
         // Search
-        .when('/search/:query', {
+        .when('/:locale/search/:query', {
             templateUrl: 'app/views/core/search/search.html',
             controller: 'SearchCtrl'
         })

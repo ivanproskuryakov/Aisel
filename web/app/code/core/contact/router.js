@@ -14,7 +14,7 @@ aiselApp.config(function ($provide, $routeProvider, $locationProvider, $httpProv
     $routeProvider
 
         // Contact
-        .when('/contact/', {
+        .when('/:locale/contact/', {
             templateUrl: 'app/views/core/contact/contact.html',
             controller: 'ContactCtrl'
         })
