@@ -8,7 +8,7 @@
 
     <ul class="pageList">
         <li ng-repeat="page in results.pages">
-            <h2><a href="#/page/{{page.id}}/" class="thumb">{{page.title}}</a></h2>
+            <h2><a href="/#/en/page/{{page.id}}/" class="thumb">{{page.title}}</a></h2>
             <p>{{page.content}}</p>
             <p><span class="glyphicon glyphicon-calendar"></span>  {{page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
             <hr/>

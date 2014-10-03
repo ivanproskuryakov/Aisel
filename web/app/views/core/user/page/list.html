@@ -1,14 +1,14 @@
 <div class="">
         <div class="col-xs-12 page-header">
             <h2>Page List</h2>
-            <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span> <a ng-href="/#/user/information/">Return to dashboard</a></p>
+            <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span> <a ng-href="/#/en/user/information/">Return to dashboard</a></p>
         </div>
         <div class="" ng-if="isAuthenticated">
             <div class="col-xs-12 col-sm-9">
                 <div class="">
                     <ul class="pageList">
                         <li ng-repeat="page in pageList.pages">
-                            <h2><a href="/#/user/page/edit/{{page.id}}/" class="thumb">{{page.title}}</a></h2>
+                            <h2><a href="/#/en/user/page/edit/{{page.id}}/" class="thumb">{{page.title}}</a></h2>
                             <p ng-bind-html="page.content"></p>
 
 
@@ -18,8 +18,8 @@
                                     #<span ng-if="page.status">Published</span><span ng-if="!page.status">Draft </span>
                                 </p>
                                 <p class="pull-right">
-                                    <a ng-href="/#/page/{{page.metaUrl}}/" type="button" class="btn btn-primary">View Page</a>
-                                    <a ng-href="/#/user/page/edit/{{page.id}}/" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                    <a ng-href="/#/en/page/{{page.metaUrl}}/" type="button" class="btn btn-primary">View Page</a>
+                                    <a ng-href="/#/en/user/page/edit/{{page.id}}/" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
                                 </p>
                             </div>
                             <hr/>
