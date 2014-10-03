@@ -24,13 +24,13 @@ var aiselApp = angular.module('aiselApp', [
     ])
 
     .constant('API_URL', '/api')
-    .constant('LOCALE', 'en')
-    .constant('LOCALES', ['en', 'ru'])
+    .constant("LOCALE", {
+        "primary": "en",
+        "available": ['en', 'ru']
+    })
 
     .run(['$http', '$rootScope', 'rootService', function ($http, $rootScope, rootService, $route) {
-        rootService.init();
-//        $rootScope.$on("$locstionChangeStart", function(event, next, current) {
-//        });
+        rootService.init()
     }])
 
     .config(function ($provide, $routeProvider, $locationProvider, $httpProvider, $disqusProvider) {

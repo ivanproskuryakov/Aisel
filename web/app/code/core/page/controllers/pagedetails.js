@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('aiselApp')
-  .controller('PageDetailCtrl', function ($scope, $routeParams, pageService, $rootScope, rootService) {
+    .controller('PageDetailCtrl', function ($scope, $routeParams, pageService, $rootScope, rootService) {
 
         var pageURL = $routeParams.pageId;
-        var handleSuccess = function(data, status) {
+        var handleSuccess = function (data, status) {
             $scope.pageDetails = data;
             $rootScope.pageTitle = $scope.pageDetails.page.title;
 
@@ -14,4 +14,4 @@ angular.module('aiselApp')
         };
         pageService.getPageByURL(pageURL).success(handleSuccess);
 
-  });
+    });
