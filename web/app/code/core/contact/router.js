@@ -2,12 +2,11 @@
 
 /**
  * @ngdoc overview
- *
  * @name aiselApp
  *
  * @description
- *
  * Router for contact
+ *
  */
 
 aiselApp.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {

@@ -2,11 +2,9 @@
 
 /**
  * @ngdoc overview
- *
  * @name aiselApp
  *
  * @description
- *
  * Application core module
  */
 

@@ -2,11 +2,9 @@
 
 /**
  * @ngdoc overview
- *
  * @name aiselApp
  *
  * @description
- *
  * Main router provider in separate file, for better extensibility
  * Each module has its own router file.
  * Please define only global routes in this appRouter.js file

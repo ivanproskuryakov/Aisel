@@ -3,9 +3,8 @@
 /**
  * @ngdoc overview
  * @name aiselApp
- * @description
- * # aiselApp
  *
+ * @description
  * Search router
  */
 
