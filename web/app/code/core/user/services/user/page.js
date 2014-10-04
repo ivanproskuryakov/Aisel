@@ -1,5 +1,15 @@
 'use strict';
 
+/**
+ * @ngdoc overview
+ *
+ * @name aiselApp
+ *
+ * @description
+ *
+ * ...
+ */
+
 angular.module('aiselApp')
     .service('userPageService', ['$http', '$routeParams', 'API_URL', function ($http, $routeParams, API_URL) {
         return {
@@ -19,7 +29,7 @@ angular.module('aiselApp')
                 pageDetails.selectedCategories = websiteCategories;
                 console.log(url);
                 console.log(pageDetails);
-                return $http.get(url, {params: { details: pageDetails }});
+                return $http.get(url, {params: {details: pageDetails}});
             },
             savePage: function (pageDetails, websiteCategories) {
                 var id = pageDetails.page.id;
@@ -27,7 +37,7 @@ angular.module('aiselApp')
                 pageDetails.selectedCategories = websiteCategories;
                 console.log(url);
                 console.log(pageDetails);
-                return $http.get(url, {params: { details: pageDetails}});
+                return $http.get(url, {params: {details: pageDetails}});
             },
             deletePage: function (pageDetails) {
                 var id = pageDetails.page.id;

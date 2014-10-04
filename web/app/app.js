@@ -2,38 +2,40 @@
 
 /**
  * @ngdoc overview
- * @name aiselApp
- * @description
- * # aiselApp
  *
- * Core module of the application.
+ * @name aiselApp
+ *
+ * @description
+ *
+ * Application core module
  */
 
 var aiselApp = angular.module('aiselApp', [
-        'ngCookies',
-        'ngResource',
-        'ngSanitize',
-        'ngRoute',
-        'ui.bootstrap',
-        'ui.utils',
-        'ui.validate',
-        'ui.gravatar',
-        'textAngular',
-        'ngDisqus',
-        'cgNotify'
-    ])
+    'ngCookies',
+    'ngResource',
+    'ngSanitize',
+    'ngRoute',
+    'ui.bootstrap',
+    'ui.utils',
+    'ui.validate',
+    'ui.gravatar',
+    'textAngular',
+    'ngDisqus',
+    'cgNotify'
+])
 
     .constant('API_URL', '/api')
     .constant("LOCALE", {
-        "primary": "en",
+        "primary": location.hash.substr(2, 2),
         "available": ['en', 'ru']
     })
 
-    .run(['$http', '$rootScope', 'rootService', function ($http, $rootScope, rootService, $route) {
-        rootService.init()
-    }])
+    .run(['$http', '$rootScope', 'rootService', '$route', '$routeParams',
+        function ($http, $rootScope, rootService, $route, $routeParams, $location) {
+            rootService.init()
+        }])
 
-    .config(function ($provide, $routeProvider, $locationProvider, $httpProvider, $disqusProvider) {
+    .config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
 //        $locationProvider
 //            .html5Mode(true)
 //            .hashPrefix('!');

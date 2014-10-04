@@ -2,9 +2,10 @@
 
 /**
  * @ngdoc overview
+ *
  * @name aiselApp
+ *
  * @description
- * # aiselApp
  *
  * Main router provider in separate file, for better extensibility
  * Each module has its own router file.

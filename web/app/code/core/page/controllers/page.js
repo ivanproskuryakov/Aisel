@@ -1,5 +1,15 @@
 'use strict';
 
+/**
+ * @ngdoc overview
+ *
+ * @name aiselApp
+ *
+ * @description
+ *
+ * ...
+ */
+
 angular.module('aiselApp')
     .controller('PageCtrl', ['$location', '$scope', '$routeParams', 'pageService', 'categoryService',
         function ($location, $scope, $routeParams, pageService, categoryService) {

@@ -10,7 +10,6 @@
  */
 
 aiselApp.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
-
     $routeProvider
 
         // Pages

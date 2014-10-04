@@ -1,5 +1,15 @@
 'use strict';
 
+/**
+ * @ngdoc overview
+ *
+ * @name aiselApp
+ *
+ * @description
+ *
+ * ...
+ */
+
 angular.module('aiselApp')
     .service('rootService', ['$http', '$routeParams', '$rootScope', 'LOCALE', 'API_URL',
         function ($http, $routeParams, $rootScope, LOCALE, API_URL) {
@@ -8,13 +18,15 @@ angular.module('aiselApp')
                 init: function () {
                     var meta = false;
                     var disqus = false;
-                    $rootScope.locale = $routeParams.locale;
                     $rootScope.$on('$routeChangeStart', function (event, to, from) {
                         $rootScope.locale = $routeParams.locale;
+                        if ($rootScope.locale == undefined) {
+                            $rootScope.locale = LOCALE.primary;
+                        }
                         $rootScope.pageTitle = meta.defaultMetaTitle;
                         $rootScope.metaDescription = meta.defaultMetaDescription;
                         $rootScope.metaKeywords = meta.defaultMetaKeywords;
-                        console.log($rootScope.locale);
+                        console.log('Current Locale ----> ' + $rootScope.locale);
                     });
                     this.getApplicationConfig().success(
                         function (data, status) {
@@ -57,7 +69,7 @@ angular.module('aiselApp')
 
                 getApplicationConfig: function () {
                     var url = API_URL + '/config/settings.json';
-                    console.log(url);
+                    //console.log(url);
                     return $http.get(url);
                 },
                 getCategoryTree: function () {

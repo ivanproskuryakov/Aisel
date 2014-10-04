@@ -2,11 +2,12 @@
 
 /**
  * @ngdoc overview
- * @name aiselApp
- * @description
- * # aiselApp
  *
- * Categorisation router
+ * @name aiselApp
+ *
+ * @description
+ *
+ * Category router
  */
 
 aiselApp.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {

@@ -1,7 +1,17 @@
 'use strict';
 
+/**
+ * @ngdoc overview
+ *
+ * @name aiselApp
+ *
+ * @description
+ *
+ * ...
+ */
+
 angular.module('aiselApp')
-    .controller('UserPageEditCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService' , 'userPageService' , 'userCategoryService' , 'notify' ,
+    .controller('UserPageEditCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService', 'userPageService', 'userCategoryService', 'notify',
         function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, userCategoryService, notify) {
 
             $scope.loggedIn = false;
@@ -88,7 +98,7 @@ angular.module('aiselApp')
             // Close Page
             $scope.closePage = function () {
                 var answer = confirm("You haven't finished your post yet. Do you want to leave without finishing? " +
-                    "\n\n Are you sure you want to leave this page?");
+                "\n\n Are you sure you want to leave this page?");
                 if (answer) {
                     $location.path('/user/page/list/');
                 }
