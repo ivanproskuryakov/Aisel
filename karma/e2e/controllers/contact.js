@@ -11,7 +11,7 @@
 describe("E2E: Contact page contains information and contact form is working ", function() {
 
     beforeEach(function() {
-        browser().navigateTo('/#!/contact/');
+        browser().navigateTo('/#/en/contact/');
     });
 
     it('We should have a working /contact/ route', function() {

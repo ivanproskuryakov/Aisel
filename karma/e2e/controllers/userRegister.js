@@ -11,7 +11,7 @@
 describe("E2E: Check that user registration page is working", function() {
 
     beforeEach(function() {
-        browser().navigateTo('/#!/user/register/');
+        browser().navigateTo('/#/en/user/register/');
     });
 
     it('We should have a working /user/register/ route', function() {

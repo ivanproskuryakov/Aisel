@@ -11,7 +11,7 @@
 describe("E2E: Check page listing is working", function() {
 
     beforeEach(function() {
-        browser().navigateTo('/#!/pages/');
+        browser().navigateTo('/#/en/pages/');
     });
 
     it('We should have a working /pages/ route', function() {

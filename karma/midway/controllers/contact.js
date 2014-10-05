@@ -21,7 +21,7 @@ describe("Midway: Ensure that our contact page is working ", function() {
     });
 
     it('should have a working Contact page', function(done) {
-        tester.visit('/contact/', function() {
+        tester.visit('/en/contact/', function() {
 
             var current = tester.inject('$route').current;
             var controller = current.controller;

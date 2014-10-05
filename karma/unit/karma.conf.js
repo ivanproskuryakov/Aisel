@@ -17,6 +17,8 @@ module.exports = function (config) {
         files: [
             'web/bower_components/jquery/jquery.js',
             'web/bower_components/angular/angular.js',
+            'web/bower_components/textAngular/dist/textAngular-sanitize.min.js',
+            'web/bower_components/textAngular/dist/textAngular.min.js',
             'web/bower_components/angular-mocks/angular-mocks.js',
             'web/bower_components/sass-bootstrap/dist/js/bootstrap.js',
             'web/bower_components/angular-resource/angular-resource.js',
@@ -28,6 +30,7 @@ module.exports = function (config) {
             'web/bower_components/angular-notify/dist/angular-notify.min.js',
             'web/bower_components/angular-gravatar/build/md5.js',
             'web/bower_components/angular-gravatar/build/angular-gravatar.js',
+            'web/bower_components/angular-disqus/src/angular-disqus.js',
             'node_modules/ng-midway-tester/src/ngMidwayTester.js',
 
             'web/app/*.js',
@@ -41,7 +44,7 @@ module.exports = function (config) {
         exclude: [],
 
         // web server host
-        hostname: 'aisel.dev',
+        hostname: 'ecommerce.aisel.dev',
 
         // level of logging
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
@@ -69,7 +72,7 @@ module.exports = function (config) {
         proxies: {
 //        point this to the root of where your AngularJS application
 //        is being hosted locally
-            '/': 'http://aisel.dev/'
+            '/': 'http://ecommerce.aisel.dev/'
         },
 
         // Continuous Integration mode

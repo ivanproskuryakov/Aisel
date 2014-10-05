@@ -11,7 +11,7 @@
 describe("E2E: Check category page is working", function() {
 
     beforeEach(function() {
-        browser().navigateTo('/#!/category/category-first-level-1/');
+        browser().navigateTo('/#/en/category/category-first-level-1/');
     });
 
     it('We should have a working /category/:categoryId/ route', function() {

@@ -11,7 +11,7 @@
 describe("E2E: Page search", function() {
 
     beforeEach(function() {
-        browser().navigateTo('/#!/search/and');
+        browser().navigateTo('/#/en/search/and');
     });
 
     it('We should have a working /search/:query route', function() {

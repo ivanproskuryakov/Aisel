@@ -11,7 +11,7 @@
 describe("E2E: We check that our app is feeling nice and homepage contains some information  ", function() {
 
     beforeEach(function() {
-        browser().navigateTo('/#!/');
+        browser().navigateTo('/#/en/');
     });
 
     it('We should have a working / route', function() {

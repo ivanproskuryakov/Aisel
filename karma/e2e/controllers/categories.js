@@ -11,11 +11,11 @@
 describe("E2E: Check category listing is working", function() {
 
     beforeEach(function() {
-        browser().navigateTo('/#!/categories/');
+        browser().navigateTo('/en/categories/');
     });
 
     it('We should have a working /categories/ route', function() {
-        expect(browser().location().path()).toBe("/categories/");
+        expect(browser().location().path()).toBe("/en/categories/");
     });
 
     it('Check that page contains at least 1 category and pagination is working', function() {

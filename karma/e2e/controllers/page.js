@@ -11,7 +11,7 @@
 describe("E2E: Check that page is working", function() {
 
     beforeEach(function() {
-        browser().navigateTo('/#!/page/about-aisel/');
+        browser().navigateTo('/#/en/page/about-aisel/');
     });
 
     it('We should have a working /page/:pageId/ route', function() {

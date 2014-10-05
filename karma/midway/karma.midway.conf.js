@@ -16,6 +16,8 @@ module.exports = function (config) {
         files: [
             'web/bower_components/jquery/jquery.js',
             'web/bower_components/angular/angular.js',
+            'web/bower_components/textAngular/dist/textAngular-sanitize.min.js',
+            'web/bower_components/textAngular/dist/textAngular.min.js',
             'web/bower_components/angular-mocks/angular-mocks.js',
             'web/bower_components/sass-bootstrap/dist/js/bootstrap.js',
             'web/bower_components/angular-resource/angular-resource.js',
@@ -27,6 +29,7 @@ module.exports = function (config) {
             'web/bower_components/angular-notify/dist/angular-notify.min.js',
             'web/bower_components/angular-gravatar/build/md5.js',
             'web/bower_components/angular-gravatar/build/angular-gravatar.js',
+            'web/bower_components/angular-disqus/src/angular-disqus.js',
             'node_modules/ng-midway-tester/src/ngMidwayTester.js',
             'node_modules/chai/chai.js',
 
@@ -78,7 +81,7 @@ module.exports = function (config) {
         browsers: ['Firefox'],
 
         proxies: {
-            '/': 'http://aisel.dev/'
+            '/': 'http://ecommerce.aisel.dev/'
         },
         urlRoot: '_karma_',
 
