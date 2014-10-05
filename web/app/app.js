@@ -24,19 +24,16 @@ var aiselApp = angular.module('aiselApp', [
 
     .constant('API_URL', '/api')
     .constant("LOCALE", {
-        "primary": location.hash.substr(2, 2),
+        "primary": 'en',
         "available": ['en', 'ru']
     })
 
     .run(['$http', '$rootScope', 'rootService', '$route', '$routeParams',
         function ($http, $rootScope, rootService, $route, $routeParams, $location) {
-            rootService.init()
+            rootService.init();
         }])
 
     .config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
-//        $locationProvider
-//            .html5Mode(true)
-//            .hashPrefix('!');
 
         /**
          * HTTP calls Interception

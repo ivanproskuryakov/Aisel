@@ -10,14 +10,14 @@
  * Please define only global routes in this appRouter.js file
  */
 
-aiselApp.config(function ($provide, $routeProvider) {
+aiselApp.config(function ($provide, $routeProvider, LOCALE) {
     $routeProvider
 
     /**
      * Default route. Redirect to homepage if nothing was found
      */
         .otherwise({
-            redirectTo: '/en/'
+            redirectTo: '/'+LOCALE.primary+'/'
         });
 });
 

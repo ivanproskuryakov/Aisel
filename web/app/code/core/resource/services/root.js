@@ -19,7 +19,7 @@ angular.module('aiselApp')
                     $rootScope.$on('$routeChangeStart', function (event, to, from) {
                         $rootScope.locale = $routeParams.locale;
                         if ($rootScope.locale == undefined) {
-                            $rootScope.locale = LOCALE.primary;
+                            $rootScope.locale = location.hash.substr(2, 2);
                         }
                         $rootScope.pageTitle = meta.defaultMetaTitle;
                         $rootScope.metaDescription = meta.defaultMetaDescription;
@@ -64,7 +64,6 @@ angular.module('aiselApp')
 
 
                 },
-
                 getApplicationConfig: function () {
                     var url = API_URL + '/config/settings.json';
                     //console.log(url);
