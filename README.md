@@ -5,7 +5,7 @@ Aisel is open-source CMS for highload projects based on combination of Symfony2,
 
 Project website: http://aisel.co/<br/>
 Demo frontend: http://ecommerce.aisel.co/ [frontenduser/frontenduser]<br/>
-Demo administration: http://demo.aisel.co/administration [backenduser/backenduser]<br/>
+Demo administration: http://ecommerce.aisel.co/administration [backenduser/backenduser]<br/>
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
 
