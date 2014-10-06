@@ -5,8 +5,8 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-api_aisel_config:
+api_aisel_settings:
     pattern:  /%website_api%/config/settings.json
-    defaults: { _controller: AiselAdminBundle:Api:config, _format: json }
+    defaults: { _controller: AiselSettingsBundle:ApiSettings:config, _format: json }
     requirements:
         _method: GET

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AdminBundle\Controller;
+namespace Aisel\SettingsBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiController extends Controller
+class ApiSettingsController extends Controller
 {
 
     /**
@@ -28,8 +28,7 @@ class ApiController extends Controller
      */
     public function configAction()
     {
-        $config = $this->container->get("aisel.adminconfig.manager")->getConfig();
-
+        $config = $this->container->get("aisel.settings.manager")->getConfig();
         return $config;
     }
 

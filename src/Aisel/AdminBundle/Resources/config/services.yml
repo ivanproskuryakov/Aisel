@@ -5,10 +5,3 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-parameters:
-    aisel_adminconfig_manager.class: Aisel\AdminBundle\Manager\AdminConfigManager
-
-services:
-    aisel.adminconfig.manager:
-        class: %aisel_adminconfig_manager.class%
-        arguments: [@doctrine.orm.entity_manager ]

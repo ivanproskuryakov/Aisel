@@ -22,10 +22,6 @@ services:
             tags:
                 - { name: twig.extension }
 
-    aisel.adminconfig.manager:
-        class: %aisel_adminconfig_manager.class%
-        arguments: [@doctrine.orm.entity_manager ]
-
     aisel.resource.form.tree:
         class: Aisel\ResourceBundle\Form\Type\TreeType
         arguments:

@@ -1,6 +1,6 @@
 <?php
 
-namespace Aisel\AdminBundle\Controller;
+namespace Aisel\SettingsBundle\Controller;
 
 use Aisel\ConfigBundle\Controller\SettingsController;
 
@@ -12,14 +12,14 @@ use Aisel\ConfigBundle\Controller\SettingsController;
 class ConfigMetaController extends SettingsController
 {
 
-    public $form = "\Aisel\AdminBundle\Form\Type\ConfigMetaType";
+    public $form = "\Aisel\SettingsBundle\Form\Type\ConfigMetaType";
 
     /**
      * {@inheritdoc }
      */
     protected function getTemplateVariables()
     {
-        $this->templateVariables['base_template'] = 'AiselAdminBundle::layout.html.twig';
+        $this->templateVariables['base_template'] = 'AiselSettingsBundle::layout.html.twig';
         $this->templateVariables['admin_pool'] = $this->container->get('sonata.admin.pool');
         $this->templateVariables['blocks'] = $this->container->getParameter('sonata.admin.configuration.dashboard_blocks');
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Aisel\AdminBundle\Form\Type;
+namespace Aisel\SettingsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

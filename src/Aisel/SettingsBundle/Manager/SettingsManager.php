@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AdminBundle\Manager;
+namespace Aisel\SettingsBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class AdminConfigManager
+class SettingsManager
 {
     protected $em;
 
