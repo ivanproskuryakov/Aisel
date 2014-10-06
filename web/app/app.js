@@ -21,12 +21,11 @@ var aiselApp = angular.module('aiselApp', [
         'ngDisqus',
         'cgNotify'
     ])
-
+    .value('appSettings', [])
     .run(['$http', '$rootScope', 'rootService', '$route', '$routeParams',
         function ($http, $rootScope, rootService, $route, $routeParams, $location) {
             rootService.init();
         }])
-
     .config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
 
         /**

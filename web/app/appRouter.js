@@ -11,13 +11,18 @@
  */
 
 aiselApp.config(function ($provide, $routeProvider, LOCALE_FALLBACK) {
-    $routeProvider
-
     /**
      * Default route. Redirect to homepage if nothing was found
      */
+    $routeProvider
         .otherwise({
-            redirectTo: '/' + LOCALE_FALLBACK.primary + '/'
+            redirectTo: '/' + LOCALE_FALLBACK.primary + '/',
+            resolve: {
+                init: function ($rootScope) {
+                    console.log('Locale Fallback');
+                    return false;
+                }
+            }
         });
 });
 
