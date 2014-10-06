@@ -115,9 +115,7 @@
 .homepage-content {
     margin-top: 60px;
 }
-/***********
-    Categories
-************/
+
 .categoryTree {
     margin-top: 30px;
 }
@@ -167,6 +165,27 @@ footer {
     text-align: center;
     background-color: #f9f9f9;
     border-top: 1px solid #e5e5e5;
+}
+
+.website-footer .availableLocales {
+    float: right;
+}
+
+.website-footer .availableLocales .label-locale {
+    float: left;
+}
+
+.website-footer .availableLocales .list {
+    float: right;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.website-footer .availableLocales li {
+    float: right;
+    margin-right: 5px;
+    font-weight: bold;
 }
 
 /***********

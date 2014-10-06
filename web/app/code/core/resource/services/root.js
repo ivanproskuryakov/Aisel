@@ -18,6 +18,7 @@ angular.module('aiselApp')
                     var disqus = false;
                     $rootScope.$on('$routeChangeStart', function (event, to, from) {
                         $rootScope.locale = $routeParams.locale;
+                        $rootScope.availableLocales = LOCALE.available;
                         if ($rootScope.locale == undefined) {
                             $rootScope.locale = location.hash.substr(2, 2);
                         }

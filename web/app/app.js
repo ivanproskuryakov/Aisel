@@ -9,23 +9,28 @@
  */
 
 var aiselApp = angular.module('aiselApp', [
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
-    'ngRoute',
-    'ui.bootstrap',
-    'ui.utils',
-    'ui.validate',
-    'ui.gravatar',
-    'textAngular',
-    'ngDisqus',
-    'cgNotify'
-])
+        'ngCookies',
+        'ngResource',
+        'ngSanitize',
+        'ngRoute',
+        'ui.bootstrap',
+        'ui.utils',
+        'ui.validate',
+        'ui.gravatar',
+        'textAngular',
+        'ngDisqus',
+        'cgNotify'
+    ])
 
     .constant('API_URL', '/api')
     .constant("LOCALE", {
         "primary": 'en',
-        "available": ['en', 'ru']
+        "available": [
+            'en',
+            'de',
+            'es',
+            'ru'
+        ]
     })
 
     .run(['$http', '$rootScope', 'rootService', '$route', '$routeParams',

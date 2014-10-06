@@ -2,7 +2,17 @@
     <div class="container">
             <div class="col-xs-12">
                 <p class="pull-left">Copyright © Aisel 2014</p>
-                <p class="pull-right">locale: {{locale}} </p>
+                <p class="pull-right">
+                    <div class="availableLocales">
+                        <span class="label-locale">Locale:</span>&nbsp;
+                        <ul class="list">
+                            <li ng-repeat="item in availableLocales">
+                                <span ng-if="item == locale">{{ item }}</span>
+                                <a ng-if="item != locale" ng-href="/#/{{item}}/">{{ item }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </p>
             </div>
     </div>
 
