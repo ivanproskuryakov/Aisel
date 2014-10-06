@@ -21,13 +21,16 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class SettingsManager
 {
     protected $em;
+    protected $locale = array();
 
     /**
      * {@inheritDoc}
      */
-    public function __construct($em)
+    public function __construct($em, $locale, $locales)
     {
         $this->em = $em;
+        $this->locale['primary'] = $locale;
+        $this->locale['available'] = explode('|', $locales);
     }
 
     /**
@@ -43,9 +46,11 @@ class SettingsManager
         if (!($config)) {
             throw new NotFoundHttpException('Nothing found');
         }
-
+        $config['settings'] = array();
+        $config['settings']['locale'] = $this->locale;
         // inject response unix timestamp
         $config['time'] = time();
+
 
         return $config;
     }

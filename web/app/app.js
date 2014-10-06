@@ -22,17 +22,6 @@ var aiselApp = angular.module('aiselApp', [
         'cgNotify'
     ])
 
-    .constant('API_URL', '/api')
-    .constant("LOCALE", {
-        "primary": 'en',
-        "available": [
-            'en',
-            'de',
-            'es',
-            'ru'
-        ]
-    })
-
     .run(['$http', '$rootScope', 'rootService', '$route', '$routeParams',
         function ($http, $rootScope, rootService, $route, $routeParams, $location) {
             rootService.init();

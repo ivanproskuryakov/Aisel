@@ -9,26 +9,28 @@
  */
 
 angular.module('aiselApp')
-    .service('rootService', ['$http', '$routeParams', '$rootScope', 'LOCALE', 'API_URL',
-        function ($http, $routeParams, $rootScope, LOCALE, API_URL) {
+    .service('rootService', ['$http', '$routeParams', '$rootScope', 'API_URL', 'appSettings',
+        function ($http, $routeParams, $rootScope, API_URL, appSettings) {
             return {
-
                 init: function () {
                     var meta = false;
                     var disqus = false;
-                    $rootScope.$on('$routeChangeStart', function (event, to, from) {
-                        $rootScope.locale = $routeParams.locale;
-                        $rootScope.availableLocales = LOCALE.available;
-                        if ($rootScope.locale == undefined) {
-                            $rootScope.locale = location.hash.substr(2, 2);
-                        }
-                        $rootScope.pageTitle = meta.defaultMetaTitle;
-                        $rootScope.metaDescription = meta.defaultMetaDescription;
-                        $rootScope.metaKeywords = meta.defaultMetaKeywords;
-                        console.log('Current Locale ----> ' + $rootScope.locale);
-                    });
                     this.getApplicationConfig().success(
                         function (data, status) {
+                            console.log('************************ Init Start ************************');
+                            appSettings = data.settings;
+                            $rootScope.availableLocales = appSettings.locale.available;
+                            $rootScope.locale = location.hash.substr(2, 2);
+                            console.log($rootScope.availableLocales);
+                            console.log($rootScope.availableLocales.indexOf($rootScope.locale));
+
+                            if ($rootScope.availableLocales.indexOf($rootScope.locale) == -1) {
+                                $rootScope.locale = $routeParams.locale.primary;
+                            }
+                            console.log('getApplicationConfig Locale ----> ' + $rootScope.locale);
+                            console.log('getApplicationConfig Available Locale ----> ' + $rootScope.availableLocales);
+                            console.log('************************ Init End **************************');
+
                             // Meta
                             meta = JSON.parse(data.config_meta);
                             $rootScope.pageTitle = meta.defaultMetaTitle;
@@ -39,6 +41,27 @@ angular.module('aiselApp')
                             disqus = JSON.parse(data.config_disqus);
                             $rootScope.disqusShortname = disqus.shortname;
                             $rootScope.disqusStatus = disqus.status;
+
+                            // Hook for routeChange
+                            $rootScope.$on('$routeChangeStart', function (event, to, from) {
+                                console.log('************************ Route Start ************************');
+                                $rootScope.availableLocales = appSettings.locale.available;
+                                $rootScope.locale = location.hash.substr(2, 2);
+                                console.log($rootScope.availableLocales);
+                                console.log($rootScope.availableLocales.indexOf($rootScope.locale));
+
+                                if ($rootScope.availableLocales.indexOf($rootScope.locale) == -1) {
+                                    $rootScope.locale = $routeParams.locale.primary;
+                                }
+                                console.log('Route Locale ----> ' + $rootScope.locale);
+                                console.log('Route Available Locale ----> ' + $rootScope.availableLocales);
+                                console.log('************************ Route End **************************');
+
+
+                                $rootScope.pageTitle = meta.defaultMetaTitle;
+                                $rootScope.metaDescription = meta.defaultMetaDescription;
+                                $rootScope.metaKeywords = meta.defaultMetaKeywords;
+                            });
                         }
                     );
 
@@ -62,7 +85,6 @@ angular.module('aiselApp')
                             }
                         }
                     );
-
 
                 },
                 getApplicationConfig: function () {

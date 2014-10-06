@@ -10,14 +10,14 @@
  * Define only global routes in this appRouter.js file
  */
 
-aiselApp.config(function ($provide, $routeProvider, LOCALE) {
+aiselApp.config(function ($provide, $routeProvider, LOCALE_FALLBACK) {
     $routeProvider
 
     /**
      * Default route. Redirect to homepage if nothing was found
      */
         .otherwise({
-            redirectTo: '/'+LOCALE.primary+'/'
+            redirectTo: '/' + LOCALE_FALLBACK.primary + '/'
         });
 });
 
@@ -27,11 +27,11 @@ aiselApp.config(function ($provide, $routeProvider, LOCALE) {
  */
 var grantAccessAuthenticated = function ($rootScope, $location, notify) {
     if (!$rootScope.isAuthenticated) {
-        $location.path("/");
+        $location.path("/" + $rootScope.locale + "/");
     }
 };
 var grantAccessGuest = function ($rootScope, $location, notify) {
     if ($rootScope.isAuthenticated) {
-        $location.path("/");
+        $location.path("/" + $rootScope.locale + "/");
     }
 };
