@@ -6,18 +6,16 @@
 
         <div class="col-xs-12 col-md-12">
             <p ng-bind-html="pageDetails.page.content"></p>
-
             <div class="related pageCategories" ng-if="pageDetails.categories">
                 <hr/>
                 <p><strong>Related categories: </strong></p>
                 <ul class="categoryList">
                     <li ng-repeat="category in pageDetails.categories">
-                        <a ng-href="/#/{{locale}}/category/{{category.url}}">{{ category.title }}</a>
+                        <a ng-href="/#/{{locale}}/page/category/{{category.url}}">{{ category.title }}</a>
                     </li>
                 </ul>
             </div>
             <div ng-if="showComments" disqus="pageDetails.page.meta_url"></div>
-
         </div>
 </div>
 

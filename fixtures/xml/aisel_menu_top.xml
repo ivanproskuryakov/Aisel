@@ -40,7 +40,7 @@
             <column name="root">210</column>
             <column name="lvl">0</column>
             <column name="title">Categories</column>
-            <column name="metaUrl">/#/en/categories/</column>
+            <column name="metaUrl">/#/en/page/categories/</column>
             <column name="status">1</column>
             <column name="created_at">2014-09-02 17:52:08</column>
             <column name="updated_at">2014-09-02 17:52:08</column>
@@ -68,7 +68,7 @@
             <column name="root">212</column>
             <column name="lvl">0</column>
             <column name="title">About</column>
-            <column name="metaUrl">/#/en/page/about-aisel</column>
+            <column name="metaUrl">/#/en/page/view/about-aisel/</column>
             <column name="status">1</column>
             <column name="created_at">2014-09-02 17:52:08</column>
             <column name="updated_at">2014-09-02 17:52:08</column>

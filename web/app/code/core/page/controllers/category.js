@@ -15,7 +15,6 @@ angular.module('aiselApp')
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
 
-
             $scope.pageChanged = function (page) {
                 $scope.paginationPage = page;
                 categoryService.getCategories($scope).success(
@@ -31,6 +30,4 @@ angular.module('aiselApp')
                     $scope.categoryList = data;
                 }
             );
-
-
         }]);
