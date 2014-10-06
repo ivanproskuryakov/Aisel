@@ -11,13 +11,13 @@ aisel_config:
     entities:
         homepage:
             order: 0
-            controller: AiselAdminBundle:ConfigHomepage:modify
+            controller: AiselSettingsBundle:ConfigHomepage:modify
         meta:
             order: 10
-            controller: AiselAdminBundle:ConfigMeta:modify
-        contact:
-            order: 20
-            controller: AiselContactBundle:Config:modify
+            controller: AiselSettingsBundle:ConfigMeta:modify
         disqus:
+            order: 20
+            controller: AiselSettingsBundle:ConfigDisqus:modify
+        contact:
             order: 30
-            controller: AiselAdminBundle:ConfigDisqus:modify
+            controller: AiselContactBundle:Config:modify

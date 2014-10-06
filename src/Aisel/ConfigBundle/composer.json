@@ -1,0 +1,35 @@
+{
+    "name": "aisel/config-bundle",
+    "type": "symfony-bundle",
+    "description": "Settings bundle for Symfony2+SonataAdmin projects.",
+    "keywords": ["settings", "configuration", "SonataAdmin"],
+    "homepage": "http://aisel.co",
+    "license": "MIT",
+    "readmeFilename": "README.md",
+    "authors": [
+        {
+            "name": "Ivan Proskuryakov",
+            "email": "volgodark@gmail.com",
+            "homepage": "https://github.com/ivanproskuryakov"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "symfony/form": "~2.3",
+        "twig/twig": "~1.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Aisel\\ConfigBundle": ""
+        }
+    },
+    "target-dir": "Aisel/ConfigBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.11-dev"
+        }
+    }
+}

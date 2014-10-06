@@ -10,10 +10,10 @@
  * Define only global routes in this appRouter.js file
  */
 
+/**
+ * Redirect to homepage if nothing was found
+ */
 aiselApp.config(function ($provide, $routeProvider, LOCALE_FALLBACK) {
-    /**
-     * Default route. Redirect to homepage if nothing was found
-     */
     $routeProvider
         .otherwise({
             redirectTo: '/' + LOCALE_FALLBACK.primary + '/',
