@@ -13,30 +13,33 @@
 /**
  * Redirect to homepage if nothing was found
  */
-aiselApp.config(function ($provide, $routeProvider, LOCALE_FALLBACK) {
-    $routeProvider
-        .otherwise({
-            redirectTo: '/' + LOCALE_FALLBACK.primary + '/',
-            resolve: {
-                init: function ($rootScope) {
-                    console.log('Locale Fallback');
-                    return false;
+define(['app'], function (app) {
+    app.config(function ($provide, $routeProvider, LOCALE_FALLBACK) {
+        $routeProvider
+            .otherwise({
+                redirectTo: '/' + LOCALE_FALLBACK.primary + '/',
+                resolve: {
+                    init: function ($rootScope) {
+                        console.log('Locale Fallback');
+                        return false;
+                    }
                 }
-            }
-        });
+            });
+    });
+
+    /**
+     * Simple helper functions for user ACL
+     * see more at user/router.js
+     */
+    var grantAccessAuthenticated = function ($rootScope, $location, notify) {
+        if (!$rootScope.isAuthenticated) {
+            $location.path("/" + $rootScope.locale + "/");
+        }
+    };
+    var grantAccessGuest = function ($rootScope, $location, notify) {
+        if ($rootScope.isAuthenticated) {
+            $location.path("/" + $rootScope.locale + "/");
+        }
+    };
 });
 
-/**
- * Simple helper functions for user ACL
- * see more at user/router.js
- */
-var grantAccessAuthenticated = function ($rootScope, $location, notify) {
-    if (!$rootScope.isAuthenticated) {
-        $location.path("/" + $rootScope.locale + "/");
-    }
-};
-var grantAccessGuest = function ($rootScope, $location, notify) {
-    if ($rootScope.isAuthenticated) {
-        $location.path("/" + $rootScope.locale + "/");
-    }
-};
