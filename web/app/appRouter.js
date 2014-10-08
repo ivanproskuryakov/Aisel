@@ -13,8 +13,8 @@
 /**
  * Redirect to homepage if nothing was found
  */
-define(['app'], function (app) {
-    app.config(function ($provide, $routeProvider, LOCALE_FALLBACK) {
+define(['aiselApp'], function (aiselApp) {
+    aiselApp.config(function ($provide, $routeProvider, LOCALE_FALLBACK) {
         $routeProvider
             .otherwise({
                 redirectTo: '/' + LOCALE_FALLBACK.primary + '/',
