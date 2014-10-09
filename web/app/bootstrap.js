@@ -16,7 +16,8 @@ define([
     './appRouter',
     './Aisel/resource/services/root',
     './Aisel/homepage/router',
-    './Aisel/homepage/controllers/homepage'
+    './Aisel/contact/router',
+    './Aisel/search/router',
 ], function (require, angular) {
     'use strict';
 

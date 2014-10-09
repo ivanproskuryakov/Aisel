@@ -8,11 +8,10 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .service('contactService', ['$http', '$routeParams', 'API_URL',
+define(['app'], function (app) {
+    app.service('contactService', ['$http', '$routeParams', 'API_URL',
         function ($http, $routeParams, API_URL) {
             return {
-
                 send: function (form) {
                     var name = form.name.$modelValue;
                     var email = form.email.$modelValue;
@@ -24,5 +23,5 @@ angular.module('aiselApp')
                     return $http.get(url);
                 }
             };
-
         }]);
+});

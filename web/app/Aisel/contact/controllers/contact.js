@@ -8,8 +8,8 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .controller('ContactCtrl', ['$location', '$scope', '$routeParams', 'contactService', 'rootService', 'notify',
+define(['app'], function (app) {
+    app.controller('ContactCtrl', ['$location', '$scope', '$routeParams', 'contactService', 'rootService', 'notify',
         function ($location, $scope, $routeParams, contactService, rootService, notify) {
 
             $scope.config = false;
@@ -32,3 +32,4 @@ angular.module('aiselApp')
             };
 
         }]);
+});

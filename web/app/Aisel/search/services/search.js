@@ -8,8 +8,8 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .service('searchService', ['$http', '$routeParams', 'API_URL',
+define(['app'], function (app) {
+    app.service('searchService', ['$http', '$routeParams', 'API_URL',
         function ($http, $routeParams, API_URL) {
             return {
                 getSearchResult: function ($scope) {
@@ -19,3 +19,4 @@ angular.module('aiselApp')
                 }
             };
         }]);
+});

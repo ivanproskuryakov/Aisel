@@ -32,7 +32,7 @@ require.config({
         "ui-utils": ["angular"],
         "angular-gravatar": ["angular"],
         "angular-sanitize": ["angular"],
-        "bootstrap": ["angular"]
+        "twitter-bootstrap": ["angular"]
     },
     priority: [
         "angular"

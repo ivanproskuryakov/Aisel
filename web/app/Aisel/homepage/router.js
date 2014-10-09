@@ -8,7 +8,7 @@
  * Router for Homepage
  */
 
-define(['app'], function (app) {
+define(['app','./controllers/homepage'], function (app) {
     console.log('Homepage Router Loaded ...');
     app.config(function ($provide, $routeProvider) {
         $routeProvider

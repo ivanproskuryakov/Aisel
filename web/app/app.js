@@ -38,10 +38,10 @@ define([
         'cgNotify',
     ]);
     app.value('appSettings', []);
-//    app.run(['$http', '$rootScope', 'rootService',
-//        function ($http, $rootScope, rootService) {
-//            rootService.init();
-//        }]);
+    app.run(['$http', '$rootScope', 'rootService',
+        function ($http, $rootScope, rootService) {
+            rootService.init();
+        }]);
 //    app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
 //            /**
 //             * HTTP calls Interception

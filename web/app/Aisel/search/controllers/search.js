@@ -8,10 +8,9 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .controller('SearchCtrl', ['$scope', '$routeParams', 'searchService',
+define(['app'], function (app) {
+    app.controller('SearchCtrl', ['$scope', '$routeParams', 'searchService',
         function ($scope, $routeParams, searchService) {
-
             $scope.queryText = $routeParams.query;
             $scope.search = $routeParams.query;
             $scope.limit = 5;
@@ -29,3 +28,4 @@ angular.module('aiselApp')
                 searchService.getSearchResult($scope).success(handleSuccess);
             };
         }]);
+});
