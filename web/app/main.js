@@ -9,6 +9,8 @@
  */
 
 require.config({
+
+    // alias libraries paths
     paths: {
 //        angular: '../bower_components/angular/angular',
 //        angularRoute: '../bower_components/angular-route/angular-route',
@@ -31,7 +33,15 @@ require.config({
         'angular-gravatar': '../bower_components/angular-gravatar/build/angular-gravatar',
         'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus'
     },
-    deps: ['app'],
+
+    // kick start application
+    deps: [
+        'app',
+        'appEnvironment',
+        'appRouter'
+    ],
+    // Add angular modules that does not support AMD out of the box, put it in a shim
+
     shim: {
         'angularAMD': ['angular'],
         'angular-route': ['angular'],

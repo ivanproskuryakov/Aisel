@@ -7,12 +7,12 @@
  * @description
  * ...
  */
-define(['aiselApp'], function (aiselApp) {
+define(['app'], function (app) {
     console.log('************************************');
     console.log('***** App Environment Settings *****');
     console.log('************************************');
 
-    aiselApp.constant('API_URL', '/api')
+    app.constant('API_URL', '/api')
         .constant("LOCALE_FALLBACK", {
             "primary": 'en'
         });
