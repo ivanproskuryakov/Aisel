@@ -8,8 +8,8 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .controller('CategoryCtrl', ['$location', '$scope', '$routeParams', 'categoryService',
+define(['app'], function (app) {
+    app.controller('CategoryCtrl', ['$location', '$scope', '$routeParams', 'categoryService',
         function ($location, $scope, $routeParams, categoryService) {
 
             $scope.pageLimit = 5;
@@ -31,3 +31,4 @@ angular.module('aiselApp')
                 }
             );
         }]);
+});

@@ -8,8 +8,8 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .controller('PageDetailCtrl', function ($scope, $routeParams, pageService, $rootScope, rootService) {
+define(['app'], function (app) {
+    app.controller('PageDetailCtrl', function ($scope, $routeParams, pageService, $rootScope, rootService) {
 
         var pageURL = $routeParams.pageId;
         var handleSuccess = function (data, status) {
@@ -23,3 +23,4 @@ angular.module('aiselApp')
         pageService.getPageByURL(pageURL).success(handleSuccess);
 
     });
+});

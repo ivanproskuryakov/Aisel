@@ -8,8 +8,8 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .service('categoryService', ['$http', '$routeParams', 'API_URL',
+define(['app'], function (app) {
+    app.service('categoryService', ['$http', '$routeParams', 'API_URL',
         function ($http, $routeParams, API_URL) {
             return {
 
@@ -27,3 +27,4 @@ angular.module('aiselApp')
             };
 
         }]);
+});
