@@ -12,10 +12,6 @@ DirectoryIndex index.html
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule $ app_dev.php$1 [NC,L,QSA]
 
-    RewriteCond %{QUERY_STRING} ^_escaped_fragment_=(.*)$
-    RewriteCond %{REQUEST_URI} !^/snapshots/views/ [NC]
-    RewriteRule ^(.*)/?$ /snapshots/views/%1 [L]
-
 #    # Determine the RewriteBase automatically and set it as environment variable.
 #    # If you are using Apache aliases to do mass virtual hosting or installed the
 #    # project in a subdirectory, the base path will be prepended to allow proper
