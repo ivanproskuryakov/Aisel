@@ -8,7 +8,8 @@
  * Application core module
  */
 
-define(['angularAMD',
+define([
+    'angular',
     'angular-resource',
     'angular-cookies',
     'angular-sanitize',
@@ -19,9 +20,11 @@ define(['angularAMD',
     'md5',
     'angular-disqus',
     'angular-notify',
-    'angular-route'
-], function (angularAMD) {
-    var app = angular.module('aiselApp', [
+    'angular-route',
+], function (angular) {
+    'use strict';
+
+    var app = angular.module('app', [
         'ngCookies',
         'ngResource',
         'ngSanitize',
@@ -34,12 +37,12 @@ define(['angularAMD',
         'ngDisqus',
         'cgNotify',
     ]);
-    app.value('appSettings', [])
-//        .run(['$http', '$rootScope', 'rootService', '$route', '$routeParams',
-//            function ($http, $rootScope, rootService, $route, $routeParams, $location) {
-//                rootService.init();
-//            }])
-//        .config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
+    app.value('appSettings', []);
+//    app.run(['$http', '$rootScope', 'rootService',
+//        function ($http, $rootScope, rootService) {
+//            rootService.init();
+//        }]);
+//    app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
 //            /**
 //             * HTTP calls Interception
 //             */
@@ -65,6 +68,6 @@ define(['angularAMD',
 //            });
 //            $httpProvider.interceptors.push('requestInterceptor');
 //        });
-    angularAMD.bootstrap(app);
+
     return app;
 });

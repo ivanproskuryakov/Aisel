@@ -7,9 +7,9 @@
  * @description
  * ...
  */
-
-angular.module('aiselApp')
-    .controller('HomepageCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'rootService',
+define(['app'], function (app) {
+//    angular.module('aiselApp')
+    app.controller('HomepageCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'rootService',
         function ($location, $scope, $routeParams, $rootScope, rootService) {
             $scope.content = false;
             rootService.getApplicationConfig().success(
@@ -19,3 +19,4 @@ angular.module('aiselApp')
             );
 
         }]);
+});
