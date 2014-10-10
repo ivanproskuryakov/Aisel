@@ -17,39 +17,38 @@ define([
 
         var app = angular.module('app', [
             'ngCookies', 'ngResource', 'ngSanitize', 'ngRoute', 'ui.bootstrap',
-            'ui.utils', 'ui.validate', 'ui.gravatar', 'textAngular', 'ngDisqus', 'cgNotify']);
+            'ui.utils', 'ui.validate', 'ui.gravatar', 'textAngular', 'ngDisqus', 'cgNotify'])
 
         app.constant('API_URL', Aisel.settings.api)
-            .constant("PRIMARY_LOCALE", Aisel.settings.locale.primary);
-
-        app.value('appSettings', []);
-        app.run(['$http', '$rootScope', 'rootService',
-            function ($http, $rootScope, rootService) {
-                rootService.init();
-            }]);
-//    app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
-//        $provide.factory('requestInterceptor', function ($q) {
-//            return {
-//                request: function (config) {
-//                    $('.loading-interceptor').show();
-//                    return config || $q.when(config);
-//                },
-//                requestError: function (rejection) {
-//                    $('.loading-interceptor').hide();
-//                    return $q.reject(rejection);
-//                },
-//                response: function (response) {
-//                    $('.loading-interceptor').hide();
-//                    return response || $q.when(response);
-//                },
-//                responseError: function (rejection) {
-//                    $('.loading-interceptor').hide();
-//                    return $q.reject(rejection);
-//                }
-//            };
-//        });
-//        $httpProvider.interceptors.push('requestInterceptor');
-//    });
+            .constant("PRIMARY_LOCALE", Aisel.settings.locale.primary)
+            .value('appSettings', [])
+            .run(['$http', '$rootScope', 'rootService',
+                function ($http, $rootScope, rootService) {
+                    rootService.init();
+                }])
+            .config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
+                $provide.factory('requestInterceptor', function ($q) {
+                    return {
+                        request: function (config) {
+                            document.getElementById("page-is-loading").style.visibility = "visible";
+                            return config || $q.when(config);
+                        },
+                        requestError: function (rejection) {
+                            document.getElementById("page-is-loading").style.visibility = "hidden";
+                            return $q.reject(rejection);
+                        },
+                        response: function (response) {
+                            document.getElementById("page-is-loading").style.visibility = "hidden";
+                            return response || $q.when(response);
+                        },
+                        responseError: function (rejection) {
+                            document.getElementById("page-is-loading").style.visibility = "hidden";
+                            return $q.reject(rejection);
+                        }
+                    };
+                });
+                $httpProvider.interceptors.push('requestInterceptor');
+            });
 
         return app;
     })
