@@ -1,9 +1,12 @@
 <html xmlns:ng="http://angularjs.org">
-
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,34 +16,35 @@
     <meta name="keywords" content="{{metaKeywords}}">
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <!-- endbuild -->
-    <script data-require="prefixfree@*" data-semver="1.0.7" src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-
+    <script data-require="prefixfree@*"
+            data-semver="1.0.7"
+            src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js">
+    </script>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
-
 <body>
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]-->
 
-    <!-- Website content: START -->
-    <div class="loading-interceptor">Loading ...</div>
-    <header ng-include="'app/Aisel/Resource/views/header.html'"></header>
-    <div class="container website-content">
-        <div id="dynamic-content" class="view" ng-view=""></div>
-    </div>
-    <footer ng-include="'app/Aisel/Resource/views/footer.html'"></footer>
-    <!-- Website content: END -->
+<!-- Website content: START -->
+<div class="loading-interceptor">Loading ...</div>
+<header ng-include="'app/Aisel/Resource/views/header.html'"></header>
+<div class="container website-content">
+    <div id="dynamic-content" class="view" ng-view=""></div>
+</div>
+<footer ng-include="'app/Aisel/Resource/views/footer.html'"></footer>
+<!-- Website content: END -->
 
-    <script src="bower_components/underscore/underscore-min.js"></script>
-    <script src="app/Kernel/environment.js"></script>
-    <script data-main="app/main" src="bower_components/requirejs/require.js"></script>
+<script src="bower_components/underscore/underscore-min.js"></script>
+<script src="app/Kernel/environment.js"></script>
+<script data-main="app/main" src="bower_components/requirejs/require.js"></script>
 </body>
 </html>

@@ -9,6 +9,12 @@
  */
 
 var Aisel = {
+//    settings: {
+//        api: '/api',
+//        locale: {
+//            "primary": 'en'
+//        }
+//    },
     paths: {
         'jquery: ': '../bower_components/jquery/jquery',
         'domReady': '../bower_components/domReady/domReady',
