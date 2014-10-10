@@ -13,7 +13,7 @@ require.config({
     paths: Aisel.paths,
     // kick start application
     deps: [
-        './bootstrap',
+        './bootstrap'
     ],
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {

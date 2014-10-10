@@ -10,7 +10,7 @@
  * Define only global routes in this appRouter.js file
  */
 
-define(['app'], function (app) {
+define(['../app'], function (app) {
     app.config(function ($provide, $routeProvider, LOCALE_FALLBACK) {
         $routeProvider
             .otherwise({
