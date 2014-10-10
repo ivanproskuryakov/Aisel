@@ -13,7 +13,7 @@ require.config({
     paths: Aisel.paths,
     // kick start application
     deps: _.union(
-        ['./bootstrap'],
+        ['bootstrap'],
         Aisel.bundles
     ),
     // Add angular modules that does not support AMD out of the box, put it in a shim
@@ -28,13 +28,13 @@ require.config({
         "textAngular": ["angular"],
         "angular-cookies": ["angular"],
         "ui-bootstrap-tpls": ["angular"],
-        "md5": ["angular"],
         "angular-disqus": ["angular"],
         "angular-notify": ["angular"],
-        "ui-utils": ["angular"],
         "angular-gravatar": ["angular"],
         "angular-sanitize": ["angular"],
-        "twitter-bootstrap": ["angular"]
+        "twitter-bootstrap": ["angular"],
+        "ui-utils": ["angular"],
+        "md5": ["angular"]
     },
     priority: [
         "angular"

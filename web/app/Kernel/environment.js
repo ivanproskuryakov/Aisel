@@ -5,16 +5,16 @@
  * @name aiselApp
  *
  * @description
- * ...
+ * Environment vars
  */
 
 var Aisel = {
-//    settings: {
-//        api: '/api',
-//        locale: {
-//            "primary": 'en'
-//        }
-//    },
+    settings: {
+        api: '/api',
+        locale: {
+            "primary": 'en'
+        }
+    },
     paths: {
         'jquery: ': '../bower_components/jquery/jquery',
         'domReady': '../bower_components/domReady/domReady',
@@ -35,7 +35,7 @@ var Aisel = {
     },
     bundles: [
         './Kernel/router',
-        './Aisel/Resource/services/root',
+        './Kernel/services/root',
         './Aisel/Homepage/AiselHomepage',
         './Aisel/Contact/AiselContact',
         './Aisel/Search/AiselSearch',

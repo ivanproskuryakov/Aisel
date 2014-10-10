@@ -27,7 +27,6 @@ define(['app'], function (app) {
                     factory: grantAccessGuest
                 }
             })
-
             // Authenticated users actions
             .when('/:locale/user/information/', {
                 templateUrl: 'app/Aisel/User/views/information/dashboard.html',

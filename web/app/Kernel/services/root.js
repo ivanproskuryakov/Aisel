@@ -5,10 +5,10 @@
  * @name aiselApp
  *
  * @description
- * ...
+ * Main service used in app.js
  */
 define(['app'], function (app) {
-    console.log('Root Service Loaded ...');
+    console.log('Kernel service loaded ...');
     angular.module('app')
         .service('rootService', ['$http', '$routeParams', '$rootScope', 'API_URL', 'appSettings',
             function ($http, $routeParams, $rootScope, API_URL, appSettings) {

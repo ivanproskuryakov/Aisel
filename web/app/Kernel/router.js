@@ -10,12 +10,12 @@
  * Define only global routes in this appRouter.js file
  */
 
-define(['../app'], function (app) {
-    app.config(function ($provide, $routeProvider, LOCALE_FALLBACK) {
+define(['app'], function (app) {
+    app.config(function ($provide, $routeProvider, PRIMARY_LOCALE) {
         $routeProvider
             .otherwise({
                 // Redirect to homepage if nothing was found
-                redirectTo: '/' + LOCALE_FALLBACK.primary + '/',
+                redirectTo: '/' + PRIMARY_LOCALE + '/',
                 resolve: {
                     init: function ($rootScope) {
                         console.log('Locale Fallback');
