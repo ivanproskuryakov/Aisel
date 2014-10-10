@@ -8,8 +8,8 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService', 'notify',
+define(['app'], function (app) {
+    app.controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService', 'notify',
         function ($log, $modal, $scope, $routeParams, userService, notify) {
 
 
@@ -71,7 +71,7 @@ angular.module('aiselApp')
 
             $scope.openSignIn = function () {
                 var modalInstance = $modal.open({
-                    templateUrl: 'app/views/core/user/login.html',
+                    templateUrl: 'app/Aisel/User/views/login.html',
                     controller: LoginInstanceCtrl,
                     resolve: {}
                 });
@@ -79,20 +79,21 @@ angular.module('aiselApp')
 
         }]);
 
-var LoginInstanceCtrl = function ($scope, $modalInstance, userService, notify) {
-    $scope.login = function (username, password) {
+    var LoginInstanceCtrl = function ($scope, $modalInstance, userService, notify) {
+        $scope.login = function (username, password) {
 
-        userService.login(username, password).success(
-            function (data, status) {
-                notify(data.message);
-                if (data.status) {
-                    window.location = "/";
+            userService.login(username, password).success(
+                function (data, status) {
+                    notify(data.message);
+                    if (data.status) {
+                        window.location = "/";
+                    }
                 }
-            }
-        );
-    };
+            );
+        };
 
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
     };
-};
+});

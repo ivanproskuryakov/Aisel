@@ -8,13 +8,11 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .controller('UserPageListCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService', 'userPageService', 'notify',
+define(['app'], function (app) {
+    app.controller('UserPageListCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService', 'userPageService', 'notify',
         function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, notify) {
 
             $scope.loggedIn = false;
-
-
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
             $scope.categoryId = 0;
@@ -37,6 +35,5 @@ angular.module('aiselApp')
                     }
                 );
             };
-
-
         }]);
+});

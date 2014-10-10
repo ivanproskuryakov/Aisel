@@ -10,8 +10,8 @@
 
 
 
-angular.module('aiselApp')
-    .directive('ngSearchRedirect', ['$location',
+define(['app'], function (app) {
+    app.directive('ngSearchRedirect', ['$location',
         function ($location) {
             return {
                 restrict: 'A',
@@ -26,3 +26,4 @@ angular.module('aiselApp')
                 }
             };
         }]);
+});

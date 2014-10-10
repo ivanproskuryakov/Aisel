@@ -12,13 +12,13 @@ define([
     'require',
     'angular',
     'app',
-    './appEnvironment',
+    './local/appEnvironment',
     './appRouter',
-    './Aisel/resource/services/root',
-    './Aisel/homepage/router',
-    './Aisel/contact/router',
-    './Aisel/search/router',
-    './Aisel/page/router',
+    './Aisel/Resource/services/root',
+    './Aisel/Homepage/router',
+    './Aisel/Contact/router',
+    './Aisel/Search/router',
+    './Aisel/Page/router'
 ], function (require, angular) {
     'use strict';
 

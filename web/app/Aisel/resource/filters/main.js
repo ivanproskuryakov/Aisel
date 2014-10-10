@@ -8,10 +8,11 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .filter('text', function () {
-        return function (text, name) {
-            return text;
-        };
-    }
-);
+define(['app'], function (app) {
+    app.filter('text', function () {
+            return function (text, name) {
+                return text;
+            };
+        }
+    );
+});

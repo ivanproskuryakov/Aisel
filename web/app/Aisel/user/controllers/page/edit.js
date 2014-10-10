@@ -8,8 +8,8 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .controller('UserPageEditCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService', 'userPageService', 'userCategoryService', 'notify',
+define(['app'], function (app) {
+    app.controller('UserPageEditCtrl', ['$location', '$log', '$modal', '$scope', '$routeParams', 'userService', 'userPageService', 'userCategoryService', 'notify',
         function ($location, $log, $modal, $scope, $routeParams, userService, userPageService, userCategoryService, notify) {
 
             $scope.loggedIn = false;
@@ -96,27 +96,22 @@ angular.module('aiselApp')
             // Close Page
             $scope.closePage = function () {
                 var answer = confirm("You haven't finished your post yet. Do you want to leave without finishing? " +
-                "\n\n Are you sure you want to leave this page?");
+                    "\n\n Are you sure you want to leave this page?");
                 if (answer) {
                     $location.path('/user/page/list/');
                 }
             }
-
-
         }]);
 
-// ModalInstance for Delete event
-
-var PageInstanceCtrl = function ($scope, $modalInstance, p) {
-
-    $scope.pageDetails = p;
-//    console.log(page);
-
-    $scope.ok = function () {
-        $modalInstance.close('close');
+    // ModalInstance for Delete event
+    var PageInstanceCtrl = function ($scope, $modalInstance, p) {
+        $scope.pageDetails = p;
+        //    console.log(page);
+        $scope.ok = function () {
+            $modalInstance.close('close');
+        };
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
     };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-};
+});

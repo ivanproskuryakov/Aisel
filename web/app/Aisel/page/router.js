@@ -14,25 +14,26 @@ define(['app',
     './controllers/category', './controllers/categorydetails',
     './services/category',
 ], function (app) {
+    console.log('Page Router Loaded ...');
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
 
             // Pages
             .when('/:locale/pages/', {
-                templateUrl: 'app/Aisel/page/views/page.html',
+                templateUrl: 'app/Aisel/Page/views/page.html',
                 controller: 'PageCtrl'
             })
             .when('/:locale/page/view/:pageId/', {
-                templateUrl: 'app/Aisel/page/views/page-detail.html',
+                templateUrl: 'app/Aisel/Page/views/page-detail.html',
                 controller: 'PageDetailCtrl'
             })
             // Categories
             .when('/:locale/page/categories/', {
-                templateUrl: 'app/Aisel/page/views/category.html',
+                templateUrl: 'app/Aisel/Page/views/category.html',
                 controller: 'CategoryCtrl'
             })
             .when('/:locale/page/category/:categoryId/', {
-                templateUrl: 'app/Aisel/page/views/category-detail.html',
+                templateUrl: 'app/Aisel/Page/views/category-detail.html',
                 controller: 'CategoryDetailCtrl'
             })
 

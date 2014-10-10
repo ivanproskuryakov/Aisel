@@ -7,7 +7,8 @@
  * @description
  * ...
  */
-define(['app'], function (app) {
+
+define(['../app'], function (app) {
     console.log('************************************');
     console.log('***** App Environment Settings *****');
     console.log('************************************');

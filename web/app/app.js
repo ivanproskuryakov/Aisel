@@ -42,32 +42,29 @@ define([
         function ($http, $rootScope, rootService) {
             rootService.init();
         }]);
-//    app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
-//            /**
-//             * HTTP calls Interception
-//             */
-//            $provide.factory('requestInterceptor', function ($q) {
-//                return {
-//                    request: function (config) {
-//                        $('.loading-interceptor').show();
-//                        return config || $q.when(config);
-//                    },
-//                    requestError: function (rejection) {
-//                        $('.loading-interceptor').hide();
-//                        return $q.reject(rejection);
-//                    },
-//                    response: function (response) {
-//                        $('.loading-interceptor').hide();
-//                        return response || $q.when(response);
-//                    },
-//                    responseError: function (rejection) {
-//                        $('.loading-interceptor').hide();
-//                        return $q.reject(rejection);
-//                    }
-//                };
-//            });
-//            $httpProvider.interceptors.push('requestInterceptor');
-//        });
+    app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
+        $provide.factory('requestInterceptor', function ($q) {
+            return {
+                request: function (config) {
+                    $('.loading-interceptor').show();
+                    return config || $q.when(config);
+                },
+                requestError: function (rejection) {
+                    $('.loading-interceptor').hide();
+                    return $q.reject(rejection);
+                },
+                response: function (response) {
+                    $('.loading-interceptor').hide();
+                    return response || $q.when(response);
+                },
+                responseError: function (rejection) {
+                    $('.loading-interceptor').hide();
+                    return $q.reject(rejection);
+                }
+            };
+        });
+        $httpProvider.interceptors.push('requestInterceptor');
+    });
 
     return app;
 });

@@ -8,10 +8,9 @@
  * ...
  */
 
-angular.module('aiselApp')
-    .service('userPageService', ['$http', '$routeParams', 'API_URL', function ($http, $routeParams, API_URL) {
+define(['app'], function (app) {
+    app.service('userPageService', ['$http', '$routeParams', 'API_URL', function ($http, $routeParams, API_URL) {
         return {
-
             getPages: function ($scope) {
                 var url = API_URL + '/page/list.json?user=true&limit=' + $scope.pageLimit + 'limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage + '&category=' + $scope.categoryId;
                 console.log(url);
@@ -44,5 +43,5 @@ angular.module('aiselApp')
                 return $http.get(url);
             }
         };
-
     }]);
+});
