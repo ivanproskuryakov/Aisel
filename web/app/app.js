@@ -5,7 +5,7 @@
  * @name aiselApp
  *
  * @description
- * Application core module
+ * App Kernel
  */
 
 define([

@@ -10,7 +10,7 @@
 
 var Aisel = {
     paths: {
-        'jquery: ': '/bower_components/jquery/jquery',
+        'jquery: ': '../bower_components/jquery/jquery',
         'domReady': '../bower_components/domReady/domReady',
         'angular': '../bower_components/angular/angular',
         'twitter-bootstrap': '../bower_components/sass-bootstrap/dist/js/bootstrap',
@@ -26,5 +26,13 @@ var Aisel = {
         'md5': '../bower_components/angular-gravatar/build/md5',
         'angular-gravatar': '../bower_components/angular-gravatar/build/angular-gravatar',
         'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus',
-    }
+    },
+    bundles: [
+        './Kernel/router',
+        './Aisel/Resource/services/root',
+        './Aisel/Homepage/AiselHomepage',
+        './Aisel/Contact/AiselContact',
+        './Aisel/Search/AiselSearch',
+        './Aisel/Page/AiselPage',
+    ]
 };

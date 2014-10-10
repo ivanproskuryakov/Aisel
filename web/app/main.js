@@ -5,22 +5,24 @@
  * @name aiselApp
  *
  * @description
- * Application core module
+ * Require.js launcher
  */
 
 require.config({
     // load paths from global variable
     paths: Aisel.paths,
     // kick start application
-    deps: [
-        './bootstrap'
-    ],
+    deps: _.union(
+        ['./bootstrap'],
+        Aisel.bundles
+    ),
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {
         'angular-route': ['angular'],
         "angular": {
             exports: "angular"
         },
+        "jquery": ["angular"],
         "domReady": ["angular"],
         "angular-resource": ["angular"],
         "textAngular": ["angular"],
