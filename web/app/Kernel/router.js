@@ -24,20 +24,5 @@ define(['app'], function (app) {
                 }
             });
     });
-
-    /**
-     * Simple helper functions for user ACL
-     * see more at user/router.js
-     */
-    var grantAccessAuthenticated = function ($rootScope, $location, notify) {
-        if (!$rootScope.isAuthenticated) {
-            $location.path("/" + $rootScope.locale + "/");
-        }
-    };
-    var grantAccessGuest = function ($rootScope, $location, notify) {
-        if ($rootScope.isAuthenticated) {
-            $location.path("/" + $rootScope.locale + "/");
-        }
-    };
 });
 

@@ -35,10 +35,12 @@ var Aisel = {
     },
     bundles: [
         './Kernel/router',
+        './Kernel/services/auth',
         './Kernel/services/root',
         './Aisel/Homepage/AiselHomepage',
         './Aisel/Contact/AiselContact',
         './Aisel/Search/AiselSearch',
         './Aisel/Page/AiselPage',
+        './Aisel/User/AiselUser',
     ]
 };
