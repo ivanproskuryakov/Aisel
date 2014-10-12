@@ -8,27 +8,34 @@
  * Main service used in app.js
  */
 define(['app'], function (app) {
-    console.log('Auth service loaded ...');
+    console.log('Kernel auth service loaded ...');
     angular.module('app')
-        .service('authService', ['$http', '$routeParams', '$rootScope', 'API_URL', 'appSettings',
-            function ($http, $routeParams, $rootScope, $location) {
+        .service('authService', ['$http', '$routeParams', '$rootScope', '$location', 'rootService',
+            function ($http, $routeParams, $rootScope, $location, rootService) {
                 return {
-
-                    /**
-                     * Simple helper functions for user ACL
-                     * see more at user/router.js
-                     */
-                    grantAccessAuthenticated: function () {
-                        console.log('grantAccessGuest');
-                        //if (!$rootScope.isAuthenticated) {
-                        //    $location.path("/" + $rootScope.locale + "/");
-                        //}
+                    roleUser: function () {
+                        if ($rootScope.isAuthenticated !== true) {
+                            $location.path("/");
+                        } else {
+                            rootService.getUserInformation().success(
+                                function (data, status) {
+                                    console.log('userHasAccess');
+                                    $rootScope.isAuthenticated = false;
+                                    if (data.username) {
+                                        $rootScope.isAuthenticated = true;
+                                        $rootScope.user = data;
+                                    } else {
+                                        $location.path("/");
+                                    }
+                                }
+                            );
+                        }
                     },
-                    grantAccessGuest: function () {
-                        console.log('grantAccessGuest');
-                        //if ($rootScope.isAuthenticated) {
-                        //    $location.path("/" + $rootScope.locale + "/");
-                        //}
+                    roleGuest: function () {
+                        if ($rootScope.isAuthenticated !== true) {
+                            console.log('roleGuest ...');
+                            $location.path("/");
+                        }
                     }
                 }
             }]);

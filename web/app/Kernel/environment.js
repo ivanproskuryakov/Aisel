@@ -36,6 +36,7 @@ var Aisel = {
     bundles: [
         './Kernel/router',
         './Kernel/services/root',
+        './Kernel/services/init',
         './Kernel/services/auth',
         './Aisel/Homepage/AiselHomepage',
         './Aisel/Contact/AiselContact',

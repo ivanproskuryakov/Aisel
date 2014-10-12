@@ -9,9 +9,9 @@
  */
 
 define([
-    'angular', 'angular-resource', 'angular-cookies', 'angular-sanitize', 'textAngular',
-    'ui-bootstrap-tpls', 'ui-utils', 'angular-gravatar', 'md5', 'angular-disqus', 'angular-notify',
-    'angular-route'],
+        'angular', 'angular-resource', 'angular-cookies', 'angular-sanitize', 'textAngular',
+        'ui-bootstrap-tpls', 'ui-utils', 'angular-gravatar', 'md5', 'angular-disqus', 'angular-notify',
+        'angular-route'],
     function (angular) {
         'use strict';
 
@@ -22,9 +22,9 @@ define([
         app.constant('API_URL', Aisel.settings.api)
             .constant("PRIMARY_LOCALE", Aisel.settings.locale.primary)
             .value('appSettings', [])
-            .run(['$http', '$rootScope', 'rootService',
-                function ($http, $rootScope, rootService) {
-                    rootService.init();
+            .run(['$http', '$rootScope', 'rootService', 'initService',
+                function ($http, $rootScope, rootService, initService) {
+                    initService.launch();
                 }])
             .config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
                 $provide.factory('requestInterceptor', function ($q) {

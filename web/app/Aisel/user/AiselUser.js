@@ -21,7 +21,7 @@ define(['app',
                 controller: 'UserCtrl',
                 resolve: {
                     factory: function (authService) {
-                        authService.grantAccessGuest()
+                        authService.roleGuest()
                     }
                 }
             })
@@ -30,7 +30,7 @@ define(['app',
                 controller: 'UserCtrl',
                 resolve: {
                     factory: function (authService) {
-                        authService.grantAccessGuest()
+                        authService.roleGuest()
                     }
                 }
             })
@@ -40,7 +40,7 @@ define(['app',
                 controller: 'UserCtrl',
                 resolve: {
                     factory: function (authService) {
-                        authService.grantAccessAuthenticated()
+                        authService.roleUser()
                     }
                 }
             })
@@ -49,7 +49,7 @@ define(['app',
                 controller: 'UserCtrl',
                 resolve: {
                     factory: function (authService) {
-                        authService.grantAccessAuthenticated()
+                        authService.roleUser()
                     }
                 }
             })
@@ -58,7 +58,7 @@ define(['app',
                 controller: 'UserPageListCtrl',
                 resolve: {
                     factory: function (authService) {
-                        authService.grantAccessAuthenticated()
+                        authService.roleUser()
                     }
                 }
             })
@@ -67,7 +67,7 @@ define(['app',
                 controller: 'UserPageAddCtrl',
                 resolve: {
                     factory: function (authService) {
-                        authService.grantAccessAuthenticated()
+                        authService.roleUser()
                     }
                 }
             })
@@ -76,7 +76,7 @@ define(['app',
                 controller: 'UserPageEditCtrl',
                 resolve: {
                     factory: function (authService) {
-                        authService.grantAccessAuthenticated()
+                        authService.roleUser()
                     }
                 }
             })

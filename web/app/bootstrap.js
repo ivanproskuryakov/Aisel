@@ -16,7 +16,6 @@ define([
     'use strict';
 
     require(['domReady!'], function (document) {
-        console.log('----------- Bootstrapping the App -----------');
         angular.bootstrap(document, ['app']);
     });
 });
