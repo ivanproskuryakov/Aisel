@@ -16,8 +16,6 @@ define(['app',
     console.log('User Router Loaded ...');
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
-            //console.log(authService.grantAccessGuest())
-            // Actions only for guest users
             .when('/:locale/user/register/', {
                 templateUrl: 'app/Aisel/User/views/register.html',
                 controller: 'UserCtrl',
@@ -42,7 +40,7 @@ define(['app',
                 controller: 'UserCtrl',
                 resolve: {
                     factory: function (authService) {
-                        authService.grantAccessGuest()
+                        authService.grantAccessAuthenticated()
                     }
                 }
             })
@@ -50,7 +48,9 @@ define(['app',
                 templateUrl: 'app/Aisel/User/views/information/edit.html',
                 controller: 'UserCtrl',
                 resolve: {
-                    //    factory: grantAccessAuthenticated
+                    factory: function (authService) {
+                        authService.grantAccessAuthenticated()
+                    }
                 }
             })
             .when('/:locale/user/page/list/', {
@@ -58,7 +58,7 @@ define(['app',
                 controller: 'UserPageListCtrl',
                 resolve: {
                     factory: function (authService) {
-                        authService.grantAccessGuest()
+                        authService.grantAccessAuthenticated()
                     }
                 }
             })
@@ -67,7 +67,7 @@ define(['app',
                 controller: 'UserPageAddCtrl',
                 resolve: {
                     factory: function (authService) {
-                        authService.grantAccessGuest()
+                        authService.grantAccessAuthenticated()
                     }
                 }
             })
@@ -76,7 +76,7 @@ define(['app',
                 controller: 'UserPageEditCtrl',
                 resolve: {
                     factory: function (authService) {
-                        authService.grantAccessGuest()
+                        authService.grantAccessAuthenticated()
                     }
                 }
             })

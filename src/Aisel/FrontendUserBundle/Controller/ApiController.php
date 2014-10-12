@@ -27,6 +27,11 @@ use Symfony\Component\HttpFoundation\Request;
 class ApiController extends Controller
 {
 
+    protected function getUserManager()
+    {
+        return $this->get('frontend.user.manager');
+    }
+
     /**
      * Is User Authenticated
      *
@@ -34,7 +39,7 @@ class ApiController extends Controller
      */
     private function isAuthenticated()
     {
-        return $this->get('frontend.user.manager')->isAuthenticated();
+        return $this->getUserManager()->isAuthenticated();
     }
 
     protected function loginUser(FrontendUser $user)

@@ -70,6 +70,7 @@ define(['app'], function (app) {
                         );
                         this.getUserInformation().success(
                             function (data, status) {
+                                console.log('getUserInformation ...');
                                 $rootScope.isAuthenticated = false;
                                 if (data.username) {
                                     $rootScope.isAuthenticated = true;
