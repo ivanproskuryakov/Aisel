@@ -10,7 +10,6 @@
 
 define(['app'], function (app) {
     app.controller('PageDetailCtrl', function ($scope, $routeParams, pageService, $rootScope, rootService) {
-
         var pageURL = $routeParams.pageId;
         var handleSuccess = function (data, status) {
             $scope.pageDetails = data;
@@ -21,6 +20,5 @@ define(['app'], function (app) {
             $scope.showComments = $rootScope.disqusStatus && $scope.pageDetails.page.comment_status;
         };
         pageService.getPageByURL(pageURL).success(handleSuccess);
-
     });
 });

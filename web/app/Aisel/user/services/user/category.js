@@ -17,6 +17,5 @@ define(['app'], function (app) {
                 return $http.get(url);
             }
         };
-
     }]);
 });
