@@ -5,13 +5,13 @@
  * @name aiselApp
  *
  * @description
- * Main service used in app.js
+ * API service
  */
 define(['app'], function (app) {
-    console.log('Kernel root service loaded ...');
+    console.log('Kernel API service loaded ...');
     angular.module('app')
-        .service('rootService', ['$http', '$routeParams', '$rootScope', 'API_URL', 'appSettings',
-            function ($http, $routeParams, $rootScope, API_URL, appSettings) {
+        .service('rootService', ['$http', '$routeParams', '$rootScope', 'API_URL',
+            function ($http, $routeParams, $rootScope, API_URL) {
                 return {
                     getApplicationConfig: function () {
                         var url = API_URL + '/config/settings.json';

@@ -9,9 +9,9 @@
  */
 
 define([
-        'angular', 'angular-resource', 'angular-cookies', 'angular-sanitize', 'textAngular',
-        'ui-bootstrap-tpls', 'ui-utils', 'angular-gravatar', 'md5', 'angular-disqus', 'angular-notify',
-        'angular-route'],
+    'angular', 'angular-resource', 'angular-cookies', 'angular-sanitize', 'textAngular',
+    'ui-bootstrap-tpls', 'ui-utils', 'angular-gravatar', 'md5', 'angular-disqus', 'angular-notify',
+    'angular-route'],
     function (angular) {
         'use strict';
 

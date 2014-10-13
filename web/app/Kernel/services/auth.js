@@ -14,25 +14,22 @@ define(['app'], function (app) {
             function ($http, $routeParams, $rootScope, $location, rootService) {
                 return {
                     roleUser: function () {
-                        if ($rootScope.isAuthenticated !== true) {
-                            $location.path("/");
-                        } else {
-                            rootService.getUserInformation().success(
-                                function (data, status) {
-                                    console.log('userHasAccess');
-                                    $rootScope.isAuthenticated = false;
-                                    if (data.username) {
-                                        $rootScope.isAuthenticated = true;
-                                        $rootScope.user = data;
-                                    } else {
-                                        $location.path("/");
-                                    }
+                        rootService.getUserInformation().success(
+                            function (data, status) {
+                                console.log('userHasAccess');
+                                $rootScope.isAuthenticated = false;
+                                if (data.username) {
+                                    $rootScope.isAuthenticated = true;
+                                    $rootScope.user = data;
+                                } else {
+                                    $location.path("/");
                                 }
-                            );
-                        }
+                            }
+                        );
                     },
                     roleGuest: function () {
-                        if ($rootScope.isAuthenticated !== true) {
+                        console.log($rootScope.isAuthenticated);
+                        if (typeof $rootScope.isAuthenticated != 'undefined') {
                             console.log('roleGuest ...');
                             $location.path("/");
                         }
