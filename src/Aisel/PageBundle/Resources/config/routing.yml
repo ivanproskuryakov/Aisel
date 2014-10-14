@@ -11,7 +11,7 @@ admin_aisel_page_category_update:
     defaults:  { _controller: AiselPageBundle:Admin/Node:update, _format: json }
     requirements:
         _method: GET
-# Api
+
 # Product
 api_aisel_pagelist:
     pattern:  /%website_api%/page/list.json
@@ -44,34 +44,3 @@ api_aisel_page_categoryview:
     requirements:
         _method: GET
         id: "\d+"
-
-# User specific actions
-api_aisel_user_pagedetails_by_id:
-    pattern:  /%website_api%/user/page/details/id/{pageId}.json
-    defaults: { _controller: AiselPageBundle:ApiUserPage:pageDetails, _format: json }
-    requirements:
-        _method: GET
-
-api_aisel_user_page_edit:
-    pattern:  /%website_api%/user/page/edit/{pageId}.json
-    defaults: { _controller: AiselPageBundle:ApiUserPage:pageEdit, _format: json }
-    requirements:
-        _method: GET
-
-api_aisel_user_page_add:
-    pattern:  /%website_api%/user/page/add.json
-    defaults: { _controller: AiselPageBundle:ApiUserPage:pageAdd, _format: json }
-    requirements:
-        _method: GET
-
-api_aisel_user_page_delete:
-    pattern:  /%website_api%/user/page/delete/{pageId}.json
-    defaults: { _controller: AiselPageBundle:ApiUserPage:pageDelete, _format: json }
-    requirements:
-        _method: GET
-
-api_aisel_user_categorytree:
-    pattern:  /%website_api%/user/category/tree.json
-    defaults: { _controller: AiselPageBundle:ApiUserCategory:categoryTree, _format: json }
-    requirements:
-        _method: GET

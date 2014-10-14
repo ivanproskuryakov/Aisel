@@ -27,9 +27,9 @@ class NodeController extends Controller
     /**
      * AJAX update action for node with $id
      *
-     * @param int     $id
      * @param Request $request
      *
+     * @return object
      */
     public function updateAction(Request $request)
     {

@@ -39,7 +39,6 @@ class ApiPageController extends Controller
      */
     public function pageListAction(Request $request)
     {
-
         $params = array(
             'current' => $request->get('current'),
             'limit' => $request->get('limit'),
@@ -50,11 +49,8 @@ class ApiPageController extends Controller
             $userid = $this->get('security.context')->getToken()->getUser()->getId();
             $params['userid'] = $userid;
         }
-
         $pageList = $this->container->get("aisel.page.manager")->getPages($params);
-
         return $pageList;
-
     }
 
     /**
@@ -64,7 +60,6 @@ class ApiPageController extends Controller
     {
         /** @var \Aisel\PageBundle\Entity\Page $page */
         $page = $this->container->get("aisel.page.manager")->getPageByURL($urlKey);
-
         return $page;
     }
 }

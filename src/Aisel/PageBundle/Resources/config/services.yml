@@ -9,9 +9,6 @@ parameters:
     aisel_page_manager.class: Aisel\PageBundle\Manager\PageManager
     aisel_page_category_manager.class: Aisel\PageBundle\Manager\CategoryManager
     aisel_page_category_mode_manager.class: Aisel\PageBundle\Manager\NodeManager
-    aisel_userpage_manager.class: Aisel\PageBundle\Manager\UserPageManager
-    aisel_usercategory_manager.class: Aisel\PageBundle\Manager\UserCategoryManager
-
 
 services:
     aisel.page.manager:
@@ -25,15 +22,6 @@ services:
     aisel.pagecategory.node.manager:
         class: %aisel_page_category_mode_manager.class%
         arguments: [@service_container, @doctrine.orm.entity_manager]
-
-    aisel.userpage.manager:
-        class: %aisel_userpage_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager, @security.context, @aisel.page.manager]
-
-    aisel.usercategory.manager:
-        class: %aisel_usercategory_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager, @security.context, @aisel.page.manager]
-
 
     sonata.admin.page:
         class: Aisel\PageBundle\Admin\PageAdmin
