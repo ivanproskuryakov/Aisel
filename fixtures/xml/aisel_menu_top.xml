@@ -25,7 +25,7 @@
             <column name="rgt">2</column>
             <column name="root">209</column>
             <column name="lvl">0</column>
-            <column name="title">Blog</column>
+            <column name="title">Pages</column>
             <column name="metaUrl">/#/en/pages/</column>
             <column name="status">1</column>
             <column name="created_at">2014-09-02 17:52:08</column>

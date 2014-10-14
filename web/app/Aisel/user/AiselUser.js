@@ -13,7 +13,7 @@ define(['app',
     './controllers/page/add', './controllers/page/edit', './controllers/page/list',
     './services/user/category', './services/user/page', './services/user/user',
 ], function (app) {
-    console.log('User Router Loaded ...');
+    console.log('User module loaded ...');
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
             .when('/:locale/user/register/', {
@@ -47,33 +47,6 @@ define(['app',
             .when('/:locale/user/information/edit/', {
                 templateUrl: 'app/Aisel/User/views/information/edit.html',
                 controller: 'UserCtrl',
-                resolve: {
-                    factory: function (authService) {
-                        authService.roleUser()
-                    }
-                }
-            })
-            .when('/:locale/user/page/list/', {
-                templateUrl: 'app/Aisel/User/views/page/list.html',
-                controller: 'UserPageListCtrl',
-                resolve: {
-                    factory: function (authService) {
-                        authService.roleUser()
-                    }
-                }
-            })
-            .when('/:locale/user/page/add/', {
-                templateUrl: 'app/Aisel/User/views/page/add.html',
-                controller: 'UserPageAddCtrl',
-                resolve: {
-                    factory: function (authService) {
-                        authService.roleUser()
-                    }
-                }
-            })
-            .when('/:locale/user/page/edit/:pageId/', {
-                templateUrl: 'app/Aisel/User/views/page/edit.html',
-                controller: 'UserPageEditCtrl',
                 resolve: {
                     factory: function (authService) {
                         authService.roleUser()

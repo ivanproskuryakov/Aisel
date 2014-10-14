@@ -12,9 +12,7 @@ define(['app'], function (app) {
     app.controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService', 'notify',
         function ($log, $modal, $scope, $routeParams, userService, notify) {
 
-
             $scope.loggedIn = false;
-
             // User Registration
             $scope.submitRegistration = function (form) {
                 if (form.$valid) {
@@ -58,7 +56,7 @@ define(['app'], function (app) {
                 }
             };
 
-            // User Sign Out
+            // User Sign In/Out
             $scope.signOut = function () {
                 userService.signout($scope).success(
                     function (data, status) {
@@ -68,7 +66,6 @@ define(['app'], function (app) {
                 );
 
             }
-
             $scope.openSignIn = function () {
                 var modalInstance = $modal.open({
                     templateUrl: 'app/Aisel/User/views/login.html',
@@ -79,13 +76,14 @@ define(['app'], function (app) {
 
         }]);
 
-    var LoginInstanceCtrl = function ($scope, $modalInstance, userService, notify) {
+    var LoginInstanceCtrl = function ($scope, $modalInstance, userService, $rootScope, notify) {
         $scope.login = function (username, password) {
 
             userService.login(username, password).success(
                 function (data, status) {
                     notify(data.message);
                     if (data.status) {
+//                        window.location = "/" + $rootScope.locale + "/user/information/";
                         window.location = "/";
                     }
                 }
