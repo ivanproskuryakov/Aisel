@@ -14,7 +14,7 @@ define(['app',
     './controllers/category', './controllers/categorydetails',
     './services/category',
 ], function (app) {
-    console.log('Page Router Loaded ...');
+    console.log('Page module loaded ...');
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
 

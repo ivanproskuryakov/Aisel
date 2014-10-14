@@ -9,7 +9,7 @@
  */
 
 define(['app','./controllers/homepage'], function (app) {
-    console.log('Homepage Router Loaded ...');
+    console.log('Homepage module loaded ...');
     app.config(function ($provide, $routeProvider) {
         $routeProvider
             // Homepage

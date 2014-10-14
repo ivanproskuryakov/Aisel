@@ -16,7 +16,6 @@ var Aisel = {
         }
     },
     paths: {
-        'jquery: ': '../bower_components/jquery/jquery',
         'domReady': '../bower_components/domReady/domReady',
         'angular': '../bower_components/angular/angular',
         'twitter-bootstrap': '../bower_components/sass-bootstrap/dist/js/bootstrap',

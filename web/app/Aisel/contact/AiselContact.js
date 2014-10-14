@@ -10,7 +10,7 @@
  */
 
 define(['app', './controllers/contact', './services/contact'], function (app) {
-    console.log('Contact Router Loaded ...');
+    console.log('Contact module loaded ...');
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
             // Contact

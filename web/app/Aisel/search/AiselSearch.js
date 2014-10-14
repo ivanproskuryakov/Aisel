@@ -9,7 +9,7 @@
  */
 
 define(['app', './controllers/search', './services/search'], function (app) {
-    console.log('Search Router Loaded ...');
+    console.log('Search module loaded ...');
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
             // Search

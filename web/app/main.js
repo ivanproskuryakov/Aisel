@@ -9,9 +9,9 @@
  */
 
 require.config({
-    // load paths from global variable
+    // Load paths from global variable
     paths: Aisel.paths,
-    // kick start application
+    // Kick start application
     deps: _.union(
         ['bootstrap'],
         Aisel.bundles
@@ -22,7 +22,6 @@ require.config({
         "angular": {
             exports: "angular"
         },
-        "jquery": ["angular"],
         "domReady": ["angular"],
         "angular-resource": ["angular"],
         "textAngular": ["angular"],

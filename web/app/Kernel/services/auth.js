@@ -5,10 +5,10 @@
  * @name aiselApp
  *
  * @description
- * Main service used in app.js
+ * Auth service
  */
 define(['app'], function (app) {
-    console.log('Kernel auth service loaded ...');
+    console.log('Kernel Auth service loaded ...');
     angular.module('app')
         .service('authService', ['$http', '$routeParams', '$rootScope', '$location', 'rootService',
             function ($http, $routeParams, $rootScope, $location, rootService) {
