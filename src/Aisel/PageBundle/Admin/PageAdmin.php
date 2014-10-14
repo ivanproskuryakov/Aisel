@@ -87,7 +87,8 @@ class PageAdmin extends Admin
                 'attr' => array('class' => 'form-control')
             ))
             ->add('hidden', null, array('required' => false, 'label' => 'aisel.default.hidden_page'))
-
+            // TODO: Display only locale filtered categories
+            // TODO: Display categories as tree
             ->with('aisel.default.categories')
             ->add('categories', 'aisel_gedmotree', array(
                 'expanded' => true,

@@ -82,6 +82,9 @@ class AbstractCategoryAdmin extends Admin
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('title', 'text', array('label' => 'aisel.default.title'))
+            ->add('locale', 'aisel_locale', array('label' => 'aisel.default.locale',
+                'required' => false,
+                'attr' => array('class' => 'form-control')))
             ->add('description', 'ckeditor',
                 array(
                     'label' => 'aisel.default.description',
@@ -94,6 +97,8 @@ class AbstractCategoryAdmin extends Admin
                 'label' => 'aisel.default.status',
                 'attr' => array('class' => 'form-control')
             ))
+            // TODO: Display only locale filtered categories
+            // TODO: Display categories as tree
             ->add('parent', 'aisel_gedmotree', array(
                 'expanded' => true,
                 'multiple' => false,
@@ -174,6 +179,7 @@ class AbstractCategoryAdmin extends Admin
             ->with('aisel.default.information')
             ->add('id', null, array('label' => 'aisel.default.id'))
             ->add('title', 'text', array('label' => 'aisel.default.title'))
+            ->add('locale', 'text', array('label' => 'aisel.default.locale'))
             ->add('status', 'boolean', array('label' => 'aisel.default.status'))
             ->with('aisel.default.meta_data')
             ->add('metaUrl', null, array('label' => 'aisel.default.url'))

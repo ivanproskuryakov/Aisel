@@ -42,7 +42,7 @@ class LoadPageCategoryData extends XMLFixtureData implements OrderedFixtureInter
                     $rootCategory = $this->getReference('page_category_' . $table->column[2]);
                 }
                 $category = new Category();
-                $category->setLocale('en');
+                $category->setLocale($table->column[1]);
                 $category->setTitle($table->column[3]);
                 $category->setDescription($table->column[8]);
                 $category->setStatus($table->column[9]);
