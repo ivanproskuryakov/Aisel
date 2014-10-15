@@ -24,8 +24,10 @@ define(['app'], function (app) {
                         return $http.get(url);
                     },
                     getMenu: function () {
+//                        var url = API_URL + '/' + $rootScope.locale + '/navigation/menu.json';
                         var url = API_URL + '/navigation/menu.json';
-                        // console.log(url);
+                        console.log($rootScope);
+                        console.log(url);
                         return $http.get(url);
                     },
                     getUserInformation: function () {

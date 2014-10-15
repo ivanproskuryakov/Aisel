@@ -27,8 +27,6 @@ class AbstractCategoryAdmin extends Admin
 {
     protected $categoryManager;
     protected $baseRoutePattern = 'category';
-    protected $maxPerPage = 500;
-    protected $maxPageLinks = 500;
     protected $categoryEntity = 'Aisel\PageBundle\Entity\Category';
 
     /**
@@ -75,9 +73,7 @@ class AbstractCategoryAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-
         $subject = $this->getSubject();
-        $id = $subject->getId();
         $formMapper
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
@@ -97,6 +93,7 @@ class AbstractCategoryAdmin extends Admin
                 'label' => 'aisel.default.status',
                 'attr' => array('class' => 'form-control')
             ))
+            ->with('aisel.default.categories')
             // TODO: Display only locale filtered categories
             // TODO: Display categories as tree
             ->add('parent', 'aisel_gedmotree', array(
@@ -104,16 +101,16 @@ class AbstractCategoryAdmin extends Admin
                 'multiple' => false,
                 'class' => $this->categoryEntity,
                 'label' => 'aisel.category.parent',
-                'query_builder' => function ($er) use ($id) {
-                        $qb = $er->createQueryBuilder('p');
-                        if ($id) {
-                            $qb->where('p.id <> :id')->setParameter('id', $id);
+                'query_builder' => function ($er) use ($subject) {
+                        $qb = $er->createQueryBuilder('c');
+                        if ($subject->getLocale()) {
+                            $qb->where('c.locale = :locale')->setParameter('locale', $subject->getLocale());
                         }
-                        $qb->orderBy('p.root, p.lft', 'ASC');
-
+                        if ($subject->getId()) {
+                            $qb->andWhere('c.id != :id')->setParameter('id', $subject->getId());
+                        }
                         return $qb;
                     }, 'empty_value' => $this->trans('aisel.default.no_parent')
-
             ))
             ->with('aisel.default.meta_data')
             ->add('metaUrl', 'text', array('label' => 'aisel.default.url', 'required' => true,

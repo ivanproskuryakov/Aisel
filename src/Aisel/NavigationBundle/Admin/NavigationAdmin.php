@@ -42,20 +42,6 @@ class NavigationAdmin extends Admin
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function createQuery($context = 'list')
-    {
-        $query = parent::createQuery($context);
-
-        $query->orderBy('o.root', 'ASC');
-        $query->addOrderBy('o.lft', 'ASC');
-        $query->addOrderBy('o.title', 'ASC');
-
-        return $query;
-    }
-
-    /**
      * {@inheritDoc}
      */
     protected function configureFormFields(FormMapper $formMapper)
@@ -79,18 +65,14 @@ class NavigationAdmin extends Admin
             ->with('aisel.navigation.menu')
             ->add('parent', 'aisel_gedmotree', array('expanded' => true, 'multiple' => false,
                 'class' => 'Aisel\NavigationBundle\Entity\Menu',
-                'query_builder' => function ($er) use ($id) {
-                        $qb = $er->createQueryBuilder('p');
-                        if ($id) {
-                            $qb->where('p.id <> :id')->setParameter('id', $id);
-                        }
-                        $qb->orderBy('p.root, p.lft', 'ASC');
-
-                        return $qb;
-                    },
                 'label' => 'aisel.category.parent',
-                'empty_value' => $this->trans('aisel.default.no_parent')
-
+                'query_builder' => function ($er) use ($subject) {
+                        $qb = $er->createQueryBuilder('c');
+                        if ($subject->getLocale()) {
+                            $qb->where('c.locale = :locale')->setParameter('locale', $subject->getLocale());
+                        }
+                        return $qb;
+                    }, 'empty_value' => $this->trans('aisel.default.no_parent')
             ))
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
@@ -102,7 +84,6 @@ class NavigationAdmin extends Admin
                 'required' => false,
                 'attr' => array()))
             ->end();
-
     }
 
     /**
@@ -130,7 +111,7 @@ class NavigationAdmin extends Admin
         $showMapper
             ->with('aisel.default.information')
             ->add('id', null, array('label' => 'aisel.default.id'))
-            ->add('metaTitle', null, array('label' => 'aisel.default.meta_title'))
+            ->add('locale', null, array('label' => 'aisel.default.locale'))
             ->add('metaUrl', null, array('label' => 'aisel.default.url'))
             ->add('status', 'boolean', array('label' => 'aisel.default.id'))
             ->with('aisel.default.dates')
