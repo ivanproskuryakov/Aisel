@@ -40,7 +40,7 @@ define(['app'], function (app) {
                                 console.log('----------- Init start -----------');
                                 var setLocale = function () {
                                     $rootScope.availableLocales = appSettings.locale.available;
-                                    $rootScope.locale = location.hash.substr(2, 2);
+                                    $rootScope.locale = location.pathname.substr(1, 2);
                                     if ($rootScope.availableLocales.indexOf($rootScope.locale) == -1) {
                                         $rootScope.locale = $routeParams.locale.primary;
                                     }
