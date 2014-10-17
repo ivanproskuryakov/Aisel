@@ -19,7 +19,7 @@ define(['app'], function (app) {
                     element.bind('keyup', function (e) {
                         if (e.keyCode === 13) {
                             if (attrs.ngSearchRedirect.length > 1) {
-                                window.location.assign('/#/en/search/' + attrs.ngSearchRedirect);
+                                window.location.assign('/en/search/' + attrs.ngSearchRedirect);
                             }
                         }
                     });

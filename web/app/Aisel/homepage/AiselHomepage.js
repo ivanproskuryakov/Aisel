@@ -14,7 +14,7 @@ define(['app','./controllers/homepage'], function (app) {
         $routeProvider
             // Homepage
             .when('/:locale/', {
-                templateUrl: 'app/Aisel/Homepage/views/homepage.html',
+                templateUrl: '/app/Aisel/Homepage/views/homepage.html',
                 controller: 'HomepageCtrl'
             })
     });

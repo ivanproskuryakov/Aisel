@@ -15,7 +15,7 @@ define(['app', './controllers/contact', './services/contact'], function (app) {
         $routeProvider
             // Contact
             .when('/:locale/contact/', {
-                templateUrl: 'app/Aisel/Contact/views/contact.html',
+                templateUrl: '/app/Aisel/Contact/views/contact.html',
                 controller: 'ContactCtrl'
             })
     });

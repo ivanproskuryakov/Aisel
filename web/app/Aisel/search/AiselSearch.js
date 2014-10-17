@@ -14,7 +14,7 @@ define(['app', './controllers/search', './services/search'], function (app) {
         $routeProvider
             // Search
             .when('/:locale/search/:query', {
-                templateUrl: 'app/Aisel/Search/views/search.html',
+                templateUrl: '/app/Aisel/Search/views/search.html',
                 controller: 'SearchCtrl'
             })
     });

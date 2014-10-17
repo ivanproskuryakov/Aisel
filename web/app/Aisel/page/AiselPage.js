@@ -20,20 +20,20 @@ define(['app',
 
             // Pages
             .when('/:locale/pages/', {
-                templateUrl: 'app/Aisel/Page/views/page.html',
+                templateUrl: '/app/Aisel/Page/views/page.html',
                 controller: 'PageCtrl'
             })
             .when('/:locale/page/view/:pageId/', {
-                templateUrl: 'app/Aisel/Page/views/page-detail.html',
+                templateUrl: '/app/Aisel/Page/views/page-detail.html',
                 controller: 'PageDetailCtrl'
             })
             // Categories
             .when('/:locale/page/categories/', {
-                templateUrl: 'app/Aisel/Page/views/category.html',
+                templateUrl: '/app/Aisel/Page/views/category.html',
                 controller: 'CategoryCtrl'
             })
             .when('/:locale/page/category/:categoryId/', {
-                templateUrl: 'app/Aisel/Page/views/category-detail.html',
+                templateUrl: '/app/Aisel/Page/views/category-detail.html',
                 controller: 'CategoryDetailCtrl'
             })
 

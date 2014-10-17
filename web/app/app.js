@@ -27,6 +27,7 @@ define([
                     initService.launch();
                 }])
             .config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
+                $locationProvider.html5Mode(true);
                 $provide.factory('requestInterceptor', function ($q) {
                     return {
                         request: function (config) {

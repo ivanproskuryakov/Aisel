@@ -49,7 +49,7 @@ define(['app'], function (app) {
                             notify(data.message);
                             if (data.status) {
 //                            window.location = "/";
-                                window.location = "/#/";
+                                window.location = "/";
                             }
                         }
                     );

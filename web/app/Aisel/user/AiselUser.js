@@ -17,7 +17,7 @@ define(['app',
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
             .when('/:locale/user/register/', {
-                templateUrl: 'app/Aisel/User/views/register.html',
+                templateUrl: '/app/Aisel/User/views/register.html',
                 controller: 'UserCtrl',
                 resolve: {
                     factory: function (authService) {
@@ -26,7 +26,7 @@ define(['app',
                 }
             })
             .when('/:locale/user/password/forgot/', {
-                templateUrl: 'app/Aisel/User/views/password-forgot.html',
+                templateUrl: '/app/Aisel/User/views/password-forgot.html',
                 controller: 'UserCtrl',
                 resolve: {
                     factory: function (authService) {
@@ -36,7 +36,7 @@ define(['app',
             })
             // Authenticated users actions
             .when('/:locale/user/information/', {
-                templateUrl: 'app/Aisel/User/views/information/dashboard.html',
+                templateUrl: '/app/Aisel/User/views/information/dashboard.html',
                 controller: 'UserCtrl',
                 resolve: {
                     factory: function (authService) {
@@ -45,7 +45,7 @@ define(['app',
                 }
             })
             .when('/:locale/user/information/edit/', {
-                templateUrl: 'app/Aisel/User/views/information/edit.html',
+                templateUrl: '/app/Aisel/User/views/information/edit.html',
                 controller: 'UserCtrl',
                 resolve: {
                     factory: function (authService) {

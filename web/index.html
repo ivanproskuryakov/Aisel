@@ -16,8 +16,8 @@
     <meta name="keywords" content="{{metaKeywords}}">
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/bower_components/sass-bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css"/>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -26,7 +26,7 @@
             data-semver="1.0.7"
             src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js">
     </script>
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
 <!--[if lt IE 9]>
@@ -36,15 +36,15 @@
 
 <!-- Website content: START -->
 <div id="page-is-loading" class="loading-interceptor">Loading ...</div>
-<header ng-include="'app/Aisel/Resource/views/header.html'"></header>
+<header ng-include="'/app/Aisel/Resource/views/header.html'"></header>
 <div class="container website-content">
     <div id="dynamic-content" class="view" ng-view=""></div>
 </div>
-<footer ng-include="'app/Aisel/Resource/views/footer.html'"></footer>
+<footer ng-include="'/app/Aisel/Resource/views/footer.html'"></footer>
 <!-- Website content: END -->
 
-<script src="bower_components/underscore/underscore-min.js"></script>
-<script src="app/Kernel/environment.js"></script>
-<script data-main="app/main" src="bower_components/requirejs/require.js"></script>
+<script src="/bower_components/underscore/underscore-min.js"></script>
+<script src="/app/Kernel/environment.js"></script>
+<script data-main="/app/main" src="/bower_components/requirejs/require.js"></script>
 </body>
 </html>
