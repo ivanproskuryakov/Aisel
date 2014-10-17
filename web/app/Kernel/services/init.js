@@ -41,11 +41,7 @@ define(['app'], function (app) {
                                 var setLocale = function () {
                                     $rootScope.availableLocales = appSettings.locale.available;
                                     $rootScope.locale = location.pathname.substr(1, 2);
-                                    if ($rootScope.availableLocales.indexOf($rootScope.locale) == -1) {
-                                        $rootScope.locale = $routeParams.locale.primary;
-                                    }
                                     console.log('Locale ----> ' + $rootScope.locale);
-                                    console.log('Locales ----> ' + $rootScope.availableLocales);
                                 }
                                 var setMetaData = function () {
                                     $rootScope.pageTitle = meta.defaultMetaTitle;
@@ -63,8 +59,6 @@ define(['app'], function (app) {
                                     setLocale();
                                     setMetaData();
                                 });
-
-                                console.log('----------- Init End -----------');
                             }
                         );
 
