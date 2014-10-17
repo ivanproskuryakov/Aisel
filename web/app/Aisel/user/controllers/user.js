@@ -68,7 +68,7 @@ define(['app'], function (app) {
             }
             $scope.openSignIn = function () {
                 var modalInstance = $modal.open({
-                    templateUrl: 'app/Aisel/User/views/login.html',
+                    templateUrl: '/app/Aisel/User/views/login.html',
                     controller: LoginInstanceCtrl,
                     resolve: {}
                 });
