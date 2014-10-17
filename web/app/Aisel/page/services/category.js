@@ -13,12 +13,14 @@ define(['app'], function (app) {
         function ($http, $routeParams, API_URL) {
             return {
                 getCategories: function ($scope) {
-                    var url = API_URL + '/page/category/list.json?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage;
+                    var locale = Aisel.settings.locale.primary;
+                    var url = API_URL + '/' + locale + '/page/category/list.json?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage;
                     console.log(url);
                     return $http.get(url);
                 },
                 getCategory: function (categoryId) {
-                    var url = API_URL + '/page/category/view/' + categoryId + '.json';
+                    var locale = Aisel.settings.locale.primary;
+                    var url = API_URL + '/' + locale + '/page/category/view/' + categoryId + '.json';
                     console.log(url);
                     return $http.get(url);
                 }

@@ -31,11 +31,13 @@ class AbstractCategoryManager
     /**
      * Get tree array of enabled categories
      *
+     * @param string $locale
+     *
      * @return array $tree
      */
-    public function getCategoryTree()
+    public function getCategoryTree($locale)
     {
-        $categories = $this->em->getRepository($this->categoryEntity)->getEnabledCategoriesAsTree();
+        $categories = $this->em->getRepository($this->categoryEntity)->getEnabledCategoriesAsTree($locale);
         $tree = array();
         foreach ($categories as $rootItem) {
 
@@ -59,7 +61,7 @@ class AbstractCategoryManager
      * Generate child categories for selected root
      *
      * @param object $items
-     * @param int    $pid
+     * @param int $pid
      *
      * @return array
      */
@@ -118,7 +120,7 @@ class AbstractCategoryManager
      * Generate child categories for selected in HTML format - WILL BE REMOVED
      *
      * @param object $items
-     * @param int    $pid
+     * @param int $pid
      *
      * @return array
      */
@@ -152,19 +154,18 @@ class AbstractCategoryManager
      * Get list of all categories
      *
      * @param array $params
+     * @param string $locale
      *
      * @return mixed
      */
-    public function getCategories($params)
+    public function getCategories($params, $locale)
     {
-        $total = $this->em->getRepository($this->categoryEntity)->getTotalFromRequest($params);
-        $categories = $this->em->getRepository($this->categoryEntity)->getCurrentCategoriesFromRequest($params);
-
+        $total = $this->em->getRepository($this->categoryEntity)->getTotalFromRequest($params, $locale);
+        $categories = $this->em->getRepository($this->categoryEntity)->getCurrentCategoriesFromRequest($params, $locale);
         $return = array(
             'total' => $total,
             'categories' => $categories
         );
-
         return $return;
     }
 
@@ -172,20 +173,19 @@ class AbstractCategoryManager
      * Get single detailed category by URLKey
      *
      * @param string $urlKey
+     * @param string $locale
      *
      * @return mixed
      */
-    public function getCategoryByURL($urlKey)
+    public function getCategoryByURL($urlKey, $locale)
     {
-        $category = $this->em->getRepository($this->categoryEntity)->getEnabledCategoryByUrl($urlKey);
+        $category = $this->em->getRepository($this->categoryEntity)->getEnabledCategoryByUrl($urlKey, $locale);
 
         if (!($category)) {
             throw $this->createNotFoundException();
         }
-
         $pages = $this->em->getRepository('AiselPageBundle:Page')->getPagesByCategory($category->getId());
         $categoryDetails = array('category' => $category, 'pages' => $pages);
-
         return $categoryDetails;
     }
 
@@ -223,7 +223,7 @@ class AbstractCategoryManager
      * validate metaUrl for Category Entity and return one we can use
      *
      * @param string $url
-     * @param int    $categoryId
+     * @param int $categoryId
      *
      * @return string
      */

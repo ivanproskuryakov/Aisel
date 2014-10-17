@@ -8,9 +8,12 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} ^/_profiler/ [OR]
+    RewriteCond %{REQUEST_URI} ^/_wdt/ [OR]
+    RewriteCond %{REQUEST_URI} ^/api/ [OR]
+    RewriteCond %{REQUEST_URI} ^/administration/
     RewriteRule $ app_dev.php$1 [NC,L,QSA]
+
 
 #    # Determine the RewriteBase automatically and set it as environment variable.
 #    # If you are using Apache aliases to do mass virtual hosting or installed the
@@ -45,17 +48,15 @@ DirectoryIndex index.html
 #    RewriteRule .? %{ENV:BASE}/app_dev.php [L]
 </IfModule>
 
-<IfModule !mod_rewrite.c>
-    <IfModule mod_alias.c>
-        # When mod_rewrite is not available, we instruct a temporary redirect of
-        # the start page to the front controller explicitly so that the website
-        # and the generated links can still be used.
-        RedirectMatch 302 ^/$ /app_dev.php/
-        # RedirectTemp cannot be used instead
-    </IfModule>
-</IfModule>
-
-
+#<IfModule !mod_rewrite.c>
+#    <IfModule mod_alias.c>
+#        # When mod_rewrite is not available, we instruct a temporary redirect of
+#        # the start page to the front controller explicitly so that the website
+#        # and the generated links can still be used.
+#        RedirectMatch 302 ^/$ /app_dev.php/
+#        # RedirectTemp cannot be used instead
+#    </IfModule>
+#</IfModule>
 
 # Apache Configuration File
 

@@ -43,6 +43,7 @@ class PageManager
     public function getPageCategories($page)
     {
         $categories = array();
+
         foreach ($page->getCategories() as $c) {
             $category = array();
             $category['id'] = $c->getId();
@@ -50,7 +51,6 @@ class PageManager
             $category['url'] = $c->getMetaUrl();
             $categories[$c->getId()] = $category;
         }
-
         return $categories;
     }
 
@@ -58,19 +58,18 @@ class PageManager
      * Get list of all pages
      *
      * @param array $params
+     * @param string $locale
      *
      * @return array
      */
-    public function getPages($params)
+    public function getPages($params, $locale)
     {
-        $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params);
-        $pages = $this->em->getRepository('AiselPageBundle:Page')->getCurrentPagesFromRequest($params);
-
+        $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params, $locale);
+        $pages = $this->em->getRepository('AiselPageBundle:Page')->getCurrentPagesFromRequest($params, $locale);
         $return = array(
             'total' => $total,
             'pages' => $pages
         );
-
         return $return;
     }
 
@@ -90,9 +89,7 @@ class PageManager
         if (!($page)) {
             throw new NotFoundHttpException('Nothing found');
         }
-
         $pageDetails = array('page' => $page, 'categories' => $this->getPageCategories($page));
-
         return $pageDetails;
     }
 
@@ -100,22 +97,21 @@ class PageManager
      * Get single detailed page with category by URLKey
      *
      * @param string $urlKey
+     * @param string $locale
      *
      * @return \Aisel\PageBundle\Entity\Page $page
      *
      * @throws NotFoundHttpException
      */
-    public function getPageByURL($urlKey)
+    public function getPageByURL($urlKey, $locale)
     {
 
-        $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(array('metaUrl' => $urlKey));
+        $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(array('metaUrl' => $urlKey, 'locale' => $locale));
 
         if (!($page)) {
             throw new NotFoundHttpException('Nothing found');
         }
-
         $pageDetails = array('page' => $page, 'categories' => $this->getPageCategories($page));
-
         return $pageDetails;
     }
 
@@ -123,7 +119,6 @@ class PageManager
      * validate metaUrl for Page Entity and return one we can use
      *
      * @param string $url
-     *
      * @param int $pageId
      *
      * @return string $validUrl
@@ -136,7 +131,6 @@ class PageManager
         if ($page) {
             $validUrl = $validUrl . '-' . time();
         }
-
         return $validUrl;
     }
 
@@ -148,7 +142,6 @@ class PageManager
     public function getEnabledPages()
     {
         $pageList = $this->em->getRepository('AiselPageBundle:Page')->getEnabledPages();
-
         return $pageList;
     }
 

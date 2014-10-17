@@ -37,7 +37,7 @@ class ApiPageController extends Controller
      * @Rest\View
      * /api/page/list.json?limit=2&current=3
      */
-    public function pageListAction(Request $request)
+    public function pageListAction(Request $request, $locale)
     {
         $params = array(
             'current' => $request->get('current'),
@@ -49,17 +49,17 @@ class ApiPageController extends Controller
             $userid = $this->get('security.context')->getToken()->getUser()->getId();
             $params['userid'] = $userid;
         }
-        $pageList = $this->container->get("aisel.page.manager")->getPages($params);
+        $pageList = $this->container->get("aisel.page.manager")->getPages($params, $locale);
         return $pageList;
     }
 
     /**
      * @Rest\View
      */
-    public function pageViewByURLAction($urlKey)
+    public function pageViewByURLAction($urlKey, $locale)
     {
         /** @var \Aisel\PageBundle\Entity\Page $page */
-        $page = $this->container->get("aisel.page.manager")->getPageByURL($urlKey);
+        $page = $this->container->get("aisel.page.manager")->getPageByURL($urlKey, $locale);
         return $page;
     }
 }

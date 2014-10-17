@@ -33,13 +33,15 @@ class NavigationManager
     }
 
     /**
-     * Returns enabled menu
+     * Returns navigation menu for current locale
+     *
+     * @param string $locale
      *
      * @return object
      */
-    public function getMenu()
+    public function getMenu($locale)
     {
-        $menu = $this->em->getRepository('AiselNavigationBundle:Menu')->getEnabledMenuItems();
+        $menu = $this->em->getRepository('AiselNavigationBundle:Menu')->getEnabledMenuItems($locale);
 
         return $menu;
     }

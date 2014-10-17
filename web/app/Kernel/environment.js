@@ -12,7 +12,8 @@ var Aisel = {
     settings: {
         api: '/api',
         locale: {
-            "primary": 'en'
+            "primary": 'en',
+            "available": ['en', 'ru']
         }
     },
     requirejs: {

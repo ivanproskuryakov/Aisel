@@ -49,13 +49,13 @@ aisel_config:
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /{_locale}/%website_admin%
+    prefix: /%website_admin%/{_locale}
     requirements:
       _locale: %locales%
 
 _sonata_admin:
     resource: .
     type: sonata_admin
-    prefix: /{_locale}/%website_admin%
+    prefix: /%website_admin%/{_locale}
     requirements:
       _locale: %locales%

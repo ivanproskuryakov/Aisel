@@ -27,13 +27,13 @@ class ApiCategoryController extends Controller
      * @Rest\View
      * /api/page/category/list.json?limit=2&current=3
      */
-    public function categoryListAction(Request $request)
+    public function categoryListAction(Request $request, $locale)
     {
         $params = array(
             'current' => $request->query->get('current'),
             'limit' => $request->query->get('limit'),
         );
-        $categoryList = $this->container->get("aisel.pagecategory.manager")->getCategories($params);
+        $categoryList = $this->container->get("aisel.pagecategory.manager")->getCategories($params, $locale);
         return $categoryList;
     }
 
@@ -41,9 +41,9 @@ class ApiCategoryController extends Controller
      * @Rest\View
      * /api/page/category/tree.json
      */
-    public function categoryTreeAction(Request $request)
+    public function categoryTreeAction(Request $request, $locale)
     {
-        $categoryList = $this->container->get("aisel.pagecategory.manager")->getCategoryTree();
+        $categoryList = $this->container->get("aisel.pagecategory.manager")->getCategoryTree($locale);
         return $categoryList;
     }
 
@@ -51,9 +51,9 @@ class ApiCategoryController extends Controller
      * @Rest\View
      * /api/page/category/view/{$$urlKey}.json
      */
-    public function categoryViewAction($urlKey)
+    public function categoryViewAction($urlKey, $locale)
     {
-        $category = $this->container->get("aisel.pagecategory.manager")->getCategoryByUrl($urlKey);
+        $category = $this->container->get("aisel.pagecategory.manager")->getCategoryByUrl($urlKey, $locale);
         return $category;
     }
 

@@ -19,14 +19,14 @@ define(['app'], function (app) {
                         return $http.get(url);
                     },
                     getCategoryTree: function () {
-                        var url = API_URL + '/page/category/tree.json';
+                        var locale = Aisel.settings.locale.primary;
+                        var url = API_URL + '/' + locale + '/page/category/tree.json';
                         // console.log(url);
                         return $http.get(url);
                     },
                     getMenu: function () {
-//                        var url = API_URL + '/' + $rootScope.locale + '/navigation/menu.json';
-                        var url = API_URL + '/navigation/menu.json';
-                        console.log($rootScope);
+                        var locale = Aisel.settings.locale.primary;
+                        var url = API_URL + '/' + locale + '/navigation/menu.json';
                         console.log(url);
                         return $http.get(url);
                     },

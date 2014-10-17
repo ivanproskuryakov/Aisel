@@ -21,18 +21,20 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 class MenuRepository extends NestedTreeRepository
 {
 
-    /*
+    /**
      * Get enabled menu items sorted as tree
      *
+     * @param string $locale
+     *
      * @return object
-     *                */
-
-    public function getEnabledMenuItems()
+     */
+    public function getEnabledMenuItems($locale)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $r = $qb->select('m')
             ->from('AiselNavigationBundle:Menu', 'm')
             ->where('m.status = 1')
+            ->andWhere('m.locale = :locale')->setParameter('locale', $locale)
             ->orderBy('m.root', 'ASC')
             ->addOrderBy('m.lft', 'ASC')
             ->getQuery()

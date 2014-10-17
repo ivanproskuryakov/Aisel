@@ -14,32 +14,32 @@ admin_aisel_page_category_update:
 
 # Product
 api_aisel_pagelist:
-    pattern:  /%website_api%/page/list.json
+    pattern:  /%website_api%/{locale}/page/list.json
     defaults: { _controller: AiselPageBundle:ApiPage:pageList, _format: json }
     requirements:
         _method: GET
 
 api_aisel_pageview_by_url:
-    pattern:  /%website_api%/page/view/url/{urlKey}.json
+    pattern:  /%website_api%/{locale}/page/view/url/{urlKey}.json
     defaults: { _controller: AiselPageBundle:ApiPage:pageViewByURL, _format: json }
     requirements:
         _method: GET
 
 # Categories
 api_aisel_page_categorylist:
-    pattern:  /%website_api%/page/category/list.json
+    pattern:  /%website_api%/{locale}/page/category/list.json
     defaults: { _controller: AiselPageBundle:ApiCategory:categoryList, _format: json }
     requirements:
         _method: GET
 
 api_aisel_page_categorytree:
-    pattern:  /%website_api%/page/category/tree.json
+    pattern:  /%website_api%/{locale}/page/category/tree.json
     defaults: { _controller: AiselPageBundle:ApiCategory:categoryTree, _format: json }
     requirements:
         _method: GET
 
 api_aisel_page_categoryview:
-    pattern:  /%website_api%/page/category/view/{urlKey}.json
+    pattern:  /%website_api%/{locale}/page/category/view/{urlKey}.json
     defaults: { _controller: AiselPageBundle:ApiCategory:categoryView, _format: json }
     requirements:
         _method: GET

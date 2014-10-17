@@ -48,16 +48,18 @@ class AbstractCategoryRepository extends NestedTreeRepository
      * Get total active categories
      *
      * @param array $params
+     * @param array $locale
      *
      * @return array|int $result
      */
-    public function getTotalFromRequest($params)
+    public function getTotalFromRequest($params, $locale)
     {
         $this->mapRequest($params);
         $qb = $this->getEntityManager()->createQueryBuilder();
         $result = $qb->select('COUNT(c.id)')
             ->from($this->categoryEntity, 'c')
             ->where('c.status = :status')
+            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
             ->setParameter('status', 1)
             ->getQuery()->getSingleScalarResult();
 
@@ -69,15 +71,17 @@ class AbstractCategoryRepository extends NestedTreeRepository
      * Returns enabled categories
      *
      * @param string $urlKey
+     * @param string $locale
      *
      * @return array $result
      */
-    public function getEnabledCategoryByUrl($urlKey)
+    public function getEnabledCategoryByUrl($urlKey, $locale)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $result = $qb->select('c')
             ->from($this->categoryEntity, 'c')
             ->where('c.metaUrl = :metaUrl')->setParameter('metaUrl', $urlKey)
+            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
             ->andWhere('c.status = 1')
             ->getQuery()
             ->getSingleResult();
@@ -109,16 +113,18 @@ class AbstractCategoryRepository extends NestedTreeRepository
      * Returns enabled categories sorted as tree
      *
      * @param array $params
+     * @param array $locale
      *
      * @return array $result
      */
-    public function getCurrentCategoriesFromRequest($params)
+    public function getCurrentCategoriesFromRequest($params, $locale)
     {
         $this->mapRequest($params);
         $qb = $this->getEntityManager()->createQueryBuilder();
         $result = $qb->select('c')
             ->from($this->categoryEntity, 'c')
             ->where('c.status = 1')
+            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
             ->addOrderBy('c.title', 'ASC')
             ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
@@ -132,14 +138,17 @@ class AbstractCategoryRepository extends NestedTreeRepository
     /**
      * Returns enabled categories sorted as tree
      *
+     * @param string $locale
+     *
      * @return array $result
      */
-    public function getEnabledCategoriesAsTree()
+    public function getEnabledCategoriesAsTree($locale)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $result = $qb->select('c')
             ->from($this->categoryEntity, 'c')
             ->where('c.status = 1')
+            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
             ->orderBy('c.root', 'ASC')
             ->addOrderBy('c.lft', 'ASC')
             ->getQuery()
@@ -151,7 +160,7 @@ class AbstractCategoryRepository extends NestedTreeRepository
     /**
      * Find categories by url
      *
-     * @param string   $url
+     * @param string $url
      * @param int|null $categoryId
      *
      * @return int $result
