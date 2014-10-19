@@ -63,5 +63,11 @@ var Aisel = {
             './Aisel/Page/AiselPage',
             './Aisel/User/AiselUser',
         ]
+    },
+    getLocale: function () {
+        var currentLocale = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
+        if (this.settings.locale.available.indexOf(currentLocale) == -1) {
+            window.location = "/" + this.settings.locale.primary + "/";
+        }
     }
 };

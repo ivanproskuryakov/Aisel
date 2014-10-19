@@ -19,7 +19,7 @@
                     <ul class="list">
                         <li ng-repeat="item in availableLocales">
                             <span ng-if="item == locale">{{ item }}</span>
-                            <a ng-if="item != locale" ng-href="/{{item}}/">{{ item }}</a>
+                            <a ng-if="item != locale" target="_self" ng-href="/{{item}}/">{{ item }}</a>
                         </li>
                     </ul>
                 </div>

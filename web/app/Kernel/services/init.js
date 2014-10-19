@@ -40,8 +40,7 @@ define(['app'], function (app) {
                                 console.log('----------- Init start -----------');
                                 var setLocale = function () {
                                     $rootScope.availableLocales = appSettings.locale.available;
-                                    $rootScope.locale = location.pathname.substr(1, 2);
-                                    console.log('Locale ----> ' + $rootScope.locale);
+                                    $rootScope.locale = Aisel.getLocale();
                                 }
                                 var setMetaData = function () {
                                     $rootScope.pageTitle = meta.defaultMetaTitle;
