@@ -1,6 +1,6 @@
 AiselConfigBundle
 -----------------------------------
-Administration settings interface for Symfony2 projects which based on SonataAdminBundle
+Administration settings interface for Symfony2 projects. Can be easily integrated with SonataAdminBundle
 
 Notes
 -------------
@@ -9,28 +9,34 @@ Bundle not stable, only for development purposes
 Documentation
 -------------
 
-Add to config.yml<br/>
+1. Add to config.yml<br/>
 ```bash
 aisel_config:
+    settings_route: /settings/{editLocale}
     route_prefix: config_ # ex: config_contact
     entities:
         homepage:
             order: 0
-            controller: AiselSettingsBundle:ConfigHomepage:modify
+            controller: TestConfigBundle:ConfigHomepage:modify
 ```
 
-Add routes to routing.yml<br/>
+Add to AppKernel.php<br/>
+```bash
+            new Aisel\ConfigBundle\AiselConfigBundle(),
+```
+
+2. Add routes to routing.yml<br/>
 ```bash
 aisel_config:
     resource: "@AiselConfigBundle/Resources/config/routing.yml"
     prefix:   /
 ```
 
-Create form class and set $form variable with in controller as shown bellow<br/>
+3. Create form class and set $form variable with in controller as shown bellow<br/>
 ```bash
 <?php
 
-namespace Aisel\SettingsBundle\Form\Type;
+namespace Test\Config\Bundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -59,32 +65,38 @@ class ConfigHomepageType extends AbstractType
 }
 ```
 
-Create and extend controller from class SettingsController<br/>
+4. Create and extend controller from class SettingsController<br/>
 ```bash
 <?php
-namespace Aisel\SettingsBundle\Controller;
+
+namespace Test\Config\Bundle\Controller;
+
 use Aisel\ConfigBundle\Controller\SettingsController;
+
 class ConfigHomepageController extends SettingsController
 {
 
-    public $form = "\Aisel\SettingsBundle\Form\Type\ConfigHomepageType";
+    public $form = "\Test\Config\Bundle\Form\Type\ConfigHomepageType";
 
     /**
      * {@inheritdoc }
      */
     protected function getTemplateVariables()
     {
-        $this->templateVariables['base_template'] = 'AiselSettingsBundle::layout.html.twig';
-        $this->templateVariables['admin_pool'] = $this->container->get('sonata.admin.pool');
-        $this->templateVariables['blocks'] = $this->container->getParameter('sonata.admin.configuration.dashboard_blocks');
-
         return $this->templateVariables;
     }
 
 }
 ```
+5. Check that route available with router:debug
+```bash
+php app/console router:debug
+config_homepage          ANY    ANY    ANY  /settings/{editLocale}/homepage
+```
+editLocale is your current locale param, controller should be available by:<br/>
+/settings/ru/homepage
 
-Create ConfigHomepage controller<br/>
+
 
 MIT License
 -----------------------------------

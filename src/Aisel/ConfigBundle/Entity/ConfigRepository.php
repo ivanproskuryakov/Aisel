@@ -56,12 +56,12 @@ class ConfigRepository extends EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $entity = $qb->select('c.entity, c.value')
+        $entity = $qb->select('c')
             ->from('AiselConfigBundle:Config', 'c')
             ->where('c.locale = :locale')->setParameter('locale', $editLocale)
             ->andWhere('c.entity = :entity')->setParameter('entity', $entity)
             ->getQuery()
-            ->execute();
+            ->getOneOrNullResult();
 
         return $entity;
     }

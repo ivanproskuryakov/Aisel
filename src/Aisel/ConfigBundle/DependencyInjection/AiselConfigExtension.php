@@ -26,8 +26,13 @@ class AiselConfigExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+
+        if ($container->hasParameter('locales') === false) {
+            $container->setParameter('locales', $container->getParameter('locale'));
+        }
         $container->setParameter('aisel_config.entities', $config['entities']);
         $container->setParameter('aisel_config.route_prefix', $config['route_prefix']);
+        $container->setParameter('aisel_config.settings_route', $config['settings_route']);
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
     }

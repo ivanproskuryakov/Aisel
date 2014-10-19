@@ -8,7 +8,7 @@
 aisel_config:
     resource: .
     type: extra
-    prefix: /%website_admin%/{_locale}/settings/{editLocale}/
+    prefix: %aisel_config.settings_route%
     requirements:
       _locale: %locales%
       editLocale: %locales%

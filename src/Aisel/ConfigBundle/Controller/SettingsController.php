@@ -55,7 +55,6 @@ class SettingsController extends Controller
         $this->templateVariables['form'] = $form->createView();
         $this->templateVariables['routes'] = $this->getRoutes();
         $this->templateVariables['config_name'] = $this->getConfigNameLabel();
-
         return $this->render($this->template, $this->getTemplateVariables());
     }
 
@@ -90,11 +89,10 @@ class SettingsController extends Controller
     {
         $formArray = array();
 
-        if ($config && $config[0]['value']) {
-            $formArray = json_decode($config[0]['value']);
+        if ($config && $config) {
+            $formArray = json_decode($config->getValue());
         }
         $form = $this->createForm(new $this->form(), $formArray);
-
         return $form;
     }
 
@@ -111,14 +109,11 @@ class SettingsController extends Controller
         asort($configEntities);
 
         foreach ($configEntities as $name => $value) {
-
             $_route = array();
             $_route['name'] = 'aisel_config_' . $name . '.label';
             $_route['path'] = $prefix . $name;
-
             $routes[] = $_route;
         }
-
         return $routes;
     }
 
@@ -130,7 +125,6 @@ class SettingsController extends Controller
     protected function getConfigNameLabel()
     {
         $label = 'aisel_' . $this->get('request')->get('_route') . '.label';
-
         return $label;
     }
 
@@ -148,7 +142,6 @@ class SettingsController extends Controller
             $this->locales[$locale] = $locale;
         }
         $this->locales = $locales;
-
         return $this->locales;
     }
 
