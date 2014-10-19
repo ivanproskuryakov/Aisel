@@ -65,9 +65,10 @@ var Aisel = {
         ]
     },
     getLocale: function () {
-        var currentLocale = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
-        if (this.settings.locale.available.indexOf(currentLocale) == -1) {
+        var locale = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
+        if (this.settings.locale.available.indexOf(locale) == -1) {
             window.location = "/" + this.settings.locale.primary + "/";
         }
+        return locale;
     }
 };
