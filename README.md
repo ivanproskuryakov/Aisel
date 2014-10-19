@@ -85,11 +85,11 @@ cd Symfony
 php phpunit.phar -c app/
 ````
 
-Sitemap
+Speed
 -----------------------------------
-Task: <b>php app/console aisel:sitemap:generate</b><br/>
-This command will generate sitemap.xml<br/>
-Example: http://ecommerce.aisel.co/sitemap.xml<br/>
+http://tools.pingdom.com/fpt/#!/crrqBk/http://ecommerce.aisel.co/en/<br/>
+http://tools.pingdom.com/fpt/#!/KwiR4/http://ecommerce.aisel.co/en/pages/<br/>
+http://tools.pingdom.com/fpt/#!/dcH16I/http://ecommerce.aisel.co/en/page/categories/<br/>
 
 Mobile ready
 -----------------------------------
