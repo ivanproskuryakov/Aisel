@@ -9,7 +9,11 @@ Bundle not stable, only for development purposes
 Documentation
 -------------
 
-1. Add to config.yml<br/>
+1.  Add to AppKernel.php<br/>
+```bash
+    new Aisel\ConfigBundle\AiselConfigBundle(),
+```
+And to config.yml<br/>
 ```bash
 aisel_config:
     settings_route: /settings/{editLocale}
@@ -20,23 +24,18 @@ aisel_config:
             controller: TestConfigBundle:ConfigHomepage:modify
 ```
 
-Add to AppKernel.php<br/>
-```bash
-            new Aisel\ConfigBundle\AiselConfigBundle(),
-```
-
-2. Add routes to routing.yml<br/>
+2. Then add routes to routing.yml<br/>
 ```bash
 aisel_config:
     resource: "@AiselConfigBundle/Resources/config/routing.yml"
     prefix:   /
 ```
 
-3. Create form class and set $form variable with in controller as shown bellow<br/>
+3. Create typical form class<br/>
 ```bash
 <?php
 
-namespace Test\Config\Bundle\Form\Type;
+namespace TestConfig\Bundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -65,11 +64,12 @@ class ConfigHomepageType extends AbstractType
 }
 ```
 
-4. Create and extend controller from class SettingsController<br/>
+4. Create and extend controller from the class SettingsController<br/>
+   then set $form variable with the path to your ConfigHomepageType
 ```bash
 <?php
 
-namespace Test\Config\Bundle\Controller;
+namespace Test\ConfigBundle\Controller;
 
 use Aisel\ConfigBundle\Controller\SettingsController;
 
@@ -94,8 +94,27 @@ php app/console router:debug
 config_homepage          ANY    ANY    ANY  /settings/{editLocale}/homepage
 ```
 editLocale is your current locale param, controller should be available by:<br/>
-/settings/ru/homepage
+/settings/en/homepage, where en is your locale parameter
 
+Multiple locales
+-----------------------------------
+Bundle supports multiple locales, use "locales" param separated by "|"
+```bash
+locales: en|ru|es|de
+```
+SonataAdminBundle compatibility
+-----------------------------------
+It also works fine with SonataAdminBundle, to make it work<br/>
+   change getTemplateVariables() function in your controller as show bellow
+```bash
+    protected function getTemplateVariables()
+    {
+        $this->templateVariables['base_template'] = 'AiselSettingsBundle::layout.html.twig'; //Your sonata layout template
+        $this->templateVariables['admin_pool'] = $this->container->get('sonata.admin.pool');
+        $this->templateVariables['blocks'] = $this->container->getParameter('sonata.admin.configuration.dashboard_blocks');
+        return $this->templateVariables;
+    }
+```
 
 
 MIT License
