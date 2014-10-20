@@ -1,7 +1,11 @@
 AiselConfigBundle
 -----------------------------------
 Administration settings interface for Symfony2 projects. Can be easily integrated with SonataAdminBundle
-
+[![Latest Stable Version](https://poser.pugx.org/aisel/config-bundle/v/stable.svg)](https://packagist.org/packages/aisel/config-bundle)
+[![Total Downloads](https://poser.pugx.org/aisel/config-bundle/downloads.svg)](https://packagist.org/packages/aisel/config-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/aisel/config-bundle/v/unstable.svg)](https://packagist.org/packages/aisel/config-bundle)
+[![License](https://poser.pugx.org/aisel/config-bundle/license.svg)](https://packagist.org/packages/aisel/config-bundle)
+<br/>
 Notes
 -------------
 Bundle not stable, only for development purposes
