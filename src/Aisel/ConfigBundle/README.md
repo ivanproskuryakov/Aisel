@@ -1,4 +1,4 @@
-AiselConfigBundle
+AiselConfigBundle [![Build Status](https://travis-ci.org/ivanproskuryakov/AiselConfigBundle.svg)](https://travis-ci.org/ivanproskuryakov/AiselConfigBundle) 
 -----------------------------------
 [![Latest Stable Version](https://poser.pugx.org/aisel/config-bundle/v/stable.svg)](https://packagist.org/packages/aisel/config-bundle)
 [![Total Downloads](https://poser.pugx.org/aisel/config-bundle/downloads.svg)](https://packagist.org/packages/aisel/config-bundle)
