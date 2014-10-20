@@ -30,6 +30,7 @@
         "doctrine/doctrine-bundle": "@stable",
         "doctrine/orm": "@stable",
     "minimum-stability": "dev",
+    },
     "require-dev": {
         "symfony/form": "~2.3",
         "twig/twig": "~1.0"
