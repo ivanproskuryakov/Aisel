@@ -13,24 +13,10 @@
             "homepage": "https://github.com/ivanproskuryakov"
         }
     ],
-    "require":{
-        "symfony/framework-bundle":">=2.2,<2.6-dev@stable"
+    "require": {
+        "php": ">=5.3.3"
     },
-    "require-dev":{
-        "symfony/class-loader": "@stable",
-        "symfony/twig-bundle": "@stable",
-        "symfony/finder": "@stable",
-        "symfony/browser-kit": "@stable",
-        "symfony/css-selector": "@stable",
-        "symfony/form": "@stable",
-        "symfony/validator": "@stable",
-        "symfony/process": "@stable",
-        "symfony/yaml": "@stable",
-        "sensio/framework-extra-bundle": "@stable",
-        "doctrine/doctrine-bundle": "@stable",
-        "doctrine/orm": "@stable",
     "minimum-stability": "dev",
-    },
     "require-dev": {
         "symfony/form": "~2.3",
         "twig/twig": "~1.0"
