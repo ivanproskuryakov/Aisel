@@ -9,12 +9,17 @@ Administration settings interface for Symfony2 projects. Can be easily integrate
 
 Documentation
 -------------
+Add `"aisel/config-bundle": "0.11.*@dev"` to `composer.json` and run
+``` bash
+ php composer.phar install
+```
+Composer will install the bundle to your project's `vendor/aisel/config-bundle` directory.
 
 1.  Add to AppKernel.php<br/>
 ```bash
     new Aisel\ConfigBundle\AiselConfigBundle(),
 ```
-And to config.yml<br/>
+And to `config.yml`<br/>
 ```bash
 aisel_config:
     settings_route: /settings/{editLocale}
@@ -25,14 +30,14 @@ aisel_config:
             controller: TestConfigBundle:ConfigHomepage:modify
 ```
 
-2. Then add routes to routing.yml<br/>
+2. Then add routes to `routing.yml`<br/>
 ```bash
 aisel_config:
     resource: "@AiselConfigBundle/Resources/config/routing.yml"
     prefix:   /
 ```
 
-3. Create typical form class<br/>
+3. Create simple form class<br/>
 ```bash
 <?php
 
@@ -65,7 +70,7 @@ class ConfigHomepageType extends AbstractType
 }
 ```
 
-4. Create and extend controller from the class SettingsController<br/>
+4. Create and extend controller from the class `SettingsController`<br/>
    then set $form variable with the path to your ConfigHomepageType
 ```bash
 <?php
@@ -89,9 +94,8 @@ class ConfigHomepageController extends SettingsController
 
 }
 ```
-5. Check that route available with router:debug
+5. Check that route available with `php app/console router:debug`
 ```bash
-php app/console router:debug
 config_homepage          ANY    ANY    ANY  /settings/{editLocale}/homepage
 ```
 editLocale is your current locale param, controller should be available by:<br/>
@@ -119,7 +123,7 @@ It also works fine with SonataAdminBundle, to make it work<br/>
 
 PHPSpec
 -----------------------------------
-bin/phpspec run --config vendor/aisel/config-bundle/Aisel/ConfigBundle/phpspec.yml
+`bin/phpspec run --config vendor/aisel/config-bundle/Aisel/ConfigBundle/phpspec.yml`
 
 MIT License
 -----------------------------------
