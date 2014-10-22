@@ -8,13 +8,6 @@ branches:
         - master
 
 before_install:
-    # Install node.js
-    - npm install -g grunt-cli
-    - npm install -g bower
-
-    # Install node packages
-    - npm install
-    - node -v
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
 
@@ -29,8 +22,11 @@ install:
     - echo "127.0.0.1 aisel.dev" | sudo tee -a /etc/hosts
     - sudo /etc/init.d/apache2 restart
 
-
 before_script:
     # Update composer
     - composer self-update
     - composer install
+
+script:
+    - pwd
+    - vendor/phpspec/phpspec/bin/phpspec run

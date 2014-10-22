@@ -25,6 +25,7 @@ class SettingsController extends Controller
     protected $locales = null;
     protected $template = 'AiselConfigBundle:Settings:modify.html.twig';
     protected $templateVariables = array();
+    protected $twig = array();
 
     /**
      * Saves & reads config data
@@ -37,7 +38,7 @@ class SettingsController extends Controller
         $routeId = $request->get('_route');
         $editLocale = $request->get('editLocale');
         $config = $this->getRepository()->getConfig($editLocale, $routeId);
-        $form = $this->populateForm(new $this->form(), $config);
+        $form = $this->createForm(new $this->form, $this->getManager()->prepare($config));
 
         if ($request->getMethod() === 'POST') {
             $form->bind($request);
@@ -51,98 +52,30 @@ class SettingsController extends Controller
                 }
             }
         }
-        $this->templateVariables['locales'] = $this->getLocales();
         $this->templateVariables['form'] = $form->createView();
-        $this->templateVariables['routes'] = $this->getRoutes();
-        $this->templateVariables['config_name'] = $this->getConfigNameLabel();
-        return $this->render($this->template, $this->getTemplateVariables());
-    }
-
-    /**
-     * Pass vars to template and later use
-     *
-     * @return array
-     */
-    protected function getTemplateVariables()
-    {
-        return $this->$twig;
+        $this->templateVariables['routes'] = $this->getManager()->getRoutes();
+        $this->templateVariables['config_name'] = $this->getManager()->getConfigNameLabel($this->get('request')->get('_route'));
+        $this->templateVariables['locales'] = $this->getManager()->getLocales();
+        return $this->render($this->template, $this->templateVariables);
     }
 
     /**
      * Repository for config
      * @return ConfigRepository
      */
-    protected function getRepository()
+    private function getRepository()
     {
         return $this->get('doctrine')->getRepository('AiselConfigBundle:Config');
     }
 
     /**
-     * Populate form with values from database
-     *
-     * @param string $formClass
-     * @param string $config
-     *
-     * @return $this->form
+     * Wrapper function for manager service
+     * @return ConfigManager
      */
-    protected function populateForm($formClass, $config)
+    private function getManager()
     {
-        $formArray = array();
-
-        if ($config && $config) {
-            $formArray = json_decode($config->getValue());
-        }
-        $form = $this->createForm(new $this->form(), $formArray);
-        return $form;
+        return $this->container->get("aisel.config.manager");
     }
 
-    /**
-     * Return routes with their names
-     *
-     * @return array $routes
-     */
-    protected function getRoutes()
-    {
-        $configEntities = $this->container->getParameter('aisel_config.entities');
-        $prefix = $this->container->getParameter('aisel_config.route_prefix');
-        $routes = array();
-        asort($configEntities);
-
-        foreach ($configEntities as $name => $value) {
-            $_route = array();
-            $_route['name'] = 'aisel_config_' . $name . '.label';
-            $_route['path'] = $prefix . $name;
-            $routes[] = $_route;
-        }
-        return $routes;
-    }
-
-    /**
-     * Return config name
-     *
-     * @return Array
-     */
-    protected function getConfigNameLabel()
-    {
-        $label = 'aisel_' . $this->get('request')->get('_route') . '.label';
-        return $label;
-    }
-
-    /**
-     * Get locales param from parameters
-     *
-     * @return array $this->locales
-     */
-    protected function getLocales()
-    {
-        $localesParam = $this->container->getParameter('locales');
-        $locales = explode('|', $localesParam);
-
-        foreach ($locales as $locale) {
-            $this->locales[$locale] = $locale;
-        }
-        $this->locales = $locales;
-        return $this->locales;
-    }
 
 }

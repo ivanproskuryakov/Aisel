@@ -5,9 +5,18 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
+parameters:
+    aisel_config_manager.class: Aisel\ConfigBundle\Manager\ConfigManager
+    aisel_routing_loader.class: Aisel\ConfigBundle\Routing\ExtraLoader
+
 services:
     aisel_config.routing_loader:
-        class: Aisel\ConfigBundle\Routing\ExtraLoader
+        class: %aisel_routing_loader.class%
         tags:
             - { name: routing.loader }
         arguments: [@service_container]
+
+    aisel.config.manager:
+        class: %aisel_config_manager.class%
+        arguments: [@service_container]
+

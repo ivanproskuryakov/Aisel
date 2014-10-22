@@ -18,8 +18,11 @@
     },
     "minimum-stability": "dev",
     "require-dev": {
-        "symfony/form": "~2.3",
-        "twig/twig": "~1.0"
+        "php": ">=5.3.3",
+
+        "symfony/framework-bundle": "~2.3",
+        "stof/doctrine-extensions-bundle": "@stable",
+        "phpspec/phpspec": "~2.0"
     },
     "autoload": {
         "psr-0": {
