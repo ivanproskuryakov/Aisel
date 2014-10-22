@@ -1,0 +1,8 @@
+formatter.name: pretty
+suites:
+    AiselConfigBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/ConfigBundle/
+    AiselCategoryBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/CategoryBundle/
