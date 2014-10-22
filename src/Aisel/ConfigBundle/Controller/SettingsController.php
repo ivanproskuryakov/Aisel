@@ -28,9 +28,9 @@ class SettingsController extends Controller
     protected $twig = array();
 
     /**
-     * Saves & reads config data
+     * Save & read config data
      *
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function modifyAction()
     {
@@ -56,12 +56,23 @@ class SettingsController extends Controller
         $this->templateVariables['routes'] = $this->getManager()->getRoutes();
         $this->templateVariables['config_name'] = $this->getManager()->getConfigNameLabel($this->get('request')->get('_route'));
         $this->templateVariables['locales'] = $this->getManager()->getLocales();
-        return $this->render($this->template, $this->templateVariables);
+
+        return $this->render($this->template, $this->getTemplateVariables());
+    }
+
+    /**
+     * Pass vars to template and later use
+     *
+     * @return array
+     */
+    protected function getTemplateVariables()
+    {
+        return $this->templateVariables;
     }
 
     /**
      * Repository for config
-     * @return ConfigRepository
+     * @return \Aisel\ConfigBundle\Entity\ConfigRepository
      */
     private function getRepository()
     {
@@ -70,7 +81,7 @@ class SettingsController extends Controller
 
     /**
      * Wrapper function for manager service
-     * @return ConfigManager
+     * @return \Aisel\ConfigBundle\Manager\ConfigManager
      */
     private function getManager()
     {
