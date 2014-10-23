@@ -29,7 +29,6 @@ install:
     - echo "127.0.0.1 aisel.dev" | sudo tee -a /etc/hosts
     - sudo /etc/init.d/apache2 restart
 
-
 before_script:
     # Update composer
     - composer self-update
@@ -46,6 +45,7 @@ before_script:
     - bower install -f
 
 script:
+    - public  bin/phpspec run --stop-on-failure
     - bin/behat --stop-on-failure --suite=api.page
     - bin/behat --stop-on-failure --suite=api.category
     - bin/behat --stop-on-failure --suite=api.navigation
