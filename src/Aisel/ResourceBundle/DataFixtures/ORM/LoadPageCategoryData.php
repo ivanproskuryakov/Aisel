@@ -9,22 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\FixtureBundle\DataFixtures\ORM;
+namespace Aisel\ResourceBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\FixtureBundle\DataFixtures\XMLFixtureData;
-use Aisel\ProductBundle\Entity\Category;
+use Aisel\FixtureBundle\Model\XMLFixture;
+use Aisel\PageBundle\Entity\Category;
 
 /**
- * Product Categories
+ * Page Category fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadProductCategoryData extends XMLFixtureData implements OrderedFixtureInterface
+class LoadPageCategoryData extends XMLFixture implements OrderedFixtureInterface
 {
 
-    protected $fixturesName = 'aisel_product_category.xml';
+    protected $fixturesName = 'aisel_page_category.xml';
 
     /**
      * {@inheritDoc}
@@ -36,6 +36,11 @@ class LoadProductCategoryData extends XMLFixtureData implements OrderedFixtureIn
             $XML = simplexml_load_string($contents);
 
             foreach ($XML->database->table as $table) {
+                $rootCategory = null;
+
+                if ($table->column[2] != 'NULL') {
+                    $rootCategory = $this->getReference('page_category_' . $table->column[2]);
+                }
                 $category = new Category();
                 $category->setLocale($table->column[1]);
                 $category->setTitle($table->column[3]);
@@ -45,13 +50,12 @@ class LoadProductCategoryData extends XMLFixtureData implements OrderedFixtureIn
                 $category->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
                 $category->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
-                if ($table->column[2] != 'NULL') {
-                    $rootCategory = $this->getReference('product_category_' . $table->column[2]);
+                if ($rootCategory) {
                     $category->setParent($rootCategory);
                 }
                 $manager->persist($category);
                 $manager->flush();
-                $this->addReference('product_category_' . $table->column[0], $category);
+                $this->addReference('page_category_' . $table->column[0], $category);
             }
         }
     }
@@ -61,6 +65,6 @@ class LoadProductCategoryData extends XMLFixtureData implements OrderedFixtureIn
      */
     public function getOrder()
     {
-        return 300;
+        return 200;
     }
 }

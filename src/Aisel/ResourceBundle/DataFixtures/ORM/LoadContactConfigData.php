@@ -9,22 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\FixtureBundle\DataFixtures\ORM;
+namespace Aisel\ResourceBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\FixtureBundle\DataFixtures\XMLFixtureData;
-use Aisel\OrderBundle\Entity\Invoice;
+use Aisel\FixtureBundle\Model\XMLFixture;
+use Aisel\ConfigBundle\Entity\Config;
 
 /**
- * Order fixtures
+ * Config fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadInvoiceData extends XMLFixtureData implements OrderedFixtureInterface
+class LoadContactConfigData extends XMLFixture implements OrderedFixtureInterface
 {
-
-    protected $fixturesName = 'aisel_invoice.xml';
+    protected $fixturesName = 'aisel_config_contact.xml';
 
     /**
      * {@inheritDoc}
@@ -34,16 +33,19 @@ class LoadInvoiceData extends XMLFixtureData implements OrderedFixtureInterface
         if (file_exists($this->fixturesFile)) {
             $contents = file_get_contents($this->fixturesFile);
             $XML = simplexml_load_string($contents);
+            $city = null;
 
             foreach ($XML->database->table as $table) {
-                $invoice = new Invoice();
-                $invoice->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                $invoice->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                $manager->persist($invoice);
+
+                $config = new Config();
+                $config->setlocale($table->column[1]);
+                $config->setEntity($table->column[2]);
+                $config->setValue($table->column[3]);
+                $manager->persist($config);
                 $manager->flush();
-                $this->addReference('invoice_' . $table->column[0], $invoice);
             }
         }
+
     }
 
     /**
@@ -51,6 +53,6 @@ class LoadInvoiceData extends XMLFixtureData implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 600;
+        return 900;
     }
 }

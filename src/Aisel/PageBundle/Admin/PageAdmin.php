@@ -88,6 +88,7 @@ class PageAdmin extends Admin
                 'attr' => array('class' => 'form-control')
             ))
             ->add('hidden', null, array('required' => false, 'label' => 'aisel.default.hidden_page'))
+            ->end()
             // TODO: Display only locale filtered categories
             // TODO: Display categories as tree
             ->with('aisel.default.categories')
@@ -104,7 +105,7 @@ class PageAdmin extends Admin
                         return $qb;
                     }, 'empty_value' => $this->trans('aisel.default.no_parent')
             ))
-
+            ->end()
             ->with('aisel.default.meta_data')
             ->add('metaUrl', 'text', array('label' => 'aisel.default.url',
                 'required' => true,
@@ -117,7 +118,7 @@ class PageAdmin extends Admin
             ->add('metaKeywords', 'textarea', array(
                 'label' => 'aisel.default.meta_keywords',
                 'required' => false))
-
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -200,13 +201,16 @@ class PageAdmin extends Admin
             ->add('id', null, array('label' => 'aisel.default.id'))
             ->add('content', null, array('label' => 'aisel.default.content'))
             ->add('status', 'boolean', array('label' => 'aisel.default.status'))
+            ->end()
             ->with('aisel.default.categories')
             ->add('categories', 'tree', array('label' => 'aisel.default.categories'))
+            ->end()
             ->with('aisel.default.meta_data')
             ->add('metaUrl', null, array('label' => 'aisel.default.url'))
             ->add('metaTitle', null, array('label' => 'aisel.default.meta_title'))
             ->add('metaDescription', null, array('label' => 'aisel.default.meta_description'))
             ->add('metaKeywords', null, array('label' => 'aisel.default.meta_keywords'))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
             ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));

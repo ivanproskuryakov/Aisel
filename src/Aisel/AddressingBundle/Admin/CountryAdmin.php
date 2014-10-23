@@ -40,6 +40,7 @@ class CountryAdmin extends Admin
             ->add('iso3', null, array('label' => 'aisel.addressing.iso3'))
             ->add('shortName', null, array('label' => 'aisel.addressing.short_name'))
             ->add('cctld', null, array('label' => 'aisel.addressing.cctld'))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
             ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
@@ -70,6 +71,7 @@ class CountryAdmin extends Admin
             ->add('numcode', 'text', array('label' => 'aisel.addressing.numcode', 'required' => true))
             ->add('callingCode', 'text', array('label' => 'aisel.addressing.calling_code', 'required' => true))
             ->add('unMember', null, array('label' => 'aisel.addressing.un_member', 'required' => true))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',

@@ -39,9 +39,11 @@ class FrontendUserAdmin extends Admin
             ->add('id', null, array('label' => 'aisel.default.id'))
             ->add('username', null, array('label' => 'aisel.frontenduser.username'))
             ->add('email', null, array('label' => 'aisel.frontenduser.email'))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
-            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'))
+            ->end();
     }
 
     /**
@@ -83,6 +85,7 @@ class FrontendUserAdmin extends Admin
                     'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
                 ))
             ->add('enabled', null, array('label' => 'aisel.default.enabled','required' => false))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',

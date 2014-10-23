@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\FixtureBundle\DataFixtures\ORM;
+namespace Aisel\ResourceBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\FixtureBundle\DataFixtures\XMLFixtureData;
+use Aisel\FixtureBundle\Model\XMLFixture;
 use Aisel\OrderBundle\Entity\Order;
 
 /**
@@ -21,7 +21,7 @@ use Aisel\OrderBundle\Entity\Order;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadOrderData extends XMLFixtureData implements OrderedFixtureInterface
+class LoadOrderData extends XMLFixture implements OrderedFixtureInterface
 {
 
     protected $fixturesName = 'aisel_order.xml';

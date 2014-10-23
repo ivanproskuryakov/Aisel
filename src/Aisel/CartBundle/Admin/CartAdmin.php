@@ -53,6 +53,7 @@ class CartAdmin extends Admin
             ->add('products', null,
                 array('label' => 'aisel.cart.products', 'expanded' => true,
                     'by_reference' => false, 'multiple' => true))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -110,6 +111,7 @@ class CartAdmin extends Admin
             ->with('aisel.default.information')
             ->add('id', null, array('label' => 'aisel.default.id'))
             ->add('products', null, array('label' => 'aisel.cart.products'))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
             ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));

@@ -9,21 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\FixtureBundle\DataFixtures\ORM;
+namespace Aisel\ResourceBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\FixtureBundle\DataFixtures\XMLFixtureData;
-use Aisel\CartBundle\Entity\Cart;
+use Aisel\FixtureBundle\Model\XMLFixture;
+use Aisel\ConfigBundle\Entity\Config;
 
 /**
- * Cart fixtures
+ * Config fixtures
+ *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadCartData extends XMLFixtureData implements OrderedFixtureInterface
+class LoadAdminConfigData extends XMLFixture implements OrderedFixtureInterface
 {
 
-    protected $fixturesName = 'aisel_cart.xml';
+    protected $fixturesName = 'aisel_config_admin.xml';
 
     /**
      * {@inheritDoc}
@@ -33,16 +34,19 @@ class LoadCartData extends XMLFixtureData implements OrderedFixtureInterface
         if (file_exists($this->fixturesFile)) {
             $contents = file_get_contents($this->fixturesFile);
             $XML = simplexml_load_string($contents);
+            $city = null;
 
             foreach ($XML->database->table as $table) {
-                $cart = new Cart();
-                $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                $manager->persist($cart);
+
+                $config = new Config();
+                $config->setlocale($table->column[1]);
+                $config->setEntity($table->column[2]);
+                $config->setValue($table->column[3]);
+                $manager->persist($config);
                 $manager->flush();
             }
-            $this->addReference('cart_' . $table->column[0], $cart);
         }
+
     }
 
     /**
@@ -50,6 +54,6 @@ class LoadCartData extends XMLFixtureData implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 200;
+        return 900;
     }
 }

@@ -60,7 +60,6 @@ class ProductAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('name', 'text', array('label' => 'aisel.default.name', 'attr' => array('class' => 'form-control')))
@@ -82,7 +81,7 @@ class ProductAdmin extends Admin
                     'required' => false,
                     'attr' => array('class' => 'field-content')
                 ))
-
+            ->end()
             ->with('aisel.product.pricing')
             ->add('price', 'money', array('label' => 'aisel.product.price', 'attr' => array('class' => 'form-control')))
             ->add('priceSpecial', 'money', array('label' => 'aisel.product.special_price', 'required' => false, 'attr' => array()))
@@ -97,18 +96,19 @@ class ProductAdmin extends Admin
             )
             ->add('newFrom', 'datetime', array('label' => 'aisel.default.new_from', 'required' => false, 'attr' => array()))
             ->add('newTo', 'datetime', array('label' => 'aisel.default.new_to', 'required' => false, 'attr' => array()))
-
+            ->end()
             ->with('aisel.default.media')
             ->add('mainImage', 'iphp_file',
                 array('label' => 'aisel.product.main_image',
                     'required' => false,
                     'attr' => array('class' => 'mainImage')))
+            ->end()
             ->with('aisel.default.categories')
             ->add('categories', 'aisel_gedmotree', array('expanded' => true,
                 'multiple' => true,
                 'class' => 'Aisel\ProductBundle\Entity\Category',
             ))
-
+            ->end()
             ->with('aisel.product.stock')
             ->add('manageStock', 'choice', array('choices' => array(
                 '0' => $this->trans('aisel.default.no'),
@@ -127,7 +127,7 @@ class ProductAdmin extends Admin
             ->add('qty', 'integer', array(
                 'label' => 'aisel.default.qty',
                 'attr' => array('class' => 'form-control')))
-
+            ->end()
             ->with('aisel.default.meta_data')
             ->add('metaUrl', 'text', array('label' => 'aisel.default.url',
                 'required' => true,
@@ -135,7 +135,7 @@ class ProductAdmin extends Admin
             ->add('metaTitle', 'text', array('label' => 'aisel.default.title', 'required' => false))
             ->add('metaDescription', 'textarea', array('label' => 'aisel.default.description', 'required' => false))
             ->add('metaKeywords', 'textarea', array('label' => 'aisel.default.keywords', 'required' => false))
-
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -145,7 +145,6 @@ class ProductAdmin extends Admin
                 'label' => 'aisel.default.updated_at',
                 'required' => false,
                 'attr' => array()))
-
             ->end();
 
     }
@@ -211,16 +210,20 @@ class ProductAdmin extends Admin
             ->add('description', null, array('label' => 'aisel.default.description'))
             ->add('descriptionShort', null, array('label' => 'aisel.default.short_description'))
             ->add('status', 'boolean', array('label' => 'aisel.default.id'))
+            ->end()
             ->with('aisel.default.categories')
             ->add('categories', 'tree', array('label' => 'aisel.default.categories'))
+            ->end()
             ->with('aisel.default.meta_data')
             ->add('metaUrl', null, array('label' => 'aisel.default.url'))
             ->add('metaTitle', null, array('label' => 'aisel.default.meta_title'))
             ->add('metaDescription', null, array('label' => 'aisel.default.meta_description'))
             ->add('metaKeywords', null, array('label' => 'aisel.default.meta_keywords'))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
-            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
+            ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'))
+            ->end();
     }
 
     /**

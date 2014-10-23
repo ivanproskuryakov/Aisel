@@ -38,6 +38,7 @@ class CityAdmin extends Admin
             ->with('aisel.default.general')
             ->add('id', null, array('label' => 'aisel.default.id'))
             ->add('name', null, array('label' => 'aisel.default.name'))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
             ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
@@ -61,6 +62,7 @@ class CityAdmin extends Admin
             ->add('name', 'text', array('label' => 'aisel.default.name', 'required' => true))
             ->add('region', null, array('label' => 'aisel.addressing.region', 'attr' => array('class' => 'form-control')))
             ->add('country', null, array('label' => 'aisel.addressing.country','attr' => array('class' => 'form-control')))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',

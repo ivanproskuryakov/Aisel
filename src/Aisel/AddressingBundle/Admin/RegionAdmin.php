@@ -37,6 +37,7 @@ class RegionAdmin extends Admin
         $showMapper
             ->with('aisel.default.general')
             ->add('name')
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
             ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));
@@ -59,6 +60,7 @@ class RegionAdmin extends Admin
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('name', 'text', array('label' => 'aisel.default.name', 'required' => true))
             ->add('country', null, array('label' => 'aisel.addressing.country','attr' => array('class' => 'form-control')))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',

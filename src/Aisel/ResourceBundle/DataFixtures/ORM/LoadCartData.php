@@ -9,21 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\FixtureBundle\DataFixtures\ORM;
+namespace Aisel\ResourceBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\FixtureBundle\DataFixtures\XMLFixtureData;
-use Aisel\ConfigBundle\Entity\Config;
+use Aisel\FixtureBundle\Model\XMLFixture;
+use Aisel\CartBundle\Entity\Cart;
 
 /**
- * Config fixtures
- *
+ * Cart fixtures
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadContactConfigData extends XMLFixtureData implements OrderedFixtureInterface
+class LoadCartData extends XMLFixture implements OrderedFixtureInterface
 {
-    protected $fixturesName = 'aisel_config_contact.xml';
+
+    protected $fixturesName = 'aisel_cart.xml';
 
     /**
      * {@inheritDoc}
@@ -33,19 +33,16 @@ class LoadContactConfigData extends XMLFixtureData implements OrderedFixtureInte
         if (file_exists($this->fixturesFile)) {
             $contents = file_get_contents($this->fixturesFile);
             $XML = simplexml_load_string($contents);
-            $city = null;
 
             foreach ($XML->database->table as $table) {
-
-                $config = new Config();
-                $config->setlocale($table->column[1]);
-                $config->setEntity($table->column[2]);
-                $config->setValue($table->column[3]);
-                $manager->persist($config);
+                $cart = new Cart();
+                $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $manager->persist($cart);
                 $manager->flush();
             }
+            $this->addReference('cart_' . $table->column[0], $cart);
         }
-
     }
 
     /**
@@ -53,6 +50,6 @@ class LoadContactConfigData extends XMLFixtureData implements OrderedFixtureInte
      */
     public function getOrder()
     {
-        return 900;
+        return 200;
     }
 }

@@ -93,6 +93,7 @@ class AbstractCategoryAdmin extends Admin
                 'label' => 'aisel.default.status',
                 'attr' => array('class' => 'form-control')
             ))
+            ->end()
             ->with('aisel.default.categories')
             // TODO: Display only locale filtered categories
             // TODO: Display categories as tree
@@ -112,12 +113,14 @@ class AbstractCategoryAdmin extends Admin
                         return $qb;
                     }, 'empty_value' => $this->trans('aisel.default.no_parent')
             ))
+            ->end()
             ->with('aisel.default.meta_data')
             ->add('metaUrl', 'text', array('label' => 'aisel.default.url', 'required' => true,
                 'help' => $this->trans('aisel.default.url_must_be_unique')))
             ->add('metaTitle', 'text', array('label' => 'aisel.default.meta_title', 'required' => false))
             ->add('metaDescription', 'textarea', array('label' => 'aisel.default.meta_description', 'required' => false))
             ->add('metaKeywords', 'textarea', array('label' => 'aisel.default.meta_keywords', 'required' => false))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -178,11 +181,13 @@ class AbstractCategoryAdmin extends Admin
             ->add('title', 'text', array('label' => 'aisel.default.title'))
             ->add('locale', 'text', array('label' => 'aisel.default.locale'))
             ->add('status', 'boolean', array('label' => 'aisel.default.status'))
+            ->end()
             ->with('aisel.default.meta_data')
             ->add('metaUrl', null, array('label' => 'aisel.default.url'))
             ->add('metaTitle', null, array('label' => 'aisel.default.meta_title'))
             ->add('metaDescription', null, array('label' => 'aisel.default.meta_description'))
             ->add('metaKeywords', null, array('label' => 'aisel.default.meta_keywords'))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
             ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));

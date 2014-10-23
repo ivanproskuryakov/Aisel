@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\FixtureBundle\DataFixtures;
+namespace Aisel\FixtureBundle\Model;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -17,11 +17,11 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Abstract fixtures class for XML fixturex
+ * Abstract fixtures class for XML fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-abstract class XMLFixtureData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+abstract class XMLFixture extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
 
     protected $fixturesName = null;
@@ -35,11 +35,10 @@ abstract class XMLFixtureData extends AbstractFixture implements OrderedFixtureI
     {
         $this->fixturesFile =
             dirname($container->getParameter('kernel.root_dir')) .
-            $container->getParameter('application.fixtures.xml.path') . DIRECTORY_SEPARATOR .
+            $container->getParameter('aisel_fixture.xml.path') . DIRECTORY_SEPARATOR .
             $this->fixturesName;
 
         $this->container = $container;
-        $this->em = $container->get('doctrine.orm.entity_manager');
     }
 
 }

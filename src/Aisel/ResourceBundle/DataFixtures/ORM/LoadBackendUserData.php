@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\FixtureBundle\DataFixtures\ORM;
+namespace Aisel\ResourceBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\FixtureBundle\DataFixtures\XMLFixtureData;
+use Aisel\FixtureBundle\Model\XMLFixture;
 
 /**
  * Backend users fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadBackendUserData extends XMLFixtureData implements OrderedFixtureInterface
+class LoadBackendUserData extends XMLFixture implements OrderedFixtureInterface
 {
     protected $fixturesName = 'aisel_user_backend.xml';
 

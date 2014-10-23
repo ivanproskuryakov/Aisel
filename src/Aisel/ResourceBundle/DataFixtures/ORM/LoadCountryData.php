@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\FixtureBundle\DataFixtures\ORM;
+namespace Aisel\ResourceBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Aisel\FixtureBundle\DataFixtures\XMLFixtureData;
+use Aisel\FixtureBundle\Model\XMLFixture;
 use Aisel\AddressingBundle\Entity\Country;
 
 /**
@@ -22,7 +22,7 @@ use Aisel\AddressingBundle\Entity\Country;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadCountryData extends XMLFixtureData implements OrderedFixtureInterface
+class LoadCountryData extends XMLFixture implements OrderedFixtureInterface
 {
 
     protected $fixturesName = 'aisel_country.xml';

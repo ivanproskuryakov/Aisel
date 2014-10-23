@@ -62,6 +62,7 @@ class NavigationAdmin extends Admin
                 'label' => 'aisel.default.status',
                 'attr' => array('class' => 'form-control')
             ))
+            ->end()
             ->with('aisel.navigation.menu')
             ->add('parent', 'aisel_gedmotree', array('expanded' => true, 'multiple' => false,
                 'class' => 'Aisel\NavigationBundle\Entity\Menu',
@@ -74,6 +75,7 @@ class NavigationAdmin extends Admin
                         return $qb;
                     }, 'empty_value' => $this->trans('aisel.default.no_parent')
             ))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -114,6 +116,7 @@ class NavigationAdmin extends Admin
             ->add('locale', null, array('label' => 'aisel.default.locale'))
             ->add('metaUrl', null, array('label' => 'aisel.default.url'))
             ->add('status', 'boolean', array('label' => 'aisel.default.id'))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
             ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'));

@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\FixtureBundle\DataFixtures\ORM;
+namespace Aisel\ResourceBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\FixtureBundle\DataFixtures\XMLFixtureData;
+use Aisel\FixtureBundle\Model\XMLFixture;
 use Aisel\NavigationBundle\Entity\Menu;
 
 /**
@@ -21,7 +21,7 @@ use Aisel\NavigationBundle\Entity\Menu;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadMenuTopData extends XMLFixtureData implements OrderedFixtureInterface
+class LoadMenuTopData extends XMLFixture implements OrderedFixtureInterface
 {
 
     protected $fixturesName = 'aisel_menu_top.xml';

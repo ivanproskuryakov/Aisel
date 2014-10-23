@@ -45,6 +45,7 @@ class AddressAdmin extends Admin
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('phone', 'text', array('label' => 'aisel.addressing.phone', 'attr' => array()))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -136,6 +137,7 @@ class AddressAdmin extends Admin
             ->add('region', null, array('label' => 'aisel.addressing.region'))
             ->add('city', null, array('label' => 'aisel.addressing.city'))
             ->add('frontenduser', null, array('label' => 'aisel.default.user'))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', null, array('label' => 'aisel.default.created_at'))
             ->add('updatedAt', null, array('label' => 'aisel.default.updated_at'))

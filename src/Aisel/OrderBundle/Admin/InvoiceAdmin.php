@@ -50,6 +50,7 @@ class InvoiceAdmin extends Admin
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true,
                 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -59,7 +60,6 @@ class InvoiceAdmin extends Admin
                 'label' => 'aisel.default.updated_at',
                 'required' => false,
                 'attr' => array()))
-
             ->end();
 
     }
@@ -107,6 +107,7 @@ class InvoiceAdmin extends Admin
         $showMapper
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',

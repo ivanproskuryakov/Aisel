@@ -53,6 +53,7 @@ class OrderAdmin extends Admin
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('status', 'text', array('label' => 'aisel.default.status', 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
@@ -119,6 +120,7 @@ class OrderAdmin extends Admin
                 'label' => 'aisel.default.status',
                 'attr' => array('class' => 'form-control')
             ))
+            ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
                 'label' => 'aisel.default.created_at',
