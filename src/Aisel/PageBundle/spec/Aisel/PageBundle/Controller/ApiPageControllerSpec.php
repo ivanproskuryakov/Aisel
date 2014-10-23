@@ -9,23 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\ConfigBundle\Controller;
+namespace spec\Aisel\PageBundle\Controller;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class SettingsControllerSpec extends ObjectBehavior
+class ApiPageControllerSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('\Aisel\ConfigBundle\Controller\SettingsController');
-    }
-
-    function it_is_of_type_container_aware()
-    {
-        $this->shouldBeAnInstanceOf('Symfony\Component\DependencyInjection\ContainerAware');
+        $this->shouldHaveType('\Aisel\PageBundle\Controller\ApiPageController');
     }
 
 }

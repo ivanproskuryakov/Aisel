@@ -9,23 +9,23 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\ConfigBundle\Controller;
+namespace spec\Aisel\OrderBundle\Entity;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class SettingsControllerSpec extends ObjectBehavior
+class InvoiceSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('\Aisel\ConfigBundle\Controller\SettingsController');
+        $this->shouldHaveType('Aisel\OrderBundle\Entity\Invoice');
     }
 
-    function it_is_of_type_container_aware()
+    function it_should_not_have_id()
     {
-        $this->shouldBeAnInstanceOf('Symfony\Component\DependencyInjection\ContainerAware');
+        $this->getId()->shouldReturn(null);
     }
 
 }

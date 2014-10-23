@@ -1,8 +1,47 @@
 formatter.name: pretty
 suites:
-    AiselConfigBundle:
+    AiselAddressingBundle:
         namespace: Aisel
-        spec_path: src/Aisel/ConfigBundle/
+        spec_path: src/Aisel/AddressingBundle/
+    AiselBackendUserBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/BackendUserBundle/
+    AiselCartBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/CartBundle/
+    AiselCartBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/CartBundle/
     AiselCategoryBundle:
         namespace: Aisel
         spec_path: src/Aisel/CategoryBundle/
+    AiselConfigBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/ConfigBundle/
+    AiselContactBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/ContactBundle/
+    AiselFrontendUserBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/FrontendUserBundle/
+    AiselNavigationBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/NavigationBundle/
+    AiselOrderBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/OrderBundle/
+    AiselPageBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/PageBundle/
+    AiselProductBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/ProductBundle/
+    AiselResourceBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/ResourceBundle/
+    AiselSearchBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/SearchBundle/
+    AiselSettingsBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/SettingsBundle/
