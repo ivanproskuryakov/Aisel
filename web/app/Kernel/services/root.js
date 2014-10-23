@@ -19,13 +19,13 @@ define(['app'], function (app) {
                         return $http.get(url);
                     },
                     getCategoryTree: function () {
-                        var locale = location.pathname.substr(1, 2);
+                        var locale = Aisel.getLocale();
                         var url = API_URL + '/' + locale + '/page/category/tree.json';
                         // console.log(url);
                         return $http.get(url);
                     },
                     getMenu: function () {
-                        var locale = location.pathname.substr(1, 2);
+                        var locale = Aisel.getLocale();
                         var url = API_URL + '/' + locale + '/navigation/menu.json';
                         console.log(url);
                         return $http.get(url);
