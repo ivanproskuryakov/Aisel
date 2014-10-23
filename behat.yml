@@ -8,13 +8,13 @@ default:
                     selenium2: ~
             browser_name: firefox
             show_auto:    false
-            base_url: 'http://http://aisel.dev/' # this will be the url of our application
+            base_url: 'http://ecommerce.aisel.dev/' # this will be the url of our application
         Behat\Symfony2Extension: ~
 
     suites:
         api.settings:
             contexts:
-                - Aisel\AdminBundle\Features\Context\FeatureContext
+                - Aisel\SettingsBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.settings"
         api.page:

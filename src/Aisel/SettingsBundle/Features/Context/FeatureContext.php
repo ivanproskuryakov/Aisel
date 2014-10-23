@@ -1,6 +1,6 @@
 <?php
 
-namespace Aisel\AdminBundle\Features\Context;
+namespace Aisel\SettingsBundle\Features\Context;
 
 use Aisel\ResourceBundle\Features\Context\DefaultContext;
 
@@ -18,7 +18,7 @@ class FeatureContext extends DefaultContext
      */
     public function scriptAccessRoute()
     {
-        $this->getSession()->visit($this->generateUrl('api_aisel_config'));
+        $this->getSession()->visit($this->generateUrl('api_aisel_settings', array('locale'=>'en')));
         $this->assertSession()->statusCodeEquals(200);
     }
 

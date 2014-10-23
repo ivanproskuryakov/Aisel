@@ -15,7 +15,7 @@ class PageCategoryContext extends DefaultContext
      */
     public function scriptAccessRoute()
     {
-        $this->getSession()->visit($this->generateUrl('api_aisel_page_categorylist'));
+        $this->getSession()->visit($this->generateUrl('api_aisel_page_categorylist', array('locale'=>'en')));
         $this->assertSession()->statusCodeEquals(200);
     }
 
