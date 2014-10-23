@@ -13,37 +13,51 @@ default:
 
     suites:
         api.settings:
+            paths:
+                features: src/Aisel/SettingsBundle
             contexts:
                 - Aisel\SettingsBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.settings"
         api.page:
+            paths:
+                features: src/Aisel/PageBundle
             contexts:
                 - Aisel\PageBundle\Features\Context\PageContext
                 - Aisel\PageBundle\Features\Context\PageCategoryContext
             filters:
                 tags: "@api.page"
         api.product:
+            paths:
+                features: src/Aisel/ProductBundle
             contexts:
                 - Aisel\ProductBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.product"
         api.navigation:
+            paths:
+                features: src/Aisel/NavigationBundle
             contexts:
                 - Aisel\NavigationBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.navigation"
         api.addressing:
+            paths:
+                features: src/Aisel/AddressingBundle
             contexts:
                 - Aisel\AddressingBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.addressing"
         api.cart:
+            paths:
+                features: src/Aisel/CartBundle
             contexts:
                 - Aisel\CartBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.cart"
         api.order:
+            paths:
+                features: src/Aisel/OrderBundle
             contexts:
                 - Aisel\OrderBundle\Features\Context\FeatureContext
             filters:
