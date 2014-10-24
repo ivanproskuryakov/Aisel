@@ -133,5 +133,5 @@ License can be found [here](https://github.com/ivanproskuryakov/Aisel/blob/maste
 Authors
 -----------------------------------
 
-Part of Aisel package, was originally created by [Ivan Proskuryakov](http://www.magazento.com).
+Part of Aisel package, was originally created by [Ivan Proskuryakov](https://github.com/ivanproskuryakov).
 List of [contributors](https://github.com/ivanproskuryakov/AiselConfigBundle/graphs/contributors).

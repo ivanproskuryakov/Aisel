@@ -35,16 +35,18 @@ class ApiController extends Controller
             'message' => $request->query->get('message'),
         );
 
-        $response = $this->container->get("aisel.contact.manager")->sendMail($params);
+        if ($params['name'] && $params['name'] && $params['name'] && $params['name']) {
+            $response = $this->container->get("aisel.contact.manager")->sendMail($params);
+            $status = array('message' => 'Something went wrong, please get in contact with us directly!');
 
-        // Set default error message, if something went wrong;
-        $status = array('message' => 'Someting went wrong, please get in contact with us directly!');
-        if ($response == 1) {
-            $status = array('status' => true, 'message' => 'Your message has been sent!');
+            if ($response == 1) {
+                $status = array('status' => true, 'message' => 'Your message has been sent!');
+            } else {
+                $status = array('status' => false, 'message' => $response);
+            }
         } else {
-            $status = array('message' => $response);
+            $status = array('status' => false, 'message' => 'Empty params in your request');
         }
-
         return $status;
 
     }

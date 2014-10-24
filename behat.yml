@@ -62,3 +62,18 @@ default:
                 - Aisel\OrderBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.order"
+
+        api.contact:
+            paths:
+                features: src/Aisel/ContactBundle
+            contexts:
+                - Aisel\ContactBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.contact"
+        api.frontenduser:
+            paths:
+                features: src/Aisel/FrontendUserBundle
+            contexts:
+                - Aisel\FrontendUserBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.frontenduser"

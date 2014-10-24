@@ -14,7 +14,7 @@ namespace Aisel\FixtureBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Aisel Category bundle. Abstract classes and resources
+ * Aisel Fixture Bundle
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

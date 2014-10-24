@@ -114,8 +114,8 @@ License can be found [here](https://github.com/ivanproskuryakov/Aisel/blob/maste
 Authors
 -----------------------------------
 
-Aisel was originally created by [Ivan Proskuryakov](http://www.magazento.com).
-List of [contributors](https://github.com/ivanproskuryakov/Aisel/graphs/contributors).
+Part of Aisel package, was originally created by [Ivan Proskuryakov](https://github.com/ivanproskuryakov).
+List of [contributors](https://github.com/ivanproskuryakov/AiselConfigBundle/graphs/contributors).
 
 BTC Donations
 -----------------------------------
