@@ -23,9 +23,9 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
      * @var array
      */
     protected $actions = array(
-        'viewing'  => 'show',
+        'viewing' => 'show',
         'creation' => 'create',
-        'editing'  => 'update',
+        'editing' => 'update',
         'building' => 'build',
     );
 
@@ -55,7 +55,7 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
      * Find one resource by criteria.
      *
      * @param string $type
-     * @param array  $criteria
+     * @param array $criteria
      *
      * @return object
      *
@@ -65,8 +65,7 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
     {
         $resource = $this
             ->getRepository($type)
-            ->findOneBy($criteria)
-        ;
+            ->findOneBy($criteria);
 
         if (null === $resource) {
             throw new \InvalidArgumentException(
@@ -140,8 +139,8 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
     /**
      * Generate url.
      *
-     * @param string  $route
-     * @param array   $parameters
+     * @param string $route
+     * @param array $parameters
      * @param Boolean $absolute
      *
      * @return string
@@ -151,5 +150,43 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
         return $this->getService('router')->generate($route, $parameters, $absolute);
     }
 
+    /**
+     * Presses button with specified id|name|title|alt|value.
+     */
+    protected function pressButton($button)
+    {
+        $this->getSession()->getPage()->pressButton($button);
+    }
+
+    /**
+     * Fills in form field with specified id|name|label|value.
+     */
+    protected function fillField($field, $value)
+    {
+        $this->getSession()->getPage()->fillField($field, $value);
+    }
+
+    /**
+     * Find element by css class name
+     *
+     * @param string $value
+     *
+     * @return \Behat\Mink\Element\NodeElement
+     */
+    protected function findByCSS($value)
+    {
+        return $this->getSession()->getPage()->find('css', $value);
+    }
+
+    /**
+     * Login as backend user
+     */
+    protected function doBackendLogin()
+    {
+        $this->getSession()->visit($this->generateUrl('admin_login', array('_locale' => 'en')));
+        $this->fillField('_username', 'backenduser');
+        $this->fillField('_password', 'backenduser');
+        $this->pressButton('_submit');
+    }
 
 }

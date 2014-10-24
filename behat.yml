@@ -41,13 +41,12 @@ default:
                 - Aisel\NavigationBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.navigation"
-        api.addressing:
+        addressing:
             paths:
                 features: src/Aisel/AddressingBundle
             contexts:
-                - Aisel\AddressingBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.addressing"
+                - Aisel\AddressingBundle\Features\Context\Api\FeatureContext
+                - Aisel\AddressingBundle\Features\Context\Admin\FeatureContext
         api.cart:
             paths:
                 features: src/Aisel/CartBundle
