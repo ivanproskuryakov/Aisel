@@ -46,7 +46,7 @@ before_script:
 
 script:
     - bin/phpspec run --stop-on-failure
-    - bin/behat --stop-on-failure --suite=api.addressing
+    - bin/behat --stop-on-failure --suite=addressing
     - bin/behat --stop-on-failure --suite=api.cart
     - bin/behat --stop-on-failure --suite=api.navigation
     - bin/behat --stop-on-failure --suite=api.order

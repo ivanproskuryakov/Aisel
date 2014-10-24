@@ -5,7 +5,7 @@ namespace Aisel\AddressingBundle\Features\Context\Api;
 use Aisel\ResourceBundle\Features\Context\DefaultContext;
 
 /**
- * Behat context class.
+ * Behat for city API
  */
 class FeatureContext extends DefaultContext
 {

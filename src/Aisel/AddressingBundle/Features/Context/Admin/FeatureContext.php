@@ -2,18 +2,18 @@
 
 namespace Aisel\AddressingBundle\Features\Context\Admin;
 
-use Aisel\ResourceBundle\Features\Context\DefaultContext;
+use Aisel\ResourceBundle\Features\Context\SonataAdminContext;
 
 /**
- * Behat context class.
+ * Behat for city CRUD
  */
-class FeatureContext extends DefaultContext
+class FeatureContext extends SonataAdminContext
 {
 
     /**
      * @When /^I'm logged in as backend user$/
      */
-    public function weAreBackendUser()
+    public function IamBackendUser()
     {
         $this->doBackendLogin();
     }
@@ -30,10 +30,37 @@ class FeatureContext extends DefaultContext
     /**
      * @Given /^I should see cities$/
      */
-    public function pageWithCityList()
+    public function showCityList()
     {
-        $el = $this->findByCSS('.sonata-ba-list');
-        assertNotEmpty($el->getText());
+        $element = $this->showList();
+        assertNotEmpty($element->getText());
+    }
+
+    /**
+     * @Given /^I click on "Show" button and see details$/
+     */
+    public function showCity()
+    {
+        $element = $this->showButtonClick();
+        assertNotEmpty($element->getText());
+    }
+
+    /**
+     * @Given /^I click on "Edit" button and see edit form$/
+     */
+    public function editCity()
+    {
+        $element = $this->editButtonClick();
+        assertNotEmpty($element->getText());
+    }
+
+    /**
+     * @Given /^I click on "Delete" button and see confirmation$/
+     */
+    public function deleteCity()
+    {
+        $element = $this->deleteButtonClick();
+        assertNotEmpty($element->getText());
     }
 
 }
