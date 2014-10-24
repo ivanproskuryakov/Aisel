@@ -8,9 +8,9 @@ About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=mast
 
 Aisel is open-source CMS for highload projects based on combination of Symfony2, RESTAPI and AngularJS
 
-Project website: http://aisel.co/<br/>
-Demo frontend: http://ecommerce.aisel.co/en/ [frontenduser/frontenduser]<br/>
-Demo administration: http://ecommerce.aisel.co/administration/en/ [backenduser/backenduser]<br/>
+Project website: `http://aisel.co/`<br/>
+Demo frontend: `http://ecommerce.aisel.co/en/` [frontenduser/frontenduser]<br/>
+Demo administration: `http://ecommerce.aisel.co/administration/en/` [backenduser/backenduser]<br/>
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
 
@@ -50,10 +50,8 @@ Linux users:<br/>
 sudo chown -R www-data:www-data  app/cache app/logs
 ```
 
-
-
-Once this steps is done you will be able to access backend, similar to example bellow:
-http://ecommmerce.aisel.dev/en/administration/<br/>
+Once this steps is done you will be able to access the backend:<br/>
+`http://ecommmerce.aisel.dev/en/administration/`
 
 
 [Behat](http://behat.org) tests
@@ -64,6 +62,13 @@ Run Behat using the following command to test backend:
 ```bash
 $ bin/behat
 ```
+
+[PHPSpec](http://phpspec.net/) tests
+-----------------------------------
+````
+cd Symfony
+bin/phpspec run
+````
 
 [Karma](http://karma-runner.github.io/) tests
 -----------------------------------
@@ -83,12 +88,6 @@ Karma e2e testing:
 $ grunt karma:e2e
 ```
 
-PHPUnit tests
------------------------------------
-````
-cd Symfony
-php phpunit.phar -c app/
-````
 
 Speed
 -----------------------------------
