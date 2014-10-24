@@ -29,6 +29,7 @@ class ApiCityController extends Controller
      */
     public function cityListAction(Request $request)
     {
+        // TODO: finish addressing API functionality
         $cityList = true;
         return $cityList;
     }
@@ -38,6 +39,7 @@ class ApiCityController extends Controller
      */
     public function cityDetailsAction($id)
     {
+        // TODO: finish addressing API functionality
         $cityDetails = $id;
         return $cityDetails;
     }

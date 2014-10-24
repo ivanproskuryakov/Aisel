@@ -29,6 +29,7 @@ class ApiCategoryController extends Controller
      */
     public function categoryListAction(Request $request)
     {
+        // TODO: finish with category list
         $categoryList = false;
         return $categoryList;
     }
@@ -49,6 +50,7 @@ class ApiCategoryController extends Controller
      */
     public function categoryViewAction($urlKey)
     {
+        // TODO: finish with category list
         $category = false;
         return $category;
     }

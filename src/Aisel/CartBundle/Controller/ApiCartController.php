@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Frontend Addressing Cities REST API controller
+ * Frontend API controller to for Cart CRUD
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -29,6 +29,7 @@ class ApiCartController extends Controller
      */
     public function cartDetailsAction(Request $request)
     {
+        // TODO: implement cart functionality
         $cart = false;
         return $cart;
     }

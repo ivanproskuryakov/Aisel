@@ -1,6 +1,6 @@
 <?php
 
-namespace Aisel\ProductBundle\Features\Context;
+namespace Aisel\SearchBundle\Features\Context;
 
 use Aisel\ResourceBundle\Features\Context\DefaultContext;
 
@@ -11,11 +11,11 @@ class FeatureContext extends DefaultContext
 {
 
     /**
-     * @When /^Script access api_aisel_productlist route$/
+     * @When /^Script access api_aisel_search route$/
      */
     public function scriptAccessRoute()
     {
-        $this->getSession()->visit($this->generateUrl('api_aisel_productlist'));
+        $this->getSession()->visit($this->generateUrl('api_aisel_search'));
         $this->assertSession()->statusCodeEquals(200);
     }
 

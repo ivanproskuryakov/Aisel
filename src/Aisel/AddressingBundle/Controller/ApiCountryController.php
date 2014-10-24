@@ -29,6 +29,7 @@ class ApiCountryController extends Controller
      */
     public function countryListAction(Request $request)
     {
+        // TODO: finish addressing API functionality
         $countryList = true;
         return $countryList;
     }
@@ -38,6 +39,7 @@ class ApiCountryController extends Controller
      */
     public function countryDetailsAction($id)
     {
+        // TODO: finish addressing API functionality
         $countryDetails = $id;
         return $countryDetails;
     }

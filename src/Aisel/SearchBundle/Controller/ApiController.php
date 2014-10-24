@@ -47,13 +47,13 @@ class ApiController extends Controller
             'orderby' => $request->get('orderby')
         );
 
+        if (!$params['query']) return false;
+
         if ($request->get('user') && $this->isAuthenticated()) {
             $userid = $this->get('security.context')->getToken()->getUser()->getId();
             $params['userid'] = $userid;
         }
-
         $searchResult = $this->container->get("aisel.search.manager")->search($params);
-
         return $searchResult;
 
     }

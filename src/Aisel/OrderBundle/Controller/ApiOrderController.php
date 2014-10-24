@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Frontend Addressing Cities REST API controller
+ * Frontend REST API for Order entities
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -29,6 +29,7 @@ class ApiOrderController extends Controller
      */
     public function orderListAction(Request $request)
     {
+        // TODO: finish with order list
         $order = false;
         return $order;
     }
@@ -39,6 +40,7 @@ class ApiOrderController extends Controller
      */
     public function orderViewByIdAction(Request $request)
     {
+        // TODO: finish with order view
         $order = false;
         return $order;
     }

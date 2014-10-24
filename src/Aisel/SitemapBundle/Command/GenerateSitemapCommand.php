@@ -45,24 +45,22 @@ EOT
         $output->writeln(sprintf('Sitemap generator started ...'));
         $urls = array();
 
-        //Homepage
-        $urls[] = '/#!/';
+        // Homepage
+        $urls[] = '/';
 
-        //Pages
-        $urls[] = '/#!/pages/';
+        // Pages
         $pages = $this->getContainer()->get('aisel.page.manager')->getEnabledPages();
         foreach ($pages as $p) {
-            $urls[] = '/#!/page/' . $p->getMetaUrl() . '/';
+            $urls[] = '/' . $p->getLocale() . '/page/' . $p->getMetaUrl() . '/';
         }
 
-        //Categories
-        $urls[] = '/#!/categories/';
-        $categories = $this->getContainer()->get('aisel.category.manager')->getEnabledCategories();
-        foreach ($categories as $c) {
-            $urls[] = '/#!/category/' . $c->getMetaUrl() . '/';
-        }
+        // TODO: Implement locales for categories
+//        $urls[] = '/page/categories/';
+//        $categories = $this->getContainer()->get('aisel.pagecategory.manager')->getEnabledCategories();
+//        foreach ($categories as $c) {
+//            $urls[] = '/' . $c->getLocale() . '/category/' . $c->getMetaUrl() . '/';
+//        }
 
-        // Render sitemap template and save
         $sitemapContents = $this->getContainer()->get('templating')->render(
             'AiselSitemapBundle:Default:sitemap.txt.twig',
             array('urls' => $urls)
@@ -73,7 +71,6 @@ EOT
 
         $output->writeln(sprintf('URL total: %s', count($urls)));
         $output->writeln(sprintf('File sitemap.xml generated!'));
-
     }
 
 }
