@@ -113,13 +113,7 @@ class OrderAdmin extends Admin
         $showMapper
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
-            ->add('status', 'choice', array('choices' => array(
-                '0' => $this->trans('aisel.default.disabled'),
-                '1' => $this->trans('aisel.default.enabled')),
-                'required' => false,
-                'label' => 'aisel.default.status',
-                'attr' => array('class' => 'form-control')
-            ))
+            ->add('status', 'test',  array('label' => 'aisel.default.status'))
             ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(

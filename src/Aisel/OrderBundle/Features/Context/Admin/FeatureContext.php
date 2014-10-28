@@ -1,11 +1,11 @@
 <?php
 
-namespace Aisel\AddressingBundle\Features\Context\Admin;
+namespace Aisel\OrderBundle\Features\Context\Admin;
 
 use Aisel\ResourceBundle\Features\Context\SonataAdminContext;
 
 /**
- * Behat CRUD for addressing entities
+ * Behat order CRUD
  */
 class FeatureContext extends SonataAdminContext
 {
@@ -19,29 +19,20 @@ class FeatureContext extends SonataAdminContext
     }
 
     /**
-     * @When /^I visit city list route admin_aisel_addressing_city_list$/
+     * @When /^I visit order list route admin_aisel_order_order_list$/
      */
-    public function browseToCityListRoute()
+    public function browseToOrderListRoute()
     {
-        $this->getSession()->visit($this->generateUrl('admin_aisel_addressing_city_list', array('_locale' => 'en')));
+        $this->getSession()->visit($this->generateUrl('admin_aisel_order_order_list', array('_locale' => 'en')));
         $this->assertSession()->statusCodeEquals(200);
     }
 
     /**
-     * @When /^I visit region list route admin_aisel_addressing_region_list$/
+     * @When /^I visit invoice list route admin_aisel_order_invoice_list$/
      */
-    public function browseToRegionListRoute()
+    public function browseToInvoiceListRoute()
     {
-        $this->getSession()->visit($this->generateUrl('admin_aisel_addressing_region_list', array('_locale' => 'en')));
-        $this->assertSession()->statusCodeEquals(200);
-    }
-
-    /**
-     * @When /^I visit country list route admin_aisel_addressing_country_list$/
-     */
-    public function browseToCountryListRoute()
-    {
-        $this->getSession()->visit($this->generateUrl('admin_aisel_addressing_country_list', array('_locale' => 'en')));
+        $this->getSession()->visit($this->generateUrl('admin_aisel_order_invoice_list', array('_locale' => 'en')));
         $this->assertSession()->statusCodeEquals(200);
     }
 

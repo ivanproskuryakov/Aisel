@@ -34,19 +34,25 @@ default:
                 - Aisel\ProductBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.product"
-        api.navigation:
+        navigation:
             paths:
                 features: src/Aisel/NavigationBundle
             contexts:
-                - Aisel\NavigationBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.navigation"
+                - Aisel\NavigationBundle\Features\Context\Api\FeatureContext
+                - Aisel\NavigationBundle\Features\Context\Admin\FeatureContext
+#            filters:
+#                tags: "@api.navigation"
         addressing:
             paths:
                 features: src/Aisel/AddressingBundle
             contexts:
                 - Aisel\AddressingBundle\Features\Context\Api\FeatureContext
                 - Aisel\AddressingBundle\Features\Context\Admin\FeatureContext
+        backenduser:
+            paths:
+                features: src/Aisel/BackendUserBundle
+            contexts:
+                - Aisel\BackendUserBundle\Features\Context\Admin\FeatureContext
         api.cart:
             paths:
                 features: src/Aisel/CartBundle
@@ -54,13 +60,12 @@ default:
                 - Aisel\CartBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.cart"
-        api.order:
+        order:
             paths:
                 features: src/Aisel/OrderBundle
             contexts:
-                - Aisel\OrderBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.order"
+                - Aisel\OrderBundle\Features\Context\Api\FeatureContext
+                - Aisel\OrderBundle\Features\Context\Admin\FeatureContext
         api.contact:
             paths:
                 features: src/Aisel/ContactBundle
@@ -68,13 +73,12 @@ default:
                 - Aisel\ContactBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.contact"
-        api.frontenduser:
+        frontenduser:
             paths:
                 features: src/Aisel/FrontendUserBundle
             contexts:
-                - Aisel\FrontendUserBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.frontenduser"
+                - Aisel\FrontendUserBundle\Features\Context\Api\FeatureContext
+                - Aisel\FrontendUserBundle\Features\Context\Admin\FeatureContext
         api.order:
             paths:
                 features: src/Aisel/OrderBundle

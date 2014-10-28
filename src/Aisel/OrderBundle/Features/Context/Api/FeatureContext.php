@@ -1,6 +1,6 @@
 <?php
 
-namespace Aisel\OrderBundle\Features\Context;
+namespace Aisel\OrderBundle\Features\Context\Api;
 
 use Aisel\ResourceBundle\Features\Context\DefaultContext;
 

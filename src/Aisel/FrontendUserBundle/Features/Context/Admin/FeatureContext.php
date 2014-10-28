@@ -1,11 +1,11 @@
 <?php
 
-namespace Aisel\AddressingBundle\Features\Context\Admin;
+namespace Aisel\FrontendUserBundle\Features\Context\Admin;
 
 use Aisel\ResourceBundle\Features\Context\SonataAdminContext;
 
 /**
- * Behat CRUD for addressing entities
+ * Behat CRUD for frontend users
  */
 class FeatureContext extends SonataAdminContext
 {
@@ -19,29 +19,11 @@ class FeatureContext extends SonataAdminContext
     }
 
     /**
-     * @When /^I visit city list route admin_aisel_addressing_city_list$/
+     * @When /^I visit frontend user list route admin_aisel_frontenduser_frontenduser_list$/
      */
-    public function browseToCityListRoute()
+    public function browseToFEUserListRoute()
     {
-        $this->getSession()->visit($this->generateUrl('admin_aisel_addressing_city_list', array('_locale' => 'en')));
-        $this->assertSession()->statusCodeEquals(200);
-    }
-
-    /**
-     * @When /^I visit region list route admin_aisel_addressing_region_list$/
-     */
-    public function browseToRegionListRoute()
-    {
-        $this->getSession()->visit($this->generateUrl('admin_aisel_addressing_region_list', array('_locale' => 'en')));
-        $this->assertSession()->statusCodeEquals(200);
-    }
-
-    /**
-     * @When /^I visit country list route admin_aisel_addressing_country_list$/
-     */
-    public function browseToCountryListRoute()
-    {
-        $this->getSession()->visit($this->generateUrl('admin_aisel_addressing_country_list', array('_locale' => 'en')));
+        $this->getSession()->visit($this->generateUrl('admin_aisel_frontenduser_frontenduser_list', array('_locale' => 'en')));
         $this->assertSession()->statusCodeEquals(200);
     }
 

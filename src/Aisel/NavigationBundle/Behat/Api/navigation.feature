@@ -1,5 +1,5 @@
 @api.navigation
-Feature: Navigation
+Feature: Navigation Menu
   In order have navigation on frontend
   As a visitor
   I want to be able to have access to Navigation REST API
