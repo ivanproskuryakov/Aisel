@@ -12,36 +12,25 @@ default:
         Behat\Symfony2Extension: ~
 
     suites:
-        api.settings:
-            paths:
-                features: src/Aisel/SettingsBundle
-            contexts:
-                - Aisel\SettingsBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.settings"
-        api.page:
+        page:
             paths:
                 features: src/Aisel/PageBundle
             contexts:
-                - Aisel\PageBundle\Features\Context\PageContext
-                - Aisel\PageBundle\Features\Context\PageCategoryContext
-            filters:
-                tags: "@api.page"
-        api.product:
+                - Aisel\PageBundle\Features\Context\Admin\FeatureContext
+                - Aisel\PageBundle\Features\Context\Api\PageFeatureContext
+                - Aisel\PageBundle\Features\Context\Api\PageCategoryFeatureContext
+        product:
             paths:
                 features: src/Aisel/ProductBundle
             contexts:
-                - Aisel\ProductBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.product"
+                - Aisel\ProductBundle\Features\Context\Api\FeatureContext
+                - Aisel\ProductBundle\Features\Context\Admin\FeatureContext
         navigation:
             paths:
                 features: src/Aisel/NavigationBundle
             contexts:
                 - Aisel\NavigationBundle\Features\Context\Api\FeatureContext
                 - Aisel\NavigationBundle\Features\Context\Admin\FeatureContext
-#            filters:
-#                tags: "@api.navigation"
         addressing:
             paths:
                 features: src/Aisel/AddressingBundle
@@ -53,19 +42,31 @@ default:
                 features: src/Aisel/BackendUserBundle
             contexts:
                 - Aisel\BackendUserBundle\Features\Context\Admin\FeatureContext
-        api.cart:
+        cart:
             paths:
                 features: src/Aisel/CartBundle
             contexts:
-                - Aisel\CartBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.cart"
+                - Aisel\CartBundle\Features\Context\Api\FeatureContext
+                - Aisel\CartBundle\Features\Context\Admin\FeatureContext
         order:
             paths:
                 features: src/Aisel/OrderBundle
             contexts:
                 - Aisel\OrderBundle\Features\Context\Api\FeatureContext
                 - Aisel\OrderBundle\Features\Context\Admin\FeatureContext
+        frontenduser:
+            paths:
+                features: src/Aisel/FrontendUserBundle
+            contexts:
+                - Aisel\FrontendUserBundle\Features\Context\Api\FeatureContext
+                - Aisel\FrontendUserBundle\Features\Context\Admin\FeatureContext
+        api.settings:
+            paths:
+                features: src/Aisel/SettingsBundle
+            contexts:
+                - Aisel\SettingsBundle\Features\Context\FeatureContext
+            filters:
+                tags: "@api.settings"
         api.contact:
             paths:
                 features: src/Aisel/ContactBundle
@@ -73,19 +74,6 @@ default:
                 - Aisel\ContactBundle\Features\Context\FeatureContext
             filters:
                 tags: "@api.contact"
-        frontenduser:
-            paths:
-                features: src/Aisel/FrontendUserBundle
-            contexts:
-                - Aisel\FrontendUserBundle\Features\Context\Api\FeatureContext
-                - Aisel\FrontendUserBundle\Features\Context\Admin\FeatureContext
-        api.order:
-            paths:
-                features: src/Aisel/OrderBundle
-            contexts:
-                - Aisel\OrderBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.order"
         api.search:
             paths:
                 features: src/Aisel/SearchBundle

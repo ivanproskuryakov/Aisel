@@ -1,13 +1,13 @@
 <?php
 
-namespace Aisel\PageBundle\Features\Context;
+namespace Aisel\PageBundle\Features\Context\Api;
 
 use Aisel\ResourceBundle\Features\Context\DefaultContext;
 
 /**
  * Behat context class.
  */
-class PageContext extends DefaultContext
+class PageFeatureContext extends DefaultContext
 {
 
     /**
