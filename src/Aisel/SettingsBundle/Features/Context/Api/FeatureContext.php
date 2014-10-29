@@ -1,8 +1,11 @@
 <?php
 
-namespace Aisel\SearchBundle\Features\Context;
+namespace Aisel\SettingsBundle\Features\Context\Api;
 
 use Aisel\ResourceBundle\Features\Context\DefaultContext;
+
+require_once 'PHPUnit/Autoload.php';
+require_once 'PHPUnit/Framework/Assert/Functions.php';
 
 /**
  * Behat context class.
@@ -11,11 +14,11 @@ class FeatureContext extends DefaultContext
 {
 
     /**
-     * @When /^Script access api_aisel_search route$/
+     * @When /^Script access api_aisel_config route$/
      */
     public function scriptAccessRoute()
     {
-        $this->getSession()->visit($this->generateUrl('api_aisel_search'));
+        $this->getSession()->visit($this->generateUrl('api_aisel_settings', array('locale'=>'en')));
         $this->assertSession()->statusCodeEquals(200);
     }
 
@@ -26,7 +29,7 @@ class FeatureContext extends DefaultContext
     {
         $content = $this->getSession()->getPage()->getContent();
         $json = json_decode($content);
-        assertEquals($json, false);
+        assertNotEmpty($json->config_contact);
     }
 
 }

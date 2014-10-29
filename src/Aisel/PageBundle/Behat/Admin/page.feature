@@ -1,6 +1,6 @@
 @admin.page
 Feature: Page
-  In page to manage pages from backend
+  In order to manage pages from backend
   As a backend user
   I want to make CRUD operations for page entities
 

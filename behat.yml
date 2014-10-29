@@ -60,24 +60,22 @@ default:
             contexts:
                 - Aisel\FrontendUserBundle\Features\Context\Api\FeatureContext
                 - Aisel\FrontendUserBundle\Features\Context\Admin\FeatureContext
-        api.settings:
+        settings:
             paths:
                 features: src/Aisel/SettingsBundle
             contexts:
-                - Aisel\SettingsBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.settings"
-        api.contact:
-            paths:
-                features: src/Aisel/ContactBundle
-            contexts:
-                - Aisel\ContactBundle\Features\Context\FeatureContext
-            filters:
-                tags: "@api.contact"
-        api.search:
+                - Aisel\SettingsBundle\Features\Context\Api\FeatureContext
+                - Aisel\SettingsBundle\Features\Context\Admin\FeatureContext
+        search:
             paths:
                 features: src/Aisel/SearchBundle
             contexts:
-                - Aisel\SearchBundle\Features\Context\FeatureContext
+                - Aisel\SearchBundle\Features\Context\Api\FeatureContext
             filters:
                 tags: "@api.search"
+        contact:
+            paths:
+                features: src/Aisel/ContactBundle
+            contexts:
+                - Aisel\ContactBundle\Features\Context\Api\FeatureContext
+                - Aisel\ContactBundle\Features\Context\Admin\FeatureContext
