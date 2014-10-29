@@ -46,16 +46,5 @@ before_script:
 
 script:
     - bin/phpspec run --stop-on-failure
-    - bin/behat --stop-on-failure --suite=addressing
-    - bin/behat --stop-on-failure --suite=api.cart
-    - bin/behat --stop-on-failure --suite=api.navigation
-    - bin/behat --stop-on-failure --suite=api.order
-    - bin/behat --stop-on-failure --suite=api.page
-    - bin/behat --stop-on-failure --suite=api.product
-    - bin/behat --stop-on-failure --suite=api.settings
-    - bin/behat --stop-on-failure --suite=api.contact
-    - bin/behat --stop-on-failure --suite=api.frontenduser
-
-    - bin/behat --stop-on-failure --suite=api.order
-    - bin/behat --stop-on-failure --suite=api.search
-    - grunt karma
+    - bin/behat --stop-on-failure
+#    - grunt karma
