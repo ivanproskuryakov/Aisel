@@ -42,6 +42,7 @@ class ConfigManager
         if ($config && $config) {
             $decoded = json_decode($config->getValue());
         }
+
         return $decoded;
     }
 
@@ -63,6 +64,7 @@ class ConfigManager
             $_route['path'] = $prefix . $name;
             $routes[] = $_route;
         }
+
         return $routes;
     }
 
@@ -76,6 +78,7 @@ class ConfigManager
     public function getConfigNameLabel($route)
     {
         $label = 'aisel_' . $route . '.label';
+
         return $label;
     }
 
@@ -93,6 +96,7 @@ class ConfigManager
             $this->locales[$locale] = $locale;
         }
         $this->locales = $locales;
+
         return $this->locales;
     }
 }

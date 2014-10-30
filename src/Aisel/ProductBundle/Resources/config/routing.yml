@@ -32,7 +32,7 @@ api_aisel_productview_by_url:
     defaults: { _controller: AiselProductBundle:ApiProduct:productViewByURL, _format: json }
     requirements:
         _method: GET|POST
-        
+
 # Categories
 api_aisel_product_categorylist:
     pattern:  /%website_api%/product/category/list.json

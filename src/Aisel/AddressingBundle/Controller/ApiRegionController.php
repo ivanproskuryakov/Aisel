@@ -31,6 +31,7 @@ class ApiRegionController extends Controller
     {
         // TODO: finish addressing API functionality
         $regionList = false;
+
         return $regionList;
     }
 
@@ -41,6 +42,7 @@ class ApiRegionController extends Controller
     {
         // TODO: finish addressing API functionality
         $regionDetails = $id;
+
         return $regionDetails;
     }
 }

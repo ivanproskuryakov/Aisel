@@ -18,7 +18,7 @@ use PhpSpec\ObjectBehavior;
  */
 class ConfigHomepageControllerSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('\Aisel\SettingsBundle\Controller\ConfigHomepageController');
     }

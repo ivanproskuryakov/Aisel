@@ -11,8 +11,6 @@
 
 namespace Aisel\ResourceBundle\PHPUnit;
 
-use Symfony\Component\HttpFoundation\Request;
-
 require_once dirname(__DIR__) . '/../../../app/AppKernel.php';
 
 /**
@@ -58,6 +56,5 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
     {
         return $this->container->get($name);
     }
-
 
 }

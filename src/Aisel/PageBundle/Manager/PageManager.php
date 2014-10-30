@@ -51,13 +51,14 @@ class PageManager
             $category['url'] = $c->getMetaUrl();
             $categories[$c->getId()] = $category;
         }
+
         return $categories;
     }
 
     /**
      * Get list of all pages
      *
-     * @param array $params
+     * @param array  $params
      * @param string $locale
      *
      * @return array
@@ -70,6 +71,7 @@ class PageManager
             'total' => $total,
             'pages' => $pages
         );
+
         return $return;
     }
 
@@ -90,6 +92,7 @@ class PageManager
             throw new NotFoundHttpException('Nothing found');
         }
         $pageDetails = array('page' => $page, 'categories' => $this->getPageCategories($page));
+
         return $pageDetails;
     }
 
@@ -111,6 +114,7 @@ class PageManager
             throw new NotFoundHttpException('Nothing found');
         }
         $pageDetails = array('page' => $page, 'categories' => $this->getPageCategories($page));
+
         return $pageDetails;
     }
 
@@ -118,7 +122,7 @@ class PageManager
      * validate metaUrl for Page Entity and return one we can use
      *
      * @param string $url
-     * @param int $pageId
+     * @param int    $pageId
      *
      * @return string $validUrl
      */
@@ -130,6 +134,7 @@ class PageManager
         if ($page) {
             $validUrl = $validUrl . '-' . time();
         }
+
         return $validUrl;
     }
 
@@ -141,6 +146,7 @@ class PageManager
     public function getEnabledPages()
     {
         $pageList = $this->em->getRepository('AiselPageBundle:Page')->getEnabledPages();
+
         return $pageList;
     }
 

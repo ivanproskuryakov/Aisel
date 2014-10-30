@@ -31,6 +31,7 @@ class ApiCartController extends Controller
     {
         // TODO: implement cart functionality
         $cart = false;
+
         return $cart;
     }
 

@@ -11,7 +11,6 @@
 
 namespace Aisel\ResourceBundle\Tests\Utility;
 
-use Aisel\ResourceBundle\Uploader\UploadHandler;
 use Aisel\ResourceBundle\PHPUnit\BaseTestCase;
 
 /**

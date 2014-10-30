@@ -31,6 +31,7 @@ class ApiCityController extends Controller
     {
         // TODO: finish addressing API functionality
         $cityList = true;
+
         return $cityList;
     }
 
@@ -41,6 +42,7 @@ class ApiCityController extends Controller
     {
         // TODO: finish addressing API functionality
         $cityDetails = $id;
+
         return $cityDetails;
     }
 }

@@ -30,6 +30,7 @@ class ApiProductController extends Controller
     public function productListAction(Request $request)
     {
         $productList = false;
+
         return $productList;
     }
 
@@ -40,6 +41,7 @@ class ApiProductController extends Controller
     {
         /** @var \Aisel\ProductBundle\Entity\Product $product */
         $product = $this->container->get("aisel.product.manager")->getProductByURL($urlKey);
+
         return $product;
     }
 }

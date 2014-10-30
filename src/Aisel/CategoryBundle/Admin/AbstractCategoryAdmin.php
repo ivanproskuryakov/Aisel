@@ -110,6 +110,7 @@ class AbstractCategoryAdmin extends Admin
                         if ($subject->getId()) {
                             $qb->andWhere('c.id != :id')->setParameter('id', $subject->getId());
                         }
+
                         return $qb;
                     }, 'empty_value' => $this->trans('aisel.default.no_parent')
             ))

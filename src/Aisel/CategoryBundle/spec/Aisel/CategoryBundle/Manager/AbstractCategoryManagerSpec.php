@@ -12,7 +12,6 @@
 namespace spec\Aisel\CategoryBundle\Manager;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\Container;
 use Doctrine\ORM\EntityManager;
 
@@ -22,12 +21,12 @@ use Doctrine\ORM\EntityManager;
 class AbstractCategoryManagerSpec extends ObjectBehavior
 {
 
-    function Let(Container $sc, EntityManager $em)
+    public function Let(Container $sc, EntityManager $em)
     {
         $this->beConstructedWith($sc, $em);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Aisel\CategoryBundle\Manager\AbstractCategoryManager');
     }

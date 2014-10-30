@@ -18,7 +18,7 @@ use PhpSpec\ObjectBehavior;
  */
 class NodeControllerSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('\Aisel\NavigationBundle\Controller\Admin\NodeController');
     }

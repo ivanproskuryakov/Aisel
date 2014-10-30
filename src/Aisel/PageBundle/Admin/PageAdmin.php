@@ -102,6 +102,7 @@ class PageAdmin extends Admin
                         if ($subject->getLocale()) {
                             $qb->where('c.locale = :locale')->setParameter('locale', $subject->getLocale());
                         }
+
                         return $qb;
                     }, 'empty_value' => $this->trans('aisel.default.no_parent')
             ))

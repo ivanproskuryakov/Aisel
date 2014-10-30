@@ -51,7 +51,6 @@ class SettingsManager
         // inject response unix timestamp
         $config['time'] = time();
 
-
         return $config;
     }
 

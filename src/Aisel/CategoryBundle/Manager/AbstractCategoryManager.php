@@ -61,7 +61,7 @@ class AbstractCategoryManager
      * Generate child categories for selected root
      *
      * @param object $items
-     * @param int $pid
+     * @param int    $pid
      *
      * @return array
      */
@@ -120,7 +120,7 @@ class AbstractCategoryManager
      * Generate child categories for selected in HTML format - WILL BE REMOVED
      *
      * @param object $items
-     * @param int $pid
+     * @param int    $pid
      *
      * @return array
      */
@@ -153,7 +153,7 @@ class AbstractCategoryManager
     /**
      * Get list of all categories
      *
-     * @param array $params
+     * @param array  $params
      * @param string $locale
      *
      * @return mixed
@@ -166,6 +166,7 @@ class AbstractCategoryManager
             'total' => $total,
             'categories' => $categories
         );
+
         return $return;
     }
 
@@ -186,6 +187,7 @@ class AbstractCategoryManager
         }
         $pages = $this->em->getRepository('AiselPageBundle:Page')->getPagesByCategory($category->getId());
         $categoryDetails = array('category' => $category, 'pages' => $pages);
+
         return $categoryDetails;
     }
 
@@ -223,7 +225,7 @@ class AbstractCategoryManager
      * validate metaUrl for Category Entity and return one we can use
      *
      * @param string $url
-     * @param int $categoryId
+     * @param int    $categoryId
      *
      * @return string
      */

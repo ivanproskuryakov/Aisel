@@ -18,12 +18,12 @@ use PhpSpec\ObjectBehavior;
  */
 class OrderSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Aisel\OrderBundle\Entity\Order');
     }
 
-    function it_should_not_have_id()
+    public function it_should_not_have_id()
     {
         $this->getId()->shouldReturn(null);
     }

@@ -13,6 +13,7 @@
 /web/npm-debug.log
 /web/media/product/*
 /web/photo/*
+/web/css/*
 !/app/cache/.gitkeep
 !app/logs/.gitkeep
 /build/

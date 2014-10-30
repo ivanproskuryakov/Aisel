@@ -29,7 +29,6 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
         'building' => 'build',
     );
 
-
     /**
      * {@inheritdoc}
      */
@@ -55,7 +54,7 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
      * Find one resource by criteria.
      *
      * @param string $type
-     * @param array $criteria
+     * @param array  $criteria
      *
      * @return object
      *
@@ -139,8 +138,8 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
     /**
      * Generate url.
      *
-     * @param string $route
-     * @param array $parameters
+     * @param string  $route
+     * @param array   $parameters
      * @param Boolean $absolute
      *
      * @return string

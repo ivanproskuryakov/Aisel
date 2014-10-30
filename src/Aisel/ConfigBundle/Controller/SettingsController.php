@@ -88,5 +88,4 @@ class SettingsController extends Controller
         return $this->container->get("aisel.config.manager");
     }
 
-
 }

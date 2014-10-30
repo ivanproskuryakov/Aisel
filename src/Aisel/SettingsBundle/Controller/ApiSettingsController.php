@@ -29,6 +29,7 @@ class ApiSettingsController extends Controller
     public function configAction()
     {
         $config = $this->container->get("aisel.settings.manager")->getConfig();
+
         return $config;
     }
 

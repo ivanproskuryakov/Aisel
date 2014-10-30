@@ -31,6 +31,7 @@ class ApiCountryController extends Controller
     {
         // TODO: finish addressing API functionality
         $countryList = true;
+
         return $countryList;
     }
 
@@ -41,6 +42,7 @@ class ApiCountryController extends Controller
     {
         // TODO: finish addressing API functionality
         $countryDetails = $id;
+
         return $countryDetails;
     }
 }

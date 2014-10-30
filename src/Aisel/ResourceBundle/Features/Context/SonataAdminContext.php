@@ -2,8 +2,6 @@
 
 namespace Aisel\ResourceBundle\Features\Context;
 
-use Aisel\ResourceBundle\Features\Context\DefaultContext;
-
 abstract class SonataAdminContext extends DefaultContext
 {
 
@@ -24,6 +22,7 @@ abstract class SonataAdminContext extends DefaultContext
     public function showTree()
     {
         $element = $this->findByCSS('.fancytree-container');
+
         return $element;
     }
 
@@ -33,6 +32,7 @@ abstract class SonataAdminContext extends DefaultContext
     public function showList()
     {
         $element = $this->findByCSS('.sonata-link-identifier');
+
         return $element;
     }
 
@@ -45,6 +45,7 @@ abstract class SonataAdminContext extends DefaultContext
         $element->click();
         $this->assertSession()->statusCodeEquals(200);
         $element = $this->findByCSS('.sonata-ba-collapsed-fields');
+
         return $element;
     }
 
@@ -57,6 +58,7 @@ abstract class SonataAdminContext extends DefaultContext
         $element->click();
         $this->assertSession()->statusCodeEquals(200);
         $element = $this->findByCSS('.sonata-ba-show');
+
         return $element;
     }
 
@@ -69,6 +71,7 @@ abstract class SonataAdminContext extends DefaultContext
         $element->click();
         $this->assertSession()->statusCodeEquals(200);
         $element = $this->findByCSS('.btn-danger');
+
         return $element;
     }
 

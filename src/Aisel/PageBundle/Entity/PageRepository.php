@@ -66,10 +66,10 @@ class PageRepository extends EntityRepository
     /**
      * Get page total
      *
-     * @param  array $params
-     * @param  string $locale
+     * @param array  $params
+     * @param string $locale
      *
-     * @return int   $total
+     * @return int $total
      */
     public function getTotalFromRequest($params, $locale)
     {
@@ -105,7 +105,7 @@ class PageRepository extends EntityRepository
 
     /**
      * Get pages based on limit, current pagination and search query
-     * @param  array $params
+     * @param  array                         $params
      * @return \Aisel\PageBundle\Entity\Page
      */
     public function searchFromRequest($params)
@@ -122,6 +122,7 @@ class PageRepository extends EntityRepository
             ->orderBy('p.' . $this->pageOrder, $this->pageOrderBy)
             ->getQuery()
             ->execute();
+
         return $r;
     }
 
@@ -137,14 +138,15 @@ class PageRepository extends EntityRepository
             ->andWhere('p.status = 1')
             ->getQuery()
             ->execute();
+
         return $pages;
     }
 
     /**
      * Get pages based on limit, current pagination and search query
      *
-     * @param  array $params
-     * @param  string $locale
+     * @param array  $params
+     * @param string $locale
      *
      * @return \Aisel\PageBundle\Entity\Page $pages
      */
@@ -174,12 +176,13 @@ class PageRepository extends EntityRepository
             ->orderBy('p.' . $this->pageOrder, $this->pageOrderBy)
             ->getQuery()
             ->execute();
+
         return $pages;
     }
 
     /**
      * Get pages filtered by category
-     * @param  int $categoryId
+     * @param  int                           $categoryId
      * @return \Aisel\PageBundle\Entity\Page $pages
      */
     public function getPagesByCategory($categoryId)
@@ -193,13 +196,14 @@ class PageRepository extends EntityRepository
             ->andWhere('c.id = :categoryId')->setParameter('categoryId', $categoryId)
             ->getQuery()
             ->execute();
+
         return $pages;
     }
 
     /**
      * Find pages by URL
      * @param  string $url
-     * @param  int $pageId
+     * @param  int    $pageId
      * @return int    $found
      */
     public function findTotalByURL($url, $pageId = null)
@@ -213,6 +217,7 @@ class PageRepository extends EntityRepository
             $query->andWhere('p.id != :pageId')->setParameter('pageId', $pageId);
         }
         $found = $query->getQuery()->getSingleScalarResult();
+
         return $found;
     }
 

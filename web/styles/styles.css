@@ -40,15 +40,31 @@
     -o-transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
     transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
 }
+
 /***********
     Body
 ***********/
 body .website-content {
     color: #999;
 }
+
 body .pagination-info {
     display: block;
     text-align: right;
+}
+
+body a {
+    color: #657496;
+}
+
+body .pagination > .active > a,
+body .pagination > .active > a:hover,
+body .pagination > .active > a:focus,
+body .pagination > .active > span,
+body .pagination > .active > span:hover,
+body .pagination > .active > span:focus {
+    background-color: #657496;
+    border-color: #657496;
 }
 
 /***********

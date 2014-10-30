@@ -31,6 +31,7 @@ class ApiOrderController extends Controller
     {
         // TODO: finish with order list
         $order = false;
+
         return $order;
     }
 
@@ -42,6 +43,7 @@ class ApiOrderController extends Controller
     {
         // TODO: finish with order view
         $order = false;
+
         return $order;
     }
 

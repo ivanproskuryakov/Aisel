@@ -34,6 +34,7 @@ class ApiCategoryController extends Controller
             'limit' => $request->query->get('limit'),
         );
         $categoryList = $this->container->get("aisel.pagecategory.manager")->getCategories($params, $locale);
+
         return $categoryList;
     }
 
@@ -44,6 +45,7 @@ class ApiCategoryController extends Controller
     public function categoryTreeAction(Request $request, $locale)
     {
         $categoryList = $this->container->get("aisel.pagecategory.manager")->getCategoryTree($locale);
+
         return $categoryList;
     }
 
@@ -54,6 +56,7 @@ class ApiCategoryController extends Controller
     public function categoryViewAction($urlKey, $locale)
     {
         $category = $this->container->get("aisel.pagecategory.manager")->getCategoryByUrl($urlKey, $locale);
+
         return $category;
     }
 

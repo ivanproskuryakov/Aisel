@@ -18,12 +18,12 @@ use PhpSpec\ObjectBehavior;
  */
 class SettingsControllerSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('\Aisel\ConfigBundle\Controller\SettingsController');
     }
 
-    function it_is_of_type_container_aware()
+    public function it_is_of_type_container_aware()
     {
         $this->shouldBeAnInstanceOf('Symfony\Component\DependencyInjection\ContainerAware');
     }

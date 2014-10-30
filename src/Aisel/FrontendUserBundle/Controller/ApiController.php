@@ -64,10 +64,12 @@ class ApiController extends Controller
             if ((!$user instanceof FrontendUser) || (!$this->getUserManager()->checkUserPassword($user, $password)))
                 return array('message' => 'Wrong username or password!');
             $this->loginUser($user);
+
             return array('status' => true, 'message' => 'successully logged in');
         } else {
             return array('message' => 'You already logged in. Try to refresh page');
         }
+
         return array('message' => 'Error in login action');
     }
 
@@ -96,6 +98,7 @@ class ApiController extends Controller
             $this->get('security.context')->setToken($token);
             $this->get('session')->set('_security_main', serialize($token));
         }
+
         return array('status' => true, 'message' => 'User has been registered ');
     }
 
@@ -115,6 +118,7 @@ class ApiController extends Controller
         } else {
             return array('message' => 'User not found!');
         }
+
         return array('status' => true, 'message' => 'New password has been sent!');
     }
 
@@ -137,6 +141,7 @@ class ApiController extends Controller
     {
         if ($this->isAuthenticated()) {
             $user = $this->get('security.context')->getToken()->getUser();
+
             return $user;
         } else {
             return false;
@@ -152,6 +157,7 @@ class ApiController extends Controller
             $json = utf8_decode($request->get('userdata'));
             $userData = json_decode($json, true);
             $message = $this->getUserManager()->updateDetailsCurrentUser($userData);
+
             return array('status' => true, 'message' => $message);
         } else {
             return false;

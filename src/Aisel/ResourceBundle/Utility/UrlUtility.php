@@ -84,7 +84,7 @@ class UrlUtility
     /**
      * Process string based on conversion table
      *
-     * @param  string $str
+     * @param string $str
      *
      * @return string $normalUrl
      */

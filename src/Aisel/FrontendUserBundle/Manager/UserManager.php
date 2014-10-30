@@ -82,10 +82,11 @@ class UserManager implements UserProviderInterface
 
             if ($user !== 'anon.') {
                 $roles = $user->getRoles();
-                
+
                 if (in_array('ROLE_USER', $roles)) return true;
             }
         }
+
         return false;
     }
 
@@ -93,7 +94,7 @@ class UserManager implements UserProviderInterface
      * Is user password correct
      *
      * @param FrontendUser $user
-     * @param string $password
+     * @param string       $password
      *
      * @return boolean $isValid
      */
@@ -105,6 +106,7 @@ class UserManager implements UserProviderInterface
             return false;
         }
         $isValid = $encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt());
+
         return $isValid;
     }
 
@@ -143,6 +145,7 @@ class UserManager implements UserProviderInterface
 
         $this->em->persist($user);
         $this->em->flush();
+
         return $user;
     }
 
@@ -280,18 +283,21 @@ class UserManager implements UserProviderInterface
     public function loadUserByUsername($username)
     {
         $user = $this->getRepository()->findOneBy(array('username' => $username));
+
         return $user;
     }
 
     public function findUserByEmail($email)
     {
         $user = $this->getRepository()->findOneBy(array('email' => $email));
+
         return $user;
     }
 
     public function findUser($username, $email)
     {
         $user = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->findUser($username, $email);
+
         return $user;
     }
 
@@ -310,6 +316,7 @@ class UserManager implements UserProviderInterface
                 )
             );
         }
+
         return $this->find($user->getId());
     }
 

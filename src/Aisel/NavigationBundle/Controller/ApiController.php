@@ -30,6 +30,7 @@ class ApiController extends Controller
     public function menuAction(Request $request, $locale)
     {
         $menu = $this->container->get("aisel.navigation.manager")->getMenu($locale);
+
         return $menu;
     }
 

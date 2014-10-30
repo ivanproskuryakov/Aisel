@@ -31,6 +31,7 @@ class ApiCategoryController extends Controller
     {
         // TODO: finish with category list
         $categoryList = false;
+
         return $categoryList;
     }
 
@@ -41,6 +42,7 @@ class ApiCategoryController extends Controller
     public function categoryTreeAction(Request $request)
     {
         $categoryList = $this->container->get("aisel.productcategory.manager")->getCategoryTree();
+
         return $categoryList;
     }
 
@@ -52,6 +54,7 @@ class ApiCategoryController extends Controller
     {
         // TODO: finish with category list
         $category = false;
+
         return $category;
     }
 

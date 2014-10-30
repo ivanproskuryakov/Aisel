@@ -2,7 +2,6 @@
 
 namespace Aisel\ProductBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
 use Symfony\Component\Validator\Constraints as Assert;
 

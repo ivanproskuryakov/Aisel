@@ -47,6 +47,7 @@ class ApiController extends Controller
         } else {
             $status = array('status' => false, 'message' => 'Empty params in your request');
         }
+
         return $status;
 
     }
