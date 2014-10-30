@@ -132,3 +132,18 @@ table.fancytree-ext-table *:focus {
     bottom: 10px;
     font-size: 12px;
 }
+
+body .right-side {
+    margin-left: 0 !important;
+}
+body > .header .logo {
+    width: 120px;
+    font-family: 'Kaushan Script', cursive;
+    font-weight: 500;
+}
+body > .header .navbar {
+    margin-left: 120px;
+}
+body > .header  .logo span {
+    width: 80px;
+}

@@ -19,32 +19,12 @@ file that was distributed with this source code.
     {% endstylesheets %}
 {% endblock %}
 
-{% block side_bar_after_nav %}
-    {% if is_granted('ROLE_SONATA_ADMIN') %}
-        <ul class="sidebar-menu">
-            <li class="treeview">
-                <a onclick="javascript:location.href='{{ path('config_homepage', {'editLocale':  app.request.locale}) }}'" href="#">
-                <i class="fa fa-wrench"></i><span>{{ 'aisel.admin.settings'|trans({}, 'admin') }}</span>
-                </a>
-            </li>
-        </ul>
-        <div class="aisel-sidebar-copyright">
-            Copyright © Aisel 2014
-        </div>
-    {% endif %}
-
+{% block sonata_left_side %}
 {% endblock %}
 
 {% block sonata_nav %}
     {% if admin_pool is defined %}
         <nav class="navbar navbar-static-top" role="navigation">
-            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-
             <div class="navbar-left">
                 {% block sonata_breadcrumb %}
                     {% if _breadcrumb is not empty or action is defined %}
@@ -81,6 +61,11 @@ file that was distributed with this source code.
                                 <i class="fa fa-plus-square fa-fw"></i> <i class="fa fa-caret-down"></i>
                             </a>
                             {% include admin_pool.getTemplate('add_block') %}
+                        </li>
+                        <li class="settings">
+                            <a onclick="javascript:location.href='{{ path('config_homepage', {'editLocale':  app.request.locale}) }}'" href="#">
+                                <i class="fa fa-wrench"></i><span> {{ 'aisel.admin.settings'|trans({}, 'admin') }}</span>
+                            </a>
                         </li>
                         <li class="dropdown user-menu">
                             <a onclick="javascript:location.href='{{ path('admin_logout') }}'" href="#">
