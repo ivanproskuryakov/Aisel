@@ -147,3 +147,9 @@ body > .header .navbar {
 body > .header  .logo span {
     width: 80px;
 }
+
+body .dashboard .box {
+    background: #ffffff;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    border-top: 0;
+}
