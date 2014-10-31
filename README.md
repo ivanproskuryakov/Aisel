@@ -51,49 +51,31 @@ sudo chown -R www-data:www-data  app/cache app/logs
 ```
 
 Once this steps is done you will be able to access the backend:<br/>
-`http://ecommmerce.aisel.dev/en/administration/`
+`http://ecommmerce.aisel.dev/administration/en/`
 
-
-[Behat](http://behat.org) tests
+Deploy on Live
 -----------------------------------
+For full javascript minification on frontend use grunt task<br/>
+`grunt requirejs`
 
-Run Behat using the following command to test backend:
-
-```bash
-$ bin/behat
-```
-
-[PHPSpec](http://phpspec.net/) tests
+Tests
 -----------------------------------
-````
-cd Symfony
-bin/phpspec run
-````
-
-[Karma](http://karma-runner.github.io/) tests
------------------------------------
-
-Karma unit tests:
-```bash
-$ grunt karma:unit
-```
-
-Karma midway testing:
-```bash
-$ grunt karma:midway
-```
-
-Karma e2e testing:
-```bash
-$ grunt karma:e2e
-```
+[Behat](http://behat.org) <br/>
+`$ bin/behat`
+[PHPSpec](http://phpspec.net/<br/>
+`bin/phpspec run`
+[Karma](http://karma-runner.github.io/)<br/>
+Karma unit-test:<br/>
+`grunt karma:unit`
+Karma midway:<br/>
+`grunt karma:midway`<br/>
+Karma e2e:<br/>
+`grunt karma:e2e`<br/>
 
 
 Speed
 -----------------------------------
-http://tools.pingdom.com/fpt/#!/crrqBk/http://ecommerce.aisel.co/en/<br/>
-http://tools.pingdom.com/fpt/#!/KwiR4/http://ecommerce.aisel.co/en/pages/<br/>
-http://tools.pingdom.com/fpt/#!/dcH16I/http://ecommerce.aisel.co/en/page/categories/<br/>
+Check with http://tools.pingdom.com/
 
 Mobile ready
 -----------------------------------
