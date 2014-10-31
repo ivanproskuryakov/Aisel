@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc overview
- * @name aiselApp
+ * @name Aisel
  *
  * @description
  * Main router provider in separate file, for better extensibility

@@ -328,11 +328,25 @@ module.exports = function (grunt) {
         e2e: {
             configFile: 'karma/e2e/karma.e2e.conf.js'
         }
-    }
+    },
 
+    requirejs: {
+      js: {
+          options: {
+              uglify2: {
+                  mangle: false
+              },
+              baseUrl: "web/app",
+              mainConfigFile: "web/app/main.js",
+              name: 'main',
+              out: "web/build/main.js",
+              optimize: 'uglify2'
+          }
+      }
+    }
   });
 
-
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);

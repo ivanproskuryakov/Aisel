@@ -3,7 +3,7 @@
 /**
  * @ngdoc overview
  *
- * @name aiselApp
+ * @name Aisel
  *
  * @description
  *
