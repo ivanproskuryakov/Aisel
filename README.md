@@ -1,5 +1,6 @@
 About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=master)](https://travis-ci.org/ivanproskuryakov/Aisel)
 -----------------------------------
+
 [![Latest Stable Version](https://poser.pugx.org/aisel/aisel/v/stable.svg)](https://packagist.org/packages/aisel/aisel)
 [![Total Downloads](https://poser.pugx.org/aisel/aisel/downloads.svg)](https://packagist.org/packages/aisel/aisel)
 [![Latest Unstable Version](https://poser.pugx.org/aisel/aisel/v/unstable.svg)](https://packagist.org/packages/aisel/aisel)
@@ -17,38 +18,20 @@ Demo administration: `http://ecommerce.aisel.co/administration/en/` [backenduser
 Installation
 -----------------------------------
 
-1.) Download composer<br/>
-```bash
-curl -sS https://getcomposer.org/installer | php
-```
-2.) Create project with installer <br/>
-```bash
-php composer.phar create-project -s dev aisel/aisel
-```
-cd to aisel/ and finish installation with commands bellow:<br/>
-3.) Launch installation:<br/>
-```bash
-php app/console aisel:install
-```
-4.) Install frontend dependencies with Bower<br/>
-```bash
-bower install
-```
+1. Download latest from master: <br/>
+`git clone https://github.com/ivanproskuryakov/Aisel.git`
+then `cd to aisel/` and download composer <br/>
+`curl -sS https://getcomposer.org/installer | php` <br/>
+2. Install backend dependencies with composer<br/>
+`php composer.phar install`
+3. Install Aisel environment
+`php app/console aisel:install`
+4. Install frontend dependencies with Bower<br/>
+`bower install`
 
 Important:<br/>
 Bower is a command line utility.Install it with npm.<br/>
 $ npm install -g bower<br/>
-
-webserver needs permissions to save cache, logs and sessions<br/>
-Mac users:<br/>
-```bash
-sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
-sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs app/var
-```
-Linux users:<br/>
-```bash
-sudo chown -R www-data:www-data  app/cache app/logs
-```
 
 Once this steps is done you will be able to access the backend:<br/>
 `http://ecommmerce.aisel.dev/administration/en/`
@@ -62,14 +45,14 @@ Tests
 -----------------------------------
 [Behat](http://behat.org) <br/>
 `$ bin/behat`
-[PHPSpec](http://phpspec.net/<br/>
+[PHPSpec](http://phpspec.net/)<br/>
 `bin/phpspec run`
 [Karma](http://karma-runner.github.io/)<br/>
-Karma unit-test:<br/>
+Unit-test:<br/>
 `grunt karma:unit`
-Karma midway:<br/>
+Midway:<br/>
 `grunt karma:midway`<br/>
-Karma e2e:<br/>
+E2E:<br/>
 `grunt karma:e2e`<br/>
 
 
@@ -89,12 +72,10 @@ If you have found bug, please create an issue.
 
 MIT License
 -----------------------------------
-
 License can be found [here](https://github.com/ivanproskuryakov/Aisel/blob/master/LICENSE).
 
 Authors
 -----------------------------------
-
 Part of Aisel package, was originally created by [Ivan Proskuryakov](https://github.com/ivanproskuryakov).
 List of [contributors](https://github.com/ivanproskuryakov/AiselConfigBundle/graphs/contributors).
 
