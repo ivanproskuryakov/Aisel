@@ -15,7 +15,7 @@ Demo administration: `http://ecommerce.aisel.co/administration/en/` [backenduser
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
 
-Installation
+Installation: development branch
 -----------------------------------
 
 1. Download latest from master: <br/>
@@ -28,18 +28,30 @@ then `cd to aisel/` and download composer <br/>
 `php app/console aisel:install`
 4. Install frontend dependencies with Bower<br/>
 `bower install`
+<br/>
+Once this steps done you will be able to access the backend:<br/>
+`http://ecommmerce.aisel.dev/administration/en/`<br/>
 
-Important:<br/>
-Bower is a command line utility.Install it with npm.<br/>
-$ npm install -g bower<br/>
 
-Once this steps is done you will be able to access the backend:<br/>
-`http://ecommmerce.aisel.dev/administration/en/`
-
-Deploy on Live
------------------------------------
-For full javascript minification on frontend use grunt task<br/>
+Notes:<br/>
+1. Bower is a command line utility install with nodejs<br/>
+`npm install -g bower`<br/>
+2.For full javascript minification on frontend use grunt task<br/>
 `grunt requirejs`
+<br/><br/>
+
+Installation: v0.1.0
+-----------------------------------
+
+1. Download composer<br/>
+`curl -sS https://getcomposer.org/installer | php`
+2. Create project, installer will ask you dbname, username, password, etc.. <br/>
+`php composer.phar create-project -s dev aisel/aisel`
+`cd aisel/` and finish installation with commands bellow:<br/>
+3. Launch installation:<br/>
+`php app/console aisel:install`
+4. Install frontend dependencies with Bower<br/>
+`bower install`
 
 Tests
 -----------------------------------
