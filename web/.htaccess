@@ -3,7 +3,7 @@
 # mod_rewrite). Additionally, this reduces the matching process for the
 # start page (path "/") because otherwise Apache will apply the rewriting rules
 # to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
-DirectoryIndex index.html
+DirectoryIndex index_dev.html
 
 <IfModule mod_rewrite.c>
 
@@ -17,7 +17,7 @@ DirectoryIndex index.html
     RewriteBase /
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule $ index.html$1 [NC,L,QSA]
+    RewriteRule $ index_dev.html$1 [NC,L,QSA]
 
 #    # Determine the RewriteBase automatically and set it as environment variable.
 #    # If you are using Apache aliases to do mass virtual hosting or installed the
