@@ -22,11 +22,9 @@ Installation: development branch
 `git clone https://github.com/ivanproskuryakov/Aisel.git`
 then `cd to aisel/` and download composer <br/>
 `curl -sS https://getcomposer.org/installer | php` <br/>
-2. Install backend dependencies with composer<br/>
-`php composer.phar install`
-3. Install Aisel environment
+2. Install Aisel environment
 `php app/console aisel:install`
-4. Install frontend dependencies with Bower<br/>
+3. Install frontend dependencies with Bower<br/>
 `bower install`
 <br/>
 Once this steps done you will be able to access the backend:<br/>

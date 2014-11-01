@@ -64,8 +64,7 @@
         "ng-midway-tester": "^2.0.5",
         "karma-mocha": "0.1.3",
         "chai": "1.4.0",
-        "karma-junit-reporter": "^0.2.2",
-        "html-snapshots": "~0.4.3"
+        "karma-junit-reporter": "^0.2.2"
 
     },
     "engines": {
