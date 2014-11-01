@@ -54,12 +54,12 @@ Installation: v0.1.0
 Tests
 -----------------------------------
 [Behat](http://behat.org) <br/>
-`$ bin/behat`
+`$ bin/behat`<br/>
 [PHPSpec](http://phpspec.net/)<br/>
-`bin/phpspec run`
+`bin/phpspec run`<br/>
 [Karma](http://karma-runner.github.io/)<br/>
 Unit-test:<br/>
-`grunt karma:unit`
+`grunt karma:unit`<br/>
 Midway:<br/>
 `grunt karma:midway`<br/>
 E2E:<br/>
