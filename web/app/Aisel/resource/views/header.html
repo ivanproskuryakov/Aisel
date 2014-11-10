@@ -23,7 +23,7 @@
                 <li class="dropdown" ng-if="!isAuthenticated">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guest <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" ng-click="openSignIn();" >Sign In</a></li>
+                        <li><a ng-href="/{{locale}}/user/login/" >Sign In</a></li>
                         <li><a ng-href="/{{locale}}/user/register/">Create Account</a></li>
                     </ul>
                 </li>
@@ -36,8 +36,6 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a ng-href="/{{locale}}/user/information/">My account</a></li>
-                        <li><a ng-href="/{{locale}}/user/page/list/">Browse pages</a></li>
-                        <li><a ng-href="/{{locale}}/user/page/add/">Add new page</a></li>
                         <li role="presentation" class="divider"></li>
                         <li><a ng-click="signOut()" >Sign Out</a></li>
                     </ul>
@@ -45,7 +43,9 @@
             </ul>
             <form class="navbar-search ng-pristine ng-valid navbar-form navbar-right" role="form">
                 <div class="form-group">
-                    <input type="text" ng-search-redirect="{{search}}" ng-model="search" placeholder="search for ..." class="search-query form-control">
+                    <input type="text" ng-search-redirect="{{search}}"
+                           ng-model="search" placeholder="search for ..."
+                           class="search-query form-control">
                 </div>
             </form>
 

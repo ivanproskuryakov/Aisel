@@ -13,7 +13,8 @@ define(['app'], function (app) {
         function ($http, $routeParams, API_URL) {
             return {
                 getSearchResult: function ($scope) {
-                    var url = API_URL + '/search/?query=' + $routeParams.query + '&current=' + $scope.paginationPage;
+                    var locale = Aisel.getLocale();
+                    var url = API_URL + '/' + locale + '/search/?query=' + $routeParams.query + '&current=' + $scope.paginationPage;
                     console.log(url);
                     return $http.get(url);
                 }

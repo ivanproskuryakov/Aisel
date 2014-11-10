@@ -6,7 +6,7 @@
 # file that was distributed with this source code.
 
 api_aisel_search:
-    pattern:  /%website_api%/search/
+    pattern:  /%website_api%/{locale}/search/
     defaults: { _controller: AiselSearchBundle:Api:search, _format: json }
     requirements:
         _method: GET

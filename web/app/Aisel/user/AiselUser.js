@@ -16,6 +16,15 @@ define(['app',
     console.log('User module loaded ...');
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
+            .when('/:locale/user/login/', {
+                templateUrl: '/app/Aisel/User/views/login.html',
+                controller: 'UserCtrl',
+                resolve: {
+                    factory: function (authService) {
+                        authService.roleGuest()
+                    }
+                }
+            })
             .when('/:locale/user/register/', {
                 templateUrl: '/app/Aisel/User/views/register.html',
                 controller: 'UserCtrl',

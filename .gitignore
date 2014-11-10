@@ -14,7 +14,7 @@
 /web/media/product/*
 /web/photo/*
 /web/css/*
-/web/build/main.js
+/web/build/*
 !/app/cache/.gitkeep
 !app/logs/.gitkeep
 /build/

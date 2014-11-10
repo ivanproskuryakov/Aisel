@@ -66,32 +66,19 @@ define(['app'], function (app) {
                 );
 
             }
-            $scope.openSignIn = function () {
-                var modalInstance = $modal.open({
-                    templateUrl: '/app/Aisel/User/views/login.html',
-                    controller: LoginInstanceCtrl,
-                    resolve: {}
-                });
+
+            $scope.login = function (username, password) {
+                userService.login(username, password).success(
+                    function (data, status) {
+                        notify(data.message);
+                        if (data.status) {
+//                        window.location = "/" + $rootScope.locale + "/user/information/";
+                            window.location = "/";
+                        }
+                    }
+                );
             };
 
         }]);
 
-    var LoginInstanceCtrl = function ($scope, $modalInstance, userService, $rootScope, notify) {
-        $scope.login = function (username, password) {
-
-            userService.login(username, password).success(
-                function (data, status) {
-                    notify(data.message);
-                    if (data.status) {
-//                        window.location = "/" + $rootScope.locale + "/user/information/";
-                        window.location = "/";
-                    }
-                }
-            );
-        };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-    };
 });

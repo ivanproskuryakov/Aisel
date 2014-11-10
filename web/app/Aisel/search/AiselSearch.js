@@ -8,7 +8,7 @@
  * ...
  */
 
-define(['app', './controllers/search', './services/search'], function (app) {
+define(['app', './controllers/search', './services/search', './directives/main'], function (app) {
     console.log('Search module loaded ...');
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
         $routeProvider

@@ -8,7 +8,7 @@
         <div class="row">
 
             <!-- Form Fields -->
-            <div class="col-xs-12 col-sm-8 col-md-offset-2">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4" role="main">
                 <div class="form-group">
                     <label for="signInUsername">Username</label>
                     <div class="input-group">
@@ -27,14 +27,10 @@
                 <div class="form-group">
                     <p><a href="/{{locale}}/user/password/forgot/" class="thumb" ng-click="cancel()">Forgot password?</a></p>
                 </div>
-
-
+                <div class="form-group pull-right">
+                    <button class="btn btn-primary" type="submit" >Log In</button>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="submit" >Log In</button>
-        <button class="btn btn-warning" type="reset" ng-click="cancel()" >Cancel</button>
     </div>
 </form>

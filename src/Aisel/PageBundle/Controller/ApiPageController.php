@@ -42,7 +42,8 @@ class ApiPageController extends Controller
         $params = array(
             'current' => $request->get('current'),
             'limit' => $request->get('limit'),
-            'category' => $request->get('category')
+            'category' => $request->get('category'),
+            'locale' => $request->get('locale')
         );
 
         if ($request->get('user') && $this->isAuthenticated()) {
