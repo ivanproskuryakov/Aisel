@@ -24,14 +24,18 @@ use Aisel\NavigationBundle\Entity\Menu;
 class LoadMenuTopData extends XMLFixture implements OrderedFixtureInterface
 {
 
-    protected $fixturesName = array('en/aisel_menu_top.xml');
+    protected $fixturesName = array(
+        'en/aisel_menu_top.xml',
+        'ru/aisel_menu_top.xml',
+        'es/aisel_menu_top.xml',
+    );
 
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->$fixtureFiles as $file) {
+        foreach ($this->fixtureFiles as $file) {
             if (file_exists($file)) {
                 $contents = file_get_contents($file);
                 $XML = simplexml_load_string($contents);

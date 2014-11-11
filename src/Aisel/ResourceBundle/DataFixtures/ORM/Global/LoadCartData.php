@@ -30,7 +30,7 @@ class LoadCartData extends XMLFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->$fixtureFiles as $file) {
+        foreach ($this->fixtureFiles as $file) {
             if (file_exists($file)) {
                 $contents = file_get_contents($file);
                 $XML = simplexml_load_string($contents);

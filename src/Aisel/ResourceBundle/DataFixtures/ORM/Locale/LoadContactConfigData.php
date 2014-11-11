@@ -23,14 +23,18 @@ use Aisel\ConfigBundle\Entity\Config;
  */
 class LoadContactConfigData extends XMLFixture implements OrderedFixtureInterface
 {
-    protected $fixturesName = array('en/aisel_config_contact.xml');
+    protected $fixturesName = array(
+        'en/aisel_config_contact.xml',
+        'ru/aisel_config_contact.xml',
+        'es/aisel_config_contact.xml',
+    );
 
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->$fixtureFiles as $file) {
+        foreach ($this->fixtureFiles as $file) {
             if (file_exists($file)) {
                 $contents = file_get_contents($file);
                 $XML = simplexml_load_string($contents);

@@ -24,14 +24,18 @@ use Aisel\PageBundle\Entity\Page;
 class LoadPageData extends XMLFixture implements OrderedFixtureInterface
 {
 
-    protected $fixturesName = array('en/aisel_page.xml');
+    protected $fixturesName = array(
+        'en/aisel_page.xml',
+        'ru/aisel_page.xml',
+        'es/aisel_page.xml',
+    );
 
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->$fixtureFiles as $file) {
+        foreach ($this->fixtureFiles as $file) {
             if (file_exists($file)) {
                 $contents = file_get_contents($file);
                 $XML = simplexml_load_string($contents);

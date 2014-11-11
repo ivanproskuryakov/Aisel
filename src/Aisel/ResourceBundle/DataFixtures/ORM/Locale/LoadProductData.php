@@ -24,14 +24,17 @@ use Aisel\ProductBundle\Entity\Product;
 class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 {
 
-    protected $fixturesName = array('en/aisel_product.xml');
+    protected $fixturesName = array(
+        'en/aisel_product.xml',
+        'ru/aisel_product.xml',
+    );
 
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->$fixtureFiles as $file) {
+        foreach ($this->fixtureFiles as $file) {
             if (file_exists($file)) {
                 $contents = file_get_contents($file);
                 $XML = simplexml_load_string($contents);
