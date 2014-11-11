@@ -24,7 +24,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 abstract class XMLFixture extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
 
-    protected $fixturesName = null;
+    protected $fixturesName = array();
+    protected $fixtureFiles = array();
     protected $container;
     protected $em;
 
@@ -33,12 +34,15 @@ abstract class XMLFixture extends AbstractFixture implements OrderedFixtureInter
      */
     public function setContainer(ContainerInterface $container = null)
     {
-        $this->fixturesFile =
-            dirname($container->getParameter('kernel.root_dir')) .
-            $container->getParameter('aisel_fixture.xml.path') . DIRECTORY_SEPARATOR .
-            $this->fixturesName;
-
         $this->container = $container;
+        $files = array();
+
+        foreach ($this->fixturesName as $key => $file) {
+            $files[$key] = dirname($container->getParameter('kernel.root_dir')) .
+                $container->getParameter('aisel_fixture.xml.path') . DIRECTORY_SEPARATOR .
+                $this->fixturesName;
+        }
+        $this->fixtureFiles = $files;
     }
 
 }

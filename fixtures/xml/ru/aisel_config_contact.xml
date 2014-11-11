@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.1.9
+- http://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Sep 01, 2014 at 04:42 PM
+- Server version: 5.6.16
+- PHP Version: 5.4.24
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Database: 'aisel'
+    -->
+    <database name="aisel">
+        <!-- Table aisel_config -->
+        <table name="aisel_config">
+            <column name="id">281</column>
+            <column name="locale">ru</column>
+            <column name="entity">config_contact</column>
+            <column name="value">{&quot;Name&quot;:&quot;Aisel Co.&quot;,&quot;Email&quot;:&quot;service@email.com&quot;,&quot;AddressLine1&quot;:&quot;1234 South Manhattan Place, LA&quot;,&quot;AddressLine2&quot;:null,&quot;information&quot;:&quot;&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.&lt;\/p&gt;&quot;}</column>
+        </table>
+    </database>
+</pma_xml_export>

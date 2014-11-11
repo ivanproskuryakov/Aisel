@@ -23,25 +23,27 @@ use Aisel\CartBundle\Entity\Cart;
 class LoadCartData extends XMLFixture implements OrderedFixtureInterface
 {
 
-    protected $fixturesName = 'aisel_cart.xml';
+    protected $fixturesName = array('global/aisel_cart.xml');
 
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        if (file_exists($this->fixturesFile)) {
-            $contents = file_get_contents($this->fixturesFile);
-            $XML = simplexml_load_string($contents);
+        foreach ($this->$fixtureFiles as $file) {
+            if (file_exists($file)) {
+                $contents = file_get_contents($file);
+                $XML = simplexml_load_string($contents);
 
-            foreach ($XML->database->table as $table) {
-                $cart = new Cart();
-                $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                $manager->persist($cart);
-                $manager->flush();
+                foreach ($XML->database->table as $table) {
+                    $cart = new Cart();
+                    $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                    $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                    $manager->persist($cart);
+                    $manager->flush();
+                }
+                $this->addReference('cart_' . $table->column[0], $cart);
             }
-            $this->addReference('cart_' . $table->column[0], $cart);
         }
     }
 

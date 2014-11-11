@@ -11,6 +11,7 @@
 require.config({
     // Load paths from global variable
     paths: {
+        'jquery': '../bower_components/jquery/jquery.min.js',
         'domReady': '../bower_components/domReady/domReady',
         'angular': '../bower_components/angular/angular',
         'twitter-bootstrap': '../bower_components/sass-bootstrap/dist/js/bootstrap',
@@ -33,6 +34,7 @@ require.config({
         "angular": {
             exports: "angular"
         },
+        "jquery": ["angular"],
         "domReady": ["angular"],
         "angular-resource": ["angular"],
         "textAngular": ["angular"],

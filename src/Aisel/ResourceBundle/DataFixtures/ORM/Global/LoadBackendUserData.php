@@ -22,7 +22,7 @@ use Aisel\FixtureBundle\Model\XMLFixture;
  */
 class LoadBackendUserData extends XMLFixture implements OrderedFixtureInterface
 {
-    protected $fixturesName = 'aisel_user_backend.xml';
+    protected $fixturesName = array('global/aisel_user_backend.xml');
 
     /**
      * Backend user manager
@@ -38,18 +38,20 @@ class LoadBackendUserData extends XMLFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        if (file_exists($this->fixturesFile)) {
-            $contents = file_get_contents($this->fixturesFile);
-            $XML = simplexml_load_string($contents);
+        foreach ($this->$fixtureFiles as $file) {
+            if (file_exists($file)) {
+                $contents = file_get_contents($file);
+                $XML = simplexml_load_string($contents);
 
-            foreach ($XML->database->table as $table) {
-                $userData = array(
-                    'username' => (string) $table->column[1],
-                    'email' => (string) $table->column[2],
-                    'password' => (string) $table->column[3],
-                );
-                $this->getUserManager()->registerFixturesUser($userData);
+                foreach ($XML->database->table as $table) {
+                    $userData = array(
+                        'username' => (string)$table->column[1],
+                        'email' => (string)$table->column[2],
+                        'password' => (string)$table->column[3],
+                    );
+                    $this->getUserManager()->registerFixturesUser($userData);
 
+                }
             }
         }
     }
@@ -57,7 +59,8 @@ class LoadBackendUserData extends XMLFixture implements OrderedFixtureInterface
     /**
      * {@inheritDoc}
      */
-    public function getOrder()
+    public
+    function getOrder()
     {
         return 110;
     }

@@ -24,24 +24,26 @@ use Aisel\OrderBundle\Entity\Invoice;
 class LoadInvoiceData extends XMLFixture implements OrderedFixtureInterface
 {
 
-    protected $fixturesName = 'aisel_invoice.xml';
+    protected $fixturesName = array('global/aisel_invoice.xml');
 
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        if (file_exists($this->fixturesFile)) {
-            $contents = file_get_contents($this->fixturesFile);
-            $XML = simplexml_load_string($contents);
+        foreach ($this->$fixtureFiles as $file) {
+            if (file_exists($file)) {
+                $contents = file_get_contents($file);
+                $XML = simplexml_load_string($contents);
 
-            foreach ($XML->database->table as $table) {
-                $invoice = new Invoice();
-                $invoice->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                $invoice->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                $manager->persist($invoice);
-                $manager->flush();
-                $this->addReference('invoice_' . $table->column[0], $invoice);
+                foreach ($XML->database->table as $table) {
+                    $invoice = new Invoice();
+                    $invoice->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                    $invoice->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                    $manager->persist($invoice);
+                    $manager->flush();
+                    $this->addReference('invoice_' . $table->column[0], $invoice);
+                }
             }
         }
     }
