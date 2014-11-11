@@ -27,6 +27,7 @@ class LoadProductCategoryData extends XMLFixture implements OrderedFixtureInterf
     protected $fixturesName = array(
         'en/aisel_product_category.xml',
         'ru/aisel_product_category.xml',
+        'es/aisel_product_category.xml',
     );
 
     /**

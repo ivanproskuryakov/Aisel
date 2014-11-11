@@ -12,29 +12,8 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'web/bower_components/domReady/domReady',
-            'web/bower_components/angular/angular',
-            'web/bower_components/sass-bootstrap/dist/js/bootstrap',
-            'web/bower_components/angular-resource/angular-resource',
-            'web/bower_components/textAngular/dist/textAngular-sanitize.min',
-            'web/bower_components/textAngular/dist/textAngular.min',
-            'web/bower_components/angular-cookies/angular-cookies.min',
-            'web/bower_components/angular-sanitize/angular-sanitize',
-            'web/bower_components/angular-route/angular-route',
-            'web/bower_components/angular-bootstrap/ui-bootstrap-tpls',
-            'web/bower_components/angular-ui-utils/ui-utils',
-            'web/bower_components/angular-notify/dist/angular-notify.min',
-            'web/bower_components/angular-gravatar/build/md5',
-            'web/bower_components/angular-gravatar/build/angular-gravatar',
-            'web/bower_components/angular-disqus/src/angular-disqus',
-
             'node_modules/ng-midway-tester/src/ngMidwayTester.js',
 
-            'web/app/*.js',
-            'web/app/**/*.js',
-            'web/app/**/**/*.js',
-            'web/app/**/**/**/*.js',
-            'web/app/**/**/**/**/*.js',
             'karma/e2e/**/*.js'
 
         ],
@@ -48,7 +27,7 @@ module.exports = function (config) {
         exclude: [],
 
         // web server port
-        port: 80,
+        port: 8080,
 
         // level of logging
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
@@ -79,7 +58,7 @@ module.exports = function (config) {
         browsers: ['Firefox'],
 
         proxies: {
-            '/': 'http://ecommerce.aisel.dev/en/'
+            '/': 'http://ecommerce.aisel.dev/'
         },
 
         urlRoot: '_karma_',

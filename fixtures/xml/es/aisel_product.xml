@@ -287,7 +287,7 @@
             <column name="main_image">N;</column>
         </table>
         <table name="aisel_product">
-            <column name="id">200</column>
+            <column name="id">4200</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 200</column>
             <column name="sku">SP0010</column>
@@ -314,7 +314,7 @@
             <column name="main_image">N;</column>
         </table>
         <table name="aisel_product">
-            <column name="id">210</column>
+            <column name="id">4210</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 210</column>
             <column name="sku">SP0011</column>

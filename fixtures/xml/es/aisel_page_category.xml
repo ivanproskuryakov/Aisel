@@ -15,7 +15,7 @@
     - Database: 'aisel'
     -->
     <database name="aisel">
-        <!-- Spanish Categories -->
+        <!-- English Categories -->
         <table name="aisel_page_category">
             <column name="id">4270</column>
             <column name="locale">es</column>
@@ -73,7 +73,7 @@
         <table name="aisel_page_category">
             <column name="id">4273</column>
             <column name="locale">es</column>
-            <column name="parent_id">1272</column>
+            <column name="parent_id">4272</column>
             <column name="title">Primero 1</column>
             <column name="lft">2</column>
             <column name="rgt">3</column>
@@ -91,7 +91,7 @@
         <table name="aisel_page_category">
             <column name="id">4274</column>
             <column name="locale">es</column>
-            <column name="parent_id">1272</column>
+            <column name="parent_id">4272</column>
             <column name="title">Primero 2</column>
             <column name="lft">4</column>
             <column name="rgt">5</column>
@@ -109,7 +109,7 @@
         <table name="aisel_page_category">
             <column name="id">4275</column>
             <column name="locale">es</column>
-            <column name="parent_id">1272</column>
+            <column name="parent_id">4272</column>
             <column name="title">Primero 3</column>
             <column name="lft">6</column>
             <column name="rgt">13</column>
@@ -127,7 +127,7 @@
         <table name="aisel_page_category">
             <column name="id">4276</column>
             <column name="locale">es</column>
-            <column name="parent_id">1275</column>
+            <column name="parent_id">4275</column>
             <column name="title">Anidado 1</column>
             <column name="lft">7</column>
             <column name="rgt">8</column>
@@ -145,7 +145,7 @@
         <table name="aisel_page_category">
             <column name="id">4277</column>
             <column name="locale">es</column>
-            <column name="parent_id">1275</column>
+            <column name="parent_id">4275</column>
             <column name="title">Anidado 2</column>
             <column name="lft">9</column>
             <column name="rgt">10</column>
@@ -163,7 +163,7 @@
         <table name="aisel_page_category">
             <column name="id">4278</column>
             <column name="locale">es</column>
-            <column name="parent_id">1275</column>
+            <column name="parent_id">4275</column>
             <column name="title">Anidado 3</column>
             <column name="lft">11</column>
             <column name="rgt">12</column>

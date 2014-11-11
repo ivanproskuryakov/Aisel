@@ -13,7 +13,7 @@ var Aisel = {
         api: '/api',
         locale: {
             "primary": 'en',
-            "available": ['en', 'ru']
+            "available": ['en', 'es', 'ru']
         }
     },
     getLocale: function () {

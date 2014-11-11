@@ -16,7 +16,7 @@ parameters:
     website_api:     api
 
     locale: en
-    locales: en|ru|es|de
+    locales: en|es|ru
     secret: SecretTokenAisel
 
     #   Note:
