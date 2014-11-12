@@ -9,7 +9,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageDetailCtrl', function ($scope, $routeParams, pageService, $rootScope, rootService) {
+    app.controller('PageDetailCtrl', function ($scope, $routeParams, pageService, $rootScope) {
         var pageURL = $routeParams.pageId;
         var handleSuccess = function (data, status) {
             $scope.pageDetails = data;

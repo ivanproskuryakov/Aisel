@@ -5,7 +5,7 @@
  * @name Aisel
  *
  * @description
- * Router for Homepage
+ * Homepage Router
  */
 
 define(['app','./controllers/homepage'], function (app) {

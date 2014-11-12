@@ -5,7 +5,7 @@
  * @name Aisel
  *
  * @description
- * Search router
+ * Product router
  */
 
 define(['app',
