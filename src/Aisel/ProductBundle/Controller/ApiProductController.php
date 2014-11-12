@@ -27,11 +27,21 @@ class ApiProductController extends Controller
      * @Rest\View
      * /api/product/list.json?limit=2&current=3
      */
-    public function productListAction(Request $request)
+    public function productListAction(Request $request, $locale)
     {
-        $productList = false;
+        $params = array(
+            'current' => $request->get('current'),
+            'limit' => $request->get('limit'),
+            'category' => $request->get('category'),
+            'locale' => $request->get('locale')
+        );
 
-        return $productList;
+        if ($request->get('user') && $this->isAuthenticated()) {
+            $userid = $this->get('security.context')->getToken()->getUser()->getId();
+            $params['userid'] = $userid;
+        }
+        $list = $this->container->get("aisel.product.manager")->getProducts($params, $locale);
+        return $list;
     }
 
     /**
@@ -41,7 +51,6 @@ class ApiProductController extends Controller
     {
         /** @var \Aisel\ProductBundle\Entity\Product $product */
         $product = $this->container->get("aisel.product.manager")->getProductByURL($urlKey);
-
         return $product;
     }
 }

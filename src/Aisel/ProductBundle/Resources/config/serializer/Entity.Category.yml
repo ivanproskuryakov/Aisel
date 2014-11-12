@@ -1,0 +1,22 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+Aisel\ProductBundle\Entity\Category:
+#  exclusion_policy: ALL
+  properties:
+#    id:
+#        expose: true
+#    lvl:
+#        expose: true
+#    title:
+#        expose: true
+#    description:
+#        expose: true
+#    metaUrl:
+#        expose: true
+#    createdAt:
+#        expose: true

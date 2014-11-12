@@ -22,32 +22,32 @@ admin_aisel_product_category_update:
 # Api
 # Product
 api_aisel_productlist:
-    pattern:  /%website_api%/product/list.json
+    pattern:  /%website_api%/{locale}/product/list.json
     defaults: { _controller: AiselProductBundle:ApiProduct:productList, _format: json }
     requirements:
         _method: GET|POST
 
 api_aisel_productview_by_url:
-    pattern:  /%website_api%/product/view/url/{urlKey}.json
+    pattern:  /%website_api%/{locale}/product/view/url/{urlKey}.json
     defaults: { _controller: AiselProductBundle:ApiProduct:productViewByURL, _format: json }
     requirements:
         _method: GET|POST
 
 # Categories
 api_aisel_product_categorylist:
-    pattern:  /%website_api%/product/category/list.json
+    pattern:  /%website_api%/{locale}/product/category/list.json
     defaults: { _controller: AiselProductBundle:ApiCategory:categoryList, _format: json }
     requirements:
         _method: GET
 
 api_aisel_product_categorytree:
-    pattern:  /%website_api%/product/category/tree.json
+    pattern:  /%website_api%/{locale}/product/category/tree.json
     defaults: { _controller: AiselProductBundle:ApiCategory:categoryTree, _format: json }
     requirements:
         _method: GET
 
 api_aisel_product_categoryview:
-    pattern:  /%website_api%/product/category/view/{urlKey}.json
+    pattern:  /%website_api%/{locale}/product/category/view/{urlKey}.json
     defaults: { _controller: AiselProductBundle:ApiCategory:categoryView, _format: json }
     requirements:
         _method: GET

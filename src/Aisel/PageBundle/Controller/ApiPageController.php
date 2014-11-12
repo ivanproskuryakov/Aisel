@@ -51,7 +51,6 @@ class ApiPageController extends Controller
             $params['userid'] = $userid;
         }
         $pageList = $this->container->get("aisel.page.manager")->getPages($params, $locale);
-
         return $pageList;
     }
 
@@ -62,7 +61,6 @@ class ApiPageController extends Controller
     {
         /** @var \Aisel\PageBundle\Entity\Page $page */
         $page = $this->container->get("aisel.page.manager")->getPageByURL($urlKey, $locale);
-
         return $page;
     }
 }

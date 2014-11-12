@@ -68,7 +68,7 @@ class PageRepository extends EntityRepository
     /**
      * Get page total
      *
-     * @param array  $params
+     * @param array $params
      *
      * @return int $total
      */
@@ -105,7 +105,7 @@ class PageRepository extends EntityRepository
 
     /**
      * Get pages based on limit, current pagination and search query
-     * @param  array                         $params
+     * @param  array $params
      * @return \Aisel\PageBundle\Entity\Page
      */
     public function searchFromRequest($params)
@@ -146,7 +146,7 @@ class PageRepository extends EntityRepository
     /**
      * Get pages based on limit, current pagination and search query
      *
-     * @param array  $params
+     * @param array $params
      *
      * @return \Aisel\PageBundle\Entity\Page $pages
      */
@@ -182,7 +182,9 @@ class PageRepository extends EntityRepository
 
     /**
      * Get pages filtered by category
-     * @param  int                           $categoryId
+     *
+     * @param  int $categoryId
+     *
      * @return \Aisel\PageBundle\Entity\Page $pages
      */
     public function getPagesByCategory($categoryId)
@@ -202,8 +204,10 @@ class PageRepository extends EntityRepository
 
     /**
      * Find pages by URL
+     *
      * @param  string $url
-     * @param  int    $pageId
+     * @param  int $pageId
+     *
      * @return int    $found
      */
     public function findTotalByURL($url, $pageId = null)

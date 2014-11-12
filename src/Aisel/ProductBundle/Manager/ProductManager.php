@@ -35,12 +35,13 @@ class ProductManager
 
     /**
      * Get categories in array for product
-     * @param  int   $product
+     * @param  int $product
      * @return array $categories
      */
     public function getProductCategories($product)
     {
         $categories = array();
+
         foreach ($product->getCategories() as $c) {
             $category = array();
             $category['id'] = $c->getId();
@@ -48,7 +49,6 @@ class ProductManager
             $category['url'] = $c->getMetaUrl();
             $categories[$c->getId()] = $category;
         }
-
         return $categories;
     }
 
@@ -61,12 +61,10 @@ class ProductManager
     {
         $total = $this->em->getRepository('AiselProductBundle:Product')->getTotalFromRequest($params);
         $products = $this->em->getRepository('AiselProductBundle:Product')->getCurrentProductsFromRequest($params);
-
         $return = array(
             'total' => $total,
             'products' => $products
         );
-
         return $return;
     }
 
@@ -86,9 +84,7 @@ class ProductManager
         if (!($product)) {
             throw new NotFoundHttpException('Nothing found');
         }
-
         $productDetails = array('product' => $product, 'categories' => $this->getProductCategories($product));
-
         return $productDetails;
     }
 
@@ -103,15 +99,12 @@ class ProductManager
      */
     public function getProductByURL($urlKey)
     {
-
         $product = $this->em->getRepository('AiselProductBundle:Product')->findOneBy(array('metaUrl' => $urlKey));
 
         if (!($product)) {
             throw new NotFoundHttpException('Nothing found');
         }
-
         $productDetails = array('product' => $product, 'categories' => $this->getProductCategories($product));
-
         return $productDetails;
     }
 
@@ -129,10 +122,10 @@ class ProductManager
         $product = $this->em->getRepository('AiselProductBundle:Product')->findTotalByURL($url, $productId);
         $utility = new UrlUtility();
         $validUrl = $utility->process($url);
+
         if ($product) {
             $validUrl = $validUrl . '-' . time();
         }
-
         return $validUrl;
     }
 
@@ -143,7 +136,6 @@ class ProductManager
     public function getEnabledProducts()
     {
         $productList = $this->em->getRepository('AiselProductBundle:Product')->getEnabledProducts();
-
         return $productList;
     }
 
