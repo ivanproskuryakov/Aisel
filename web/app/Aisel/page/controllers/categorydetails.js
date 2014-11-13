@@ -9,15 +9,15 @@
  */
 
 define(['app'], function (app) {
-    app.controller('CategoryDetailCtrl', ['$location', '$scope', '$routeParams', 'pageService', 'categoryService',
-        function ($location, $scope, $routeParams, pageService, categoryService) {
+    app.controller('CategoryDetailCtrl', ['$location', '$scope', '$routeParams', 'pageService', 'pageCategoryService',
+        function ($location, $scope, $routeParams, pageService, pageCategoryService) {
 
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
             $scope.categoryId = $routeParams.categoryId;
 
             // Category Information
-            categoryService.getCategory($scope.categoryId).success(
+            pageCategoryService.getCategory($scope.categoryId).success(
                 function (data, status) {
                     $scope.categoryDetails = data;
                 }

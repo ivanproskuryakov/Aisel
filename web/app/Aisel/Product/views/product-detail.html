@@ -1,0 +1,21 @@
+<div class="">
+        <div class="col-xs-12 page-header">
+            <h2>{{productDetails.product.name}}</h2>
+            <p><span class="glyphicon glyphicon-calendar"></span> {{productDetails.product.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
+        </div>
+
+        <div class="col-xs-12 col-md-12">
+            <p ng-bind-html="productDetails.product.description"></p>
+            <div class="related productCategories" ng-if="productDetails.categories">
+                <hr/>
+                <p><strong>Related categories: </strong></p>
+                <ul class="categoryList">
+                    <li ng-repeat="category in productDetails.categories">
+                        <a ng-href="/{{locale}}/product/category/{{category.url}}">{{ category.title }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div ng-if="showComments" disqus="productDetails.product.meta_url"></div>
+        </div>
+</div>
+

@@ -9,8 +9,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageCtrl', ['$location', '$scope', '$routeParams', 'pageService', 'categoryService',
-        function ($location, $scope, $routeParams, pageService, categoryService) {
+    app.controller('PageCtrl', ['$location', '$scope', '$routeParams', 'pageService',
+        function ($location, $scope, $routeParams, pageService) {
 
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;

@@ -9,22 +9,22 @@
  */
 
 define(['app'], function (app) {
-    app.controller('CategoryDetailCtrl', ['$location', '$scope', '$routeParams', 'productService', 'categoryService',
-        function ($location, $scope, $routeParams, productService, categoryService) {
+    app.controller('CategoryDetailCtrl', ['$location', '$scope', '$routeParams', 'productService', 'productCategoryService',
+        function ($location, $scope, $routeParams, productService, productCategoryService) {
 
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
             $scope.categoryId = $routeParams.categoryId;
 
             // Category Information
-            categoryService.getCategory($scope.categoryId).success(
+            productCategoryService.getCategory($scope.categoryId).success(
                 function (data, status) {
                     $scope.categoryDetails = data;
                 }
             );
 
-            // Pages
-            productService.getProducts($scope).success(
+            // Products
+            productCategoryService.getProducts($scope).success(
                 function (data, status) {
                     $scope.productList = data;
                 }

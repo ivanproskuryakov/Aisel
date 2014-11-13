@@ -12,7 +12,7 @@ define(['app',
     './controllers/product', './controllers/productdetails',
     './services/product',
     './controllers/category', './controllers/categorydetails',
-    './services/category',
+    './services/productcategory',
 ], function (app) {
     console.log('Product module loaded ...');
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
