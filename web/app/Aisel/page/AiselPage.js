@@ -11,7 +11,7 @@
 define(['app',
     './controllers/page', './controllers/pagedetails',
     './services/page',
-    './controllers/category', './controllers/categorydetails',
+    './controllers/pagecategory', './controllers/pagecategorydetails',
     './services/pagecategory',
 ], function (app) {
     console.log('Page module loaded ...');
@@ -30,11 +30,11 @@ define(['app',
             // Categories
             .when('/:locale/page/categories/', {
                 templateUrl: '/app/Aisel/Page/views/category.html',
-                controller: 'CategoryCtrl'
+                controller: 'PageCategoryCtrl'
             })
             .when('/:locale/page/category/:categoryId/', {
                 templateUrl: '/app/Aisel/Page/views/category-detail.html',
-                controller: 'CategoryDetailCtrl'
+                controller: 'PageCategoryDetailCtrl'
             })
 
     });

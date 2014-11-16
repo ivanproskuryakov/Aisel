@@ -10,8 +10,8 @@
 
         <div class="related categoryPages" ng-if="categoryDetails.pages">
             <div class="">
-                <ul class="pageList">
-                    <li ng-repeat="page in pageList.pages">
+                <ul class="productList">
+                    <li ng-repeat="page in productList.pages">
                         <h2><a href="/{{locale}}/page/view/{{page.metaUrl}}/" class="thumb">{{page.title}}</a></h2>
                         <p ng-bind-html="page.content"></p>
                         <p><span class="glyphicon glyphicon-calendar"></span>{{page.createdAt | date:"MM/dd/yyyy @
@@ -21,12 +21,12 @@
                 </ul>
             </div>
             <div class="col-xs-6 col-md-6">
-                <pagination ng-if="pageList.total > 0" on-select-page="pageChanged(page)"
-                            items-per-page="{{pageLimit}}" total-items="pageList.total"
+                <pagination ng-if="productList.total > 0" on-select-page="pageChanged(page)"
+                            items-per-page="{{pageLimit}}" total-items="productList.total"
                             page="paginationPage"></pagination>
             </div>
             <div class="col-xs-6 col-md-6">
-                <p class="pull-right"><strong>Total pages: {{pageList.total}} Current: {{paginationPage}}</strong>
+                <p class="pull-right"><strong>Total pages: {{productList.total}} Current: {{paginationPage}}</strong>
                 </p>
             </div>
         </div>

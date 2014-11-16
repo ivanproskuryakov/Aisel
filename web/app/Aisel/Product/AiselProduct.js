@@ -11,7 +11,7 @@
 define(['app',
     './controllers/product', './controllers/productdetails',
     './services/product',
-    './controllers/category', './controllers/categorydetails',
+    './controllers/productcategory', './controllers/productcategorydetails',
     './services/productcategory',
 ], function (app) {
     console.log('Product module loaded ...');
@@ -30,11 +30,11 @@ define(['app',
             // Categories
             .when('/:locale/product/categories/', {
                 templateUrl: '/app/Aisel/Product/views/category.html',
-                controller: 'CategoryCtrl'
+                controller: 'ProductCategoryCtrl'
             })
             .when('/:locale/product/category/:categoryId/', {
                 templateUrl: '/app/Aisel/Product/views/category-detail.html',
-                controller: 'CategoryDetailCtrl'
+                controller: 'ProductCategoryDetailCtrl'
             })
 
     });

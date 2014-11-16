@@ -9,23 +9,23 @@
  */
 
 define(['app'], function (app) {
-    app.controller('CategoryCtrl', ['$location', '$scope', '$routeParams', 'pageCategoryService',
-        function ($location, $scope, $routeParams, pageCategoryService) {
+    app.controller('ProductCategoryCtrl', ['$location', '$scope', '$routeParams', 'productCategoryService',
+        function ($location, $scope, $routeParams, productCategoryService) {
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
             $scope.pageChanged = function (page) {
                 $scope.paginationPage = page;
-                pageCategoryService.getCategories($scope).success(
+                productCategoryService.getCategories($scope).success(
                     function (data, status) {
-                        $scope.categoryList = data;
+                        $scope.productCategoryList = data;
                     }
                 );
             };
 
             // Categories
-            pageCategoryService.getCategories($scope).success(
+            productCategoryService.getCategories($scope).success(
                 function (data, status) {
-                    $scope.categoryList = data;
+                    $scope.productCategoryList = data;
                 }
             );
         }]);

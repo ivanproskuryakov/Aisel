@@ -17,13 +17,13 @@
     <database name="aisel">
         <!-- Russian Categories -->
         <table name="aisel_page_category">
-            <column name="id">1370</column>
+            <column name="id">2370</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
             <column name="title">Корневая Один</column>
             <column name="lft">1</column>
             <column name="rgt">2</column>
-            <column name="root">1370</column>
+            <column name="root">2370</column>
             <column name="lvl">0</column>
             <column name="description">Mockups can be a very important part of a presentation, especially for those who design applications for mobile devices or computers. Our MacBook Air and Pro mockups are designed </column>
             <column name="status">1</column>
@@ -35,13 +35,13 @@
             <column name="updated_at">2014-09-02 17:59:33</column>
         </table>
         <table name="aisel_page_category">
-            <column name="id">1371</column>
+            <column name="id">2371</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
             <column name="title">Корневая Два</column>
             <column name="lft">1</column>
             <column name="rgt">2</column>
-            <column name="root">1371</column>
+            <column name="root">2371</column>
             <column name="lvl">0</column>
             <column name="description">to showcase the work of programmers and designers so that they can have something to show their clients before the app is fully completed. These mockups are available in 1366x768 and </column>
             <column name="status">1</column>
@@ -53,13 +53,13 @@
             <column name="updated_at">2014-09-02 17:59:33</column>
         </table>
         <table name="aisel_page_category">
-            <column name="id">1372</column>
+            <column name="id">2372</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
             <column name="title">Корневая Три</column>
             <column name="lft">1</column>
             <column name="rgt">14</column>
-            <column name="root">1372</column>
+            <column name="root">2372</column>
             <column name="lvl">0</column>
             <column name="description">1380x800 resolutions for optimal viewing quality. Using mockups saves designers time by giving them something to display in presentations with clients so that they can get a better idea as to what the finished program will look like.</column>
             <column name="status">1</column>
@@ -71,13 +71,13 @@
             <column name="updated_at">2014-09-02 17:59:33</column>
         </table>
         <table name="aisel_page_category">
-            <column name="id">1373</column>
+            <column name="id">2373</column>
             <column name="locale">ru</column>
-            <column name="parent_id">1372</column>
+            <column name="parent_id">2372</column>
             <column name="title">Первая 1</column>
             <column name="lft">2</column>
             <column name="rgt">3</column>
-            <column name="root">1372</column>
+            <column name="root">2372</column>
             <column name="lvl">1</column>
             <column name="description">Those who use our website will find that it is easy to generate high quality MacBook, iPad, iMac, and iPhone mockups by simply uploading an image from their computer or a web screen </column>
             <column name="status">1</column>
@@ -89,13 +89,13 @@
             <column name="updated_at">2014-09-02 17:59:33</column>
         </table>
         <table name="aisel_page_category">
-            <column name="id">1374</column>
+            <column name="id">2374</column>
             <column name="locale">ru</column>
-            <column name="parent_id">1372</column>
+            <column name="parent_id">2372</column>
             <column name="title">Первая 2</column>
             <column name="lft">4</column>
             <column name="rgt">5</column>
-            <column name="root">1372</column>
+            <column name="root">2372</column>
             <column name="lvl">1</column>
             <column name="description">shot. The mockup is generated within a matter of minutes and is guaranteed to look one hundred percent professional. We take great pride in creating mockups that look sharp and are perfect for </column>
             <column name="status">1</column>
@@ -107,13 +107,13 @@
             <column name="updated_at">2014-09-02 17:59:33</column>
         </table>
         <table name="aisel_page_category">
-            <column name="id">1375</column>
+            <column name="id">2375</column>
             <column name="locale">ru</column>
-            <column name="parent_id">1372</column>
+            <column name="parent_id">2372</column>
             <column name="title">Первая 3</column>
             <column name="lft">6</column>
             <column name="rgt">13</column>
-            <column name="root">1372</column>
+            <column name="root">2372</column>
             <column name="lvl">1</column>
             <column name="description">professionals who need an impressive visual aid to show to their clients when designing a new app.</column>
             <column name="status">1</column>
@@ -125,13 +125,13 @@
             <column name="updated_at">2014-09-02 17:59:33</column>
         </table>
         <table name="aisel_page_category">
-            <column name="id">1376</column>
+            <column name="id">2376</column>
             <column name="locale">ru</column>
-            <column name="parent_id">1375</column>
+            <column name="parent_id">2375</column>
             <column name="title">Вложенная 1</column>
             <column name="lft">7</column>
             <column name="rgt">8</column>
-            <column name="root">1372</column>
+            <column name="root">2372</column>
             <column name="lvl">2</column>
             <column name="description">By using our mockups in work or school presentations, you will be able to give your audience a good sense as to what the application looks like and even how it functions. Anyone who is </column>
             <column name="status">1</column>
@@ -143,13 +143,13 @@
             <column name="updated_at">2014-09-02 17:59:33</column>
         </table>
         <table name="aisel_page_category">
-            <column name="id">1377</column>
+            <column name="id">2377</column>
             <column name="locale">ru</column>
-            <column name="parent_id">1375</column>
+            <column name="parent_id">2375</column>
             <column name="title">Вложенная 2</column>
             <column name="lft">9</column>
             <column name="rgt">10</column>
-            <column name="root">1372</column>
+            <column name="root">2372</column>
             <column name="lvl">2</column>
             <column name="description">designing an app specifically for a Mac device will certainly want to look into what we have to offer when it comes to these kinds of products. It can be difficult to describe how an application </column>
             <column name="status">1</column>
@@ -161,13 +161,13 @@
             <column name="updated_at">2014-09-02 17:59:33</column>
         </table>
         <table name="aisel_page_category">
-            <column name="id">1378</column>
+            <column name="id">2378</column>
             <column name="locale">ru</column>
-            <column name="parent_id">1375</column>
+            <column name="parent_id">2375</column>
             <column name="title">Вложенная 3</column>
             <column name="lft">11</column>
             <column name="rgt">13</column>
-            <column name="root">1372</column>
+            <column name="root">2372</column>
             <column name="lvl">2</column>
             <column name="description">works or looks like, which is why it is such a good idea to employ visual aids like these. MacBook mockups are perfect for presentations with clients because they are able to convey more than words ever could.</column>
             <column name="status">1</column>

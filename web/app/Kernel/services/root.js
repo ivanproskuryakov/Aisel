@@ -33,7 +33,7 @@ define(['app'], function (app) {
                     getMenu: function () {
                         var locale = Aisel.getLocale();
                         var url = API_URL + '/' + locale + '/navigation/menu.json';
-                        console.log(url);
+                        //console.log(url);
                         return $http.get(url);
                     },
                     getUserInformation: function () {
