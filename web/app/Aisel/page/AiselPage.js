@@ -9,10 +9,10 @@
  */
 
 define(['app',
-    './controllers/page', './controllers/pagedetails',
+    './controllers/page', './controllers/pageDetails',
     './services/page',
-    './controllers/pagecategory', './controllers/pagecategorydetails',
-    './services/pagecategory',
+    './controllers/pageCategory', './controllers/pageCategoryDetails',
+    './services/pageCategory',
 ], function (app) {
     console.log('Page module loaded ...');
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {

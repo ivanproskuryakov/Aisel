@@ -9,10 +9,10 @@
  */
 
 define(['app',
-    './controllers/product', './controllers/productdetails',
+    './controllers/product', './controllers/productDetails',
     './services/product',
-    './controllers/productcategory', './controllers/productcategorydetails',
-    './services/productcategory',
+    './controllers/productCategory', './controllers/productCategoryDetails',
+    './services/productCategory',
 ], function (app) {
     console.log('Product module loaded ...');
     app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
