@@ -6,6 +6,7 @@ aisel_config_category.label: Category
 aisel_config_meta.label: Metadata
 aisel_config_homepage.label: Homepage
 aisel_config_disqus.label: Disqus
+aisel_config_general.label: General
 settings.label: Sections
 settings:
   label:

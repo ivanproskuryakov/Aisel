@@ -1,11 +1,9 @@
 <div class="">
         <div class="col-xs-12 page-header">
             <h2>{{pageDetails.page.title}}</h2>
-            <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span> <a ng-href="/{{locale}}/pages/">Back to pages</a></p>
-            <p><span class="glyphicon glyphicon-calendar"></span> {{pageDetails.page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
         </div>
-
         <div class="col-xs-12 col-md-12">
+            <p><span class="glyphicon glyphicon-calendar"></span> {{pageDetails.page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
             <p ng-bind-html="pageDetails.page.content"></p>
             <div class="related pageCategories" ng-if="pageDetails.categories">
                 <hr/>

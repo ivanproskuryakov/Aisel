@@ -34,5 +34,11 @@
             <column name="entity">config_disqus</column>
             <column name="value">{&quot;shortname&quot;:&quot;demoaiselco&quot;,&quot;status&quot;:1}</column>
         </table>
+        <table name="aisel_config">
+            <column name="id">185</column>
+            <column name="locale">ru</column>
+            <column name="entity">config_general</column>
+            <column name="value">{"currency":"RUR"}</column>
+        </table>
     </database>
 </pma_xml_export>

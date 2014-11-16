@@ -21,6 +21,9 @@ aisel_config:
         contact:
             order: 30
             controller: AiselContactBundle:Config:modify
+        general:
+            order: 30
+            controller: AiselSettingsBundle:ConfigGeneral:modify
 
 aisel_fixture:
     xml_path: /fixtures/xml
