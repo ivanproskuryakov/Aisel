@@ -18,6 +18,20 @@
     <database name="aisel">
         <!-- English Menu -->
         <table name="aisel_menu_top">
+            <column name="id">208</column>
+            <column name="locale">en</column>
+            <column name="parent_id">NULL</column>
+            <column name="lft">1</column>
+            <column name="rgt">2</column>
+            <column name="root">209</column>
+            <column name="lvl">0</column>
+            <column name="title">Products</column>
+            <column name="metaUrl">/en/products/</column>
+            <column name="status">1</column>
+            <column name="created_at">2014-09-02 17:52:08</column>
+            <column name="updated_at">2014-09-02 17:52:08</column>
+        </table>
+        <table name="aisel_menu_top">
             <column name="id">209</column>
             <column name="locale">en</column>
             <column name="parent_id">NULL</column>
@@ -27,20 +41,6 @@
             <column name="lvl">0</column>
             <column name="title">Pages</column>
             <column name="metaUrl">/en/pages/</column>
-            <column name="status">1</column>
-            <column name="created_at">2014-09-02 17:52:08</column>
-            <column name="updated_at">2014-09-02 17:52:08</column>
-        </table>
-        <table name="aisel_menu_top">
-            <column name="id">210</column>
-            <column name="locale">en</column>
-            <column name="parent_id">NULL</column>
-            <column name="lft">1</column>
-            <column name="rgt">2</column>
-            <column name="root">210</column>
-            <column name="lvl">0</column>
-            <column name="title">Categories</column>
-            <column name="metaUrl">/en/page/categories/</column>
             <column name="status">1</column>
             <column name="created_at">2014-09-02 17:52:08</column>
             <column name="updated_at">2014-09-02 17:52:08</column>

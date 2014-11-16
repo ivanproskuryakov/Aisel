@@ -67,10 +67,16 @@ define(['app'], function (app) {
                                 $rootScope.topMenu = data;
                             }
                         );
-                        // Load categories
-                        rootService.getCategoryTree().success(
+                        // Load page categories
+                        rootService.getPageCategoryTree().success(
                             function (data, status) {
-                                $rootScope.categoryTree = data;
+                                $rootScope.pageCategoryTree = data;
+                            }
+                        );
+                        // Load product categories
+                        rootService.getProductCategoryTree().success(
+                            function (data, status) {
+                                $rootScope.productCategoryTree = data;
                             }
                         );
                     },

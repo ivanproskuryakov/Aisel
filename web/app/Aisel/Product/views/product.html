@@ -4,6 +4,7 @@
     </div>
 
     <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="sidebar" ng-include="'/app/Aisel/Product/views/sidebar.html'"></div>
     </div>
     <div class="col-xs-12 col-md-9">
         <div class="col-md-12">
@@ -25,7 +26,7 @@
                         page="paginationPage"></pagination>
         </div>
         <div class="col-xs-6 col-md-6">
-            <p class="pagination-info pagination"><strong>Total product: {{pageList.total}} Current:
+            <p class="pagination-info pagination"><strong>Total product: {{productList.total}} Current:
                 {{paginationPage}}</strong></p>
         </div>
     </div>

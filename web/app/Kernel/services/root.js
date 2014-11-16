@@ -18,10 +18,16 @@ define(['app'], function (app) {
                         // console.log(url);
                         return $http.get(url);
                     },
-                    getCategoryTree: function () {
+                    getPageCategoryTree: function () {
                         var locale = Aisel.getLocale();
                         var url = API_URL + '/' + locale + '/page/category/tree.json';
-                        // console.log(url);
+                        console.log(url);
+                        return $http.get(url);
+                    },
+                    getProductCategoryTree: function () {
+                        var locale = Aisel.getLocale();
+                        var url = API_URL + '/' + locale + '/product/category/tree.json';
+                        console.log(url);
                         return $http.get(url);
                     },
                     getMenu: function () {

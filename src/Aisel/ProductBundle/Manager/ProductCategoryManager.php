@@ -16,5 +16,4 @@ use Aisel\CategoryBundle\Manager\AbstractCategoryManager;
 class ProductCategoryManager extends AbstractCategoryManager
 {
     protected $categoryEntity = 'AiselProductBundle:Category';
-
 }
