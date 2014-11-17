@@ -25,22 +25,22 @@ class ConfigRepository extends EntityRepository
     /**
      * Returns all stored settings
      *
+     * @param string $locale
+     *
      * @return array $config
      */
-    public function getAllSettings()
+    public function getAllSettings($locale)
     {
-
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $values = $qb->select('c.entity, c.value')
+        $values = $qb->select('c.entity, c.value, c.locale')
             ->from('AiselConfigBundle:Config', 'c')
             ->getQuery()
             ->execute();
-
         $config = array();
-        foreach ($values as $k => $v) {
-            $config[$v['entity']] = $v['value'];
-        }
 
+        foreach ($values as $k => $v) {
+            if ($v['locale'] == $locale) $config[$v['entity']] = $v['value'];
+        }
         return $config;
     }
 

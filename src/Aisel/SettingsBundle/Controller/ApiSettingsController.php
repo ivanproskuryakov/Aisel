@@ -26,9 +26,9 @@ class ApiSettingsController extends Controller
      * @Rest\View
      * /api/config/settings.json
      */
-    public function configAction()
+    public function configAction($locale)
     {
-        $config = $this->container->get("aisel.settings.manager")->getConfig();
+        $config = $this->container->get("aisel.settings.manager")->getConfig($locale);
 
         return $config;
     }

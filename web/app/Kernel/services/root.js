@@ -14,7 +14,8 @@ define(['app'], function (app) {
             function ($http, $routeParams, $rootScope, API_URL) {
                 return {
                     getApplicationConfig: function () {
-                        var url = API_URL + '/config/settings.json';
+                        var locale = Aisel.getLocale();
+                        var url = API_URL + '/' + locale + '/config/settings.json';
                         // console.log(url);
                         return $http.get(url);
                     },
