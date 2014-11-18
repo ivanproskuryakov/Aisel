@@ -51,8 +51,16 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
                     $product->setDescription($table->column[15]);
                     $product->setStatus((int)$table->column[16]);
                     $product->setHidden((int)$table->column[17]);
+                    $product->setCommentStatus((int)$table->column[18]);
                     $product->setMetaUrl($table->column[19]);
-                    $product->setCommentStatus((int)$table->column[20]);
+
+
+                    $categories = explode(",", $table->column[20]);
+                    foreach ($categories as $c) {
+                        $category = $this->getReference('product_category_' . $c);
+                        $product->addCategory($category);
+                    }
+
                     $product->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $product->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $manager->persist($product);

@@ -40,8 +40,7 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                 $contents = file_get_contents($file);
                 $XML = simplexml_load_string($contents);
 
-                // todo: remove hardcode from fixtures
-                $category = $this->getReference('page_category_1270');
+
                 foreach ($XML->database->table as $table) {
                     $page = new Page();
                     $page->setLocale($table->column[1]);
@@ -50,8 +49,14 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                     $page->setStatus($table->column[4]);
                     $page->setHidden($table->column[5]);
                     $page->setCommentStatus($table->column[6]);
-                    $page->addCategory($category);
                     $page->setMetaUrl($table->column[7]);
+
+                    $categories = explode(",", $table->column[8]);
+                    foreach ($categories as $c) {
+                        $category = $this->getReference('page_category_' . $c);
+                        $page->addCategory($category);
+                    }
+
                     $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $manager->persist($page);

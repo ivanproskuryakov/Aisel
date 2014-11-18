@@ -25,6 +25,7 @@
             <column name="is_hidden">1</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-about-aisel</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -40,6 +41,7 @@
             <column name="is_hidden">1</column>
             <column name="comment_status">0</column>
             <column name="meta_url">ru-page-disabled</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -55,6 +57,7 @@
             <column name="is_hidden">0</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-page-1</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -70,6 +73,7 @@
             <column name="is_hidden">0</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-page-2</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -85,6 +89,7 @@
             <column name="is_hidden">0</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-page-3</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -100,6 +105,7 @@
             <column name="is_hidden">0</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-page-4</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -115,6 +121,7 @@
             <column name="is_hidden">0</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-page-5</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -130,6 +137,7 @@
             <column name="is_hidden">0</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-page-6</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -145,6 +153,7 @@
             <column name="is_hidden">0</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-page-7</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -160,6 +169,7 @@
             <column name="is_hidden">0</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-page-8</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -175,6 +185,7 @@
             <column name="is_hidden">0</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-page-9</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -190,6 +201,7 @@
             <column name="is_hidden">0</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-page-10</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -205,6 +217,7 @@
             <column name="is_hidden">0</column>
             <column name="comment_status">1</column>
             <column name="meta_url">ru-page-11</column>
+            <column name="categories">2370,2371,2372,2373,2374,2375</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>

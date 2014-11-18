@@ -7,7 +7,7 @@
             <p ng-bind-html="pageDetails.page.content"></p>
             <div class="related pageCategories" ng-if="pageDetails.categories">
                 <hr/>
-                <p><strong>Related categories: </strong></p>
+                <p><strong>Page categories: </strong></p>
                 <ul class="categoryList">
                     <li ng-repeat="category in pageDetails.categories">
                         <a ng-href="/{{locale}}/page/category/{{category.url}}">{{ category.title }}</a>

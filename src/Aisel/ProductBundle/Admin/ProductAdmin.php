@@ -69,6 +69,9 @@ class ProductAdmin extends Admin
                 '1' => $this->trans('aisel.default.enabled')),
                 'required' => false,
                 'label' => 'aisel.default.status', 'attr' => array('class' => 'form-control')))
+            ->add('locale', 'aisel_locale', array('label' => 'aisel.default.locale',
+                'required' => false,
+                'attr' => array('class' => 'form-control')))
             ->add('descriptionShort', 'ckeditor',
                 array(
                     'label' => 'aisel.default.short_description',
@@ -182,6 +185,9 @@ class ProductAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
+            ->add('locale', 'aisel_locale', array('label' => 'aisel.default.locale',
+                'required' => false,
+                'attr' => array('class' => 'form-control')))
             ->add('mainImage', 'boolean', array('label' => 'aisel.product.main_image', 'template' => 'AiselProductBundle:Media:list_field_image.html.twig'))->add('name', null, array('label' => 'aisel.default.name'))
             ->add('sku', null, array('label' => 'aisel.default.sku'))
             ->add('price', null, array('label' => 'aisel.product.price'))
@@ -204,6 +210,7 @@ class ProductAdmin extends Admin
         $showMapper
             ->with('aisel.default.information')
             ->add('id', null, array('label' => 'aisel.default.id'))
+            ->add('locale', null, array('label' => 'aisel.default.locale'))
             ->add('name', null, array('label' => 'aisel.default.name'))
             ->add('qty', null, array('label' => 'aisel.default.qty'))
             ->add('inStock', null, array('label' => 'aisel.default.description'))

@@ -20,7 +20,7 @@
             <column name="id">2090</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
-            <column name="title">Корневая Оин</column>
+            <column name="title">Корневая Один</column>
             <column name="lft">1</column>
             <column name="rgt">2</column>
             <column name="root">2090</column>

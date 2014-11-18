@@ -200,6 +200,7 @@ class PageAdmin extends Admin
         $showMapper
             ->with('aisel.default.information')
             ->add('id', null, array('label' => 'aisel.default.id'))
+            ->add('locale', null, array('label' => 'aisel.default.locale'))
             ->add('content', null, array('label' => 'aisel.default.content'))
             ->add('status', 'boolean', array('label' => 'aisel.default.status'))
             ->end()

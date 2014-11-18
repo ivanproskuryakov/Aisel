@@ -44,7 +44,6 @@ assetic:
       - AiselAdminBundle
       - AiselConfigBundle
       - AiselProductBundle
-    #java: /usr/bin/java
     filters:
         cssrewrite: ~
         #closure:
@@ -102,23 +101,11 @@ swiftmailer:
 jms_serializer:
   metadata:
     auto_detection: true
-    directories:
-      AiselPageBundle:
-        namespace_prefix: "Aisel\\PageBundle"
-        path: "@AiselPageBundle/Resources/config/serializer/"
-      AiselFrontendUserBundle:
-        namespace_prefix: "Aisel\\FrontendUserBundle"
-        path: "@AiselFrontendUserBundle/Resources/config/serializer/"
-      AiselNavigationBundle:
-        namespace_prefix: "Aisel\\NavigationBundle"
-        path: "@AiselNavigationBundle/Resources/config/serializer/"
-
 
 # REST
 fos_rest:
     view:
         view_response_listener: 'force'
-
 
 # Sonata section
 sonata_block:
