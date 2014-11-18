@@ -177,9 +177,9 @@ class PageAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id', null, array('label' => 'aisel.default.id'))
+            ->add('locale', 'text', array('label' => 'aisel.default.locale'))
             ->add('title', null, array('label' => 'aisel.default.title'))
             ->add('status', 'boolean', array('label' => 'aisel.default.status', 'editable' => false))
-            ->add('locale', 'text', array('label' => 'aisel.default.locale'))
             ->add('updatedAt', 'datetime', array('label' => 'aisel.default.updated_at'))
             ->add('_action', 'actions', array(
                 'actions' => array(

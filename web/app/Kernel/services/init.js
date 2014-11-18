@@ -16,6 +16,7 @@ define(['app'], function (app) {
                     launch: function () {
                         var meta = false;
                         var disqus = false;
+                        var general = false;
 
                         // Load user status
                         rootService.getUserInformation().success(
@@ -32,10 +33,12 @@ define(['app'], function (app) {
                         rootService.getApplicationConfig().success(
                             function (data, status) {
                                 appSettings = data.settings;
+                                general = JSON.parse(data.config_general);
                                 meta = JSON.parse(data.config_meta);
                                 disqus = JSON.parse(data.config_disqus);
                                 $rootScope.disqusShortname = disqus.shortname;
                                 $rootScope.disqusStatus = disqus.status;
+                                $rootScope.currency = general.currency;
 
                                 console.log('----------- Init start -----------');
                                 var setLocale = function () {

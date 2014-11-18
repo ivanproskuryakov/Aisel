@@ -20,10 +20,7 @@
                                  data-holder-rendered="true" style="width: 100%;">
                         </div>
                         <div class="col-md-9">
-                            <p><span class="glyphicon glyphicon-tags"></span> {{product.price}}</p>
-                            <p><span class="glyphicon glyphicon-calendar"></span> {{product.createdAt | date:"MM/dd/yyyy @ h:mma"
-                                }}</p>
-
+                            <p><span class="glyphicon glyphicon-tags"></span>&nbsp;{{product.price}} {{currency}}</p>
                             <p ng-bind-html="product.description"></p>
                         </div>
                     </div>
