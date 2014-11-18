@@ -13,12 +13,14 @@
             <p ng-bind-html="productDetails.product.description"></p>
         </div>
         <div class="col-xs-12 col-md-12">
-            <div class="related productCategories" ng-if="productDetails.categories">
+            <div class="related-categories" ng-if="productDetails.categories">
                 <hr/>
-                <p><strong>Related categories: </strong></p>
+                <p><strong>Product categories: </strong></p>
                 <ul class="categoryList">
                     <li ng-repeat="category in productDetails.categories">
-                        <a ng-href="/{{locale}}/product/category/{{category.url}}">{{ category.title }}</a>
+                        <span class="label label-primary">
+                            <a ng-href="/{{locale}}/product/category/{{category.url}}">{{ category.title }}</a>
+                        </span>&nbsp;
                     </li>
                 </ul>
             </div>

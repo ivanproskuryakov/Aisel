@@ -114,6 +114,13 @@ body .pagination > .active > span:focus {
     margin-top: 0;
 }
 
+.related-categories {
+}
+
+.related-categories a {
+    color: #fff;
+}
+
 .pageList {
     list-style: none;
     margin-left: 0;
