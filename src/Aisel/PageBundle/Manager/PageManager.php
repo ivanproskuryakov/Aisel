@@ -71,7 +71,6 @@ class PageManager
             'total' => $total,
             'pages' => $pages
         );
-
         return $return;
     }
 
@@ -92,7 +91,6 @@ class PageManager
             throw new NotFoundHttpException('Nothing found');
         }
         $pageDetails = array('page' => $page, 'categories' => $this->getPageCategories($page));
-
         return $pageDetails;
     }
 
@@ -114,7 +112,6 @@ class PageManager
             throw new NotFoundHttpException('Nothing found');
         }
         $pageDetails = array('page' => $page, 'categories' => $this->getPageCategories($page));
-
         return $pageDetails;
     }
 
@@ -131,10 +128,10 @@ class PageManager
         $page = $this->em->getRepository('AiselPageBundle:Page')->findTotalByURL($url, $pageId);
         $utility = new UrlUtility();
         $validUrl = $utility->process($url);
+
         if ($page) {
             $validUrl = $validUrl . '-' . time();
         }
-
         return $validUrl;
     }
 
@@ -146,7 +143,6 @@ class PageManager
     public function getEnabledPages()
     {
         $pageList = $this->em->getRepository('AiselPageBundle:Page')->getEnabledPages();
-
         return $pageList;
     }
 

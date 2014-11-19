@@ -23,4 +23,8 @@ services:
 
     aisel.cart.manager:
         class: %aisel_cart_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager]
+        arguments:
+            - @service_container
+            - @doctrine.orm.entity_manager
+            - @security.context
+#        scope: prototype

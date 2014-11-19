@@ -22,34 +22,91 @@ class CartManager
 {
     protected $sc;
     protected $em;
+    protected $securityContext;
 
     /**
      * {@inheritDoc}
      */
-    public function __construct($sc, $em)
+    public function __construct($serviceContainer, $entityManager, $securityContext)
     {
-        $this->sc = $sc;
-        $this->em = $em;
+        $this->sc = $serviceContainer;
+        $this->em = $entityManager;
+        $this->securityContext = $securityContext;
     }
 
     /**
-     * Get single detailed cart object
-     *
-     * @param int $id
+     * User manager
+     */
+    private function getUser()
+    {
+        $currentUser = false;
+        $userToken = $this->securityContext->getToken();
+
+        if ($userToken) {
+            $user = $userToken->getUser();
+            if ($user !== 'anon.') {
+                $roles = $user->getRoles();
+                if (in_array('ROLE_USER', $roles)) $currentUser = $user;
+            }
+        }
+        return $currentUser;
+    }
+
+    /**
+     * Get get cart with products for authenticated user
      *
      * @return \Aisel\CartBundle\Entity\Cart $cart
      *
      * @throws NotFoundHttpException
      */
-    public function getCart($id)
+    public function getUserCart()
     {
-        $cart = $this->em->getRepository('AiselCartBundle:Cart')->find($id);
-
-        if (!($cart)) {
-            throw new NotFoundHttpException('Nothing found');
+        $products = false;
+        if ($this->getUser()) {
+            $userId = $this->getUser()->getId();
+            $products = $this->em->getRepository('AiselCartBundle:Cart')
+                ->findBy(array('frontenduser' => $userId));
         }
-
-        return $cart;
+        return $products;
     }
+
+    /**
+     * Adds product to customer cart by mentioned $id and $qty
+     *
+     * @param int $id
+     * @param int $qty
+     *
+     * @return array $response
+     *
+     * @throws NotFoundHttpException
+     */
+    public function addProductToCart($id, $qty = 1)
+    {
+        $response = array(
+            'status' => false,
+            'message' => 'Product does not exists'
+        );
+        return $response;
+    }
+
+    /**
+     * Removes product from customers cart by mentioned $id and $qty
+     *
+     * @param int $id
+     * @param int $qty
+     *
+     * @return array $response
+     *
+     * @throws NotFoundHttpException
+     */
+    public function removeProductFromCart($id, $qty = null)
+    {
+        $response = array(
+            'status' => false,
+            'message' => 'Product not in cart'
+        );
+        return $response;
+    }
+
 
 }

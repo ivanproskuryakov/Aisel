@@ -24,15 +24,20 @@ class ApiCartController extends Controller
 {
 
     /**
+     * Cart manager
+     */
+    private function getCartManager()
+    {
+        return $this->get('aisel.cart.manager');
+    }
+
+    /**
      * @Rest\View
      * /%website_api%/cart.json
      */
-    public function cartDetailsAction(Request $request)
+    public function cartAction(Request $request)
     {
-        // TODO: implement cart functionality
-        $cart = false;
-
-        return $cart;
+        return $this->getCartManager()->getUserCart();
     }
 
 }

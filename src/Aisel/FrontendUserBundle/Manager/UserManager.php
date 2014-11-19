@@ -86,7 +86,6 @@ class UserManager implements UserProviderInterface
                 if (in_array('ROLE_USER', $roles)) return true;
             }
         }
-
         return false;
     }
 
@@ -115,7 +114,7 @@ class UserManager implements UserProviderInterface
      *
      * @param array $userData
      *
-     * @param FrontendUser $user
+     * @return FrontendUser $user
      */
     public function registerFixturesUser(array $userData)
     {

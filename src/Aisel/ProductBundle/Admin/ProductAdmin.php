@@ -59,6 +59,7 @@ class ProductAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $subject = $this->getSubject();
         $formMapper
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
@@ -107,9 +108,19 @@ class ProductAdmin extends Admin
                     'attr' => array('class' => 'mainImage')))
             ->end()
             ->with('aisel.default.categories')
-            ->add('categories', 'aisel_gedmotree', array('expanded' => true,
+            ->add('categories', 'aisel_gedmotree', array(
+                'expanded' => true,
                 'multiple' => true,
                 'class' => 'Aisel\ProductBundle\Entity\Category',
+                'label' => 'aisel.default.categories',
+                'query_builder' => function ($er) use ($subject) {
+                        $qb = $er->createQueryBuilder('c');
+                        if ($subject->getLocale()) {
+                            $qb->where('c.locale = :locale')->setParameter('locale', $subject->getLocale());
+                        }
+
+                        return $qb;
+                    }, 'empty_value' => $this->trans('aisel.default.no_parent')
             ))
             ->end()
             ->with('aisel.product.stock')

@@ -15,8 +15,10 @@ Aisel\CartBundle\Entity\Cart:
             id: true
             generator:
                 strategy: AUTO
-
     fields:
+        qty:
+            type: integer
+            column: qty
         createdAt:
             type: datetime
             column: created_at
@@ -24,24 +26,17 @@ Aisel\CartBundle\Entity\Cart:
             type: datetime
             column: updated_at
 
-    # Users
     manyToOne:
       frontenduser:
         targetEntity: Aisel\FrontendUserBundle\Entity\FrontendUser
-        inversedBy: carts
+        inversedBy: cart
         joinColumns:
           user_id:
             referencedColumnName: id
 
-    # Cart2Products
-    manyToMany:
-      products:
+      product:
         targetEntity: Aisel\ProductBundle\Entity\Product
-        joinTable:
-          name: aisel_cart_product
-          joinColumns:
-            cart_id:
-              referencedColumnName: id
-          inverseJoinColumns:
-            product_id:
-              referencedColumnName: id
+        inversedBy: cart
+        joinColumn:
+          name: product_id
+          referencedColumnName: id

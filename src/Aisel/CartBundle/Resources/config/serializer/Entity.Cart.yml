@@ -10,3 +10,5 @@ Aisel\CartBundle\Entity\Cart:
   properties:
     id:
         expose: true
+    product:
+        expose: true

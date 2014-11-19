@@ -37,12 +37,18 @@ class LoadCartData extends XMLFixture implements OrderedFixtureInterface
 
                 foreach ($XML->database->table as $table) {
                     $cart = new Cart();
+
+                    $frontendUser = $this->getReference('frontenduser_' . $table->column[1]);
+                    $product = $this->getReference('product_' . $table->column[3]);
+                    $cart->setFrontenduser($frontendUser);
+                    $cart->setQty((int)$table->column[2]);
+                    $cart->setProduct($product);
                     $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $manager->persist($cart);
                     $manager->flush();
+                    $this->addReference('cart_' . $table->column[0], $cart);
                 }
-                $this->addReference('cart_' . $table->column[0], $cart);
             }
         }
     }
@@ -52,6 +58,6 @@ class LoadCartData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 200;
+        return 400;
     }
 }

@@ -30,14 +30,14 @@ class Cart
     private $updatedAt;
 
     /**
-     * @var \Aisel\FrontendUserBundle\Entity\FrontendUser
-     */
-    private $frontenduser;
-
-    /**
      * @var \Aisel\ProductBundle\Entity\Product
      */
     private $product;
+
+    /**
+     * @var \Aisel\FrontendUserBundle\Entity\FrontendUser
+     */
+    private $frontenduser;
 
 
     /**
@@ -120,29 +120,6 @@ class Cart
     }
 
     /**
-     * Set frontenduser
-     *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
-     * @return Cart
-     */
-    public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
-    {
-        $this->frontenduser = $frontenduser;
-
-        return $this;
-    }
-
-    /**
-     * Get frontenduser
-     *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser 
-     */
-    public function getFrontenduser()
-    {
-        return $this->frontenduser;
-    }
-
-    /**
      * Set product
      *
      * @param \Aisel\ProductBundle\Entity\Product $product
@@ -163,5 +140,28 @@ class Cart
     public function getProduct()
     {
         return $this->product;
+    }
+
+    /**
+     * Set frontenduser
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
+     * @return Cart
+     */
+    public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
+    {
+        $this->frontenduser = $frontenduser;
+
+        return $this;
+    }
+
+    /**
+     * Get frontenduser
+     *
+     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser 
+     */
+    public function getFrontenduser()
+    {
+        return $this->frontenduser;
     }
 }

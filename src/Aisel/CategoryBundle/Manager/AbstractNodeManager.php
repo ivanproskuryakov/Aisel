@@ -26,10 +26,10 @@ class AbstractNodeManager
     /**
      * {@inheritDoc}
      */
-    public function __construct($sc, $em)
+    public function __construct($serviceContainer, $entityManager)
     {
-        $this->sc = $sc;
-        $this->em = $em;
+        $this->sc = $serviceContainer;
+        $this->em = $entityManager;
     }
 
     /**

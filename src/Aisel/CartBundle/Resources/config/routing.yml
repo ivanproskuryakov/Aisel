@@ -7,6 +7,6 @@
 
 api_aisel_cart_details:
     pattern:  /%website_api%/cart.json
-    defaults: { _controller: AiselCartBundle:ApiCart:cartDetails, _format: json }
+    defaults: { _controller: AiselCartBundle:ApiCart:cart, _format: json }
     requirements:
         _method: GET
