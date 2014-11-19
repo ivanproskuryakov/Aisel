@@ -68,6 +68,27 @@ class UserManager implements UserProviderInterface
         return $this->em->getRepository('AiselFrontendUserBundle:FrontendUser');
     }
 
+
+    /**
+     * Get Id of current user
+     *
+     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser $currentUser
+     */
+    public function getUserId()
+    {
+        $userId = 0;
+        $userToken = $this->securityContext->getToken();
+
+        if ($userToken) {
+            $user = $userToken->getUser();
+            if ($user !== 'anon.') {
+                $roles = $user->getRoles();
+                if (in_array('ROLE_USER', $roles)) $userId = $user->getId();
+            }
+        }
+        return $userId;
+    }
+
     /**
      * Is frontend user authenticated
      *

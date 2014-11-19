@@ -32,12 +32,21 @@ class ApiCartController extends Controller
     }
 
     /**
+     * Usermanager
+     */
+    private function getUserManager()
+    {
+        return $this->get('frontend.user.manager');
+    }
+
+    /**
      * @Rest\View
      * /%website_api%/cart.json
      */
     public function cartAction(Request $request)
     {
-        return $this->getCartManager()->getUserCart();
+        $userId = $this->getUserManager()->getUserId();
+        return $this->getCartManager()->getUserCart($userId);
     }
 
 }

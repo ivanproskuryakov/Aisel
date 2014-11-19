@@ -26,5 +26,4 @@ services:
         arguments:
             - @service_container
             - @doctrine.orm.entity_manager
-            - @security.context
 #        scope: prototype

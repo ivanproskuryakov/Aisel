@@ -22,66 +22,53 @@ class CartManager
 {
     protected $sc;
     protected $em;
-    protected $securityContext;
 
     /**
      * {@inheritDoc}
      */
-    public function __construct($serviceContainer, $entityManager, $securityContext)
+    public function __construct($serviceContainer, $entityManager)
     {
         $this->sc = $serviceContainer;
         $this->em = $entityManager;
-        $this->securityContext = $securityContext;
     }
 
     /**
-     * User manager
-     */
-    private function getUser()
-    {
-        $currentUser = false;
-        $userToken = $this->securityContext->getToken();
-
-        if ($userToken) {
-            $user = $userToken->getUser();
-            if ($user !== 'anon.') {
-                $roles = $user->getRoles();
-                if (in_array('ROLE_USER', $roles)) $currentUser = $user;
-            }
-        }
-        return $currentUser;
-    }
-
-    /**
-     * Get get cart with products for authenticated user
+     * Get get cart with products for $userId
+     *
+     * @param integer $userId
      *
      * @return \Aisel\CartBundle\Entity\Cart $cart
      *
      * @throws NotFoundHttpException
      */
-    public function getUserCart()
+    public function getUserCart($userId)
     {
-        $products = false;
-        if ($this->getUser()) {
-            $userId = $this->getUser()->getId();
-            $products = $this->em->getRepository('AiselCartBundle:Cart')
-                ->findBy(array('frontenduser' => $userId));
-        }
+        $products = $this->em->getRepository('AiselCartBundle:Cart')
+            ->findBy(array('frontenduser' => $userId));
+
         return $products;
     }
 
     /**
      * Adds product to customer cart by mentioned $id and $qty
      *
-     * @param int $id
+     * @param int $userId
+     * @param int $productId
      * @param int $qty
      *
      * @return array $response
      *
      * @throws NotFoundHttpException
      */
-    public function addProductToCart($id, $qty = 1)
+    public function addProductToCart($userId, $productId, $qty = 1)
     {
+
+//        $cart = new Cart();
+//        $cart->setFrontenduser($frontendUser);
+//        $cart->setQty((int)$table->column[2]);
+//        $cart->setProduct($product);
+//        $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+
         $response = array(
             'status' => false,
             'message' => 'Product does not exists'
@@ -92,14 +79,15 @@ class CartManager
     /**
      * Removes product from customers cart by mentioned $id and $qty
      *
-     * @param int $id
+     * @param int $userId
+     * @param int $productId
      * @param int $qty
      *
      * @return array $response
      *
      * @throws NotFoundHttpException
      */
-    public function removeProductFromCart($id, $qty = null)
+    public function removeProductFromCart($userId, $productId, $qty = null)
     {
         $response = array(
             'status' => false,

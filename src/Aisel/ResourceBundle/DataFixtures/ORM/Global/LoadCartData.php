@@ -26,6 +26,15 @@ class LoadCartData extends XMLFixture implements OrderedFixtureInterface
     protected $fixturesName = array('global/aisel_cart.xml');
 
     /**
+     * Frontend user manager
+     * @return \Aisel\FrontendUserBundle\Manager\UserManager
+     */
+    protected function getCartManager()
+    {
+        return $this->container->get('aisel.cart.manager');
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
@@ -47,6 +56,13 @@ class LoadCartData extends XMLFixture implements OrderedFixtureInterface
                     $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $manager->persist($cart);
                     $manager->flush();
+
+                    // todo: move to manager
+//                    $cartId = $this->getCartManager()->addProductToCart(
+//                        $frontendUser->getId(),
+//                        $product->getId(),
+//                        (int)$table->column[2]
+//                    );
                     $this->addReference('cart_' . $table->column[0], $cart);
                 }
             }
