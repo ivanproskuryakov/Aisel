@@ -8,7 +8,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/{{locale}}/"><img class="header-logo" src="/images/logo.png" title="Aisel"></a>
+            <a class="navbar-brand" href="/{{locale}}/"><img class="header-logo" src="/images/logo.png"
+                                                             title="Aisel"></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -18,12 +19,18 @@
             </ul>
             <ul class="user-navbar nav navbar-nav navbar-right" ng-controller="UserCtrl">
 
+                <!-- Guests -->
+                <li class="dropdown">
+                    <a ng-href="/{{locale}}/cart/">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Cart
+                    </a>
+                </li>
 
                 <!-- Guests -->
                 <li class="dropdown" ng-if="!isAuthenticated">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guest <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon glyphicon-user"></span> Guest <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a ng-href="/{{locale}}/user/login/" >Sign In</a></li>
+                        <li><a ng-href="/{{locale}}/user/login/">Sign In</a></li>
                         <li><a ng-href="/{{locale}}/user/register/">Create Account</a></li>
                     </ul>
                 </li>
@@ -37,7 +44,7 @@
                     <ul class="dropdown-menu">
                         <li><a ng-href="/{{locale}}/user/information/">My account</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li><a ng-click="signOut()" >Sign Out</a></li>
+                        <li><a ng-click="signOut()">Sign Out</a></li>
                     </ul>
                 </li>
             </ul>
@@ -49,8 +56,8 @@
                 </div>
             </form>
 
-        </div><!--/.nav-collapse -->
-
+        </div>
+        <!--/.nav-collapse -->
 
 
     </div>
