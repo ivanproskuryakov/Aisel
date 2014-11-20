@@ -12,4 +12,87 @@ use Doctrine\ORM\EntityRepository;
  */
 class CartRepository extends EntityRepository
 {
+
+    /**
+     * Add product to cart
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param \Aisel\ProductBundle\Entity\Product $product
+     * @param int $qty
+     *
+     * @return int $total
+     */
+    public function addToCart($user, $product, $qty)
+    {
+        $em = $this->getEntityManager();
+
+        if ($cart = $this->findCart($user, $product)) {
+            $originalQty = $cart->getQty();
+            $newQty = $originalQty + $qty;
+            $cart->setQty($newQty);
+        } else {
+            $cart = new Cart();
+            $cart->setFrontenduser($user);
+            $cart->setProduct($product);
+            $cart->setQty($qty);
+            $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        }
+        $em->persist($cart);
+        $em->flush();
+        return $cart;
+    }
+
+    /**
+     * Removes product qty of product from cart
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param \Aisel\ProductBundle\Entity\Product $product
+     * @param int $qty
+     *
+     * @return int $total
+     */
+    public function removeFromCart($user, $product, $qty = null)
+    {
+        $em = $this->getEntityManager();
+        $cart = $this->findCart($user, $product);
+
+        // if cart item exists
+        if ($cart) {
+            $originalQty = $cart->getQty();
+            $newQty = $originalQty - $qty;
+
+            // if $qty > 0
+            // & $newQty > 0
+            if ($qty && $newQty) {
+                $cart->setQty($newQty);
+                $em->persist($cart);
+                $em->flush();
+            } else {
+                $em->remove($cart);
+                $em->flush();
+            }
+        }
+        return $cart;
+    }
+
+    /**
+     * Find product in cart
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param \Aisel\ProductBundle\Entity\Product $product
+     *
+     * @return \Aisel\CartBundle\Entity\Cart $cart
+     */
+    public function findCart($user, $product)
+    {
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $query->select('c')
+            ->from('AiselCartBundle:Cart', 'c')
+            ->where('c.product_id = :id')->setParameter('id', $user->getId())
+            ->andWhere('c.user_id = :id')->setParameter('id', $product->getId());
+        $cart = $query->getQuery()->getSingleScalarResult();
+        return $cart;
+    }
+
+
 }

@@ -37,42 +37,37 @@ class CartManager
      *
      * @param integer $userId
      *
-     * @return \Aisel\CartBundle\Entity\Cart $cart
-     *
-     * @throws NotFoundHttpException
+     * @return \Aisel\CartBundle\Entity\Cart|boolean $products
      */
-    public function getUserCart($userId)
+    public function getCartItems($userId)
     {
         $products = $this->em->getRepository('AiselCartBundle:Cart')
             ->findBy(array('frontenduser' => $userId));
-
         return $products;
     }
 
     /**
-     * Adds product to customer cart by mentioned $id and $qty
+     * Adds product to cart by mentioned $id and $qty
      *
      * @param int $userId
      * @param int $productId
      * @param int $qty
      *
      * @return array $response
-     *
-     * @throws NotFoundHttpException
      */
-    public function addProductToCart($userId, $productId, $qty = 1)
+    public function addItemToCart($userId, $productId, $qty = 1)
     {
+        $user = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->loadById($userId);
+        $product = $this->em->getRepository('AiselProductBundle:Product')->loadById($productId);
+        $status = $this->em
+            ->getRepository('AiselPageBundle:Page')
+            ->addToCart($user, $product, $qty);
 
-//        $cart = new Cart();
-//        $cart->setFrontenduser($frontendUser);
-//        $cart->setQty((int)$table->column[2]);
-//        $cart->setProduct($product);
-//        $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-
-        $response = array(
-            'status' => false,
-            'message' => 'Product does not exists'
-        );
+        if ($status) {
+            $response = array('status' => true);
+        } else {
+            $response = array('status' => false, 'message' => 'Something went wrong during adding to cart');
+        }
         return $response;
     }
 
@@ -84,15 +79,20 @@ class CartManager
      * @param int $qty
      *
      * @return array $response
-     *
-     * @throws NotFoundHttpException
      */
-    public function removeProductFromCart($userId, $productId, $qty = null)
+    public function removeItemFromCart($userId, $productId, $qty = null)
     {
-        $response = array(
-            'status' => false,
-            'message' => 'Product not in cart'
-        );
+        $user = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->loadById($userId);
+        $product = $this->em->getRepository('AiselProductBundle:Product')->loadById($productId);
+        $status = $this->em
+            ->getRepository('AiselPageBundle:Page')
+            ->removeFromCart($user, $product, $qty);
+
+        if ($status) {
+            $response = array('status' => true);
+        } else {
+            $response = array('status' => false, 'message' => 'Something went wrong during removing from the cart');
+        }
         return $response;
     }
 

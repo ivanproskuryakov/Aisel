@@ -139,4 +139,23 @@ class ProductManager
         return $productList;
     }
 
+    /**
+     * load product object by productId
+     *
+     * @param integer $productId
+     *
+     * @return \Aisel\ProductBundle\Entity\Product $product
+     *
+     * @throws NotFoundHttpException
+     */
+    public function loadById($productId)
+    {
+        $product = $this->em->getRepository('AiselProductBundle:Product')->findOneBy(array('id' => $productId));
+
+        if (!($product)) {
+            throw new NotFoundHttpException('Nothing found');
+        }
+        return $product;
+    }
+
 }

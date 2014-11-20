@@ -264,10 +264,8 @@ class UserManager implements UserProviderInterface
         if ($user) {
             $utility = new PasswordUtility();
             $password = $utility->generatePassword();
-
             $encoder = $this->encoder->getEncoder($user);
             $encodedPassword = $encoder->encodePassword($password, $user->getSalt());
-
             $user->setPassword($encodedPassword);
 
             // Send password via email
@@ -289,12 +287,9 @@ class UserManager implements UserProviderInterface
             } catch (\Swift_TransportException $e) {
                 $response = $e->getMessage();
             }
-
             $this->em->persist($user);
             $this->em->flush();
-
             return $response;
-
         } else {
             return false;
         }
@@ -304,6 +299,19 @@ class UserManager implements UserProviderInterface
     {
         $user = $this->getRepository()->findOneBy(array('username' => $username));
 
+        if (!($user)) {
+            throw new NotFoundHttpException('User not found');
+        }
+        return $user;
+    }
+
+    public function loadById($id)
+    {
+        $user = $this->getRepository()->findOneBy(array('id' => $id));
+
+        if (!($user)) {
+            throw new NotFoundHttpException('User not found');
+        }
         return $user;
     }
 
@@ -311,6 +319,9 @@ class UserManager implements UserProviderInterface
     {
         $user = $this->getRepository()->findOneBy(array('email' => $email));
 
+        if (!($user)) {
+            throw new NotFoundHttpException('User not found');
+        }
         return $user;
     }
 
@@ -318,6 +329,9 @@ class UserManager implements UserProviderInterface
     {
         $user = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->findUser($username, $email);
 
+        if (!($user)) {
+            throw new NotFoundHttpException('User not found');
+        }
         return $user;
     }
 
