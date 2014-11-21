@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Aisel package.
+ *
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Aisel\CartBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
@@ -20,59 +29,56 @@ class CartRepository extends EntityRepository
      * @param \Aisel\ProductBundle\Entity\Product $product
      * @param int $qty
      *
-     * @return int $total
+     * @return \Aisel\CartBundle\Entity\Cart $cartItem
      */
-    public function addToCart($user, $product, $qty)
+    public function addProduct($user, $product, $qty)
     {
         $em = $this->getEntityManager();
 
-        if ($cart = $this->findCart($user, $product)) {
-            $originalQty = $cart->getQty();
+        // Summarise Qty if product already inside the cart
+        if ($cartItem = $this->findProduct($user, $product)) {
+            $originalQty = $cartItem->getQty();
             $newQty = $originalQty + $qty;
-            $cart->setQty($newQty);
+            $cartItem->setQty($newQty);
         } else {
-            $cart = new Cart();
-            $cart->setFrontenduser($user);
-            $cart->setProduct($product);
-            $cart->setQty($qty);
-            $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+            // else add product to cart
+            $cartItem = new Cart();
+            $cartItem->setFrontenduser($user);
+            $cartItem->setProduct($product);
+            $cartItem->setQty($qty);
+            $cartItem->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         }
-        $em->persist($cart);
+        $em->persist($cartItem);
         $em->flush();
-        return $cart;
+        return $cartItem;
     }
 
     /**
-     * Removes product qty of product from cart
+     * Update product in cart
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param \Aisel\ProductBundle\Entity\Product $product
      * @param int $qty
      *
-     * @return int $total
+     * @return \Aisel\CartBundle\Entity\Cart $total
      */
-    public function removeFromCart($user, $product, $qty = null)
+    public function updateProduct($user, $product, $qty = null)
     {
         $em = $this->getEntityManager();
-        $cart = $this->findCart($user, $product);
+        $cartItem = $this->findProduct($user, $product);
 
         // if cart item exists
-        if ($cart) {
-            $originalQty = $cart->getQty();
-            $newQty = $originalQty - $qty;
-
-            // if $qty > 0
-            // & $newQty > 0
-            if ($qty && $newQty) {
-                $cart->setQty($newQty);
-                $em->persist($cart);
+        if ($cartItem) {
+            if ($qty) {
+                $cartItem->setQty($qty);
+                $em->persist($cartItem);
                 $em->flush();
             } else {
-                $em->remove($cart);
+                $em->remove($cartItem);
                 $em->flush();
             }
         }
-        return $cart;
+        return $cartItem;
     }
 
     /**
@@ -81,17 +87,17 @@ class CartRepository extends EntityRepository
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param \Aisel\ProductBundle\Entity\Product $product
      *
-     * @return \Aisel\CartBundle\Entity\Cart $cart
+     * @return \Aisel\CartBundle\Entity\Cart $cartItem
      */
-    public function findCart($user, $product)
+    public function findProduct($user, $product)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('c')
             ->from('AiselCartBundle:Cart', 'c')
-            ->where('c.product_id = :id')->setParameter('id', $user->getId())
-            ->andWhere('c.user_id = :id')->setParameter('id', $product->getId());
-        $cart = $query->getQuery()->getSingleScalarResult();
-        return $cart;
+            ->where('c.product = :productId')->setParameter('productId', $product->getId())
+            ->andWhere('c.frontenduser = :userId')->setParameter('userId', $user->getId());
+        $cartItem = $query->getQuery()->getSingleResult();
+        return $cartItem;
     }
 
 

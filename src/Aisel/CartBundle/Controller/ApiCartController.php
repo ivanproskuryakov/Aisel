@@ -32,7 +32,7 @@ class ApiCartController extends Controller
     }
 
     /**
-     * Usermanager
+     * User manager
      */
     private function getUserManager()
     {
@@ -43,10 +43,30 @@ class ApiCartController extends Controller
      * @Rest\View
      * /%website_api%/cart.json
      */
-    public function cartAction(Request $request)
+    public function cartAction()
     {
         $userId = $this->getUserManager()->getUserId();
         return $this->getCartManager()->getUserCart($userId);
+    }
+
+    /**
+     * @Rest\View
+     * /%website_api%/cart/product/{productId}/qty/{qty}/add.json
+     */
+    public function cartProductAddAction($productId, $qty)
+    {
+        $userId = $this->getUserManager()->getUserId();
+        return $this->getCartManager()->addProductToCart($userId, $productId, $qty);
+    }
+
+    /**
+     * @Rest\View
+     * /%website_api%/cart/product/{productId}/qty/{qty}/update.json
+     */
+    public function cartProductUpdateAction($productId, $qty)
+    {
+        $userId = $this->getUserManager()->getUserId();
+        return $this->getCartManager()->updateProductInCart($userId, $productId, $qty);
     }
 
 }

@@ -6,9 +6,11 @@
 # file that was distributed with this source code.
 
 Aisel\CartBundle\Entity\Cart:
-  exclusion_policy: ALL
+  exclusion_policy: all
   properties:
     id:
+        expose: true
+    qty:
         expose: true
     product:
         expose: true
