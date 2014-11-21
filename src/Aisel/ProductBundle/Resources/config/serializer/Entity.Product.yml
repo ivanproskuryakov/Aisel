@@ -10,6 +10,8 @@ Aisel\ProductBundle\Entity\Product:
   properties:
     id:
         expose: true
+    locale:
+        expose: true
     name:
         expose: true
     sku:

@@ -8,8 +8,13 @@
  * ...
  */
 define(['app'], function (app) {
-    app.controller('CartCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'rootService',
-        function ($location, $scope) {
-            $scope.content = 'You have 0 items in your cart';
+    app.controller('CartCtrl', ['$location', '$scope', 'cartService', '$rootScope',
+        function ($location, $scope, cartService, $rootScope) {
+            // Get cart items
+            cartService.getCartItems($scope).success(
+                function (data, status) {
+                    $scope.cartItems = data;
+                }
+            );
         }]);
 });
