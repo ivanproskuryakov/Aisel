@@ -1,0 +1,27 @@
+'use strict';
+
+/**
+ * @ngdoc overview
+ * @name aiselApp
+ * @description
+ *
+ * E2E Cotact test
+ */
+
+describe("E2E: Contact module tests", function () {
+    console.log('E2E module loaded: User');
+
+    it('Sign in route is working', function () {
+        browser.get('http://ecommerce.aisel.dev/en/user/login/');
+        expect(browser.getTitle()).toEqual('Aisel - open source project');
+    });
+
+    it('Create Account route is working', function () {
+        browser.get('http://ecommerce.aisel.dev/en/user/register/');
+        expect(browser.getTitle()).toEqual('Aisel - open source project');
+    });
+    it('Password forgot route is working', function () {
+        browser.get('http://ecommerce.aisel.dev/en/user/password/forgot/');
+        expect(browser.getTitle()).toEqual('Aisel - open source project');
+    });
+});
