@@ -53,17 +53,8 @@ Installation: v0.1.0
 
 Tests
 -----------------------------------
-[Behat](http://behat.org) <br/>
-`$ bin/behat`<br/>
-[PHPSpec](http://phpspec.net/)<br/>
-`bin/phpspec run`<br/>
-[Karma](http://karma-runner.github.io/)<br/>
-Unit-test:<br/>
-`grunt karma:unit`<br/>
-Midway:<br/>
-`grunt karma:midway`<br/>
-E2E:<br/>
-`grunt karma:e2e`<br/>
+[Protractor](http://angular.github.io/protractor/#/) <br/>
+`protractor procrator/conf.js`<br/>
 
 
 Speed
