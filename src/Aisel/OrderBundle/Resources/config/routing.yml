@@ -6,7 +6,7 @@
 # file that was distributed with this source code.
 
 api_aisel_orderlist:
-    pattern:  /%website_api%/order/list.json
+    pattern:  /%website_api%/orders.json
     defaults: { _controller: AiselOrderBundle:ApiOrder:orderList, _format: json }
     requirements:
         _method: GET
@@ -17,3 +17,9 @@ api_aisel_orderview_by_id:
     requirements:
         _method: GET
 #        id: "\d+"
+
+api_aisel_orderview_by_id:
+    pattern:  /%website_api%/order/submit.json
+    defaults: { _controller: AiselOrderBundle:ApiOrder:orderSubmit, _format: json }
+    requirements:
+        _method: GET

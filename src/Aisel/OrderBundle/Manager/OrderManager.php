@@ -26,29 +26,67 @@ class OrderManager
     /**
      * {@inheritDoc}
      */
-    public function __construct($sc, $em)
+    public function __construct($serviceContainer, $entityManager)
     {
-        $this->sc = $sc;
-        $this->em = $em;
+        $this->sc = $serviceContainer;
+        $this->em = $entityManager;
     }
 
     /**
-     * Get single detailed order by Id
+     * Get single order by given userId and orderId
      *
-     * @param int $id
+     * @param int $userId
+     * @param int $orderId
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      *
      * @throws NotFoundHttpException*
      */
-    public function getOrder($id)
+    public function getUserOrder($userId, $orderId)
     {
-        $order = $this->em->getRepository('AiselOrderBundle:Order')->find($id);
+        $order = $this->em->getRepository('AiselOrderBundle:Order')->findOrderForUser($orderId, $userId);
 
         if (!($order)) {
             throw new NotFoundHttpException('Nothing found');
         }
+        return $order;
+    }
 
+    /**
+     * Get all order for user
+     *
+     * @param int $userId
+     *
+     * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     *
+     * @throws NotFoundHttpException*
+     */
+    public function getUserOrders($userId)
+    {
+        $order = $this->em->getRepository('AiselOrderBundle:Order')->findAllOrdersForUser($userId);
+
+        if (!($order)) {
+            throw new NotFoundHttpException('Nothing found');
+        }
+        return $order;
+    }
+
+    /**
+     * Create order for given userId
+     *
+     * @param int $userId
+     *
+     * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     *
+     * @throws NotFoundHttpException*
+     */
+    public function createOrder($userId)
+    {
+        $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderForUser($userId);
+
+        if (!($order)) {
+            throw new NotFoundHttpException('Nothing found');
+        }
         return $order;
     }
 
