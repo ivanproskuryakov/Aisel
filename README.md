@@ -87,3 +87,7 @@ List of [contributors](https://github.com/ivanproskuryakov/AiselConfigBundle/gra
 BTC Donations
 -----------------------------------
 To support ongoing development you may send BitCoin to 1DmBssUeNGXC8VC3BFm3VB3Qc9wmSB7DrK
+
+Consulting & Web-development
+-----------------------------------
+If you're need consulting, contact with me by e-mail service@magazento.com
