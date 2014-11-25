@@ -53,6 +53,6 @@ class LoadInvoiceData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 600;
+        return 420;
     }
 }

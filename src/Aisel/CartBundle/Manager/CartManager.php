@@ -58,12 +58,12 @@ class CartManager
      *
      * @param integer $userId
      *
-     * @return \Aisel\CartBundle\Entity\Cart|boolean $products
+     * @return \Aisel\CartBundle\Entity\Cart $cartItems
      */
     public function getUserCart($userId)
     {
-        $products = $this->em->getRepository('AiselCartBundle:Cart')->findBy(array('frontenduser' => $userId));
-        return $products;
+        $cartItems = $this->em->getRepository('AiselCartBundle:Cart')->findBy(array('frontenduser' => $userId));
+        return $cartItems;
     }
 
     /**
@@ -73,20 +73,14 @@ class CartManager
      * @param int $productId
      * @param int $qty
      *
-     * @return array $response
+     * @return \Aisel\CartBundle\Entity\Cart $cartItem
      */
     public function addProductToCart($userId, $productId, $qty = 1)
     {
         $user = $this->getUserManager()->loadById($userId);
         $product = $this->getProductManager()->loadById($productId);
         $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->addProduct($user, $product, $qty);
-
-        if ($cartItem) {
-            $response = array('status' => true, 'cartItem' => $cartItem);
-        } else {
-            $response = array('status' => false, 'message' => 'Something went wrong during adding to cart');
-        }
-        return $response;
+        return $cartItem;
     }
 
     /**
@@ -96,20 +90,14 @@ class CartManager
      * @param int $productId
      * @param int $qty
      *
-     * @return array $response
+     * @return \Aisel\CartBundle\Entity\Cart $cartItem
      */
     public function updateProductInCart($userId, $productId, $qty = null)
     {
         $user = $this->getUserManager()->loadById($userId);
         $product = $this->getProductManager()->loadById($productId);
         $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->updateProduct($user, $product, $qty);
-
-        if ($cartItem) {
-            $response = array('status' => true, 'cartItem' => $cartItem);
-        } else {
-            $response = array('status' => false, 'message' => 'Something went wrong during removing from the cart');
-        }
-        return $response;
+        return $cartItem;
     }
 
 

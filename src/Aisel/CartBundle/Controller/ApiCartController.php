@@ -56,7 +56,14 @@ class ApiCartController extends Controller
     public function cartProductAddAction($productId, $qty)
     {
         $userId = $this->getUserManager()->getUserId();
-        return $this->getCartManager()->addProductToCart($userId, $productId, $qty);
+        $cartItem = $this->getCartManager()->addProductToCart($userId, $productId, $qty);
+
+        if ($cartItem) {
+            $response = array('status' => true, 'cartItem' => $cartItem);
+        } else {
+            $response = array('status' => false, 'message' => 'Something went wrong during adding to cart');
+        }
+        return $response;
     }
 
     /**
@@ -66,7 +73,14 @@ class ApiCartController extends Controller
     public function cartProductUpdateAction($productId, $qty)
     {
         $userId = $this->getUserManager()->getUserId();
-        return $this->getCartManager()->updateProductInCart($userId, $productId, $qty);
+        $cartItem = $this->getCartManager()->updateProductInCart($userId, $productId, $qty);
+
+        if ($cartItem) {
+            $response = array('status' => true, 'cartItem' => $cartItem);
+        } else {
+            $response = array('status' => false, 'message' => 'Something went wrong during removing from the cart');
+        }
+        return $response;
     }
 
 }

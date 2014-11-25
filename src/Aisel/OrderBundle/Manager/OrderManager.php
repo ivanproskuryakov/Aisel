@@ -11,8 +11,6 @@
 
 namespace Aisel\OrderBundle\Manager;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 /**
  * Manager for Orders, mostly used in REST API
  *
@@ -39,16 +37,10 @@ class OrderManager
      * @param int $orderId
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
-     *
-     * @throws NotFoundHttpException*
      */
     public function getUserOrder($userId, $orderId)
     {
         $order = $this->em->getRepository('AiselOrderBundle:Order')->findOrderForUser($orderId, $userId);
-
-        if (!($order)) {
-            throw new NotFoundHttpException('Nothing found');
-        }
         return $order;
     }
 
@@ -58,35 +50,24 @@ class OrderManager
      * @param int $userId
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
-     *
-     * @throws NotFoundHttpException*
      */
     public function getUserOrders($userId)
     {
-        $order = $this->em->getRepository('AiselOrderBundle:Order')->findAllOrdersForUser($userId);
-
-        if (!($order)) {
-            throw new NotFoundHttpException('Nothing found');
-        }
-        return $order;
+        $orders = $this->em->getRepository('AiselOrderBundle:Order')->findAllOrdersForUser($userId);
+        return $orders;
     }
 
     /**
      * Create order for given userId
      *
      * @param int $userId
+     * @param string $locale
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
-     *
-     * @throws NotFoundHttpException*
      */
-    public function createOrder($userId)
+    public function createOrder($userId, $locale)
     {
-        $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderForUser($userId);
-
-        if (!($order)) {
-            throw new NotFoundHttpException('Nothing found');
-        }
+        $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderForUser($userId, $locale);
         return $order;
     }
 

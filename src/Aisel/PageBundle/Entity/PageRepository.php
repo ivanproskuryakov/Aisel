@@ -112,7 +112,7 @@ class PageRepository extends EntityRepository
     {
         $this->mapRequest($params);
         $query = $this->getEntityManager()->createQueryBuilder();
-        $r = $query->select('p')
+        $pages = $query->select('p')
             ->from('AiselPageBundle:Page', 'p')
             ->where('p.content LIKE :search')->setParameter('search', '%' . $this->search . '%')
             ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale)
@@ -124,7 +124,7 @@ class PageRepository extends EntityRepository
             ->getQuery()
             ->execute();
 
-        return $r;
+        return $pages;
     }
 
     /**
@@ -139,7 +139,6 @@ class PageRepository extends EntityRepository
             ->andWhere('p.status = 1')
             ->getQuery()
             ->execute();
-
         return $pages;
     }
 

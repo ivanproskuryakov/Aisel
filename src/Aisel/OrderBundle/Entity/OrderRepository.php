@@ -12,4 +12,68 @@ use Doctrine\ORM\EntityRepository;
  */
 class OrderRepository extends EntityRepository
 {
+    /**
+     * Create from user cart
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param string $locale
+     *
+     * @return \Aisel\OrderBundle\Entity\Order $order
+     */
+    public function createOrderForUser($user, $locale)
+    {
+        $em = $this->getEntityManager();
+        $order = new Order();
+        $order->setLocale($locale);
+        $order->setFrontenduser($user);
+        $order->setStatus('new');
+        $order->setSubtotal(0);
+        $order->setGrandtotal(0);
+        $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        // $order->setInvoice($invoice);
+        $em->persist($order);
+        $em->flush();
+        return $order;
+    }
+
+    /**
+     * Grab all orders for given $user
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     *
+     * @return \Aisel\OrderBundle\Entity\Order $order
+     */
+    public function findAllOrdersForUser($user)
+    {
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $orders = $query->select('p')
+            ->from('AiselOrderBundle:Order', 'o')
+            ->where('o.frontenduser = :userId')->setParameter('userId', $user->getId())
+            ->getQuery()
+            ->execute();
+        return $orders;
+    }
+
+    /**
+     * Grab one order for given $user
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param integer $orderId
+     *
+     * @return \Aisel\OrderBundle\Entity\Order $order
+     */
+    public function findOrderForUser($user, $orderId)
+    {
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $orders = $query->select('p')
+            ->from('AiselOrderBundle:Order', 'o')
+            ->where('o.frontenduser = :userId')->setParameter('userId', $user->getId())
+            ->andWhere('o.id = :orderId')->setParameter('orderId', $orderId)
+            ->getQuery()
+            ->execute();
+        return $orders;
+    }
+
+
 }

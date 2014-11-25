@@ -14,7 +14,6 @@ namespace Aisel\ResourceBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\CartBundle\Entity\Cart;
 
 /**
  * Cart fixtures
@@ -26,8 +25,8 @@ class LoadCartData extends XMLFixture implements OrderedFixtureInterface
     protected $fixturesName = array('global/aisel_cart.xml');
 
     /**
-     * Frontend user manager
-     * @return \Aisel\FrontendUserBundle\Manager\UserManager
+     * Cart manager
+     * @return \Aisel\CartBundle\Manager\CartManager
      */
     protected function getCartManager()
     {
@@ -45,25 +44,14 @@ class LoadCartData extends XMLFixture implements OrderedFixtureInterface
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
-                    $cart = new Cart();
-
                     $frontendUser = $this->getReference('frontenduser_' . $table->column[1]);
                     $product = $this->getReference('product_' . $table->column[3]);
-                    $cart->setFrontenduser($frontendUser);
-                    $cart->setQty((int)$table->column[2]);
-                    $cart->setProduct($product);
-                    $cart->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $cart->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $manager->persist($cart);
-                    $manager->flush();
-
-                    // todo: move to manager
-//                    $cartId = $this->getCartManager()->addProductToCart(
-//                        $frontendUser->getId(),
-//                        $product->getId(),
-//                        (int)$table->column[2]
-//                    );
-                    $this->addReference('cart_' . $table->column[0], $cart);
+                    $cartItem = $this->getCartManager()->addProductToCart(
+                        $frontendUser->getId(),
+                        $product->getId(),
+                        (int)$table->column[2]
+                    );
+                    $this->addReference('cart_' . $table->column[0], $cartItem);
                 }
             }
         }

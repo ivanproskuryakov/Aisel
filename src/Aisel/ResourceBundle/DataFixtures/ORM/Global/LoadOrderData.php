@@ -27,6 +27,15 @@ class LoadOrderData extends XMLFixture implements OrderedFixtureInterface
     protected $fixturesName = array('global/aisel_order.xml');
 
     /**
+     * Order manager
+     * @return \Aisel\OrderBundle\Manager\OrderManager
+     */
+    protected function getCartManager()
+    {
+        return $this->container->get('aisel.order.manager');
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
@@ -38,18 +47,8 @@ class LoadOrderData extends XMLFixture implements OrderedFixtureInterface
 
                 foreach ($XML->database->table as $table) {
                     $frontendUser = $this->getReference('frontenduser_' . $table->column[2]);
-                    $invoice = $this->getReference('invoice_' . $table->column[3]);
-                    $order = new Order();
-                    $order->setLocale($table->column[1]);
-                    $order->setStatus($table->column[4]);
-                    $order->setSubtotal((float)$table->column[5]);
-                    $order->getGrandtotal((float)$table->column[6]);
-                    $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $order->setFrontenduser($frontendUser);
-                    $order->setInvoice($invoice);
-                    $manager->persist($order);
-                    $manager->flush();
+                    $locale = $table->column[1];
+                    $order = $this->getCartManager()->createOrder($frontendUser, $locale);
                     $this->addReference('order_' . $table->column[0], $order);
                 }
             }
@@ -61,6 +60,6 @@ class LoadOrderData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 610;
+        return 410;
     }
 }
