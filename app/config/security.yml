@@ -38,6 +38,8 @@ security:
             pattern:             .*
             context:             user
             form_login:
+                login_path:     /%website_api%/user/information.json
+            form_login:
                 provider:       user_frontend
                 use_forward:    true
                 failure_path:   true
@@ -53,3 +55,6 @@ security:
         # This config requires being logged for the whole site and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
         - { path: ^/%website_admin%/%locale%/, role: [ROLE_ADMIN] }
+
+        # Secured part of API
+#        - { path: ^/%website_api%/orders.json, role: ROLE_USER }
