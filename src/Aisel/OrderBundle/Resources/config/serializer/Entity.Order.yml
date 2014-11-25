@@ -10,3 +10,5 @@ Aisel\OrderBundle\Entity\Order:
   properties:
     id:
         expose: true
+    frontenduser:
+        expose: true

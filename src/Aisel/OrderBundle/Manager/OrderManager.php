@@ -20,14 +20,24 @@ class OrderManager
 {
     protected $sc;
     protected $em;
+    protected $userManager;
 
     /**
      * {@inheritDoc}
      */
-    public function __construct($serviceContainer, $entityManager)
+    public function __construct($serviceContainer, $entityManager, $frontendUserManager)
     {
         $this->sc = $serviceContainer;
         $this->em = $entityManager;
+        $this->userManager = $frontendUserManager;
+    }
+
+    /**
+     * User manager
+     */
+    private function getUserManager()
+    {
+        return $this->userManager;
     }
 
     /**
@@ -40,7 +50,8 @@ class OrderManager
      */
     public function getUserOrder($userId, $orderId)
     {
-        $order = $this->em->getRepository('AiselOrderBundle:Order')->findOrderForUser($orderId, $userId);
+        $user = $this->getUserManager()->loadById($userId);
+        $order = $this->em->getRepository('AiselOrderBundle:Order')->findOrderForUser($orderId, $user);
         return $order;
     }
 
@@ -53,7 +64,8 @@ class OrderManager
      */
     public function getUserOrders($userId)
     {
-        $orders = $this->em->getRepository('AiselOrderBundle:Order')->findAllOrdersForUser($userId);
+        $user = $this->getUserManager()->loadById($userId);
+        $orders = $this->em->getRepository('AiselOrderBundle:Order')->findAllOrdersForUser($user);
         return $orders;
     }
 
@@ -67,7 +79,8 @@ class OrderManager
      */
     public function createOrder($userId, $locale)
     {
-        $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderForUser($userId, $locale);
+        $user = $this->getUserManager()->loadById($userId);
+        $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderForUser($user, $locale);
         return $order;
     }
 

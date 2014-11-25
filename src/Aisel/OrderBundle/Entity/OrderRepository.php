@@ -47,7 +47,7 @@ class OrderRepository extends EntityRepository
     public function findAllOrdersForUser($user)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
-        $orders = $query->select('p')
+        $orders = $query->select('o')
             ->from('AiselOrderBundle:Order', 'o')
             ->where('o.frontenduser = :userId')->setParameter('userId', $user->getId())
             ->getQuery()
@@ -66,7 +66,7 @@ class OrderRepository extends EntityRepository
     public function findOrderForUser($user, $orderId)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
-        $orders = $query->select('p')
+        $orders = $query->select('o')
             ->from('AiselOrderBundle:Order', 'o')
             ->where('o.frontenduser = :userId')->setParameter('userId', $user->getId())
             ->andWhere('o.id = :orderId')->setParameter('orderId', $orderId)

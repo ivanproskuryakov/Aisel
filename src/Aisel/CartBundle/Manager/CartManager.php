@@ -62,6 +62,7 @@ class CartManager
      */
     public function getUserCart($userId)
     {
+        if (!$userId) return false;
         $cartItems = $this->em->getRepository('AiselCartBundle:Cart')->findBy(array('frontenduser' => $userId));
         return $cartItems;
     }
@@ -77,6 +78,7 @@ class CartManager
      */
     public function addProductToCart($userId, $productId, $qty = 1)
     {
+        if (!$userId) return false;
         $user = $this->getUserManager()->loadById($userId);
         $product = $this->getProductManager()->loadById($productId);
         $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->addProduct($user, $product, $qty);
@@ -94,6 +96,7 @@ class CartManager
      */
     public function updateProductInCart($userId, $productId, $qty = null)
     {
+        if (!$userId) return false;
         $user = $this->getUserManager()->loadById($userId);
         $product = $this->getProductManager()->loadById($productId);
         $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->updateProduct($user, $product, $qty);

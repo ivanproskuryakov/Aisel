@@ -11,10 +11,11 @@
 
 namespace Aisel\FrontendUserBundle\Manager;
 
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Aisel\ResourceBundle\Utility\PasswordUtility;
 
 /**

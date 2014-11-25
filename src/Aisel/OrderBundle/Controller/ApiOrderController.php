@@ -47,9 +47,6 @@ class ApiOrderController extends Controller
     {
         $userId = $this->getUserManager()->getUserId();
         $orders = $this->getOrderManager()->getUserOrders($userId);
-
-        // TODO: finish with order list
-        $orders = false;
         return $orders;
     }
 
@@ -61,9 +58,6 @@ class ApiOrderController extends Controller
     {
         $userId = $this->getUserManager()->getUserId();
         $order = $this->getOrderManager()->getUserOrder($userId, $id);
-
-        // TODO: finish with order view
-        $order = false;
         return $order;
     }
 
@@ -76,9 +70,12 @@ class ApiOrderController extends Controller
         $userId = $this->getUserManager()->getUserId();
         $order = $this->getOrderManager()->createOrder($userId);
 
-        // TODO: finish with order view
-        $order = false;
-        return $order;
+        if ($order) {
+            $response = array('status' => true, 'order' => $order);
+        } else {
+            $response = array('status' => false, 'message' => 'Something went wrong during the order submit');
+        }
+        return $response;
     }
 
 }
