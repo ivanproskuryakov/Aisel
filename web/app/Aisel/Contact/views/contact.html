@@ -1,0 +1,48 @@
+<div class="">
+    <div class="col-xs-12 page-header">
+        <h2>Contact Us</h2>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-5">
+        <h3>Your contacts</h3>
+        <form class="form-horizontal" name="contanctForm" role="form" ng-submit="submitContact(contanctForm)">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" class="form-control" placeholder="Your Name" name="name" ng-model="name" ng-required="true">
+            </div>
+            <br class="divider">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                <input type="email" class="form-control" placeholder="E-mail" name="email" ng-model="email" ng-required="true">
+            </div>
+            <br class="divider">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                <input type="text" class="form-control" placeholder="Phone" name="phone" ng-model="phone" ng-required="true">
+            </div>
+
+            <h3>Message</h3>
+            <textarea class="form-control" rows="10" ng-required="true" name="message" ng-model="message" ></textarea>
+            <br class="divider">
+            <div class="input-group pull-right">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-xs-12 col-sm-offset-1 col-md-offset-1 col-sm-6 col-md-6 jumbotron" id="sidebar">
+
+        <h4>Name</h4>
+        <p class="config-name">{{ config.Name }}</p>
+
+        <h4>Email</h4>
+        <p>{{ config.Email }}</p>
+
+        <h4>Address</h4>
+        <p>{{ config.AddressLine1 }}</p>
+        <p>{{ config.AddressLine2 }}</p>
+
+        <h4>Information</h4>
+        <p ng-bind-html="config.information"></p>
+    </div>
+
+</div>
