@@ -15,7 +15,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
 /**
@@ -33,6 +33,10 @@ class CartAdmin extends Admin
         $this->cartManager = $cartManager;
     }
 
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('create');
+    }
     /**
      * {@inheritdoc}
      */

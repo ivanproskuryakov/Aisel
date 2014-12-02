@@ -127,14 +127,16 @@ sonata_admin:
         layout:              AiselAdminBundle::layout.html.twig
         search:              SonataAdminBundle:Core:search.html.twig
         search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
+
         #CRUD
         list:                AiselAdminBundle:CRUD:list.html.twig
         show:                AiselAdminBundle:CRUD:show.html.twig
         edit:                AiselAdminBundle:CRUD:edit.html.twig
+
         #Dashboard
         dashboard:           AiselAdminBundle:Core:dashboard.html.twig
         list_block:          AiselAdminBundle:Block:block_admin_list.html.twig
-
+        add_block:           AiselAdminBundle:Core:add_block.html.twig
     options:
         title_mode: "single_text"
         html5_validate: true # does not use html5 validation

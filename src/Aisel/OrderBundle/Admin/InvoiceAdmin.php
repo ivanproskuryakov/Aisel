@@ -15,11 +15,12 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
 /**
  * Order CRUD configuration for Backend
+ *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class InvoiceAdmin extends Admin
@@ -30,6 +31,11 @@ class InvoiceAdmin extends Admin
     public function setManager($orderManager)
     {
         $this->orderManager = $orderManager;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('create');
     }
 
     /**
