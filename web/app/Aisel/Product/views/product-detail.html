@@ -16,7 +16,10 @@
                     date:"MM/dd/yyyy @ h:mma" }}</p>
             </div>
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary">Add to Cart</button>
+                <button type="button"
+                        ng-click="addToCart()"
+                        ng-disabled="isDisabled"
+                        class="btn btn-primary">Add to Cart</button>
             </div>
             <div class="col-md-12">
                 <br/>

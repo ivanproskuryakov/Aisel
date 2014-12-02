@@ -16,6 +16,13 @@ define(['app'], function (app) {
                     var url = API_URL + '/cart.json';
                     console.log(url);
                     return $http.get(url);
+                },
+                addToCart: function ($scope) {
+                    var qty = 1;
+                    var productId = $scope.productDetails.product.id;
+                    var url = API_URL + '/cart/product/' + productId + '/qty/' + qty + '/add.json';
+                    console.log(url);
+                    return $http.get(url);
                 }
             };
         }]);

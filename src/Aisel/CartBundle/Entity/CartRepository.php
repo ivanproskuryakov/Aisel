@@ -99,7 +99,9 @@ class CartRepository extends EntityRepository
             ->where('c.product = :productId')->setParameter('productId', $product->getId())
             ->andWhere('c.frontenduser = :userId')->setParameter('userId', $user->getId());
         $cartItem = $query->getQuery()->getResult();
-        return $cartItem;
+
+        if ($cartItem) return $cartItem[0];
+        return false;
     }
 
 

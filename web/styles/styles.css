@@ -21,6 +21,10 @@
     transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
 }
 
+.cg-notify-message .cg-notify-close {
+    display: none;
+}
+
 .loading-interceptor {
     position: fixed;
     left: 50%;

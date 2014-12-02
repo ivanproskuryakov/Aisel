@@ -44,3 +44,4 @@ aisel:
     new_from : New From
     new_to : New To
     new : New
+    product: Product

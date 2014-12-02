@@ -37,6 +37,7 @@ class CartAdmin extends Admin
     {
         $collection->remove('create');
     }
+
     /**
      * {@inheritdoc}
      */
@@ -54,9 +55,12 @@ class CartAdmin extends Admin
         $formMapper
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
-            ->add('products', null,
-                array('label' => 'aisel.cart.products', 'expanded' => true,
-                    'by_reference' => false, 'multiple' => true))
+            ->add('frontenduser', null, array('label' => 'aisel.default.user', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('product', null, array('label' => 'aisel.default.product', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+//            ->add('product', null,
+//                array('label' => 'aisel.cart.products',
+//                    'expanded' => true,
+//                    'by_reference' => false, 'multiple' => true))
             ->end()
             ->with('aisel.default.dates')
             ->add('createdAt', 'datetime', array(
@@ -95,7 +99,8 @@ class CartAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id', null, array('label' => 'aisel.default.id'))
-            ->add('products', null, array('label' => 'aisel.cart.products'))
+            ->add('product', null, array('label' => 'aisel.cart.products'))
+            ->add('frontenduser', null, array('label' => 'aisel.default.user'))
             ->add('createdAt', 'datetime', array('label' => 'aisel.default.created_at'))
             ->add('_action', 'actions', array(
                     'actions' => array(
