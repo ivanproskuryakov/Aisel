@@ -22,6 +22,8 @@ class OrderRepository extends EntityRepository
      */
     public function createOrderForUser($user, $locale)
     {
+        var_dump($user->getId());
+        var_dump($locale);
         $em = $this->getEntityManager();
         $order = new Order();
         $order->setLocale($locale);

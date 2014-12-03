@@ -25,9 +25,16 @@ Aisel\OrderBundle\Entity\OrderItem:
             column: updated_at
 
     manyToOne:
-      product:
+      order:
         targetEntity: Aisel\OrderBundle\Entity\Order
-        inversedBy: items
-        joinColumns:
-          order_id:
-            referencedColumnName: id
+        inversedBy: orderItem
+        joinColumn:
+          name: order_id
+          referencedColumnName: id
+
+      product:
+        targetEntity: Aisel\ProductBundle\Entity\Product
+        inversedBy: orderItem
+        joinColumn:
+          name: product_id
+          referencedColumnName: id

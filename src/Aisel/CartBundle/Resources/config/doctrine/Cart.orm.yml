@@ -15,6 +15,7 @@ Aisel\CartBundle\Entity\Cart:
             id: true
             generator:
                 strategy: AUTO
+
     fields:
         qty:
             type: integer

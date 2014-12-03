@@ -2,6 +2,8 @@
 
 namespace Aisel\OrderBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Invoice
  */
@@ -22,15 +24,11 @@ class Invoice
      */
     private $updatedAt;
 
-    public function __toString()
-    {
-        return (string) $this->getId();
-    }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -40,7 +38,7 @@ class Invoice
     /**
      * Set createdAt
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
      * @return Invoice
      */
     public function setCreatedAt($createdAt)
@@ -53,7 +51,7 @@ class Invoice
     /**
      * Get createdAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -63,7 +61,7 @@ class Invoice
     /**
      * Set updatedAt
      *
-     * @param  \DateTime $updatedAt
+     * @param \DateTime $updatedAt
      * @return Invoice
      */
     public function setUpdatedAt($updatedAt)
@@ -76,7 +74,7 @@ class Invoice
     /**
      * Get updatedAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {

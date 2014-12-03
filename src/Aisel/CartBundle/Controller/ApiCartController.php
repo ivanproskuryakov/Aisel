@@ -54,7 +54,9 @@ class ApiCartController extends Controller
      */
     public function cartProductAddAction($productId, $qty)
     {
-        $cartItem = $this->getCartManager()->addProductToCart($productId, $qty);
+        $user = $this->getUserManager()->getUser();
+        $cartItem = $this->getCartManager()->addProductToCart($user, $productId, $qty);
+
         if ($cartItem) {
             $response = array('status' => true, 'message' => 'Product added to cart', 'cartItem' => $cartItem);
         } else {
@@ -69,7 +71,8 @@ class ApiCartController extends Controller
      */
     public function cartProductUpdateAction($productId, $qty)
     {
-        $cartItem = $this->getCartManager()->updateProductInCart($productId, $qty);
+        $user = $this->getUserManager()->getUser();
+        $cartItem = $this->getCartManager()->updateProductInCart($user, $productId, $qty);
 
         if ($cartItem) {
             $response = array('status' => true, 'message' => 'Cart updated', 'cartItem' => $cartItem);

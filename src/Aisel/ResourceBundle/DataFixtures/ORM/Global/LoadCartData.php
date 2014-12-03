@@ -47,7 +47,7 @@ class LoadCartData extends XMLFixture implements OrderedFixtureInterface
                     $frontendUser = $this->getReference('frontenduser_' . $table->column[1]);
                     $product = $this->getReference('product_' . $table->column[3]);
                     $cartItem = $this->getCartManager()->addProductToCart(
-                        $frontendUser->getId(),
+                        $frontendUser,
                         $product->getId(),
                         (int)$table->column[2]
                     );

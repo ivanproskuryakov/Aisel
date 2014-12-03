@@ -2,6 +2,8 @@
 
 namespace Aisel\OrderBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * OrderItem
  */
@@ -25,12 +27,18 @@ class OrderItem
     /**
      * @var \Aisel\OrderBundle\Entity\Order
      */
+    private $order;
+
+    /**
+     * @var \Aisel\ProductBundle\Entity\Product
+     */
     private $product;
+
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -40,7 +48,7 @@ class OrderItem
     /**
      * Set createdAt
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
      * @return OrderItem
      */
     public function setCreatedAt($createdAt)
@@ -53,7 +61,7 @@ class OrderItem
     /**
      * Get createdAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -63,7 +71,7 @@ class OrderItem
     /**
      * Set updatedAt
      *
-     * @param  \DateTime $updatedAt
+     * @param \DateTime $updatedAt
      * @return OrderItem
      */
     public function setUpdatedAt($updatedAt)
@@ -76,7 +84,7 @@ class OrderItem
     /**
      * Get updatedAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -84,12 +92,35 @@ class OrderItem
     }
 
     /**
-     * Set product
+     * Set order
      *
-     * @param  \Aisel\OrderBundle\Entity\Order $product
+     * @param \Aisel\OrderBundle\Entity\Order $order
      * @return OrderItem
      */
-    public function setProduct(\Aisel\OrderBundle\Entity\Order $product = null)
+    public function setOrder(\Aisel\OrderBundle\Entity\Order $order = null)
+    {
+        $this->order = $order;
+
+        return $this;
+    }
+
+    /**
+     * Get order
+     *
+     * @return \Aisel\OrderBundle\Entity\Order 
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * Set product
+     *
+     * @param \Aisel\ProductBundle\Entity\Product $product
+     * @return OrderItem
+     */
+    public function setProduct(\Aisel\ProductBundle\Entity\Product $product = null)
     {
         $this->product = $product;
 
@@ -99,7 +130,7 @@ class OrderItem
     /**
      * Get product
      *
-     * @return \Aisel\OrderBundle\Entity\Order
+     * @return \Aisel\ProductBundle\Entity\Product 
      */
     public function getProduct()
     {

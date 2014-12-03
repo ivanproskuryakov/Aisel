@@ -28,8 +28,7 @@ class CartManager
     /**
      * {@inheritDoc}
      */
-    public function __construct($serviceContainer, $entityManager,
-                                $frontendUserManager, $productManager)
+    public function __construct($serviceContainer, $entityManager, $frontendUserManager, $productManager)
     {
         $this->sc = $serviceContainer;
         $this->em = $entityManager;
@@ -56,13 +55,12 @@ class CartManager
     /**
      * Get get cart products for given $userId
      *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     *
      * @return \Aisel\CartBundle\Entity\Cart $cartItems
      */
-    public function getUserCart()
+    public function getUserCart($user)
     {
-        $user = $this->getUserManager()->getUser();
-
-        if (!$user) return false;
         $cartItems = $this->em->getRepository('AiselCartBundle:Cart')->findBy(array('frontenduser' => $user));
         return $cartItems;
     }
@@ -70,16 +68,14 @@ class CartManager
     /**
      * Adds product to cart by given $id and $qty
      *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param int $productId
      * @param int $qty
      *
      * @return \Aisel\CartBundle\Entity\Cart $cartItem
      */
-    public function addProductToCart($productId, $qty = 1)
+    public function addProductToCart($user, $productId, $qty = 1)
     {
-        $user = $this->getUserManager()->getUser();
-
-        if (!$user) return false;
         $product = $this->getProductManager()->loadById($productId);
         $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->addProduct($user, $product, $qty);
         return $cartItem;
@@ -88,16 +84,14 @@ class CartManager
     /**
      * Updates product item inside cart by given $id and $qty
      *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param int $productId
      * @param int $qty
      *
      * @return \Aisel\CartBundle\Entity\Cart $cartItem
      */
-    public function updateProductInCart($productId, $qty = null)
+    public function updateProductInCart($user, $productId, $qty = null)
     {
-        $user = $this->getUserManager()->getUser();
-
-        if (!$user) return false;
         $product = $this->getProductManager()->loadById($productId);
         $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->updateProduct($user, $product, $qty);
         return $cartItem;

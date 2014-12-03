@@ -20,12 +20,6 @@
             <column name="id">59</column>
             <column name="locale">en</column>
             <column name="user_id">149</column>
-            <column name="invoice_id">123</column>
-            <column name="status">new</column>
-            <column name="subtotal">NULL</column>
-            <column name="grandtotal">NULL</column>
-            <column name="created_at">2014-09-03 09:40:15</column>
-            <column name="updated_at">2014-09-03 09:40:15</column>
         </table>
     </database>
 </pma_xml_export>

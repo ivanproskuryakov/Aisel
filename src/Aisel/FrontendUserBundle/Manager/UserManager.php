@@ -84,12 +84,15 @@ class UserManager implements UserProviderInterface
     /**
      * Get current user entity
      *
+     * @param int $userId
+     *
      * @return \Aisel\FrontendUserBundle\Entity\FrontendUser $currentUser
      */
-    public function getUser()
+    public function getUser($userId = null)
     {
-        $userToken = $this->securityContext->getToken();
+        if ($userId) return $this->loadById($userId);
 
+        $userToken = $this->securityContext->getToken();
         if ($userToken) {
             $user = $userToken->getUser();
 
