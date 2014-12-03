@@ -9,8 +9,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductDetailCtrl', ['$scope', '$routeParams', 'productService', '$rootScope', 'cartService', 'notify',
-        function ($scope, $routeParams, productService, $rootScope, cartService, notify) {
+    app.controller('ProductDetailCtrl', ['$scope', '$location', '$routeParams', 'productService', '$rootScope', 'cartService', 'notify', 'API_URL',
+        function ($scope, $location, $routeParams, productService, $rootScope, cartService, notify, API_URL) {
             $scope.isDisabled = true;
 
             var productURL = $routeParams.productId;
@@ -29,16 +29,24 @@ define(['app'], function (app) {
 
             // Add product to cart
             $scope.addToCart = function () {
-                $scope.isDisabled = true;
-                cartService.addToCart($scope).success(
-                    function (data, status) {
-                        notify(data.message);
-                        $scope.isDisabled = false;
-                    }
-                ).error(function (data, status) {
-                        notify(data.message);
-                        $scope.isDisabled = false;
-                    });
+
+                // if user is guest - redirect or login page
+                if ($rootScope.isAuthenticated == false) {
+                    notify('You need to login or register');
+                    var url = API_URL + '/user/login/';
+                    $location.path(url);
+                } else {
+                    $scope.isDisabled = true;
+                    cartService.addToCart($scope).success(
+                        function (data, status) {
+                            notify(data.message);
+                            $scope.isDisabled = false;
+                        }
+                    ).error(function (data, status) {
+                            notify(data.message);
+                            $scope.isDisabled = false;
+                        });
+                }
             };
 
         }]);

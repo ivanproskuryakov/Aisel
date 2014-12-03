@@ -25,6 +25,8 @@ define(['app'], function (app) {
                                 if (data.username) {
                                     $rootScope.user = data;
                                     $rootScope.isAuthenticated = true;
+                                } else {
+                                    $rootScope.isAuthenticated = false;
                                 }
                             }
                         );

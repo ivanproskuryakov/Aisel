@@ -63,7 +63,7 @@ class CartManager
         $user = $this->getUserManager()->getUser();
 
         if (!$user) return false;
-        $cartItems = $this->em->getRepository('AiselCartBundle:Cart')->findBy(array('frontenduser' => $userId));
+        $cartItems = $this->em->getRepository('AiselCartBundle:Cart')->findBy(array('frontenduser' => $user));
         return $cartItems;
     }
 

@@ -29,7 +29,7 @@ define(['app'], function (app) {
                     },
                     roleGuest: function () {
                         console.log($rootScope.isAuthenticated);
-                        if (typeof $rootScope.isAuthenticated != 'undefined') {
+                        if ($rootScope.isAuthenticated == 'false') {
                             console.log('roleGuest ...');
                             $location.path("/");
                         }
