@@ -25,6 +25,7 @@ use Aisel\ResourceBundle\Utility\PasswordUtility;
  */
 class UserManager implements UserProviderInterface
 {
+
     protected $encoder;
     protected $em;
     protected $templating;
@@ -35,7 +36,9 @@ class UserManager implements UserProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function __construct($em, $encoder, $mailer, $templating, $websiteEmail, $securityContext)
+    public function __construct($em, $encoder, $mailer,
+                                $templating, $websiteEmail, $securityContext
+                               )
     {
         $this->mailer = $mailer;
         $this->templating = $templating;
@@ -61,6 +64,14 @@ class UserManager implements UserProviderInterface
         return $this->mailer;
     }
 
+//    /**
+//     * Get Session service
+//     */
+//    public function getSession()
+//    {
+//        return $this->request;
+//    }
+
     /**
      * Get User repository
      */
@@ -71,23 +82,37 @@ class UserManager implements UserProviderInterface
 
 
     /**
-     * Get Id of current user
+     * Get current user entity
      *
      * @return \Aisel\FrontendUserBundle\Entity\FrontendUser $currentUser
      */
-    public function getUserId()
+    public function getUser()
     {
-        $userId = 0;
         $userToken = $this->securityContext->getToken();
 
         if ($userToken) {
             $user = $userToken->getUser();
+
             if ($user !== 'anon.') {
                 $roles = $user->getRoles();
-                if (in_array('ROLE_USER', $roles)) $userId = $user->getId();
+
+                if (in_array('ROLE_USER', $roles)) return $user;
             }
         }
-        return $userId;
+        return false;
+    }
+
+
+    /**
+     * Get get session Id
+     *
+     * @return string $sessionId
+     */
+    public function getSessionId()
+    {
+        $sessionId = $this->getSession();
+
+        return $sessionId;
     }
 
     /**
@@ -115,7 +140,7 @@ class UserManager implements UserProviderInterface
      * Is user password correct
      *
      * @param FrontendUser $user
-     * @param string       $password
+     * @param string $password
      *
      * @return boolean $isValid
      */

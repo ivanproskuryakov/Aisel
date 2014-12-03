@@ -28,4 +28,4 @@ services:
             - @doctrine.orm.entity_manager
             - @frontend.user.manager
             - @aisel.product.manager
-#        scope: prototype
+            - @aisel.product.manager

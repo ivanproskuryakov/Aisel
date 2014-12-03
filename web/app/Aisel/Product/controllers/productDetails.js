@@ -35,7 +35,10 @@ define(['app'], function (app) {
                         notify(data.message);
                         $scope.isDisabled = false;
                     }
-                );
+                ).error(function (data, status) {
+                        notify(data.message);
+                        $scope.isDisabled = false;
+                    });
             };
 
         }]);

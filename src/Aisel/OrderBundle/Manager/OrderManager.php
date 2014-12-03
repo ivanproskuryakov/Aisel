@@ -43,14 +43,13 @@ class OrderManager
     /**
      * Get single order by given userId and orderId
      *
-     * @param int $userId
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param int $orderId
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      */
-    public function getUserOrder($userId, $orderId)
+    public function getUserOrder($user, $orderId)
     {
-        $user = $this->getUserManager()->loadById($userId);
         $order = $this->em->getRepository('AiselOrderBundle:Order')->findOrderForUser($orderId, $user);
         return $order;
     }
@@ -58,13 +57,12 @@ class OrderManager
     /**
      * Get all order for user
      *
-     * @param int $userId
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      */
-    public function getUserOrders($userId)
+    public function getUserOrders($user)
     {
-        $user = $this->getUserManager()->loadById($userId);
         $orders = $this->em->getRepository('AiselOrderBundle:Order')->findAllOrdersForUser($user);
         return $orders;
     }
@@ -72,14 +70,13 @@ class OrderManager
     /**
      * Create order for given userId
      *
-     * @param int $userId
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param string $locale
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      */
-    public function createOrder($userId, $locale)
+    public function createOrder($user, $locale)
     {
-        $user = $this->getUserManager()->loadById($userId);
         $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderForUser($user, $locale);
         return $order;
     }

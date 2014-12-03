@@ -45,8 +45,7 @@ class ApiCartController extends Controller
      */
     public function cartAction()
     {
-        $userId = $this->getUserManager()->getUserId();
-        return $this->getCartManager()->getUserCart($userId);
+        return $this->getCartManager()->getUserCart();
     }
 
     /**
@@ -55,10 +54,7 @@ class ApiCartController extends Controller
      */
     public function cartProductAddAction($productId, $qty)
     {
-
-        $userId = $this->getUserManager()->getUserId();
-        $cartItem = $this->getCartManager()->addProductToCart($userId, $productId, $qty);
-
+        $cartItem = $this->getCartManager()->addProductToCart($productId, $qty);
         if ($cartItem) {
             $response = array('status' => true, 'message' => 'Product added to cart', 'cartItem' => $cartItem);
         } else {
@@ -73,11 +69,10 @@ class ApiCartController extends Controller
      */
     public function cartProductUpdateAction($productId, $qty)
     {
-        $userId = $this->getUserManager()->getUserId();
-        $cartItem = $this->getCartManager()->updateProductInCart($userId, $productId, $qty);
+        $cartItem = $this->getCartManager()->updateProductInCart($productId, $qty);
 
         if ($cartItem) {
-            $response = array('status' => true,  'message' => 'Cart updated', 'cartItem' => $cartItem);
+            $response = array('status' => true, 'message' => 'Cart updated', 'cartItem' => $cartItem);
         } else {
             $response = array('status' => false, 'message' => 'Something went wrong during removing from the cart');
         }

@@ -45,8 +45,8 @@ class ApiOrderController extends Controller
      */
     public function orderListAction()
     {
-        $userId = $this->getUserManager()->getUserId();
-        $orders = $this->getOrderManager()->getUserOrders($userId);
+        $user = $this->getUserManager()->getUser();
+        $orders = $this->getOrderManager()->getUserOrders($user);
         return $orders;
     }
 
@@ -56,8 +56,8 @@ class ApiOrderController extends Controller
      */
     public function orderViewByIdAction($id)
     {
-        $userId = $this->getUserManager()->getUserId();
-        $order = $this->getOrderManager()->getUserOrder($userId, $id);
+        $user = $this->getUserManager()->getUser();
+        $order = $this->getOrderManager()->getUserOrder($user, $id);
         return $order;
     }
 
@@ -67,8 +67,8 @@ class ApiOrderController extends Controller
      */
     public function orderSubmitAction()
     {
-        $userId = $this->getUserManager()->getUserId();
-        $order = $this->getOrderManager()->createOrder($userId);
+        $user = $this->getUserManager()->getUser();
+        $order = $this->getOrderManager()->createOrder($user);
 
         if ($order) {
             $response = array('status' => true, 'order' => $order);
