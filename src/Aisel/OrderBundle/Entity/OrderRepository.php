@@ -12,30 +12,50 @@ use Doctrine\ORM\EntityRepository;
  */
 class OrderRepository extends EntityRepository
 {
+
     /**
      * Create from user cart
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param string $locale
      *
-     * @return \Aisel\OrderBundle\Entity\Order $order
+     * @return \Aisel\OrderBundle\Entity\Order $order|false
      */
     public function createOrderForUser($user, $locale)
     {
-        var_dump($user->getId());
-        var_dump($locale);
+        // Create order
         $em = $this->getEntityManager();
         $order = new Order();
         $order->setLocale($locale);
         $order->setFrontenduser($user);
         $order->setStatus('new');
-        $order->setSubtotal(0);
-        $order->setGrandtotal(0);
         $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        // $order->setInvoice($invoice);
         $em->persist($order);
         $em->flush();
+
+        // Set product items and remove from cart
+        $total = 0;
+        foreach ($user->getCart() as $item ) {
+            $total = $total + $item->getProduct()->getPrice();
+            $orderItem = new OrderItem();
+            $orderItem->setProduct($item->getProduct());
+            $orderItem->setOrder($order);
+            $orderItem->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+            $orderItem->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+            $em->persist($orderItem);
+            $em->flush();
+
+            $em->remove($item);
+            $em->flush();
+        }
+
+        // Set totals
+        $order->setSubtotal($total);
+        $order->setGrandtotal($total);
+        $em->persist($order);
+        $em->flush();
+
         return $order;
     }
 

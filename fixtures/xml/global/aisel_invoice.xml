@@ -15,9 +15,10 @@
     - Database: 'aisel'
     -->
     <database name="aisel">
-        <!-- Table aisel_order -->
+        <!-- Table aisel_invoice -->
         <table name="aisel_invoice">
             <column name="id">123</column>
+            <column name="order_id">59</column>
             <column name="created_at">2014-09-03 09:40:15</column>
             <column name="updated_at">2014-09-03 09:40:15</column>
         </table>

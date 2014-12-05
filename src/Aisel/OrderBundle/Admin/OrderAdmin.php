@@ -57,6 +57,8 @@ class OrderAdmin extends Admin
         $formMapper
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('frontenduser', null, array('label' => 'aisel.default.user', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('grandtotal', null, array('label' => 'aisel.order.total', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('status', 'text', array('label' => 'aisel.default.status', 'required' => false, 'attr' => array('class' => 'form-control')))
             ->end()
             ->with('aisel.default.dates')
@@ -98,9 +100,9 @@ class OrderAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id', null, array('label' => 'aisel.default.id'))
-            ->add('status', 'boolean', array('label' => 'aisel.default.status', 'editable' => false))
             ->add('frontenduser', null, array('label' => 'aisel.default.user'))
-            ->add('invoice', null, array('label' => 'aisel.order.invoice'))
+            ->add('status', 'text', array('label' => 'aisel.order.status', 'editable' => false))
+            ->add('grandtotal', 'text', array('label' => 'aisel.order.total', 'editable' => false))
             ->add('createdAt', 'datetime', array('label' => 'aisel.default.created_at'))
             ->add('_action', 'actions', array(
                     'actions' => array(

@@ -14,7 +14,6 @@ namespace Aisel\ResourceBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\OrderBundle\Entity\Invoice;
 
 /**
  * Order fixtures
@@ -27,6 +26,15 @@ class LoadInvoiceData extends XMLFixture implements OrderedFixtureInterface
     protected $fixturesName = array('global/aisel_invoice.xml');
 
     /**
+     * Invoice manager
+     * @return \Aisel\OrderBundle\Manager\InvoiceManager
+     */
+    protected function getInvoiceManager()
+    {
+        return $this->container->get('aisel.invoice.manager');
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
@@ -37,11 +45,8 @@ class LoadInvoiceData extends XMLFixture implements OrderedFixtureInterface
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
-                    $invoice = new Invoice();
-                    $invoice->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $invoice->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $manager->persist($invoice);
-                    $manager->flush();
+                    $order = $this->getReference('order_' . $table->column[1]);
+                    $invoice = $this->getInvoiceManager()->createInvoiceForOrder($order);
                     $this->addReference('invoice_' . $table->column[0], $invoice);
                 }
             }

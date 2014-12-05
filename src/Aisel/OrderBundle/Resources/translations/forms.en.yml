@@ -8,3 +8,6 @@
 aisel:
   order:
     invoice: Invoice
+    status: Status
+    invoice: Invoice
+    total: Total

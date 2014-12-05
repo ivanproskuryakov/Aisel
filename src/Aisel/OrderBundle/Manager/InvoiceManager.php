@@ -12,6 +12,7 @@
 namespace Aisel\OrderBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Aisel\OrderBundle\Entity\Invoice;
 
 /**
  * Manager for Orders, mostly used in REST API
@@ -50,6 +51,35 @@ class InvoiceManager
         }
 
         return $invoice;
+    }
+
+    /**
+     * Create invoice for order Id
+     *
+     * @param \Aisel\OrderBundle\Entity\Order $order
+     *
+     * @return \Aisel\OrderBundle\Entity\Invoice $invoice|false
+     *
+     */
+    public function createInvoiceForOrder($order)
+    {
+        if ($order) {
+
+            if (!$order->getInvoice()) {
+                $invoice = new Invoice();
+                $invoice->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $invoice->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $this->em->persist($invoice);
+                $this->em->flush();
+                // Update order data
+                $order->setInvoice($invoice);
+                $this->em->persist($order);
+                $this->em->flush();
+
+                return $invoice;
+            }
+        }
+        return false;
     }
 
 }

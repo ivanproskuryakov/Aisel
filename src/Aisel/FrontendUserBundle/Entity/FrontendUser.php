@@ -772,4 +772,42 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     {
         return $this->orders;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $cart;
+
+
+    /**
+     * Add cart
+     *
+     * @param \Aisel\CartBundle\Entity\Cart $cart
+     * @return FrontendUser
+     */
+    public function addCart(\Aisel\CartBundle\Entity\Cart $cart)
+    {
+        $this->cart[] = $cart;
+
+        return $this;
+    }
+
+    /**
+     * Remove cart
+     *
+     * @param \Aisel\CartBundle\Entity\Cart $cart
+     */
+    public function removeCart(\Aisel\CartBundle\Entity\Cart $cart)
+    {
+        $this->cart->removeElement($cart);
+    }
+
+    /**
+     * Get cart
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCart()
+    {
+        return $this->cart;
+    }
 }

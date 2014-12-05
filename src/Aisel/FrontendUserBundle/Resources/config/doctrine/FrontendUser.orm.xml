@@ -45,6 +45,9 @@
         <one-to-many field="orders" target-entity="Aisel\OrderBundle\Entity\Order" mapped-by="frontenduser">
         </one-to-many>
 
+        <one-to-many field="cart" target-entity="Aisel\CartBundle\Entity\Cart" mapped-by="frontenduser">
+        </one-to-many>
+
         <one-to-many field="addresses" target-entity="Aisel\AddressingBundle\Entity\Address" mapped-by="frontenduser">
             <cascade>
                 <cascade-remove/>
