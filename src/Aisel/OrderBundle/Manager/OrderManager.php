@@ -75,9 +75,24 @@ class OrderManager
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      */
-    public function createOrder($user, $locale)
+    public function createOrderFromCart($user, $locale)
     {
-        $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderForUser($user, $locale);
+        $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderFromCartForUser($user, $locale);
+        return $order;
+    }
+
+    /**
+     * Create order for given userId
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param string $locale
+     * @param array $products
+     *
+     * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     */
+    public function createOrderFromProducts($user, $locale, $products)
+    {
+        $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderFromProductsForUser($user, $locale, $products);
         return $order;
     }
 

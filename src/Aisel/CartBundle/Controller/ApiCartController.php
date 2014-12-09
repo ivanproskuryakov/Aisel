@@ -45,7 +45,8 @@ class ApiCartController extends Controller
      */
     public function cartAction()
     {
-        return $this->getCartManager()->getUserCart();
+        $user = $this->getUserManager()->getUser();
+        return $this->getCartManager()->getUserCart($user);
     }
 
     /**

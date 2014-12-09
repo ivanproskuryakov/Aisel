@@ -21,22 +21,14 @@ class OrderRepository extends EntityRepository
      *
      * @return \Aisel\OrderBundle\Entity\Order $order|false
      */
-    public function createOrderForUser($user, $locale)
+    public function createOrderFromCartForUser($user, $locale)
     {
-        // Create order
-        $em = $this->getEntityManager();
-        $order = new Order();
-        $order->setLocale($locale);
-        $order->setFrontenduser($user);
-        $order->setStatus('new');
-        $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $em->persist($order);
-        $em->flush();
+        $order = $this->createOrder($user, $locale);
 
         // Set product items and remove from cart
+        $em = $this->getEntityManager();
         $total = 0;
-        foreach ($user->getCart() as $item ) {
+        foreach ($user->getCart() as $item) {
             $total = $total + $item->getProduct()->getPrice();
             $orderItem = new OrderItem();
             $orderItem->setProduct($item->getProduct());
@@ -53,6 +45,64 @@ class OrderRepository extends EntityRepository
         // Set totals
         $order->setSubtotal($total);
         $order->setGrandtotal($total);
+        $em->persist($order);
+        $em->flush();
+
+        return $order;
+    }
+
+    /**
+     * Create from array of product
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param string $locale
+     * @param array $products
+     *
+     * @return \Aisel\OrderBundle\Entity\Order $order|false
+     */
+    public function createOrderFromProductsForUser($user, $locale, $products)
+    {
+        $order = $this->createOrder($user, $locale);
+
+        // Set product items
+        $em = $this->getEntityManager();
+        $total = 0;
+        foreach ($products as $product) {
+            $total = $total + $product->getPrice();
+            $orderItem = new OrderItem();
+            $orderItem->setProduct($product);
+            $orderItem->setOrder($order);
+            $orderItem->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+            $orderItem->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+            $em->persist($orderItem);
+            $em->flush();
+        }
+        // Set totals
+        $order->setSubtotal($total);
+        $order->setGrandtotal($total);
+        $em->persist($order);
+        $em->flush();
+        return $order;
+    }
+
+    /**
+     * Create empty order
+     *
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param string $locale
+     *
+     * @return \Aisel\OrderBundle\Entity\Order $order|false
+     */
+    public function createOrder($user, $locale)
+    {
+        // Create order
+        $em = $this->getEntityManager();
+        $order = new Order();
+        $order->setLocale($locale);
+        $order->setFrontenduser($user);
+        $order->setStatus('new');
+        $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $em->persist($order);
         $em->flush();
 

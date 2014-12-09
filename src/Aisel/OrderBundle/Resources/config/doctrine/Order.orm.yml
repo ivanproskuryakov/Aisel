@@ -39,15 +39,17 @@ Aisel\OrderBundle\Entity\Order:
             type: datetime
             column: updated_at
 
-    oneToOne:
+    manyToOne:
       frontenduser:
         targetEntity: Aisel\FrontendUserBundle\Entity\FrontendUser
+        inversedBy: order
         joinColumn:
           name: user_id
           referencedColumnName: id
 
       invoice:
         targetEntity: Aisel\OrderBundle\Entity\Invoice
+        inversedBy: order
         joinColumn:
           name: invoice_id
           referencedColumnName: id

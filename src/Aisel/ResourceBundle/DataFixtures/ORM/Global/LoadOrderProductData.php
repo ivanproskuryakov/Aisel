@@ -14,17 +14,16 @@ namespace Aisel\ResourceBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\OrderBundle\Entity\Order;
 
 /**
  * Order fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadOrderData extends XMLFixture implements OrderedFixtureInterface
+class LoadOrderProductData extends XMLFixture implements OrderedFixtureInterface
 {
 
-    protected $fixturesName = array('global/aisel_order.xml');
+    protected $fixturesName = array('global/aisel_order_from_product.xml');
 
     /**
      * Order manager
@@ -46,9 +45,15 @@ class LoadOrderData extends XMLFixture implements OrderedFixtureInterface
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
-                    $frontendUser = $this->getReference('frontenduser_' . $table->column[2]);
                     $locale = $table->column[1];
-                    $order = $this->getOrderManager()->createOrder($frontendUser, (string)$locale);
+                    $frontendUser = $this->getReference('frontenduser_' . $table->column[2]);
+                    $productIds = explode(",", (string)$table->column[3]);
+                    $products = array();
+
+                    foreach ($productIds as $id) {
+                        $products[] = $this->getReference('product_' . $id);
+                    }
+                    $order = $this->getOrderManager()->createOrderFromProducts($frontendUser, (string)$locale, $products);
                     $this->addReference('order_' . $table->column[0], $order);
                 }
             }
@@ -60,6 +65,6 @@ class LoadOrderData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 410;
+        return 420;
     }
 }
