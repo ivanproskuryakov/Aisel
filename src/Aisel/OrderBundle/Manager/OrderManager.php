@@ -11,6 +11,8 @@
 
 namespace Aisel\OrderBundle\Manager;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 /**
  * Manager for Orders, mostly used in REST API
  *
@@ -60,9 +62,13 @@ class OrderManager
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     *
+     * @throws NotFoundHttpException
      */
     public function getUserOrders($user)
     {
+        if (!($user)) throw new NotFoundHttpException('User object is missing');
+
         $orders = $this->em->getRepository('AiselOrderBundle:Order')->findAllOrdersForUser($user);
         return $orders;
     }
@@ -74,9 +80,13 @@ class OrderManager
      * @param string $locale
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     *
+     * @throws NotFoundHttpException
      */
     public function createOrderFromCart($user, $locale)
     {
+        if (!($user)) throw new NotFoundHttpException('User object is missing');
+
         $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderFromCartForUser($user, $locale);
         return $order;
     }
@@ -89,9 +99,13 @@ class OrderManager
      * @param array $products
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     *
+     * @throws NotFoundHttpException
      */
     public function createOrderFromProducts($user, $locale, $products)
     {
+        if (!($user)) throw new NotFoundHttpException('User object is missing');
+
         $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderFromProductsForUser($user, $locale, $products);
         return $order;
     }

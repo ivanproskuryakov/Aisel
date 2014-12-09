@@ -73,9 +73,13 @@ class CartManager
      * @param int $qty
      *
      * @return \Aisel\CartBundle\Entity\Cart $cartItem
+     *
+     * @throws NotFoundHttpException
      */
     public function addProductToCart($user, $productId, $qty = 1)
     {
+        if (!($user)) throw new NotFoundHttpException('User object is missing');
+
         $product = $this->getProductManager()->loadById($productId);
         $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->addProduct($user, $product, $qty);
         return $cartItem;
@@ -89,9 +93,13 @@ class CartManager
      * @param int $qty
      *
      * @return \Aisel\CartBundle\Entity\Cart $cartItem
+     *
+     * @throws NotFoundHttpException
      */
     public function updateProductInCart($user, $productId, $qty = null)
     {
+        if (!($user)) throw new NotFoundHttpException('User object is missing');
+
         $product = $this->getProductManager()->loadById($productId);
         $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->updateProduct($user, $product, $qty);
         return $cartItem;
