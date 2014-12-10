@@ -16,7 +16,6 @@ api_aisel_orderview_by_id:
     defaults: { _controller: AiselOrderBundle:ApiOrder:orderViewById, _format: json }
     requirements:
         _method: GET
-#        id: "\d+"
 
 api_aisel_orderview_by_id:
     pattern:  /%website_api%/order/submit.json

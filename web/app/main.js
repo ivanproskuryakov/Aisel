@@ -63,6 +63,7 @@ require.config({
         './Aisel/Product/AiselProduct',
         './Aisel/User/AiselUser',
         './Aisel/Cart/AiselCart',
+        './Aisel/Order/AiselOrder'
     ],
     priority: [
         "angular"

@@ -52,7 +52,7 @@ class OrderManager
      */
     public function getUserOrder($user, $orderId)
     {
-        $order = $this->em->getRepository('AiselOrderBundle:Order')->findOrderForUser($orderId, $user);
+        $order = $this->em->getRepository('AiselOrderBundle:Order')->findOrderForUser($user, $orderId);
         return $order;
     }
 

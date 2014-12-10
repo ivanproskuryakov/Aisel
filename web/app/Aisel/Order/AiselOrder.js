@@ -10,6 +10,7 @@
 
 define(['app',
     './controllers/order',
+    './controllers/orderDetail',
     './services/order',
 ], function (app) {
     console.log('Order module loaded ...');
@@ -24,9 +25,9 @@ define(['app',
                     }
                 }
             })
-            .when('/:locale/user/order/view/:id/', {
+            .when('/:locale/user/order/view/:orderId/', {
                 templateUrl: '/app/Aisel/Order/views/order-detail.html',
-                controller: 'OrderCtrl',
+                controller: 'OrderDetailCtrl',
                 resolve: {
                     factory: function (authService) {
                         authService.roleUser()

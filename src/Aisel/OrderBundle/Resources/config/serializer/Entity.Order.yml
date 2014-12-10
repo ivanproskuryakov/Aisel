@@ -24,3 +24,6 @@ Aisel\OrderBundle\Entity\Order:
         expose: true
     frontenduser:
         expose: false
+
+    item:
+        expose: true

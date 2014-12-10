@@ -3,8 +3,8 @@
 </div>
 <div class="col-md-12">
     <div class="row">
-        <div ng-if="cartItems">
-            <div class="col-md-12">
+        <div class="col-md-12">
+            <div ng-if="cartItems.length > 0">
                 <div class="cartItem" ng-repeat="item in cartItems">
                     <div class="col-md-2">
                         <img class="img-rounded"
@@ -36,10 +36,10 @@
                     </div>
                 </div>
             </div>
+            <div class="empty-cart-content" ng-if="cartItems.length == 0">
+                <span>You have 0 items in your cart</span>
+            </div>
         </div>
 
-        <!--<div class="empty-cart-content" ng-if="cartItems == false">-->
-            <!--<span>You have 0 items in your cart</span>-->
-        <!--</div>-->
     </div>
 </div>

@@ -1,29 +1,71 @@
-<div class="col-md-12 page-header">
-    <h2><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</h2>
-</div>
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-md-12 cartItem" ng-repeat="item in cartItems">
-            <div class="col-md-2">
-                <img class="img-rounded"
-                     src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc0LjA0Njg3NSIgeT0iMTAwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L2c+PC9zdmc+"
-                     data-holder-rendered="true" style="width: 100%;">
-            </div>
-            <div class="col-md-5">
-                <strong>{{item.product.name}}</strong>
-            </div>
-            <div class="col-md-3">
-                {{item.qty}}
-            </div>
-            <div class="col-md-2">
-                {{item.product.price}} {{currency}}
-            </div>
-            <div class="col-md-12">
-                <hr>
+<div class="">
+    <div class="col-md-12 page-header">
+        <h2><span class="glyphicon glyphicon-list-alt"></span> My orders</h2>
+        <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span> <a ng-href="/{{locale}}/user/information/">Back to dashboard</a></p>
+    </div>
+
+    <div class="" ng-if="isAuthenticated">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <div ng-if="orders.length > 0">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        Id
+                                    </div>
+                                    <div class="col-md-2">
+                                        Status
+                                    </div>
+                                    <div class="col-md-2">
+                                        Grand Total
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="orderItem" ng-repeat="order in orders">
+                                        <div class="col-md-5">
+                                            <span class="glyphicon glyphicon-info-sign"></span> #{{order.id}}<br/>
+                                            <span class="glyphicon glyphicon-calendar"></span> {{order.created_at | date:"MM/dd/yyyy @ h:mma" }}
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{order.status}}
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span class="label label-default">{{order.grandtotal}} {{currency}}</span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="pull-left">
+                                                <a
+                                                        type="button"
+                                                        ng-href="/{{locale}}/user/order/view/{{order.id}}/"
+                                                        class="btn btn-default">View Order</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="empty-cart-content" ng-if="orders.length == 0">
+                        <span>You have no orders yet</span>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <div class="empty-cart-content" ng-if="cartItems.length == 0">
-            <span>You have 0 items in your cart</span>
+        <div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <div class="sidebar" ng-include="'/app/Aisel/User/views/sidebar.html'"></div>
         </div>
     </div>
 </div>
