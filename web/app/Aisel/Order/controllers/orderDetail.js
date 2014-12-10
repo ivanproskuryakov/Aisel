@@ -13,7 +13,8 @@ define(['app'], function (app) {
             console.log($routeParams.orderId);
             $scope.orderId = $routeParams.orderId;
             var handleSuccess = function (data, status) {
-                $scope.orderDetails = data;
+                $scope.orderDetails = data[0];
+                console.log($scope.orderDetails);
             };
             orderService.getOrder($scope.orderId).success(handleSuccess);
         }]);
