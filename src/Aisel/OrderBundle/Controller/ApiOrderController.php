@@ -65,13 +65,13 @@ class ApiOrderController extends Controller
      * @Rest\View
      * /%website_api%/order/submit.json
      */
-    public function orderSubmitAction()
+    public function orderSubmitAction($locale)
     {
         $user = $this->getUserManager()->getUser();
-        $order = $this->getOrderManager()->createOrder($user);
+        $order = $this->getOrderManager()->createOrderFromCart($user, $locale);
 
         if ($order) {
-            $response = array('status' => true, 'order' => $order);
+            $response = array('status' => true, 'order' => $order, 'message' => 'Your order received, thank you!');
         } else {
             $response = array('status' => false, 'message' => 'Something went wrong during the order submit');
         }

@@ -20,18 +20,32 @@
                 </div>
                 <div class="col-md-2">
                     <div class="pull-right">
-                        <span class="label label-default">
+                        <h4><span class="label label-warning">
                             {{item.product.price}} {{currency}}
-                        </span>
+                        </span></h4>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <hr>
                 </div>
             </div>
-            <div class="pull-right col-md-3">
-                <div class="well well-lg">
-                    <strong>Grand total</strong>: {{total()}} {{currency}}
+
+            <!-- Totals and Submit Order button-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-3">
+                        <span class="pull-right">
+                            <strong>Total</strong>: {{total()}} {{currency}}
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        <a type="button"
+                           ng-click="orderSubmit()"
+                           ng-disabled="isDisabled"
+                           ng-href="" class="pull-right btn btn-success btn-lg">Submit Order</a>
+                    </div>
                 </div>
             </div>
         </div>

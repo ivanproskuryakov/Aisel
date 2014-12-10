@@ -17,8 +17,8 @@ api_aisel_orderview_by_id:
     requirements:
         _method: GET
 
-api_aisel_orderview_by_id:
-    pattern:  /%website_api%/order/submit.json
+api_aisel_ordersubmit:
+    pattern:  /%website_api%/{locale}/order/submit.json
     defaults: { _controller: AiselOrderBundle:ApiOrder:orderSubmit, _format: json }
     requirements:
         _method: GET

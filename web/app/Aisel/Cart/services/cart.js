@@ -30,6 +30,12 @@ define(['app'], function (app) {
                     var url = API_URL + '/cart/product/' + productId + '/qty/' + qty + '/update.json';
                     console.log(url);
                     return $http.get(url);
+                },
+                orderSubmit: function () {
+                    var locale = Aisel.getLocale();
+                    var url = API_URL + '/' + locale + '/order/submit.json';
+                    console.log(url);
+                    return $http.get(url);
                 }
             };
         }]);
