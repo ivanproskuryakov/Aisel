@@ -37,12 +37,11 @@
                                             {{order.status}}
                                         </div>
                                         <div class="col-md-2">
-                                            <span class="label label-default">{{order.grandtotal}} {{currency}}</span>
+                                            <div class="alert alert-success" role="alert">{{order.grandtotal}} {{currency}}</div>
                                         </div>
                                         <div class="col-md-3">
-                                            <div class="pull-left">
-                                                <a
-                                                        type="button"
+                                            <div class="pull-right">
+                                                <a type="button"
                                                         ng-href="/{{locale}}/user/order/view/{{order.id}}/"
                                                         class="btn btn-default">View Order</a>
                                             </div>

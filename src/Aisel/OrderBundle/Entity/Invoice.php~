@@ -24,16 +24,10 @@ class Invoice
      */
     private $updatedAt;
 
-
-    public function __toString()
-    {
-        return (string)$this->getId();
-    }
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {

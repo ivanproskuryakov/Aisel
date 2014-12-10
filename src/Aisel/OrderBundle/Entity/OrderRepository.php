@@ -29,8 +29,11 @@ class OrderRepository extends EntityRepository
         $em = $this->getEntityManager();
         $total = 0;
         foreach ($user->getCart() as $item) {
-            $total = $total + $item->getProduct()->getPrice();
+            $total = $total + ($item->getProduct()->getPrice() * $item->getQty());
             $orderItem = new OrderItem();
+            $orderItem->setName($item->getProduct()->getName());
+            $orderItem->setPrice($item->getProduct()->getPrice());
+            $orderItem->setQty($item->getQty());
             $orderItem->setProduct($item->getProduct());
             $orderItem->setOrder($order);
             $orderItem->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
@@ -68,8 +71,11 @@ class OrderRepository extends EntityRepository
         $em = $this->getEntityManager();
         $total = 0;
         foreach ($products as $product) {
-            $total = $total + $product->getPrice();
+            $total = $total + ($product->getPrice() * 1);
             $orderItem = new OrderItem();
+            $orderItem->setName($product->getName());
+            $orderItem->setPrice($product->getPrice());
+            $orderItem->setQty(1);
             $orderItem->setProduct($product);
             $orderItem->setOrder($order);
             $orderItem->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));

@@ -2,6 +2,8 @@
 
 namespace Aisel\OrderBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Order
  */
@@ -68,7 +70,7 @@ class Order
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -78,7 +80,7 @@ class Order
     /**
      * Set locale
      *
-     * @param  string $locale
+     * @param string $locale
      * @return Order
      */
     public function setLocale($locale)
@@ -91,7 +93,7 @@ class Order
     /**
      * Get locale
      *
-     * @return string
+     * @return string 
      */
     public function getLocale()
     {
@@ -101,7 +103,7 @@ class Order
     /**
      * Set status
      *
-     * @param  string $status
+     * @param string $status
      * @return Order
      */
     public function setStatus($status)
@@ -114,7 +116,7 @@ class Order
     /**
      * Get status
      *
-     * @return string
+     * @return string 
      */
     public function getStatus()
     {
@@ -124,7 +126,7 @@ class Order
     /**
      * Set subtotal
      *
-     * @param  integer $subtotal
+     * @param integer $subtotal
      * @return Order
      */
     public function setSubtotal($subtotal)
@@ -137,7 +139,7 @@ class Order
     /**
      * Get subtotal
      *
-     * @return integer
+     * @return integer 
      */
     public function getSubtotal()
     {
@@ -147,7 +149,7 @@ class Order
     /**
      * Set grandtotal
      *
-     * @param  integer $grandtotal
+     * @param integer $grandtotal
      * @return Order
      */
     public function setGrandtotal($grandtotal)
@@ -160,7 +162,7 @@ class Order
     /**
      * Get grandtotal
      *
-     * @return integer
+     * @return integer 
      */
     public function getGrandtotal()
     {
@@ -170,7 +172,7 @@ class Order
     /**
      * Set createdAt
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
      * @return Order
      */
     public function setCreatedAt($createdAt)
@@ -183,7 +185,7 @@ class Order
     /**
      * Get createdAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -193,7 +195,7 @@ class Order
     /**
      * Set updatedAt
      *
-     * @param  \DateTime $updatedAt
+     * @param \DateTime $updatedAt
      * @return Order
      */
     public function setUpdatedAt($updatedAt)
@@ -206,7 +208,7 @@ class Order
     /**
      * Get updatedAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -216,7 +218,7 @@ class Order
     /**
      * Set frontenduser
      *
-     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
+     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
      * @return Order
      */
     public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
@@ -229,7 +231,7 @@ class Order
     /**
      * Get frontenduser
      *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
+     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser 
      */
     public function getFrontenduser()
     {
@@ -239,7 +241,7 @@ class Order
     /**
      * Set invoice
      *
-     * @param  \Aisel\OrderBundle\Entity\Invoice $invoice
+     * @param \Aisel\OrderBundle\Entity\Invoice $invoice
      * @return Order
      */
     public function setInvoice(\Aisel\OrderBundle\Entity\Invoice $invoice = null)
@@ -252,7 +254,7 @@ class Order
     /**
      * Get invoice
      *
-     * @return \Aisel\OrderBundle\Entity\Invoice
+     * @return \Aisel\OrderBundle\Entity\Invoice 
      */
     public function getInvoice()
     {
@@ -262,7 +264,7 @@ class Order
     /**
      * Add item
      *
-     * @param  \Aisel\OrderBundle\Entity\OrderItem $item
+     * @param \Aisel\OrderBundle\Entity\OrderItem $item
      * @return Order
      */
     public function addItem(\Aisel\OrderBundle\Entity\OrderItem $item)
@@ -285,7 +287,7 @@ class Order
     /**
      * Get item
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getItem()
     {

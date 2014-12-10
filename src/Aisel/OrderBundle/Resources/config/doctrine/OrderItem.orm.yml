@@ -17,6 +17,15 @@ Aisel\OrderBundle\Entity\OrderItem:
                 strategy: AUTO
 
     fields:
+        name:
+            type: string
+            length: 255
+        price:
+            type: integer
+            default: 0
+        qty:
+            type: integer
+            default: 0
         createdAt:
             type: datetime
             column: created_at
