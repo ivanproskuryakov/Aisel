@@ -19,6 +19,7 @@ define(['app'], function (app) {
             var locale = Aisel.getLocale();
 
             $scope.loggedIn = false;
+
             // User Registration
             $scope.submitRegistration = function (form) {
                 if (form.$valid) {
@@ -33,7 +34,11 @@ define(['app'], function (app) {
                 }
             };
 
-            // User Edit Details
+            /**
+             * @ngdoc function
+             * @param form registration form values
+             * @description sends data to API layer and update user object
+             */
             $scope.submitEditUserDetails = function (form) {
                 if (form.$valid) {
                     userService.editDetails(form).success(
@@ -54,7 +59,6 @@ define(['app'], function (app) {
                         function (data, status) {
                             notify(data.message);
                             if (data.status) {
-//                            window.location = "/";
                                 window.location = "/";
                             }
                         }
