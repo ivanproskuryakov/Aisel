@@ -17,7 +17,6 @@ define(['app'], function (app) {
                         var meta = false;
                         var disqus = false;
                         var general = false;
-
                         // Load user status
                         rootService.getUserInformation().success(
                             function (data, status) {

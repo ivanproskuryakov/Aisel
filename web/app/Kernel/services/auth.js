@@ -12,6 +12,8 @@ define(['app'], function (app) {
     angular.module('app')
         .service('authService', ['$http', '$routeParams', '$rootScope', '$location', 'rootService',
             function ($http, $routeParams, $rootScope, $location, rootService) {
+                var locale = Aisel.getLocale();
+
                 return {
                     roleUser: function () {
                         rootService.getUserInformation().success(
@@ -22,17 +24,23 @@ define(['app'], function (app) {
                                     $rootScope.isAuthenticated = true;
                                     $rootScope.user = data;
                                 } else {
-                                    $location.path("/");
+                                    $location.path("/" + locale + "/");
                                 }
                             }
                         );
                     },
                     roleGuest: function () {
-                        console.log($rootScope.isAuthenticated);
-                        if ($rootScope.isAuthenticated == 'false') {
-                            console.log('roleGuest ...');
-                            $location.path("/");
-                        }
+                        rootService.getUserInformation().success(
+                            function (data, status) {
+                                console.log('userIsGuest');
+                                if (data.username) {
+                                    $rootScope.isAuthenticated = true;
+                                    $location.path("/" + locale + "/user/information/");
+                                } else {
+                                    $rootScope.isAuthenticated = false;
+                                }
+                            }
+                        );
                     }
                 }
             }]);

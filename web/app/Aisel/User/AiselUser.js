@@ -10,7 +10,6 @@
 
 define(['app',
     './controllers/user',
-    './controllers/page/add', './controllers/page/edit', './controllers/page/list',
     './services/user/category', './services/user/page', './services/user/user',
 ], function (app) {
     console.log('User module loaded ...');

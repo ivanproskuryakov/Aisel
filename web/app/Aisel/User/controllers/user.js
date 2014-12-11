@@ -11,6 +11,7 @@
 define(['app'], function (app) {
     app.controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService', 'notify',
         function ($log, $modal, $scope, $routeParams, userService, notify) {
+            var locale = Aisel.getLocale();
 
             $scope.loggedIn = false;
             // User Registration
@@ -72,8 +73,7 @@ define(['app'], function (app) {
                     function (data, status) {
                         notify(data.message);
                         if (data.status) {
-//                        window.location = "/" + $rootScope.locale + "/user/information/";
-                            window.location = "/";
+                            window.location = "/" + locale + "/user/information/";
                         }
                     }
                 );
