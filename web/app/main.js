@@ -1,11 +1,16 @@
 'use strict';
 
 /**
- * @ngdoc overview
- * @name Aisel
+ * This file is part of the Aisel package.
  *
- * @description
- * Require.js launcher
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @ngdoc           overview
+ * @name            Aisel
+ * @description     Require.js launcher
  */
 
 require.config({

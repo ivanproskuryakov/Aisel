@@ -1,12 +1,18 @@
 'use strict';
 
 /**
- * @ngdoc overview
- * @name Aisel
+ * This file is part of the Aisel package.
  *
- * @description
- * Auth service
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @ngdoc           overview
+ * @name            Aisel
+ * @description     Auth service
  */
+
 define(['app'], function (app) {
     console.log('Kernel Auth service loaded ...');
     angular.module('app')

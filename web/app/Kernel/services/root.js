@@ -1,12 +1,18 @@
 'use strict';
 
 /**
- * @ngdoc overview
- * @name Aisel
+ * This file is part of the Aisel package.
  *
- * @description
- * API service
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @ngdoc           overview
+ * @name            Aisel
+ * @description     API service
  */
+
 define(['app'], function (app) {
     console.log('Kernel API service loaded ...');
     angular.module('app')

@@ -1,13 +1,18 @@
 'use strict';
 
 /**
- * @ngdoc overview
- * @name Aisel
+ * This file is part of the Aisel package.
  *
- * @description
- * Main router provider in separate file, for better extensibility
- * Each module has its own router file.
- * Define only global routes in this appRouter.js file
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @ngdoc           overview
+ * @name            Aisel
+ * @description     Main router provider in separate file, for better extensibility
+ *                  Each module has its own router file.
+ *                  Define only global routes in this appRouter.js file
  */
 
 define(['app'], function (app) {

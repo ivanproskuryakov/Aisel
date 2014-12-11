@@ -10,18 +10,6 @@ module.exports = function (grunt) {
     // Define the configuration for all the tasks
     grunt.initConfig({
 
-        // Karma Settings
-        karma: {
-            unit: {
-                configFile: 'karma/unit/karma.conf.js'
-            },
-            midway: {
-                configFile: 'karma/midway/karma.midway.conf.js'
-            },
-            e2e: {
-                configFile: 'karma/e2e/karma.e2e.conf.js'
-            }
-        },
         requirejs: {
             js: {
                 options: {
