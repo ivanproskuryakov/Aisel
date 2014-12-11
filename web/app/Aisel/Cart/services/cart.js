@@ -24,9 +24,9 @@ define(['app'], function (app) {
                     console.log(url);
                     return $http.get(url);
                 },
-                updateInCart: function ($scope) {
-                    var qty = 1;
-                    var productId = $scope.productDetails.product.id;
+                updateInCart: function (item) {
+                    var qty = item.qty;
+                    var productId = item.product.id;
                     var url = API_URL + '/cart/product/' + productId + '/qty/' + qty + '/update.json';
                     console.log(url);
                     return $http.get(url);

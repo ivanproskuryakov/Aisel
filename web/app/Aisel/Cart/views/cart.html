@@ -10,19 +10,22 @@
                          src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc0LjA0Njg3NSIgeT0iMTAwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L2c+PC9zdmc+"
                          data-holder-rendered="true" style="width: 100%;">
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <h4>{{item.product.name}}</h4>
                 </div>
-                <div class="col-md-3">
-                    <div class="col-md-6">
-                        <input type="number" class="form-control" ng-model="item.qty">
+                <div class="col-md-2">
+                    <div class="col-md-8">
+                        <input type="number" class="form-control" ng-model="item.qty" ng-change="updateProductQty(item)">
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="pull-right">
-                        <h4><span class="label label-warning">
-                            {{item.product.price}} {{currency}}
-                        </span></h4>
+                        {{item.product.price}} {{currency}}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="pull-right">
+                        {{item.product.price*item.qty}} {{currency}}
                     </div>
                 </div>
                 <div class="col-md-12">

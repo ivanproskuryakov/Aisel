@@ -10,8 +10,14 @@
 define(['app'], function (app) {
     app.controller('CartCtrl', ['$location', '$scope', 'cartService', 'notify',
         function ($location, $scope, cartService, notify) {
-            // Get cart items
 
+            $scope.total = function () {
+                var total = 0;
+                angular.forEach($scope.cartItems, function (item) {
+                    total += item.qty * item.product.price;
+                })
+                return total;
+            }
             $scope.getCartItems = function () {
                 cartService.getCartItems($scope).success(function (data, status) {
                         $scope.cartItems = data;
@@ -21,12 +27,21 @@ define(['app'], function (app) {
             }
             $scope.getCartItems();
 
-            $scope.total = function () {
-                var total = 0;
-                angular.forEach($scope.cartItems, function (item) {
-                    total += item.qty * item.product.price;
-                })
-                return total;
+
+            // Update product qty
+            $scope.updateProductQty = function (item) {
+                console.log(item);
+                cartService.updateInCart(item).success(
+                    function (data, status) {
+                        console.log(data);
+                        notify(data.message);
+                        $scope.isDisabled = false;
+                        $scope.getCartItems();
+                    }
+                ).error(function (data, status) {
+                        notify(data.message);
+                        $scope.isDisabled = false;
+                    });
             }
 
             // Submit order button

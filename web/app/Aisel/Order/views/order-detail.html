@@ -10,8 +10,15 @@
                     <div class="row">
                         <!-- Order Details -->
                         <div class="col-md-12">
-                            <span class="glyphicon glyphicon-info-sign"></span> #{{orderDetails.id}} / {{orderDetails.status}} / {{orderDetails.grandtotal}} {{currency}}<br/><br/>
-                            <span class="glyphicon glyphicon-calendar"></span> {{orderDetails.created_at | date:"MM/dd/yyyy @ h:mma" }}<br/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="glyphicon glyphicon-info-sign"></span> #{{orderDetails.id}} <br/>
+                                    <span class="glyphicon glyphicon-calendar"></span> {{orderDetails.created_at | date:"MM/dd/yyyy @ h:mma" }}<br/>
+                                </div>
+                                <div class="col-md-6">
+                                   Total: {{orderDetails.grandtotal}} {{currency}}<br/>
+                                </div>
+                            </div>
                             <hr>
                         </div>
 
@@ -31,8 +38,11 @@
                                         {{item.qty}}
                                     </div>
                                     <div class="col-md-2">
+                                        {{item.price}} {{currency}}
+                                    </div>
+                                    <div class="col-md-2">
                                         <div class="pull-right">
-                                                <div class="alert  alert-warning" role="alert">{{item.price}} {{currency}}</div>
+                                                <div class="alert alert-warning" role="alert">{{item.price*item.qty}} {{currency}}</div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
