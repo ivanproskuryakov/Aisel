@@ -150,6 +150,13 @@ sonata_doctrine_orm_admin:
 
 iphp_file_store:
     mappings:
-       mainImage:
-           upload_dir: %kernel.root_dir%/../web/%application.media.product.main.path%
-           upload_path: %website_address%%application.media.product.main.path%
+        mainImage:
+            upload_dir: %application.media.product.upload_dir%
+            upload_path: %application.media.product.upload_path%
+            namer:
+               translit: ~
+               propertyPrefix:    #or propertyPostfix
+                     params: { use_field_name : true }
+            directory_namer:
+               property:
+                   params: { field : "id"}
