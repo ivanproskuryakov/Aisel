@@ -34,6 +34,8 @@ Aisel\ProductBundle\Entity\Product:
         expose: true
     status:
         expose: true
+    mainImage:
+        expose: true
 
     createdAt:
         expose: true

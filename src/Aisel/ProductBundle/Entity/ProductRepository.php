@@ -144,7 +144,7 @@ class ProductRepository extends EntityRepository
     {
         $this->mapRequest($params);
         $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select('p.id,p.locale, p.name, p.price, p.metaUrl, SUBSTRING(p.description, 1, 500) AS description,  p.createdAt,  p.status')
+        $query->select('p.id,p.locale, p.name, p.price, p.metaUrl, SUBSTRING(p.description, 1, 500) AS description,  p.createdAt,  p.status,  p.mainImage')
             ->from('AiselProductBundle:Product', 'p')
             ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
 
