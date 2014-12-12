@@ -36,10 +36,8 @@ define(['app'], function (app) {
 
             // Update product qty
             $scope.updateProductQty = function (item) {
-                console.log(item);
                 cartService.updateInCart(item).success(
                     function (data, status) {
-                        console.log(data);
                         notify(data.message);
                         $scope.isDisabled = false;
                         $scope.getCartItems();
@@ -56,7 +54,6 @@ define(['app'], function (app) {
                     $scope.isDisabled = true;
                     cartService.orderSubmit().success(
                         function (data, status) {
-                            console.log(data);
                             notify(data.message);
                             $scope.isDisabled = false;
                             $scope.getCartItems();

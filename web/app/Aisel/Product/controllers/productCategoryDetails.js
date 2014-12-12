@@ -29,19 +29,19 @@ define(['app'], function (app) {
             );
 
             // Products
-            //productCategoryService.getProducts($scope).success(
-            //    function (data, status) {
-            //        $scope.productList = data;
-            //    }
-            //);
-            //
-            //$scope.pageChanged = function (page) {
-            //    $scope.paginationPage = page;
-            //    productService.getProducts($scope).success(
-            //        function (data, status) {
-            //            $scope.productList = data;
-            //        }
-            //    );
-            //};
+            productService.getProducts($scope).success(
+                function (data, status) {
+                    $scope.productList = data;
+                }
+            );
+
+            $scope.pageChanged = function (page) {
+                $scope.paginationPage = page;
+                productService.getProducts($scope).success(
+                    function (data, status) {
+                        $scope.productList = data;
+                    }
+                );
+            };
         }]);
 });

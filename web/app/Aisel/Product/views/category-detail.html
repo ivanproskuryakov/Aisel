@@ -3,19 +3,25 @@
         <h2>{{categoryDetails.category.title}}</h2>
         <p><span class="glyphicon glyphicon-calendar"></span> {{categoryDetails.category.created_at |
             date:"MM/dd/yyyy @ h:mma" }}</p>
-    </div>
-
-    <div class="col-xs-12 col-md-12">
         <p ng-bind-html="categoryDetails.category.description"></p>
-
-        <div class="related categoryPages" ng-if="categoryDetails.pages">
+    </div>
+    <div class="col-xs-12 col-md-12">
+        <div class="related categoryPages" ng-if="productList">
             <div class="">
-                <ul class="productList">
-                    <li ng-repeat="page in productList.pages">
-                        <h2><a href="/{{locale}}/page/view/{{page.metaUrl}}/" class="thumb">{{page.title}}</a></h2>
-                        <p ng-bind-html="page.content"></p>
-                        <p><span class="glyphicon glyphicon-calendar"></span>{{page.createdAt | date:"MM/dd/yyyy @
-                            h:mma" }}</p>
+                <ul class="pageList">
+                    <li ng-repeat="product in productList.products">
+                        <h2><a href="/{{locale}}/product/view/{{product.metaUrl}}/" class="thumb">{{product.name}}</a></h2>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img class="img-rounded"
+                                     src="{{product.mainImage.path}}"
+                                     data-holder-rendered="true" style="width: 100%;">
+                            </div>
+                            <div class="col-md-9">
+                                <p><span class="label label-warning">{{product.price}} {{currency}}</span></p>
+                                <p ng-bind-html="product.description"></p>
+                            </div>
+                        </div>
                         <hr/>
                     </li>
                 </ul>
