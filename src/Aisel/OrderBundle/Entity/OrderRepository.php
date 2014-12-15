@@ -128,6 +128,7 @@ class OrderRepository extends EntityRepository
         $orders = $query->select('o')
             ->from('AiselOrderBundle:Order', 'o')
             ->where('o.frontenduser = :userId')->setParameter('userId', $user->getId())
+            ->orderBy('o.id', 'DESC')
             ->getQuery()
             ->execute();
         return $orders;

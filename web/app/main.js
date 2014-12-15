@@ -16,7 +16,7 @@
 require.config({
     // Load paths from global variable
     paths: {
-        'jquery': '../bower_components/jquery/jquery.min.js',
+        'jQuery': '../bower_components/jquery/jquery.min',
         'domReady': '../bower_components/domReady/domReady',
         'angular': '../bower_components/angular/angular',
         'twitter-bootstrap': '../bower_components/sass-bootstrap/dist/js/bootstrap',
@@ -36,9 +36,8 @@ require.config({
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {
         'angular-route': ['angular'],
-        "angular": {
-            exports: "angular"
-        },
+        'angular' : {'exports' : 'angular', deps: ['jQuery']},
+        'jQuery': {'exports' : 'jQuery'},
         "jquery": ["angular"],
         "domReady": ["angular"],
         "angular-resource": ["angular"],
