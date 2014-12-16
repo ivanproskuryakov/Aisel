@@ -11,7 +11,6 @@
 
 namespace Aisel\CartBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -40,10 +39,9 @@ class ApiCartController extends Controller
     }
 
     /**
-     * @Rest\View
      * /%website_api%/cart.json
      *
-     * @return json $response
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function cartAction()
     {
@@ -52,13 +50,12 @@ class ApiCartController extends Controller
     }
 
     /**
-     * @Rest\View
      * /%website_api%/cart/product/{productId}/qty/{qty}/add.json
      *
      * @param int $productId
      * @param int $qty
      *
-     * @return json $response
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
     public function cartProductAddAction($productId, $qty)
     {
@@ -74,13 +71,12 @@ class ApiCartController extends Controller
     }
 
     /**
-     * @Rest\View
      * /%website_api%/cart/product/{productId}/qty/{qty}/update.json
      *
      * @param int $productId
      * @param int $qty
      *
-     * @return json $response
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
     public function cartProductUpdateAction($productId, $qty)
     {

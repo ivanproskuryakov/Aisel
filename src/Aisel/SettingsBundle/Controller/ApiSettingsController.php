@@ -11,7 +11,6 @@
 
 namespace Aisel\SettingsBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -23,13 +22,15 @@ class ApiSettingsController extends Controller
 {
 
     /**
-     * @Rest\View
      * /api/config/settings.json
+     *
+     * @param string $locale
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $config
      */
     public function configAction($locale)
     {
         $config = $this->container->get("aisel.settings.manager")->getConfig($locale);
-
         return $config;
     }
 

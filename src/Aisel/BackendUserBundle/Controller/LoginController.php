@@ -30,7 +30,7 @@ class LoginController extends Controller
     /**
      * Displays login related data
      *
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function loginAction()
     {

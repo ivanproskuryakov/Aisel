@@ -12,7 +12,6 @@
 namespace Aisel\ProductBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,7 +23,6 @@ use Symfony\Component\HttpFoundation\Request;
 class MediaController extends Controller
 {
     /**
-     * @Rest\View
      * /%website_admin%/product/media/{productId}/
      */
     public function uploadAction(Request $request, $productId)

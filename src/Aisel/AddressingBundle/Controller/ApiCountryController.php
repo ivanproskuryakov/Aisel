@@ -11,7 +11,6 @@
 
 namespace Aisel\AddressingBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,14 +23,12 @@ class ApiCountryController extends Controller
 {
 
     /**
-     * @Rest\View
      * /%website_api%/addressing/country/list.json
      */
     public function countryListAction(Request $request)
     {
         // TODO: finish addressing API functionality
         $countryList = true;
-
         return $countryList;
     }
 
@@ -42,7 +39,6 @@ class ApiCountryController extends Controller
     {
         // TODO: finish addressing API functionality
         $countryDetails = $id;
-
         return $countryDetails;
     }
 }

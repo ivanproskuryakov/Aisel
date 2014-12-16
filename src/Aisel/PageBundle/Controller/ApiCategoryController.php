@@ -11,7 +11,6 @@
 
 namespace Aisel\PageBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,8 +23,12 @@ class ApiCategoryController extends Controller
 {
 
     /**
-     * @Rest\View
      * /api/page/category/list.json?limit=2&current=3
+     *
+     * @param Request $request
+     * @param string $locale
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
     public function categoryListAction(Request $request, $locale)
     {
@@ -39,8 +42,12 @@ class ApiCategoryController extends Controller
     }
 
     /**
-     * @Rest\View
-     * /api/page/category/tree.json
+     * /api/page/category/list.json?limit=2&current=3
+     *
+     * @param Request $request
+     * @param string $locale
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
     public function categoryTreeAction(Request $request, $locale)
     {
@@ -50,8 +57,12 @@ class ApiCategoryController extends Controller
     }
 
     /**
-     * @Rest\View
      * /api/page/category/view/{$$urlKey}.json
+     *
+     * @param string $urlKey
+     * @param string $locale
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
     public function categoryViewAction($urlKey, $locale)
     {

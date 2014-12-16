@@ -11,7 +11,6 @@
 
 namespace Aisel\ProductBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,8 +23,12 @@ class ApiCategoryController extends Controller
 {
 
     /**
-     * @Rest\View
      * /api/product/category/list.json?limit=2&current=3
+     *
+     * @param Request $request
+     * @param string $locale
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $categoryList
      */
     public function categoryListAction(Request $request, $locale)
     {
@@ -34,29 +37,34 @@ class ApiCategoryController extends Controller
             'limit' => $request->query->get('limit'),
         );
         $categoryList = $this->container->get("aisel.productcategory.manager")->getCategories($params, $locale);
-
         return $categoryList;
     }
 
     /**
-     * @Rest\View
      * /api/product/category/tree.json
+     *
+     * @param Request $request
+     * @param string $locale
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $categoryList
      */
     public function categoryTreeAction(Request $request, $locale)
     {
         $categoryList = $this->container->get("aisel.productcategory.manager")->getCategoryTree($locale);
-
         return $categoryList;
     }
 
     /**
-     * @Rest\View
      * /api/product/category/view/{$$urlKey}.json
+     *
+     * @param string $urlKey
+     * @param string $locale
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $category
      */
     public function categoryViewAction($urlKey, $locale)
     {
         $category = $this->container->get("aisel.productcategory.manager")->getCategoryByUrl($urlKey, $locale);
-
         return $category;
     }
 

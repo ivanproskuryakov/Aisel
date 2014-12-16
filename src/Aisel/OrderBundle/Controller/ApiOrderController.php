@@ -11,7 +11,6 @@
 
 namespace Aisel\OrderBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -40,8 +39,9 @@ class ApiOrderController extends Controller
     }
 
     /**
-     * @Rest\View
      * /%website_api%/order/list.json
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
     public function orderListAction()
     {
@@ -51,8 +51,11 @@ class ApiOrderController extends Controller
     }
 
     /**
-     * @Rest\View
      * /%website_api%/order/view/{id}.json
+     *
+     * @param int $id
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
     public function orderViewByIdAction($id)
     {
@@ -62,8 +65,11 @@ class ApiOrderController extends Controller
     }
 
     /**
-     * @Rest\View
      * /%website_api%/order/submit.json
+     *
+     * @param string $locale
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
     public function orderSubmitAction($locale)
     {

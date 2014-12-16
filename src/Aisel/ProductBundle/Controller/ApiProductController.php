@@ -11,7 +11,6 @@
 
 namespace Aisel\ProductBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,8 +23,12 @@ class ApiProductController extends Controller
 {
 
     /**
-     * @Rest\View
      * /api/product/list.json?limit=2&current=3
+     *
+     * @param Request $request
+     * @param string $locale
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $list
      */
     public function productListAction(Request $request, $locale)
     {
@@ -45,7 +48,9 @@ class ApiProductController extends Controller
     }
 
     /**
-     * @Rest\View
+     * @param string $urlKey
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $product
      */
     public function productViewByURLAction($urlKey)
     {

@@ -11,7 +11,6 @@
 
 namespace Aisel\ContactBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,8 +22,11 @@ use Symfony\Component\HttpFoundation\Request;
 class ApiController extends Controller
 {
     /**
-     * @Rest\View
      * /api/contact/send.json
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
     public function sendAction(Request $request)
     {
