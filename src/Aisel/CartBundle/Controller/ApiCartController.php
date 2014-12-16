@@ -42,6 +42,8 @@ class ApiCartController extends Controller
     /**
      * @Rest\View
      * /%website_api%/cart.json
+     *
+     * @return json $response
      */
     public function cartAction()
     {
@@ -52,6 +54,11 @@ class ApiCartController extends Controller
     /**
      * @Rest\View
      * /%website_api%/cart/product/{productId}/qty/{qty}/add.json
+     *
+     * @param int $productId
+     * @param int $qty
+     *
+     * @return json $response
      */
     public function cartProductAddAction($productId, $qty)
     {
@@ -61,7 +68,7 @@ class ApiCartController extends Controller
         if ($cartItem) {
             $response = array('status' => true, 'message' => 'Product added to cart', 'cartItem' => $cartItem);
         } else {
-            $response = array('status' => false, 'message' => 'Something went wrong during adding to cart');
+            $response = array('status' => false, 'message' => 'Something went wrong during adding product to cart');
         }
         return $response;
     }
@@ -69,6 +76,11 @@ class ApiCartController extends Controller
     /**
      * @Rest\View
      * /%website_api%/cart/product/{productId}/qty/{qty}/update.json
+     *
+     * @param int $productId
+     * @param int $qty
+     *
+     * @return json $response
      */
     public function cartProductUpdateAction($productId, $qty)
     {
@@ -78,7 +90,7 @@ class ApiCartController extends Controller
         if ($cartItem) {
             $response = array('status' => true, 'message' => 'Cart updated', 'cartItem' => $cartItem);
         } else {
-            $response = array('status' => false, 'message' => 'Something went wrong during removing from the cart');
+            $response = array('status' => false, 'message' => 'Something went wrong during removing product from cart');
         }
         return $response;
     }

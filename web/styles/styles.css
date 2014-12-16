@@ -66,8 +66,14 @@ body .pagination > .active > a:hover,
 body .pagination > .active > a:focus,
 body .pagination > .active > span,
 body .pagination > .active > span:hover,
-body .pagination > .active > span:focus {
+body .pagination > .active > span:focus,
+body .panel-primary > .panel-heading,
+body .label-primary{
     background-color: #657496;
+    border-color: #657496;
+}
+
+body .panel-primary {
     border-color: #657496;
 }
 

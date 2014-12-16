@@ -14,8 +14,10 @@
  */
 
 define([
-        'angular', 'jQuery', 'angular-resource', 'angular-cookies', 'angular-sanitize', 'textAngular',
-        'ui-bootstrap-tpls', 'ui-utils', 'angular-gravatar', 'md5', 'angular-disqus', 'angular-notify','twitter-bootstrap',
+        'angular', 'jQuery', 'underscore', 'angular-resource',
+        'angular-cookies', 'angular-sanitize', 'textAngular',
+        'ui-bootstrap-tpls', 'ui-utils', 'angular-gravatar',
+        'md5', 'angular-disqus', 'angular-notify', 'twitter-bootstrap',
         'angular-route'],
     function (angular) {
         'use strict';

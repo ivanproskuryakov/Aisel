@@ -12,9 +12,6 @@ parameters:
     website_email: ~
 
     website_address:   http://ecommmerce.aisel.co
-    website_admin:     administration
-    website_api:       api
-
     locale: en
     locales: en|es|ru
     secret:            SecretTokenAisel

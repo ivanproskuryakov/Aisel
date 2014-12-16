@@ -17,6 +17,7 @@ require.config({
     // Load paths from global variable
     paths: {
         'jQuery': '../bower_components/jquery/jquery.min',
+        'underscore': '../bower_components/underscore/underscore-min',
         'domReady': '../bower_components/domReady/domReady',
         'angular': '../bower_components/angular/angular',
         'twitter-bootstrap': '../bower_components/sass-bootstrap/dist/js/bootstrap',
