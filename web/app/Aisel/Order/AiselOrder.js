@@ -8,9 +8,8 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @ngdoc           overview
- * @name            Aisel
- * @description     Order router
+ * @name            AiselOrder
+ * @description     order module configuration
  */
 
 define(['app',
