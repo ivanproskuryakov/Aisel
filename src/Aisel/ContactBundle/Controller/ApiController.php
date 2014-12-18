@@ -31,10 +31,10 @@ class ApiController extends Controller
     public function sendAction(Request $request)
     {
         $params = array(
-            'name' => $request->query->get('name'),
-            'email' => $request->query->get('email'),
-            'phone' => $request->query->get('phone'),
-            'message' => $request->query->get('message'),
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
+            'message' => $request->get('message'),
         );
 
         if ($params['name'] && $params['name'] && $params['name'] && $params['name']) {

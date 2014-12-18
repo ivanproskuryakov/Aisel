@@ -15,10 +15,10 @@ api_aisel_cart_add:
     pattern:  /%website_api%/cart/product/{productId}/qty/{qty}/add.json
     defaults: { _controller: AiselCartBundle:ApiCart:cartProductAdd, _format: json }
     requirements:
-        _method: GET
+        _method: POST
 
 api_aisel_cart_update:
     pattern:  /%website_api%/cart/product/{productId}/qty/{qty}/update.json
     defaults: { _controller: AiselCartBundle:ApiCart:cartProductUpdate, _format: json }
     requirements:
-        _method: GET
+        _method: PUT

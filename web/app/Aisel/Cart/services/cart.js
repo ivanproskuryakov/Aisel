@@ -26,20 +26,20 @@ define(['app'], function (app) {
                     var productId = $scope.productDetails.product.id;
                     var url = API_URL + '/cart/product/' + productId + '/qty/' + qty + '/add.json';
                     console.log(url);
-                    return $http.get(url);
+                    return $http.post(url);
                 },
                 updateInCart: function (item) {
                     var qty = item.qty;
                     var productId = item.product.id;
                     var url = API_URL + '/cart/product/' + productId + '/qty/' + qty + '/update.json';
                     console.log(url);
-                    return $http.get(url);
+                    return $http.put(url);
                 },
                 orderSubmit: function () {
                     var locale = Aisel.getLocale();
                     var url = API_URL + '/' + locale + '/order/submit.json';
                     console.log(url);
-                    return $http.get(url);
+                    return $http.post(url);
                 }
             };
         }]);

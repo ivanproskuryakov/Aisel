@@ -21,4 +21,4 @@ api_aisel_ordersubmit:
     pattern:  /%website_api%/{locale}/order/submit.json
     defaults: { _controller: AiselOrderBundle:ApiOrder:orderSubmit, _format: json }
     requirements:
-        _method: GET
+        _method: POST

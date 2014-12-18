@@ -88,13 +88,13 @@ License can be found [here](https://github.com/ivanproskuryakov/Aisel/blob/maste
 
 Authors
 -----------------------------------
-Part of Aisel package, was originally created by [Ivan Proskuryakov](https://github.com/ivanproskuryakov).
+Part of Aisel package, was originally created by [Ivan Proskuryakov](https://github.com/ivanproskuryakov) https://twitter.com/iproskuryakov<br/>
 List of [contributors](https://github.com/ivanproskuryakov/AiselConfigBundle/graphs/contributors).
 
 BTC Donations
 -----------------------------------
 To support ongoing development you may send BitCoin to 1DmBssUeNGXC8VC3BFm3VB3Qc9wmSB7DrK
 
-Consulting & Web-development
+Consulting
 -----------------------------------
 If you're need consulting, contact with me by e-mail service@magazento.com
