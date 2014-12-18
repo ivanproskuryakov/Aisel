@@ -6,14 +6,16 @@ About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=mast
 [![Latest Unstable Version](https://poser.pugx.org/aisel/aisel/v/unstable.svg)](https://packagist.org/packages/aisel/aisel)
 [![License](https://poser.pugx.org/aisel/aisel/license.svg)](https://packagist.org/packages/aisel/aisel)
 <br/>
-
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
 Aisel is open-source CMS for highload projects based on combination of Symfony2, RESTAPI and AngularJS
 
 Project website: `http://aisel.co/`<br/>
 Demo frontend: `http://ecommerce.aisel.co/en/` [frontenduser/frontenduser]<br/>
 Demo administration: `http://ecommerce.aisel.co/administration/en/` [backenduser/backenduser]<br/>
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
+<img width="200" src="http://aisel.co/screenshots/frontend_product_view.png"/>
+<img width="200" src="http://aisel.co/screenshots/frontend_dashboard.png"/>
+<img width="200" src="http://aisel.co/screenshots/backend_dashboard.png"/>
 
 Installation: development branch
 -----------------------------------
