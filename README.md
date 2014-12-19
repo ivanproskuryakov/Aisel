@@ -60,7 +60,7 @@ Tests
 [PHPSpec](http://phpspec.net/)<br/>
 `bin/phpspec run`<br/>
 [Protractor](http://angular.github.io/protractor/#/) <br/>
-`protractor procrator/conf.js`<br/>
+`protractor protractor/conf.js`<br/>
 
 
 Documentation
