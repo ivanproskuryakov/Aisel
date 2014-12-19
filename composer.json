@@ -3,14 +3,14 @@
     "license": "MIT",
     "type": "project",
     "homepage":    "http://aisel.co",
-    "description": "Aisel - Open source CMS based on Angular and Symfony2",
+    "description": "Aisel - Open source CMS based on AngularJS and Symfony2",
     "authors": [
         {
             "name":     "Ivan Proskuryakov",
             "homepage": "http://www.linkedin.com/pub/ivan-proskuryakov/31/200/316"
         },
         {
-            "name":     "Aisel Project",
+            "name":     "Aisel - Open source CMS based on AngularJS and Symfony2",
             "homepage": "http://aisel.co"
         }
     ],
