@@ -72,9 +72,9 @@ Speed
 -----------------------------------
 Check with http://tools.pingdom.com/
 
-Mobile ready
+Mobile ready check on [Responsinator](http://www.responsinator.com/)
 -----------------------------------
-http://www.responsinator.com/?url=http%3A%2F%2Fdemo.aisel.co%2F%23%21%2Fpage%2Fabout-aisel%2F
+http://www.responsinator.com/?url=ecommerce.aisel.co%2Fen%2Fproducts%2F
 
 Bug tracking
 -----------------------------------
