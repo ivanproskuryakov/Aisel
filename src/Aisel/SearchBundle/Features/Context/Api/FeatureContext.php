@@ -15,7 +15,7 @@ class FeatureContext extends DefaultContext
      */
     public function scriptAccessRoute()
     {
-        $this->getSession()->visit($this->generateUrl('api_aisel_search'));
+        $this->getSession()->visit($this->generateUrl('api_aisel_search', array('locale'=>'en')));
         $this->assertSession()->statusCodeEquals(200);
     }
 

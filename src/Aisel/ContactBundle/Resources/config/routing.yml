@@ -9,4 +9,4 @@ api_aisel_contactsend:
     pattern:  /%website_api%/contact/send.json
     defaults: { _controller: AiselContactBundle:Api:send, _format: json }
     requirements:
-        _method: POST
+        _method: POST|GET

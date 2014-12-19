@@ -15,7 +15,7 @@ class FeatureContext extends DefaultContext
      */
     public function scriptAccessRoute()
     {
-        $this->getSession()->visit($this->generateUrl('api_aisel_productlist'));
+        $this->getSession()->visit($this->generateUrl('api_aisel_productlist', array('locale'=>'en')));
         $this->assertSession()->statusCodeEquals(200);
     }
 
@@ -26,7 +26,7 @@ class FeatureContext extends DefaultContext
     {
         $content = $this->getSession()->getPage()->getContent();
         $json = json_decode($content);
-        assertEquals($json, false);
+        assertNotEmpty($json);
     }
 
 }
