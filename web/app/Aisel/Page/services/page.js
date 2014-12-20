@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.service('pageService', ['$http', '$routeParams', 'API_URL',
-        function ($http, $routeParams, API_URL) {
+    app.service('pageService', ['$http', 'API_URL',
+        function ($http, API_URL) {
             return {
                 getPages: function ($scope) {
                     var locale = Aisel.getLocale();

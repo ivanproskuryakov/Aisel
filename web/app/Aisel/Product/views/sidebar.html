@@ -6,7 +6,7 @@
         <div class="panel-body">
             <div class="categories">
                 <script type="text/ng-template" id="field_renderer.html">
-                    <a id="link-6" ng-href="/{{locale}}/product/category/{{ category.url}}/">{{ category.title}}</a>
+                    <a id="link-6" ui-sref="productCategoryView({locale: locale, categoryId:category.url})">{{ category.title}}</a>
 
                     <ul>
                         <li ng-repeat="category in category.children" ng-include="'field_renderer.html'"></li>

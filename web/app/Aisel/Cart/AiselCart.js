@@ -17,12 +17,12 @@ define(['app',
     './services/cart',
 ], function (app) {
     console.log('Cart module loaded ...');
-    app.config(function ($provide, $routeProvider) {
-        $routeProvider
-            // Cart
-            .when('/:locale/cart/', {
+    app.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state("cart", {
+                url: "/:locale/cart/",
                 templateUrl: '/app/Aisel/Cart/views/cart.html',
                 controller: 'CartCtrl'
-            })
-    });
+            });
+    }]);
 });

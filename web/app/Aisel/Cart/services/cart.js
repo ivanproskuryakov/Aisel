@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.service('cartService', ['$http', '$routeParams', 'API_URL',
-        function ($http, $routeParams, API_URL) {
+    app.service('cartService', ['$http', 'API_URL',
+        function ($http, API_URL) {
             return {
                 getCartItems: function ($scope) {
                     var url = API_URL + '/cart.json';

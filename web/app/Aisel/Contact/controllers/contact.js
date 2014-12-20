@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ContactCtrl', ['$location', '$scope', '$routeParams', 'contactService', 'rootService', 'notify',
-        function ($location, $scope, $routeParams, contactService, rootService, notify) {
+    app.controller('ContactCtrl', ['$location', '$scope', 'contactService', 'rootService', 'notify',
+        function ($location, $scope, contactService, rootService, notify) {
 
             $scope.config = false;
 

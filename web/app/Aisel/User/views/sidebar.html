@@ -7,11 +7,11 @@
             <ul class="list-group">
                 <li class="list-group-item">
                     <span class="glyphicon glyphicon-user"></span>
-                    <a ng-href="/{{locale}}/user/information/">My Dashboard</a>
+                    <a ui-sref="userInformation({locale: locale})">My Dashboard</a>
                 </li>
                 <li class="list-group-item">
                     <span class="glyphicon glyphicon-list-alt"></span>
-                    <a ng-href="/{{locale}}/user/orders/">Orders</a>
+                    <a ui-sref="orders({locale: locale})">Orders</a>
                 </li>
             </ul>
         </div>

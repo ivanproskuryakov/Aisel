@@ -14,12 +14,12 @@
 
 define(['app', './controllers/search', './services/search', './directives/main'], function (app) {
     console.log('Search module loaded ...');
-    app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
-        $routeProvider
-            // Search
-            .when('/:locale/search/:query', {
+    app.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state("search", {
+                url: '/:locale/search/:query',
                 templateUrl: '/app/Aisel/Search/views/search.html',
                 controller: 'SearchCtrl'
-            })
-    });
+            });
+    }]);
 });

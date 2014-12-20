@@ -15,8 +15,8 @@
 define(['app'], function (app) {
     console.log('Kernel Init service loaded ...');
     angular.module('app')
-        .service('initService', ['$http', '$routeParams', '$rootScope', 'rootService', 'appSettings',
-            function ($http, $routeParams, $rootScope, rootService, appSettings) {
+        .service('initService', ['$http', '$rootScope', 'rootService', 'appSettings',
+            function ($http, $rootScope, rootService, appSettings) {
                 return {
                     launch: function () {
                         var meta = false;
@@ -46,7 +46,7 @@ define(['app'], function (app) {
                                 $rootScope.disqusStatus = disqus.status;
                                 $rootScope.currency = general.currency;
 
-                                console.log('----------- Init start -----------');
+                                console.log('----------- Aisel Loaded! -----------');
                                 var setLocale = function () {
                                     $rootScope.availableLocales = appSettings.locale.available;
                                     $rootScope.locale = Aisel.getLocale();
@@ -62,8 +62,8 @@ define(['app'], function (app) {
                                 setMetaData();
 
                                 // Hook for on route change
-                                $rootScope.$on('$routeChangeStart', function (event, to, from) {
-                                    console.log('Route Change ...');
+                                $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+                                    console.log('State Change ...');
                                     setLocale();
                                     setMetaData();
                                 });

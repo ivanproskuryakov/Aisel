@@ -36,7 +36,7 @@
             <ul class="categoryList">
                 <li ng-repeat="category in productDetails.categories">
                         <span class="label label-primary">
-                            <a ng-href="/{{locale}}/product/category/{{category.url}}">{{ category.title }}</a>
+                            <a ui-sref="productCategoryView({locale: locale, categoryId:category.url})">{{ category.title }}</a>
                         </span>&nbsp;
                 </li>
             </ul>

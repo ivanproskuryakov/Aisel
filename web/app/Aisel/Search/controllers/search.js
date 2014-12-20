@@ -13,10 +13,10 @@
  */
 
 define(['app'], function (app) {
-    app.controller('SearchCtrl', ['$scope', '$routeParams', 'searchService',
-        function ($scope, $routeParams, searchService) {
-            $scope.queryText = $routeParams.query;
-            $scope.search = $routeParams.query;
+    app.controller('SearchCtrl', ['$scope', '$stateParams', 'searchService',
+        function ($scope, $stateParams, searchService) {
+            $scope.queryText = $stateParams.query;
+            $scope.search = $stateParams.query;
             $scope.limit = 5;
             $scope.paginationPage = 1;
             $scope.results = {};

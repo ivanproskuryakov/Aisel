@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  *
  * @name            AiselResource
- * @description     ...
+ * @description     testing angularjs filters
  */
 
 define(['app'], function (app) {

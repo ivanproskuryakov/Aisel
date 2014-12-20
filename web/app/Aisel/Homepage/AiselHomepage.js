@@ -14,12 +14,12 @@
 
 define(['app','./controllers/homepage'], function (app) {
     console.log('Homepage module loaded ...');
-    app.config(function ($provide, $routeProvider) {
-        $routeProvider
-            // Homepage
-            .when('/:locale/', {
+    app.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state("homepage", {
+                url: "/:locale/",
                 templateUrl: '/app/Aisel/Homepage/views/homepage.html',
                 controller: 'HomepageCtrl'
-            })
-    });
+            });
+    }]);
 });

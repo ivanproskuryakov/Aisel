@@ -28,14 +28,16 @@ require.config({
         'angular-route': '../bower_components/angular-route/angular-route',
         'ui-bootstrap-tpls': '../bower_components/angular-bootstrap/ui-bootstrap-tpls',
         'ui-utils': '../bower_components/angular-ui-utils/ui-utils',
+        'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
         'angular-notify': '../bower_components/angular-notify/dist/angular-notify.min',
         'md5': '../bower_components/angular-gravatar/build/md5',
         'angular-gravatar': '../bower_components/angular-gravatar/build/angular-gravatar',
-        'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus',
+        'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus'
     },
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {
         'angular-route': ['angular'],
+        'angular-ui-router': ['angular'],
         'angular' : {'exports' : 'angular', deps: ['jQuery']},
         'jQuery': {'exports' : 'jQuery'},
         "jquery": ["angular"],

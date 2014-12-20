@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.service('orderService', ['$http', '$routeParams', 'API_URL',
-        function ($http, $routeParams, API_URL) {
+    app.service('orderService', ['$http', 'API_URL',
+        function ($http, API_URL) {
             return {
                 getOrders: function () {
                     var url = API_URL + '/orders.json';

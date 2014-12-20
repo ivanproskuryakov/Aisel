@@ -13,9 +13,9 @@
  */
 
 define(['app'], function (app) {
-    app.controller('OrderDetailCtrl', ['$location', '$scope', 'orderService', '$routeParams',
-        function ($location, $scope, orderService, $routeParams) {
-            $scope.orderId = $routeParams.orderId;
+    app.controller('OrderDetailCtrl', ['$location', '$scope', 'orderService', '$stateParams',
+        function ($location, $scope, orderService, $stateParams) {
+            $scope.orderId = $stateParams.orderId;
             var handleSuccess = function (data, status) {
                 $scope.orderDetails = data[0];
             };

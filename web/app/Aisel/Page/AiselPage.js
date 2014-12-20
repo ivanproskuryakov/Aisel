@@ -19,27 +19,28 @@ define(['app',
     './services/pageCategory',
 ], function (app) {
     console.log('Page module loaded ...');
-    app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
-        $routeProvider
-
-            // Pages
-            .when('/:locale/pages/', {
+    app.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state("pages", {
+                url: "/:locale/pages/",
                 templateUrl: '/app/Aisel/Page/views/page.html',
                 controller: 'PageCtrl'
             })
-            .when('/:locale/page/view/:pageId/', {
+            .state("pageView", {
+                url: "/:locale/page/view/:pageId/",
                 templateUrl: '/app/Aisel/Page/views/page-detail.html',
                 controller: 'PageDetailCtrl'
             })
-            // Categories
-            .when('/:locale/page/categories/', {
+            .state("pageCategories", {
+                url: "/:locale/page/categories/",
                 templateUrl: '/app/Aisel/Page/views/category.html',
                 controller: 'PageCategoryCtrl'
             })
-            .when('/:locale/page/category/:categoryId/', {
+            .state("pageCategoryView", {
+                url: "/:locale/page/category/:categoryId/",
                 templateUrl: '/app/Aisel/Page/views/category-detail.html',
                 controller: 'PageCategoryDetailCtrl'
-            })
+            });
+    }]);
 
-    });
 });

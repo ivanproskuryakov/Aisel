@@ -13,12 +13,12 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageCategoryDetailCtrl', ['$location', '$scope', '$routeParams', 'pageService', 'pageCategoryService',
-        function ($location, $scope, $routeParams, pageService, pageCategoryService) {
+    app.controller('PageCategoryDetailCtrl', ['$location', '$scope', '$stateParams', 'pageService', 'pageCategoryService',
+        function ($location, $scope, $stateParams, pageService, pageCategoryService) {
 
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
-            $scope.categoryId = $routeParams.categoryId;
+            $scope.categoryId = $stateParams.categoryId;
 
             // Category Information
             pageCategoryService.getCategory($scope.categoryId).success(

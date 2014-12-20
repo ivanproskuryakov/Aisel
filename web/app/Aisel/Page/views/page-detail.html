@@ -11,7 +11,7 @@
                 <ul class="categoryList">
                     <li ng-repeat="category in pageDetails.categories">
                         <span class="label label-primary">
-                            <a ng-href="/{{locale}}/page/category/{{category.url}}">{{ category.title }}</a>
+                            <a ui-sref="pageCategoryView({locale: locale, categoryId:category.url})">{{ category.title }}</a>
                         </span>&nbsp;
                     </li>
                 </ul>

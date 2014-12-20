@@ -15,8 +15,8 @@
 define(['app'], function (app) {
     console.log('Kernel Auth service loaded ...');
     angular.module('app')
-        .service('authService', ['$http', '$routeParams', '$rootScope', '$location', 'rootService',
-            function ($http, $routeParams, $rootScope, $location, rootService) {
+        .service('authService', ['$http', '$rootScope', '$location', 'rootService',
+            function ($http, $rootScope, $location, rootService) {
                 var locale = Aisel.getLocale();
 
                 return {

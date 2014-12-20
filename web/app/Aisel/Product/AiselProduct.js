@@ -19,27 +19,27 @@ define(['app',
     './services/productCategory',
 ], function (app) {
     console.log('Product module loaded ...');
-    app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
-        $routeProvider
-
-            // Products
-            .when('/:locale/products/', {
+    app.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state("products", {
+                url: "/:locale/products/",
                 templateUrl: '/app/Aisel/Product/views/product.html',
                 controller: 'ProductCtrl'
             })
-            .when('/:locale/product/view/:productId/', {
+            .state("productView", {
+                url: "/:locale/product/view/:productId/",
                 templateUrl: '/app/Aisel/Product/views/product-detail.html',
                 controller: 'ProductDetailCtrl'
             })
-            // Categories
-            .when('/:locale/product/categories/', {
+            .state("productCategories", {
+                url: "/:locale/product/categories/",
                 templateUrl: '/app/Aisel/Product/views/category.html',
                 controller: 'ProductCategoryCtrl'
             })
-            .when('/:locale/product/category/:categoryId/', {
+            .state("productCategoryView", {
+                url: "/:locale/product/category/:categoryId/",
                 templateUrl: '/app/Aisel/Product/views/category-detail.html',
                 controller: 'ProductCategoryDetailCtrl'
-            })
-
-    });
+            });
+    }]);
 });

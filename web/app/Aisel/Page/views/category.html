@@ -1,14 +1,13 @@
 <div class="">
     <div class="col-xs-12 page-header">
         <h2>Page categories</h2>
-        <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span> <a ng-href="/{{locale}}/pages/">Back to pages</a></p>
+        <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span> <a ui-sref="pages({locale: locale})">Back to pages</a></p>
     </div>
 
     <div class="col-xs-12 col-md-12">
         <ul class="pageList">
             <li ng-repeat="category in pageCategoryList.categories">
-                <h2><a href="/{{locale}}/page/category/{{category.meta_url}}/" class="thumb">{{category.title}}</a></h2>
-
+                <h2><a ui-sref="pageCategoryView({locale: locale, categoryId:category.url})" class="thumb">{{category.title}}</a></h2>
                 <p ng-bind-html="category.description"></p>
                 <hr/>
             </li>

@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.service('userService', ['$http', '$routeParams', 'API_URL', function ($http, $routeParams, API_URL) {
+    app.service('userService', ['$http', 'API_URL', function ($http, API_URL) {
         return {
             register: function (form) {
                 var username = form.username.$modelValue;

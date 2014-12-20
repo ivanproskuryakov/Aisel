@@ -15,8 +15,8 @@
 define(['app'], function (app) {
     console.log('Kernel API service loaded ...');
     angular.module('app')
-        .service('rootService', ['$http', '$routeParams', '$rootScope', 'API_URL',
-            function ($http, $routeParams, $rootScope, API_URL) {
+        .service('rootService', ['$http', '$rootScope', 'API_URL',
+            function ($http, $rootScope, API_URL) {
                 return {
                     getApplicationConfig: function () {
                         var locale = Aisel.getLocale();

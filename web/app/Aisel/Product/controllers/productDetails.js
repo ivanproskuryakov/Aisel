@@ -13,11 +13,11 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductDetailCtrl', ['$scope', '$location', '$routeParams', 'productService', '$rootScope', 'cartService', 'notify', 'API_URL',
-        function ($scope, $location, $routeParams, productService, $rootScope, cartService, notify, API_URL) {
+    app.controller('ProductDetailCtrl', ['$scope', '$location', '$stateParams', 'productService', '$rootScope', 'cartService', 'notify', 'API_URL',
+        function ($scope, $location, $stateParams, productService, $rootScope, cartService, notify, API_URL) {
             $scope.isDisabled = true;
 
-            var productURL = $routeParams.productId;
+            var productURL = $stateParams.productId;
             var handleSuccess = function (data, status) {
                 $scope.productDetails = data;
                 $rootScope.productTitle = $scope.productDetails.product.title;

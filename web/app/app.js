@@ -17,12 +17,12 @@ define([
         'angular-cookies', 'angular-sanitize', 'textAngular',
         'ui-bootstrap-tpls', 'ui-utils', 'angular-gravatar',
         'md5', 'angular-disqus', 'angular-notify', 'twitter-bootstrap',
-        'angular-route'],
+        'angular-ui-router', 'angular-route'],
     function (angular) {
         'use strict';
 
         var app = angular.module('app', [
-            'ngCookies', 'ngResource', 'ngSanitize', 'ngRoute', 'ui.bootstrap',
+            'ngCookies', 'ngResource', 'ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.router',
             'ui.utils', 'ui.validate', 'ui.gravatar', 'textAngular', 'ngDisqus', 'cgNotify'])
 
         app.constant('API_URL', Aisel.settings.api)

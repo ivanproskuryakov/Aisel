@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductCategoryCtrl', ['$location', '$scope', '$routeParams', 'productCategoryService',
-        function ($location, $scope, $routeParams, productCategoryService) {
+    app.controller('ProductCategoryCtrl', ['$location', '$scope', '$stateParams', 'productCategoryService',
+        function ($location, $scope, $stateParams, productCategoryService) {
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
             $scope.pageChanged = function (page) {

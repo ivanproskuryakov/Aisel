@@ -17,9 +17,10 @@ define(['app',
     './services/user/category', './services/user/page', './services/user/user',
 ], function (app) {
     console.log('User module loaded ...');
-    app.config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
-        $routeProvider
-            .when('/:locale/user/login/', {
+    app.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state("userLogin", {
+                url: "/:locale/user/login/",
                 templateUrl: '/app/Aisel/User/views/login.html',
                 controller: 'UserCtrl',
                 resolve: {
@@ -28,7 +29,8 @@ define(['app',
                     }
                 }
             })
-            .when('/:locale/user/register/', {
+            .state("userRegister", {
+                url: "/:locale/user/register/",
                 templateUrl: '/app/Aisel/User/views/register.html',
                 controller: 'UserCtrl',
                 resolve: {
@@ -37,7 +39,8 @@ define(['app',
                     }
                 }
             })
-            .when('/:locale/user/password/forgot/', {
+            .state("userPasswordForgot", {
+                url: "/:locale/user/password/forgot/",
                 templateUrl: '/app/Aisel/User/views/password-forgot.html',
                 controller: 'UserCtrl',
                 resolve: {
@@ -47,7 +50,8 @@ define(['app',
                 }
             })
             // Authenticated users actions
-            .when('/:locale/user/information/', {
+            .state("userInformation", {
+                url: "/:locale/user/information/",
                 templateUrl: '/app/Aisel/User/views/information/dashboard.html',
                 controller: 'UserCtrl',
                 resolve: {
@@ -56,7 +60,8 @@ define(['app',
                     }
                 }
             })
-            .when('/:locale/user/information/edit/', {
+            .state("userInformationEdit", {
+                url: "/:locale/user/information/edit/",
                 templateUrl: '/app/Aisel/User/views/information/edit.html',
                 controller: 'UserCtrl',
                 resolve: {
@@ -65,5 +70,5 @@ define(['app',
                     }
                 }
             })
-    });
+    }]);
 });

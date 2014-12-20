@@ -14,6 +14,7 @@
         "angular-sanitize": "1.2.6",
         "angular-route": "1.2.6",
         "angular-ui": "~0.4.0",
+        "angular-ui-router": "~0.2.13",
         "angular-bootstrap": "~0.10.0",
         "angular-ui-utils": "~0.1.1",
         "angular-notify": "*",

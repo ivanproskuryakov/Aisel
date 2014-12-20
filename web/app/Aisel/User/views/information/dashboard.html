@@ -1,7 +1,8 @@
 <div class="">
     <div class="col-xs-12 page-header">
         <h2><span class="glyphicon glyphicon-user"></span> My Dashboard</h2>
-        <p class=""><span class="glyphicon glyphicon-edit"></span> <a ng-href="/{{locale}}/user/information/edit/">Edit account details</a></p>
+        <p class=""><span class="glyphicon glyphicon-edit"></span>
+            <a ui-sref="userInformationEdit({locale: locale})"> Edit account details</a></p>
     </div>
 
     <div class="" ng-if="isAuthenticated">

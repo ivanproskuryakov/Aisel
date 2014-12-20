@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.service('contactService', ['$http', '$routeParams', 'API_URL',
-        function ($http, $routeParams, API_URL) {
+    app.service('contactService', ['$http', 'API_URL',
+        function ($http, API_URL) {
             return {
                 send: function (form) {
                     var postData = {

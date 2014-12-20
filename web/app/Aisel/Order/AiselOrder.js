@@ -18,9 +18,11 @@ define(['app',
     './services/order',
 ], function (app) {
     console.log('Order module loaded ...');
-    app.config(function ($provide, $routeProvider) {
-        $routeProvider
-            .when('/:locale/user/orders/', {
+    app.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            // Authenticated users actions
+            .state("orders", {
+                url: "/:locale/user/orders/",
                 templateUrl: '/app/Aisel/Order/views/order.html',
                 controller: 'OrderCtrl',
                 resolve: {
@@ -29,7 +31,8 @@ define(['app',
                     }
                 }
             })
-            .when('/:locale/user/order/view/:orderId/', {
+            .state("viewOrder", {
+                url: "/:locale/user/order/view/:orderId/",
                 templateUrl: '/app/Aisel/Order/views/order-detail.html',
                 controller: 'OrderDetailCtrl',
                 resolve: {
@@ -38,5 +41,5 @@ define(['app',
                     }
                 }
             })
-    });
+    }]);
 });

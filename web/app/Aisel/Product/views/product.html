@@ -1,7 +1,7 @@
 <div class="">
     <div class="col-xs-12 page-header">
         <h2>Products</h2>
-        <p class=""><span class="glyphicon glyphicon-list-alt"></span> <a ng-href="/{{locale}}/product/categories/">View categories</a></p>
+        <p class=""><span class="glyphicon glyphicon-list-alt"></span> <a ui-sref="productCategories({locale: locale})">View categories</a></p>
     </div>
 
     <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <ul class="pageList">
                 <li ng-repeat="product in productList.products">
-                    <h2><a href="/{{locale}}/product/view/{{product.metaUrl}}/" class="thumb">{{product.name}}</a></h2>
+                    <h2><a ui-sref="productView({locale: locale, productId:product.metaUrl})" class="thumb">{{product.name}}</a></h2>
 
                     <div class="row">
                         <div class="col-md-3">

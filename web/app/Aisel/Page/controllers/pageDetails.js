@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageDetailCtrl', function ($scope, $routeParams, pageService, $rootScope) {
-        var pageURL = $routeParams.pageId;
+    app.controller('PageDetailCtrl', function ($scope, $stateParams, pageService, $rootScope) {
+        var pageURL = $stateParams.pageId;
         var handleSuccess = function (data, status) {
             $scope.pageDetails = data;
             $rootScope.pageTitle = $scope.pageDetails.page.title;
