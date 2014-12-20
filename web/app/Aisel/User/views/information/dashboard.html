@@ -9,7 +9,6 @@
         <div class="col-sm-4">
             <h3>Account Details</h3>
             <img class="gavatar-userdetails" gravatar-src="'{{ user.email }}'" gravatar-size="200">
-
             <p> <strong><span class="glyphicon  glyphicon-calendar"></span> Last login</strong>: {{user.last_login | date:"MM/dd/yyyy @ h:mma" }}</p>
             <p> <strong><span class="glyphicon glyphicon-barcode"></span> ID</strong>: {{ user.id }}</p>
             <p> <strong><span class="glyphicon glyphicon-user"></span> Username</strong>: {{ user.username }}</p>

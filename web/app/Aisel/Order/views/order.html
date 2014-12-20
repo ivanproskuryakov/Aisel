@@ -1,7 +1,8 @@
 <div class="">
     <div class="col-md-12 page-header">
         <h2><span class="glyphicon glyphicon-list-alt"></span> My orders</h2>
-        <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span><a ng-href="/{{locale}}/user/information/"> Back to dashboard</a></p>
+        <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span>
+            <a ui-sref="userInformation({locale: locale})"> Back to dashboard</a></p>
     </div>
 
     <div class="" ng-if="isAuthenticated">
@@ -42,7 +43,7 @@
                                         <div class="col-md-3">
                                             <div class="pull-right">
                                                 <a type="button"
-                                                        ng-href="/{{locale}}/user/order/view/{{order.id}}/"
+                                                       ui-sref="viewOrder({locale: locale, orderId:order.id})"
                                                         class="btn btn-default">View Order</a>
                                             </div>
                                         </div>
@@ -53,14 +54,11 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                     <div class="empty-cart-content" ng-if="orders.length == 0">
                         <span>You have no orders yet</span>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">

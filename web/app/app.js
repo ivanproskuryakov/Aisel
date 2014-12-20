@@ -32,7 +32,7 @@ define([
                 function ($http, $rootScope, rootService, initService) {
                     initService.launch();
                 }])
-            .config(function ($provide, $routeProvider, $locationProvider, $httpProvider) {
+            .config(function ($provide, $locationProvider, $httpProvider) {
                 $locationProvider.html5Mode(true);
                 $provide.factory('requestInterceptor', function ($q) {
                     return {
