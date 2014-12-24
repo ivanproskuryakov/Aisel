@@ -11,7 +11,7 @@ parameters:
     mailer_password:   ~
     website_email: ~
 
-    website_address:   http://ecommmerce.aisel.co
+    website_address:   http://ecommerce.aisel.co
     locale: en
     locales: en|es|ru
     secret:            SecretTokenAisel
