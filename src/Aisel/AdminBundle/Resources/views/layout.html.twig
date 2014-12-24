@@ -22,6 +22,8 @@ file that was distributed with this source code.
 {% block sonata_left_side %}
 {% endblock %}
 
+{% block logo %}
+{% endblock logo %}
 {% block sonata_nav %}
     {% if admin_pool is defined %}
         <nav class="navbar navbar-static-top" role="navigation">
@@ -59,6 +61,7 @@ file that was distributed with this source code.
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 <i class="fa fa-plus-square fa-fw"></i> <i class="fa fa-caret-down"></i>
+                                <span> {{ 'aisel.admin.menu'|trans({}, 'admin') }}</span>
                             </a>
                             {% include admin_pool.getTemplate('add_block') %}
                         </li>

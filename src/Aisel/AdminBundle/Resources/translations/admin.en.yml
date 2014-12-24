@@ -10,6 +10,7 @@ aisel:
     id: Id
     open_frontend: Open Frontend
     settings: Settings
+    menu: Menu
     locale: Locale
     title: Title
     url: Url

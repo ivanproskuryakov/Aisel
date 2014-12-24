@@ -125,7 +125,7 @@ table.fancytree-ext-table *:focus {
     float: right;
 }
 
-.aisel-sidebar-copyright{
+.aisel-sidebar-copyright {
     color: #999;
     position: absolute;
     left: 25px;
@@ -136,15 +136,19 @@ table.fancytree-ext-table *:focus {
 body .right-side {
     margin-left: 0 !important;
 }
+
 body > .header .logo {
     width: 120px;
     font-family: 'Kaushan Script', cursive;
     font-weight: 500;
 }
+
 body > .header .navbar {
-    margin-left: 120px;
+    margin-left: 0;
+    padding-left: 20px;
 }
-body > .header  .logo span {
+
+body > .header .logo span {
     width: 80px;
 }
 
