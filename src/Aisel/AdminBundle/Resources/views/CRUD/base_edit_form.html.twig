@@ -19,6 +19,7 @@ file that was distributed with this source code.
             {{ "form_not_available"|trans({}, "SonataAdminBundle") }}
         </div>
     {% else %}
+        <div style="display: none" class="uniqid">{{ admin.uniqid }}</div>
         <form
                 {% if admin_pool.getOption('form_type') == 'horizontal' %}class="form-horizontal"{% endif %}
                 role="form"

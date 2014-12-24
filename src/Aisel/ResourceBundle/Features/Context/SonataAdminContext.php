@@ -22,7 +22,6 @@ abstract class SonataAdminContext extends DefaultContext
     public function showTree()
     {
         $element = $this->findByCSS('.fancytree-container');
-
         return $element;
     }
 
@@ -37,7 +36,19 @@ abstract class SonataAdminContext extends DefaultContext
     }
 
     /**
-     * Click on Edit button and return element
+     * Click on Edit button and return the element
+     */
+    public function addButtonClick()
+    {
+        $element = $this->findByCSS('.sonata-action-element');
+        $element->click();
+        $this->assertSession()->statusCodeEquals(200);
+        $element = $this->findByCSS('.sonata-ba-collapsed-fields');
+
+        return $element;
+    }
+    /**
+     * Click on Edit button and return the element
      */
     public function editButtonClick()
     {
@@ -50,7 +61,7 @@ abstract class SonataAdminContext extends DefaultContext
     }
 
     /**
-     * Click on Show button and return element
+     * Click on Show button and return the element
      */
     public function showButtonClick()
     {
@@ -63,7 +74,7 @@ abstract class SonataAdminContext extends DefaultContext
     }
 
     /**
-     * Click on Delete button and return element
+     * Click on Delete button and return the element
      */
     public function deleteButtonClick()
     {
@@ -73,6 +84,46 @@ abstract class SonataAdminContext extends DefaultContext
         $element = $this->findByCSS('.btn-danger');
 
         return $element;
+    }
+
+    // ---------
+
+    /**
+     * @Given /^I press "Create and return to list" button$/
+     */
+    public function iPressCreateAndReturnToListButton()
+    {
+        $this->pressButton('btn_create_and_edit');
+        $this->assertSession()->statusCodeEquals(200);
+    }
+
+    /**
+     * @Given /^New entity with "([^"]*)" = "([^"]*)" has to be displayed$/
+     */
+    public function newEntityDisplayed($field, $value)
+    {
+        $id = $this->findByCSS('.uniqid')->getText();
+        $elementValue = $this->findByName($id . '[' . $field . ']')->getValue();
+        assertEquals($elementValue, $value);
+    }
+
+    /**
+     * @Given /^I enter "([^"]*)" in "([^"]*)"$/
+     * @Given /^I select "([^"]*)" in "([^"]*)"$/
+     */
+    public function iEnterValueForField($value, $field)
+    {
+        $id = $this->findByCSS('.uniqid')->getText();
+        $this->fillField($id . '_' . $field, $value);
+    }
+
+    /**
+     * @Given /^I click on "Add new" link$/
+     */
+    public function iClickOnAddNewLink()
+    {
+        $element = $this->addButtonClick();
+        assertNotEmpty($element->getText());
     }
 
 }

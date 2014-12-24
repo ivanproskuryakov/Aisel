@@ -82,6 +82,7 @@ Aisel\ProductBundle\Entity\Product:
             column: status
         hidden:
             type: boolean
+            nullable: true
             column: is_hidden
         commentStatus:
             type: boolean

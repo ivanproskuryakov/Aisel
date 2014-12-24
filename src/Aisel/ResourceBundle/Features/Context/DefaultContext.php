@@ -166,6 +166,18 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
     }
 
     /**
+     * Find element by name
+     *
+     * @param string $value
+     *
+     * @return \Behat\Mink\Element\NodeElement
+     */
+    protected function findByName($value)
+    {
+        return $this->getSession()->getPage()->findField($value);
+    }
+
+    /**
      * Find element by css class name
      *
      * @param string $value

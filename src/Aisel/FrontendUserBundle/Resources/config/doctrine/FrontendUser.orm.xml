@@ -17,8 +17,8 @@
         <field name="password" type="string" column="password" length="255" nullable="false"/>
         <field name="salt" type="string" column="salt"/>
 
-        <field name="enabled" type="boolean" column="enabled"/>
-        <field name="locked" type="boolean" column="locked"/>
+        <field name="enabled" type="boolean" column="enabled" nullable="true"/>
+        <field name="locked" type="boolean" column="locked" nullable="true"/>
 
         <field name="createdAt" type="datetime" column="created_at"/>
         <field name="updatedAt" type="datetime" column="updated_at"/>

@@ -68,10 +68,10 @@ class ProductAdmin extends Admin
             ->add('status', 'choice', array('choices' => array(
                 '0' => $this->trans('aisel.default.disabled'),
                 '1' => $this->trans('aisel.default.enabled')),
-                'required' => false,
+                'required' => true,
                 'label' => 'aisel.default.status', 'attr' => array('class' => 'form-control')))
             ->add('locale', 'aisel_locale', array('label' => 'aisel.default.locale',
-                'required' => false,
+                'required' => true,
                 'attr' => array('class' => 'form-control')))
             ->add('descriptionShort', 'ckeditor',
                 array(

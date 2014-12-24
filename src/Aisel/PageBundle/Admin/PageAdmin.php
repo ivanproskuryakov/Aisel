@@ -62,7 +62,9 @@ class PageAdmin extends Admin
         $subject = $this->getSubject();
         $formMapper
             ->with('aisel.default.general')
-            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array(
+                'class' => 'form-control'
+            )))
             ->add('title', 'text', array('label' => 'aisel.default.title', 'attr' => array()))
             ->add('content', 'ckeditor',
                 array(
@@ -71,12 +73,12 @@ class PageAdmin extends Admin
                     'attr' => array('class' => 'field-content')
                 ))
             ->add('locale', 'aisel_locale', array('label' => 'aisel.default.locale',
-                'required' => false,
+                'required' => true,
                 'attr' => array('class' => 'form-control')))
             ->add('status', 'choice', array('choices' => array(
                 '0' => $this->trans('aisel.default.disabled'),
                 '1' => $this->trans('aisel.default.enabled')),
-                'required' => false,
+                'required' => true,
                 'label' => 'aisel.default.status',
                 'attr' => array('class' => 'form-control')
             ))

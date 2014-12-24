@@ -12,6 +12,7 @@
 /web/bower_components/*
 /web/npm-debug.log
 /web/media/product/*
+!/web/media/product/
 /web/photo/*
 /web/css/*
 /web/build/*

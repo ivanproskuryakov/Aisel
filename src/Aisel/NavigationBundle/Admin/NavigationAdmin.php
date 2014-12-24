@@ -36,6 +36,7 @@ class NavigationAdmin extends Admin
         $errorElement
             ->with('title')
             ->assertNotBlank()
+            ->end()
             ->with('metaUrl')
             ->assertNotBlank()
             ->end();
@@ -55,10 +56,13 @@ class NavigationAdmin extends Admin
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('title', 'text', array('label' => 'aisel.default.title', 'attr' => array()))
             ->add('metaUrl', 'text', array('label' => 'aisel.default.url', 'required' => true))
+            ->add('locale', 'aisel_locale', array('label' => 'aisel.default.locale',
+                'required' => true,
+                'attr' => array('class' => 'form-control')))
             ->add('status', 'choice', array('choices' => array(
                 '0' => $this->trans('aisel.default.disabled'),
                 '1' => $this->trans('aisel.default.enabled')),
-                'required' => false,
+                'required' => true,
                 'label' => 'aisel.default.status',
                 'attr' => array('class' => 'form-control')
             ))
