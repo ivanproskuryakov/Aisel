@@ -65,7 +65,10 @@ class ApiController extends Controller
                 return array('message' => 'Wrong username or password!');
             $this->loginUser($user);
 
-            return array('status' => true, 'message' => 'successully logged in');
+            return array('status' => true,
+                'message' => 'Successfully logged in',
+                'user' => $this->get('security.context')->getToken()->getUser()
+            );
         } else {
             return array('message' => 'You already logged in. Try to refresh page');
         }

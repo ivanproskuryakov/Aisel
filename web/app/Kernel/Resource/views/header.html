@@ -28,11 +28,7 @@
 
                 <!-- Guests -->
                 <li class="dropdown" ng-if="!isAuthenticated">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon glyphicon-user"></span> Guest <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a ui-sref="userLogin({locale: locale})">Sign In</a></li>
-                        <li><a ui-sref="userRegister({locale: locale})">Create Account</a></li>
-                    </ul>
+                    <a ui-sref="userInformation({locale: locale})"><span class="glyphicon glyphicon glyphicon-user"></span> My Dashboard </a>
                 </li>
 
                 <!-- Users -->

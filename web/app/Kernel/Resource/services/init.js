@@ -12,11 +12,11 @@
  * @description     Init service
  */
 
-define(['../../../app'], function (app) {
+define(['app'], function (app) {
     console.log('Kernel Init service loaded ...');
     angular.module('app')
-        .service('initService', ['$http', '$rootScope', 'rootService', 'appSettings', 'Environment',
-            function ($http, $rootScope, rootService, appSettings, Environment) {
+        .service('initService', ['$http', '$rootScope', 'rootService', 'authService', 'appSettings', 'Environment', '$state',
+            function ($http, $rootScope, rootService, authService, appSettings, Environment, $state) {
                 return {
                     launch: function () {
                         var meta = false;
@@ -25,7 +25,6 @@ define(['../../../app'], function (app) {
                         // Load user status
                         rootService.getUserInformation().success(
                             function (data, status) {
-                                //console.log(data);
                                 if (data.username) {
                                     $rootScope.user = data;
                                     $rootScope.isAuthenticated = true;
@@ -88,7 +87,7 @@ define(['../../../app'], function (app) {
                                 $rootScope.productCategoryTree = data;
                             }
                         );
-                    },
+                    }
                 }
             }
         ]);

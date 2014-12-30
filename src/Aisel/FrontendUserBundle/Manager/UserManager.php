@@ -327,10 +327,6 @@ class UserManager implements UserProviderInterface
     public function loadUserByUsername($username)
     {
         $user = $this->getRepository()->findOneBy(array('username' => $username));
-
-        if (!($user)) {
-            throw new NotFoundHttpException('User not found');
-        }
         return $user;
     }
 

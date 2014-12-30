@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService', 'notify', 'Environment',
-        function ($log, $modal, $scope, $routeParams, userService, notify, Environment) {
+    app.controller('UserCtrl', ['$log', '$modal', '$scope', '$rootScope', '$state', '$routeParams', 'userService', 'notify', 'Environment',
+        function ($log, $modal, $scope, $rootScope, $routeParams, $state, userService, notify, Environment) {
             var locale = Environment.currentLocale();
 
             $scope.loggedIn = false;
@@ -26,7 +26,7 @@ define(['app'], function (app) {
                         function (data, status) {
                             notify(data.message);
                             if (data.status) {
-                                window.location = "/";
+                                $state.go('userInformation');
                             }
                         }
                     );
@@ -43,9 +43,6 @@ define(['app'], function (app) {
                     userService.editDetails(form).success(
                         function (data, status) {
                             notify(data.message);
-//                        if (data.status) {
-//                            window.location = "/#/user/information/";
-//                        }
                         }
                     );
                 }
@@ -58,7 +55,7 @@ define(['app'], function (app) {
                         function (data, status) {
                             notify(data.message);
                             if (data.status) {
-                                window.location = "/";
+                                $state.go('userLogin');
                             }
                         }
                     );
@@ -70,7 +67,8 @@ define(['app'], function (app) {
                 userService.signout($scope).success(
                     function (data, status) {
                         notify(data.message);
-                        window.location = "/";
+                        $rootScope.user = undefined;
+                        $state.go('homepage');
                     }
                 );
 
@@ -81,7 +79,7 @@ define(['app'], function (app) {
                     function (data, status) {
                         notify(data.message);
                         if (data.status) {
-                            window.location = "/" + locale + "/user/information/";
+                            $state.go('userInformation');
                         }
                     }
                 );

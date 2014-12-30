@@ -25,21 +25,27 @@ define(['app',
                 url: "/:locale/user/orders/",
                 templateUrl: '/app/Aisel/Order/views/order.html',
                 controller: 'OrderCtrl',
-                resolve: {
-                    factory: function (authService) {
-                        authService.roleUser()
-                    }
+                data: {
+                    role: 'user'
                 }
+                //resolve: {
+                //    factory: function (authService) {
+                //        authService.roleUser()
+                //    }
+                //}
             })
             .state("viewOrder", {
                 url: "/:locale/user/order/view/:orderId/",
                 templateUrl: '/app/Aisel/Order/views/order-detail.html',
                 controller: 'OrderDetailCtrl',
-                resolve: {
-                    factory: function (authService) {
-                        authService.roleUser()
-                    }
+                data: {
+                    role: 'user'
                 }
+                //resolve: {
+                //    factory: function (authService) {
+                //        authService.roleUser()
+                //    }
+                //}
             })
     }]);
 });

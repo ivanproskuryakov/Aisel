@@ -17,7 +17,6 @@
 define(['app',
     './services/root',
     './services/init',
-    './services/auth',
     './filters/main'
 ], function (app) {
     console.log('----------- Kernel Loaded! -----------');
