@@ -15,11 +15,11 @@
  */
 
 define(['app'], function (app) {
-    app.config(function ($provide, $urlRouterProvider, PRIMARY_LOCALE) {
-        $urlRouterProvider.otherwise(function ($injector, $location) {
+    app.config(function ($provide, $urlRouterProvider) {
+        $urlRouterProvider.otherwise(function ($injector, $location, Aisel) {
             // Redirect to homepage if nothing was found
-            console.log('Locale Fallback');
-            $location.path('/' + PRIMARY_LOCALE + '/');
+            console.log('Fallback to primary locale');
+            $location.path('/' + Aisel.settings.locale.primary + '/');
         });
     });
 });

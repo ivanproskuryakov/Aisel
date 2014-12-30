@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.service('userCategoryService', ['$http', 'API_URL',
-        function ($http, API_URL) {
+    app.service('userCategoryService', ['$http',
+        function ($http) {
             return {};
         }]);
 });

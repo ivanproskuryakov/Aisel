@@ -3,6 +3,11 @@
 # mod_rewrite). Additionally, this reduces the matching process for the
 # start page (path "/") because otherwise Apache will apply the rewriting rules
 # to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
+
+# ------------------------------------------------------------------------------
+# | Restrict requests betweet backend and frontend                             |
+# ------------------------------------------------------------------------------
+
 DirectoryIndex index_dev.html
 
 <IfModule mod_rewrite.c>
@@ -19,37 +24,10 @@ DirectoryIndex index_dev.html
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule $ index_dev.html$1 [NC,L,QSA]
 
-#    # Determine the RewriteBase automatically and set it as environment variable.
-#    # If you are using Apache aliases to do mass virtual hosting or installed the
-#    # project in a subdirectory, the base path will be prepended to allow proper
-#    # resolution of the app_dev.php file and to redirect to the correct URI. It will
-#    # work in environments without path prefix as well, providing a safe, one-size
-#    # fits all solution. But as you do not need it in this case, you can comment
-#    # the following 2 lines to eliminate the overhead.
-#    RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
-#    RewriteRule ^(.*) - [E=BASE:%1]
-#
-#    # Redirect to URI without front controller to prevent duplicate content
-#    # (with and without `/app_dev.php`). Only do this redirect on the initial
-#    # rewrite by Apache and not on subsequent cycles. Otherwise we would get an
-#    # endless redirect loop (request -> rewrite to front controller ->
-#    # redirect -> request -> ...).
-#    # So in case you get a "too many redirects" error or you always get redirected
-#    # to the start page because your Apache does not expose the REDIRECT_STATUS
-#    # environment variable, you have 2 choices:
-#    # - disable this feature by commenting the following 2 lines or
-#    # - use Apache >= 2.3.9 and replace all L flags by END flags and remove the
-#    #   following RewriteCond (best solution)
-#    RewriteCond %{ENV:REDIRECT_STATUS} ^$
-#    RewriteRule ^app_dev\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
-#
-#    # If the requested filename exists, simply serve it.
-#    # We only want to let Apache serve files and not directories.
-#    RewriteCond %{REQUEST_FILENAME} -f
-#    RewriteRule .? - [L]
-#
-#    # Rewrite all other queries to the front controller.
-#    RewriteRule .? %{ENV:BASE}/app_dev.php [L]
+    Header add Access-Control-Allow-Origin "*"
+    Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+    Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
+
 </IfModule>
 
 <IfModule !mod_rewrite.c>
@@ -62,18 +40,6 @@ DirectoryIndex index_dev.html
     </IfModule>
 </IfModule>
 
-
-
-# Apache Configuration File
-
-# (!) Using `.htaccess` files slows down Apache, therefore, if you have access
-# to the main server config file (usually called `httpd.conf`), you should add
-# this logic there: http://httpd.apache.org/docs/current/howto/htaccess.html.
-
-# ##############################################################################
-# # CROSS-ORIGIN RESOURCE SHARING (CORS)                                       #
-# ##############################################################################
-
 # ------------------------------------------------------------------------------
 # | Cross-domain AJAX requests                                                 |
 # ------------------------------------------------------------------------------
@@ -82,9 +48,9 @@ DirectoryIndex index_dev.html
 # http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
 # http://enable-cors.org/
 
-# <IfModule mod_headers.c>
-#    Header set Access-Control-Allow-Origin "*"
-# </IfModule>
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
 
 # ------------------------------------------------------------------------------
 # | CORS-enabled images                                                        |

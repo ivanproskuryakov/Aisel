@@ -15,35 +15,35 @@
 define(['app'], function (app) {
     console.log('Kernel API service loaded ...');
     angular.module('app')
-        .service('rootService', ['$http', '$rootScope', 'API_URL',
-            function ($http, $rootScope, API_URL) {
+        .service('rootService', ['$http', '$rootScope', 'Aisel',
+            function ($http, $rootScope, Aisel) {
                 return {
                     getApplicationConfig: function () {
                         var locale = Aisel.getLocale();
-                        var url = API_URL + '/' + locale + '/config/settings.json';
+                        var url = Aisel.settings.api + '/' + locale + '/config/settings.json';
                         // console.log(url);
                         return $http.get(url);
                     },
                     getPageCategoryTree: function () {
                         var locale = Aisel.getLocale();
-                        var url = API_URL + '/' + locale + '/page/category/tree.json';
+                        var url = Aisel.settings.api + '/' + locale + '/page/category/tree.json';
                         console.log(url);
                         return $http.get(url);
                     },
                     getProductCategoryTree: function () {
                         var locale = Aisel.getLocale();
-                        var url = API_URL + '/' + locale + '/product/category/tree.json';
+                        var url = Aisel.settings.api + '/' + locale + '/product/category/tree.json';
                         console.log(url);
                         return $http.get(url);
                     },
                     getMenu: function () {
                         var locale = Aisel.getLocale();
-                        var url = API_URL + '/' + locale + '/navigation/menu.json';
+                        var url = Aisel.settings.api + '/' + locale + '/navigation/menu.json';
                         //console.log(url);
                         return $http.get(url);
                     },
                     getUserInformation: function () {
-                        var url = API_URL + '/user/information.json';
+                        var url = Aisel.settings.api + '/user/information.json';
                         // console.log(url);
                         return $http.get(url);
                     }

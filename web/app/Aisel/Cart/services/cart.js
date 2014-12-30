@@ -13,31 +13,31 @@
  */
 
 define(['app'], function (app) {
-    app.service('cartService', ['$http', 'API_URL',
-        function ($http, API_URL) {
+    app.service('cartService', ['$http', 'Aisel',
+        function ($http, Aisel) {
             return {
                 getCartItems: function ($scope) {
-                    var url = API_URL + '/cart.json';
+                    var url = Aisel.settings.api + '/cart.json';
                     console.log(url);
                     return $http.get(url);
                 },
                 addToCart: function ($scope) {
                     var qty = 1;
                     var productId = $scope.productDetails.product.id;
-                    var url = API_URL + '/cart/product/' + productId + '/qty/' + qty + '/add.json';
+                    var url = Aisel.settings.api + '/cart/product/' + productId + '/qty/' + qty + '/add.json';
                     console.log(url);
                     return $http.post(url);
                 },
                 updateInCart: function (item) {
                     var qty = item.qty;
                     var productId = item.product.id;
-                    var url = API_URL + '/cart/product/' + productId + '/qty/' + qty + '/update.json';
+                    var url = Aisel.settings.api + '/cart/product/' + productId + '/qty/' + qty + '/update.json';
                     console.log(url);
                     return $http.put(url);
                 },
                 orderSubmit: function () {
                     var locale = Aisel.getLocale();
-                    var url = API_URL + '/' + locale + '/order/submit.json';
+                    var url = Aisel.settings.api + '/' + locale + '/order/submit.json';
                     console.log(url);
                     return $http.post(url);
                 }

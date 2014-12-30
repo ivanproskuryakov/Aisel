@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.service('userPageService', ['$http', 'API_URL', function ($http, API_URL) {
+    app.service('userPageService', ['$http', function ($http) {
         return {};
     }]);
 });

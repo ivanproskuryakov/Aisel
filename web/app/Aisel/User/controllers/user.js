@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService', 'notify',
-        function ($log, $modal, $scope, $routeParams, userService, notify) {
+    app.controller('UserCtrl', ['$log', '$modal', '$scope', '$routeParams', 'userService', 'notify', 'Aisel',
+        function ($log, $modal, $scope, $routeParams, userService, notify, Aisel) {
             var locale = Aisel.getLocale();
 
             $scope.loggedIn = false;

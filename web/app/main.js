@@ -57,7 +57,6 @@ require.config({
     // Kick start application
     deps: [
         './Kernel/environment',
-        'bootstrap',
         './Kernel/router',
         './Kernel/services/root',
         './Kernel/services/init',
@@ -69,7 +68,8 @@ require.config({
         './Aisel/Product/AiselProduct',
         './Aisel/User/AiselUser',
         './Aisel/Cart/AiselCart',
-        './Aisel/Order/AiselOrder'
+        './Aisel/Order/AiselOrder',
+        'bootstrap',
     ],
     priority: [
         "angular"

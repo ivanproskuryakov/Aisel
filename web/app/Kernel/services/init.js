@@ -15,8 +15,8 @@
 define(['app'], function (app) {
     console.log('Kernel Init service loaded ...');
     angular.module('app')
-        .service('initService', ['$http', '$rootScope', 'rootService', 'appSettings',
-            function ($http, $rootScope, rootService, appSettings) {
+        .service('initService', ['$http', '$rootScope', 'rootService', 'appSettings', 'Aisel',
+            function ($http, $rootScope, rootService, appSettings, Aisel) {
                 return {
                     launch: function () {
                         var meta = false;
@@ -62,7 +62,7 @@ define(['app'], function (app) {
                                 setMetaData();
 
                                 // Hook for on route change
-                                $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+                                $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                                     console.log('State Change ...');
                                     setLocale();
                                     setMetaData();

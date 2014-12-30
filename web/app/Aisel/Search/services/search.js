@@ -13,12 +13,12 @@
  */
 
 define(['app'], function (app) {
-    app.service('searchService', ['$http', 'API_URL',
-        function ($http, API_URL) {
+    app.service('searchService', ['$http', 'Aisel',
+        function ($http, Aisel) {
             return {
                 getSearchResult: function ($scope) {
                     var locale = Aisel.getLocale();
-                    var url = API_URL + '/' + locale + '/search/?query=' + $scope.queryText + '&current=' + $scope.paginationPage;
+                    var url = Aisel.settings.api + '/' + locale + '/search/?query=' + $scope.queryText + '&current=' + $scope.paginationPage;
                     console.log(url);
                     return $http.get(url);
                 }
