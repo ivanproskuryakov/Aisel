@@ -15,9 +15,8 @@
 define(['../../../app'], function (app) {
     console.log('Kernel Auth service loaded ...');
     angular.module('app')
-        .service('authService', ['$http', '$rootScope', '$location', 'rootService',
-            function ($http, $rootScope, $location, rootService) {
-                var locale = Aisel.getLocale();
+        .service('authService', ['$http', '$rootScope', '$location', 'rootService', 'Environment',
+            function ($http, $rootScope, $location, rootService, Environment) {
 
                 return {
                     roleUser: function () {
@@ -29,7 +28,7 @@ define(['../../../app'], function (app) {
                                     $rootScope.isAuthenticated = true;
                                     $rootScope.user = data;
                                 } else {
-                                    $location.path("/" + locale + "/");
+                                    $location.path("/" + Environment.settings.api + "/");
                                 }
                             }
                         );
@@ -40,7 +39,7 @@ define(['../../../app'], function (app) {
                                 console.log('userIsGuest');
                                 if (data.username) {
                                     $rootScope.isAuthenticated = true;
-                                    $location.path("/" + locale + "/user/information/");
+                                    $location.path("/" + Environment.settings.api + "/user/information/");
                                 } else {
                                     $rootScope.isAuthenticated = false;
                                 }
