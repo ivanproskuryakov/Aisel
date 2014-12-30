@@ -15,15 +15,15 @@
 define(['app'], function (app) {
     console.log('Kernel Init service loaded ...');
     angular.module('app')
-        .service('initService', ['$http', '$rootScope', 'rootService', 'authService', 'appSettings', 'Environment', '$state',
-            function ($http, $rootScope, rootService, authService, appSettings, Environment, $state) {
+        .service('initService', ['$http', '$rootScope', 'rootService', 'authService', 'userService', 'appSettings', 'Environment', '$state',
+            function ($http, $rootScope, rootService, authService, userService, appSettings, Environment, $state) {
                 return {
                     launch: function () {
                         var meta = false;
                         var disqus = false;
                         var general = false;
                         // Load user status
-                        rootService.getUserInformation().success(
+                        userService.getUserInformation().success(
                             function (data, status) {
                                 if (data.username) {
                                     $rootScope.user = data;

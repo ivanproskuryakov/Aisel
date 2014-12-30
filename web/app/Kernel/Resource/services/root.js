@@ -41,11 +41,6 @@ define(['app'], function (app) {
                         var url = Environment.settings.api + '/' + locale + '/navigation/menu.json';
                         //console.log(url);
                         return $http.get(url);
-                    },
-                    getUserInformation: function () {
-                        var url = Environment.settings.api + '/user/information.json';
-                        // console.log(url);
-                        return $http.get(url);
                     }
                 };
             }

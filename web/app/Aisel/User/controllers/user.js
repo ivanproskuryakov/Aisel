@@ -17,8 +17,6 @@ define(['app'], function (app) {
         function ($log, $modal, $scope, $rootScope, $routeParams, $state, userService, notify, Environment) {
             var locale = Environment.currentLocale();
 
-            $scope.loggedIn = false;
-
             // User Registration
             $scope.submitRegistration = function (form) {
                 if (form.$valid) {

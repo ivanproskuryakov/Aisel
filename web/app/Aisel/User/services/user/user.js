@@ -56,6 +56,11 @@ define(['app'], function (app) {
                 var url = Environment.settings.api + '/user/login.json?username=' + username + '&password=' + password;
                 console.log(url);
                 return $http.get(url);
+            },
+            getUserInformation: function () {
+                var url = Environment.settings.api + '/user/information.json';
+                // console.log(url);
+                return $http.get(url);
             }
         };
     }]);
