@@ -27,7 +27,14 @@ define(['app'], function (app) {
                     var url = Environment.settings.api + '/' + locale + '/page/category/view/' + categoryId + '.json';
                     console.log(url);
                     return $http.get(url);
-                }
+                },
+                getPageCategoryTree: function () {
+                    var locale = Environment.currentLocale();
+                    var url = Environment.settings.api + '/' + locale + '/page/category/tree.json';
+                    console.log(url);
+                    return $http.get(url);
+                },
+
             };
         }]);
 });

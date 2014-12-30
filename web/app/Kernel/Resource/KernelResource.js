@@ -9,18 +9,15 @@
  * file that was distributed with this source code.
  *
  * @name            AiselKernel
- * @description     Main router provider defined in separate file router.js
- *                  Each module has its own router in config file.
- *                  Define only global routes in this appRouter.js file
+ * @description     Kernel module, module contains data that we cant decompose into module
  */
 
 define(['app',
-    './services/root',
+    './services/settings',
     './services/init',
     './filters/main'
 ], function (app) {
     console.log('----------- Kernel Loaded! -----------');
-    // Redirect to homepage if nothing was found
     app.config(['$provide', '$urlRouterProvider',
         function ($provide, $urlRouterProvider) {
             $urlRouterProvider.otherwise(function ($injector, $location) {

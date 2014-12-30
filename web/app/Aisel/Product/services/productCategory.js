@@ -27,6 +27,12 @@ define(['app'], function (app) {
                     var url = Environment.settings.api + '/' + locale + '/product/category/view/' + categoryId + '.json';
                     console.log(url);
                     return $http.get(url);
+                },
+                getProductCategoryTree: function () {
+                    var locale = Environment.currentLocale();
+                    var url = Environment.settings.api + '/' + locale + '/product/category/tree.json';
+                    console.log(url);
+                    return $http.get(url);
                 }
             };
         }]);

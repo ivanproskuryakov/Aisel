@@ -9,14 +9,18 @@
  * file that was distributed with this source code.
  *
  * @name            AiselKernel
- * @description     Init service
+ * @description     Most important data are loaded here
  */
 
 define(['app'], function (app) {
     console.log('Kernel Init service loaded ...');
     angular.module('app')
-        .service('initService', ['$http', '$rootScope', 'rootService', 'authService', 'userService', 'appSettings', 'Environment', '$state',
-            function ($http, $rootScope, rootService, authService, userService, appSettings, Environment, $state) {
+        .service('initService', ['$http', '$rootScope', 'rootService',
+            'authService', 'userService', 'pageCategoryService',
+            'productCategoryService', 'appSettings', 'Environment', '$state',
+            function ($http, $rootScope, rootService,
+                      authService, userService, pageCategoryService,
+                      productCategoryService, appSettings, Environment, $state) {
                 return {
                     launch: function () {
                         var meta = false;
@@ -76,13 +80,13 @@ define(['app'], function (app) {
                             }
                         );
                         // Load page categories
-                        rootService.getPageCategoryTree().success(
+                        pageCategoryService.getPageCategoryTree().success(
                             function (data, status) {
                                 $rootScope.pageCategoryTree = data;
                             }
                         );
                         // Load product categories
-                        rootService.getProductCategoryTree().success(
+                        productCategoryService.getProductCategoryTree().success(
                             function (data, status) {
                                 $rootScope.productCategoryTree = data;
                             }

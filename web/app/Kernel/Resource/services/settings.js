@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  *
  * @name            AiselKernel
- * @description     API service
+ * @description     Grabs application settings from backend
  */
 
 define(['app'], function (app) {
-    console.log('Kernel API service loaded ...');
+    console.log('Kernel API settings loaded ...');
     angular.module('app')
         .service('rootService', ['$http', '$rootScope', 'Environment',
             function ($http, $rootScope, Environment) {
@@ -22,18 +22,6 @@ define(['app'], function (app) {
                         var locale = Environment.currentLocale();
                         var url = Environment.settings.api + '/' + locale + '/config/settings.json';
                         // console.log(url);
-                        return $http.get(url);
-                    },
-                    getPageCategoryTree: function () {
-                        var locale = Environment.currentLocale();
-                        var url = Environment.settings.api + '/' + locale + '/page/category/tree.json';
-                        console.log(url);
-                        return $http.get(url);
-                    },
-                    getProductCategoryTree: function () {
-                        var locale = Environment.currentLocale();
-                        var url = Environment.settings.api + '/' + locale + '/product/category/tree.json';
-                        console.log(url);
                         return $http.get(url);
                     },
                     getMenu: function () {

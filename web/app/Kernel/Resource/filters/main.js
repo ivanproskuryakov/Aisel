@@ -8,11 +8,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselResource
- * @description     testing angularjs filters
+ * @name            KernelResource
+ * @description     Just a test filter
  */
 
-define(['../../../app'], function (app) {
+define(['app'], function (app) {
     app.filter('text', function () {
             return function (text, name) {
                 return text;
