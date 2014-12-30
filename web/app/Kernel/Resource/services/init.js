@@ -12,7 +12,7 @@
  * @description     Init service
  */
 
-define(['app'], function (app) {
+define(['../../../app'], function (app) {
     console.log('Kernel Init service loaded ...');
     angular.module('app')
         .service('initService', ['$http', '$rootScope', 'rootService', 'appSettings', 'Environment',

@@ -12,7 +12,7 @@
  * @description     Auth service
  */
 
-define(['app'], function (app) {
+define(['../../../app'], function (app) {
     console.log('Kernel Auth service loaded ...');
     angular.module('app')
         .service('authService', ['$http', '$rootScope', '$location', 'rootService',

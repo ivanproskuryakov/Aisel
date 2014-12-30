@@ -14,14 +14,17 @@
  *                  Define only global routes in this appRouter.js file
  */
 
-define(['app'], function (app) {
-
-    angular.module('app').config(['$provide', '$urlRouterProvider',
+define(['app',
+    './services/root',
+    './services/init',
+    './services/auth',
+    './filters/main'
+], function (app) {
+    console.log('----------- Kernel Loaded! -----------');
+    // Redirect to homepage if nothing was found
+    app.config(['$provide', '$urlRouterProvider',
         function ($provide, $urlRouterProvider) {
-
             $urlRouterProvider.otherwise(function ($injector, $location) {
-
-                // Redirect to homepage if nothing was found
                 var Environment = $injector.get('Environment');
                 console.log('Fallback to primary locale');
                 //console.log(Environment);

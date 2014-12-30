@@ -12,7 +12,7 @@
  * @description     API service
  */
 
-define(['app'], function (app) {
+define(['../../../app'], function (app) {
     console.log('Kernel API service loaded ...');
     angular.module('app')
         .service('rootService', ['$http', '$rootScope', 'Environment',
