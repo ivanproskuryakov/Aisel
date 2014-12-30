@@ -13,16 +13,16 @@
  */
 
 define(['app'], function (app) {
-    app.service('orderService', ['$http', 'Aisel',
-        function ($http, Aisel) {
+    app.service('orderService', ['$http', 'Environment',
+        function ($http, Environment) {
             return {
                 getOrders: function () {
-                    var url = Aisel.settings.api + '/orders.json';
+                    var url = Environment.settings.api + '/orders.json';
                     console.log(url);
                     return $http.get(url);
                 },
                 getOrder: function (orderId) {
-                    var url = Aisel.settings.api + '/order/view/' + orderId + '.json';
+                    var url = Environment.settings.api + '/order/view/' + orderId + '.json';
                     console.log(url);
                     return $http.get(url);
                 }

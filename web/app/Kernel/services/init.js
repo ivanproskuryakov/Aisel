@@ -15,8 +15,8 @@
 define(['app'], function (app) {
     console.log('Kernel Init service loaded ...');
     angular.module('app')
-        .service('initService', ['$http', '$rootScope', 'rootService', 'appSettings', 'Aisel',
-            function ($http, $rootScope, rootService, appSettings, Aisel) {
+        .service('initService', ['$http', '$rootScope', 'rootService', 'appSettings', 'Environment',
+            function ($http, $rootScope, rootService, appSettings, Environment) {
                 return {
                     launch: function () {
                         var meta = false;
@@ -49,7 +49,7 @@ define(['app'], function (app) {
                                 console.log('----------- Aisel Loaded! -----------');
                                 var setLocale = function () {
                                     $rootScope.availableLocales = appSettings.locale.available;
-                                    $rootScope.locale = Aisel.getLocale();
+                                    $rootScope.locale = Environment.currentLocale();
                                 }
                                 var setMetaData = function () {
                                     $rootScope.pageTitle = meta.defaultMetaTitle;

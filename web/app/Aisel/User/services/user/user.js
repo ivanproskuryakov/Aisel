@@ -13,13 +13,13 @@
  */
 
 define(['app'], function (app) {
-    app.service('userService', ['$http', 'Aisel', function ($http, Aisel) {
+    app.service('userService', ['$http', 'Environment', function ($http, Environment) {
         return {
             register: function (form) {
                 var username = form.username.$modelValue;
                 var email = form.email.$modelValue;
                 var password = form.password.$modelValue;
-                var url = Aisel.settings.api + '/user/register.json?username=' + username + '&password=' + password + '&email=' + email;
+                var url = Environment.settings.api + '/user/register.json?username=' + username + '&password=' + password + '&email=' + email;
                 console.log(url);
                 return $http.get(url);
             },
@@ -37,23 +37,23 @@ define(['app'], function (app) {
                 formData['googleplus'] = encodeURIComponent(form.googleplus.$modelValue);
 
                 var userData = JSON.stringify(formData);
-                var url = Aisel.settings.api + '/user/editdetails.json?userdata=' + userData;
+                var url = Environment.settings.api + '/user/editdetails.json?userdata=' + userData;
                 console.log(url);
                 return $http.get(url);
             },
             passwordforgot: function (form) {
                 var email = form.email.$modelValue;
-                var url = Aisel.settings.api + '/user/passwordforgot.json?email=' + email;
+                var url = Environment.settings.api + '/user/passwordforgot.json?email=' + email;
                 console.log(url);
                 return $http.get(url);
             },
             signout: function () {
-                var url = Aisel.settings.api + '/user/logout.json';
+                var url = Environment.settings.api + '/user/logout.json';
                 console.log(url);
                 return $http.get(url);
             },
             login: function (username, password) {
-                var url = Aisel.settings.api + '/user/login.json?username=' + username + '&password=' + password;
+                var url = Environment.settings.api + '/user/login.json?username=' + username + '&password=' + password;
                 console.log(url);
                 return $http.get(url);
             }

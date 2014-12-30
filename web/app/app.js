@@ -24,7 +24,7 @@ define([
         var app = angular.module('app', [
             'ngCookies', 'ngResource', 'ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.router',
             'ui.utils', 'ui.validate', 'ui.gravatar', 'textAngular', 'ngDisqus', 'cgNotify',
-            'app.environment'
+            'environment'
         ])
 
         app

@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.service('contactService', ['$http', 'Aisel',
-        function ($http, Aisel) {
+    app.service('contactService', ['$http', 'Environment',
+        function ($http, Environment) {
             return {
                 send: function (form) {
                     var postData = {
@@ -23,7 +23,7 @@ define(['app'], function (app) {
                         phone: form.phone.$modelValue,
                         message: form.message.$modelValue
                     };
-                    var url = Aisel.settings.api + '/contact/send.json';//?name=' + name + '&email=' + email + '&phone=' + phone + '&message=' + message;
+                    var url = Environment.settings.api + '/contact/send.json';//?name=' + name + '&email=' + email + '&phone=' + phone + '&message=' + message;
                     console.log(url);
                     return $http.post(url, postData);
                 }

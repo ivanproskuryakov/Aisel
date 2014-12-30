@@ -15,12 +15,18 @@
  */
 
 define(['app'], function (app) {
-    app.config(function ($provide, $urlRouterProvider) {
-        $urlRouterProvider.otherwise(function ($injector, $location, Aisel) {
-            // Redirect to homepage if nothing was found
-            console.log('Fallback to primary locale');
-            $location.path('/' + Aisel.settings.locale.primary + '/');
-        });
-    });
+
+    angular.module('app').config(['$provide', '$urlRouterProvider',
+        function ($provide, $urlRouterProvider) {
+
+            $urlRouterProvider.otherwise(function ($injector, $location) {
+
+                // Redirect to homepage if nothing was found
+                var Environment = $injector.get('Environment');
+                console.log('Fallback to primary locale');
+                //console.log(Environment);
+                $location.path('/' + Environment.settings.locale.primary + '/');
+            });
+        }]);
 });
 

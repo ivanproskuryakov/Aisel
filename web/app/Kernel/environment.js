@@ -16,8 +16,8 @@ define(['angular'],
     function (angular) {
         'use strict';
         console.log('Environment loaded ...');
-        angular.module('app.environment', [])
-            .service('AppEnvironment', function () {
+        angular.module('environment', [])
+            .service('Environment', function () {
                 return {
                     settings: {
                         api: '/api',
@@ -26,7 +26,7 @@ define(['angular'],
                             "available": ['en', 'es', 'ru']
                         }
                     },
-                    getLocale: function () {
+                    currentLocale: function () {
                         var locale = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
                         if (this.settings.locale.available.indexOf(locale) == -1) {
                             locale = this.settings.locale.primary;

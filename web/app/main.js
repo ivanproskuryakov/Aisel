@@ -56,11 +56,11 @@ require.config({
     },
     // Kick start application
     deps: [
-        './Kernel/environment',
         './Kernel/router',
         './Kernel/services/root',
         './Kernel/services/init',
         './Kernel/services/auth',
+        './Kernel/environment',
         './Aisel/Homepage/AiselHomepage',
         './Aisel/Contact/AiselContact',
         './Aisel/Search/AiselSearch',

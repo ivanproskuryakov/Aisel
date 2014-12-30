@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductDetailCtrl', ['$scope', '$location', '$stateParams', 'productService', '$rootScope', 'cartService', 'notify', 'Aisel',
-        function ($scope, $location, $stateParams, productService, $rootScope, cartService, notify, Aisel) {
+    app.controller('ProductDetailCtrl', ['$scope', '$location', '$stateParams', 'productService', '$rootScope', 'cartService', 'notify', 'Environment',
+        function ($scope, $location, $stateParams, productService, $rootScope, cartService, notify, Environment) {
             $scope.isDisabled = true;
 
             var productURL = $stateParams.productId;
@@ -37,7 +37,7 @@ define(['app'], function (app) {
                 // if user is guest - redirect or login page
                 if ($rootScope.isAuthenticated == false) {
                     notify('You need to login or register');
-                    var url = Aisel.settings.api + '/user/login/';
+                    var url = Environment.settings.api + '/user/login/';
                     $location.path(url);
                 } else {
                     $scope.isDisabled = true;
