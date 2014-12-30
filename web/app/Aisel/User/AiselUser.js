@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  *
  * @name            AiselUser
- * @description     user module configuration
+ * @description     User module configuration
  */
 
 define(['app',
@@ -20,6 +20,7 @@ define(['app',
     './services/user/user',
 ], function (app) {
     console.log('User module loaded ...');
+
     app.run(['$http', '$rootScope', 'authService',
         function ($http, $rootScope, authService) {
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
