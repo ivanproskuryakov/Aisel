@@ -23,7 +23,6 @@ define(['app',
             $urlRouterProvider.otherwise(function ($injector, $location) {
                 var Environment = $injector.get('Environment');
                 console.log('Fallback to primary locale');
-                //console.log(Environment);
                 $location.path('/' + Environment.settings.locale.primary + '/');
             });
         }]);

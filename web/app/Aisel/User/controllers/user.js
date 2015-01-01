@@ -32,7 +32,6 @@ define(['app'], function (app) {
             };
 
             /**
-             * @ngdoc function
              * @param form registration form values
              * @description sends data to API layer and update user object
              */
@@ -66,7 +65,8 @@ define(['app'], function (app) {
                     function (data, status) {
                         notify(data.message);
                         $rootScope.user = undefined;
-                        $state.go('homepage');
+                        $rootScope.isAuthenticated = false;
+                        //$state.transitionTo('homepage', {locale:'en'});
                     }
                 );
 

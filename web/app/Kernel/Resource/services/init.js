@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    console.log('Kernel Init service loaded ...');
+    console.log('Kernel init service loaded ...');
     angular.module('app')
         .service('initService', ['$http', '$rootScope', 'rootService',
             'authService', 'userService', 'pageCategoryService',

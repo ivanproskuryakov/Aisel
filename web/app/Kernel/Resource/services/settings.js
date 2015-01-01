@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    console.log('Kernel API settings loaded ...');
+    console.log('Kernel settings loaded ...');
     angular.module('app')
         .service('rootService', ['$http', '$rootScope', 'Environment',
             function ($http, $rootScope, Environment) {
