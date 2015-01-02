@@ -15,8 +15,8 @@
 define(['app'], function (app) {
     console.log('Kernel Auth service loaded ...');
     angular.module('app')
-        .service('authService', ['$http', '$rootScope', '$location', '$modal', 'rootService', 'Environment',
-            function ($http, $rootScope, $location, $modal, rootService, Environment) {
+        .service('authService', ['$http', '$rootScope', '$location', '$modal', 'Environment',
+            function ($http, $rootScope, $location, $modal, Environment) {
 
                 return {
                     authenticateWithModal: function (state, params) {
@@ -30,17 +30,18 @@ define(['app'], function (app) {
             }
         ]);
     angular.module('app')
-        .controller('ModalAuthCtrl', ['$scope', '$rootScope', '$state', 'userService', 'notify',
-            function ($scope, $rootScope, $state, userService, notify) {
+        .controller('ModalAuthCtrl', ['$scope', '$rootScope', '$state', 'userService', 'notify', 'Environment',
+            function ($scope, $rootScope, $state, userService, notify, Environment) {
+                var locale = Environment.currentLocale();
 
                 $scope.passwordForgot = function () {
                     $scope.$dismiss('close');
-                    $state.go('userPasswordForgot');
+                    $state.transitionTo('userPasswordForgot', {locale: locale});
                 }
 
                 $scope.register = function () {
                     $scope.$dismiss('close');
-                    $state.go('userRegister');
+                    $state.transitionTo('userRegister', {locale: locale});
                 }
 
                 $scope.login = function (username, password) {

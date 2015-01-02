@@ -29,8 +29,8 @@ define([
 
         app
             .value('appSettings', [])
-            .run(['$http', '$rootScope', 'rootService', 'initService',
-                function ($http, $rootScope, rootService, initService) {
+            .run(['$http', '$rootScope', 'settingsService', 'initService',
+                function ($http, $rootScope, settingsService, initService) {
                     initService.launch();
                 }])
             .config(function ($provide, $locationProvider, $httpProvider) {

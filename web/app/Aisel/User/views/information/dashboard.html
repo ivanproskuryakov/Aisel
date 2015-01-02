@@ -5,7 +5,7 @@
             <a ui-sref="userInformationEdit({locale: locale})"> Edit account details</a></p>
     </div>
 
-    <div class="" ng-if="isAuthenticated">
+    <div class="" ng-if="user">
         <div class="col-sm-4">
             <h3>Account Details</h3>
             <img class="gavatar-userdetails" gravatar-src="'{{ user.email }}'" gravatar-size="200">

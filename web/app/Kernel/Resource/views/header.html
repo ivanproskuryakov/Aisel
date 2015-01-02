@@ -27,18 +27,18 @@
                 </li>
 
                 <!-- Guests -->
-                <li class="dropdown" ng-if="!isAuthenticated">
-                    <a ui-sref="userInformation({locale: locale})"><span class="glyphicon glyphicon glyphicon-user"></span> My Dashboard </a>
+                <li class="dropdown" ng-if="!user">
+                    <a ui-sref="userInformation({locale: locale})"><span class="glyphicon glyphicon glyphicon-user"></span> My Dashboard</a>
                 </li>
 
                 <!-- Users -->
-                <li class="dropdown" ng-if="isAuthenticated">
+                <li class="dropdown" ng-if="user">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img class="gavatar-navbar" gravatar-src="'{{ user.email }}'" gravatar-size="18">
                         {{ user.username }}<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref="userInformation({locale: locale})">My Dashboard</a></li>
+                        <li><a ui-sref="userInformation({locale: locale})">Dashboard</a></li>
                         <li><a ui-sref="orders({locale: locale})">Orders</a></li>
                         <li role="presentation" class="divider"></li>
                         <li><a ng-click="signOut()">Sign Out</a></li>

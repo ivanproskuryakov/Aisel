@@ -15,7 +15,7 @@
 define(['app'], function (app) {
     console.log('Kernel settings loaded ...');
     angular.module('app')
-        .service('rootService', ['$http', '$rootScope', 'Environment',
+        .service('settingsService', ['$http', '$rootScope', 'Environment',
             function ($http, $rootScope, Environment) {
                 return {
                     getApplicationConfig: function () {

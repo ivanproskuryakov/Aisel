@@ -1,12 +1,12 @@
 <div class="col-xs-12 page-header">
     <h2><span class="glyphicon glyphicon glyphicon-user"></span> Sign In</h2>
 </div>
-<form class="form-horizontal" name="loginForm" role="form" ng-submit="login(username, password)">
-    <div class="modal-body">
-        <div class="row">
-            <!-- Form Fields -->
+<div class="modal-body">
+    <div class="row">
+        <!-- Form Fields -->
+        <div class="col-md-12" role="main">
             <div class="col-md-12">
-                <div class="col-md-12" role="main">
+                <form class="form-horizontal" name="loginForm" role="form" ng-submit="login(username, password)">
                     <div class="form-group">
                         <label for="signInUsername">Username</label>
 
@@ -25,16 +25,17 @@
                                    ng-required="true">
                         </div>
                     </div>
-                    <!--<div class="form-group pull-left">-->
-                        <!--<button class="btn btn-success" ng-click="passwordForgot()">Forgot password</button>-->
-                        <!--<button class="btn btn-success" ng-click="register()">Create Account</button>-->
-                    <!--</div>-->
                     <div class="form-group pull-right">
                         <button class="btn btn-primary" type="submit">Log In</button>
                     </div>
+                </form>
+                <div class="form-group pull-left">
+                    <button class="btn btn-success" ng-click="passwordForgot()">Forgot password</button>
+                    <button class="btn btn-success" ng-click="register()">Create Account</button>
                 </div>
+
             </div>
         </div>
     </div>
-</form>
+</div>
 

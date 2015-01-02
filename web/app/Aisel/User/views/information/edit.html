@@ -6,7 +6,7 @@
                 <a ui-sref="userInformation({locale: locale})">Back to dashboard</a></p>
         </div>
 
-        <div class="" ng-if="isAuthenticated">
+        <div class="" ng-if="user">
             <div class="col-xs-12 col-sm-12">
                 <div class="row">
                     <form class="form-horizontal" name="editDetailsForm" role="form" ng-submit="submitEditUserDetails(editDetailsForm)">

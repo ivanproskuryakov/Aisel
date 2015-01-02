@@ -13,12 +13,12 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ContactCtrl', ['$location', '$scope', 'contactService', 'rootService', 'notify',
-        function ($location, $scope, contactService, rootService, notify) {
+    app.controller('ContactCtrl', ['$location', '$scope', 'contactService', 'settingsService', 'notify',
+        function ($location, $scope, contactService, settingsService, notify) {
 
             $scope.config = false;
 
-            rootService.getApplicationConfig().success(
+            settingsService.getApplicationConfig().success(
                 function (data, status) {
                     $scope.config = JSON.parse(data.config_contact);
                 }

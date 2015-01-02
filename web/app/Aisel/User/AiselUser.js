@@ -21,15 +21,30 @@ define(['app',
 ], function (app) {
     console.log('User module loaded ...');
 
-    app.run(['$http', '$rootScope', 'authService',
-        function ($http, $rootScope, authService) {
+    app.run(['$http', '$rootScope', 'authService', 'userService',
+        function ($http, $rootScope, authService, userService) {
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 if (typeof toState.data !== 'undefined') {
                     console.log('Role needed: ' + toState.data.role);
                     var role = toState.data.role;
-                    if (role == 'user' && typeof $rootScope.user === 'undefined') {
-                        event.preventDefault();
-                        authService.authenticateWithModal(toState.name, toParams)
+
+                    if (role == 'user') {
+                        if ($rootScope.user === undefined) {
+                            userService.getUserInformation().success(
+                                function (data, status) {
+                                    if (data.username) {
+                                        $rootScope.user = data;
+                                    } else {
+                                        $rootScope.user = false;
+                                        event.preventDefault();
+                                        authService.authenticateWithModal(toState.name, toParams)
+                                    }
+                                }
+                            );
+                        } else if ($rootScope.user == false) {
+                            event.preventDefault();
+                            authService.authenticateWithModal(toState.name, toParams)
+                        }
                     }
                 }
             });

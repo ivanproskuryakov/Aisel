@@ -13,10 +13,10 @@
  */
 
 define(['app'], function (app) {
-    app.controller('HomepageCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'rootService',
-        function ($location, $scope, $routeParams, $rootScope, rootService) {
+    app.controller('HomepageCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'settingsService',
+        function ($location, $scope, $routeParams, $rootScope, settingsService) {
             $scope.content = false;
-            rootService.getApplicationConfig().success(
+            settingsService.getApplicationConfig().success(
                 function (data, status) {
                     $scope.content = JSON.parse(data.config_homepage).content;
                 }

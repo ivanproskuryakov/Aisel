@@ -15,10 +15,10 @@
 define(['app'], function (app) {
     console.log('Kernel init service loaded ...');
     angular.module('app')
-        .service('initService', ['$http', '$rootScope', 'rootService',
+        .service('initService', ['$http', '$rootScope', 'settingsService',
             'authService', 'userService', 'pageCategoryService',
             'productCategoryService', 'appSettings', 'Environment', '$state',
-            function ($http, $rootScope, rootService,
+            function ($http, $rootScope, settingsService,
                       authService, userService, pageCategoryService,
                       productCategoryService, appSettings, Environment, $state) {
                 return {
@@ -31,15 +31,14 @@ define(['app'], function (app) {
                             function (data, status) {
                                 if (data.username) {
                                     $rootScope.user = data;
-                                    $rootScope.isAuthenticated = true;
                                 } else {
-                                    $rootScope.isAuthenticated = false;
+                                    $rootScope.user = undefined;
                                 }
                             }
                         );
 
                         // Load settings data
-                        rootService.getApplicationConfig().success(
+                        settingsService.getApplicationConfig().success(
                             function (data, status) {
                                 appSettings = data.settings;
                                 general = JSON.parse(data.config_general);
@@ -74,7 +73,7 @@ define(['app'], function (app) {
                         );
 
                         // Load navigation menu
-                        rootService.getMenu().success(
+                        settingsService.getMenu().success(
                             function (data, status) {
                                 $rootScope.topMenu = data;
                             }

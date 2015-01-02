@@ -24,7 +24,7 @@ define(['app'], function (app) {
                         function (data, status) {
                             notify(data.message);
                             if (data.status) {
-                                $state.go('userInformation');
+                                $state.transitionTo('userInformation', {locale: locale});
                             }
                         }
                     );
@@ -52,7 +52,7 @@ define(['app'], function (app) {
                         function (data, status) {
                             notify(data.message);
                             if (data.status) {
-                                $state.go('userLogin');
+                                $state.transitionTo('userLogin', {locale: locale});
                             }
                         }
                     );
@@ -65,8 +65,7 @@ define(['app'], function (app) {
                     function (data, status) {
                         notify(data.message);
                         $rootScope.user = undefined;
-                        $rootScope.isAuthenticated = false;
-                        //$state.transitionTo('homepage', {locale:'en'});
+                        $state.transitionTo('homepage', {locale: locale});
                     }
                 );
 
@@ -77,7 +76,7 @@ define(['app'], function (app) {
                     function (data, status) {
                         notify(data.message);
                         if (data.status) {
-                            $state.go('userInformation');
+                            $state.transitionTo('userInformation', {locale: locale});
                         }
                     }
                 );

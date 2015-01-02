@@ -2,7 +2,7 @@
     <h2><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</h2>
 </div>
 <div class="col-md-12">
-    <div class="" ng-if="isAuthenticated">
+    <div class="" ng-if="user">
         <div ng-if="cartItems.length > 0">
             <div class="cartItem" ng-repeat="item in cartItems">
                 <div class="col-md-2">
@@ -56,7 +56,7 @@
             <span>You have 0 items in your cart</span>
         </div>
     </div>
-    <div class="" ng-if="!isAuthenticated">
-        <span>You have to be an authenticated user</span>
+    <div class="" ng-if="!user">
+        <span>You have to be an authenticated user, Log-In please.</span>
     </div>
 </div>
