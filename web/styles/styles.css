@@ -49,10 +49,7 @@ body #loading-bar .bar {
     background: #657496;
 }
 body #loading-bar .peg {
-    -moz-box-shadow: #657496 1px 0 6px 1px;
-    -ms-box-shadow: #657496 1px 0 6px 1px;
-    -webkit-box-shadow: #657496 1px 0 6px 1px;
-    box-shadow: #657496 1px 0 6px 1px;
+    display: none;
 }
 
 /***********
