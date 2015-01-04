@@ -26,6 +26,8 @@ require.config({
         'angular-cookies': '../bower_components/angular-cookies/angular-cookies.min',
         'angular-sanitize': '../bower_components/angular-sanitize/angular-sanitize',
         'angular-route': '../bower_components/angular-route/angular-route',
+        'angular-animate': '../bower_components/angular-animate/angular-animate',
+        'angular-loading-bar': '../bower_components/angular-loading-bar/build/loading-bar.min',
         'ui-bootstrap-tpls': '../bower_components/angular-bootstrap/ui-bootstrap-tpls',
         'ui-utils': '../bower_components/angular-ui-utils/ui-utils',
         'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
@@ -37,6 +39,8 @@ require.config({
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {
         'angular-route': ['angular'],
+        'angular-loading-bar': ['angular'],
+        'angular-animate': ['angular'],
         'angular-ui-router': ['angular'],
         'angular' : {'exports' : 'angular', deps: ['jQuery']},
         'jQuery': {'exports' : 'jQuery'},

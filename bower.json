@@ -13,6 +13,7 @@
         "angular-cookies": "1.2.6",
         "angular-sanitize": "1.2.6",
         "angular-route": "1.2.6",
+        "angular-animate": "1.2.6",
         "angular-ui": "~0.4.0",
         "angular-ui-router": "~0.2.13",
         "angular-bootstrap": "~0.10.0",
@@ -31,7 +32,8 @@
         "blueimp-gallery": "2.15.1",
         "fancytree": "2.2.0",
         "ui-contextmenu": "1.5.0",
-        "holderjs": "^2.4.1"
+        "holderjs": "^2.4.1",
+        "angular-loading-bar": "^0.6.0"
     },
     "devDependencies": {
         "angular-mocks": "1.2.6",
