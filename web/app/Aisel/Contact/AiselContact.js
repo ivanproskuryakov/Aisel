@@ -9,17 +9,13 @@
  * file that was distributed with this source code.
  *
  * @name            AiselContact
- * @description     contact module configuration
+ * @description     Contact module
  */
 
-define(['app', './controllers/contact', './services/contact'], function (app) {
+define(['app',
+    './config/contact',
+    './controllers/contact',
+    './services/contact'
+], function (app) {
     console.log('Contact module loaded ...');
-    app.config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-            .state("contact", {
-                url: "/:locale/contact/",
-                templateUrl: '/app/Aisel/Contact/views/contact.html',
-                controller: 'ContactCtrl'
-            });
-    }]);
 });

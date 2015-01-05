@@ -9,17 +9,13 @@
  * file that was distributed with this source code.
  *
  * @name            AiselSearch
- * @description     search module configuration
+ * @description     Search module
  */
 
-define(['app', './controllers/search', './services/search', './directives/main'], function (app) {
+define(['app',
+    './config/search',
+    './controllers/search',
+    './services/search',
+    './directives/main'], function (app) {
     console.log('Search module loaded ...');
-    app.config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-            .state("search", {
-                url: '/:locale/search/:query',
-                templateUrl: '/app/Aisel/Search/views/search.html',
-                controller: 'SearchCtrl'
-            });
-    }]);
 });

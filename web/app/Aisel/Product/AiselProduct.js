@@ -9,37 +9,17 @@
  * file that was distributed with this source code.
  *
  * @name            AiselProduct
- * @description     product module configuration
+ * @description     Product module
  */
 
 define(['app',
-    './controllers/product', './controllers/productDetails',
+    './config/product',
+    './controllers/product',
+    './controllers/productDetails',
+    './controllers/productCategory',
+    './controllers/productCategoryDetails',
     './services/product',
-    './controllers/productCategory', './controllers/productCategoryDetails',
     './services/productCategory',
 ], function (app) {
     console.log('Product module loaded ...');
-    app.config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-            .state("products", {
-                url: "/:locale/products/",
-                templateUrl: '/app/Aisel/Product/views/product.html',
-                controller: 'ProductCtrl'
-            })
-            .state("productView", {
-                url: "/:locale/product/view/:productId/",
-                templateUrl: '/app/Aisel/Product/views/product-detail.html',
-                controller: 'ProductDetailCtrl'
-            })
-            .state("productCategories", {
-                url: "/:locale/product/categories/",
-                templateUrl: '/app/Aisel/Product/views/category.html',
-                controller: 'ProductCategoryCtrl'
-            })
-            .state("productCategoryView", {
-                url: "/:locale/product/category/:categoryId/",
-                templateUrl: '/app/Aisel/Product/views/category-detail.html',
-                controller: 'ProductCategoryDetailCtrl'
-            });
-    }]);
 });

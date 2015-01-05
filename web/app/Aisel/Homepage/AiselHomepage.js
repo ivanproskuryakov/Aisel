@@ -9,17 +9,13 @@
  * file that was distributed with this source code.
  *
  * @name            AiselHomepage
- * @description     homepage module configuration
+ * @description     Homepage module
  */
 
-define(['app','./controllers/homepage'], function (app) {
+define([
+    'app',
+    './config/homepage',
+    './controllers/homepage'
+], function (app) {
     console.log('Homepage module loaded ...');
-    app.config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-            .state("homepage", {
-                url: "/:locale/",
-                templateUrl: '/app/Aisel/Homepage/views/homepage.html',
-                controller: 'HomepageCtrl'
-            });
-    }]);
 });

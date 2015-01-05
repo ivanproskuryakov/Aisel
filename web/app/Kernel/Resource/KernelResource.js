@@ -13,18 +13,11 @@
  */
 
 define(['app',
+    './config/resource',
     './services/settings',
     './services/init',
     './filters/main'
 ], function (app) {
     console.log('----------- Kernel Loaded! -----------');
-    app.config(['$provide', '$urlRouterProvider',
-        function ($provide, $urlRouterProvider) {
-            $urlRouterProvider.otherwise(function ($injector, $location) {
-                var Environment = $injector.get('Environment');
-                console.log('Fallback to primary locale');
-                $location.path('/' + Environment.settings.locale.primary + '/');
-            });
-        }]);
 });
 
