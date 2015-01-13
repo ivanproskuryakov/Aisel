@@ -13,6 +13,7 @@
  */
 
 define(['app',
+    './config/user',
     './controllers/user',
     './services/auth',
     './services/user/category',
