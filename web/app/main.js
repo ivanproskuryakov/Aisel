@@ -44,7 +44,6 @@ require.config({
         'angular-ui-router': ['angular'],
         'angular' : {'exports' : 'angular', deps: ['jQuery']},
         'jQuery': {'exports' : 'jQuery'},
-        "jquery": ["angular"],
         "domReady": ["angular"],
         "angular-resource": ["angular"],
         "textAngular": ["angular"],

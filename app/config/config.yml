@@ -3,6 +3,8 @@ imports:
     - { resource: security.yml }
     - { resource: twig.yml }
     - { resource: aisel.yml }
+    - { resource: configs/payum.yml }
+    - { resource: configs/sonata.yml }
 
 framework:
     #esi:             ~
@@ -69,6 +71,7 @@ doctrine:
         # path:     "%database_path%"
 #        types:
 #            json: Sonata\Doctrine\Types\JsonType
+
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         entity_managers:
@@ -81,6 +84,15 @@ doctrine:
                         dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
                         alias: GedmoTree # this one is optional and will default to the name set for the mapping
                         is_bundle: false
+                    payum:
+                        is_bundle: false
+                        type: xml
+                        dir: %kernel.root_dir%/../vendor/payum/core/Payum/Core/Bridge/Doctrine/Resources/mapping
+
+                        # set this dir instead if you use `payum/payum` library
+                        #dir: %kernel.root_dir%/../vendor/payum/payum/src/Payum/Core/Bridge/Doctrine/Resources/mapping
+
+                        prefix: Payum\Core\Model
 
 stof_doctrine_extensions:
     default_locale: en_US
@@ -104,49 +116,6 @@ jms_serializer:
 fos_rest:
     view:
         view_response_listener: 'force'
-
-# Sonata section
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        sonata.admin.block.admin_list:
-            contexts:   [admin]
-        sonata.admin.block.search_result:
-            contexts:   [admin]
-        #...
-        sonata.user.block.menu:    # used to display the menu in profile pages
-        sonata.user.block.account: # used to display menu option (login option)
-        sonata.block.service.text:
-
-sonata_admin:
-    title:  Backend
-    templates:
-        #Base layout
-        layout:              AiselAdminBundle::layout.html.twig
-        search:              SonataAdminBundle:Core:search.html.twig
-        search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
-
-        #CRUD
-        list:                AiselAdminBundle:CRUD:list.html.twig
-        show:                AiselAdminBundle:CRUD:show.html.twig
-        edit:                AiselAdminBundle:CRUD:edit.html.twig
-
-        #Dashboard
-        dashboard:           AiselAdminBundle:Core:dashboard.html.twig
-        list_block:          AiselAdminBundle:Block:block_admin_list.html.twig
-        add_block:           AiselAdminBundle:Core:add_block.html.twig
-    options:
-        title_mode: "single_text"
-        html5_validate: true # does not use html5 validation
-        confirm_exit:   true # disable confirmation when quitting with unsaved changes
-
-
-sonata_doctrine_orm_admin:
-    entity_manager: ~
-    templates:
-        types:
-            show:
-                tree: AiselAdminBundle:Form:tree.html.twig
 
 iphp_file_store:
     mappings:

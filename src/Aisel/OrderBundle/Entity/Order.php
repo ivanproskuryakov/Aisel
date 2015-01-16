@@ -3,11 +3,11 @@
 namespace Aisel\OrderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Payum\Core\Model\Order as BaseOrder;
 /**
  * Order
  */
-class Order
+class Order extends BaseOrder
 {
     /**
      * @var integer

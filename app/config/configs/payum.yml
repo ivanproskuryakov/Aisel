@@ -1,0 +1,11 @@
+payum:
+    security:
+        token_storage:
+            Aisel\OrderBundle\Entity\PaymentToken: { doctrine: orm }
+
+    storages:
+        Aisel\OrderBundle\Entity\Order: { doctrine: orm }
+
+    contexts:
+        offline:
+            offline: ~

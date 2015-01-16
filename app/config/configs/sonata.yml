@@ -1,0 +1,41 @@
+# Sonata section
+sonata_doctrine_orm_admin:
+    entity_manager: ~
+    templates:
+        types:
+            show:
+                tree: AiselAdminBundle:Form:tree.html.twig
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        sonata.admin.block.search_result:
+            contexts:   [admin]
+        #...
+        sonata.user.block.menu:    # used to display the menu in profile pages
+        sonata.user.block.account: # used to display menu option (login option)
+        sonata.block.service.text:
+
+sonata_admin:
+    title:  Backend
+    templates:
+        #Base layout
+        layout:              AiselAdminBundle::layout.html.twig
+        search:              SonataAdminBundle:Core:search.html.twig
+        search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
+
+        #CRUD
+        list:                AiselAdminBundle:CRUD:list.html.twig
+        show:                AiselAdminBundle:CRUD:show.html.twig
+        edit:                AiselAdminBundle:CRUD:edit.html.twig
+
+        #Dashboard
+        dashboard:           AiselAdminBundle:Core:dashboard.html.twig
+        list_block:          AiselAdminBundle:Block:block_admin_list.html.twig
+        add_block:           AiselAdminBundle:Core:add_block.html.twig
+    options:
+        title_mode: "single_text"
+        html5_validate: true # does not use html5 validation
+        confirm_exit:   true # disable confirmation when quitting with unsaved changes

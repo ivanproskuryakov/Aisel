@@ -86,8 +86,16 @@ class OrderManager
     public function createOrderFromCart($user, $locale)
     {
         if (!($user)) throw new NotFoundHttpException('User object is missing');
-
         $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderFromCartForUser($user, $locale);
+
+        $paymentName = 'offline';
+        $captureToken = $this->sc->get('payum.security.token_factory')->createCaptureToken(
+            $paymentName,
+            $order,
+            'aisel_payum_order'
+        );
+//        $captureToken->getTargetUrl();
+
         return $order;
     }
 

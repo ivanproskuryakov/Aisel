@@ -23,11 +23,11 @@ class OrderRepository extends EntityRepository
      */
     public function createOrderFromCartForUser($user, $locale)
     {
-        $order = $this->createOrder($user, $locale);
-
+        $order = $this->createEmptyOrder($user, $locale);
         // Set product items and remove from cart
         $em = $this->getEntityManager();
         $total = 0;
+
         foreach ($user->getCart() as $item) {
             $total = $total + ($item->getProduct()->getPrice() * $item->getQty());
             $orderItem = new OrderItem();
@@ -46,6 +46,7 @@ class OrderRepository extends EntityRepository
         }
 
         // Set totals
+        $order->setTotalAmount($total);
         $order->setSubtotal($total);
         $order->setGrandtotal($total);
         $em->persist($order);
@@ -65,11 +66,11 @@ class OrderRepository extends EntityRepository
      */
     public function createOrderFromProductsForUser($user, $locale, $products)
     {
-        $order = $this->createOrder($user, $locale);
-
+        $order = $this->createEmptyOrder($user, $locale);
         // Set product items
         $em = $this->getEntityManager();
         $total = 0;
+
         foreach ($products as $product) {
             $total = $total + ($product->getPrice() * 1);
             $orderItem = new OrderItem();
@@ -83,6 +84,7 @@ class OrderRepository extends EntityRepository
             $em->persist($orderItem);
             $em->flush();
         }
+
         // Set totals
         $order->setSubtotal($total);
         $order->setGrandtotal($total);
@@ -99,14 +101,16 @@ class OrderRepository extends EntityRepository
      *
      * @return \Aisel\OrderBundle\Entity\Order $order|false
      */
-    public function createOrder($user, $locale)
+    public function createEmptyOrder($user, $locale)
     {
-        // Create order
         $em = $this->getEntityManager();
         $order = new Order();
         $order->setLocale($locale);
         $order->setFrontenduser($user);
+        $order->setClientId($user->getId());
+        $order->setClientEmail($user->getEmail());
         $order->setStatus('new');
+        $order->setDetails('...');
         $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $em->persist($order);
