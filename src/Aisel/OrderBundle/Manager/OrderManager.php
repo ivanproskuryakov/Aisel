@@ -12,6 +12,8 @@
 namespace Aisel\OrderBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Payum\Core\Request\GetHumanStatus;
+use Payum\Core\Request\Capture;
 
 /**
  * Manager for Orders, mostly used in REST API
@@ -89,12 +91,15 @@ class OrderManager
         $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderFromCartForUser($user, $locale);
 
         $paymentName = 'offline';
-        $captureToken = $this->sc->get('payum.security.token_factory')->createCaptureToken(
+        $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
             $paymentName,
             $order,
             'aisel_payum_order'
         );
-//        $captureToken->getTargetUrl();
+        $token->getTargetUrl();
+//
+//        $payment = $this->sc->get('payum')->getPayment('offline');
+//        $payment->execute(new Capture($order));
 
         return $order;
     }

@@ -46,8 +46,8 @@
         "presta/sonata-navigation-bundle": "1.0.*@dev",
         "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
         "iphp/filestore-bundle": "dev-master",
-        "payum/payum-bundle": "0.13.*",
-        "payum/offline": "0.13.*",
+        "payum/payum-bundle": "0.13.*@dev",
+        "payum/payum": "0.13.*@dev",
 
         "behat/behat": "~3.0.7",
         "behat/symfony2-extension": "~2.0@dev",

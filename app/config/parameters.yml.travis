@@ -13,6 +13,9 @@ parameters:
     website_address: http://ecommerce.aisel.dev
     locale: en
     locales: en|es|ru
+    paypal.express_checkout.username:  EDIT ME
+    paypal.express_checkout.password:  EDIT ME
+    paypal.express_checkout.signature: EDIT ME
     secret: SecretTokenAisel
 
     #   Note:

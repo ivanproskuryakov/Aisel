@@ -9,3 +9,10 @@ payum:
     contexts:
         offline:
             offline: ~
+
+        paypal_express_checkout_nvp:
+            paypal_express_checkout_nvp:
+                username:  %paypal.express_checkout.username%
+                password:  %paypal.express_checkout.password%
+                signature: %paypal.express_checkout.signature%
+                sandbox: true
