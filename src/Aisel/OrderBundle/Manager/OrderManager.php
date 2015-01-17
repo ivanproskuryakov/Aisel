@@ -24,24 +24,27 @@ class OrderManager
 {
     protected $sc;
     protected $em;
-    protected $userManager;
+    protected $currency;
 
     /**
      * {@inheritDoc}
      */
-    public function __construct($serviceContainer, $entityManager, $frontendUserManager)
+    public function __construct($serviceContainer,
+                                $entityManager,
+                                $frontendUserManager,
+                                $currency)
     {
         $this->sc = $serviceContainer;
         $this->em = $entityManager;
-        $this->userManager = $frontendUserManager;
+        $this->currency = $currency;
     }
 
     /**
-     * User manager
+     * Wrapper to get currency symbol from parameters
      */
-    private function getUserManager()
+    private function getCurrencyCode()
     {
-        return $this->userManager;
+        return $this->currency;
     }
 
     /**
@@ -89,7 +92,14 @@ class OrderManager
     public function createOrderFromCart($user, $locale, $paymentName)
     {
         if (!($user)) throw new NotFoundHttpException('User object is missing');
-        $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderFromCartForUser($user, $locale);
+        $order = $this
+            ->em
+            ->getRepository('AiselOrderBundle:Order')
+            ->createOrderFromCartForUser(
+                $user,
+                $locale,
+                $this->getCurrencyCode()
+            );
 
         $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
             $paymentName,
@@ -105,7 +115,7 @@ class OrderManager
     }
 
     /**
-     * Create order for given userId
+     * Create order for user
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param string $locale
@@ -120,7 +130,15 @@ class OrderManager
     {
         if (!($user)) throw new NotFoundHttpException('User object is missing');
 
-        $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderFromProductsForUser($user, $locale, $products);
+        $order = $this
+            ->em
+            ->getRepository('AiselOrderBundle:Order')
+            ->createOrderFromProductsForUser(
+                $user,
+                $locale,
+                $products,
+                $this->getCurrencyCode()
+            );
         return $order;
     }
 

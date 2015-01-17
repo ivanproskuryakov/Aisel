@@ -2,7 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: twig.yml }
-    - { resource: aisel.yml }
+    - { resource: configs/aisel.yml }
     - { resource: configs/payum.yml }
     - { resource: configs/sonata.yml }
 

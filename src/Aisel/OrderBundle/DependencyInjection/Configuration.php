@@ -27,11 +27,17 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('aisel_order');
+        $rootNode = $treeBuilder->root('aisel_config');
+        $rootNode
+            ->children()
+            ->arrayNode('contexts')
+            ->requiresAtLeastOneElement()
+            ->useAttributeAsKey('name')
+            ->prototype('array')
+            ->children()
+            ->scalarNode('title')->end()
+            ->end();
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
         return $treeBuilder;
     }
 }

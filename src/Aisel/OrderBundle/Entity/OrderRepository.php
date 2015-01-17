@@ -18,12 +18,13 @@ class OrderRepository extends EntityRepository
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param string $locale
+     * @param string $currencyCode
      *
      * @return \Aisel\OrderBundle\Entity\Order $order|false
      */
-    public function createOrderFromCartForUser($user, $locale)
+    public function createOrderFromCartForUser($user, $locale, $currencyCode)
     {
-        $order = $this->createEmptyOrder($user, $locale);
+        $order = $this->createEmptyOrder($user, $locale, $currencyCode);
         // Set product items and remove from cart
         $em = $this->getEntityManager();
         $total = 0;
@@ -61,12 +62,13 @@ class OrderRepository extends EntityRepository
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param string $locale
      * @param array $products
+     * @param string $currencyCode
      *
      * @return \Aisel\OrderBundle\Entity\Order $order|false
      */
-    public function createOrderFromProductsForUser($user, $locale, $products)
+    public function createOrderFromProductsForUser($user, $locale, $products, $currencyCode)
     {
-        $order = $this->createEmptyOrder($user, $locale);
+        $order = $this->createEmptyOrder($user, $locale, $currencyCode);
         // Set product items
         $em = $this->getEntityManager();
         $total = 0;
@@ -98,10 +100,11 @@ class OrderRepository extends EntityRepository
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param string $locale
+     * @param string $currencyCode
      *
      * @return \Aisel\OrderBundle\Entity\Order $order|false
      */
-    public function createEmptyOrder($user, $locale)
+    public function createEmptyOrder($user, $locale, $currencyCode)
     {
         $em = $this->getEntityManager();
         $order = new Order();
@@ -110,7 +113,8 @@ class OrderRepository extends EntityRepository
         $order->setClientId($user->getId());
         $order->setClientEmail($user->getEmail());
         $order->setStatus('new');
-        $order->setDetails('...');
+        $order->setDetails('');
+        $order->setCurrencyCode('...');
         $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $em->persist($order);

@@ -31,3 +31,10 @@ aisel_config:
 
 aisel_fixture:
     xml_path: /fixtures/xml
+
+aisel_order:
+    contexts:
+        offline:
+            title: "Offline Payment"
+        paypal_express_checkout_nvp:
+            title: "Paypal Express Checkout"
