@@ -33,7 +33,7 @@ aisel_fixture:
     xml_path: /fixtures/xml
 
 aisel_order:
-    contexts:
+    payment_methods:
         offline:
             title: "Offline Payment"
         paypal_express_checkout_nvp:

@@ -14,7 +14,7 @@ namespace Aisel\OrderBundle\Manager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Wrapper for PayumBundle
+ * Wrapper for PayumBundle | Empty
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

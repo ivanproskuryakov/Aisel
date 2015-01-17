@@ -30,8 +30,7 @@ class AiselOrderExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-        $container->setParameter('aisel_order.contexts', $config['contexts']);
-
+        $container->setParameter('aisel_order.payment_methods', $config['payment_methods']);
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
     }

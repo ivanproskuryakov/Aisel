@@ -43,8 +43,9 @@ class PayumController extends Controller
      */
     public function orderAction()
     {
-        $availablePayments = $this->get('aisel_order.contexts');
-        var_dump($availablePayments);
+        // @TODO: Refactor
+        $payentMethods = $this->container->getParameter('aisel_order.payment_methods');
+        var_dump($payentMethods);
         exit();
         return null;
     }

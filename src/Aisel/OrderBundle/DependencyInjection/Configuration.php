@@ -27,10 +27,10 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('aisel_config');
+        $rootNode = $treeBuilder->root('aisel_order');
         $rootNode
             ->children()
-            ->arrayNode('contexts')
+            ->arrayNode('payment_methods')
             ->requiresAtLeastOneElement()
             ->useAttributeAsKey('name')
             ->prototype('array')
