@@ -73,8 +73,9 @@ class ApiOrderController extends Controller
      */
     public function orderSubmitAction($locale)
     {
+        $paymentName = 'offline';
         $user = $this->getUserManager()->getUser();
-        $order = $this->getOrderManager()->createOrderFromCart($user, $locale);
+        $order = $this->getOrderManager()->createOrderFromCart($user, $locale, $paymentName);
 
         if ($order) {
             $response = array('status' => true, 'order' => $order, 'message' => 'Your order received, thank you!');

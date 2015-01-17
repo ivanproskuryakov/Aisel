@@ -80,17 +80,17 @@ class OrderManager
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param string $locale
+     * @param string $paymentName
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      *
      * @throws NotFoundHttpException
      */
-    public function createOrderFromCart($user, $locale)
+    public function createOrderFromCart($user, $locale, $paymentName)
     {
         if (!($user)) throw new NotFoundHttpException('User object is missing');
         $order = $this->em->getRepository('AiselOrderBundle:Order')->createOrderFromCartForUser($user, $locale);
 
-        $paymentName = 'offline';
         $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
             $paymentName,
             $order,
@@ -110,12 +110,13 @@ class OrderManager
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param string $locale
      * @param array $products
+     * @param array $paymentName
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      *
      * @throws NotFoundHttpException
      */
-    public function createOrderFromProducts($user, $locale, $products)
+    public function createOrderFromProducts($user, $locale, $products, $paymentName)
     {
         if (!($user)) throw new NotFoundHttpException('User object is missing');
 

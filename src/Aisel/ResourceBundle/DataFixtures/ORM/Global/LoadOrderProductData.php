@@ -46,14 +46,22 @@ class LoadOrderProductData extends XMLFixture implements OrderedFixtureInterface
 
                 foreach ($XML->database->table as $table) {
                     $locale = $table->column[1];
-                    $frontendUser = $this->getReference('frontenduser_' . $table->column[2]);
-                    $productIds = explode(",", (string)$table->column[3]);
+                    $paymentName = (string)$table->column[2];
+                    $frontendUser = $this->getReference('frontenduser_' . $table->column[3]);
+                    $productIds = explode(",", (string)$table->column[4]);
                     $products = array();
 
                     foreach ($productIds as $id) {
                         $products[] = $this->getReference('product_' . $id);
                     }
-                    $order = $this->getOrderManager()->createOrderFromProducts($frontendUser, (string)$locale, $products);
+                    $order = $this
+                        ->getOrderManager()
+                        ->createOrderFromProducts(
+                            $frontendUser,
+                            (string)$locale,
+                            $products,
+                            (string)$paymentName
+                        );
                     $this->addReference('order_' . $table->column[0], $order);
                 }
             }
