@@ -15,7 +15,8 @@
                 </div>
                 <div class="col-md-2">
                     <div class="col-md-8">
-                        <input type="number" class="form-control" ng-model="item.qty" ng-change="updateProductQty(item)">
+                        <input type="number" class="form-control" ng-model="item.qty"
+                               ng-change="updateProductQty(item)">
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -28,29 +29,45 @@
                         {{item.product.price*item.qty}} {{currency}}
                     </div>
                 </div>
+
                 <div class="col-md-12">
                     <hr>
                 </div>
             </div>
-
             <!-- Totals and Submit Order button-->
             <div class="row">
                 <div class="col-md-12">
+                    <div class="col-md-3">
+                    </div>
                     <div class="col-md-6">
+                        <div class="col-md-12 page-header">
+                            <h2>Checkout</h2>
+                        </div>
+                        <div class="col-md-12">
+                            <p><strong>Select Payment Method</strong></p>
+                            <span class="pull-left">
+                                <div class="checkoutPaymentMethod" ng-repeat="payment in paymentMethods">
+                                    <input type="radio" name="checkout[payment]" value="{{payment}}"> {{payment}}
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="pull-right">
+                                <strong>Total</strong>: {{total()}} {{currency}}
+                            </span>
+                        </div>
+                        <div class="col-md-12" style="margin-top:20px;;">
+                            <a type="button"
+                               ng-click="orderSubmit()"
+                               ng-disabled="isDisabled"
+                               class="pull-right btn btn-success btn-lg">Place Order</a>
+                        </div>
                     </div>
                     <div class="col-md-3">
-                        <span class="pull-right">
-                            <strong>Total</strong>: {{total()}} {{currency}}
-                        </span>
-                    </div>
-                    <div class="col-md-3">
-                        <a type="button"
-                           ng-click="orderSubmit()"
-                           ng-disabled="isDisabled"
-                           class="pull-right btn btn-success btn-lg">Place Order</a>
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="empty-cart-content" ng-if="cartItems.length == 0">
             <span>You have 0 items in your cart</span>

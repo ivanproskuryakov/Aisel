@@ -47,6 +47,7 @@ define(['app'], function (app) {
                                 $rootScope.disqusShortname = disqus.shortname;
                                 $rootScope.disqusStatus = disqus.status;
                                 $rootScope.currency = general.currency;
+                                $rootScope.paymentMethods = general.paymentMethods;
 
                                 console.log('----------- Aisel Loaded! -----------');
                                 var setLocale = function () {
