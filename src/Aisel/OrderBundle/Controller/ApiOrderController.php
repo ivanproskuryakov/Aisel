@@ -39,7 +39,7 @@ class ApiOrderController extends Controller
     }
 
     /**
-     * /%website_api%/order/list.json
+     * /%website_api%/orders.json
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
