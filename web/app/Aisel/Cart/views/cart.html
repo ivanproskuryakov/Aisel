@@ -1,5 +1,14 @@
 <div class="col-md-12 page-header">
-    <h2><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</h2>
+    <span class="pull-left">
+        <h2><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</h2>
+    </span>
+    <span class="pull-right" style="margin-top: 15px">
+         <a type="button"
+            ui-sref="checkout({locale: locale})"
+            ng-disabled="isDisabled"
+            class="pull-right btn btn-warning btn-lg">Place Order</a>
+    </span>
+    </div>
 </div>
 <div class="col-md-12">
     <div class="" ng-if="user">
@@ -37,33 +46,12 @@
             <!-- Totals and Submit Order button-->
             <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                     </div>
                     <div class="col-md-6">
-                        <div class="col-md-12 page-header">
-                            <h2>Checkout</h2>
-                        </div>
-                        <div class="col-md-12">
-                            <p><strong>Select Payment Method</strong></p>
-                            <span class="pull-left">
-                                <div class="checkoutPaymentMethod" ng-repeat="payment in paymentMethods">
-                                    <input type="radio" name="checkout[payment]" value="{{payment}}"> {{payment}}
-                                </div>
-                            </span>
-                        </div>
-                        <div class="col-md-12">
-                            <span class="pull-right">
-                                <strong>Total</strong>: {{total()}} {{currency}}
-                            </span>
-                        </div>
-                        <div class="col-md-12" style="margin-top:20px;;">
-                            <a type="button"
-                               ng-click="orderSubmit()"
-                               ng-disabled="isDisabled"
-                               class="pull-right btn btn-success btn-lg">Place Order</a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
+                        <span class="pull-right">
+                            <strong>Total: {{total()}} {{currency}}</strong>
+                        </span>
                     </div>
                 </div>
             </div>

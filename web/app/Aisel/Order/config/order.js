@@ -24,6 +24,14 @@ define(['app'], function (app) {
                     role: 'user'
                 }
             })
+            .state("checkout", {
+                url: "/:locale/checkout/",
+                templateUrl: '/app/Aisel/Order/views/checkout.html',
+                controller: 'CheckoutCtrl',
+                data: {
+                    role: 'user'
+                }
+            })
             .state("viewOrder", {
                 url: "/:locale/user/order/view/:orderId/",
                 templateUrl: '/app/Aisel/Order/views/order-detail.html',
