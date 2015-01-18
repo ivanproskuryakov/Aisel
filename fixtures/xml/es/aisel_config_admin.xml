@@ -37,7 +37,7 @@
             <column name="id">185</column>
             <column name="locale">es</column>
             <column name="entity">config_general</column>
-            <column name="value">{"currency":"EUR"}</column>
+            <column name="value">{"currency":"EUR","paymentMethods":["offline","paypal_express_checkout_nvp"]}</column>
         </table>
     </database>
 </pma_xml_export>

@@ -28,3 +28,9 @@ api_aisel_checkout_paymentslist:
     defaults: { _controller: AiselOrderBundle:ApiCheckout:paymentMethods, _format: json }
     requirements:
         _method: GET
+
+aisel_payum_order:
+    pattern:  /payum/
+    defaults: { _controller: AiselOrderBundle:Payum:order, _format: json }
+    requirements:
+        _method: GET
