@@ -27,7 +27,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('aisel_admin');
+        $treeBuilder->root('aisel_settings');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

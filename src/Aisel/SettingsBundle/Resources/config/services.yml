@@ -15,3 +15,11 @@ services:
             - @doctrine.orm.entity_manager
             - "%locale%"
             - "%locales%"
+
+    aisel.settings.form.general:
+        class: Aisel\SettingsBundle\Form\Type\ConfigGeneralType
+        arguments:
+            -
+              payment_methods: "%aisel_order.payment_methods%"
+        tags:
+            - { name: form.type, alias: aisel_settings_general }

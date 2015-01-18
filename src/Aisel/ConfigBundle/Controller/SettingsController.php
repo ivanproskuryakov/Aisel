@@ -22,6 +22,7 @@ class SettingsController extends Controller
 {
 
     protected $form = null;
+    protected $formService = null;
     protected $locales = null;
     protected $template = 'AiselConfigBundle:Settings:modify.html.twig';
     protected $templateVariables = array();
@@ -34,11 +35,17 @@ class SettingsController extends Controller
      */
     public function modifyAction()
     {
+        if ($this->formService) $formType = $this->get('aisel.settings.form.general');
+        if ($this->form) $formType = new $this->form;
+
         $request = $this->get('request');
         $routeId = $request->get('_route');
         $editLocale = $request->get('editLocale');
         $config = $this->getRepository()->getConfig($editLocale, $routeId);
-        $form = $this->createForm(new $this->form, $this->getManager()->prepare($config));
+        $form = $this->createForm(
+            $formType,
+            $this->getManager()->prepare($config)
+        );
 
         if ($request->getMethod() === 'POST') {
             $form->bind($request);

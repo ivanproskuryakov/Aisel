@@ -13,6 +13,15 @@ use Symfony\Component\Form\FormBuilderInterface;
 class ConfigGeneralType extends AbstractType
 {
 
+    public $paymentMethods;
+
+    public function __construct($options)
+    {
+        foreach ($options['payment_methods'] as $k => $v) {
+            $this->paymentMethods[$k] = $v['title'];
+        }
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -22,6 +31,11 @@ class ConfigGeneralType extends AbstractType
             ->add('currency', 'text',
                 array('label' => 'Currency label',
                     'attr' => array('class' => 'form-control'))
+            )
+            ->add('paymentMethods', 'choice', array(
+                    'choices' => $this->paymentMethods,
+                    'multiple' => true,
+                )
             )
             ->add('save', 'submit',
                 array('label' => 'Save',

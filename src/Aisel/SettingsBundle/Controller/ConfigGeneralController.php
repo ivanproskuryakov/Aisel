@@ -12,7 +12,7 @@ use Aisel\ConfigBundle\Controller\SettingsController;
 class ConfigGeneralController extends SettingsController
 {
 
-    public $form = "\Aisel\SettingsBundle\Form\Type\ConfigGeneralType";
+    public $formService = "aisel.settings.form.general";
 
     /**
      * {@inheritdoc }
