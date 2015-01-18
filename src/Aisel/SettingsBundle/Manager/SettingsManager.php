@@ -55,4 +55,24 @@ class SettingsManager
         return $config;
     }
 
+    /**
+     * Get all setting
+     *
+     * @param string $entity
+     * @param string $locale
+     *
+     * @return array $config
+     *
+     * @throws NotFoundHttpException
+     */
+    public function getConfigForEntity($locale = null, $entity)
+    {
+        $config = $this->em
+            ->getRepository('AiselConfigBundle:Config')
+            ->getConfig($locale, $entity);
+        $value = (array)json_decode($config->getValue());
+
+        return $value;
+    }
+
 }

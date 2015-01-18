@@ -57,6 +57,6 @@ class LoadContactConfigData extends XMLFixture implements OrderedFixtureInterfac
      */
     public function getOrder()
     {
-        return 900;
+        return 20;
     }
 }

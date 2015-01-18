@@ -69,7 +69,6 @@ class OrderRepository extends EntityRepository
     public function createOrderFromProductsForUser($user, $locale, $products, $currencyCode)
     {
         $order = $this->createEmptyOrder($user, $locale, $currencyCode);
-        // Set product items
         $em = $this->getEntityManager();
         $total = 0;
 
@@ -86,12 +85,13 @@ class OrderRepository extends EntityRepository
             $em->persist($orderItem);
             $em->flush();
         }
-
         // Set totals
+        $order->setTotalAmount($total);
         $order->setSubtotal($total);
         $order->setGrandtotal($total);
         $em->persist($order);
         $em->flush();
+
         return $order;
     }
 
@@ -114,7 +114,7 @@ class OrderRepository extends EntityRepository
         $order->setClientEmail($user->getEmail());
         $order->setStatus('new');
         $order->setDetails('');
-        $order->setCurrencyCode('...');
+        $order->setCurrencyCode($currencyCode);
         $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $em->persist($order);
@@ -139,6 +139,7 @@ class OrderRepository extends EntityRepository
             ->orderBy('o.id', 'DESC')
             ->getQuery()
             ->execute();
+
         return $orders;
     }
 
@@ -159,6 +160,7 @@ class OrderRepository extends EntityRepository
             ->andWhere('o.id = :orderId')->setParameter('orderId', $orderId)
             ->getQuery()
             ->execute();
+
         return $orders;
     }
 

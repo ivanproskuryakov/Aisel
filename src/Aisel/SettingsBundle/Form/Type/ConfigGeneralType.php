@@ -19,8 +19,14 @@ class ConfigGeneralType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('currency', 'text', array('label' => 'Currency label', 'attr' => array('class' => 'form-control')))
-            ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')));
+            ->add('currency', 'text',
+                array('label' => 'Currency label',
+                    'attr' => array('class' => 'form-control'))
+            )
+            ->add('save', 'submit',
+                array('label' => 'Save',
+                    'attr' => array('class' => 'btn btn-primary'))
+            );
     }
 
     /**

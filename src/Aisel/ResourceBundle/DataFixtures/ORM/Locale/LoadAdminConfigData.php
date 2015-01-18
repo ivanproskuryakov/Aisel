@@ -58,6 +58,6 @@ class LoadAdminConfigData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 900;
+        return 10;
     }
 }

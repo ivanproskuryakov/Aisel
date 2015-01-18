@@ -24,27 +24,34 @@ class OrderManager
 {
     protected $sc;
     protected $em;
-    protected $currency;
+    protected $settingsManager;
 
     /**
      * {@inheritDoc}
      */
     public function __construct($serviceContainer,
                                 $entityManager,
-                                $frontendUserManager,
-                                $currency)
+                                $settingsManager)
     {
         $this->sc = $serviceContainer;
         $this->em = $entityManager;
-        $this->currency = $currency;
+        $this->settingsManager = $settingsManager;
     }
 
     /**
-     * Wrapper to get currency symbol from parameters
+     * Currency code from the system settings
+     *
+     * @param string $locale
+     *
+     * @return string $currency
      */
-    private function getCurrencyCode()
+    private function getCurrencyCode($locale)
     {
-        return $this->currency;
+        $config = $this
+            ->settingsManager
+            ->getConfigForEntity($locale, 'config_general');
+
+        return $config['currency'];
     }
 
     /**
@@ -57,7 +64,10 @@ class OrderManager
      */
     public function getUserOrder($user, $orderId)
     {
-        $order = $this->em->getRepository('AiselOrderBundle:Order')->findOrderForUser($user, $orderId);
+        $order = $this->em
+            ->getRepository('AiselOrderBundle:Order')
+            ->findOrderForUser($user, $orderId);
+
         return $order;
     }
 
@@ -74,7 +84,10 @@ class OrderManager
     {
         if (!($user)) throw new NotFoundHttpException('User object is missing');
 
-        $orders = $this->em->getRepository('AiselOrderBundle:Order')->findAllOrdersForUser($user);
+        $orders = $this->em
+            ->getRepository('AiselOrderBundle:Order')
+            ->findAllOrdersForUser($user);
+
         return $orders;
     }
 
@@ -92,22 +105,19 @@ class OrderManager
     public function createOrderFromCart($user, $locale, $paymentName)
     {
         if (!($user)) throw new NotFoundHttpException('User object is missing');
-        $order = $this
-            ->em
+        $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromCartForUser(
                 $user,
                 $locale,
-                $this->getCurrencyCode()
+                $this->getCurrencyCode($locale)
             );
-
         $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
             $paymentName,
             $order,
             'aisel_payum_order'
         );
         $token->getTargetUrl();
-//
 //        $payment = $this->sc->get('payum')->getPayment('offline');
 //        $payment->execute(new Capture($order));
 
@@ -137,7 +147,7 @@ class OrderManager
                 $user,
                 $locale,
                 $products,
-                $this->getCurrencyCode()
+                $this->getCurrencyCode($locale)
             );
         return $order;
     }

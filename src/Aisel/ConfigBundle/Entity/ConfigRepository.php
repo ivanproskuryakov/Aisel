@@ -47,21 +47,21 @@ class ConfigRepository extends EntityRepository
     /**
      * Get config data for current entity & locale
      *
-     * @param $editLocale
-     * @param $entity
+     * @param string $locale
+     * @param string $entityName
      *
      * @return array $entity
      */
-    public function getConfig($editLocale, $entity)
+    public function getConfig($locale, $entityName)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
-
         $entity = $qb->select('c')
             ->from('AiselConfigBundle:Config', 'c')
-            ->where('c.locale = :locale')->setParameter('locale', $editLocale)
-            ->andWhere('c.entity = :entity')->setParameter('entity', $entity)
+            ->where('c.locale = :locale')->setParameter('locale', $locale)
+            ->andWhere('c.entity = :entity')->setParameter('entity', $entityName)
             ->getQuery()
             ->getOneOrNullResult();
+
 
         return $entity;
     }
@@ -69,7 +69,7 @@ class ConfigRepository extends EntityRepository
     /**
      * Set config data for current entity & locale
      *
-     * @param sting $editLocale
+     * @param sting $locale
      * @param sting $entity
      * @param sting $value
      *
@@ -77,16 +77,16 @@ class ConfigRepository extends EntityRepository
      *
      * @throws \RuntimeException
      */
-    public function setConfig($editLocale, $entity, $value)
+    public function setConfig($locale, $entity, $value)
     {
-        $config = $this->getConfig($editLocale, $entity);
+        $config = $this->getConfig($locale, $entity);
 
         if (!$config) {
             $config = new Config();
         }
 
         try {
-            $config->setlocale($editLocale);
+            $config->setlocale($locale);
             $config->setEntity($entity);
             $config->setValue($value);
             $this->_em->persist($config);

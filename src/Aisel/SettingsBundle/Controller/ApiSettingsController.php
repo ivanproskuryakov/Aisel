@@ -30,7 +30,10 @@ class ApiSettingsController extends Controller
      */
     public function configAction($locale)
     {
-        $config = $this->container->get("aisel.settings.manager")->getConfig($locale);
+        $config = $this->container
+            ->get("aisel.settings.manager")
+            ->getConfig($locale);
+
         return $config;
     }
 
