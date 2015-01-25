@@ -29,11 +29,10 @@ define([
             'environment'
         ])
 
-        app.value('appSettings', [])
-            .run(['$http', '$rootScope', 'settingsService', 'initService',
-                function ($http, $rootScope, settingsService, initService) {
-                    initService.launch();
-                }])
+        app.run(['$http', '$rootScope', 'settingsService', 'initService',
+            function ($http, $rootScope, settingsService, initService) {
+                initService.launch();
+            }])
             .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
                 cfpLoadingBarProvider.includeSpinner = false
                 cfpLoadingBarProvider.includeBar = true;

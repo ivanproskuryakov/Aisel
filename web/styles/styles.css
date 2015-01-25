@@ -218,7 +218,7 @@ footer {
 }
 
 .website-footer {
-    padding: 40px 0;
+    padding: 10px 0;
     color: #999;
     text-align: center;
     background-color: #f8f8f8;
@@ -228,6 +228,8 @@ footer {
 
 .website-footer .availableLocales {
     float: right;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .website-footer .availableLocales .label-locale {
@@ -243,8 +245,19 @@ footer {
 
 .website-footer .availableLocales li {
     float: right;
-    margin-right: 5px;
+    margin-left: 5px;
     font-weight: bold;
+    text-transform: capitalize;
+}
+
+.website-footer .links {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 10px;
+}
+
+.website-footer .copyright {
+    float: right;
 }
 
 /***********

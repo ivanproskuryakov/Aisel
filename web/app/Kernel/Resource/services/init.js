@@ -17,16 +17,15 @@ define(['app'], function (app) {
     angular.module('app')
         .service('initService', ['$http', '$rootScope', 'settingsService',
             'authService', 'userService', 'pageCategoryService',
-            'productCategoryService', 'appSettings', 'Environment',
+            'productCategoryService', 'Environment',
             function ($http, $rootScope, settingsService,
                       authService, userService, pageCategoryService,
-                      productCategoryService, appSettings, Environment) {
+                      productCategoryService, Environment) {
                 return {
                     launch: function () {
                         var meta = false;
                         var disqus = false;
                         var general = false;
-                        var content = false;
 
                         // Load user status
                         userService.getUserInformation().success(
@@ -42,11 +41,10 @@ define(['app'], function (app) {
                         // Load settings data
                         settingsService.getApplicationConfig().success(
                             function (data, status) {
-                                appSettings = data.settings;
                                 general = JSON.parse(data.config_general);
                                 meta = JSON.parse(data.config_meta);
                                 disqus = JSON.parse(data.config_disqus);
-                                $rootScope.content = content;
+                                $rootScope.footer = JSON.parse(data.config_content).footerContent;
                                 $rootScope.disqusShortname = disqus.shortname;
                                 $rootScope.disqusStatus = disqus.status;
                                 $rootScope.currency = general.currency;
@@ -54,7 +52,7 @@ define(['app'], function (app) {
 
                                 console.log('----------- Aisel Loaded! -----------');
                                 var setLocale = function () {
-                                    $rootScope.availableLocales = appSettings.locale.available;
+                                    $rootScope.availableLocales = Environment.settings.locale.available;
                                     $rootScope.locale = Environment.currentLocale();
                                 }
                                 var setMetaData = function () {
