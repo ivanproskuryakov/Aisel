@@ -7,7 +7,7 @@ About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=mast
 [![License](https://poser.pugx.org/aisel/aisel/license.svg)](https://packagist.org/packages/aisel/aisel)
 <br/>
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
-Aisel is open-source CMS for highload projects based on combination of Symfony2, RESTAPI and AngularJS
+Aisel is open-source CMS for highload projects based on Symfony2 and AngularJS
 
 Project website: `http://aisel.co/`<br/>
 Demo frontend: `http://ecommerce.aisel.co/en/` [frontenduser/frontenduser]<br/>

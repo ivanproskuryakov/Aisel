@@ -250,7 +250,7 @@ footer {
     text-transform: capitalize;
 }
 
-.website-footer .links {
+.website-footer ul {
     list-style: none;
     margin-left: 0;
     padding-left: 10px;
