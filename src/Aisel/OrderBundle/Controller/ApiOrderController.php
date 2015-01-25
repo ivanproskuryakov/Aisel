@@ -76,19 +76,17 @@ class ApiOrderController extends Controller
         $paymentName = 'offline';
         $user = $this->getUserManager()->getUser();
         $order = $this->getOrderManager()->createOrderFromCart($user, $locale, $paymentName);
-
+        $response = array(
+            'status' => false,
+            'message' => 'Something went wrong during the order submit'
+        );
         if ($order) {
             $response = array(
                 'status' => true,
-                'order' => $order,
+                'orderId' => $order->getId(),
                 'message' => 'Your order received, thank you!'
             );
-        } else {
-            $response = array(
-                'status' => false,
-                'message' => 'Something went wrong during the order submit'
-            );
-        }
+        };
         return $response;
     }
 

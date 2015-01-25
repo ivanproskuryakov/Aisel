@@ -48,6 +48,7 @@
 body #loading-bar .bar {
     background: #657496;
 }
+
 body #loading-bar .peg {
     display: none;
 }
@@ -75,7 +76,7 @@ body .pagination > .active > span,
 body .pagination > .active > span:hover,
 body .pagination > .active > span:focus,
 body .panel-primary > .panel-heading,
-body .label-primary{
+body .label-primary {
     background-color: #657496;
     border-color: #657496;
 }
@@ -274,8 +275,8 @@ footer {
 }
 
 /***********
-    User pages
+    Checkout
 ************/
-.tab-content {
-    padding: 10px 10px;
+.checkout .form-group {
+    margin-bottom: 0;
 }

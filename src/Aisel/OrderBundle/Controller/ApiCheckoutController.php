@@ -43,7 +43,7 @@ class ApiCheckoutController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
-    public function paymentMethodsAction()
+    public function initAction()
     {
         $paymentMethods = $this->container->getParameter('aisel_order.payment_methods');
 

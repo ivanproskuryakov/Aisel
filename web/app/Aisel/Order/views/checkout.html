@@ -1,35 +1,65 @@
 <div class="col-md-12 page-header">
-<h2><span class ="glyphicon glyphicon-shopping-cart"></span>Checkout</h2>
+    <h2><span class="glyphicon glyphicon-shopping-cart"></span>Checkout</h2>
 </div>
-<div class="col-md-12">
+<div class="col-md-12 checkout">
     <div class="" ng-if="user">
         <div ng-if="cartItems.length > 0">
             <div class="row">
-                    <div class="col-md-3">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-6">
+                        <h4>Billing Address</h4>
+                        <br/>
+                        <div class="col-md-12" role="main">
+                            <form class="form-horizontal" name="registrationForm" role="form"
+                                  ng-submit="submitRegistration(registrationForm)">
+                                <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <input type="text" name="billing_country" class="form-control" id="country"
+                                           ng-model="password" ng-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="region">Region</label>
+                                    <input type="text" name="billing_region" class="form-control" id="region"
+                                           ng-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="region">City</label>
+                                    <input type="text" name="billing_city" class="form-control" id="city"
+                                           ng-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="zip">Zip code</label>
+                                    <input type="text" name="billing_phone" class="form-control" id="zip"
+                                           ng-required="true">
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="col-md-6">
+                        <h4>Payment Method</h4>
+                        <br/>
                         <div class="col-md-12">
-                            <p><strong>Select Payment Method</strong></p>
                             <span class="pull-left">
                                 <div class="checkoutPaymentMethod" ng-repeat="payment in paymentMethods">
                                     <input type="radio" name="checkout[payment]" value="{{payment}}"> {{payment}}
                                 </div>
                             </span>
                         </div>
-                        <div class="col-md-12">
-                            <span class="pull-right">
-                                <strong>Total</strong>: {{total()}} {{currency}}
-                            </span>
-                        </div>
-                        <div class="col-md-12" style="margin-top:20px;;">
+                        <div class="col-md-12" style="margin-top: 30px;">
+                            <p>
+                                <strong>Order Total</strong>: {{total()}} {{currency}}
+                            </p>
                             <a type="button"
                                ng-click="orderSubmit()"
                                ng-disabled="isDisabled"
-                               class="pull-right btn btn-success btn-lg">Place Order</a>
+                               class="btn btn-warning btn-lg">Place Order</a>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                    </div>
+                </div>
+                <div class="col-md-2">
+                </div>
             </div>
         </div>
         <div class="empty-cart-content" ng-if="cartItems.length == 0">

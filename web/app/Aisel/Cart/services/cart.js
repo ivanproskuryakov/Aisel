@@ -35,11 +35,12 @@ define(['app'], function (app) {
                     console.log(url);
                     return $http.put(url);
                 },
-                orderSubmit: function () {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/order/submit.json';
-                    console.log(url);
-                    return $http.post(url);
+                getTotalFromCart: function (cartItems) {
+                    var total = -1;
+                    angular.forEach(cartItems, function (item) {
+                        total += item.qty * item.product.price;
+                    })
+                    return total;
                 }
             };
         }]);

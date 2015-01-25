@@ -21,11 +21,11 @@ api_aisel_ordersubmit:
     pattern:  /%website_api%/{locale}/order/submit.json
     defaults: { _controller: AiselOrderBundle:ApiOrder:orderSubmit, _format: json }
     requirements:
-        _method: POST
+        _method: GET
 
-api_aisel_checkout_paymentslist:
-    pattern:  /%website_api%/{locale}/checkout/payment/methods.json
-    defaults: { _controller: AiselOrderBundle:ApiCheckout:paymentMethods, _format: json }
+api_aisel_ordercheckout_init:
+    pattern:  /%website_api%/{locale}/order/checkout/init.json
+    defaults: { _controller: AiselOrderBundle:ApiCheckout:init, _format: json }
     requirements:
         _method: GET
 

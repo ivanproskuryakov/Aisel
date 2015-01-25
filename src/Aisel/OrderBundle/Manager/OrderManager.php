@@ -25,18 +25,33 @@ class OrderManager
     protected $sc;
     protected $em;
     protected $settingsManager;
+    protected $cartManager;
 
     /**
      * {@inheritDoc}
      */
     public function __construct($serviceContainer,
                                 $entityManager,
-                                $settingsManager)
+                                $settingsManager,
+                                $cartManager)
     {
         $this->sc = $serviceContainer;
         $this->em = $entityManager;
         $this->settingsManager = $settingsManager;
+        $this->cartManager = $cartManager;
     }
+
+
+    /**
+     * Get cart Manager
+     *
+     * @return \Aisel\CartBundle\Manager\CartManager
+     */
+    public function getCartManager()
+    {
+        return $this->cartManager;
+    }
+
 
     /**
      * Currency code from the system settings
@@ -105,6 +120,8 @@ class OrderManager
     public function createOrderFromCart($user, $locale, $paymentName)
     {
         if (!($user)) throw new NotFoundHttpException('User object is missing');
+        if (count($user->getCart()) == 0) return false;
+
         $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromCartForUser(
@@ -112,11 +129,13 @@ class OrderManager
                 $locale,
                 $this->getCurrencyCode($locale)
             );
+
         $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
             $paymentName,
             $order,
             'aisel_payum_order'
         );
+
         $token->getTargetUrl();
 //        $payment = $this->sc->get('payum')->getPayment('offline');
 //        $payment->execute(new Capture($order));

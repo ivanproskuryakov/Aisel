@@ -2,13 +2,6 @@
     <span class="pull-left">
         <h2><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</h2>
     </span>
-    <span class="pull-right" style="margin-top: 15px">
-         <a type="button"
-            ui-sref="checkout({locale: locale})"
-            ng-disabled="isDisabled"
-            class="pull-right btn btn-warning btn-lg">Place Order</a>
-    </span>
-    </div>
 </div>
 <div class="col-md-12">
     <div class="" ng-if="user">
@@ -48,9 +41,17 @@
                 <div class="col-md-12">
                     <div class="col-md-6">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <span class="pull-right">
-                            <strong>Total: {{total()}} {{currency}}</strong>
+                            <strong>Cart Total: {{total()}} {{currency}}</strong>
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="pull-right">
+                             <a type="button"
+                                ui-sref="checkout({locale: locale})"
+                                ng-disabled="isDisabled"
+                                class="pull-right btn btn-warning btn-lg">Proceed to Checkout</a>
                         </span>
                     </div>
                 </div>
