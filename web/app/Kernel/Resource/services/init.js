@@ -47,6 +47,7 @@ define(['app'], function (app) {
                                 meta = JSON.parse(data.config_meta);
                                 disqus = JSON.parse(data.config_disqus);
                                 $rootScope.content = content;
+                                $rootScope.disqusShortname = disqus.shortname;
                                 $rootScope.disqusStatus = disqus.status;
                                 $rootScope.currency = general.currency;
                                 $rootScope.paymentMethods = general.paymentMethods;
