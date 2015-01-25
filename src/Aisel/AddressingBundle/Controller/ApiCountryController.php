@@ -23,22 +23,37 @@ class ApiCountryController extends Controller
 {
 
     /**
-     * /%website_api%/addressing/country/list.json
+     * Addressing manager
      */
-    public function countryListAction(Request $request)
+    private function getAddressingManager()
     {
-        // TODO: finish addressing API functionality
-        $countryList = true;
+        return $this->get('aisel.addressing.manager');
+    }
+
+    /**
+     * /%website_api%/addressing/country/list.json
+     *
+     * @return JsonResponse $response
+     */
+    public function countryListAction()
+    {
+        $countryList = $this->getAddressingManager()->getCountries();
+
         return $countryList;
     }
 
     /**
      * /%website_api%/addressing/country/{id}.json
+     *
+     * @param integer $id
+     *
+     * @return JsonResponse $response
      */
     public function countryDetailsAction($id)
     {
-        // TODO: finish addressing API functionality
-        $countryDetails = $id;
+        $countryDetails = $this->getAddressingManager()->getCountryById($id);
+
         return $countryDetails;
     }
+
 }

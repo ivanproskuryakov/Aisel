@@ -13,7 +13,7 @@ namespace Aisel\CartBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * Frontend API controller to for Cart CRUD
  *
@@ -41,7 +41,7 @@ class ApiCartController extends Controller
     /**
      * /%website_api%/cart.json
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return
      */
     public function cartAction()
     {
@@ -55,7 +55,7 @@ class ApiCartController extends Controller
      * @param int $productId
      * @param int $qty
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return JsonResponse $response
      */
     public function cartProductAddAction($productId, $qty)
     {
@@ -76,7 +76,7 @@ class ApiCartController extends Controller
      * @param int $productId
      * @param int $qty
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return JsonResponse $response
      */
     public function cartProductUpdateAction($productId, $qty)
     {

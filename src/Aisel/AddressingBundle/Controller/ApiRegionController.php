@@ -23,22 +23,36 @@ class ApiRegionController extends Controller
 {
 
     /**
-     * /%website_api%/addressing/region/list.json
+     * Addressing manager
      */
-    public function regionListAction(Request $request)
+    private function getAddressingManager()
     {
-        // TODO: finish addressing API functionality
-        $regionList = false;
-        return $regionList;
+        return $this->get('aisel.addressing.manager');
+    }
+
+    /**
+     * /%website_api%/addressing/region/list.json
+     *
+     * @return JsonResponse $response
+     */
+    public function regionListAction()
+    {
+        $countryList = $this->getAddressingManager()->getRegions();
+
+        return $countryList;
     }
 
     /**
      * /%website_api%/addressing/region/{id}.json
+     *
+     * @param integer $id
+     *
+     * @return JsonResponse $response
      */
     public function regionDetailsAction($id)
     {
-        // TODO: finish addressing API functionality
-        $regionDetails = $id;
-        return $regionDetails;
+        $countryDetails = $this->getAddressingManager()->getRegionById($id);
+
+        return $countryDetails;
     }
 }

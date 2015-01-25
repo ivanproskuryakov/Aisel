@@ -6,7 +6,7 @@
 # file that was distributed with this source code.
 
 Aisel\ProductBundle\Entity\Product:
-  exclusion_policy: ALL
+  exclusion_policy: all
   properties:
     id:
         expose: true

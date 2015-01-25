@@ -5,25 +5,16 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-Aisel\OrderBundle\Entity\Order:
+Aisel\AddressingBundle\Entity\Country:
   exclusion_policy: all
   properties:
     id:
         expose: true
-    status:
+    iso2:
         expose: true
-    status:
+    iso3:
         expose: true
-    subtotal:
+    shortName:
         expose: true
-    grandtotal:
-        expose: true
-    createdAt:
-        expose: truetrue
-    updatedAt:
-        expose: true
-    frontenduser:
-        expose: false
-
-    item:
+    longName:
         expose: true
