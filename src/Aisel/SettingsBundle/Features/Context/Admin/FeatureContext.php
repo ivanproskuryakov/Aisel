@@ -19,11 +19,11 @@ class FeatureContext extends SonataAdminContext
     }
 
     /**
-     * @When /^I visit homepage settings route config_homepage$/
+     * @When /^I visit content settings route config_content$/
      */
     public function browseToHomepageSettingsRoute()
     {
-        $this->getSession()->visit($this->generateUrl('config_homepage', array('_locale' => 'en', 'editLocale' => 'en')));
+        $this->getSession()->visit($this->generateUrl('config_conten', array('_locale' => 'en', 'editLocale' => 'en')));
         $this->assertSession()->statusCodeEquals(200);
     }
 

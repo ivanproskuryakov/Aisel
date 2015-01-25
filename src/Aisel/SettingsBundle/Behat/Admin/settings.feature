@@ -6,7 +6,7 @@ Feature: Settings
 
   Scenario: Homepage settings action works
     Given I'm logged in as backend user
-    And I visit homepage settings route config_homepage
+    And I visit content settings route content
     Then I should see homepage settings form
 
   Scenario: Disqus settings action works

@@ -15,10 +15,9 @@
 define(['app'], function (app) {
     app.controller('HomepageCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'settingsService',
         function ($location, $scope, $routeParams, $rootScope, settingsService) {
-            $scope.content = false;
             settingsService.getApplicationConfig().success(
                 function (data, status) {
-                    $scope.content = JSON.parse(data.config_homepage).content;
+                    $scope.content = JSON.parse(data.config_content).homepageContent;
                 }
             );
         }]);

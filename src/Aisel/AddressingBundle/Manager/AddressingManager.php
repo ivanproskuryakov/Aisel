@@ -74,7 +74,7 @@ class AddressingManager
     /**
      * Get all cities
      *
-     * @return \Aisel\AddressingBundle\Entity\City $countries
+     * @return \Aisel\AddressingBundle\Entity\City $citil
      *
      * @throws NotFoundHttpException
      */
@@ -113,40 +113,40 @@ class AddressingManager
     /**
      * Get all regions
      *
-     * @return \Aisel\AddressingBundle\Entity\City $countries
+     * @return \Aisel\AddressingBundle\Entity\Region $regions
      *
      * @throws NotFoundHttpException
      */
     public function getRegions()
     {
-        $cities = $this->em->getRepository('AiselAddressingBundle:Region')->findAll();
+        $regions = $this->em->getRepository('AiselAddressingBundle:Region')->findAll();
 
-        if (!($cities)) {
+        if (!($regions)) {
             throw new NotFoundHttpException('Nothing found');
         }
 
-        return $cities;
+        return $regions;
     }
 
     /**
      * Get single region by its id
      *
      * @param integer $id
-     * @return \Aisel\AddressingBundle\Entity\City $countries
+     * @return \Aisel\AddressingBundle\Entity\Region $region
      *
      * @throws NotFoundHttpException
      */
     public function getRegionById($id)
     {
-        $city = $this
+        $region = $this
             ->em->getRepository('AiselAddressingBundle:Region')
             ->findOneBy(array('id' => $id));
 
-        if (!($city)) {
+        if (!($region)) {
             throw new NotFoundHttpException('Nothing found');
         }
 
-        return $city;
+        return $region;
     }
 
 }

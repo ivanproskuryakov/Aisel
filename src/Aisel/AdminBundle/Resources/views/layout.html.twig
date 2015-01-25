@@ -66,7 +66,7 @@ file that was distributed with this source code.
                             {% include admin_pool.getTemplate('add_block') %}
                         </li>
                         <li class="settings">
-                            <a onclick="javascript:location.href='{{ path('config_homepage', {'editLocale':  app.request.locale}) }}'" href="#">
+                            <a onclick="javascript:location.href='{{ path('config_content', {'editLocale':  app.request.locale}) }}'" href="#">
                                 <i class="fa fa-wrench"></i><span> {{ 'aisel.admin.settings'|trans({}, 'admin') }}</span>
                             </a>
                         </li>

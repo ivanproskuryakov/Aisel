@@ -5,14 +5,14 @@ namespace Aisel\SettingsBundle\Controller;
 use Aisel\ConfigBundle\Controller\SettingsController;
 
 /**
- * Homepage settings controller for Backend, extends Aisel SettingsController
+ * Content settings controller for Backend, extends Aisel SettingsController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ConfigHomepageController extends SettingsController
+class ConfigContentController extends SettingsController
 {
 
-    public $form = "\Aisel\SettingsBundle\Form\Type\ConfigHomepageType";
+    public $form = "\Aisel\SettingsBundle\Form\Type\ConfigContentType";
 
     /**
      * {@inheritdoc }

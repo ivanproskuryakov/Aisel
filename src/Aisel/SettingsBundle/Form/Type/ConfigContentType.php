@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ConfigHomepageType extends AbstractType
+class ConfigContentType extends AbstractType
 {
 
     /**
@@ -19,7 +19,8 @@ class ConfigHomepageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', 'ckeditor', array('label' => 'Content'))
+            ->add('homepageContent', 'ckeditor', array('label' => 'Homepage Content'))
+            ->add('footerContent', 'ckeditor', array('label' => 'Footer Content'))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')));
     }
 

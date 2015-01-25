@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('CartCtrl', ['$location', '$scope', 'cartService', 'notify', 'appSettings',
-        function ($location, $scope, cartService, notify, appSettings) {
+    app.controller('CartCtrl', ['$location', '$scope', 'cartService', 'notify',
+        function ($location, $scope, cartService, notify) {
 
             $scope.total = function () {
                 return cartService.getTotalFromCart($scope.cartItems);

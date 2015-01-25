@@ -17,15 +17,17 @@ define(['app'], function (app) {
     angular.module('app')
         .service('initService', ['$http', '$rootScope', 'settingsService',
             'authService', 'userService', 'pageCategoryService',
-            'productCategoryService', 'appSettings', 'Environment', '$state',
+            'productCategoryService', 'appSettings', 'Environment',
             function ($http, $rootScope, settingsService,
                       authService, userService, pageCategoryService,
-                      productCategoryService, appSettings, Environment, $state) {
+                      productCategoryService, appSettings, Environment) {
                 return {
                     launch: function () {
                         var meta = false;
                         var disqus = false;
                         var general = false;
+                        var content = false;
+
                         // Load user status
                         userService.getUserInformation().success(
                             function (data, status) {
@@ -44,7 +46,7 @@ define(['app'], function (app) {
                                 general = JSON.parse(data.config_general);
                                 meta = JSON.parse(data.config_meta);
                                 disqus = JSON.parse(data.config_disqus);
-                                $rootScope.disqusShortname = disqus.shortname;
+                                $rootScope.content = content;
                                 $rootScope.disqusStatus = disqus.status;
                                 $rootScope.currency = general.currency;
                                 $rootScope.paymentMethods = general.paymentMethods;

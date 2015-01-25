@@ -79,8 +79,8 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
         $uploadDir = $this->container->getParameter('application.media.product.upload_dir');
         $uploadPath = $this->container->getParameter('application.media.product.upload_path');
         $fixtureImage = dirname($this->container->getParameter('kernel.root_dir')) .
-            $this->container->getParameter('aisel_fixture.xml.path') . DIRECTORY_SEPARATOR .
-            'images/products/' . $this->productImage;
+            $this->container->getParameter('aisel_fixture.xml.path') .
+            DIRECTORY_SEPARATOR . 'images/products/' . $this->productImage;
         $productDir = $uploadDir . DIRECTORY_SEPARATOR . $product->getId();
 
         $sql = serialize(array(

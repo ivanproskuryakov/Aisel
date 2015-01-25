@@ -4,7 +4,7 @@ no_settings.label: There are no settings defined yet.
 aisel_config_contact.label: Contact
 aisel_config_category.label: Category
 aisel_config_meta.label: Metadata
-aisel_config_homepage.label: Homepage
+aisel_config_content.label: Content
 aisel_config_disqus.label: Disqus
 aisel_config_general.label: General
 settings.label: Sections
