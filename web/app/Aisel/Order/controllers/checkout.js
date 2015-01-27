@@ -13,10 +13,12 @@
  */
 
 define(['app'], function (app) {
-    app.controller('CheckoutCtrl', ['$location', '$scope', 'orderService', 'notify', 'cartService', 'checkoutService',
-        function ($location, $scope, orderService, notify, cartService, checkoutService) {
+    app.controller('CheckoutCtrl', ['$location', '$scope', 'orderService', 'notify', 'cartService', 'checkoutService', 'checkoutSettings',
+        function ($location, $scope, orderService, notify, cartService, checkoutService, checkoutSettings) {
 
-            cartService.getCartItems($scope).success(
+            $scope.checkoutSettings = checkoutSettings.data;
+
+            $scope.getCartItems = cartService.getCartItems($scope).success(
                 function (data, status) {
                     $scope.cartItems = data;
                 }
@@ -30,15 +32,16 @@ define(['app'], function (app) {
             $scope.orderSubmit = function () {
                 if ($scope.cartItems) {
                     $scope.isDisabled = true;
-                    checkoutService.orderSubmit().success(
-                        function (data, status) {
+                    checkoutService.orderSubmit()
+                        .success(function (data, status) {
                             notify(data.message);
-                            $scope.isDisabled = false;
-                            $scope.getCartItems();
-                        }
-                    ).error(function (data, status) {
+                        })
+                        .error(function (data, status) {
                             notify(data.message);
+                        })
+                        .then(function () {
                             $scope.isDisabled = false;
+                            $scope.getCartItems;
                         });
                 }
             };

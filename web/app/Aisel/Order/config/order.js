@@ -30,6 +30,14 @@ define(['app'], function (app) {
                 controller: 'CheckoutCtrl',
                 data: {
                     role: 'user'
+                },
+                resolve: {
+                    checkoutSettings: ['checkoutService', function (checkoutService) {
+                        return checkoutService.init().success(function (result) {
+                                return result;
+                            }
+                        );
+                    }]
                 }
             })
             .state("viewOrder", {

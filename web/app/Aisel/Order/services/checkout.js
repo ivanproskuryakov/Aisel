@@ -17,7 +17,8 @@ define(['app'], function (app) {
         function ($http, Environment) {
             return {
                 init: function () {
-                    var url = Environment.settings.api + '/order/checkout/init.json';
+                    var locale = Environment.currentLocale();
+                    var url = Environment.settings.api + '/' + locale + '/order/checkout/init.json';
                     console.log(url);
                     return $http.get(url);
                 },

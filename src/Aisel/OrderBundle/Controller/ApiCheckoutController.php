@@ -13,6 +13,7 @@ namespace Aisel\OrderBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Frontend REST API for Order entities
@@ -23,31 +24,27 @@ class ApiCheckoutController extends Controller
 {
 
     /**
-     * Cart manager
-     */
-    private function getOrderManager()
-    {
-        return $this->get('aisel.order.manager');
-    }
-
-    /**
-     * User manager
-     */
-    private function getUserManager()
-    {
-        return $this->get('frontend.user.manager');
-    }
-
-    /**
-     * /%website_api%/checkout/payment/methods.json
+     * /%website_api%/{locale}/order/checkout/init.json
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return JsonResponse $response
      */
     public function initAction()
     {
-        $paymentMethods = $this->container->getParameter('aisel_order.payment_methods');
+        $response = array();
 
-        return $paymentMethods;
+        /**
+         * Payment methods
+         */
+        $config = $this->container->get("aisel.settings.manager")->getConfig('en');
+        $general = (array)json_decode($config['config_general']);
+
+        foreach ($general['paymentMethods'] as $m) {
+            if ($method = $this->container->getParameter('aisel_order.payment_methods')[$m]) {
+                $response['payment']['methods'][] = $method;
+            }
+        }
+
+        return $response;
     }
 
 }

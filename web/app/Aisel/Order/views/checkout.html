@@ -42,8 +42,8 @@
                         <br/>
                         <div class="col-md-12">
                             <span class="pull-left">
-                                <div class="checkoutPaymentMethod" ng-repeat="payment in paymentMethods">
-                                    <input type="radio" name="checkout[payment]" value="{{payment}}"> {{payment}}
+                                <div class="checkoutPaymentMethod" ng-repeat="(k, v) in checkoutSettings.payment.methods">
+                                    <input type="radio" ng-checked="$first" name="checkout[payment]" value="{{k}}"> {{v.title}}
                                 </div>
                             </span>
                         </div>

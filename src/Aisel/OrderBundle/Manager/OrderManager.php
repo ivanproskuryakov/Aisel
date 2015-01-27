@@ -102,7 +102,6 @@ class OrderManager
         $orders = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->findAllOrdersForUser($user);
-
         return $orders;
     }
 
