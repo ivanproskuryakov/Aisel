@@ -27,6 +27,21 @@ define(['app'], function (app) {
                     var url = Environment.settings.api + '/' + locale + '/order/submit.json';
                     console.log(url);
                     return $http.get(url);
+                },
+                getCountries: function () {
+                    var url = Environment.settings.api + '/addressing/country/list.json';
+                    console.log(url);
+                    return $http.get(url);
+                },
+                getRegions: function () {
+                    var url = Environment.settings.api + '/addressing/region/list.json';
+                    console.log(url);
+                    return $http.get(url);
+                },
+                getCities: function () {
+                    var url = Environment.settings.api + '/addressing/city/list.json';
+                    console.log(url);
+                    return $http.get(url);
                 }
             };
         }]);

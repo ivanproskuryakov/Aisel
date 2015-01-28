@@ -8,55 +8,96 @@
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
-                    <div class="col-md-6">
-                        <h4>Billing Address</h4>
-                        <br/>
-                        <div class="col-md-12" role="main">
-                            <form class="form-horizontal" name="registrationForm" role="form"
-                                  ng-submit="submitRegistration(registrationForm)">
+                    <form class="form-horizontal"
+                          name="registrationForm"
+                          role="form"
+                          ng-submit="orderSubmit(registrationForm)">
+
+                        <div class="col-md-6">
+                            <h4>Billing Address</h4>
+                            <br/>
+
+                            <div class="col-md-12" role="main">
                                 <div class="form-group">
                                     <label for="country">Country</label>
-                                    <input type="text" name="billing_country" class="form-control" id="country"
-                                           ng-model="password" ng-required="true">
+                                    <input type="text" name="billing_country"
+                                           class="form-control"
+                                           id="country"
+                                           tooltip="Please select your country"
+                                           ng-model="country"
+                                           autocomplete="off"
+                                           typeahead="country.short_name for country in countries | filter:$viewValue | limitTo:8"
+                                           typeahead-on-select="onSelectCountry($item)"
+                                           ng-required="true">
                                 </div>
                                 <div class="form-group">
                                     <label for="region">Region</label>
-                                    <input type="text" name="billing_region" class="form-control" id="region"
+                                    <input type="text"
+                                           id="region"
+                                           name="billing_region"
+                                           autocomplete="off"
+                                           class="form-control"
+                                           ng-model="region"
+                                           tooltip="Please select or enter your region"
+                                           typeahead="region.name for region in regions | filter:$viewValue | limitTo:8"
+                                           typeahead-on-select="onSelectRegion($item)"
                                            ng-required="true">
                                 </div>
                                 <div class="form-group">
                                     <label for="region">City</label>
-                                    <input type="text" name="billing_city" class="form-control" id="city"
+                                    <input type="text"
+                                           id="city"
+                                           name="billing_city"
+                                           autocomplete="off"
+                                           ng-model="city"
+                                           class="form-control"
+                                           tooltip="Please select or enter your city"
+                                           typeahead="city.name for city in cities | filter:$viewValue | limitTo:8"
+                                           typeahead-on-select="onSelectCity($item)"
                                            ng-required="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="zip">Zip code</label>
-                                    <input type="text" name="billing_phone" class="form-control" id="zip"
+                                    <label for="phone">Mobile phone</label>
+                                    <input type="text" name="billing_phone" class="form-control" id="phone"
+                                           tooltip="Please enter phone number"
                                            ng-required="true">
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <h4>Payment Method</h4>
-                        <br/>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>Payment Method</h4>
+                            <br/>
+
+                            <div class="col-md-12">
                             <span class="pull-left">
-                                <div class="checkoutPaymentMethod" ng-repeat="(k, v) in checkoutSettings.payment.methods">
-                                    <input type="radio" ng-checked="$first" name="checkout[payment]" value="{{k}}"> {{v.title}}
+                                <div class="checkoutPaymentMethod"
+                                     ng-repeat="(k, v) in checkout.settings.payment.methods">
+                                    <input type="radio" ng-checked="$first" name="checkout[payment]" value="{{k}}">
+                                    <span>{{v.title}}</span>
                                 </div>
                             </span>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 30px;">
+                                <p>
+                                    <strong>Order Total</strong>: {{getTotal()}} {{currency}}
+                                </p>
+                                <button
+                                        type="submit"
+                                        type="button"
+                                        ng-disabled="isDisabled"
+                                        class="btn btn-warning btn-lg">Place Order
+                                </button>
+                                <br/>
+                                <br/>
+
+                                <div class="well">
+                                    A. To check how billing fields, please type: Spain, Madrid, Madrid<br/>
+                                    B. For the development purposes only offline payment method allowed.<br/>
+                                    Thanks!
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-12" style="margin-top: 30px;">
-                            <p>
-                                <strong>Order Total</strong>: {{total()}} {{currency}}
-                            </p>
-                            <a type="button"
-                               ng-click="orderSubmit()"
-                               ng-disabled="isDisabled"
-                               class="btn btn-warning btn-lg">Place Order</a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-md-2">
                 </div>
