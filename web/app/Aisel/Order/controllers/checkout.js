@@ -57,10 +57,10 @@ define(['app'], function (app) {
             };
 
             // === Submit Order ===
-            $scope.orderSubmit = function () {
-                if ($scope.cartItems) {
+            $scope.orderSubmit = function (form) {
+                if (form.$valid && $scope.cartItems) {
                     $scope.isDisabled = true;
-                    checkoutService.orderSubmit()
+                    checkoutService.orderSubmit(form)
                         .success(function (data, status) {
                             notify(data.message);
                         })

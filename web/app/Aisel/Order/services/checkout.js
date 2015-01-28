@@ -22,7 +22,14 @@ define(['app'], function (app) {
                     console.log(url);
                     return $http.get(url);
                 },
-                orderSubmit: function () {
+                orderSubmit: function (form) {
+                    var formData = {};
+                    formData['billing_country'] = encodeURIComponent(form.billing_country.$modelValue);
+                    formData['billing_region'] = encodeURIComponent(form.billing_region.$modelValue);
+                    formData['billing_city'] = encodeURIComponent(form.billing_city.$modelValue);
+
+                    console.log(formData);
+
                     var locale = Environment.currentLocale();
                     var url = Environment.settings.api + '/' + locale + '/order/submit.json';
                     console.log(url);

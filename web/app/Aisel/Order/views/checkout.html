@@ -9,9 +9,9 @@
                 </div>
                 <div class="col-md-8">
                     <form class="form-horizontal"
-                          name="registrationForm"
+                          name="orderForm"
                           role="form"
-                          ng-submit="orderSubmit(registrationForm)">
+                          ng-submit="orderSubmit(orderForm)">
 
                         <div class="col-md-6">
                             <h4>Billing Address</h4>
@@ -58,7 +58,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Mobile phone</label>
-                                    <input type="text" name="billing_phone" class="form-control" id="phone"
+                                    <input type="text"
+                                           id="phone"
+                                           name="billing_phone"
+                                           class="form-control"
                                            tooltip="Please enter phone number"
                                            ng-required="true">
                                 </div>
