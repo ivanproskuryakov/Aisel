@@ -4,10 +4,13 @@ namespace Aisel\OrderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Payum\Core\Model\Order as BaseOrder;
+
 /**
  * Order
+ *
+ * TODO: Finish with order variables
  */
-class Order extends BaseOrder
+class Order //extends BaseOrder
 {
     /**
      * @var integer
@@ -292,5 +295,33 @@ class Order extends BaseOrder
     public function getItem()
     {
         return $this->item;
+    }
+    /**
+     * @var integer
+     */
+    private $totalamount;
+
+
+    /**
+     * Set totalamount
+     *
+     * @param integer $totalamount
+     * @return Order
+     */
+    public function setTotalamount($totalamount)
+    {
+        $this->totalamount = $totalamount;
+
+        return $this;
+    }
+
+    /**
+     * Get totalamount
+     *
+     * @return integer 
+     */
+    public function getTotalamount()
+    {
+        return $this->totalamount;
     }
 }

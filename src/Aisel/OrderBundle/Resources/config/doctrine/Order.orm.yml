@@ -32,6 +32,10 @@ Aisel\OrderBundle\Entity\Order:
             type: integer
             default: 0
             nullable: true
+        totalamount:
+            type: integer
+            default: 0
+            nullable: true
         createdAt:
             type: datetime
             column: created_at

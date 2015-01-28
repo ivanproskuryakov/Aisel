@@ -13,9 +13,10 @@
  */
 
 define(['app'], function (app) {
-    app.controller('CheckoutCtrl', ['$location', '$scope', 'orderService', 'notify', 'cartService', 'checkoutService', 'checkoutSettings',
-        function ($location, $scope, orderService, notify, cartService, checkoutService, checkoutSettings) {
+    app.controller('CheckoutCtrl', ['$location', '$scope', '$state', 'orderService', 'notify', 'cartService', 'checkoutService', 'checkoutSettings', 'Environment',
+        function ($location, $scope, $state, orderService, notify, cartService, checkoutService, checkoutSettings, Environment) {
 
+            var locale = Environment.currentLocale();
             $scope.checkout = {
                 settings: checkoutSettings.data,
                 address: {}
@@ -62,6 +63,8 @@ define(['app'], function (app) {
                     $scope.isDisabled = true;
                     checkoutService.orderSubmit(form)
                         .success(function (data, status) {
+                            console.log(data);
+                            $state.transitionTo('orders', {locale: locale});
                             notify(data.message);
                         })
                         .error(function (data, status) {

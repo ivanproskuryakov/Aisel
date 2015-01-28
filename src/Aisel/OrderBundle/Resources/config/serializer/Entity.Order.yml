@@ -19,11 +19,25 @@ Aisel\OrderBundle\Entity\Order:
     grandtotal:
         expose: true
     createdAt:
-        expose: truetrue
+        expose: true
     updatedAt:
         expose: true
     frontenduser:
         expose: false
-
     item:
         expose: true
+
+#    number:
+#        expose: false
+#    description:
+#        expose: false
+#    clientEmail:
+#        expose: false
+#    clientId:
+#        expose: false
+#    totalAmount:
+#        expose: false
+#    currencyCode:
+#        expose: false
+#    currencyDigitsAfterDecimalPoint:
+#        expose: false

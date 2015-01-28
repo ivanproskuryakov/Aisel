@@ -110,11 +110,11 @@ class OrderRepository extends EntityRepository
         $order = new Order();
         $order->setLocale($locale);
         $order->setFrontenduser($user);
-        $order->setClientId($user->getId());
-        $order->setClientEmail($user->getEmail());
+//        $order->setClientId($user->getId());
+//        $order->setClientEmail($user->getEmail());
         $order->setStatus('new');
-        $order->setDetails('');
-        $order->setCurrencyCode($currencyCode);
+//        $order->setDetails('');
+//        $order->setCurrencyCode($currencyCode);
         $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $em->persist($order);
