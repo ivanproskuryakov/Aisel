@@ -40,7 +40,7 @@ class ApiCheckoutController extends Controller
 
         foreach ($general['paymentMethods'] as $m) {
             if ($method = $this->container->getParameter('aisel_order.payment_methods')[$m]) {
-                $response['payment']['methods'][] = $method;
+                $response['payment']['methods'][$m] = $method;
             }
         }
 

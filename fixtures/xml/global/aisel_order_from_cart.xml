@@ -19,8 +19,13 @@
         <table name="aisel_order">
             <column name="id">59</column>
             <column name="locale">en</column>
-            <column name="paymentName">offline</column>
+            <column name="payment_name">offline</column>
             <column name="user_id">150</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="description">...</column>
         </table>
     </database>
 </pma_xml_export>

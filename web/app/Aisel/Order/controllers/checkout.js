@@ -19,7 +19,15 @@ define(['app'], function (app) {
             var locale = Environment.currentLocale();
             $scope.checkout = {
                 settings: checkoutSettings.data,
-                address: {}
+                address: {},
+                selected: {
+                    payment_method: 'offline',
+                    billing_country: '',
+                    billing_region: '',
+                    billing_city: '',
+                    billing_phone: '',
+                    billing_comment: ''
+                }
             };
 
             // === Cart Items & Totals ===
@@ -60,20 +68,22 @@ define(['app'], function (app) {
             // === Submit Order ===
             $scope.orderSubmit = function (form) {
                 if (form.$valid && $scope.cartItems) {
+                    console.log(form);
                     $scope.isDisabled = true;
                     checkoutService.orderSubmit(form)
-                        .success(function (data, status) {
-                            console.log(data);
-                            $state.transitionTo('orders', {locale: locale});
-                            notify(data.message);
-                        })
-                        .error(function (data, status) {
-                            notify(data.message);
-                        })
-                        .then(function () {
-                            $scope.isDisabled = false;
-                            $scope.getCartItems;
-                        });
+                    .success(function (data, status) {
+                        console.log(data);
+                        $state.transitionTo('orders', {locale: locale});
+                        notify(data.message);
+                    })
+                    .error(function (data, status) {
+                        notify(data.message);
+                        $scope.isDisabled = false;
+                    })
+                    .then(function () {
+                        $scope.isDisabled = false;
+                        $scope.getCartItems;
+                    });
                 }
             };
         }]);

@@ -27,6 +27,9 @@ define(['app'], function (app) {
                     formData['billing_country'] = encodeURIComponent(form.billing_country.$modelValue);
                     formData['billing_region'] = encodeURIComponent(form.billing_region.$modelValue);
                     formData['billing_city'] = encodeURIComponent(form.billing_city.$modelValue);
+                    formData['billing_phone'] = encodeURIComponent(form.billing_phone.$modelValue);
+                    formData['billing_comment'] = encodeURIComponent(form.description.$modelValue);
+                    formData['payment_method'] = encodeURIComponent(form.payment_method.$modelValue);
                     var userData = JSON.stringify(formData);
                     var locale = Environment.currentLocale();
                     var url = Environment.settings.api + '/' + locale + '/order/submit.json?userdata=' + userData;

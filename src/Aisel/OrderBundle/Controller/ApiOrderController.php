@@ -67,19 +67,29 @@ class ApiOrderController extends Controller
     /**
      * /%website_api%/order/submit.json
      *
+     * @param Request $request
      * @param string $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
-    public function orderSubmitAction($locale)
+    public function orderSubmitAction(Request $request, $locale)
     {
-        $paymentName = 'offline';
         $user = $this->getUserManager()->getUser();
-        $order = $this->getOrderManager()->createOrderFromCart($user, $locale, $paymentName);
+        $orderInfo = array(
+            'payment_method' => $request->get('payment_method'),
+            'country' => $request->get('billing_country'),
+            'region' => $request->get('billing_region'),
+            'city' => $request->get('billing_city'),
+            'phone' => $request->get('billing_phone'),
+            'description' => $request->get('billing_comment'),
+        );
+        $order = $this->getOrderManager()->createOrderFromCart($user, $locale, $orderInfo);
+
         $response = array(
             'status' => false,
             'message' => 'Something went wrong during the order submit'
         );
+
         if ($order) {
             $response = array(
                 'status' => true,
@@ -87,6 +97,7 @@ class ApiOrderController extends Controller
                 'message' => 'Your order received, thank you!'
             );
         };
+
         return $response;
     }
 

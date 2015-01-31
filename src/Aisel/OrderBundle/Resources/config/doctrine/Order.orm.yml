@@ -21,21 +21,30 @@ Aisel\OrderBundle\Entity\Order:
             length: 2
             nullable: false
 
+        country:
+            type: string
+            length: 255
+        region:
+            type: string
+            length: 255
+        city:
+            type: string
+            length: 255
+        phone:
+            type: string
+            length: 255
+        description:
+            type: text
+
         status:
             type: string
             length: 255
-        subtotal:
-            type: integer
-            default: 0
-            nullable: true
-        grandtotal:
-            type: integer
-            default: 0
-            nullable: true
         totalamount:
             type: integer
             default: 0
-            nullable: true
+        currency:
+            type: string
+            length: 255
         createdAt:
             type: datetime
             column: created_at

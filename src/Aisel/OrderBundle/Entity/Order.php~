@@ -7,6 +7,8 @@ use Payum\Core\Model\Order as BaseOrder;
 
 /**
  * Order
+ *
+ * TODO: Finish with order variables
  */
 class Order //extends BaseOrder
 {
@@ -321,5 +323,173 @@ class Order //extends BaseOrder
     public function getTotalamount()
     {
         return $this->totalamount;
+    }
+    /**
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @var string
+     */
+    private $currency;
+
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Order
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set currency
+     *
+     * @param string $currency
+     * @return Order
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return string 
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+    /**
+     * @var string
+     */
+    private $country;
+
+    /**
+     * @var string
+     */
+    private $region;
+
+    /**
+     * @var string
+     */
+    private $city;
+
+    /**
+     * @var string
+     */
+    private $phone;
+
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return Order
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set region
+     *
+     * @param string $region
+     * @return Order
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return string 
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return Order
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return Order
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
     }
 }
