@@ -23,9 +23,9 @@ class OrderRepository extends EntityRepository
      *
      * @return \Aisel\OrderBundle\Entity\Order $order|false
      */
-    public function createOrderFromCartForUser($user, $locale, $currencyCode, $orderInfo)
+    public function createOrderFromCartForUser($user, $currencyCode, $orderInfo)
     {
-        $order = $this->createEmptyOrder($user, $locale, $currencyCode, $orderInfo);
+        $order = $this->createEmptyOrder($user, $currencyCode, $orderInfo);
         // Set product items and remove from cart
         $em = $this->getEntityManager();
         $total = 0;
@@ -65,9 +65,9 @@ class OrderRepository extends EntityRepository
      *
      * @return \Aisel\OrderBundle\Entity\Order $order|false
      */
-    public function createOrderFromProductsForUser($user, $locale, $products, $currencyCode, $orderInfo)
+    public function createOrderFromProductsForUser($user, $products, $currencyCode, $orderInfo)
     {
-        $order = $this->createEmptyOrder($user, $locale, $currencyCode, $orderInfo);
+        $order = $this->createEmptyOrder($user, $currencyCode, $orderInfo);
         $em = $this->getEntityManager();
         $total = 0;
 
@@ -99,23 +99,25 @@ class OrderRepository extends EntityRepository
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
      * @param string $locale
      * @param string $currencyCode
+     * @param mixed $orderInfo
      *
-     * @return \Aisel\OrderBundle\Entity\Order $order|false
+     * @return \Aisel\OrderBundle\Entity\Order $order
      */
-    public function createEmptyOrder($user, $locale, $currencyCode, $orderInfo)
+    public function createEmptyOrder($user, $currencyCode, $orderInfo)
     {
         $em = $this->getEntityManager();
         $order = new Order();
         $order->setTotalAmount(0);
-        $order->setLocale($locale);
+        $order->setLocale($orderInfo['locale']);
         $order->setFrontenduser($user);
         $order->setCurrency($currencyCode);
         $order->setStatus('new');
-        $order->setCountry($orderInfo['country']);
-        $order->setRegion($orderInfo['region']);
-        $order->setCity($orderInfo['city']);
-        $order->setDescription($orderInfo['description']);
-        $order->setPhone($orderInfo['phone']);
+        $order->setPaymentMethod($orderInfo['payment_method']);
+        $order->setCountry($orderInfo['billing_country']);
+        $order->setRegion($orderInfo['billing_region']);
+        $order->setCity($orderInfo['billing_city']);
+        $order->setPhone($orderInfo['billing_phone']);
+        $order->setDescription($orderInfo['billing_comment']);
         $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $em->persist($order);

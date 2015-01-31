@@ -39,6 +39,9 @@ Aisel\OrderBundle\Entity\Order:
         status:
             type: string
             length: 255
+        paymentMethod:
+            type: string
+            length: payment_method
         totalamount:
             type: integer
             default: 0

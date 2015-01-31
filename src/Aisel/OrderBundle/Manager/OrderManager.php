@@ -109,14 +109,13 @@ class OrderManager
      * Create order for given userId
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
-     * @param string $locale
      * @param mixed $orderInfo
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      *
      * @throws NotFoundHttpException
      */
-    public function createOrderFromCart($user, $locale, $orderInfo)
+    public function createOrderFromCart($user, $orderInfo)
     {
         if (!($user)) throw new NotFoundHttpException('User object is missing');
         if (count($user->getCart()) == 0) return false;
@@ -125,18 +124,17 @@ class OrderManager
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromCartForUser(
                 $user,
-                $locale,
-                $this->getCurrencyCode($locale),
+                $this->getCurrencyCode($orderInfo['locale']),
                 $orderInfo
             );
 
-        $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
-            $orderInfo['payment_method'],
-            $order,
-            'aisel_payum_order'
-        );
-
-        $token->getTargetUrl();
+//        $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
+//            $orderInfo['payment_method'],
+//            $order,
+//            'aisel_payum_order'
+//        );
+//
+//        $token->getTargetUrl();
 //        $payment = $this->sc->get('payum')->getPayment('offline');
 //        $payment->execute(new Capture($order));
 
@@ -147,7 +145,6 @@ class OrderManager
      * Create order for user
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
-     * @param string $locale
      * @param array $products
      * @param mixed $orderInfo
      *
@@ -155,7 +152,7 @@ class OrderManager
      *
      * @throws NotFoundHttpException
      */
-    public function createOrderFromProducts($user, $locale, $products, $orderInfo)
+    public function createOrderFromProducts($user, $products, $orderInfo)
     {
         if (!($user)) throw new NotFoundHttpException('User object is missing');
 
@@ -164,9 +161,8 @@ class OrderManager
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromProductsForUser(
                 $user,
-                $locale,
                 $products,
-                $this->getCurrencyCode($locale),
+                $this->getCurrencyCode($orderInfo['locale']),
                 $orderInfo
             );
         return $order;

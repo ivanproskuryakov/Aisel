@@ -77,13 +77,14 @@ class ApiOrderController extends Controller
         $user = $this->getUserManager()->getUser();
         $orderInfo = array(
             'payment_method' => $request->get('payment_method'),
-            'country' => $request->get('billing_country'),
-            'region' => $request->get('billing_region'),
-            'city' => $request->get('billing_city'),
-            'phone' => $request->get('billing_phone'),
-            'description' => $request->get('billing_comment'),
+            'billing_country' => $request->get('billing_country'),
+            'billing_region' => $request->get('billing_region'),
+            'billing_city' => $request->get('billing_city'),
+            'billing_phone' => $request->get('billing_phone'),
+            'billing_comment' => $request->get('billing_comment'),
+            'locale' => $locale,
         );
-        $order = $this->getOrderManager()->createOrderFromCart($user, $locale, $orderInfo);
+        $order = $this->getOrderManager()->createOrderFromCart($user, $orderInfo);
 
         $response = array(
             'status' => false,

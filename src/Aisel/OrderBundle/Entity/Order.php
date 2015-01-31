@@ -492,4 +492,32 @@ class Order //extends BaseOrder
     {
         return $this->phone;
     }
+    /**
+     * @var string
+     */
+    private $paymentMethod;
+
+
+    /**
+     * Set paymentMethod
+     *
+     * @param string $paymentMethod
+     * @return Order
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * Get paymentMethod
+     *
+     * @return string 
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
 }
