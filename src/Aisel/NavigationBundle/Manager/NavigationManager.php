@@ -20,16 +20,15 @@ use Aisel\NavigationBundle\Entity\Menu;
  */
 class NavigationManager
 {
-    protected $sc;
+    
     protected $em;
 
     /**
      * {@inheritDoc}
      */
-    public function __construct($sc, $em)
+    public function __construct($entityManager)
     {
-        $this->sc = $sc;
-        $this->em = $em;
+        $this->em = $entityManager;
     }
 
     /**

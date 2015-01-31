@@ -14,11 +14,11 @@ parameters:
 services:
     aisel.product.manager:
         class: %aisel_product_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager]
+        arguments: [@doctrine.orm.entity_manager]
 
     aisel.product.media.manager:
         class: %aisel_product_media_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager, %application.media.product.path%, %website_address%]
+        arguments: [@doctrine.orm.entity_manager, %application.media.product.path%, %website_address%]
 
     aisel.productcategory.manager:
         class: %aisel_product_category_manager.class%

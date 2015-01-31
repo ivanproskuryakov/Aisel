@@ -13,7 +13,8 @@ parameters:
 services:
     aisel.page.manager:
         class: %aisel_page_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager]
+        arguments:
+            - @doctrine.orm.entity_manager
 
     aisel.pagecategory.manager:
         class: %aisel_page_category_manager.class%

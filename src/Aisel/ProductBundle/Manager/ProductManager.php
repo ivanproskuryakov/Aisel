@@ -21,15 +21,13 @@ use Aisel\ResourceBundle\Utility\UrlUtility;
  */
 class ProductManager
 {
-    protected $sc;
     protected $em;
 
     /**
      * {@inheritDoc}
      */
-    public function __construct($sc, $em)
+    public function __construct($em)
     {
-        $this->sc = $sc;
         $this->em = $em;
     }
 

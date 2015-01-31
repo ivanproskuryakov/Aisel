@@ -21,15 +21,13 @@ use Aisel\ResourceBundle\Utility\UrlUtility;
  */
 class PageManager
 {
-    protected $sc;
     protected $em;
 
     /**
      * {@inheritDoc}
      */
-    public function __construct($serviceContainer, $entityManager)
+    public function __construct($entityManager)
     {
-        $this->sc = $serviceContainer;
         $this->em = $entityManager;
     }
 

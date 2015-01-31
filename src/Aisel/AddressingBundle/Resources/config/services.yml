@@ -15,7 +15,8 @@ parameters:
 services:
     aisel.addressing.manager:
         class: %aisel_addressing_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager]
+        arguments:
+            - @doctrine.orm.entity_manager
 
     sonata.admin.addressing.address:
         class: %aisel_addressing_address.class%

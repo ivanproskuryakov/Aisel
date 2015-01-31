@@ -20,16 +20,19 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class AddressingManager
 {
-    protected $sc;
     protected $em;
 
     /**
      * {@inheritDoc}
      */
-    public function __construct($sc, $em)
+    public function __construct($entityManager)
     {
-        $this->sc = $sc;
-        $this->em = $em;
+        $this->em = $entityManager;
+    }
+
+    protected function getRepository()
+    {
+        return $this->em->getRepository('AiselBackendUserBundle:BackendUser');
     }
 
     /**

@@ -20,7 +20,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class CartManager
 {
-    protected $sc;
     protected $em;
     protected $userManager;
     protected $productManager;
@@ -28,9 +27,8 @@ class CartManager
     /**
      * {@inheritDoc}
      */
-    public function __construct($serviceContainer, $entityManager, $frontendUserManager, $productManager)
+    public function __construct( $entityManager, $frontendUserManager, $productManager)
     {
-        $this->sc = $serviceContainer;
         $this->em = $entityManager;
         $this->userManager = $frontendUserManager;
         $this->productManager = $productManager;

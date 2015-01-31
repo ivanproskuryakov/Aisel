@@ -24,8 +24,6 @@ services:
     aisel.cart.manager:
         class: %aisel_cart_manager.class%
         arguments:
-            - @service_container
             - @doctrine.orm.entity_manager
             - @frontend.user.manager
-            - @aisel.product.manager
             - @aisel.product.manager

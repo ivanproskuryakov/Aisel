@@ -21,7 +21,6 @@ use Aisel\ProductBundle\Entity\Image;
  */
 class MediaManager
 {
-    protected $sc;
     protected $em;
     protected $appMediaProductPath;
     protected $websiteAddress;
@@ -29,21 +28,12 @@ class MediaManager
     /**
      * {@inheritDoc}
      */
-    public function __construct($sc, $em, $appMediaProductPath, $websiteAddress)
+    public function __construct($em, $appMediaProductPath, $websiteAddress)
     {
-        $this->sc = $sc;
         $this->em = $em;
         $this->appMediaProductPath = $appMediaProductPath;
         $this->websiteAddress = $websiteAddress;
 
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getServiceContainer()
-    {
-        return $this->sc;
     }
 
     /**
