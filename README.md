@@ -14,7 +14,7 @@ Demo frontend: `http://ecommerce.aisel.co/en/` [frontenduser/frontenduser]<br/>
 Demo administration: `http://ecommerce.aisel.co/administration/en/` [backenduser/backenduser]<br/>
 
 <img width="200" src="http://aisel.co/screenshots/frontend_product_view.png"/>
-<img width="200" src="http://aisel.co/screenshots/frontend_dashboard.png"/>
+<img width="200" src="http://aisel.co/screenshots/frontend_checkout.png"/>
 <img width="200" src="http://aisel.co/screenshots/backend_dashboard.png"/>
 
 Installation: development branch
