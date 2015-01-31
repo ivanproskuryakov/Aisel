@@ -18,6 +18,7 @@ define(['app'], function (app) {
             $scope.orderId = $stateParams.orderId;
             var handleSuccess = function (data, status) {
                 $scope.orderDetails = data[0];
+                console.log($scope.orderDetails);
             };
             orderService.getOrder($scope.orderId).success(handleSuccess);
         }]);

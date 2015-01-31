@@ -88,7 +88,7 @@ class ApiOrderController extends Controller
 
         $response = array(
             'status' => false,
-            'message' => 'Something went wrong during the order submit'
+            'message' => 'Something went wrong during order submit'
         );
 
         if ($order) {

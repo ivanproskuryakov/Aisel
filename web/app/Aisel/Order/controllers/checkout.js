@@ -68,22 +68,21 @@ define(['app'], function (app) {
             // === Submit Order ===
             $scope.orderSubmit = function (form) {
                 if (form.$valid && $scope.cartItems) {
-                    console.log(form);
                     $scope.isDisabled = true;
                     checkoutService.orderSubmit(form)
-                    .success(function (data, status) {
-                        console.log(data);
-                        $state.transitionTo('orders', {locale: locale});
-                        notify(data.message);
-                    })
-                    .error(function (data, status) {
-                        notify(data.message);
-                        $scope.isDisabled = false;
-                    })
-                    .then(function () {
-                        $scope.isDisabled = false;
-                        $scope.getCartItems;
-                    });
+                        .success(function (data, status) {
+                            $scope.isDisabled = true;
+                            $state.transitionTo('orders', {locale: locale});
+                            notify(data.message);
+                        })
+                        .error(function (data, status) {
+                            notify(data.message);
+                            $scope.isDisabled = false;
+                        })
+                        .then(function () {
+                            $scope.isDisabled = false;
+                            $scope.getCartItems;
+                        });
                 }
             };
         }]);

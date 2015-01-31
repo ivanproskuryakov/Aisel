@@ -1,6 +1,7 @@
 <div class="">
     <div class="col-md-12 page-header">
         <h2>Order #{{orderId}}</h2>
+
         <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span>
             <a ui-sref="orders({locale: locale})"> Back to orders</a></p>
     </div>
@@ -8,16 +9,24 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="row">
+                    <div ng-if="orderDetails.id" class="row">
+
                         <!-- Order Details -->
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <span class="glyphicon glyphicon-info-sign"></span> #{{orderDetails.id}} <br/>
-                                    <span class="glyphicon glyphicon-calendar"></span> {{orderDetails.created_at | date:"MM/dd/yyyy @ h:mma" }}<br/>
+                                    <h4>General information</h4>
+                                    Oder date: {{orderDetails.created_at | date:"MM/dd/yyyy @ h:mma" }}<br/>
+                                    Status: {{orderDetails.status}}<br/>
+                                    Total: {{orderDetails.totalamount}} {{orderDetails.currency}}<br/>
+                                    Comment: {{orderDetails.description}}<br/>
                                 </div>
                                 <div class="col-md-6">
-                                   Total: {{orderDetails.grandtotal}} {{currency}}<br/>
+                                    <h4>Billing information</h4>
+                                    Country: {{orderDetails.country}}<br/>
+                                    Region: {{orderDetails.region}}<br/>
+                                    City: {{orderDetails.city}}<br/>
+                                    Phone: {{orderDetails.phone}}<br/>
                                 </div>
                             </div>
                             <hr>
@@ -43,7 +52,9 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="pull-right">
-                                                <div class="alert alert-warning" role="alert">{{item.price*item.qty}} {{currency}}</div>
+                                            <div class="alert alert-warning" role="alert">{{item.price*item.qty}}
+                                                {{currency}}
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">

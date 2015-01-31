@@ -28,15 +28,14 @@ define(['app'], function (app) {
                     formData['billing_region'] = encodeURIComponent(form.billing_region.$modelValue);
                     formData['billing_city'] = encodeURIComponent(form.billing_city.$modelValue);
                     formData['billing_phone'] = encodeURIComponent(form.billing_phone.$modelValue);
-                    formData['billing_comment'] = encodeURIComponent(form.description.$modelValue);
+                    formData['billing_comment'] = encodeURIComponent(form.billing_comment.$modelValue);
                     formData['payment_method'] = encodeURIComponent(form.payment_method.$modelValue);
-                    var userData = JSON.stringify(formData);
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/order/submit.json?userdata=' + userData;
 
+                    var locale = Environment.currentLocale();
+                    var url = Environment.settings.api + '/' + locale + '/order/submit.json';
                     console.log(formData);
                     console.log(url);
-                    return $http.get(url);
+                    return $http.post(url, formData);
                 },
                 getCountries: function () {
                     var url = Environment.settings.api + '/addressing/country/list.json';

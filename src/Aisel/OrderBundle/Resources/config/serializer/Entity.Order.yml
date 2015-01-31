@@ -14,17 +14,30 @@ Aisel\OrderBundle\Entity\Order:
         expose: true
     status:
         expose: true
-    subtotal:
+    totalamount:
         expose: true
-    grandtotal:
+    currency:
         expose: true
-    createdAt:
+    paymentMethod:
         expose: true
-    updatedAt:
+    country:
+        expose: true
+    region:
+        expose: true
+    city:
+        expose: true
+    phone:
+        expose: true
+    description:
+        expose: true
+
+    item:
         expose: true
     frontenduser:
         expose: false
-    item:
+    createdAt:
+        expose: true
+    updatedAt:
         expose: true
 
 #    number:

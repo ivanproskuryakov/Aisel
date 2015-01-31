@@ -12,8 +12,11 @@
 namespace Aisel\OrderBundle\Manager;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Aisel\OrderBundle\Entity\Order;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Payum\Core\Request\GetHumanStatus;
 use Payum\Core\Request\Capture;
+
 
 /**
  * Manager for Orders, mostly used in REST API
@@ -72,10 +75,10 @@ class OrderManager
     /**
      * Get single order by given userId and orderId
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param FrontendUser $user
      * @param int $orderId
      *
-     * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     * @return Order $orderDetails
      */
     public function getUserOrder($user, $orderId)
     {
@@ -89,9 +92,9 @@ class OrderManager
     /**
      * Get all order for user
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param FrontendUser $user
      *
-     * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     * @return Order $orderDetails
      *
      * @throws NotFoundHttpException
      */
@@ -108,7 +111,8 @@ class OrderManager
     /**
      * Create order for given userId
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param FrontendUser $user
+     * @param string $locale
      * @param mixed $orderInfo
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
@@ -128,13 +132,13 @@ class OrderManager
                 $orderInfo
             );
 
-//        $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
-//            $orderInfo['payment_method'],
-//            $order,
-//            'aisel_payum_order'
-//        );
-//
-//        $token->getTargetUrl();
+        $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
+            $orderInfo['payment_method'],
+            $order,
+            'aisel_payum_order'
+        );
+        $token->getTargetUrl();
+
 //        $payment = $this->sc->get('payum')->getPayment('offline');
 //        $payment->execute(new Capture($order));
 
@@ -144,11 +148,11 @@ class OrderManager
     /**
      * Create order for user
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param FrontendUser $user
      * @param array $products
      * @param mixed $orderInfo
      *
-     * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     * @return Order $orderDetails
      *
      * @throws NotFoundHttpException
      */
