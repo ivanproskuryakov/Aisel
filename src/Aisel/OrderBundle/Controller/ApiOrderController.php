@@ -46,6 +46,14 @@ class ApiOrderController extends Controller
     public function orderListAction()
     {
         $user = $this->getUserManager()->getUser();
+
+        if (!$user) {
+            return array(
+                'status' => false,
+                'message' => 'User object is missing'
+            );
+        }
+
         $orders = $this->getOrderManager()->getUserOrders($user);
         return $orders;
     }
@@ -60,6 +68,14 @@ class ApiOrderController extends Controller
     public function orderViewByIdAction($id)
     {
         $user = $this->getUserManager()->getUser();
+
+        if (!$user) {
+            return array(
+                'status' => false,
+                'message' => 'User object is missing'
+            );
+        }
+
         $order = $this->getOrderManager()->getUserOrder($user, $id);
         return $order;
     }

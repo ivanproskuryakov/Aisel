@@ -1,5 +1,5 @@
 @admin.cart
-Feature: cart
+Feature: Cart
   In cart to manage carts from backend
   As a backend user
   I want to make CRUD operations for cart entities

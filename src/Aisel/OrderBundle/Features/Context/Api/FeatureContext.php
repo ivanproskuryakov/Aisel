@@ -16,6 +16,7 @@ class FeatureContext extends DefaultContext
     public function scriptAccessRoute()
     {
         $this->getSession()->visit($this->generateUrl('api_aisel_orderlist'));
+        $content = $this->getSession()->getPage()->getContent();
         $this->assertSession()->statusCodeEquals(200);
     }
 
@@ -25,8 +26,8 @@ class FeatureContext extends DefaultContext
     public function contentContainsValidJSON()
     {
         $content = $this->getSession()->getPage()->getContent();
-        $json = json_decode($content);
-        assertEquals($json, false);
+        $json = (array)json_decode($content);
+        assertEmpty($json['status'], false);
     }
 
 }

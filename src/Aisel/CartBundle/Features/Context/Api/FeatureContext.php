@@ -35,7 +35,7 @@ class FeatureContext extends DefaultContext
     {
         $content = $this->getSession()->getPage()->getContent();
         $json = json_decode($content);
-        assertEquals($json, false);
+        assertEmpty($json, false);
     }
 
 }

@@ -58,7 +58,7 @@ class OrderAdmin extends Admin
             ->with('aisel.default.general')
             ->add('id', 'text', array('label' => 'aisel.default.id', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('frontenduser', null, array('label' => 'aisel.default.user', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
-            ->add('grandtotal', null, array('label' => 'aisel.order.total', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('totalamount', null, array('label' => 'aisel.order.total', 'disabled' => true, 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('status', 'text', array('label' => 'aisel.default.status', 'required' => false, 'attr' => array('class' => 'form-control')))
             ->end()
             ->with('aisel.default.dates')

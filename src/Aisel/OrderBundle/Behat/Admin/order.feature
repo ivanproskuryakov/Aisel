@@ -1,5 +1,5 @@
 @admin.order
-Feature: order
+Feature: Order
   In order to manage orders from backend
   As a backend user
   I want to make CRUD operations for order entities
