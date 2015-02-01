@@ -1,21 +1,26 @@
+#Frontend AngularJS
+/frontend/web/.htaccess
+/frontend/web/robots.txt
+/frontend/web/sitemap.xml
+/frontend/web/images/logo.png
+/frontend/web/bundles/*
+/frontend/web/snapshots/*
+/frontend/web/bower_components/*
+/frontend/web/npm-debug.log
+/frontend/web/media/product/*
+!/frontend/web/media/product/.htaccess
+/frontend/web/photo/*
+/frontend/web/css/*
+/frontend/web/build/*
+/frontend/node_modules/*
+
+#Symfony
 /app/bootstrap.php.cache
 /app/cache/*
 /app/var/*
 /app/config/parameters.yml
 /app/logs/*
-/web/.htaccess
-/web/robots.txt
-/web/sitemap.xml
-/web/images/logo.png
-/web/bundles/*
-/web/snapshots/*
-/web/bower_components/*
-/web/npm-debug.log
-/web/media/product/*
-!/web/media/product/.htaccess
-/web/photo/*
-/web/css/*
-/web/build/*
+
 !/app/cache/.gitkeep
 !app/logs/.gitkeep
 /build/
@@ -25,7 +30,6 @@
 /composer.lock
 
 Capfile
-node_modules
 dist
 .tmp
 .sass-cache
