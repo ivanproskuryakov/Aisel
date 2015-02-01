@@ -4,7 +4,6 @@
 /frontend/web/sitemap.xml
 /frontend/web/images/logo.png
 /frontend/web/bundles/*
-/frontend/web/snapshots/*
 /frontend/web/bower_components/*
 /frontend/web/npm-debug.log
 /frontend/web/media/product/*
@@ -12,6 +11,12 @@
 /frontend/web/photo/*
 /frontend/web/css/*
 /frontend/web/build/*
+
+#Backend
+/backend/web/.htaccess
+/backend/web/bower_components/*
+/backend/web/npm-debug.log
+/backend/web/build/*
 
 #Node.js
 /node_modules/*

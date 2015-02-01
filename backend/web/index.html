@@ -1,0 +1,45 @@
+<html xmlns:ng="http://angularjs.org">
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <title ng-bind="pageTitle"> Loading ...</title>
+    <meta name="description" content="{{metaDescription}}">
+    <meta name="keywords" content="{{metaKeywords}}">
+    <link rel="stylesheet" href="/bower_components/sass-bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.css"/>
+    <script data-require="prefixfree@*"
+            data-semver="1.0.7"
+            src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js">
+    </script>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]-->
+
+<!-- Website content: START -->
+<div id="page-is-loading" class="loading-interceptor">Loading ...</div>
+<div class="container website-content">
+    <!--<header ng-include="'/app/Kernel/Resource/views/header.html'"></header>-->
+    <!--<div id="dynamic-content" class="view" ui-view></div>-->
+    <!--<footer ng-include="'/app/Kernel/Resource/views/footer.html'"></footer>-->
+</div>
+<!-- Website content: END -->
+
+<script data-main="/build/main" src="/bower_components/requirejs/require.js"></script>
+
+</body>
+</html>

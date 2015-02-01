@@ -1,0 +1,88 @@
+<div class="">
+
+        <div class="col-xs-12 page-header">
+            <h2><span class="glyphicon glyphicon-user"></span> Edit details</h2>
+            <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span>
+                <a ui-sref="userInformation({locale: locale})">Back to dashboard</a></p>
+        </div>
+
+        <div class="" ng-if="user">
+            <div class="col-xs-12 col-sm-12">
+                <div class="row">
+                    <form class="form-horizontal" name="editDetailsForm" role="form" ng-submit="submitEditUserDetails(editDetailsForm)">
+
+                        <div class="col-sm-6">
+                            <h3>Details</h3>
+                                <div class="form-group">
+                                    <div class="col-sm-4"><label for="phone">Phone</label></div>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="phone" class="form-control" id="phone"  ng-model="user.phone" ng-required="false">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4"><label for="website">Website</label></div>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="website" class="form-control" id="website"  ng-model="user.website" ng-required="false">
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="message">About me</label>
+                                    <textarea id="message" class="form-control" rows="10" ng-required="false" name="about" ng-model="user.about" ></textarea>
+                                </div>
+
+                                <br class="divider">
+                                <div class="form-group col-sm-12">
+                                    <button type="submit" class="btn btn-primary pull-right">Save Changes</button>
+                                </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <h3>Social Networds</h3>
+                            <div class="well">
+
+                                    <div class="form-group">
+                                        <div class="col-sm-4"><label for="facebook">Facebook</label></div>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="facebook" class="form-control" id="facebook"  ng-model="user.facebook" ng-required="false">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4"><label for="twitter">Twitter</label></div>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="twitter" class="form-control" id="twitter"  ng-model="user.twitter" ng-required="false">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4"><label for="linkedin">LinkedIn</label></div>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="linkedin" class="form-control" id="linkedin"  ng-model="user.linkedin" ng-required="false">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4"><label for="googleplus">Google +</label></div>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="googleplus" class="form-control" id="googleplus"  ng-model="user.googleplus" ng-required="false">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4"><label for="github">GitHub</label></div>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="github" class="form-control" id="github"  ng-model="user.github" ng-required="false">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4"><label for="behance">Behance</label></div>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="behance" class="form-control" id="behance"  ng-model="user.behance" ng-required="false">
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+</div>
