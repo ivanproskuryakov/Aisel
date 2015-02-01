@@ -1,4 +1,4 @@
-#Frontend AngularJS
+#Frontend
 /frontend/web/.htaccess
 /frontend/web/robots.txt
 /frontend/web/sitemap.xml
@@ -12,7 +12,9 @@
 /frontend/web/photo/*
 /frontend/web/css/*
 /frontend/web/build/*
-/frontend/node_modules/*
+
+#Node.js
+/node_modules/*
 
 #Symfony
 /app/bootstrap.php.cache
@@ -20,7 +22,6 @@
 /app/var/*
 /app/config/parameters.yml
 /app/logs/*
-
 !/app/cache/.gitkeep
 !app/logs/.gitkeep
 /build/
@@ -28,7 +29,6 @@
 /bin/
 /composer.phar
 /composer.lock
-
 Capfile
 dist
 .tmp
