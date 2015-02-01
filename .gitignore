@@ -1,3 +1,6 @@
+#Node.js
+/node_modules/*
+
 #Frontend
 /frontend/web/.htaccess
 /frontend/web/robots.txt
@@ -18,10 +21,8 @@
 /backend/web/npm-debug.log
 /backend/web/build/*
 
-#Node.js
-/node_modules/*
-
 #Symfony
+/web/bundles/*
 /app/bootstrap.php.cache
 /app/cache/*
 /app/var/*
@@ -38,3 +39,4 @@ Capfile
 dist
 .tmp
 .sass-cache
+

@@ -19,8 +19,6 @@ define(['app'], function (app) {
             function ($http, $rootScope, settingsService, authService, userService, Environment) {
                 return {
                     launch: function () {
-                        var meta = false;
-                        var disqus = false;
                         var general = false;
 
                         // Load user status
@@ -38,11 +36,6 @@ define(['app'], function (app) {
                         settingsService.getApplicationConfig().success(
                             function (data, status) {
                                 general = JSON.parse(data.config_general);
-                                meta = JSON.parse(data.config_meta);
-                                disqus = JSON.parse(data.config_disqus);
-                                $rootScope.footer = JSON.parse(data.config_content).footerContent;
-                                $rootScope.disqusShortname = disqus.shortname;
-                                $rootScope.disqusStatus = disqus.status;
                                 $rootScope.currency = general.currency;
                                 $rootScope.paymentMethods = general.paymentMethods;
 
@@ -51,21 +44,14 @@ define(['app'], function (app) {
                                     $rootScope.availableLocales = Environment.settings.locale.available;
                                     $rootScope.locale = Environment.currentLocale();
                                 }
-                                var setMetaData = function () {
-                                    $rootScope.pageTitle = meta.defaultMetaTitle;
-                                    $rootScope.metaDescription = meta.defaultMetaDescription;
-                                    $rootScope.metaKeywords = meta.defaultMetaKeywords;
-                                }
 
                                 // Init
                                 setLocale();
-                                setMetaData();
 
                                 // Hook for on route change
                                 $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                                     console.log('State Change ...');
                                     setLocale();
-                                    setMetaData();
                                 });
                             }
                         );
