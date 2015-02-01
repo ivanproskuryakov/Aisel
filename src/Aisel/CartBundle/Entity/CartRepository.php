@@ -26,8 +26,8 @@ class CartRepository extends EntityRepository
      * Add product to cart
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
-     * @param \Aisel\ProductBundle\Entity\Product $product
-     * @param int $qty
+     * @param \Aisel\ProductBundle\Entity\Product           $product
+     * @param int                                           $qty
      *
      * @return \Aisel\CartBundle\Entity\Cart $cartItem
      */
@@ -51,6 +51,7 @@ class CartRepository extends EntityRepository
         }
         $em->persist($cartItem);
         $em->flush();
+
         return $cartItem;
     }
 
@@ -58,8 +59,8 @@ class CartRepository extends EntityRepository
      * Update product in cart
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
-     * @param \Aisel\ProductBundle\Entity\Product $product
-     * @param int $qty
+     * @param \Aisel\ProductBundle\Entity\Product           $product
+     * @param int                                           $qty
      *
      * @return \Aisel\CartBundle\Entity\Cart $total
      */
@@ -80,6 +81,7 @@ class CartRepository extends EntityRepository
                 $em->flush();
             }
         }
+
         return $cartItem;
     }
 
@@ -87,7 +89,7 @@ class CartRepository extends EntityRepository
      * Find product in cart
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
-     * @param \Aisel\ProductBundle\Entity\Product $product
+     * @param \Aisel\ProductBundle\Entity\Product           $product
      *
      * @return \Aisel\CartBundle\Entity\Cart $cartItem
      */
@@ -103,6 +105,5 @@ class CartRepository extends EntityRepository
         if ($cartItem) return $cartItem[0];
         return false;
     }
-
 
 }

@@ -20,7 +20,7 @@ use Aisel\NavigationBundle\Entity\Menu;
  */
 class NavigationManager
 {
-    
+
     protected $em;
 
     /**

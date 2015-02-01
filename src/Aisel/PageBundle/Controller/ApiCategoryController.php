@@ -26,7 +26,7 @@ class ApiCategoryController extends Controller
      * /api/page/category/list.json?limit=2&current=3
      *
      * @param Request $request
-     * @param string $locale
+     * @param string  $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
@@ -45,7 +45,7 @@ class ApiCategoryController extends Controller
      * /api/page/category/list.json?limit=2&current=3
      *
      * @param Request $request
-     * @param string $locale
+     * @param string  $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */

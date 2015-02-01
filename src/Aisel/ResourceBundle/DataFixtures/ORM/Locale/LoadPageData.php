@@ -40,7 +40,6 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                 $contents = file_get_contents($file);
                 $XML = simplexml_load_string($contents);
 
-
                 foreach ($XML->database->table as $table) {
                     $page = new Page();
                     $page->setLocale($table->column[1]);

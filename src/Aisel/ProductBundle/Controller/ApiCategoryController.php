@@ -26,7 +26,7 @@ class ApiCategoryController extends Controller
      * /api/product/category/list.json?limit=2&current=3
      *
      * @param Request $request
-     * @param string $locale
+     * @param string  $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $categoryList
      */
@@ -37,6 +37,7 @@ class ApiCategoryController extends Controller
             'limit' => $request->query->get('limit'),
         );
         $categoryList = $this->container->get("aisel.productcategory.manager")->getCategories($params, $locale);
+
         return $categoryList;
     }
 
@@ -44,13 +45,14 @@ class ApiCategoryController extends Controller
      * /api/product/category/tree.json
      *
      * @param Request $request
-     * @param string $locale
+     * @param string  $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $categoryList
      */
     public function categoryTreeAction(Request $request, $locale)
     {
         $categoryList = $this->container->get("aisel.productcategory.manager")->getCategoryTree($locale);
+
         return $categoryList;
     }
 
@@ -65,6 +67,7 @@ class ApiCategoryController extends Controller
     public function categoryViewAction($urlKey, $locale)
     {
         $category = $this->container->get("aisel.productcategory.manager")->getCategoryByUrl($urlKey, $locale);
+
         return $category;
     }
 

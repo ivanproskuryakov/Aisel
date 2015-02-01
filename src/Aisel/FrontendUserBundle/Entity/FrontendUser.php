@@ -777,11 +777,10 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
      */
     private $cart;
 
-
     /**
      * Add cart
      *
-     * @param \Aisel\CartBundle\Entity\Cart $cart
+     * @param  \Aisel\CartBundle\Entity\Cart $cart
      * @return FrontendUser
      */
     public function addCart(\Aisel\CartBundle\Entity\Cart $cart)
@@ -804,7 +803,7 @@ class FrontendUser implements AdvancedUserInterface, \Serializable
     /**
      * Get cart
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCart()
     {

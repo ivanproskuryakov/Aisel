@@ -16,11 +16,11 @@ use PhpSpec\ObjectBehavior;
 /**
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ConfigHomepageControllerSpec extends ObjectBehavior
+class ConfigContentControllerSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\Aisel\SettingsBundle\Controller\ConfigHomepageController');
+        $this->shouldHaveType('\Aisel\SettingsBundle\Controller\ConfigContentController');
     }
 
 }

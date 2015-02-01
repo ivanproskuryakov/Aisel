@@ -2,8 +2,6 @@
 
 namespace Aisel\OrderBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * OrderItem
  */
@@ -34,11 +32,10 @@ class OrderItem
      */
     private $product;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -48,7 +45,7 @@ class OrderItem
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return OrderItem
      */
     public function setCreatedAt($createdAt)
@@ -61,7 +58,7 @@ class OrderItem
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -71,7 +68,7 @@ class OrderItem
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return OrderItem
      */
     public function setUpdatedAt($updatedAt)
@@ -84,7 +81,7 @@ class OrderItem
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -94,7 +91,7 @@ class OrderItem
     /**
      * Set order
      *
-     * @param \Aisel\OrderBundle\Entity\Order $order
+     * @param  \Aisel\OrderBundle\Entity\Order $order
      * @return OrderItem
      */
     public function setOrder(\Aisel\OrderBundle\Entity\Order $order = null)
@@ -107,7 +104,7 @@ class OrderItem
     /**
      * Get order
      *
-     * @return \Aisel\OrderBundle\Entity\Order 
+     * @return \Aisel\OrderBundle\Entity\Order
      */
     public function getOrder()
     {
@@ -117,7 +114,7 @@ class OrderItem
     /**
      * Set product
      *
-     * @param \Aisel\ProductBundle\Entity\Product $product
+     * @param  \Aisel\ProductBundle\Entity\Product $product
      * @return OrderItem
      */
     public function setProduct(\Aisel\ProductBundle\Entity\Product $product = null)
@@ -130,7 +127,7 @@ class OrderItem
     /**
      * Get product
      *
-     * @return \Aisel\ProductBundle\Entity\Product 
+     * @return \Aisel\ProductBundle\Entity\Product
      */
     public function getProduct()
     {
@@ -151,11 +148,10 @@ class OrderItem
      */
     private $qty;
 
-
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string    $title
      * @return OrderItem
      */
     public function setTitle($title)
@@ -168,7 +164,7 @@ class OrderItem
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -178,7 +174,7 @@ class OrderItem
     /**
      * Set price
      *
-     * @param integer $price
+     * @param  integer   $price
      * @return OrderItem
      */
     public function setPrice($price)
@@ -191,7 +187,7 @@ class OrderItem
     /**
      * Get price
      *
-     * @return integer 
+     * @return integer
      */
     public function getPrice()
     {
@@ -201,7 +197,7 @@ class OrderItem
     /**
      * Set qty
      *
-     * @param integer $qty
+     * @param  integer   $qty
      * @return OrderItem
      */
     public function setQty($qty)
@@ -214,7 +210,7 @@ class OrderItem
     /**
      * Get qty
      *
-     * @return integer 
+     * @return integer
      */
     public function getQty()
     {
@@ -225,11 +221,10 @@ class OrderItem
      */
     private $name;
 
-
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string    $name
      * @return OrderItem
      */
     public function setName($name)
@@ -242,7 +237,7 @@ class OrderItem
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {

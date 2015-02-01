@@ -33,7 +33,7 @@ class ProductManager
 
     /**
      * Get categories in array for product
-     * @param  int $product
+     * @param  int   $product
      * @return array $categories
      */
     public function getProductCategories($product)
@@ -47,6 +47,7 @@ class ProductManager
             $category['url'] = $c->getMetaUrl();
             $categories[$c->getId()] = $category;
         }
+
         return $categories;
     }
 
@@ -63,6 +64,7 @@ class ProductManager
             'total' => $total,
             'products' => $products
         );
+
         return $return;
     }
 
@@ -83,6 +85,7 @@ class ProductManager
             throw new NotFoundHttpException('Nothing found');
         }
         $productDetails = array('product' => $product, 'categories' => $this->getProductCategories($product));
+
         return $productDetails;
     }
 
@@ -103,6 +106,7 @@ class ProductManager
             throw new NotFoundHttpException('Nothing found');
         }
         $productDetails = array('product' => $product, 'categories' => $this->getProductCategories($product));
+
         return $productDetails;
     }
 
@@ -124,6 +128,7 @@ class ProductManager
         if ($product) {
             $validUrl = $validUrl . '-' . time();
         }
+
         return $validUrl;
     }
 
@@ -134,6 +139,7 @@ class ProductManager
     public function getEnabledProducts()
     {
         $productList = $this->em->getRepository('AiselProductBundle:Product')->getEnabledProducts();
+
         return $productList;
     }
 
@@ -153,6 +159,7 @@ class ProductManager
         if (!($product)) {
             throw new NotFoundHttpException('Nothing found');
         }
+
         return $product;
     }
 

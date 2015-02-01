@@ -11,8 +11,6 @@
 
 namespace Aisel\OrderBundle\Manager;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 /**
  * Wrapper for PayumBundle | Empty
  *
@@ -41,6 +39,5 @@ class PayumManager
     {
         return null;
     }
-
 
 }

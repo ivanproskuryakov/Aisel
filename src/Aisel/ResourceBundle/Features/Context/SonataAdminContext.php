@@ -22,6 +22,7 @@ abstract class SonataAdminContext extends DefaultContext
     public function showTree()
     {
         $element = $this->findByCSS('.fancytree-container');
+
         return $element;
     }
 

@@ -12,7 +12,6 @@
 namespace Aisel\CartBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * Frontend API controller to for Cart CRUD
@@ -46,6 +45,7 @@ class ApiCartController extends Controller
     public function cartAction()
     {
         $user = $this->getUserManager()->getUser();
+
         return $this->getCartManager()->getUserCart($user);
     }
 
@@ -67,6 +67,7 @@ class ApiCartController extends Controller
         } else {
             $response = array('status' => false, 'message' => 'Something went wrong during adding product to cart');
         }
+
         return $response;
     }
 
@@ -88,6 +89,7 @@ class ApiCartController extends Controller
         } else {
             $response = array('status' => false, 'message' => 'Something went wrong during removing product from cart');
         }
+
         return $response;
     }
 

@@ -26,7 +26,7 @@ class ApiProductController extends Controller
      * /api/product/list.json?limit=2&current=3
      *
      * @param Request $request
-     * @param string $locale
+     * @param string  $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $list
      */
@@ -44,6 +44,7 @@ class ApiProductController extends Controller
             $params['userid'] = $userid;
         }
         $list = $this->container->get("aisel.product.manager")->getProducts($params, $locale);
+
         return $list;
     }
 
@@ -56,6 +57,7 @@ class ApiProductController extends Controller
     {
         /** @var \Aisel\ProductBundle\Entity\Product $product */
         $product = $this->container->get("aisel.product.manager")->getProductByURL($urlKey);
+
         return $product;
     }
 }

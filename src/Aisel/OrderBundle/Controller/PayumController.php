@@ -12,7 +12,6 @@
 namespace Aisel\OrderBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller to handle Payum order capture

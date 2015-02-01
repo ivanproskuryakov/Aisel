@@ -2,7 +2,6 @@
 
 namespace Aisel\OrderBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Payum\Core\Model\Order as BaseOrder;
 
 /**
@@ -73,7 +72,7 @@ class Order //extends BaseOrder
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -83,7 +82,7 @@ class Order //extends BaseOrder
     /**
      * Set locale
      *
-     * @param string $locale
+     * @param  string $locale
      * @return Order
      */
     public function setLocale($locale)
@@ -96,7 +95,7 @@ class Order //extends BaseOrder
     /**
      * Get locale
      *
-     * @return string 
+     * @return string
      */
     public function getLocale()
     {
@@ -106,7 +105,7 @@ class Order //extends BaseOrder
     /**
      * Set status
      *
-     * @param string $status
+     * @param  string $status
      * @return Order
      */
     public function setStatus($status)
@@ -119,7 +118,7 @@ class Order //extends BaseOrder
     /**
      * Get status
      *
-     * @return string 
+     * @return string
      */
     public function getStatus()
     {
@@ -129,7 +128,7 @@ class Order //extends BaseOrder
     /**
      * Set subtotal
      *
-     * @param integer $subtotal
+     * @param  integer $subtotal
      * @return Order
      */
     public function setSubtotal($subtotal)
@@ -142,7 +141,7 @@ class Order //extends BaseOrder
     /**
      * Get subtotal
      *
-     * @return integer 
+     * @return integer
      */
     public function getSubtotal()
     {
@@ -152,7 +151,7 @@ class Order //extends BaseOrder
     /**
      * Set grandtotal
      *
-     * @param integer $grandtotal
+     * @param  integer $grandtotal
      * @return Order
      */
     public function setGrandtotal($grandtotal)
@@ -165,7 +164,7 @@ class Order //extends BaseOrder
     /**
      * Get grandtotal
      *
-     * @return integer 
+     * @return integer
      */
     public function getGrandtotal()
     {
@@ -175,7 +174,7 @@ class Order //extends BaseOrder
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Order
      */
     public function setCreatedAt($createdAt)
@@ -188,7 +187,7 @@ class Order //extends BaseOrder
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -198,7 +197,7 @@ class Order //extends BaseOrder
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Order
      */
     public function setUpdatedAt($updatedAt)
@@ -211,7 +210,7 @@ class Order //extends BaseOrder
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -221,7 +220,7 @@ class Order //extends BaseOrder
     /**
      * Set frontenduser
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
+     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
      * @return Order
      */
     public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
@@ -234,7 +233,7 @@ class Order //extends BaseOrder
     /**
      * Get frontenduser
      *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser 
+     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
      */
     public function getFrontenduser()
     {
@@ -244,7 +243,7 @@ class Order //extends BaseOrder
     /**
      * Set invoice
      *
-     * @param \Aisel\OrderBundle\Entity\Invoice $invoice
+     * @param  \Aisel\OrderBundle\Entity\Invoice $invoice
      * @return Order
      */
     public function setInvoice(\Aisel\OrderBundle\Entity\Invoice $invoice = null)
@@ -257,7 +256,7 @@ class Order //extends BaseOrder
     /**
      * Get invoice
      *
-     * @return \Aisel\OrderBundle\Entity\Invoice 
+     * @return \Aisel\OrderBundle\Entity\Invoice
      */
     public function getInvoice()
     {
@@ -267,7 +266,7 @@ class Order //extends BaseOrder
     /**
      * Add item
      *
-     * @param \Aisel\OrderBundle\Entity\OrderItem $item
+     * @param  \Aisel\OrderBundle\Entity\OrderItem $item
      * @return Order
      */
     public function addItem(\Aisel\OrderBundle\Entity\OrderItem $item)
@@ -290,7 +289,7 @@ class Order //extends BaseOrder
     /**
      * Get item
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getItem()
     {
@@ -301,11 +300,10 @@ class Order //extends BaseOrder
      */
     private $totalamount;
 
-
     /**
      * Set totalamount
      *
-     * @param integer $totalamount
+     * @param  integer $totalamount
      * @return Order
      */
     public function setTotalamount($totalamount)
@@ -318,7 +316,7 @@ class Order //extends BaseOrder
     /**
      * Get totalamount
      *
-     * @return integer 
+     * @return integer
      */
     public function getTotalamount()
     {
@@ -334,11 +332,10 @@ class Order //extends BaseOrder
      */
     private $currency;
 
-
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string $description
      * @return Order
      */
     public function setDescription($description)
@@ -351,7 +348,7 @@ class Order //extends BaseOrder
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -361,7 +358,7 @@ class Order //extends BaseOrder
     /**
      * Set currency
      *
-     * @param string $currency
+     * @param  string $currency
      * @return Order
      */
     public function setCurrency($currency)
@@ -374,7 +371,7 @@ class Order //extends BaseOrder
     /**
      * Get currency
      *
-     * @return string 
+     * @return string
      */
     public function getCurrency()
     {
@@ -400,11 +397,10 @@ class Order //extends BaseOrder
      */
     private $phone;
 
-
     /**
      * Set country
      *
-     * @param string $country
+     * @param  string $country
      * @return Order
      */
     public function setCountry($country)
@@ -417,7 +413,7 @@ class Order //extends BaseOrder
     /**
      * Get country
      *
-     * @return string 
+     * @return string
      */
     public function getCountry()
     {
@@ -427,7 +423,7 @@ class Order //extends BaseOrder
     /**
      * Set region
      *
-     * @param string $region
+     * @param  string $region
      * @return Order
      */
     public function setRegion($region)
@@ -440,7 +436,7 @@ class Order //extends BaseOrder
     /**
      * Get region
      *
-     * @return string 
+     * @return string
      */
     public function getRegion()
     {
@@ -450,7 +446,7 @@ class Order //extends BaseOrder
     /**
      * Set city
      *
-     * @param string $city
+     * @param  string $city
      * @return Order
      */
     public function setCity($city)
@@ -463,7 +459,7 @@ class Order //extends BaseOrder
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -473,7 +469,7 @@ class Order //extends BaseOrder
     /**
      * Set phone
      *
-     * @param string $phone
+     * @param  string $phone
      * @return Order
      */
     public function setPhone($phone)
@@ -486,7 +482,7 @@ class Order //extends BaseOrder
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -497,11 +493,10 @@ class Order //extends BaseOrder
      */
     private $paymentMethod;
 
-
     /**
      * Set paymentMethod
      *
-     * @param string $paymentMethod
+     * @param  string $paymentMethod
      * @return Order
      */
     public function setPaymentMethod($paymentMethod)
@@ -514,7 +509,7 @@ class Order //extends BaseOrder
     /**
      * Get paymentMethod
      *
-     * @return string 
+     * @return string
      */
     public function getPaymentMethod()
     {

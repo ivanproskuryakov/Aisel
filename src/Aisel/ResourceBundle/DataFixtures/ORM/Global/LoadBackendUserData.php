@@ -45,9 +45,9 @@ class LoadBackendUserData extends XMLFixture implements OrderedFixtureInterface
 
                 foreach ($XML->database->table as $table) {
                     $userData = array(
-                        'username' => (string)$table->column[1],
-                        'email' => (string)$table->column[2],
-                        'password' => (string)$table->column[3],
+                        'username' => (string) $table->column[1],
+                        'email' => (string) $table->column[2],
+                        'password' => (string) $table->column[3],
                     );
                     $this->getUserManager()->registerFixturesUser($userData);
 
@@ -59,8 +59,7 @@ class LoadBackendUserData extends XMLFixture implements OrderedFixtureInterface
     /**
      * {@inheritDoc}
      */
-    public
-    function getOrder()
+    public function getOrder()
     {
         return 110;
     }

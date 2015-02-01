@@ -26,7 +26,7 @@ class ApiController extends Controller
      * /api/navigation/menu.json
      *
      * @param Request $request
-     * @param string $locale
+     * @param string  $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */

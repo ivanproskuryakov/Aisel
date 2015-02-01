@@ -40,7 +40,7 @@ class ConfigManager
         $decoded = array();
 
         if ($config && $config) {
-            $decoded = (array)json_decode($config->getValue());
+            $decoded = (array) json_decode($config->getValue());
         }
 
         return $decoded;

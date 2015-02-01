@@ -12,7 +12,6 @@
 namespace Aisel\OrderBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -36,7 +35,7 @@ class ApiCheckoutController extends Controller
          * Payment methods
          */
         $config = $this->container->get("aisel.settings.manager")->getConfig('en');
-        $general = (array)json_decode($config['config_general']);
+        $general = (array) json_decode($config['config_general']);
 
         foreach ($general['paymentMethods'] as $m) {
             if ($method = $this->container->getParameter('aisel_order.payment_methods')[$m]) {

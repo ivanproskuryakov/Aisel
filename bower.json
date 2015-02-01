@@ -1,6 +1,6 @@
 {
     "name": "Aisel",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "appPath": "web",
     "dependencies": {
         "angular": "~1.2.6",

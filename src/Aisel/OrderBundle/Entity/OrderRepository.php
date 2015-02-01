@@ -17,9 +17,9 @@ class OrderRepository extends EntityRepository
      * Create from user cart
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
-     * @param string $locale
-     * @param string $currencyCode
-     * @param mixed $orderInfo
+     * @param string                                        $locale
+     * @param string                                        $currencyCode
+     * @param mixed                                         $orderInfo
      *
      * @return \Aisel\OrderBundle\Entity\Order $order|false
      */
@@ -58,10 +58,10 @@ class OrderRepository extends EntityRepository
      * Create from array of product
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
-     * @param string $locale
-     * @param array $products
-     * @param string $currencyCode
-     * @param mixed $orderInfo
+     * @param string                                        $locale
+     * @param array                                         $products
+     * @param string                                        $currencyCode
+     * @param mixed                                         $orderInfo
      *
      * @return \Aisel\OrderBundle\Entity\Order $order|false
      */
@@ -97,9 +97,9 @@ class OrderRepository extends EntityRepository
      * Create empty order
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
-     * @param string $locale
-     * @param string $currencyCode
-     * @param mixed $orderInfo
+     * @param string                                        $locale
+     * @param string                                        $currencyCode
+     * @param mixed                                         $orderInfo
      *
      * @return \Aisel\OrderBundle\Entity\Order $order
      */
@@ -150,7 +150,7 @@ class OrderRepository extends EntityRepository
      * Grab one order for given $user
      *
      * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
-     * @param integer $orderId
+     * @param integer                                       $orderId
      *
      * @return \Aisel\OrderBundle\Entity\Order $order
      */
@@ -166,6 +166,5 @@ class OrderRepository extends EntityRepository
 
         return $orders;
     }
-
 
 }

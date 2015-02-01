@@ -95,7 +95,7 @@ class ProductRepository extends EntityRepository
     /**
      * Get products based on limit, current pagination and search query
      *
-     * @param  array $params
+     * @param array $params
      *
      * @return \Aisel\ProductBundle\Entity\Product
      */
@@ -114,6 +114,7 @@ class ProductRepository extends EntityRepository
             ->orderBy('p.' . $this->pageOrder, $this->pageOrderBy)
             ->getQuery()
             ->execute();
+
         return $r;
     }
 
@@ -130,6 +131,7 @@ class ProductRepository extends EntityRepository
             ->andWhere('p.status = 1')
             ->getQuery()
             ->execute();
+
         return $items;
     }
 
@@ -165,13 +167,14 @@ class ProductRepository extends EntityRepository
             ->orderBy('p.' . $this->pageOrder, $this->pageOrderBy)
             ->getQuery()
             ->execute();
+
         return $items;
     }
 
     /**
      * Get products filtered by category
      *
-     * @param  int $categoryId
+     * @param int $categoryId
      *
      * @return \Aisel\ProductBundle\Entity\Product $items
      */
@@ -186,6 +189,7 @@ class ProductRepository extends EntityRepository
             ->andWhere('c.id = :categoryId')->setParameter('categoryId', $categoryId)
             ->getQuery()
             ->execute();
+
         return $items;
     }
 
@@ -208,6 +212,7 @@ class ProductRepository extends EntityRepository
             $query->andWhere('p.id != :pageId')->setParameter('pageId', $productId);
         }
         $found = $query->getQuery()->getSingleScalarResult();
+
         return $found;
     }
 

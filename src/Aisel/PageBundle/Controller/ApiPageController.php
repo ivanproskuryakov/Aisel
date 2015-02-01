@@ -36,7 +36,7 @@ class ApiPageController extends Controller
      * /api/page/list.json?limit=2&current=3
      *
      * @param Request $request
-     * @param string $locale
+     * @param string  $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
@@ -54,6 +54,7 @@ class ApiPageController extends Controller
             $params['userid'] = $userid;
         }
         $pageList = $this->container->get("aisel.page.manager")->getPages($params, $locale);
+
         return $pageList;
     }
 
@@ -67,6 +68,7 @@ class ApiPageController extends Controller
     {
         /** @var \Aisel\PageBundle\Entity\Page $page */
         $page = $this->container->get("aisel.page.manager")->getPageByURL($urlKey, $locale);
+
         return $page;
     }
 }

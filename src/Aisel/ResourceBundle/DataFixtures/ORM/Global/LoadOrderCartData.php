@@ -48,13 +48,13 @@ class LoadOrderCartData extends XMLFixture implements OrderedFixtureInterface
                     $frontendUser = $this->getReference('frontenduser_' . $table->column[3]);
                     $locale = $table->column[1];
                     $orderInfo = array(
-                        'payment_method' => (string)$table->column[2],
-                        'billing_country' => (string)$table->column[4],
-                        'billing_region' => (string)$table->column[5],
-                        'billing_city' => (string)$table->column[6],
-                        'billing_comment' => (string)$table->column[8],
-                        'billing_phone' => (string)$table->column[7],
-                        'locale' => (string)$locale,
+                        'payment_method' => (string) $table->column[2],
+                        'billing_country' => (string) $table->column[4],
+                        'billing_region' => (string) $table->column[5],
+                        'billing_city' => (string) $table->column[6],
+                        'billing_comment' => (string) $table->column[8],
+                        'billing_phone' => (string) $table->column[7],
+                        'locale' => (string) $locale,
                     );
                     $order = $this
                         ->getOrderManager()

@@ -55,6 +55,7 @@ class ApiOrderController extends Controller
         }
 
         $orders = $this->getOrderManager()->getUserOrders($user);
+
         return $orders;
     }
 
@@ -77,6 +78,7 @@ class ApiOrderController extends Controller
         }
 
         $order = $this->getOrderManager()->getUserOrder($user, $id);
+
         return $order;
     }
 
@@ -84,7 +86,7 @@ class ApiOrderController extends Controller
      * /%website_api%/order/submit.json
      *
      * @param Request $request
-     * @param string $locale
+     * @param string  $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */

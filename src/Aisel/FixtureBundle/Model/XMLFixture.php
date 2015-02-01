@@ -37,7 +37,6 @@ abstract class XMLFixture extends AbstractFixture implements OrderedFixtureInter
         $this->container = $container;
         $files = array();
 
-
         foreach ($this->fixturesName as $key => $file) {
             $files[$key] = dirname($container->getParameter('kernel.root_dir')) .
                 $container->getParameter('aisel_fixture.xml.path') . DIRECTORY_SEPARATOR .

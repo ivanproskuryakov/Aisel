@@ -81,6 +81,7 @@ class UserManager implements UserProviderInterface
     public function loadUserByUsername($username)
     {
         $user = $this->getRepository()->findOneBy(array('username' => $username));
+
         return $user;
     }
 
@@ -94,6 +95,7 @@ class UserManager implements UserProviderInterface
     public function findUserByEmail($email)
     {
         $user = $this->getRepository()->findOneBy(array('email' => $email));
+
         return $user;
     }
 
@@ -108,6 +110,7 @@ class UserManager implements UserProviderInterface
     public function findUser($username, $email)
     {
         $user = $this->em->getRepository('AiselBackendUserBundle:BackendUser')->findUser($username, $email);
+
         return $user;
     }
 
@@ -126,6 +129,7 @@ class UserManager implements UserProviderInterface
                 )
             );
         }
+
         return $this->find($user->getId());
     }
 

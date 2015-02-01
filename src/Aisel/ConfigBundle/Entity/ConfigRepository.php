@@ -41,6 +41,7 @@ class ConfigRepository extends EntityRepository
         foreach ($values as $k => $v) {
             if ($v['locale'] == $locale) $config[$v['entity']] = $v['value'];
         }
+
         return $config;
     }
 
@@ -61,7 +62,6 @@ class ConfigRepository extends EntityRepository
             ->andWhere('c.entity = :entity')->setParameter('entity', $entityName)
             ->getQuery()
             ->getOneOrNullResult();
-
 
         return $entity;
     }

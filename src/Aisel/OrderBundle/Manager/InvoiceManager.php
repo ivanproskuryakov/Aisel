@@ -79,6 +79,7 @@ class InvoiceManager
                 return $invoice;
             }
         }
+
         return false;
     }
 

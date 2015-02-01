@@ -56,7 +56,7 @@ class AddressingManager
     /**
      * Get country city by its id
      *
-     * @param integer $id
+     * @param  integer                                $id
      * @return \Aisel\AddressingBundle\Entity\Country $countries
      *
      * @throws NotFoundHttpException
@@ -95,7 +95,7 @@ class AddressingManager
     /**
      * Get single city by its id
      *
-     * @param integer $id
+     * @param  integer                             $id
      * @return \Aisel\AddressingBundle\Entity\City $countries
      *
      * @throws NotFoundHttpException
@@ -134,7 +134,7 @@ class AddressingManager
     /**
      * Get single region by its id
      *
-     * @param integer $id
+     * @param  integer                               $id
      * @return \Aisel\AddressingBundle\Entity\Region $region
      *
      * @throws NotFoundHttpException

@@ -80,7 +80,6 @@ class UserManager implements UserProviderInterface
         return $this->em->getRepository('AiselFrontendUserBundle:FrontendUser');
     }
 
-
     /**
      * Get current user entity
      *
@@ -102,9 +101,9 @@ class UserManager implements UserProviderInterface
                 if (in_array('ROLE_USER', $roles)) return $user;
             }
         }
+
         return false;
     }
-
 
     /**
      * Get get session Id
@@ -136,6 +135,7 @@ class UserManager implements UserProviderInterface
                 if (in_array('ROLE_USER', $roles)) return true;
             }
         }
+
         return false;
     }
 
@@ -143,7 +143,7 @@ class UserManager implements UserProviderInterface
      * Is user password correct
      *
      * @param FrontendUser $user
-     * @param string $password
+     * @param string       $password
      *
      * @return boolean $isValid
      */
@@ -318,6 +318,7 @@ class UserManager implements UserProviderInterface
             }
             $this->em->persist($user);
             $this->em->flush();
+
             return $response;
         } else {
             return false;
@@ -327,6 +328,7 @@ class UserManager implements UserProviderInterface
     public function loadUserByUsername($username)
     {
         $user = $this->getRepository()->findOneBy(array('username' => $username));
+
         return $user;
     }
 
@@ -337,6 +339,7 @@ class UserManager implements UserProviderInterface
         if (!($user)) {
             throw new NotFoundHttpException('User not found');
         }
+
         return $user;
     }
 
@@ -347,6 +350,7 @@ class UserManager implements UserProviderInterface
         if (!($user)) {
             throw new NotFoundHttpException('User not found');
         }
+
         return $user;
     }
 
@@ -357,6 +361,7 @@ class UserManager implements UserProviderInterface
         if (!($user)) {
             throw new NotFoundHttpException('User not found');
         }
+
         return $user;
     }
 

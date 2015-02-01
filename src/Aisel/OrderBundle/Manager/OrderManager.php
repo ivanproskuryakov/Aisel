@@ -14,9 +14,7 @@ namespace Aisel\OrderBundle\Manager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Aisel\OrderBundle\Entity\Order;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
-use Payum\Core\Request\GetHumanStatus;
 use Payum\Core\Request\Capture;
-
 
 /**
  * Manager for Orders, mostly used in REST API
@@ -44,7 +42,6 @@ class OrderManager
         $this->cartManager = $cartManager;
     }
 
-
     /**
      * Get cart Manager
      *
@@ -54,7 +51,6 @@ class OrderManager
     {
         return $this->cartManager;
     }
-
 
     /**
      * Currency code from the system settings
@@ -76,7 +72,7 @@ class OrderManager
      * Get single order by given userId and orderId
      *
      * @param FrontendUser $user
-     * @param int $orderId
+     * @param int          $orderId
      *
      * @return Order $orderDetails
      */
@@ -105,6 +101,7 @@ class OrderManager
         $orders = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->findAllOrdersForUser($user);
+
         return $orders;
     }
 
@@ -112,8 +109,8 @@ class OrderManager
      * Create order for given userId
      *
      * @param FrontendUser $user
-     * @param string $locale
-     * @param mixed $orderInfo
+     * @param string       $locale
+     * @param mixed        $orderInfo
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      *
@@ -141,7 +138,6 @@ class OrderManager
 
 //        $payment = $this->sc->get('payum')->getPayment('offline');
 //        $payment->execute(new Capture($order));
-
         return $order;
     }
 
@@ -149,8 +145,8 @@ class OrderManager
      * Create order for user
      *
      * @param FrontendUser $user
-     * @param array $products
-     * @param mixed $orderInfo
+     * @param array        $products
+     * @param mixed        $orderInfo
      *
      * @return Order $orderDetails
      *
@@ -169,6 +165,7 @@ class OrderManager
                 $this->getCurrencyCode($orderInfo['locale']),
                 $orderInfo
             );
+
         return $order;
     }
 

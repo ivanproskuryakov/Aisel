@@ -26,7 +26,7 @@ class FeatureContext extends DefaultContext
     public function contentContainsValidJSON()
     {
         $content = $this->getSession()->getPage()->getContent();
-        $json = (array)json_decode($content);
+        $json = (array) json_decode($content);
         assertEmpty($json['status'], false);
     }
 

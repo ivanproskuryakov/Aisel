@@ -52,6 +52,7 @@ class SettingsManager
         $config['settings'] = array();
         $config['settings']['locale'] = $this->locale;
         $config['time'] = time(); // inject response unix timestamp
+
         return $config;
     }
 
@@ -70,7 +71,7 @@ class SettingsManager
         $config = $this->em
             ->getRepository('AiselConfigBundle:Config')
             ->getConfig($locale, $entity);
-        $value = (array)json_decode($config->getValue());
+        $value = (array) json_decode($config->getValue());
 
         return $value;
     }
