@@ -151,7 +151,6 @@ body .panel-primary {
 
 .website-content {
     min-height: 500px;
-    margin-top: 30px;
 }
 
 .categoryList {
@@ -164,47 +163,6 @@ body .panel-primary {
     font-size: 0.9em;
 }
 
-/***********
-    Categories
-************/
-.homepage-content {
-    margin-top: 40px;
-}
-
-.categoryTree {
-    margin-top: 30px;
-}
-
-.categoryTree .categories {
-    padding-left: 10px;
-}
-
-.categoryTree ul, .categoryTree ul ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.categoryTree ul ul {
-    margin-left: 10px;
-}
-
-.categoryTree ul li {
-    margin: 0;
-    padding: 0 12px;
-    line-height: 20px;
-    background: url(../images/node.png) no-repeat;
-    color: #369;
-    font-weight: bold;
-}
-
-.categoryTree ul li:last-child {
-    background: #fff url(../images/lastnode.png) no-repeat;
-}
-
-.featurette-divider {
-    margin: 80px 0;
-}
 
 /***********
     Footer
@@ -218,7 +176,7 @@ footer {
 }
 
 .website-footer {
-    padding: 10px 0;
+    padding: 25px 0;
     color: #999;
     text-align: center;
     background-color: #f8f8f8;
@@ -228,8 +186,6 @@ footer {
 
 .website-footer .availableLocales {
     text-align: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
     clear: both;
     display: inline-block;
 }
@@ -264,38 +220,4 @@ footer {
 
 .website-footer .copyright {
     text-align: center;
-}
-
-/***********
-    User
-************/
-.bs-callout-info {
-    background-color: #f4f8fa;
-    border-color: #5bc0de;
-}
-
-.bs-callout {
-    margin: 20px 0;
-    padding: 20px;
-    border-left: 3px solid #eee;
-}
-
-.user-navbar {
-    margin-right: 5px !important;
-}
-
-.gavatar-navbar {
-    margin-right: 5px;
-    margin-top: -2px;
-}
-
-.gavatar-userdetails {
-    margin-bottom: 10px;
-}
-
-/***********
-    Checkout
-************/
-.checkout .form-group {
-    margin-bottom: 0;
 }

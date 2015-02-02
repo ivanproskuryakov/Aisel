@@ -15,12 +15,6 @@
 define(['app'], function (app) {
     app.service('userService', ['$http', 'Environment', function ($http, Environment) {
         return {
-            passwordforgot: function (form) {
-                var email = form.email.$modelValue;
-                var url = Environment.settings.api + '/user/passwordforgot.json?email=' + email;
-                console.log(url);
-                return $http.get(url);
-            },
             signout: function () {
                 var url = Environment.settings.api + '/user/logout.json';
                 console.log(url);

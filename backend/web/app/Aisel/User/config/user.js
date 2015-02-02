@@ -23,40 +23,5 @@ define(['app'], function (app) {
                     role: 'guest'
                 }
             })
-            .state("userRegister", {
-                url: "/:locale/user/register/",
-                templateUrl: '/app/Aisel/User/views/register.html',
-                controller: 'UserCtrl',
-                data: {
-                    role: 'guest'
-                }
-            })
-            .state("userPasswordForgot", {
-                url: "/:locale/user/password/forgot/",
-                templateUrl: '/app/Aisel/User/views/password-forgot.html',
-                controller: 'UserCtrl',
-                data: {
-                    role: 'guest'
-                }
-            })
-            // Authenticated users actions
-            .state("userInformation", {
-                url: "/:locale/user/information/",
-                templateUrl: '/app/Aisel/User/views/information/dashboard.html',
-                controller: 'UserCtrl',
-                data: {
-                    role: 'user'
-                }
-
-            })
-            .state("userInformationEdit", {
-                url: "/:locale/user/information/edit/",
-                templateUrl: '/app/Aisel/User/views/information/edit.html',
-                controller: 'UserCtrl',
-                data: {
-                    role: 'user'
-                }
-
-            })
     }]);
 });

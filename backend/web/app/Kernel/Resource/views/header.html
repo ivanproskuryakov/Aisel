@@ -19,11 +19,6 @@
             </ul>
             <ul class="user-navbar nav navbar-nav navbar-right" ng-controller="UserCtrl">
 
-                <!-- Guests -->
-                <li class="dropdown" ng-if="!user">
-                    <a ui-sref="userInformation({locale: locale})"><span class="glyphicon glyphicon glyphicon-user"></span> Dashboard</a>
-                </li>
-
                 <!-- Users -->
                 <li class="dropdown" ng-if="user">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -32,7 +27,6 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a ui-sref="userInformation({locale: locale})">Dashboard</a></li>
-                        <li><a ui-sref="orders({locale: locale})">Orders</a></li>
                         <li role="presentation" class="divider"></li>
                         <li><a ng-click="signOut()">Sign Out</a></li>
                     </ul>
@@ -40,7 +34,5 @@
             </ul>
         </div>
         <!--/.nav-collapse -->
-
-
     </div>
 </div>
