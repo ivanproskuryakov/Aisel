@@ -17,20 +17,6 @@ define(['app'], function (app) {
         function ($log, $modal, $scope, $rootScope, $routeParams, $state, userService, notify, Environment) {
             var locale = Environment.currentLocale();
 
-            // User Registration
-            $scope.submitRegistration = function (form) {
-                if (form.$valid) {
-                    userService.register(form).success(
-                        function (data, status) {
-                            notify(data.message);
-                            if (data.status) {
-                                $state.transitionTo('userInformation', {locale: locale});
-                            }
-                        }
-                    );
-                }
-            };
-
             /**
              * @param form registration form values
              * @description sends data to API layer and update user object
@@ -65,7 +51,7 @@ define(['app'], function (app) {
                     function (data, status) {
                         notify(data.message);
                         $rootScope.user = undefined;
-                        $state.transitionTo('homepage', {locale: locale});
+                        $state.transitionTo('dashboard', {locale: locale});
                     }
                 );
 

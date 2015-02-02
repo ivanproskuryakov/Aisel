@@ -15,6 +15,6 @@
 define(['app'], function (app) {
     app.controller('DashboardCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'settingsService',
         function ($location, $scope, $routeParams, $rootScope, settingsService) {
-            $scope.content = 'Dashboard !!!';
+            $scope.content = 'some important information ...';
         }]);
 });

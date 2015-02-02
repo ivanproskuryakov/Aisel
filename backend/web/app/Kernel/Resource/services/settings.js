@@ -23,12 +23,6 @@ define(['app'], function (app) {
                         var url = Environment.settings.api + '/' + locale + '/config/settings.json';
                         // console.log(url);
                         return $http.get(url);
-                    },
-                    getMenu: function () {
-                        var locale = Environment.currentLocale();
-                        var url = Environment.settings.api + '/' + locale + '/navigation/menu.json';
-                        //console.log(url);
-                        return $http.get(url);
                     }
                 };
             }
