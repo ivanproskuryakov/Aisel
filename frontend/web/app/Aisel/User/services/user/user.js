@@ -59,7 +59,7 @@ define(['app'], function (app) {
             },
             getUserInformation: function () {
                 var url = Environment.settings.api + '/user/information.json';
-                // console.log(url);
+                console.log(url);
                 return $http.get(url);
             }
         };

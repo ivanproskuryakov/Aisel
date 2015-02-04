@@ -17,9 +17,10 @@ class ResponseListener
         if ($request->getRequestFormat() != 'json') {
             return;
         }
-        
+
         $event->getResponse()->headers->set('Access-Control-Allow-Credentials', 'true');
-        $event->getResponse()->headers->set('Access-Control-Allow-Origin', 'http://admin.ecommerce.aisel.dev');
+        $event->getResponse()->headers->set('Access-Control-Allow-Origin', 'http://ecommerce.aisel.dev');
+//        $event->getResponse()->headers->set('Access-Control-Allow-Origin', 'http://admin.ecommerce.aisel.dev');
         $event->getResponse()->headers->set('Access-Control-Allow-Headers', 'origin, x-requested-with, content-type');
         $event->getResponse()->headers->set('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
     }

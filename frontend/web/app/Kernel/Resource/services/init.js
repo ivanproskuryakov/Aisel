@@ -30,6 +30,7 @@ define(['app'], function (app) {
                         // Load user status
                         userService.getUserInformation().success(
                             function (data, status) {
+                                console.log(data);
                                 if (data.username) {
                                     $rootScope.user = data;
                                 } else {
