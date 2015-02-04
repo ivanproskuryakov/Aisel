@@ -19,9 +19,9 @@ DirectoryIndex index_dev.html
     RewriteCond %{REQUEST_URI} ^/administration/
     RewriteRule $ app_dev.php$1 [NC,L,QSA]
 
-    Header add Access-Control-Allow-Origin "*"
-    Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
-    Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
+#    Header add Access-Control-Allow-Origin "*"
+#    Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+#    Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
 
 </IfModule>
 
@@ -43,9 +43,9 @@ DirectoryIndex index_dev.html
 # http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
 # http://enable-cors.org/
 
-<IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
-</IfModule>
+#<IfModule mod_headers.c>
+#    Header set Access-Control-Allow-Origin "*"
+#</IfModule>
 
 # ------------------------------------------------------------------------------
 # | CORS-enabled images                                                        |
@@ -71,11 +71,11 @@ DirectoryIndex index_dev.html
 
 # Allow access from all domains for web fonts
 
-<IfModule mod_headers.c>
-    <FilesMatch "\.(eot|font.css|otf|ttc|ttf|woff)$">
-        Header set Access-Control-Allow-Origin "*"
-    </FilesMatch>
-</IfModule>
+#<IfModule mod_headers.c>
+#    <FilesMatch "\.(eot|font.css|otf|ttc|ttf|woff)$">
+#        Header set Access-Control-Allow-Origin "*"
+#    </FilesMatch>
+#</IfModule>
 
 
 # ##############################################################################

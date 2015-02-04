@@ -34,6 +34,12 @@ services:
         tags:
             - { name: form.type, alias: aisel_gedmotree }
 
+    Aisel.filter_response_listener:
+        class: Aisel\ResourceBundle\EventListener\ResponseListener
+        tags:
+          - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+
     aisel.resource.form.locale:
         class: Aisel\ResourceBundle\Form\Type\LocaleType
         arguments:

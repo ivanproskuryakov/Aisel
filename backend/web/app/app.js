@@ -38,6 +38,7 @@ define([
                 cfpLoadingBarProvider.includeBar = true;
             }])
             .config(function ($provide, $locationProvider, $httpProvider) {
+                $httpProvider.defaults.withCredentials = true;
                 $locationProvider.html5Mode(true);
                 document.getElementById("page-is-loading").style.visibility = "hidden";
             });
