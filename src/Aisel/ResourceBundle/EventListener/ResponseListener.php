@@ -10,6 +10,31 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ResponseListener
 {
 
+    private $backendAddress;
+    private $frontendAddress;
+
+    /**
+     * Constructor
+     *
+     * @param $websiteAddress string
+     * @param $backendAddress string
+     * @param $frontendApi string
+     * @param $backendApi string
+     *
+     */
+    public function __construct(
+        $websiteAddress,
+        $backendAddress,
+        $frontendApi,
+        $backendApi
+    )
+    {
+        $this->frontendAddress = $websiteAddress;
+        $this->backendAddress = $backendAddress;
+        $this->frontendApi = "/" . $frontendApi . "/";
+        $this->backendApi = "/" . $backendApi . "/";
+    }
+
     public function onKernelResponse(FilterResponseEvent $event)
     {
         $request = $event->getRequest();
@@ -18,12 +43,20 @@ class ResponseListener
             return;
         }
 
-        if (strpos($request->getRequestUri(), '/api/') > -1) $allowOrigin = 'http://ecommerce.aisel.dev';
-        if (strpos($request->getRequestUri(), '/admin/api/') > -1) $allowOrigin = 'http://admin.ecommerce.aisel.dev';
-
-        $event->getResponse()->headers->set('Access-Control-Allow-Credentials', 'true');
-        $event->getResponse()->headers->set('Access-Control-Allow-Origin', $allowOrigin);
-        $event->getResponse()->headers->set('Access-Control-Allow-Headers', 'origin, x-requested-with, content-type');
-        $event->getResponse()->headers->set('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+        // If its frontend
+        if (strpos($request->getRequestUri(), $this->frontendApi) > -1) {
+            $allowOrigin = $this->frontendAddress;
+        }
+        // In case of backend
+        if (strpos($request->getRequestUri(), $this->backendApi) > -1) {
+            $allowOrigin = $this->backendAddress;
+        }
+        $headers = $event
+            ->getResponse()
+            ->headers;
+        $headers->set('Access-Control-Allow-Credentials', 'true');
+        $headers->set('Access-Control-Allow-Origin', $allowOrigin);
+        $headers->set('Access-Control-Allow-Headers', 'origin, x-requested-with, content-type');
+        $headers->set('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
     }
 }

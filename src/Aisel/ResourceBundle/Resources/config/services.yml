@@ -36,6 +36,11 @@ services:
 
     Aisel.filter_response_listener:
         class: Aisel\ResourceBundle\EventListener\ResponseListener
+        arguments:
+          - %website_address%
+          - %backend_address%
+          - %website_api%
+          - %website_api_backend%
         tags:
           - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
 

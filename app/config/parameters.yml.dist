@@ -12,6 +12,8 @@ parameters:
     website_email: ~
 
     website_address:   http://ecommerce.aisel.co
+    backend_address:   http://admin.ecommerce.aisel.co
+
     locale: en
     locales: en|es|ru
     paypal.express_checkout.username:  EDIT ME

@@ -10,7 +10,8 @@ parameters:
     mailer_user: travis
     mailer_password: travis
     website_email: service@aisel.co
-    website_address: http://ecommerce.aisel.dev
+    website_address:   http://ecommerce.aisel.dev
+    backend_address:   http://admin.ecommerce.aisel.dev
     locale: en
     locales: en|es|ru
     paypal.express_checkout.username:  EDIT ME
