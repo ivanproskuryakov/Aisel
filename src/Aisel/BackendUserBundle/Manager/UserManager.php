@@ -72,6 +72,48 @@ class UserManager implements UserProviderInterface
     }
 
     /**
+     * Is user password correct
+     *
+     * @param BackendUser $user
+     * @param string $password
+     *
+     * @return boolean $isValid
+     */
+    public function checkUserPassword(BackendUser $user, $password)
+    {
+        $encoder = $this->encoder->getEncoder($user);
+
+        if (!$encoder) {
+            return false;
+        }
+        $isValid = $encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt());
+
+        return $isValid;
+    }
+
+    /**
+     * Is backend user authenticated
+     *
+     * @return boolean
+     */
+    public function isAuthenticated()
+    {
+        $userToken = $this->securityContext->getToken();
+
+        if ($userToken) {
+            $user = $userToken->getUser();
+
+            if ($user !== 'anon.') {
+                $roles = $user->getRoles();
+
+                if (in_array('ROLE_ADMIN', $roles)) return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Loads user by username $username
      *
      * @param array $username

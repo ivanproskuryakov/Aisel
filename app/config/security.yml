@@ -3,9 +3,7 @@ security:
         Aisel\FrontendUserBundle\Entity\FrontendUser: sha512
         Aisel\BackendUserBundle\Entity\BackendUser: sha512
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_USER, ROLE_ADMIN, ROLE_SONATA_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-#        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-
+        ROLE_ADMIN:       [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
         user_frontend:
@@ -19,21 +17,6 @@ security:
             pattern:    ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        admin:
-            pattern:            /%website_admin%/(.*)
-            context:            admin
-            form_login:
-                provider:       user_backend
-                login_path:     /%website_admin%/%locale%/login
-                check_path:     /%website_admin%/%locale%/login_check
-                default_target_path: /%website_admin%/%locale%/dashboard
-                use_forward:    true
-                failure_path:   null
-            logout:
-                path:           /%website_admin%/%locale%/logout
-                target:         /%website_admin%/%locale%/
-            anonymous:          false
-
         user:
             pattern:             .*
             context:             user
@@ -44,6 +27,18 @@ security:
                 use_forward:    true
                 failure_path:   true
             anonymous:          true
+
+        admin:
+            pattern:             .*
+            context:             admin
+            form_login:
+                login_path:     /%website_api_backend%/user/information.json
+            form_login:
+                provider:       user_backend
+                use_forward:    true
+                failure_path:   true
+            anonymous:          true
+
 
     access_control:
         # Admin login needs to have access without any roles assigned
@@ -57,4 +52,4 @@ security:
         - { path: ^/%website_admin%/%locale%/, role: [ROLE_ADMIN] }
 
         # Secured part of API
-#        - { path: ^/%website_api%/orders.json, role: ROLE_USER }
+        - { path: ^/%website_api%/orders.json, role: ROLE_USER }
