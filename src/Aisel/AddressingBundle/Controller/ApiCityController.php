@@ -30,7 +30,7 @@ class ApiCityController extends Controller
     }
 
     /**
-     * /%website_api%/addressing/city/list.json
+     * /%frontend_api%/addressing/city/list.json
      *
      * @return JsonResponse $response
      */
@@ -42,7 +42,7 @@ class ApiCityController extends Controller
     }
 
     /**
-     * /%website_api%/addressing/city/{id}.json
+     * /%frontend_api%/addressing/city/{id}.json
      *
      * @param integer $id
      *

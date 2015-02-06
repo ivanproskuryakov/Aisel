@@ -30,7 +30,7 @@ class ApiCountryController extends Controller
     }
 
     /**
-     * /%website_api%/addressing/country/list.json
+     * /%frontend_api%/addressing/country/list.json
      *
      * @return JsonResponse $response
      */
@@ -42,7 +42,7 @@ class ApiCountryController extends Controller
     }
 
     /**
-     * /%website_api%/addressing/country/{id}.json
+     * /%frontend_api%/addressing/country/{id}.json
      *
      * @param integer $id
      *

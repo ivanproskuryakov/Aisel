@@ -39,8 +39,8 @@ services:
         arguments:
           - %website_address%
           - %backend_address%
-          - %website_api%
-          - %website_api_backend%
+          - %frontend_api%
+          - %backend_api%
         tags:
           - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
 

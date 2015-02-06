@@ -6,19 +6,19 @@
 # file that was distributed with this source code.
 
 api_aisel_cart_details:
-    pattern:  /%website_api%/cart.json
+    pattern:  /%frontend_api%/cart.json
     defaults: { _controller: AiselCartBundle:ApiCart:cart, _format: json }
     requirements:
         _method: GET
 
 api_aisel_cart_add:
-    pattern:  /%website_api%/cart/product/{productId}/qty/{qty}/add.json
+    pattern:  /%frontend_api%/cart/product/{productId}/qty/{qty}/add.json
     defaults: { _controller: AiselCartBundle:ApiCart:cartProductAdd, _format: json }
     requirements:
         _method: POST
 
 api_aisel_cart_update:
-    pattern:  /%website_api%/cart/product/{productId}/qty/{qty}/update.json
+    pattern:  /%frontend_api%/cart/product/{productId}/qty/{qty}/update.json
     defaults: { _controller: AiselCartBundle:ApiCart:cartProductUpdate, _format: json }
     requirements:
-        _method: PUT
+        _method: GET

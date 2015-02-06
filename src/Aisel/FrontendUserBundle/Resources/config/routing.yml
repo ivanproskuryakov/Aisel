@@ -6,37 +6,37 @@
 # file that was distributed with this source code.
 
 api_aisel_user_login:
-    pattern:  /%website_api%/user/login.json
+    pattern:  /%frontend_api%/user/login.json
     defaults: { _controller: AiselFrontendUserBundle:Api:login, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_logout:
-    pattern:  /%website_api%/user/logout.json
+    pattern:  /%frontend_api%/user/logout.json
     defaults: { _controller: AiselFrontendUserBundle:Api:logout, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_information:
-    pattern:  /%website_api%/user/information.json
+    pattern:  /%frontend_api%/user/information.json
     defaults: { _controller: AiselFrontendUserBundle:Api:information, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_editdetails:
-    pattern:  /%website_api%/user/editdetails.json
+    pattern:  /%frontend_api%/user/editdetails.json
     defaults: { _controller: AiselFrontendUserBundle:Api:editdetails, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_register:
-    pattern:  /%website_api%/user/register.json
+    pattern:  /%frontend_api%/user/register.json
     defaults: { _controller: AiselFrontendUserBundle:Api:register, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_passwordforgot:
-    pattern:  /%website_api%/user/passwordforgot.json
+    pattern:  /%frontend_api%/user/passwordforgot.json
     defaults: { _controller: AiselFrontendUserBundle:Api:passwordforgot, _format: json }
     requirements:
         _method: GET

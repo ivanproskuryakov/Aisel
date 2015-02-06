@@ -16,8 +16,6 @@ define(['app',
     './config/user',
     './controllers/user',
     './services/auth',
-    './services/user/category',
-    './services/user/page',
     './services/user/user',
 ], function (app) {
     console.log('User module loaded ...');

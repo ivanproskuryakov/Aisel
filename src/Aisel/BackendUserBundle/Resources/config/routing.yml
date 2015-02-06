@@ -19,37 +19,37 @@ admin_logout:
 
 
 admin_api_aisel_user_login:
-    pattern:  /%website_api_backend%/user/login.json
+    pattern:  /%backend_api%/user/login.json
     defaults: { _controller: AiselBackendUserBundle:Api:login, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_user_logout:
-    pattern:  /%website_api_backend%/user/logout.json
+    pattern:  /%backend_api%/user/logout.json
     defaults: { _controller: AiselBackendUserBundle:Api:logout, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_user_information:
-    pattern:  /%website_api_backend%/user/information.json
+    pattern:  /%backend_api%/user/information.json
     defaults: { _controller: AiselBackendUserBundle:Api:information, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_user_editdetails:
-    pattern:  /%website_api_backend%/user/editdetails.json
+    pattern:  /%backend_api%/user/editdetails.json
     defaults: { _controller: AiselBackendUserBundle:Api:editdetails, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_user_register:
-    pattern:  /%website_api_backend%/user/register.json
+    pattern:  /%backend_api%/user/register.json
     defaults: { _controller: AiselBackendUserBundle:Api:register, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_user_passwordforgot:
-    pattern:  /%website_api_backend%/user/passwordforgot.json
+    pattern:  /%backend_api%/user/passwordforgot.json
     defaults: { _controller: AiselBackendUserBundle:Api:passwordforgot, _format: json }
     requirements:
         _method: GET

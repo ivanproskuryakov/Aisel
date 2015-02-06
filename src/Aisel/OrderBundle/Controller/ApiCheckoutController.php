@@ -23,7 +23,7 @@ class ApiCheckoutController extends Controller
 {
 
     /**
-     * /%website_api%/{locale}/order/checkout/init.json
+     * /%frontend_api%/{locale}/order/checkout/init.json
      *
      * @return JsonResponse $response
      */

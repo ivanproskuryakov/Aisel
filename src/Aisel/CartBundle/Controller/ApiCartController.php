@@ -38,7 +38,7 @@ class ApiCartController extends Controller
     }
 
     /**
-     * /%website_api%/cart.json
+     * /%frontend_api%/cart.json
      *
      * @return
      */
@@ -50,7 +50,7 @@ class ApiCartController extends Controller
     }
 
     /**
-     * /%website_api%/cart/product/{productId}/qty/{qty}/add.json
+     * /%frontend_api%/cart/product/{productId}/qty/{qty}/add.json
      *
      * @param int $productId
      * @param int $qty
@@ -72,7 +72,7 @@ class ApiCartController extends Controller
     }
 
     /**
-     * /%website_api%/cart/product/{productId}/qty/{qty}/update.json
+     * /%frontend_api%/cart/product/{productId}/qty/{qty}/update.json
      *
      * @param int $productId
      * @param int $qty

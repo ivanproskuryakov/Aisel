@@ -21,7 +21,7 @@ security:
             pattern:             .*
             context:             user
             form_login:
-                login_path:     /%website_api%/user/information.json
+                login_path:     /%frontend_api%/user/information.json
             form_login:
                 provider:       user_frontend
                 use_forward:    true
@@ -32,7 +32,7 @@ security:
             pattern:             .*
             context:             admin
             form_login:
-                login_path:     /%website_api_backend%/user/information.json
+                login_path:     /%backend_api%/user/information.json
             form_login:
                 provider:       user_backend
                 use_forward:    true
@@ -52,4 +52,4 @@ security:
         - { path: ^/%website_admin%/%locale%/, role: [ROLE_ADMIN] }
 
         # Secured part of API
-        - { path: ^/%website_api%/orders.json, role: ROLE_USER }
+        - { path: ^/%frontend_api%/orders.json, role: ROLE_USER }

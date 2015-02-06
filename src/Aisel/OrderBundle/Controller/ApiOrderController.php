@@ -39,7 +39,7 @@ class ApiOrderController extends Controller
     }
 
     /**
-     * /%website_api%/orders.json
+     * /%frontend_api%/orders.json
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
@@ -60,7 +60,7 @@ class ApiOrderController extends Controller
     }
 
     /**
-     * /%website_api%/order/view/{id}.json
+     * /%frontend_api%/order/view/{id}.json
      *
      * @param int $id
      *
@@ -83,7 +83,7 @@ class ApiOrderController extends Controller
     }
 
     /**
-     * /%website_api%/order/submit.json
+     * /%frontend_api%/order/submit.json
      *
      * @param Request $request
      * @param string  $locale
