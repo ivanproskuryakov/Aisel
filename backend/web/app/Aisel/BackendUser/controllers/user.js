@@ -8,14 +8,22 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselUser
+ * @name            AiselBackendUser
  * @description     ...
  */
 
 define(['app'], function (app) {
-    app.controller('UserCtrl', ['$log', '$modal', '$scope', '$rootScope', '$state', '$routeParams', 'userService', 'notify', 'Environment',
-        function ($log, $modal, $scope, $rootScope, $routeParams, $state, userService, notify, Environment) {
+    app.controller('UserCtrl', ['$log', '$scope', '$rootScope', '$state', '$routeParams', 'userService', 'notify', 'Environment',
+        function ($log, $scope, $rootScope, $state, $routeParams, userService, notify, Environment) {
             var locale = Environment.currentLocale();
+
+            userService.getUserInformation($scope).success(
+                function (data, status) {
+                    if (data.username) {
+                        $state.transitionTo('dashboard', {locale: locale});
+                    }
+                }
+            );
 
             // User Sign In/Out
             $scope.signOut = function () {
@@ -34,7 +42,8 @@ define(['app'], function (app) {
                     function (data, status) {
                         notify(data.message);
                         if (data.status) {
-                            $state.transitionTo('userInformation', {locale: locale});
+                            $rootScope.user = data.user;
+                            $state.transitionTo('dashboard', {locale: locale});
                         }
                     }
                 );

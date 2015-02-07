@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselUser
+ * @name            AiselBackendUser
  * @description     Module config
  */
 
@@ -17,7 +17,7 @@ define(['app'], function (app) {
         $stateProvider
             .state("userLogin", {
                 url: "/:locale/user/login/",
-                templateUrl: '/app/Aisel/User/views/login.html',
+                templateUrl: '/app/Aisel/BackendUser/views/login.html',
                 controller: 'UserCtrl',
                 data: {
                     role: 'guest'

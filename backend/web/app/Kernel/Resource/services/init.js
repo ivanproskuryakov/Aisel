@@ -19,6 +19,8 @@ define(['app'], function (app) {
             function ($http, $rootScope, userService, Environment) {
                 return {
                     launch: function () {
+                        $rootScope.pageTitle = '== Admin Dashboard ==';
+
                         // Load user status
                         userService.getUserInformation().success(
                             function (data, status) {
@@ -32,7 +34,6 @@ define(['app'], function (app) {
                         );
 
                         // Load settings data
-
                         console.log('----------- Aisel Loaded! -----------');
                         var setLocale = function () {
                             $rootScope.availableLocales = Environment.settings.locale.available;

@@ -17,8 +17,11 @@ define(['app'], function (app) {
         function ($provide, $urlRouterProvider) {
             $urlRouterProvider.otherwise(function ($injector, $location) {
                 var Environment = $injector.get('Environment');
+                var $state = $injector.get('$state');
+                var locale = Environment.settings.locale.primary;
+
                 console.log('Fallback to primary locale');
-                $location.path('/' + Environment.settings.locale.primary + '/');
+                $state.transitionTo('homepage', {locale: locale});
             });
         }]);
 });

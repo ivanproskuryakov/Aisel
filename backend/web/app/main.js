@@ -62,7 +62,7 @@ require.config({
         './environment',
         './Kernel/Resource/KernelResource',
         './Aisel/Dashboard/AiselDashboard',
-        './Aisel/User/AiselUser',
+        './Aisel/BackendUser/AiselBackendUser',
         'bootstrap',
     ],
     priority: [
