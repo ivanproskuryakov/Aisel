@@ -15,8 +15,8 @@
 define(['app'], function (app) {
     console.log('Kernel init service loaded ...');
     angular.module('app')
-        .service('initService', ['$http', '$rootScope', 'settingsService', 'userService', 'Environment',
-            function ($http, $rootScope, settingsService, userService, Environment) {
+        .service('initService', ['$http', '$rootScope', 'userService', 'Environment',
+            function ($http, $rootScope, userService, Environment) {
                 return {
                     launch: function () {
                         // Load user status
@@ -32,25 +32,21 @@ define(['app'], function (app) {
                         );
 
                         // Load settings data
-                        settingsService.getApplicationConfig().success(
-                            function (data, status) {
 
-                                console.log('----------- Aisel Loaded! -----------');
-                                var setLocale = function () {
-                                    $rootScope.availableLocales = Environment.settings.locale.available;
-                                    $rootScope.locale = Environment.currentLocale();
-                                }
+                        console.log('----------- Aisel Loaded! -----------');
+                        var setLocale = function () {
+                            $rootScope.availableLocales = Environment.settings.locale.available;
+                            $rootScope.locale = Environment.currentLocale();
+                        }
 
-                                // Init
-                                setLocale();
+                        // Init
+                        setLocale();
 
-                                // Hook for on route change
-                                $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-                                    console.log('State Change ...');
-                                    setLocale();
-                                });
-                            }
-                        );
+                        // Hook for on route change
+                        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+                            console.log('State Change ...');
+                            setLocale();
+                        });
                     }
                 }
             }

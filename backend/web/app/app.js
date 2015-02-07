@@ -29,8 +29,8 @@ define([
             'environment'
         ])
 
-        app.run(['$http', '$rootScope', 'settingsService', 'initService',
-            function ($http, $rootScope, settingsService, initService) {
+        app.run(['$http', '$rootScope', 'initService',
+            function ($http, $rootScope, initService) {
                 initService.launch();
             }])
             .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
