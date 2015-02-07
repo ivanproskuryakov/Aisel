@@ -19,7 +19,7 @@ define(['app'], function (app) {
             function ($http, $rootScope, userService, Environment) {
                 return {
                     launch: function () {
-                        $rootScope.pageTitle = '== Admin Dashboard ==';
+                        $rootScope.pageTitle = Environment.settings.pageTitle;
 
                         // Load user status
                         userService.getUserInformation().success(

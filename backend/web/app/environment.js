@@ -21,6 +21,7 @@ define(['angular'],
                 return {
                     settings: {
                         api: 'http://api.ecommerce.aisel.dev/backend/api',
+                        pageTitle: 'Aisel - open source project | Admin',
                         locale: {
                             "primary": 'en',
                             "available": ['en']
