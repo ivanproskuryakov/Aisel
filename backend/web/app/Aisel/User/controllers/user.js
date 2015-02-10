@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselBackendUser
+ * @name            AiselUser
  * @description     ...
  */
 
@@ -20,7 +20,7 @@ define(['app'], function (app) {
             userService.getUserInformation($scope).success(
                 function (data, status) {
                     if (data.username) {
-                        $state.transitionTo('dashboard', {locale: locale});
+                        $state.transitionTo('home', {locale: locale});
                     }
                 }
             );
@@ -43,7 +43,7 @@ define(['app'], function (app) {
                         notify(data.message);
                         if (data.status) {
                             $rootScope.user = data.user;
-                            $state.transitionTo('dashboard', {locale: locale});
+                            $state.transitionTo('home', {locale: locale});
                         }
                     }
                 );

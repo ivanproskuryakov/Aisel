@@ -61,7 +61,10 @@ class PageRepository extends EntityRepository
         if (isset($params['userid'])) {
             $this->userId = $params['userid'];
         }
-        $this->locale = $params['locale'];
+        // Locale
+        if (isset($params['locale'])) {
+            $this->locale = $params['locale'];
+        }
         $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
     }
 
@@ -77,9 +80,11 @@ class PageRepository extends EntityRepository
         $this->mapRequest($params);
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('COUNT(p.id)')
-            ->from('AiselPageBundle:Page', 'p')
-            ->andWhere('p.hidden != 1')
-            ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
+            ->from('AiselPageBundle:Page', 'p');
+
+        if ($this->locale) {
+            $query->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
+        }
 
         if ($this->category) {
             $query->innerJoin('p.categories', 'c')
@@ -105,7 +110,7 @@ class PageRepository extends EntityRepository
 
     /**
      * Get pages based on limit, current pagination and search query
-     * @param  array                         $params
+     * @param  array $params
      * @return \Aisel\PageBundle\Entity\Page
      */
     public function searchFromRequest($params)
@@ -117,7 +122,6 @@ class PageRepository extends EntityRepository
             ->where('p.content LIKE :search')->setParameter('search', '%' . $this->search . '%')
             ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale)
             ->andWhere('p.status = 1')
-            ->andWhere('p.hidden != 1')
             ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
             ->orderBy('p.' . $this->pageOrder, $this->pageOrderBy)
@@ -154,10 +158,12 @@ class PageRepository extends EntityRepository
     {
         $this->mapRequest($params);
         $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select('p.id,p.locale, p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt,  p.status')
-            ->from('AiselPageBundle:Page', 'p')
-            ->andWhere('p.hidden != 1')
-            ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
+        $query->select('p.id, p.locale, p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt,  p.status')
+            ->from('AiselPageBundle:Page', 'p');
+
+        if ($this->locale) {
+            $query->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
+        }
 
         if ($this->userId) {
             $query
@@ -194,7 +200,6 @@ class PageRepository extends EntityRepository
             ->from('AiselPageBundle:Page', 'p')
             ->innerJoin('p.categories', 'c')
             ->where('p.status = 1')
-            ->andWhere('p.hidden != 1')
             ->andWhere('c.id = :categoryId')->setParameter('categoryId', $categoryId)
             ->getQuery()
             ->execute();
@@ -206,7 +211,7 @@ class PageRepository extends EntityRepository
      * Find pages by URL
      *
      * @param string $url
-     * @param int    $pageId
+     * @param int $pageId
      *
      * @return int $found
      */

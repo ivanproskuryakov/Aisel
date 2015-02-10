@@ -56,6 +56,10 @@ body #loading-bar .peg {
 /***********
     Body
 ***********/
+body {
+    background: #fff;
+}
+
 body .website-content {
     color: #999;
 }
@@ -162,7 +166,6 @@ body .panel-primary {
     margin-right: 5px;
     font-size: 0.9em;
 }
-
 
 /***********
     Footer

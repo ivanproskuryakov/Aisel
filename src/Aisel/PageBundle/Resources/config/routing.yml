@@ -12,7 +12,19 @@ admin_aisel_page_category_update:
     requirements:
         _method: GET
 
-# Product
+admin_aisel_page_get_list:
+    pattern:   /%backend_api%/page/
+    defaults:  { _controller: AiselPageBundle:Admin/ApiPage:getList, _format: json }
+    requirements:
+        _method: GET
+
+admin_aisel_page_get:
+    pattern:   /%backend_api%/page/{id}
+    defaults:  { _controller: AiselPageBundle:Admin/ApiPage:get, _format: json }
+    requirements:
+        _method: GET
+
+# Page
 api_aisel_pagelist:
     pattern:  /%frontend_api%/{locale}/page/list.json
     defaults: { _controller: AiselPageBundle:ApiPage:pageList, _format: json }

@@ -8,31 +8,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ui-sref="dashboard({locale: locale})">
+            <a class="navbar-brand" ui-sref="home({locale: locale})">
                 <img class="header-logo" src="/images/logo.png" title="Aisel"></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li ng-repeat="menuItem in topMenu">
-                    <a ng-href="{{menuItem.meta_url}}">{{menuItem.title}}</a>
+                <li>
+                    <a ui-sref="pages({locale: locale})">Page</a>
                 </li>
             </ul>
             <ul class="user-navbar nav navbar-nav navbar-right" ng-controller="UserCtrl">
-
-                <!-- Users -->
                 <li class="dropdown" ng-if="user">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img class="gavatar-navbar" gravatar-src="'{{ user.email }}'" gravatar-size="18">
                         {{ user.username }}<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref="dashboard({locale: locale})">Dashboard</a></li>
+                        <li><a ui-sref="home({locale: locale})">Dashboard</a></li>
                         <li role="presentation" class="divider"></li>
                         <li><a ng-click="signOut()">Sign Out</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
-        <!--/.nav-collapse -->
     </div>
 </div>

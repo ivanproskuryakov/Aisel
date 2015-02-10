@@ -42,14 +42,14 @@ security:
 
     access_control:
         # Admin login needs to have access without any roles assigned
-        - { path: ^/%website_admin%/%locale%/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/%website_admin%/%locale%/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/%website_admin%/%locale%/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%website_admin%/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%website_admin%/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%website_admin%/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
-        - { path: ^/%website_admin%/%locale%/, role: [ROLE_ADMIN] }
+        - { path: ^/%website_admin%/, role: [ROLE_ADMIN] }
 
         # Secured part of API
         - { path: ^/%frontend_api%/orders.json, role: ROLE_USER }

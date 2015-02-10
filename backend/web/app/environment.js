@@ -24,7 +24,7 @@ define(['angular'],
                         pageTitle: 'Aisel - open source project | Admin',
                         locale: {
                             "primary": 'en',
-                            "available": ['en']
+                            "available": ['ru', 'es', 'en']
                         }
                     },
                     currentLocale: function () {

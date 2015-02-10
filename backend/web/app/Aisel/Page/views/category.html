@@ -1,0 +1,25 @@
+<div class="">
+    <div class="col-xs-12 page-header">
+        <h2>Page categories</h2>
+        <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span> <a ui-sref="pages({locale: locale})">Back to pages</a></p>
+    </div>
+
+    <div class="col-xs-12 col-md-12">
+        <ul class="pageList">
+            <li ng-repeat="category in pageCategoryList.categories">
+                <h2><a ui-sref="pageCategoryView({locale: locale, categoryId:category.url})" class="thumb">{{category.title}}</a></h2>
+                <p ng-bind-html="category.description"></p>
+                <hr/>
+            </li>
+        </ul>
+        <div class="col-xs-6 col-md-6">
+            <pagination ng-if="pageCategoryList.total > 0" on-select-page="pageChanged(page)" items-per-page="{{pageLimit}}"
+                        total-items="pageCategoryList.total" page="paginationPage"></pagination>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <p class="pagination-info pagination"><strong>Total categories: {{pageCategoryList.total}} Current:
+                {{paginationPage}}</strong></p>
+        </div>
+    </div>
+
+</div>

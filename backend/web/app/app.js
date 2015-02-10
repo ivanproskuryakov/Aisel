@@ -29,20 +29,19 @@ define([
             'environment'
         ])
 
-        app.run(['$http', '$rootScope', 'initService',
-            function ($http, $rootScope, initService) {
+        app
+            .run(function ($http, $rootScope, initService) {
                 initService.launch();
-            }])
+            })
             .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
                 cfpLoadingBarProvider.includeSpinner = false
                 cfpLoadingBarProvider.includeBar = true;
             }])
-            .config(function ($provide, $locationProvider, $httpProvider) {
+            .config(['$provide', '$locationProvider', '$httpProvider', function ($provide, $locationProvider, $httpProvider) {
                 $httpProvider.defaults.withCredentials = true;
                 $locationProvider.html5Mode(true);
                 document.getElementById("page-is-loading").style.visibility = "hidden";
-            });
-
+            }])
         return app;
     })
 ;

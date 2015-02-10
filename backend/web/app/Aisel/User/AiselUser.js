@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselBackendUser
+ * @name            AiselUser
  * @description     User module
  */
 
@@ -17,7 +17,7 @@ define(['app',
     './controllers/user',
     './services/user',
 ], function (app) {
-    console.log('BackendUser module loaded ...');
+    console.log('User module loaded ...');
 
     app.run(['$http', '$state', '$rootScope', 'userService', 'Environment',
         function ($http, $state, $rootScope, userService, Environment) {

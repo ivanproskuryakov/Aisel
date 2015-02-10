@@ -1,0 +1,22 @@
+<div class="">
+        <div class="col-xs-12 page-header">
+            <h2>{{pageDetails.page.title}}</h2>
+        </div>
+        <div class="col-xs-12 col-md-12">
+            <p><span class="glyphicon glyphicon-calendar"></span> {{pageDetails.page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
+            <p ng-bind-html="pageDetails.page.content"></p>
+            <div class="related-categories" ng-if="pageDetails.categories">
+                <hr/>
+                <p><strong>Page categories: </strong></p>
+                <ul class="categoryList">
+                    <li ng-repeat="category in pageDetails.categories">
+                        <span class="label label-primary">
+                            <a ui-sref="pageCategoryView({locale: locale, categoryId:category.url})">{{ category.title }}</a>
+                        </span>&nbsp;
+                    </li>
+                </ul>
+            </div>
+            <div ng-if="showComments" disqus="pageDetails.page.meta_url"></div>
+        </div>
+</div>
+

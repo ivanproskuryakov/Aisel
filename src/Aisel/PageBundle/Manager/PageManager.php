@@ -61,10 +61,10 @@ class PageManager
      *
      * @return array
      */
-    public function getPages($params, $locale)
+    public function getPages($params)
     {
-        $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params, $locale);
-        $pages = $this->em->getRepository('AiselPageBundle:Page')->getCurrentPagesFromRequest($params, $locale);
+        $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params);
+        $pages = $this->em->getRepository('AiselPageBundle:Page')->getCurrentPagesFromRequest($params);
         $return = array(
             'total' => $total,
             'pages' => $pages

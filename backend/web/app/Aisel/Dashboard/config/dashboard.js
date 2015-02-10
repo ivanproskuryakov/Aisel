@@ -15,7 +15,7 @@
 define(['app'], function (app) {
     app.config(['$stateProvider', function ($stateProvider) {
         $stateProvider
-            .state("dashboard", {
+            .state("home", {
                 url: "/:locale/",
                 templateUrl: '/app/Aisel/Dashboard/views/dashboard.html',
                 controller: 'DashboardCtrl',

@@ -21,7 +21,7 @@ define(['app'], function (app) {
                 var locale = Environment.settings.locale.primary;
 
                 console.log('Fallback to primary locale');
-                $state.transitionTo('dashboard', {locale: locale});
+                $state.transitionTo('home', {locale: locale});
             });
         }]);
 });

@@ -1,0 +1,37 @@
+<div class="">
+    <div class="col-xs-12 page-header">
+        <h2>{{categoryDetails.category.title}}</h2>
+        <p><span class="glyphicon glyphicon-calendar"></span>
+            {{categoryDetails.category.created_at |date:"MM/dd/yyyy @ h:mma" }}</p>
+    </div>
+
+    <div class="col-xs-12 col-md-12">
+        <p ng-bind-html="categoryDetails.category.description"></p>
+
+        <div class="related categoryPages" ng-if="categoryDetails.pages">
+            <div class="">
+                <ul class="pageList">
+                    <li ng-repeat="page in pageList.pages">
+                        <h2><a ui-sref="pageView({locale: locale, pageId:page.metaUrl})" class="thumb">{{page.title}}</a></h2>
+
+                        <p ng-bind-html="page.content"></p>
+
+                        <p><span class="glyphicon glyphicon-calendar"></span>{{page.createdAt | date:"MM/dd/yyyy @
+                            h:mma" }}</p>
+                        <hr/>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <pagination ng-if="pageList.total > 0" on-select-page="pageChanged(page)"
+                            items-per-page="{{pageLimit}}" total-items="pageList.total"
+                            page="paginationPage"></pagination>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <p class="pull-right"><strong>Total pages: {{pageList.total}} Current: {{paginationPage}}</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
