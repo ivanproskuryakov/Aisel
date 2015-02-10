@@ -27,14 +27,8 @@ define(['app',
 
                 if (typeof toState.data !== 'undefined') {
                     var role = toState.data.role;
-
-                    if (role == 'guest') {
-                        console.log('Role: ' + role);
-                        //$state.transitionTo('home', {locale: locale});
-                    }
+                    console.log('Needed role: ' + role);
                 } else {
-                    console.log('No role');
-
                     if ($rootScope.user === undefined) {
                         // Load user status
                         userService.getUserInformation().success(
@@ -47,19 +41,13 @@ define(['app',
                                     event.preventDefault();
                                     $state.transitionTo('userLogin', {locale: locale});
                                 }
-
-                                console.log('1: ' + $rootScope.user);
                             }
                         );
-
                     } else if ($rootScope.user == false) {
-                        console.log('2: ' + $rootScope.user);
                         event.preventDefault();
                         $state.transitionTo('userLogin', {locale: locale});
                     }
                 }
-
-
             });
         }
     ])

@@ -15,7 +15,7 @@
 require.config({
     // Load paths from global variable
     paths: {
-        'jQuery': '../bower_components/jquery/dist/jquery.min',
+        'jQuery': '../bower_components/jquery/jquery.min',
         'underscore': '../bower_components/underscore/underscore-min',
         'domReady': '../bower_components/domReady/domReady',
         'angular': '../bower_components/angular/angular',
@@ -34,12 +34,10 @@ require.config({
         'angular-notify': '../bower_components/angular-notify/dist/angular-notify.min',
         'md5': '../bower_components/angular-gravatar/build/md5',
         'angular-gravatar': '../bower_components/angular-gravatar/build/angular-gravatar',
-        'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus',
-        'ng-admin': '../bower_components/ng-admin/build/ng-admin.min'
+        'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus'
     },
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {
-        'ng-admin': ['angular'],
         'angular-route': ['angular'],
         'angular-loading-bar': ['angular'],
         'angular-animate': ['angular'],

@@ -17,14 +17,6 @@ define(['app'], function (app) {
         function ($log, $scope, $rootScope, $state, $routeParams, userService, notify, Environment) {
             var locale = Environment.currentLocale();
 
-            userService.getUserInformation($scope).success(
-                function (data, status) {
-                    if (data.username) {
-                        $state.transitionTo('home', {locale: locale});
-                    }
-                }
-            );
-
             // User Sign In/Out
             $scope.signOut = function () {
                 userService.signout($scope).success(
