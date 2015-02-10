@@ -61,7 +61,7 @@ class AbstractCategoryManager
      * Generate child categories for selected root
      *
      * @param object $items
-     * @param int    $pid
+     * @param int $pid
      *
      * @return array
      */
@@ -120,7 +120,7 @@ class AbstractCategoryManager
      * Generate child categories for selected in HTML format - WILL BE REMOVED
      *
      * @param object $items
-     * @param int    $pid
+     * @param int $pid
      *
      * @return array
      */
@@ -153,12 +153,12 @@ class AbstractCategoryManager
     /**
      * Get list of all categories
      *
-     * @param array  $params
+     * @param array $params
      * @param string $locale
      *
      * @return mixed
      */
-    public function getCategories($params, $locale)
+    public function getCategories($params, $locale = null)
     {
         $total = $this->em->getRepository($this->categoryEntity)->getTotalFromRequest($params, $locale);
         $categories = $this->em->getRepository($this->categoryEntity)->getCurrentCategoriesFromRequest($params, $locale);
@@ -178,7 +178,7 @@ class AbstractCategoryManager
      *
      * @return mixed
      */
-    public function getCategoryByURL($urlKey, $locale)
+    public function getCategoryByURL($urlKey, $locale = null)
     {
         $category = $this->em->getRepository($this->categoryEntity)->getEnabledCategoryByUrl($urlKey, $locale);
 
@@ -225,7 +225,7 @@ class AbstractCategoryManager
      * validate metaUrl for Category Entity and return one we can use
      *
      * @param string $url
-     * @param int    $categoryId
+     * @param int $categoryId
      *
      * @return string
      */

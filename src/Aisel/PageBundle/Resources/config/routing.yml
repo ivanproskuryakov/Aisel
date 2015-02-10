@@ -5,26 +5,40 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-# Administration
-admin_aisel_page_category_update:
+# Backend
+admin_api_aisel_page_category_update:
     pattern:   /%website_admin%/page/category/update.json
     defaults:  { _controller: AiselPageBundle:Admin/Node:update, _format: json }
     requirements:
         _method: GET
 
-admin_aisel_page_get_list:
+admin_api_aisel_page_get_list:
     pattern:   /%backend_api%/page/
     defaults:  { _controller: AiselPageBundle:Admin/ApiPage:getList, _format: json }
     requirements:
         _method: GET
 
-admin_aisel_page_get:
+admin_api_aisel_page_get:
     pattern:   /%backend_api%/page/{id}
     defaults:  { _controller: AiselPageBundle:Admin/ApiPage:get, _format: json }
     requirements:
         _method: GET
 
-# Page
+admin_api_aisel_page_categorylist:
+    pattern:  /%backend_api%/page/category/
+    defaults: { _controller: AiselPageBundle:Admin/ApiCategory:getList, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_page_category:
+    pattern:  /%backend_api%/page/category/{id}
+    defaults: { _controller: AiselPageBundle:Admin/ApiCategory:get, _format: json }
+    requirements:
+        _method: GET
+        id: "\d+"
+
+
+# Frontend
 api_aisel_pagelist:
     pattern:  /%frontend_api%/{locale}/page/list.json
     defaults: { _controller: AiselPageBundle:ApiPage:pageList, _format: json }
@@ -37,7 +51,6 @@ api_aisel_pageview_by_url:
     requirements:
         _method: GET
 
-# Categories
 api_aisel_page_categorylist:
     pattern:  /%frontend_api%/{locale}/page/category/list.json
     defaults: { _controller: AiselPageBundle:ApiCategory:categoryList, _format: json }

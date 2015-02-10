@@ -17,24 +17,15 @@ define(['app'], function (app) {
         function ($http, Environment) {
             return {
                 getCategories: function ($scope) {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/page/category/list.json?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage;
+                    var url = Environment.settings.api + '/page/category/?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage;
                     console.log(url);
                     return $http.get(url);
                 },
                 getCategory: function (categoryId) {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/page/category/view/' + categoryId + '.json';
+                    var url = Environment.settings.api + '/page/category/' + categoryId;
                     console.log(url);
                     return $http.get(url);
-                },
-                getPageCategoryTree: function () {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/page/category/tree.json';
-                    console.log(url);
-                    return $http.get(url);
-                },
-
+                }
             };
         }]);
 });

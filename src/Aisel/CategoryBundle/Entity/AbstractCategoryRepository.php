@@ -56,12 +56,17 @@ class AbstractCategoryRepository extends NestedTreeRepository
     {
         $this->mapRequest($params);
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $result = $qb->select('COUNT(c.id)')
+        $query = $qb->select('COUNT(c.id)')
             ->from($this->categoryEntity, 'c')
-            ->where('c.status = :status')
-            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
+            ->where('c.status = :status');
+
+        if ($locale) {
+            $query->andWhere('c.locale = :locale')->setParameter('locale', $locale);
+        }
+        $query
             ->setParameter('status', 1)
             ->getQuery()->getSingleScalarResult();
+        $result = $query->getQuery()->getSingleScalarResult();
 
         if (!$result) return 0;
         return $result;
@@ -121,15 +126,18 @@ class AbstractCategoryRepository extends NestedTreeRepository
     {
         $this->mapRequest($params);
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $result = $qb->select('c')
+        $query = $qb->select('c')
             ->from($this->categoryEntity, 'c')
-            ->where('c.status = 1')
-            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
+            ->where('c.status = 1');
+
+        if ($locale) {
+            $query->andWhere('c.locale = :locale')->setParameter('locale', $locale);
+        }
+        $query
             ->addOrderBy('c.title', 'ASC')
             ->setMaxResults($this->pageLimit)
-            ->setFirstResult($this->pageSkip)
-            ->getQuery()
-            ->execute();
+            ->setFirstResult($this->pageSkip);
+        $result = $query->getQuery()->execute();
 
         return $result;
 
@@ -160,7 +168,7 @@ class AbstractCategoryRepository extends NestedTreeRepository
     /**
      * Find categories by url
      *
-     * @param string   $url
+     * @param string $url
      * @param int|null $categoryId
      *
      * @return int $result
