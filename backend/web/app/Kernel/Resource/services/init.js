@@ -15,38 +15,19 @@
 define(['app'], function (app) {
     console.log('Kernel init service loaded ...');
     angular.module('app')
-        .service('initService', ['$http', '$rootScope', 'userService', 'Environment',
-            function ($http, $rootScope, userService, Environment) {
+        .service('initService', ['$http', '$rootScope', 'Environment',
+            function ($http, $rootScope, Environment) {
                 return {
                     launch: function () {
-                        $rootScope.pageTitle = Environment.settings.pageTitle;
-
-                        // Load user status
-                        userService.getUserInformation().success(
-                            function (data, status) {
-                                console.log(data);
-                                if (data.username) {
-                                    $rootScope.user = data;
-                                } else {
-                                    $rootScope.user = undefined;
-                                }
-                            }
-                        );
-
                         // Load settings data
                         console.log('----------- Aisel Loaded! -----------');
-                        var setLocale = function () {
-                            $rootScope.availableLocales = Environment.settings.locale.available;
-                            $rootScope.locale = Environment.currentLocale();
-                        }
+                        $rootScope.pageTitle = Environment.settings.pageTitle;
 
-                        // Init
-                        setLocale();
-
-                        // Hook for on route change
+                        // Hook for route change
                         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                             console.log('State Change ...');
-                            setLocale();
+                            $rootScope.availableLocales = Environment.settings.locale.available;
+                            $rootScope.locale = Environment.currentLocale();
                         });
                     }
                 }

@@ -18,10 +18,7 @@ define(['app'], function (app) {
             .state("home", {
                 url: "/:locale/",
                 templateUrl: '/app/Aisel/Dashboard/views/dashboard.html',
-                controller: 'DashboardCtrl',
-                data: {
-                    role: 'user'
-                }
+                controller: 'DashboardCtrl'
             });
     }]);
 });
