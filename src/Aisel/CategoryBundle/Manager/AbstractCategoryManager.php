@@ -205,8 +205,10 @@ class AbstractCategoryManager
         if (!($category)) {
             throw $this->createNotFoundException();
         }
+        $pages = $this->em->getRepository('AiselPageBundle:Page')->getPagesByCategory($category->getId());
+        $categoryDetails = array('category' => $category, 'pages' => $pages);
 
-        return $category;
+        return $categoryDetails;
     }
 
     /**

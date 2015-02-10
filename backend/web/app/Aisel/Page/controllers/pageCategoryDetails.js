@@ -27,20 +27,5 @@ define(['app'], function (app) {
                 }
             );
 
-            //// Pages
-            //pageService.getPages($scope).success(
-            //    function (data, status) {
-            //        $scope.pageList = data;
-            //    }
-            //);
-            //
-            //$scope.pageChanged = function (page) {
-            //    $scope.paginationPage = page;
-            //    pageService.getPages($scope).success(
-            //        function (data, status) {
-            //            $scope.pageList = data;
-            //        }
-            //    );
-            //};
         }]);
 });
