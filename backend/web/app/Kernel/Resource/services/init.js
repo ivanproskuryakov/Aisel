@@ -19,16 +19,10 @@ define(['app'], function (app) {
             function ($http, $rootScope, Environment) {
                 return {
                     launch: function () {
-                        // Load settings data
                         console.log('----------- Aisel Loaded! -----------');
                         $rootScope.pageTitle = Environment.settings.pageTitle;
-
-                        // Hook for route change
-                        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-                            console.log('State Change ...');
-                            $rootScope.availableLocales = Environment.settings.locale.available;
-                            $rootScope.locale = Environment.currentLocale();
-                        });
+                        $rootScope.availableLocales = Environment.settings.locale.available;
+                        $rootScope.locale = Environment.currentLocale();
                     }
                 }
             }

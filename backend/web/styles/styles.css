@@ -168,6 +168,14 @@ body .panel-primary {
 }
 
 /***********
+    User
+************/
+
+.user-login {
+    margin-top: 10%;
+}
+
+/***********
     Footer
 ************/
 footer {
