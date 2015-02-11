@@ -1,8 +1,11 @@
 <div class="">
-    <div class="col-xs-12 page-header">
+    <div class="col-md-12 page-header">
         <h2>{{categoryDetails.category.title}}</h2>
         <p><span class="glyphicon glyphicon-calendar"></span>
             {{categoryDetails.category.created_at |date:"MM/dd/yyyy @ h:mma" }}</p>
+    </div>
+    <div class="col-md-12">
+        <p>{{categoryDetails.category.description}}</p>
     </div>
 </div>
 

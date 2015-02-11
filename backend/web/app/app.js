@@ -18,14 +18,14 @@ define([
         'ui-bootstrap-tpls', 'ui-utils', 'angular-gravatar',
         'md5', 'angular-disqus', 'angular-notify', 'twitter-bootstrap',
         'angular-ui-router', 'angular-route', 'angular-animate',
-        'angular-loading-bar'],
+        'angular-loading-bar','ui-grid'],
     function (angular) {
         'use strict';
 
         var app = angular.module('app', [
             'ngCookies', 'ngResource', 'ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.router',
             'ui.utils', 'ui.validate', 'ui.gravatar', 'textAngular', 'ngDisqus', 'cgNotify',
-            'ngAnimate', 'angular-loading-bar',
+            'ngAnimate', 'angular-loading-bar','ui.grid',
             'environment'
         ])
 

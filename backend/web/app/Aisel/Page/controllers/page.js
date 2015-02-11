@@ -16,18 +16,30 @@ define(['app'], function (app) {
     app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'pageService',
         function ($location, $state, $scope, $stateParams, pageService) {
 
-            $scope.pageLimit = 5;
+            $scope.gridOptions = {
+                enableRowSelection: true,
+                enableSelectAll: true,
+                selectionRowHeaderWidth: 35,
+                rowHeight: 35,
+                showGridFooter: true
+            };
+
+            $scope.gridOptions.columnDefs = [
+                {name: 'id', width: '10%'},
+                {name: 'locale', width: '15%'},
+                {name: 'title'},
+            ];
+
+            $scope.pageLimit = 20;
             $scope.paginationPage = 1;
             $scope.categoryId = 0;
-
-            var handleSuccess = function (data, status) {
-                $scope.pageList = data;
-            };
 
             // Pages
             pageService.getPageList($scope).success(
                 function (data, status) {
+                    console.log(data);
                     $scope.pageList = data;
+                    $scope.gridOptions.data = data.pages;
                 }
             );
 
@@ -36,6 +48,7 @@ define(['app'], function (app) {
                 pageService.getPageList($scope).success(
                     function (data, status) {
                         $scope.pageList = data;
+                        $scope.gridOptions.data = data.pages;
                     }
                 );
             };

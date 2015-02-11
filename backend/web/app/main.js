@@ -34,7 +34,8 @@ require.config({
         'angular-notify': '../bower_components/angular-notify/dist/angular-notify.min',
         'md5': '../bower_components/angular-gravatar/build/md5',
         'angular-gravatar': '../bower_components/angular-gravatar/build/angular-gravatar',
-        'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus'
+        'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus',
+        'ui-grid': '../bower_components/angular-ui-grid/ui-grid.min'
     },
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {
@@ -55,6 +56,7 @@ require.config({
         "angular-sanitize": ["angular"],
         "twitter-bootstrap": ["angular"],
         "ui-utils": ["angular"],
+        "ui-grid": ["angular"],
         "md5": ["angular"]
     },
     // Kick start application

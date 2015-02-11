@@ -167,6 +167,22 @@ body .panel-primary {
     font-size: 0.9em;
 }
 
+.content-grid {
+    min-height: 400px;
+}
+
+.content-grid.ui-grid {
+    border: 0;
+}
+
+.content-grid .ui-grid-row:nth-child(odd) .ui-grid-cell {
+    background: none;
+}
+
+.content-grid .ui-grid-render-container-body .ui-grid-header-cell {
+    height: 28px;
+}
+
 /***********
     User
 ************/
