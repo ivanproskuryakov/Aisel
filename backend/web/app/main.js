@@ -35,6 +35,7 @@ require.config({
         'md5': '../bower_components/angular-gravatar/build/md5',
         'angular-gravatar': '../bower_components/angular-gravatar/build/angular-gravatar',
         'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus',
+        'angular-touch': '../bower_components/angular-touch/angular-touch.min',
         'ui-grid': '../bower_components/angular-ui-grid/ui-grid.min'
     },
     // Add angular modules that does not support AMD out of the box, put it in a shim
@@ -43,6 +44,7 @@ require.config({
         'angular-loading-bar': ['angular'],
         'angular-animate': ['angular'],
         'angular-ui-router': ['angular'],
+        'angular-touch': ['angular'],
         'angular' : {'exports' : 'angular', deps: ['jQuery']},
         'jQuery': {'exports' : 'jQuery'},
         "domReady": ["angular"],

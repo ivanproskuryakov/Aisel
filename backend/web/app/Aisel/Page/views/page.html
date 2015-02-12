@@ -1,25 +1,34 @@
 <div class="">
     <div class="col-md-12 page-header">
         <h2>Pages</h2>
-        <p class=""><span class="glyphicon glyphicon-list-alt"></span> <a ui-sref="pageCategories({locale: locale})">View categories</a></p>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="">
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                    <a ui-sref="pageCategories({locale: locale})">View categories</a>
+                </div>
+            </div>
+            <div class="col-md-8 nav-buttons">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-success">Filter</button>
+                    <button type="submit" class="btn btn-success">Clear All Filters</button>
+                    <button type="submit" class="btn btn-primary">Add New Item + </button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-md-12">
-        <div id="grid1" ui-grid="gridOptions" class="content-grid"></div>
-    </div>
-    <!--<div class="col-md-12">-->
-        <!--<ul class="pageList">-->
-            <!--<li ng-repeat="page in pageList.pages">-->
-                <!--<h2><a ui-sref="pageView({locale: locale, pageId:page.id})" class="thumb">{{page.title}}</a></h2>-->
-                <!--<p ng-bind-html="page.content"></p>-->
-                <!--<p><span class="glyphicon glyphicon-calendar"></span> {{page.createdAt | date:"MM/dd/yyyy @ h:mma" }}</p>-->
-                <!--<hr/>-->
-            <!--</li>-->
-        <!--</ul>-->
-    <!--</div>-->
-    <div class="col-xs-6 col-md-6">
-        <pagination ng-if="pageList.total > 0" on-select-page="pageChanged(page)" items-per-page="{{pageLimit}}" total-items="pageList.total"  page="paginationPage"></pagination>
-    </div>
-    <div class="col-xs-6 col-md-6">
-        <p class="pagination-info pagination"><strong>Total pages: {{pageList.total}} Current: {{paginationPage}}</strong></p>
+        <div id="content-grid" ui-grid-selection ui-grid="gridOptions" class="content-grid"></div>
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <pagination ng-if="pageList.total > 0" on-select-page="pageChanged(page)" items-per-page="{{pageLimit}}"
+                            total-items="pageList.total" page="paginationPage"></pagination>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <p class="pagination-info pagination"><strong>Total pages: {{pageList.total}} Current:
+                    {{paginationPage}}</strong></p>
+            </div>
+        </div>
     </div>
 </div>

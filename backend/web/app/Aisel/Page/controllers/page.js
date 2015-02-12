@@ -16,42 +16,56 @@ define(['app'], function (app) {
     app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'pageService',
         function ($location, $state, $scope, $stateParams, pageService) {
 
-            $scope.gridOptions = {
-                enableRowSelection: true,
-                enableSelectAll: true,
-                selectionRowHeaderWidth: 35,
-                rowHeight: 35,
-                showGridFooter: true
-            };
-
-            $scope.gridOptions.columnDefs = [
-                {name: 'id', width: '10%'},
-                {name: 'locale', width: '15%'},
-                {name: 'title'},
-            ];
-
             $scope.pageLimit = 20;
             $scope.paginationPage = 1;
             $scope.categoryId = 0;
-
-            // Pages
-            pageService.getPageList($scope).success(
-                function (data, status) {
-                    console.log(data);
-                    $scope.pageList = data;
-                    $scope.gridOptions.data = data.pages;
+            $scope.gridOptions = {
+                enableFiltering: true,
+                useExternalFiltering: true,
+                columnDefs: [
+                    {name: 'id', width: '100'},
+                    {name: 'locale', width: '15%'},
+                    {name: 'title'},
+                    {name: 'metaUrl'},
+                    {name: 'status'},
+                    {name: 'createdAt'},
+                ],
+                onRegisterApi: function (gridApi) {
+                    $scope.gridApi = gridApi;
+                    $scope.gridApi.core.on.filterChanged($scope, function () {
+                        getGridFilters(this.grid);
+                    });
                 }
-            );
+            };
 
-            $scope.pageChanged = function (page) {
-                $scope.paginationPage = page;
+            var getGridFilters = function (grid) {
+                var values = [];
+                grid.columns.forEach(function (entry) {
+                    if (entry.filters[0].term !== undefined) {
+                        values[entry.field] = entry.filters[0].term;
+                    } else {
+                        values[entry.field] = '';
+                    }
+                });
+                console.log(values);
+            }
+
+            // Load data from remote
+            var loadData = function () {
                 pageService.getPageList($scope).success(
                     function (data, status) {
+                        console.log(data);
                         $scope.pageList = data;
                         $scope.gridOptions.data = data.pages;
+                        $scope.gridOptions.totalItems = data.total;
                     }
                 );
+            }
+            $scope.pageChanged = function (page) {
+                $scope.paginationPage = page;
+                loadData();
             };
+            loadData();
 
         }]);
 });

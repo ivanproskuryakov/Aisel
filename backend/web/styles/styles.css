@@ -167,12 +167,40 @@ body .panel-primary {
     font-size: 0.9em;
 }
 
+/***********
+    Grids
+***********/
+
+.nav-buttons {
+    margin-top: -15px;
+}
 .content-grid {
-    min-height: 400px;
+    min-height: 500px;
 }
 
-.content-grid.ui-grid {
+.content-grid .ui-grid-filter-container {
+    position: absolute;
+    top: 28px;
+    padding: 0;
+    width: 90%;
+    margin-left: 5px;
+}
+
+.content-grid .ui-grid-header-cell:last-child,
+.content-grid .ui-grid-cell:last-child {
     border: 0;
+}
+
+.content-grid .ui-grid-filter-container .ui-grid-filter-button [class^="ui-grid-icon"] {
+    position: absolute;
+    top: 4px;
+    margin: 0;
+    right: 1px;
+    color: #888;
+}
+
+.content-grid input[type="text"].ui-grid-filter-input {
+    padding: 0 5px;
 }
 
 .content-grid .ui-grid-row:nth-child(odd) .ui-grid-cell {
@@ -180,7 +208,10 @@ body .panel-primary {
 }
 
 .content-grid .ui-grid-render-container-body .ui-grid-header-cell {
-    height: 28px;
+    height: 55px;
+}
+
+.content-grid .ui-grid-row:nth-child(even) .ui-grid-cell {
 }
 
 /***********
