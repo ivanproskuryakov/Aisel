@@ -17,7 +17,16 @@ define(['app'], function (app) {
         function ($http, Environment) {
             return {
                 getPageList: function ($scope) {
-                    var url = Environment.settings.api + '/page/?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage + '&category=' + $scope.categoryId;
+                    var filters = '';
+                    if ($scope.filters !== undefined) {
+                        filters = $scope.filters
+                    }
+                    var url = Environment.settings.api
+                        + '/page/?limit=' + $scope.pageLimit
+                        + '&current=' + $scope.paginationPage
+                        + '&category=' + $scope.categoryId
+                        + '&filters=' + filters;
+
                     console.log(url);
                     return $http.get(url);
                 },

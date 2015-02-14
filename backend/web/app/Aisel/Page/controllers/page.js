@@ -13,38 +13,40 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'pageService',
-        function ($location, $state, $scope, $stateParams, pageService) {
+    app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'pageService', 'Environment',
+        function ($location, $state, $scope, $stateParams, pageService, Environment) {
+
+            var locale = Environment.currentLocale();
+            var viewItemTemplate = '<button class="btn btn-link" ng-click="grid.appScope.showItem(row.entity.id)">' +
+                'View <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>';
 
             $scope.pageLimit = 20;
             $scope.paginationPage = 1;
             $scope.categoryId = 0;
+            $scope.columns = [
+                {name: 'id', enableColumnMenu: false, width: '100'},
+                {name: 'locale', enableColumnMenu: false, width: '15%'},
+                {name: 'title', enableColumnMenu: false},
+                {name: 'metaUrl', enableColumnMenu: false},
+                {name: 'status', enableColumnMenu: false},
+                {name: 'createdAt', enableColumnMenu: false},
+                {
+                    name: 'action',
+                    enableSorting: false,
+                    enableFiltering: false,
+                    enableColumnMenu: false,
+                    width: '100',
+                    cellTemplate: viewItemTemplate
+                }
+            ];
             $scope.gridOptions = {
-                enableRowSelection: true,
-                enableRowHeaderSelection: false,
-                modifierKeysToMultiSelect: false,
-                multiSelect: false,
-                noUnselect: true,
                 selectionRowHeaderWidth: 35,
                 rowHeight: 35,
                 showGridFooter: true,
                 enableFiltering: true,
+                enableSorting: false,
                 useExternalFiltering: true,
-                columnDefs: [
-                    {name: 'id', width: '100'},
-                    {name: 'locale', width: '15%'},
-                    {name: 'title'},
-                    {name: 'metaUrl'},
-                    {name: 'status'},
-                    {name: 'createdAt'},
-                    {
-                        name: 'action',
-                        enableSorting: false,
-                        enableFiltering: false,
-                        width: '100',
-                        cellTemplate: '<a class="btn btn-link" ng-click="grid.appScope.showMe()">View</button>'
-                    }
-                ],
+                columnDefs: $scope.columns,
                 onRegisterApi: function (gridApi) {
                     $scope.gridApi = gridApi;
                     $scope.gridApi.core.on.filterChanged($scope, function () {
@@ -53,24 +55,28 @@ define(['app'], function (app) {
                 }
             };
 
+            // === View Row ===
+            $scope.showItem = function (id) {
+                $state.transitionTo('pageView', {locale: locale, id: id});
+            };
 
-            // Used in grid filtering
+            // === Grid filtering ===
             var getGridFilters = function (grid) {
-                var values = [];
+                var filters = {};
                 grid.columns.forEach(function (entry) {
                     if (entry.filters[0] !== undefined) {
                         if (entry.filters[0].term !== undefined) {
-                            values[entry.field] = entry.filters[0].term;
+                            filters[entry.field] = entry.filters[0].term;
                         } else {
-                            values[entry.field] = '';
+                            filters[entry.field] = '';
                         }
                     }
                 });
-                console.log(values);
+                $scope.filters = JSON.stringify(filters);
             }
 
-            // Load data from remote
-            var loadGridData = function () {
+            // === Load data from remote ===
+            $scope.loadGridData = function () {
                 pageService.getPageList($scope).success(
                     function (data, status) {
                         console.log(data);
@@ -84,7 +90,7 @@ define(['app'], function (app) {
                 $scope.paginationPage = page;
                 loadGridData();
             };
-            loadGridData();
+            $scope.loadGridData();
 
         }]);
 });

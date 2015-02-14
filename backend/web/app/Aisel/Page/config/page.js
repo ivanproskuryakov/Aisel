@@ -21,7 +21,7 @@ define(['app'], function (app) {
                 controller: 'PageCtrl'
             })
             .state("pageView", {
-                url: "/:locale/page/view/:pageId/",
+                url: "/:locale/page/view/:id/",
                 templateUrl: '/app/Aisel/Page/views/page-detail.html',
                 controller: 'PageDetailCtrl'
             })
@@ -31,7 +31,7 @@ define(['app'], function (app) {
                 controller: 'PageCategoryCtrl'
             })
             .state("pageCategoryView", {
-                url: "/:locale/page/category/:categoryId/",
+                url: "/:locale/page/category/:id/",
                 templateUrl: '/app/Aisel/Page/views/category-detail.html',
                 controller: 'PageCategoryDetailCtrl'
             });

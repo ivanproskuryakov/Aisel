@@ -11,17 +11,15 @@
             </div>
             <div class="col-md-8 nav-buttons">
                 <div class="pull-right">
-                    <!--<div class="btn-group">
-                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            Selection <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Delete</a></li>
-                        </ul>
-                    </div>-->
-                    <button type="submit" class="btn btn-warning">Clear Filter <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <button type="submit" class="btn btn-success">Filter <span class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>
-                    <button type="submit" class="btn btn-primary">Add New Item <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                    <button type="submit"
+                            class="btn btn-success"
+                            ng-click="loadGridData()">
+                        Filter <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                    </button>
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Add New Item <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
                 </div>
             </div>
         </div>
