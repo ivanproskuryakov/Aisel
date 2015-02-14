@@ -174,6 +174,7 @@ body .panel-primary {
 .nav-buttons {
     margin-top: -15px;
 }
+
 .content-grid {
     min-height: 500px;
 }
@@ -207,8 +208,18 @@ body .panel-primary {
     background: none;
 }
 
-.content-grid .ui-grid-render-container-body .ui-grid-header-cell {
+body .content-grid .ui-grid-render-container-left .ui-grid-header-cell,
+body .content-grid .ui-grid-render-container-body .ui-grid-header-cell {
     height: 55px;
+}
+
+body .content-grid .ui-grid-footer-info {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    text-align: right;
+    background: rgb(248, 248, 248);
+    border-top: 1px solid #e7e7e7;
 }
 
 .content-grid .ui-grid-row:nth-child(even) .ui-grid-cell {

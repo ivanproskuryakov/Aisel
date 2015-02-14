@@ -20,6 +20,14 @@ define(['app'], function (app) {
             $scope.paginationPage = 1;
             $scope.categoryId = 0;
             $scope.gridOptions = {
+                enableRowSelection: true,
+                enableRowHeaderSelection: false,
+                modifierKeysToMultiSelect: false,
+                multiSelect: false,
+                noUnselect: true,
+                selectionRowHeaderWidth: 35,
+                rowHeight: 35,
+                showGridFooter: true,
                 enableFiltering: true,
                 useExternalFiltering: true,
                 columnDefs: [
@@ -29,6 +37,13 @@ define(['app'], function (app) {
                     {name: 'metaUrl'},
                     {name: 'status'},
                     {name: 'createdAt'},
+                    {
+                        name: 'action',
+                        enableSorting: false,
+                        enableFiltering: false,
+                        width: '100',
+                        cellTemplate: '<a class="btn btn-link" ng-click="grid.appScope.showMe()">View</button>'
+                    }
                 ],
                 onRegisterApi: function (gridApi) {
                     $scope.gridApi = gridApi;
@@ -38,20 +53,24 @@ define(['app'], function (app) {
                 }
             };
 
+
+            // Used in grid filtering
             var getGridFilters = function (grid) {
                 var values = [];
                 grid.columns.forEach(function (entry) {
-                    if (entry.filters[0].term !== undefined) {
-                        values[entry.field] = entry.filters[0].term;
-                    } else {
-                        values[entry.field] = '';
+                    if (entry.filters[0] !== undefined) {
+                        if (entry.filters[0].term !== undefined) {
+                            values[entry.field] = entry.filters[0].term;
+                        } else {
+                            values[entry.field] = '';
+                        }
                     }
                 });
                 console.log(values);
             }
 
             // Load data from remote
-            var loadData = function () {
+            var loadGridData = function () {
                 pageService.getPageList($scope).success(
                     function (data, status) {
                         console.log(data);
@@ -63,9 +82,9 @@ define(['app'], function (app) {
             }
             $scope.pageChanged = function (page) {
                 $scope.paginationPage = page;
-                loadData();
+                loadGridData();
             };
-            loadData();
+            loadGridData();
 
         }]);
 });

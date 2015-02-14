@@ -11,15 +11,23 @@
             </div>
             <div class="col-md-8 nav-buttons">
                 <div class="pull-right">
-                    <button type="submit" class="btn btn-success">Filter</button>
-                    <button type="submit" class="btn btn-success">Clear All Filters</button>
-                    <button type="submit" class="btn btn-primary">Add New Item + </button>
+                    <!--<div class="btn-group">
+                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            Selection <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Delete</a></li>
+                        </ul>
+                    </div>-->
+                    <button type="submit" class="btn btn-warning">Clear Filter <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <button type="submit" class="btn btn-success">Filter <span class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>
+                    <button type="submit" class="btn btn-primary">Add New Item <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-12">
-        <div id="content-grid" ui-grid-selection ui-grid="gridOptions" class="content-grid"></div>
+        <div id="content-grid" ui-grid="gridOptions" class="content-grid"></div>
         <div class="row">
             <div class="col-xs-6 col-md-6">
                 <pagination ng-if="pageList.total > 0" on-select-page="pageChanged(page)" items-per-page="{{pageLimit}}"
