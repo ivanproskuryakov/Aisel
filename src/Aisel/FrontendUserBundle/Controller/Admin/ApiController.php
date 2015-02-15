@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Controller\Admin;
+namespace Aisel\FrontendUserBundle\Controller\Admin;
 
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Backend Product REST API controller
+ * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiProductController extends AbstractCollectionController
+class ApiController extends AbstractCollectionController
 {
-    protected $manager = "aisel.product.manager";
+    protected $manager = "frontend.user.manager";
 }

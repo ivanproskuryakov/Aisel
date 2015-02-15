@@ -84,7 +84,7 @@ class ProductManager
         if (!($product)) {
             throw new NotFoundHttpException('Nothing found');
         }
-        $productDetails = array('product' => $product, 'categories' => $this->getProductCategories($product));
+        $productDetails = array('item' => $product, 'categories' => $this->getProductCategories($product));
 
         return $productDetails;
     }

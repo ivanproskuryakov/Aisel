@@ -4,7 +4,8 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Aisel\BackendUserBundle\Entity\BackendUser" table="aisel_user_backend">
+    <entity name="Aisel\BackendUserBundle\Entity\BackendUser" table="aisel_user_backend"
+            repository-class="Aisel\BackendUserBundle\Entity\BackendUserRepository">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
@@ -26,5 +27,4 @@
 
 
     </entity>
-
 </doctrine-mapping>

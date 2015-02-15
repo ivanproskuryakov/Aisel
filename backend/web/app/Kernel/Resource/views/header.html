@@ -13,12 +13,9 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>
-                    <a ui-sref="pages({locale: locale})">Page</a>
-                </li>
-                <li>
-                    <a ui-sref="products({locale: locale})">Product</a>
-                </li>
+                <li><a ui-sref="pages({locale: locale})">Page</a></li>
+                <li><a ui-sref="products({locale: locale})">Product</a></li>
+                <li><a ui-sref="frontendUsers({locale: locale})">Frontend Users</a></li>
             </ul>
             <ul class="user-navbar nav navbar-nav navbar-right" ng-controller="UserCtrl">
                 <li class="dropdown" ng-if="user">

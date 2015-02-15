@@ -89,7 +89,7 @@ class PageManager
         if (!($page)) {
             throw new NotFoundHttpException('Nothing found');
         }
-        $pageDetails = array('page' => $page, 'categories' => $this->getPageCategories($page));
+        $pageDetails = array('item' => $page, 'categories' => $this->getPageCategories($page));
 
         return $pageDetails;
     }

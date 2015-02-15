@@ -64,20 +64,52 @@ class UserManager implements UserProviderInterface
         return $this->mailer;
     }
 
-//    /**
-//     * Get Session service
-//     */
-//    public function getSession()
-//    {
-//        return $this->request;
-//    }
-
     /**
      * Get User repository
      */
     protected function getRepository()
     {
         return $this->em->getRepository('AiselFrontendUserBundle:FrontendUser');
+    }
+
+    /**
+     * Get collection
+     *
+     * @param array  $params
+     * @param string $locale
+     *
+     * @return array
+     */
+    public function getCollection($params)
+    {
+        $total = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->getTotalFromRequest($params);
+        $collection = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->getCollectionFromRequest($params);
+        $return = array(
+            'total' => $total,
+            'collection' => $collection
+        );
+
+        return $return;
+    }
+
+    /**
+     * Get single item
+     *
+     * @param int $id
+     *
+     * @return \Aisel\PageBundle\Entity\Page $pageDetails
+     *
+     * @throws NotFoundHttpException
+     */
+    public function getItem($id)
+    {
+        $item = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->find($id);
+
+        if (!($item)) {
+            throw new NotFoundHttpException('Nothing found');
+        }
+        $itemDetails = array('item' => $item);
+        return $itemDetails;
     }
 
     /**

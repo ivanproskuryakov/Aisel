@@ -11,15 +11,16 @@
 
 namespace Aisel\FrontendUserBundle\Entity;
 
-use Doctrine\ORM\EntityRepository;
+use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
 
 /**
  * Frontend user repository
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class FrontendUserRepository extends EntityRepository
+class FrontendUserRepository extends AbstractCollectionRepository
 {
+    protected $entity = 'AiselFrontendUserBundle:FrontendUser';
 
     /**
      * Find user by Username and Email
@@ -34,7 +35,7 @@ class FrontendUserRepository extends EntityRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
 
         $qb->select('COUNT(u.id)')
-            ->from('AiselFrontendUserBundle:FrontendUser', 'u')
+            ->from($this->entity, 'u')
             ->where('u.username = :username')
             ->orWhere('u.email = :email')
             ->setParameter('username', $username)

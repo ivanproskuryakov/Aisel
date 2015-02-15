@@ -43,6 +43,46 @@ class UserManager implements UserProviderInterface
     }
 
     /**
+     * Get collection
+     *
+     * @param array $params
+     * @param string $locale
+     *
+     * @return array
+     */
+    public function getCollection($params)
+    {
+        $total = $this->getRepository()->getTotalFromRequest($params);
+        $collection = $this->getRepository()->getCollectionFromRequest($params);
+        $return = array(
+            'total' => $total,
+            'collection' => $collection
+        );
+
+        return $return;
+    }
+
+    /**
+     * Get single item
+     *
+     * @param int $id
+     *
+     * @return \Aisel\PageBundle\Entity\Page $pageDetails
+     *
+     * @throws NotFoundHttpException
+     */
+    public function getItem($id)
+    {
+        $item = $this->getRepository()->find($id);
+
+        if (!($item)) {
+            throw new NotFoundHttpException('Nothing found');
+        }
+        $itemDetails = array('item' => $item);
+        return $itemDetails;
+    }
+
+    /**
      * Creates User, specially for fixtures
      *
      * @param array $userData
@@ -151,7 +191,7 @@ class UserManager implements UserProviderInterface
      */
     public function findUser($username, $email)
     {
-        $user = $this->em->getRepository('AiselBackendUserBundle:BackendUser')->findUser($username, $email);
+        $user = $this->getRepository()->findUser($username, $email);
 
         return $user;
     }

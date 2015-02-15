@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiPageController extends AbstractCollectionController
+class ApiController extends AbstractCollectionController
 {
     protected $manager = "aisel.page.manager";
 }

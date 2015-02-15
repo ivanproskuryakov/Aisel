@@ -21,13 +21,13 @@ admin_aisel_product_category_update:
 
 admin_api_aisel_product_get_collection:
     pattern:   /%backend_api%/product/
-    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:getCollection, _format: json }
+    defaults:  { _controller: AiselProductBundle:Admin/Api:getCollection, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_product_get:
     pattern:   /%backend_api%/product/{id}
-    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:get, _format: json }
+    defaults:  { _controller: AiselProductBundle:Admin/Api:get, _format: json }
     requirements:
         _method: GET
 

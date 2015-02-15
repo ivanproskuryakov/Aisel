@@ -114,8 +114,6 @@ class AbstractCollectionRepository extends EntityRepository
         if ($this->userId) {
             $query->innerJoin('e.frontenduser', 'u')
                 ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
-        } else {
-            $query->andWhere('e.status = :status')->setParameter('status', 1);
         }
 
         $total = $query->getQuery()->getSingleScalarResult();
