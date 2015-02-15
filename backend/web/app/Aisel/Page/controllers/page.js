@@ -16,15 +16,16 @@ define(['app'], function (app) {
     app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'pageService', 'Environment', 'collectionService',
         function ($location, $state, $scope, $stateParams, pageService, Environment, collectionService) {
 
+            $scope.collectionTitle = 'Pages';
             $scope.pageLimit = 20;
             $scope.pageNumber = 1;
             $scope.columns = [
                 {name: 'id', enableColumnMenu: false, width: '100'},
                 {name: 'locale', enableColumnMenu: false, width: '15%'},
                 {name: 'title', enableColumnMenu: false},
-                {name: 'metaUrl', enableColumnMenu: false},
+                {name: 'meta_url', enableColumnMenu: false},
                 {name: 'status', enableColumnMenu: false},
-                {name: 'createdAt', enableColumnMenu: false},
+                {name: 'created_at', enableColumnMenu: false},
                 {
                     name: 'action',
                     enableSorting: false,
@@ -34,7 +35,6 @@ define(['app'], function (app) {
                     cellTemplate: collectionService.viewTemplate()
                 }
             ];
-
             $scope.gridOptions = collectionService.gridOptions($scope);
 
             // === View Item ===

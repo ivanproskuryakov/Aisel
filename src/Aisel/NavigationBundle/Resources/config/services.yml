@@ -18,15 +18,3 @@ services:
     aisel.navigation.node.manager:
         class: %aisel_navigation_node_manager.class%
         arguments: [@service_container, @doctrine.orm.entity_manager]
-
-    sonata.admin.navigation:
-        class: Aisel\NavigationBundle\Admin\NavigationAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Navigation", label: "Menu" }
-        arguments:
-            - ~
-            - Aisel\NavigationBundle\Entity\Menu
-            - ~
-        calls:
-            - [ setTranslationDomain, [forms]]
-            - [ setTemplate, [list, AiselNavigationBundle:Tree:list.html.twig]]

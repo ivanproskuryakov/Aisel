@@ -2,112 +2,15 @@
 
 namespace Aisel\ProductBundle\Entity;
 
-use Doctrine\ORM\EntityRepository;
+use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
 
 /**
  * ProductRepository
  */
-class ProductRepository extends EntityRepository
+class ProductRepository extends AbstractCollectionRepository
 {
 
-    private $search = '';
-    private $locale = null;
-    private $filter = null;
-    private $category = 0;
-    private $pageCurrent = 1;
-    private $pageLimit = 1;
-    private $pageSkip = 1;
-    private $userId = null;
-    private $pageOrder = 'id';
-    private $pageOrderBy = 'DESC';
-
-    /**
-     * Map request variables for later use in SQL
-     * @param array $params
-     */
-    private function mapRequest($params)
-    {
-        // Pagination
-        if (isset($params['current'])) {
-            $this->pageCurrent = $params['current'];
-        } else {
-            $this->pageCurrent = 1;
-        }
-        if (isset($params['limit'])) {
-            $this->pageLimit = $params['limit'];
-        } else {
-            $this->pageLimit = 5;
-        }
-        if (isset($params['category'])) {
-            $this->category = $params['category'];
-        } else {
-            $this->category = 0;
-        }
-
-        // Search
-        if (isset($params['query'])) {
-            $this->search = $params['query'];
-        }
-        // User
-        if (isset($params['userid'])) {
-            $this->userId = $params['userid'];
-        }
-        // Locale
-        if (isset($params['locale'])) {
-            $this->locale = $params['locale'];
-        }
-        // Filter
-        if (isset($params['filter'])) {
-            $this->filter = (array)json_decode($params['filter']);
-        }
-        $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
-    }
-
-    /**
-     * Get product total
-     *
-     * @param array $params
-     *
-     * @return int $total
-     */
-    public function getTotalFromRequest($params)
-    {
-        $this->mapRequest($params);
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select('COUNT(p.id)')
-            ->from('AiselProductBundle:Product', 'p')
-            ->andWhere('p.hidden != 1');
-
-        // === Filters ===
-        if ($this->filter) {
-            foreach ($this->filter as $k => $value) {
-                $query->andWhere('p.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
-            }
-        }
-
-        if ($this->locale) {
-            $query->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
-        }
-
-        if ($this->category) {
-            $query->innerJoin('p.categories', 'c')
-                ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
-        }
-
-        if ($this->search != '') {
-            $query->andWhere('p.description LIKE :search')->setParameter('search', '%' . $this->search . '%');
-        }
-
-        if ($this->userId) {
-            $query->innerJoin('p.frontenduser', 'u')
-                ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
-        }
-
-        $total = $query->getQuery()->getSingleScalarResult();
-
-        if (!$total) return 0;
-        return $total;
-    }
+    protected $entity = 'AiselProductBundle:Product';
 
     /**
      * Get products based on limit, current pagination and search query
@@ -121,7 +24,7 @@ class ProductRepository extends EntityRepository
         $this->mapRequest($params);
         $query = $this->getEntityManager()->createQueryBuilder();
         $r = $query->select('p')
-            ->from('AiselProductBundle:Product', 'p')
+            ->from($this->entity, 'p')
             ->where('p.content LIKE :search')->setParameter('search', '%' . $this->search . '%')
             ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale)
             ->andWhere('p.status = 1')
@@ -144,52 +47,8 @@ class ProductRepository extends EntityRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $items = $query->select('p')
-            ->from('AiselProductBundle:Product', 'p')
+            ->from($this->entity, 'p')
             ->andWhere('p.status = 1')
-            ->getQuery()
-            ->execute();
-
-        return $items;
-    }
-
-    /**
-     * Get products based on limit, current pagination and search query
-     *
-     * @param array $params
-     *
-     * @return \Aisel\ProductBundle\Entity\Product $products
-     */
-    public function getCurrentProductsFromRequest($params)
-    {
-        $this->mapRequest($params);
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select('p.id,p.locale, p.name, p.price, p.metaUrl, SUBSTRING(p.description, 1, 500) AS description,  p.createdAt,  p.status,  p.mainImage')
-            ->from('AiselProductBundle:Product', 'p');
-
-        // === Filters ===
-        if ($this->filter) {
-            foreach ($this->filter as $k => $value) {
-                $query->andWhere('p.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
-            }
-        }
-
-        if ($this->locale) {
-            $query->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
-        }
-
-        if ($this->userId) {
-            $query
-                ->innerJoin('p.frontenduser', 'u')
-                ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
-        }
-
-        if ($this->category) {
-            $query->innerJoin('p.categories', 'c')
-                ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
-        }
-        $items = $query->setMaxResults($this->pageLimit)
-            ->setFirstResult($this->pageSkip)
-            ->orderBy('p.' . $this->pageOrder, $this->pageOrderBy)
             ->getQuery()
             ->execute();
 
@@ -207,7 +66,7 @@ class ProductRepository extends EntityRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $items = $query->select('p.name, p.metaUrl, SUBSTRING(p.description, 1, 500) AS description,  p.createdAt')
-            ->from('AiselProductBundle:Product', 'p')
+            ->from($this->entity, 'p')
             ->innerJoin('p.categories', 'c')
             ->where('p.status = 1')
             ->andWhere('p.hidden != 1')
@@ -230,7 +89,7 @@ class ProductRepository extends EntityRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('COUNT(p.id)')
-            ->from('AiselProductBundle:Product', 'p')
+            ->from($this->entity, 'p')
             ->where('p.metaUrl = :url')->setParameter('url', $url);
 
         if ($productId) {

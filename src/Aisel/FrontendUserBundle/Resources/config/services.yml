@@ -6,18 +6,6 @@
 # file that was distributed with this source code.
 
 services:
-    aisel.user.frontend:
-        class: Aisel\FrontendUserBundle\Admin\FrontendUserAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Users", label: "Frontend" }
-        arguments:
-            - ~
-            - Aisel\FrontendUserBundle\Entity\FrontendUser
-            - ~
-        calls:
-            - [ setTranslationDomain, [forms]]
-            - [ setEncoderFactory, [ @security.encoder_factory ] ]
-
     frontend.user.manager:
         class: Aisel\FrontendUserBundle\Manager\UserManager
         arguments:

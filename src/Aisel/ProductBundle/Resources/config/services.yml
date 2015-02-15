@@ -27,29 +27,3 @@ services:
     aisel.productcategory.node.manager:
         class: %aisel_product_category_node_manager.class%
         arguments: [@service_container, @doctrine.orm.entity_manager]
-
-    sonata.admin.product:
-        class: Aisel\ProductBundle\Admin\ProductAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Catalog", label: "Products" }
-        arguments:
-            - ~
-            - Aisel\ProductBundle\Entity\Product
-            - ~
-        calls:
-            - [ setTranslationDomain, [forms]]
-            - [ setManager, [@aisel.product.manager]]
-            - [ setTemplate, [edit, AiselProductBundle:CRUD:edit.html.twig]]
-
-    sonata.admin.product.category:
-        class: Aisel\ProductBundle\Admin\ProductCategoryAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Catalog", label: "Categories" }
-        arguments:
-            - ~
-            - Aisel\ProductBundle\Entity\Category
-            - ~
-        calls:
-            - [ setTranslationDomain, [forms]]
-            - [ setTemplate, [list, AiselProductBundle:Tree:list.html.twig]]
-            - [ setManager, [@aisel.productcategory.manager]]

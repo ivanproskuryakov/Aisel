@@ -11,114 +11,17 @@
 
 namespace Aisel\PageBundle\Entity;
 
-use Doctrine\ORM\EntityRepository;
+use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
 
 /**
- * Repository for Page entity
+ * PageRepository
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class PageRepository extends EntityRepository
+class PageRepository extends AbstractCollectionRepository
 {
-    private $search = '';
-    private $locale = null;
-    private $filter = null;
-    private $category = 0;
-    private $pageCurrent = 1;
-    private $pageLimit = 1;
-    private $pageSkip = 1;
-    private $userId = null;
-    private $pageOrder = 'id';
-    private $pageOrderBy = 'DESC';
 
-    /**
-     * Map request variables for later use in SQL
-     * @param array $params
-     */
-    private function mapRequest($params)
-    {
-        // Pagination
-        if (isset($params['current'])) {
-            $this->pageCurrent = $params['current'];
-        } else {
-            $this->pageCurrent = 1;
-        }
-        if (isset($params['limit'])) {
-            $this->pageLimit = $params['limit'];
-        } else {
-            $this->pageLimit = 5;
-        }
-        if (isset($params['category'])) {
-            $this->category = $params['category'];
-        } else {
-            $this->category = 0;
-        }
-
-        // Search
-        if (isset($params['query'])) {
-            $this->search = $params['query'];
-        }
-        // User
-        if (isset($params['userid'])) {
-            $this->userId = $params['userid'];
-        }
-        // Locale
-        if (isset($params['locale'])) {
-            $this->locale = $params['locale'];
-        }
-        // Filter
-        if (isset($params['filter'])) {
-            $this->filter = (array)json_decode($params['filter']);
-        }
-        $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
-    }
-
-    /**
-     * Get page total
-     *
-     * @param array $params
-     *
-     * @return int $total
-     */
-    public function getTotalFromRequest($params)
-    {
-        $this->mapRequest($params);
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select('COUNT(p.id)')
-            ->from('AiselPageBundle:Page', 'p');
-
-        // === Filters ===
-        if ($this->filter) {
-            foreach ($this->filter as $k => $value) {
-                $query->andWhere('p.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
-            }
-        }
-
-        if ($this->locale) {
-            $query->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
-        }
-
-        if ($this->category) {
-            $query->innerJoin('p.categories', 'c')
-                ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
-        }
-
-        if ($this->search != '') {
-            $query->andWhere('p.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
-        }
-
-        if ($this->userId) {
-            $query->innerJoin('p.frontenduser', 'u')
-                ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
-        } else {
-            $query->andWhere('p.status = :status')->setParameter('status', 1);
-        }
-
-        $total = $query->getQuery()->getSingleScalarResult();
-
-        if (!$total) return 0;
-        return $total;
-    }
+    protected $entity = 'AiselPageBundle:Page';
 
     /**
      * Get pages based on limit, current pagination and search query
@@ -130,7 +33,7 @@ class PageRepository extends EntityRepository
         $this->mapRequest($params);
         $query = $this->getEntityManager()->createQueryBuilder();
         $pages = $query->select('p')
-            ->from('AiselPageBundle:Page', 'p')
+            ->from($this->entity, 'p')
             ->where('p.content LIKE :search')->setParameter('search', '%' . $this->search . '%')
             ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale)
             ->andWhere('p.status = 1')
@@ -151,54 +54,8 @@ class PageRepository extends EntityRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $pages = $query->select('p')
-            ->from('AiselPageBundle:Page', 'p')
+            ->from($this->entity, 'p')
             ->andWhere('p.status = 1')
-            ->getQuery()
-            ->execute();
-
-        return $pages;
-    }
-
-    /**
-     * Get pages based on limit, current pagination and search query
-     *
-     * @param array $params
-     *
-     * @return \Aisel\PageBundle\Entity\Page $pages
-     */
-    public function getCurrentPagesFromRequest($params)
-    {
-        $this->mapRequest($params);
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select('p.id, p.locale, p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt,  p.status')
-            ->from('AiselPageBundle:Page', 'p');
-
-        // === Filters ===
-        if ($this->filter) {
-            foreach ($this->filter as $k => $value) {
-                $query->andWhere('p.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
-            }
-        }
-
-        if ($this->locale) {
-            $query->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
-        }
-
-        if ($this->userId) {
-            $query
-                ->innerJoin('p.frontenduser', 'u')
-                ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
-        } else {
-            $query->andWhere('p.status = :status')->setParameter('status', 1);
-        }
-
-        if ($this->category) {
-            $query->innerJoin('p.categories', 'c')
-                ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
-        }
-        $pages = $query->setMaxResults($this->pageLimit)
-            ->setFirstResult($this->pageSkip)
-            ->orderBy('p.' . $this->pageOrder, $this->pageOrderBy)
             ->getQuery()
             ->execute();
 
@@ -216,7 +73,7 @@ class PageRepository extends EntityRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $pages = $query->select('p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt')
-            ->from('AiselPageBundle:Page', 'p')
+            ->from($this->entity, 'p')
             ->innerJoin('p.categories', 'c')
             ->where('p.status = 1')
             ->andWhere('c.id = :categoryId')->setParameter('categoryId', $categoryId)
@@ -238,7 +95,7 @@ class PageRepository extends EntityRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('COUNT(p.id)')
-            ->from('AiselPageBundle:Page', 'p')
+            ->from($this->entity, 'p')
             ->where('p.metaUrl = :url')->setParameter('url', $url);
 
         if ($pageId) {

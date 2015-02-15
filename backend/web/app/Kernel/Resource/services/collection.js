@@ -28,18 +28,18 @@ define(['app'], function (app) {
                         }
                     });
                     var filter = JSON.stringify(filters);
-
                     return filter;
                 }
 
                 return {
                     loadCollection: function ($scope, service, pageNumber) {
                         if (pageNumber === undefined) pageNumber = 1;
+                        if ($scope.filter === undefined) $scope.filter = '';
                         console.log(pageNumber);
                         service.getCollection($scope, pageNumber).success(
                             function (data, status) {
                                 console.log(data);
-                                $scope.gridOptions.data = data.items;
+                                $scope.gridOptions.data = data.collection;
                                 $scope.gridOptions.totalItems = data.total;
                             }
                         );

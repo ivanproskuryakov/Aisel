@@ -1,8 +1,5 @@
 _aisel:
     resource: routings/aisel.yml
 
-_sonata:
-    resource: routings/sonata.yml
-
 _payum:
     resource: routings/payum.yml

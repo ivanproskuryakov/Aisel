@@ -33,7 +33,7 @@ class ProductManager
 
     /**
      * Get categories in array for product
-     * @param  int   $product
+     * @param  int $product
      * @return array $categories
      */
     public function getProductCategories($product)
@@ -56,13 +56,13 @@ class ProductManager
      * @param  array $params
      * @return array
      */
-    public function getProducts($params)
+    public function getCollection($params)
     {
         $total = $this->em->getRepository('AiselProductBundle:Product')->getTotalFromRequest($params);
-        $products = $this->em->getRepository('AiselProductBundle:Product')->getCurrentProductsFromRequest($params);
+        $collection = $this->em->getRepository('AiselProductBundle:Product')->getCollectionFromRequest($params);
         $return = array(
             'total' => $total,
-            'items' => $products
+            'collection' => $collection
         );
 
         return $return;
@@ -77,7 +77,7 @@ class ProductManager
      *
      * @throws NotFoundHttpException
      */
-    public function getProduct($id)
+    public function getItem($id)
     {
         $product = $this->em->getRepository('AiselProductBundle:Product')->find($id);
 

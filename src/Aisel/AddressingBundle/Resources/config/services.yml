@@ -7,57 +7,9 @@
 
 parameters:
     aisel_addressing_manager.class: Aisel\AddressingBundle\Manager\AddressingManager
-    aisel_addressing_country.class: Aisel\AddressingBundle\Admin\CountryAdmin
-    aisel_addressing_region.class: Aisel\AddressingBundle\Admin\RegionAdmin
-    aisel_addressing_city.class: Aisel\AddressingBundle\Admin\CityAdmin
-    aisel_addressing_address.class: Aisel\AddressingBundle\Admin\AddressAdmin
 
 services:
     aisel.addressing.manager:
         class: %aisel_addressing_manager.class%
         arguments:
             - @doctrine.orm.entity_manager
-
-    sonata.admin.addressing.address:
-        class: %aisel_addressing_address.class%
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Addressing", label: "Addresses" }
-        arguments:
-            - ~
-            - Aisel\AddressingBundle\Entity\Address
-            - ~
-        calls:
-            - [ setTranslationDomain, [forms]]
-
-    sonata.admin.addressing.country:
-        class: %aisel_addressing_country.class%
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Addressing", label: "Countries" }
-        arguments:
-            - ~
-            - Aisel\AddressingBundle\Entity\Country
-            - ~
-        calls:
-            - [ setTranslationDomain, [forms]]
-
-    sonata.admin.addressing.region:
-        class: %aisel_addressing_region.class%
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Addressing", label: "Regions" }
-        arguments:
-            - ~
-            - Aisel\AddressingBundle\Entity\Region
-            - ~
-        calls:
-            - [ setTranslationDomain, [forms]]
-
-    sonata.admin.addressing.city:
-        class: %aisel_addressing_city.class%
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Addressing", label: "Cities" }
-        arguments:
-            - ~
-            - Aisel\AddressingBundle\Entity\City
-            - ~
-        calls:
-            - [ setTranslationDomain, [forms]]

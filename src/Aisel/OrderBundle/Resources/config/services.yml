@@ -10,30 +10,6 @@ parameters:
     aisel_invoice_manager.class: Aisel\OrderBundle\Manager\InvoiceManager
 
 services:
-    sonata.admin.order:
-        class: Aisel\OrderBundle\Admin\OrderAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Sales", label: "Orders" }
-        arguments:
-            - ~
-            - Aisel\OrderBundle\Entity\Order
-            - ~
-        calls:
-            - [ setTranslationDomain, [forms]]
-            - [ setManager, [@aisel.order.manager]]
-
-    sonata.admin.invoice:
-        class: Aisel\OrderBundle\Admin\InvoiceAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Sales", label: "Invoices" }
-        arguments:
-            - ~
-            - Aisel\OrderBundle\Entity\Invoice
-            - ~
-        calls:
-            - [ setTranslationDomain, [forms]]
-            - [ setManager, [@aisel.invoice.manager]]
-
     aisel.order.manager:
         class: %aisel_order_manager.class%
         arguments:

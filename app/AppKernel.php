@@ -24,20 +24,9 @@ class AppKernel extends Kernel
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Payum\Bundle\PayumBundle\PayumBundle(),
 
-            // Sonata
-            new Sonata\CoreBundle\SonataCoreBundle(),
-            new Sonata\BlockBundle\SonataBlockBundle(),
-            new Sonata\jQueryBundle\SonatajQueryBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-            new Sonata\AdminBundle\SonataAdminBundle(),
-            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-            new Iphp\FileStoreBundle\IphpFileStoreBundle(),
-
             // Aisel bundles
             new Aisel\FrontendUserBundle\AiselFrontendUserBundle(),
             new Aisel\BackendUserBundle\AiselBackendUserBundle(),
-            new Aisel\AdminBundle\AiselAdminBundle(),
             new Aisel\PageBundle\AiselPageBundle(),
             new Aisel\CategoryBundle\AiselCategoryBundle(),
             new Aisel\SearchBundle\AiselSearchBundle(),

@@ -10,6 +10,8 @@ Aisel\PageBundle\Entity\Page:
   properties:
     id:
         expose: true
+    locale:
+        expose: true
     title:
         expose: true
     content:

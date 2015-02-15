@@ -16,17 +16,18 @@ define(['app'], function (app) {
     app.controller('ProductCtrl', ['$location', '$state', '$scope', '$stateParams', 'productService', 'Environment', 'collectionService',
         function ($location, $state, $scope, $stateParams, productService, Environment, collectionService) {
 
+            $scope.collectionTitle = 'Products';
             $scope.pageLimit = 20;
             $scope.pageNumber = 1;
             $scope.columns = [
                 {name: 'id', enableColumnMenu: false, width: '100'},
-                {name: 'locale', enableColumnMenu: false, width: '15%'},
+                {name: 'locale', enableColumnMenu: false, width: '100'},
+                {name: 'price', enableColumnMenu: false, width: '100'},
                 {name: 'name', enableColumnMenu: false},
-                {name: 'price', enableColumnMenu: false},
-                {name: 'metaUrl', enableColumnMenu: false},
-                {name: 'status', enableColumnMenu: false},
+                {name: 'meta_url', enableColumnMenu: false},
                 {name: 'description', enableColumnMenu: false},
-                {name: 'createdAt', enableColumnMenu: false},
+                {name: 'created_at', enableColumnMenu: false},
+                {name: 'status', enableColumnMenu: false},
                 {
                     name: 'action',
                     enableSorting: false,

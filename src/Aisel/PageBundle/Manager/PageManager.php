@@ -61,13 +61,13 @@ class PageManager
      *
      * @return array
      */
-    public function getPages($params)
+    public function getCollection($params)
     {
         $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params);
-        $pages = $this->em->getRepository('AiselPageBundle:Page')->getCurrentPagesFromRequest($params);
+        $collection = $this->em->getRepository('AiselPageBundle:Page')->getCollectionFromRequest($params);
         $return = array(
             'total' => $total,
-            'items' => $pages
+            'collection' => $collection
         );
 
         return $return;
@@ -82,7 +82,7 @@ class PageManager
      *
      * @throws NotFoundHttpException
      */
-    public function getPage($id)
+    public function getItem($id)
     {
         $page = $this->em->getRepository('AiselPageBundle:Page')->find($id);
 
