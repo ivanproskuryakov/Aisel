@@ -17,7 +17,7 @@ define(['app'], function (app) {
         $stateProvider
             .state("products", {
                 url: "/:locale/products/",
-                templateUrl: '/app/Aisel/Product/views/product.html',
+                templateUrl: '/app/Kernel/Resource/views/collection.html',
                 controller: 'ProductCtrl'
             })
             .state("productView", {

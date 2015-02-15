@@ -67,7 +67,7 @@ class PageManager
         $pages = $this->em->getRepository('AiselPageBundle:Page')->getCurrentPagesFromRequest($params);
         $return = array(
             'total' => $total,
-            'pages' => $pages
+            'items' => $pages
         );
 
         return $return;

@@ -16,10 +16,10 @@ define(['app'], function (app) {
     app.service('pageService', ['$http', 'Environment',
         function ($http, Environment) {
             return {
-                getCollection: function ($scope) {
+                getCollection: function ($scope, pageNumber) {
                     var url = Environment.settings.api
                         + '/page/?limit=' + $scope.pageLimit
-                        + '&current=' + $scope.paginationPage
+                        + '&current=' + pageNumber
                         + '&filter=' + $scope.filter;
 
                     console.log(url);

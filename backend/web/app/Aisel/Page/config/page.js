@@ -17,7 +17,7 @@ define(['app'], function (app) {
         $stateProvider
             .state("pages", {
                 url: "/:locale/pages/",
-                templateUrl: '/app/Aisel/Page/views/page.html',
+                templateUrl: '/app/Kernel/Resource/views/collection.html',
                 controller: 'PageCtrl'
             })
             .state("pageView", {
@@ -25,15 +25,5 @@ define(['app'], function (app) {
                 templateUrl: '/app/Aisel/Page/views/page-detail.html',
                 controller: 'PageDetailCtrl'
             })
-            .state("pageCategories", {
-                url: "/:locale/page/categories/",
-                templateUrl: '/app/Aisel/Page/views/category.html',
-                controller: 'PageCategoryCtrl'
-            })
-            .state("pageCategoryView", {
-                url: "/:locale/page/category/:id/",
-                templateUrl: '/app/Aisel/Page/views/category-detail.html',
-                controller: 'PageCategoryDetailCtrl'
-            });
     }]);
 });

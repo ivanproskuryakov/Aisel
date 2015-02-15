@@ -17,7 +17,7 @@ define(['app'], function (app) {
         function ($location, $state, $scope, $stateParams, pageService, Environment, collectionService) {
 
             $scope.pageLimit = 20;
-            $scope.paginationPage = 1;
+            $scope.pageNumber = 1;
             $scope.columns = [
                 {name: 'id', enableColumnMenu: false, width: '100'},
                 {name: 'locale', enableColumnMenu: false, width: '15%'},
@@ -37,29 +37,15 @@ define(['app'], function (app) {
 
             $scope.gridOptions = collectionService.gridOptions($scope);
 
-            // === View Row ===
+            // === View Item ===
             $scope.viewDetails = function (id) {
-                $state.transitionTo('pageView', {
-                    locale: Environment.currentLocale(),
-                    id: id
-                });
+                $state.transitionTo('pageView', {locale: Environment.currentLocale(), id: id});
             };
 
-            // === Load data from remote ===
-            $scope.loadCollection = function () {
-                pageService.getCollection($scope).success(
-                    function (data, status) {
-                        console.log(data);
-                        $scope.pageList = data;
-                        $scope.gridOptions.data = data.pages;
-                        $scope.gridOptions.totalItems = data.total;
-                    }
-                );
+            // === Load collection from remote ===
+            $scope.loadCollection = function (pageNumber) {
+                collectionService.loadCollection($scope, pageService, pageNumber);
             }
-            $scope.pageChanged = function (page) {
-                $scope.paginationPage = page;
-                loadCollection();
-            };
             $scope.loadCollection();
 
         }]);

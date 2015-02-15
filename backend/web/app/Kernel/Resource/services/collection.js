@@ -33,6 +33,17 @@ define(['app'], function (app) {
                 }
 
                 return {
+                    loadCollection: function ($scope, service, pageNumber) {
+                        if (pageNumber === undefined) pageNumber = 1;
+                        console.log(pageNumber);
+                        service.getCollection($scope, pageNumber).success(
+                            function (data, status) {
+                                console.log(data);
+                                $scope.gridOptions.data = data.items;
+                                $scope.gridOptions.totalItems = data.total;
+                            }
+                        );
+                    },
                     gridOptions: function ($scope) {
                         return {
                             selectionRowHeaderWidth: 35,

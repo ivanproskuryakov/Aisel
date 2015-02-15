@@ -62,7 +62,7 @@ class ProductManager
         $products = $this->em->getRepository('AiselProductBundle:Product')->getCurrentProductsFromRequest($params);
         $return = array(
             'total' => $total,
-            'products' => $products
+            'items' => $products
         );
 
         return $return;

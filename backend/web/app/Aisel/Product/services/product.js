@@ -16,10 +16,10 @@ define(['app'], function (app) {
     app.service('productService', ['$http', 'Environment',
         function ($http, Environment) {
             return {
-                getCollection: function ($scope) {
+                getCollection: function ($scope, pageNumber) {
                     var url = Environment.settings.api
                         + '/product/?limit=' + $scope.pageLimit
-                        + '&current=' + $scope.paginationPage
+                        + '&current=' + pageNumber
                         + '&filter=' + $scope.filter;
 
                     console.log(url);
