@@ -14,7 +14,8 @@
 
 define(['app',
     './config/resource',
-    './services/init'
+    './services/init',
+    './services/collection'
 ], function (app) {
     console.log('----------- Kernel Loaded! -----------');
 });

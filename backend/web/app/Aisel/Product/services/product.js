@@ -16,22 +16,17 @@ define(['app'], function (app) {
     app.service('productService', ['$http', 'Environment',
         function ($http, Environment) {
             return {
-                getList: function ($scope) {
-                    var filter = '';
-                    if ($scope.filter !== undefined) {
-                        filter = $scope.filter
-                    }
+                getCollection: function ($scope) {
                     var url = Environment.settings.api
-                        + '/page/?limit=' + $scope.pageLimit
+                        + '/product/?limit=' + $scope.pageLimit
                         + '&current=' + $scope.paginationPage
-                        + '&category=' + $scope.categoryId
-                        + '&filter=' + filter;
+                        + '&filter=' + $scope.filter;
 
                     console.log(url);
                     return $http.get(url);
                 },
                 get: function ($id) {
-                    var url = Environment.settings.api + '/page/' + $id;
+                    var url = Environment.settings.api + '/product/' + $id;
                     console.log(url);
                     return $http.get(url);
                 }

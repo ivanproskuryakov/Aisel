@@ -90,7 +90,7 @@ class PageRepository extends EntityRepository
         // === Filters ===
         if ($this->filter) {
             foreach ($this->filter as $k => $value) {
-                $query->andWhere('p.' . $k . ' = :' . $k)->setParameter($k, $value);
+                $query->andWhere('p.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
             }
         }
 

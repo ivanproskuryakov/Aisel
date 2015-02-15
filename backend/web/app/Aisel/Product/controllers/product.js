@@ -13,22 +13,19 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductCtrl', ['$location', '$state', '$scope', '$stateParams', 'productService', 'Environment',
-        function ($location, $state, $scope, $stateParams, productService, Environment) {
-
-            var locale = Environment.currentLocale();
-            var viewItemTemplate = '<button class="btn btn-link" ng-click="grid.appScope.showItem(row.entity.id)">' +
-                'View <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>';
+    app.controller('ProductCtrl', ['$location', '$state', '$scope', '$stateParams', 'productService', 'Environment', 'collectionService',
+        function ($location, $state, $scope, $stateParams, productService, Environment, collectionService) {
 
             $scope.pageLimit = 20;
             $scope.paginationPage = 1;
-            $scope.categoryId = 0;
             $scope.columns = [
                 {name: 'id', enableColumnMenu: false, width: '100'},
                 {name: 'locale', enableColumnMenu: false, width: '15%'},
-                {name: 'title', enableColumnMenu: false},
+                {name: 'name', enableColumnMenu: false},
+                {name: 'price', enableColumnMenu: false},
                 {name: 'metaUrl', enableColumnMenu: false},
                 {name: 'status', enableColumnMenu: false},
+                {name: 'description', enableColumnMenu: false},
                 {name: 'createdAt', enableColumnMenu: false},
                 {
                     name: 'action',
@@ -36,59 +33,34 @@ define(['app'], function (app) {
                     enableFiltering: false,
                     enableColumnMenu: false,
                     width: '100',
-                    cellTemplate: viewItemTemplate
+                    cellTemplate: collectionService.viewTemplate()
                 }
             ];
-            $scope.gridOptions = {
-                selectionRowHeaderWidth: 35,
-                rowHeight: 35,
-                showGridFooter: true,
-                enableFiltering: true,
-                enableSorting: false,
-                useExternalFiltering: true,
-                columnDefs: $scope.columns,
-                onRegisterApi: function (gridApi) {
-                    $scope.gridApi = gridApi;
-                    $scope.gridApi.core.on.filterChanged($scope, function () {
-                        getGridFilters(this.grid);
-                    });
-                }
-            };
+            $scope.gridOptions = collectionService.gridOptions($scope);
 
             // === View Row ===
-            $scope.showItem = function (id) {
-                $state.transitionTo('productView', {locale: locale, id: id});
+            $scope.viewDetails = function (id) {
+                $state.transitionTo('productView', {
+                    locale: Environment.currentLocale(),
+                    id: id
+                });
             };
 
-            // === Grid filtering ===
-            var getGridFilters = function (grid) {
-                var filters = {};
-                grid.columns.forEach(function (entry) {
-                    if (entry.filters[0] !== undefined) {
-                        if (entry.filters[0].term !== undefined) {
-                            filters[entry.field] = entry.filters[0].term;
-                        }
-                    }
-                });
-                $scope.filter = JSON.stringify(filters);
-            }
-
             // === Load data from remote ===
-            $scope.loadGridData = function () {
-                productService.getList($scope).success(
+            $scope.loadCollection = function () {
+                productService.getCollection($scope).success(
                     function (data, status) {
                         console.log(data);
                         $scope.pageList = data;
-                        $scope.gridOptions.data = data.pages;
+                        $scope.gridOptions.data = data.products;
                         $scope.gridOptions.totalItems = data.total;
                     }
                 );
             }
             $scope.pageChanged = function (page) {
                 $scope.paginationPage = page;
-                loadGridData();
+                loadCollection();
             };
-            $scope.loadGridData();
-
+            $scope.loadCollection();
         }]);
 });

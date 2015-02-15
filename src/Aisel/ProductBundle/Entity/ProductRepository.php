@@ -12,6 +12,7 @@ class ProductRepository extends EntityRepository
 
     private $search = '';
     private $locale = null;
+    private $filter = null;
     private $category = 0;
     private $pageCurrent = 1;
     private $pageLimit = 1;
@@ -51,7 +52,14 @@ class ProductRepository extends EntityRepository
         if (isset($params['userid'])) {
             $this->userId = $params['userid'];
         }
-        $this->locale = $params['locale'];
+        // Locale
+        if (isset($params['locale'])) {
+            $this->locale = $params['locale'];
+        }
+        // Filter
+        if (isset($params['filter'])) {
+            $this->filter = (array)json_decode($params['filter']);
+        }
         $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
     }
 
@@ -68,8 +76,18 @@ class ProductRepository extends EntityRepository
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('COUNT(p.id)')
             ->from('AiselProductBundle:Product', 'p')
-            ->andWhere('p.hidden != 1')
-            ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
+            ->andWhere('p.hidden != 1');
+
+        // === Filters ===
+        if ($this->filter) {
+            foreach ($this->filter as $k => $value) {
+                $query->andWhere('p.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
+            }
+        }
+
+        if ($this->locale) {
+            $query->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
+        }
 
         if ($this->category) {
             $query->innerJoin('p.categories', 'c')
@@ -83,9 +101,8 @@ class ProductRepository extends EntityRepository
         if ($this->userId) {
             $query->innerJoin('p.frontenduser', 'u')
                 ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
-        } else {
-            $query->andWhere('p.status = :status')->setParameter('status', 1);
         }
+
         $total = $query->getQuery()->getSingleScalarResult();
 
         if (!$total) return 0;
@@ -147,15 +164,23 @@ class ProductRepository extends EntityRepository
         $this->mapRequest($params);
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('p.id,p.locale, p.name, p.price, p.metaUrl, SUBSTRING(p.description, 1, 500) AS description,  p.createdAt,  p.status,  p.mainImage')
-            ->from('AiselProductBundle:Product', 'p')
-            ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
+            ->from('AiselProductBundle:Product', 'p');
+
+        // === Filters ===
+        if ($this->filter) {
+            foreach ($this->filter as $k => $value) {
+                $query->andWhere('p.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
+            }
+        }
+
+        if ($this->locale) {
+            $query->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
+        }
 
         if ($this->userId) {
             $query
                 ->innerJoin('p.frontenduser', 'u')
                 ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
-        } else {
-            $query->andWhere('p.status = :status')->setParameter('status', 1);
         }
 
         if ($this->category) {
@@ -196,7 +221,7 @@ class ProductRepository extends EntityRepository
     /**
      * Find product by URL
      *
-     * @param string   $url
+     * @param string $url
      * @param int|null $productId
      *
      * @return int $found
