@@ -8,13 +8,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselPage
+ * @name            AiselProduct
  * @description     ...
  */
 
 define(['app'], function (app) {
-    app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'pageService', 'Environment',
-        function ($location, $state, $scope, $stateParams, pageService, Environment) {
+    app.controller('ProductCtrl', ['$location', '$state', '$scope', '$stateParams', 'productService', 'Environment',
+        function ($location, $state, $scope, $stateParams, productService, Environment) {
 
             var locale = Environment.currentLocale();
             var viewItemTemplate = '<button class="btn btn-link" ng-click="grid.appScope.showItem(row.entity.id)">' +
@@ -57,7 +57,7 @@ define(['app'], function (app) {
 
             // === View Row ===
             $scope.showItem = function (id) {
-                $state.transitionTo('pageView', {locale: locale, id: id});
+                $state.transitionTo('productView', {locale: locale, id: id});
             };
 
             // === Grid filtering ===
@@ -75,7 +75,7 @@ define(['app'], function (app) {
 
             // === Load data from remote ===
             $scope.loadGridData = function () {
-                pageService.getList($scope).success(
+                productService.getList($scope).success(
                     function (data, status) {
                         console.log(data);
                         $scope.pageList = data;

@@ -46,7 +46,7 @@ class ApiPageController extends Controller
             'current' => $request->get('current'),
             'limit' => $request->get('limit'),
             'category' => $request->get('category'),
-            'locale' => $request->get('locale')
+            'locale' => $request->get('locale'),
         );
 
         if ($request->get('user') && $this->isAuthenticated()) {

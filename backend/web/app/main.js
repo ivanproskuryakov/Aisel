@@ -68,6 +68,7 @@ require.config({
         './Aisel/Dashboard/AiselDashboard',
         './Aisel/User/AiselUser',
         './Aisel/Page/AiselPage',
+        './Aisel/Product/AiselProduct',
         'bootstrap',
     ],
     priority: [

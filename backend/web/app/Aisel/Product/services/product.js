@@ -8,12 +8,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselPage
+ * @name            AiselProduct
  * @description     ...
  */
 
 define(['app'], function (app) {
-    app.service('pageService', ['$http', 'Environment',
+    app.service('productService', ['$http', 'Environment',
         function ($http, Environment) {
             return {
                 getList: function ($scope) {

@@ -9,42 +9,39 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Controller\Admin;
+namespace Aisel\ProductBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Backend Page REST API controller
+ * Category REST API for Frontend
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiPageController extends Controller
+class ApiCategoryController extends Controller
 {
 
     /**
-     * /backend/api/page/?limit=2&current=3
+     * /backend/api/product/category/list.json?limit=2&current=3
      *
      * @param Request $request
-     * @param string $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
     public function getListAction(Request $request)
     {
         $params = array(
-            'current' => $request->get('current'),
-            'limit' => $request->get('limit'),
-            'category' => $request->get('category'),
-            'filter' => $request->get('filter')
+            'current' => $request->query->get('current'),
+            'limit' => $request->query->get('limit'),
         );
 
-        $pageList = $this->container->get("aisel.page.manager")->getPages($params);
-        return $pageList;
+        $categoryList = $this->container->get("aisel.productcategory.manager")->getCategories($params);
+        return $categoryList;
     }
 
     /**
-     * /backend/api/page/12
+     * /backend/api/product/category/view/{$id}.json
      *
      * @param integer $id
      *
@@ -52,10 +49,9 @@ class ApiPageController extends Controller
      */
     public function getAction($id)
     {
-        /** @var \Aisel\PageBundle\Entity\Page $page */
-        $page = $this->container->get("aisel.page.manager")->getPage($id);
+        $category = $this->container->get("aisel.productcategory.manager")->getCategory($id);
 
-        return $page;
+        return $category;
     }
 
 }

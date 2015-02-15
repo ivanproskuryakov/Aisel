@@ -22,6 +22,7 @@ class PageRepository extends EntityRepository
 {
     private $search = '';
     private $locale = null;
+    private $filter = null;
     private $category = 0;
     private $pageCurrent = 1;
     private $pageLimit = 1;
@@ -65,6 +66,10 @@ class PageRepository extends EntityRepository
         if (isset($params['locale'])) {
             $this->locale = $params['locale'];
         }
+        // Filter
+        if (isset($params['filter'])) {
+            $this->filter = (array)json_decode($params['filter']);
+        }
         $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
     }
 
@@ -81,6 +86,13 @@ class PageRepository extends EntityRepository
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('COUNT(p.id)')
             ->from('AiselPageBundle:Page', 'p');
+
+        // === Filters ===
+        if ($this->filter) {
+            foreach ($this->filter as $k => $value) {
+                $query->andWhere('p.' . $k . ' = :' . $k)->setParameter($k, $value);
+            }
+        }
 
         if ($this->locale) {
             $query->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);
@@ -160,6 +172,13 @@ class PageRepository extends EntityRepository
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('p.id, p.locale, p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt,  p.status')
             ->from('AiselPageBundle:Page', 'p');
+
+        // === Filters ===
+        if ($this->filter) {
+            foreach ($this->filter as $k => $value) {
+                $query->andWhere('p.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
+            }
+        }
 
         if ($this->locale) {
             $query->andWhere('p.locale = :locale')->setParameter('locale', $this->locale);

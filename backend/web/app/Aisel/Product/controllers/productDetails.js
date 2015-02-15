@@ -8,16 +8,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselPage
+ * @name            AiselProduct
  * @description     ...
  */
 
 define(['app'], function (app) {
-    app.controller('PageDetailCtrl', function ($scope, $stateParams, pageService, $rootScope) {
+    app.controller('ProductDetailCtrl', function ($scope, $stateParams, productService, $rootScope) {
         var id = $stateParams.id;
         var handleSuccess = function (data, status) {
             $scope.item = data;
         };
-        pageService.get(id).success(handleSuccess);
+        productService.get(id).success(handleSuccess);
     });
 });

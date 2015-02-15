@@ -9,21 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Controller\Admin;
+namespace Aisel\ProductBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Backend Page REST API controller
+ * Backend Product REST API controller
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiPageController extends Controller
+class ApiProductController extends Controller
 {
 
     /**
-     * /backend/api/page/?limit=2&current=3
+     * /backend/api/product/?limit=2&current=3
      *
      * @param Request $request
      * @param string $locale
@@ -39,12 +39,12 @@ class ApiPageController extends Controller
             'filter' => $request->get('filter')
         );
 
-        $pageList = $this->container->get("aisel.page.manager")->getPages($params);
-        return $pageList;
+        $productList = $this->container->get("aisel.product.manager")->getProducts($params);
+        return $productList;
     }
 
     /**
-     * /backend/api/page/12
+     * /backend/api/product/12
      *
      * @param integer $id
      *
@@ -52,10 +52,10 @@ class ApiPageController extends Controller
      */
     public function getAction($id)
     {
-        /** @var \Aisel\PageBundle\Entity\Page $page */
-        $page = $this->container->get("aisel.page.manager")->getPage($id);
+        /** @var \Aisel\ProductBundle\Entity\Product $product */
+        $product = $this->container->get("aisel.product.manager")->getProduct($id);
 
-        return $page;
+        return $product;
     }
 
 }
