@@ -55,12 +55,11 @@ EOT
         foreach ($pages as $p) {
             $urls[] = '/' . $p->getLocale() . '/product/' . $p->getMetaUrl() . '/';
         }
-
         $sitemapContents = $this->getContainer()->get('templating')->render(
             'AiselSitemapBundle:Default:sitemap.txt.twig',
             array('urls' => $urls)
         );
-        $webFolder = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../web/');
+        $webFolder = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../frontend/web/');
         $sitemapFile = $webFolder . '/sitemap.xml';
         file_put_contents($sitemapFile, $sitemapContents);
         $output->writeln(sprintf('URL total: %s', count($urls)));

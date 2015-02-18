@@ -43,7 +43,7 @@ class ApiProductController extends Controller
             $userid = $this->get('security.context')->getToken()->getUser()->getId();
             $params['userid'] = $userid;
         }
-        $list = $this->container->get("aisel.product.manager")->getProducts($params, $locale);
+        $list = $this->container->get("aisel.product.manager")->getCollection($params, $locale);
 
         return $list;
     }

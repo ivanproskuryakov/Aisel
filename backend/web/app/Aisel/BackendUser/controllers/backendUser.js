@@ -8,15 +8,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselFrontendUser
+ * @name            AiselBackendUser
  * @description     ...
  */
 
 define(['app'], function (app) {
-    app.controller('FrontendUserCtrl', ['$location', '$state', '$scope', '$stateParams', 'frontendUserService', 'Environment', 'collectionService',
-        function ($location, $state, $scope, $stateParams, frontendUserService, Environment, collectionService) {
+    app.controller('BackendUserCtrl', ['$location', '$state', '$scope', '$stateParams', 'backendUserService', 'Environment', 'collectionService',
+        function ($location, $state, $scope, $stateParams, backendUserService, Environment, collectionService) {
 
-            $scope.collectionTitle = 'Frontend Users';
+            $scope.collectionTitle = 'Backend Users';
             $scope.pageLimit = 20;
             $scope.pageNumber = 1;
             $scope.columns = [
@@ -36,12 +36,12 @@ define(['app'], function (app) {
 
             // === View Item ===
             $scope.viewDetails = function (id) {
-                $state.transitionTo('frontendUserView', {locale: Environment.currentLocale(), id: id});
+                $state.transitionTo('backendUserView', {locale: Environment.currentLocale(), id: id});
             };
 
             // === Load collection from remote ===
             $scope.loadCollection = function (pageNumber) {
-                collectionService.loadCollection($scope, frontendUserService, pageNumber);
+                collectionService.loadCollection($scope, backendUserService, pageNumber);
             }
             $scope.loadCollection();
 

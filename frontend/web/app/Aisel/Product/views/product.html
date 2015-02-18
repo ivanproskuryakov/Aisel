@@ -10,13 +10,13 @@
     <div class="col-xs-12 col-md-9">
         <div class="col-md-12">
             <ul class="pageList">
-                <li ng-repeat="product in productList.products">
-                    <h2><a ui-sref="productView({locale: locale, productId:product.metaUrl})" class="thumb">{{product.name}}</a></h2>
+                <li ng-repeat="product in productList.collection">
+                    <h2><a ui-sref="productView({locale: locale, productId:product.meta_url})" class="thumb">{{product.name}}</a></h2>
 
                     <div class="row">
                         <div class="col-md-3">
                             <img class="img-rounded"
-                                 src="{{product.mainImage.path}}"
+                                 src="{{product.main_image.path}}"
                                  data-holder-rendered="true" style="width: 100%;">
                         </div>
                         <div class="col-md-9">

@@ -70,6 +70,7 @@ require.config({
         './Aisel/Page/AiselPage',
         './Aisel/Product/AiselProduct',
         './Aisel/FrontendUser/AiselFrontendUser',
+        './Aisel/BackendUser/AiselBackendUser',
         'bootstrap',
     ],
     priority: [

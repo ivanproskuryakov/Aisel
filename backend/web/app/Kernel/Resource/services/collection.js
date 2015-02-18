@@ -35,7 +35,6 @@ define(['app'], function (app) {
                     loadCollection: function ($scope, service, pageNumber) {
                         if (pageNumber === undefined) pageNumber = 1;
                         if ($scope.filter === undefined) $scope.filter = '';
-                        console.log(pageNumber);
                         service.getCollection($scope, pageNumber).success(
                             function (data, status) {
                                 console.log(data);
