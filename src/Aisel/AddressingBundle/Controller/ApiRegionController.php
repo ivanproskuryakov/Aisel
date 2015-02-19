@@ -12,6 +12,8 @@
 namespace Aisel\AddressingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Frontend Addressing Regions REST API controller
@@ -30,28 +32,31 @@ class ApiRegionController extends Controller
     }
 
     /**
-     * /%frontend_api%/addressing/region/list.json
+     * Get country collection
      *
-     * @return JsonResponse $response
+     * @return JsonResponse
      */
-    public function regionListAction()
+    public function getCollectionAction(Request $request)
     {
-        $countryList = $this->getAddressingManager()->getRegions();
+        $params = array(
+            'current' => $request->get('current'),
+            'limit' => $request->get('limit'),
+            'category' => $request->get('category'),
+            'filter' => $request->get('filter')
+        );
 
-        return $countryList;
+        return $this->getAddressingManager()->getRegions($params);
     }
 
     /**
-     * /%frontend_api%/addressing/region/{id}.json
+     * Get single Region entity
      *
      * @param integer $id
      *
-     * @return JsonResponse $response
+     * @return JsonResponse
      */
-    public function regionDetailsAction($id)
+    public function getAction($id)
     {
-        $countryDetails = $this->getAddressingManager()->getRegionById($id);
-
-        return $countryDetails;
+        return $this->getAddressingManager()->getRegionById($id);
     }
 }

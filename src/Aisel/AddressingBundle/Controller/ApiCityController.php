@@ -12,9 +12,11 @@
 namespace Aisel\AddressingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Frontend Addressing Cities REST API controller
+ * Сities REST API controller
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -30,28 +32,31 @@ class ApiCityController extends Controller
     }
 
     /**
-     * /%frontend_api%/addressing/city/list.json
+     * Get city collection
      *
-     * @return JsonResponse $response
+     * @return JsonResponse
      */
-    public function cityListAction()
+    public function getCollectionAction(Request $request)
     {
-        $countryList = $this->getAddressingManager()->getCities();
+        $params = array(
+            'current' => $request->get('current'),
+            'limit' => $request->get('limit'),
+            'category' => $request->get('category'),
+            'filter' => $request->get('filter')
+        );
 
-        return $countryList;
+        return $this->getAddressingManager()->getCities($params);
     }
 
     /**
-     * /%frontend_api%/addressing/city/{id}.json
+     * Get single city entity
      *
      * @param integer $id
      *
-     * @return JsonResponse $response
+     * @return JsonResponse
      */
-    public function cityDetailsAction($id)
+    public function getAction($id)
     {
-        $countryDetails = $this->getAddressingManager()->getCityById($id);
-
-        return $countryDetails;
+        return $this->getAddressingManager()->getCityById($id);
     }
 }

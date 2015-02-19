@@ -36,7 +36,6 @@ class AbstractCollectionController extends Controller
 
     /**
      * @param Request $request
-     * @param string $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
