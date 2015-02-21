@@ -22,12 +22,12 @@
     <div class="col-md-12">
         <div id="content-grid" ui-grid="gridOptions" class="content-grid"></div>
         <div class="row">
-            <div class="col-xs-6 col-md-6">
+            <div class="col-md-8">
                 <pagination ng-if="gridOptions.totalItems > 0" on-select-page="loadCollection(page)"
                             items-per-page="{{pageLimit}}"
                             total-items="gridOptions.totalItems" page="pageNumber"></pagination>
             </div>
-            <div class="col-xs-6 col-md-6">
+            <div class="col-md-4">
                 <p class="pagination-info pagination"><strong>Total in collection: {{gridOptions.totalItems}} Current:
                     {{pageNumber}}</strong></p>
             </div>

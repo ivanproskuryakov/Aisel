@@ -56,8 +56,7 @@ class PageManager
     /**
      * Get list of all pages
      *
-     * @param array  $params
-     * @param string $locale
+     * @param array $params
      *
      * @return array
      */
@@ -120,7 +119,7 @@ class PageManager
      * validate metaUrl for Page Entity and return one we can use
      *
      * @param string $url
-     * @param int    $pageId
+     * @param int $pageId
      *
      * @return string $validUrl
      */

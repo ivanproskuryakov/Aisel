@@ -71,6 +71,7 @@ require.config({
         './Aisel/Product/AiselProduct',
         './Aisel/FrontendUser/AiselFrontendUser',
         './Aisel/BackendUser/AiselBackendUser',
+        './Aisel/Addressing/AiselAddressing',
         'bootstrap',
     ],
     priority: [

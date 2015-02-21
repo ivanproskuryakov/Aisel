@@ -30,42 +30,36 @@ class AddressingManager
         $this->em = $entityManager;
     }
 
-    protected function getRepository()
-    {
-        return $this->em->getRepository('AiselBackendUserBundle:BackendUser');
-    }
-
     /**
      * Get all countries
      *
-     * @return \Aisel\AddressingBundle\Entity\Country $countries
+     * @param array $params
      *
-     * @throws NotFoundHttpException
+     * @return array $return
      */
-    public function getCountries()
+    public function getCountries($params)
     {
-        $countries = $this->em->getRepository('AiselAddressingBundle:Country')->findAll();
+        $total = $this->em->getRepository('AiselAddressingBundle:Country')->getTotalFromRequest($params);
+        $collection = $this->em->getRepository('AiselAddressingBundle:Country')->getCollectionFromRequest($params);
+        $return = array(
+            'total' => $total,
+            'collection' => $collection
+        );
 
-        if (!($countries)) {
-            throw new NotFoundHttpException('Nothing found');
-        }
-
-        return $countries;
+        return $return;
     }
 
     /**
      * Get country city by its id
      *
-     * @param  integer                                $id
+     * @param  integer $id
      * @return \Aisel\AddressingBundle\Entity\Country $countries
      *
      * @throws NotFoundHttpException
      */
     public function getCountryById($id)
     {
-        $country = $this
-            ->em->getRepository('AiselAddressingBundle:Country')
-            ->findOneBy(array('id' => $id));
+        $country = $this->em->getRepository('AiselAddressingBundle:Country')->findOneBy(array('id' => $id));
 
         if (!($country)) {
             throw new NotFoundHttpException('Nothing found');
@@ -75,36 +69,35 @@ class AddressingManager
     }
 
     /**
-     * Get all cities
+     * Get cities
      *
-     * @return \Aisel\AddressingBundle\Entity\City $citil
+     * @param array $params
      *
-     * @throws NotFoundHttpException
+     * @return array $return
      */
-    public function getCities()
+    public function getCities($params)
     {
-        $cities = $this->em->getRepository('AiselAddressingBundle:City')->findAll();
+        $total = $this->em->getRepository('AiselAddressingBundle:City')->getTotalFromRequest($params);
+        $collection = $this->em->getRepository('AiselAddressingBundle:City')->getCollectionFromRequest($params);
+        $return = array(
+            'total' => $total,
+            'collection' => $collection
+        );
 
-        if (!($cities)) {
-            throw new NotFoundHttpException('Nothing found');
-        }
-
-        return $cities;
+        return $return;
     }
 
     /**
      * Get single city by its id
      *
-     * @param  integer                             $id
+     * @param  integer $id
      * @return \Aisel\AddressingBundle\Entity\City $countries
      *
      * @throws NotFoundHttpException
      */
     public function getCityById($id)
     {
-        $city = $this
-            ->em->getRepository('AiselAddressingBundle:City')
-            ->findOneBy(array('id' => $id));
+        $city = $this->em->getRepository('AiselAddressingBundle:City')->findOneBy(array('id' => $id));
 
         if (!($city)) {
             throw new NotFoundHttpException('Nothing found');
@@ -114,36 +107,36 @@ class AddressingManager
     }
 
     /**
-     * Get all regions
+     * Get regions
      *
-     * @return \Aisel\AddressingBundle\Entity\Region $regions
+     * @param array $params
      *
-     * @throws NotFoundHttpException
+     * @return array $return
      */
-    public function getRegions()
+    public function getRegions($params)
     {
-        $regions = $this->em->getRepository('AiselAddressingBundle:Region')->findAll();
+        $total = $this->em->getRepository('AiselAddressingBundle:Region')->getTotalFromRequest($params);
+        $collection = $this->em->getRepository('AiselAddressingBundle:Region')->getCollectionFromRequest($params);
+        $return = array(
+            'total' => $total,
+            'collection' => $collection
+        );
 
-        if (!($regions)) {
-            throw new NotFoundHttpException('Nothing found');
-        }
+        return $return;
 
-        return $regions;
     }
 
     /**
      * Get single region by its id
      *
-     * @param  integer                               $id
+     * @param  integer $id
      * @return \Aisel\AddressingBundle\Entity\Region $region
      *
      * @throws NotFoundHttpException
      */
     public function getRegionById($id)
     {
-        $region = $this
-            ->em->getRepository('AiselAddressingBundle:Region')
-            ->findOneBy(array('id' => $id));
+        $region = $this->em->getRepository('AiselAddressingBundle:Region')->findOneBy(array('id' => $id));
 
         if (!($region)) {
             throw new NotFoundHttpException('Nothing found');

@@ -78,8 +78,7 @@ class UserManager implements UserProviderInterface
         if (!($item)) {
             throw new NotFoundHttpException('Nothing found');
         }
-        $itemDetails = array('item' => $item);
-        return $itemDetails;
+        return array('item' => $item);
     }
 
     /**
