@@ -21,7 +21,7 @@ define(['app'], function (app) {
 
             // Disqus comments
             window.disqus_shortname = $rootScope.disqusShortname;
-            $scope.showComments = $rootScope.disqusStatus && $scope.pageDetails.page.comment_status;
+            $scope.showComments = $rootScope.disqusStatus;
         };
         pageService.getPageByURL(pageURL).success(handleSuccess);
     });

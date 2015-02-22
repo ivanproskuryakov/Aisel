@@ -27,7 +27,7 @@ define(['app'], function (app) {
                     $scope.isDisabled = false;
                 }
                 window.disqus_shortname = $rootScope.disqusShortname;
-                $scope.showComments = $rootScope.disqusStatus && $scope.productDetails.product.comment_status;
+                $scope.showComments = false;
             };
             productService.getProductByURL(productURL).success(handleSuccess);
 
