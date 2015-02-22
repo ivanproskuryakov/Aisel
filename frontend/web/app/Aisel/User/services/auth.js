@@ -15,17 +15,15 @@
 define(['app'], function (app) {
     console.log('Kernel Auth service loaded ...');
     angular.module('app')
-        .service('authService', ['$http', '$rootScope', '$location', '$modal', 'Environment',
-            function ($http, $rootScope, $location, $modal, Environment) {
-
+        .service('authService', ['$modal',
+            function ($modal) {
                 return {
-                    authenticateWithModal: function (state, params) {
+                    authenticateWithModal: function () {
                         var modalAuthInstance = $modal.open({
                             templateUrl: '/app/Aisel/User/views/modal/login.html',
                             controller: 'ModalAuthCtrl'
                         });
                     }
-
                 }
             }
         ]);
@@ -58,6 +56,7 @@ define(['app'], function (app) {
                         }
                     );
                 };
-            }]);
+            }
+        ]);
 })
 ;

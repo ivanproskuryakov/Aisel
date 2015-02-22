@@ -36,13 +36,13 @@ define(['app',
                                     } else {
                                         $rootScope.user = false;
                                         event.preventDefault();
-                                        authService.authenticateWithModal(toState.name, toParams)
+                                        authService.authenticateWithModal()
                                     }
                                 }
                             );
                         } else if ($rootScope.user == false) {
                             event.preventDefault();
-                            authService.authenticateWithModal(toState.name, toParams)
+                            authService.authenticateWithModal()
                         }
                     }
                 }
