@@ -1,7 +1,9 @@
 <div class="">
     <div class="col-xs-12 page-header">
         <h2>Products</h2>
-        <p class=""><span class="glyphicon glyphicon-list-alt"></span> <a ui-sref="productCategories({locale: locale})">View categories</a></p>
+
+        <p class=""><span class="glyphicon glyphicon-list-alt"></span> <a ui-sref="productCategories({locale: locale})">View
+            categories</a></p>
     </div>
 
     <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
@@ -11,16 +13,19 @@
         <div class="col-md-12">
             <ul class="pageList">
                 <li ng-repeat="product in productList.collection">
-                    <h2><a ui-sref="productView({locale: locale, productId:product.meta_url})" class="thumb">{{product.name}}</a></h2>
+                    <h2><a ui-sref="productView({locale: locale, productId:product.meta_url})"
+                           class="thumb">{{product.name}}</a>
+                    </h2>
 
                     <div class="row">
                         <div class="col-md-3">
                             <img class="img-rounded"
-                                 src="{{product.main_image.path}}"
+                                 src="{{media}}{{product.main_image.path}}"
                                  data-holder-rendered="true" style="width: 100%;">
                         </div>
                         <div class="col-md-9">
                             <p><span class="label label-warning">{{product.price}} {{currency}}</span></p>
+
                             <p ng-bind-html="product.description"></p>
                         </div>
                     </div>

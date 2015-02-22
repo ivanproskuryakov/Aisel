@@ -15,6 +15,7 @@
 define(['app'], function (app) {
     app.controller('ProductDetailCtrl', ['$scope', '$location', '$stateParams', 'productService', '$rootScope', 'cartService', 'notify', 'Environment', 'authService',
         function ($scope, $location, $stateParams, productService, $rootScope, cartService, notify, Environment, authService) {
+            $scope.media = Environment.settings.media;
             $scope.isDisabled = true;
 
             var productURL = $stateParams.productId;
@@ -25,7 +26,6 @@ define(['app'], function (app) {
                 if ($scope.productDetails.product) {
                     $scope.isDisabled = false;
                 }
-                // Disqus comments
                 window.disqus_shortname = $rootScope.disqusShortname;
                 $scope.showComments = $rootScope.disqusStatus && $scope.productDetails.product.comment_status;
             };

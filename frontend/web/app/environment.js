@@ -20,6 +20,7 @@ define(['angular'],
             .service('Environment', function () {
                 return {
                     settings: {
+                        media: 'http://api.ecommerce.aisel.dev',
                         api: 'http://api.ecommerce.aisel.dev/api',
                         locale: {
                             "primary": 'en',

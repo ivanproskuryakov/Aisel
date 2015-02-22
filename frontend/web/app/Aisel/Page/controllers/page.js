@@ -27,6 +27,7 @@ define(['app'], function (app) {
             // Pages
             pageService.getPages($scope).success(
                 function (data, status) {
+                    console.log(data);
                     $scope.pageList = data;
                 }
             );

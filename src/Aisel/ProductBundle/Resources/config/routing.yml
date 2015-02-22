@@ -33,18 +33,24 @@ admin_api_aisel_product_get:
 
 # Frontend
 api_aisel_productlist:
-    pattern:  /%frontend_api%/{locale}/product/list.json
+    pattern:  /%frontend_api%/{locale}/product/
     defaults: { _controller: AiselProductBundle:ApiProduct:productList, _format: json }
     requirements:
         _method: GET|POST
 
 api_aisel_productview_by_url:
-    pattern:  /%frontend_api%/{locale}/product/view/url/{urlKey}.json
+    pattern:  /%frontend_api%/{locale}/product/view/url/{urlKey}
     defaults: { _controller: AiselProductBundle:ApiProduct:productViewByURL, _format: json }
     requirements:
         _method: GET|POST
 
-# Categories
+api_aisel_product_categoryview:
+    pattern:  /%frontend_api%/{locale}/product/category/view/{urlKey}
+    defaults: { _controller: AiselProductBundle:ApiCategory:categoryView, _format: json }
+    requirements:
+        _method: GET
+        id: "\d+"
+
 api_aisel_product_categorylist:
     pattern:  /%frontend_api%/{locale}/product/category/list.json
     defaults: { _controller: AiselProductBundle:ApiCategory:categoryList, _format: json }
@@ -56,10 +62,3 @@ api_aisel_product_categorytree:
     defaults: { _controller: AiselProductBundle:ApiCategory:categoryTree, _format: json }
     requirements:
         _method: GET
-
-api_aisel_product_categoryview:
-    pattern:  /%frontend_api%/{locale}/product/category/view/{urlKey}.json
-    defaults: { _controller: AiselProductBundle:ApiCategory:categoryView, _format: json }
-    requirements:
-        _method: GET
-        id: "\d+"

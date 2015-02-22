@@ -5,7 +5,7 @@ parameters:
     application.media.product.path: /media/product
     application.media.product.main.path: /media/product
     application.media.product.upload_dir: %kernel.root_dir%/../web%application.media.product.main.path%
-    application.media.product.upload_path: %website_address%%application.media.product.main.path%
+    application.media.product.upload_path: %application.media.product.main.path%
     website_admin: administration
     frontend_api: api
     backend_api: backend/api

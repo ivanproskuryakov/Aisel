@@ -9,7 +9,6 @@
 /frontend/web/bundles/*
 /frontend/web/bower_components/*
 /frontend/web/npm-debug.log
-/frontend/web/media/product/*
 !/frontend/web/media/product/.htaccess
 /frontend/web/photo/*
 /frontend/web/css/*
@@ -22,6 +21,7 @@
 /backend/web/build/*
 
 #Symfony
+/web/media/product/*
 /web/css/*
 /web/bundles/*
 /app/bootstrap.php.cache

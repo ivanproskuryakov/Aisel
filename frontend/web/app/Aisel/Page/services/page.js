@@ -18,7 +18,7 @@ define(['app'], function (app) {
             return {
                 getPages: function ($scope) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/page/list.json?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage + '&category=' + $scope.categoryId;
+                    var url = Environment.settings.api + '/' + locale + '/page/?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage + '&category=' + $scope.categoryId;
                     console.log(url);
                     return $http.get(url);
                 },

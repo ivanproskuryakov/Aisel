@@ -27,7 +27,7 @@ admin_api_aisel_page_get:
 
 # Frontend
 api_aisel_pagelist:
-    pattern:  /%frontend_api%/{locale}/page/list.json
+    pattern:  /%frontend_api%/{locale}/page/
     defaults: { _controller: AiselPageBundle:ApiPage:pageList, _format: json }
     requirements:
         _method: GET

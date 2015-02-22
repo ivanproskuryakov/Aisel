@@ -36,11 +36,10 @@ class ApiPageController extends Controller
      * /api/page/list.json?limit=2&current=3
      *
      * @param Request $request
-     * @param string  $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
-    public function pageListAction(Request $request, $locale)
+    public function pageListAction(Request $request)
     {
         $params = array(
             'current' => $request->get('current'),
@@ -48,12 +47,7 @@ class ApiPageController extends Controller
             'category' => $request->get('category'),
             'locale' => $request->get('locale'),
         );
-
-        if ($request->get('user') && $this->isAuthenticated()) {
-            $userid = $this->get('security.context')->getToken()->getUser()->getId();
-            $params['userid'] = $userid;
-        }
-        $pageList = $this->container->get("aisel.page.manager")->getPages($params, $locale);
+        $pageList = $this->container->get("aisel.page.manager")->getCollection($params);
 
         return $pageList;
     }

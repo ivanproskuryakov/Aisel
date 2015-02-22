@@ -18,13 +18,13 @@ define(['app'], function (app) {
             return {
                 getProducts: function ($scope) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/product/list.json?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage + '&category=' + $scope.categoryId;
+                    var url = Environment.settings.api + '/' + locale + '/product/?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage + '&category=' + $scope.categoryId;
                     console.log(url);
                     return $http.get(url);
                 },
                 getProductByURL: function ($url) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/product/view/url/' + $url + '.json';
+                    var url = Environment.settings.api + '/' + locale + '/product/view/url/' + $url;
                     console.log(url);
                     return $http.get(url);
                 }
