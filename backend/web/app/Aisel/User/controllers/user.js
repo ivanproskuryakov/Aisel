@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('UserCtrl', ['$log', '$scope', '$rootScope', '$state', '$routeParams', 'userService', 'notify', 'Environment',
-        function ($log, $scope, $rootScope, $state, $routeParams, userService, notify, Environment) {
+    app.controller('UserCtrl', ['$scope', '$rootScope', '$state', 'userService', 'notify', 'Environment',
+        function ($scope, $rootScope, $state, userService, notify, Environment) {
             var locale = Environment.currentLocale();
 
             // User Sign In/Out

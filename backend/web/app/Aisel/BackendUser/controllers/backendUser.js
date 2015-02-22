@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('BackendUserCtrl', ['$location', '$state', '$scope', '$stateParams', 'backendUserService', 'Environment', 'collectionService',
-        function ($location, $state, $scope, $stateParams, backendUserService, Environment, collectionService) {
+    app.controller('BackendUserCtrl', ['$scope', '$state', 'backendUserService', 'collectionService',
+        function ($scope, $state, backendUserService, collectionService) {
 
             $scope.collectionTitle = 'Backend Users';
             $scope.pageLimit = 20;

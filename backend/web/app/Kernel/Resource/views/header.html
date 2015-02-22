@@ -13,8 +13,9 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a ui-sref="pages({locale: locale})">Page</a></li>
-                <li><a ui-sref="products({locale: locale})">Product</a></li>
+                <li><a ui-sref="pages({locale: locale})">Pages</a></li>
+                <li><a ui-sref="products({locale: locale})">Products</a></li>
+                <li><a ui-sref="orders({locale: locale})">Orders</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         Users <b class="caret"></b>
@@ -22,16 +23,6 @@
                     <ul class="dropdown-menu">
                         <li><a ui-sref="frontendUsers({locale: locale})">Frontend</a></li>
                         <li><a ui-sref="backendUsers({locale: locale})">Backend</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Orders <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a ui-sref="frontendUsers({locale: locale})">Orders</a></li>
-                        <li><a ui-sref="backendUsers({locale: locale})">Carts</a></li>
-                        <li><a ui-sref="backendUsers({locale: locale})">Invoices</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -44,7 +35,6 @@
                         <li><a ui-sref="cities({locale: locale})">Cities</a></li>
                     </ul>
                 </li>
-
             </ul>
             <ul class="user-navbar nav navbar-nav navbar-right" ng-controller="UserCtrl">
                 <li class="dropdown">

@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'pageService', 'Environment', 'collectionService',
-        function ($location, $state, $scope, $stateParams, pageService, Environment, collectionService) {
+    app.controller('PageCtrl', ['$state', '$scope', 'pageService', 'collectionService',
+        function ($state, $scope, pageService, collectionService) {
 
             $scope.collectionTitle = 'Pages';
             $scope.pageLimit = 20;

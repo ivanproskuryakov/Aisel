@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('AddressingCityCtrl', ['$location', '$scope', 'cityService', 'collectionService',
-        function ($location, $scope, cityService, collectionService) {
+    app.controller('AddressingCityCtrl', ['$scope', 'cityService', 'collectionService',
+        function ($scope, cityService, collectionService) {
 
             $scope.collectionTitle = 'City';
             $scope.pageLimit = 20;

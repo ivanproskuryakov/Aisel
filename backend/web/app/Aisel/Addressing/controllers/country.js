@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('AddressingCountryCtrl', ['$location', '$scope', 'countryService', 'collectionService',
-        function ($location, $scope, countryService, collectionService) {
+    app.controller('AddressingCountryCtrl', ['$scope', 'countryService', 'collectionService',
+        function ($scope, countryService, collectionService) {
 
             $scope.collectionTitle = 'Countries';
             $scope.pageLimit = 20;

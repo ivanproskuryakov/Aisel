@@ -72,7 +72,7 @@ class OrderManager
      * Get single order by given userId and orderId
      *
      * @param FrontendUser $user
-     * @param int          $orderId
+     * @param int $orderId
      *
      * @return Order $orderDetails
      */
@@ -109,8 +109,8 @@ class OrderManager
      * Create order for given userId
      *
      * @param FrontendUser $user
-     * @param string       $locale
-     * @param mixed        $orderInfo
+     * @param string $locale
+     * @param mixed $orderInfo
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      *
@@ -145,8 +145,8 @@ class OrderManager
      * Create order for user
      *
      * @param FrontendUser $user
-     * @param array        $products
-     * @param mixed        $orderInfo
+     * @param array $products
+     * @param mixed $orderInfo
      *
      * @return Order $orderDetails
      *
@@ -167,6 +167,46 @@ class OrderManager
             );
 
         return $order;
+    }
+
+    /**
+     * Get list of all pages
+     *
+     * @param array $params
+     *
+     * @return array
+     */
+    public function getCollection($params)
+    {
+        $total = $this->em->getRepository('AiselOrderBundle:Order')->getTotalFromRequest($params);
+        $collection = $this->em->getRepository('AiselOrderBundle:Order')->getCollectionFromRequest($params);
+        $return = array(
+            'total' => $total,
+            'collection' => $collection
+        );
+
+        return $return;
+    }
+
+    /**
+     * Get single detailed page with category by ID
+     *
+     * @param int $id
+     *
+     * @return \Aisel\PageBundle\Entity\Page $pageDetails
+     *
+     * @throws NotFoundHttpException
+     */
+    public function getItem($id)
+    {
+        $page = $this->em->getRepository('AiselOrderBundle:Order')->find($id);
+
+        if (!($page)) {
+            throw new NotFoundHttpException('Nothing found');
+        }
+        $pageDetails = array('item' => $page, 'categories' => $this->getPageCategories($page));
+
+        return $pageDetails;
     }
 
 }
