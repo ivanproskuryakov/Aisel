@@ -89,6 +89,7 @@ class UserManager implements UserProviderInterface
             'collection' => $collection
         );
 
+
         return $return;
     }
 

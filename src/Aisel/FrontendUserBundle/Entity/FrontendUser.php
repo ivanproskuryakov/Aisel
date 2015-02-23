@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class FrontendUser implements AdvancedUserInterface, \Serializable
+class FrontendUser implements AdvancedUserInterface//, \Serializable
 {
 
     /**
