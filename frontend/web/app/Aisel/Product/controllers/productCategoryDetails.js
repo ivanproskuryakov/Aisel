@@ -13,9 +13,9 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductCategoryDetailCtrl', ['$location', '$scope', '$stateParams', 'productService', 'productCategoryService',
-        function ($location, $scope, $stateParams, productService, productCategoryService) {
-
+    app.controller('ProductCategoryDetailCtrl', ['$location', '$scope', '$stateParams', 'productService', 'productCategoryService', 'Environment',
+        function ($location, $scope, $stateParams, productService, productCategoryService, Environment) {
+            $scope.media = Environment.settings.media;
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
             $scope.categoryId = $stateParams.categoryId;

@@ -1,26 +1,32 @@
 <div class="">
     <div class="col-xs-12 page-header">
         <h2>{{categoryDetails.category.title}}</h2>
+
         <p><span class="glyphicon glyphicon-calendar"></span>
             {{categoryDetails.category.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
+
         <p ng-bind-html="categoryDetails.category.description"></p>
     </div>
     <div class="col-xs-12 col-md-12">
         <div class="related categoryPages" ng-if="productList">
             <div class="">
                 <ul class="pageList">
-                    <li ng-repeat="product in productList.products">
-                        <h2><a ui-sref="productView({locale: locale, productId:product.metaUrl})" class="thumb" title="{{categoryDetails.category.title}}">{{product.name}}</a></h2>
+                    <li ng-repeat="product in productList.collection">
+                        <h2><a ui-sref="productView({locale: locale, productId:product.meta_url})" class="thumb">{{product.name}}</a>
+                        </h2>
+
                         <div class="row">
                             <div class="col-md-3">
-                                <a ui-sref="productView({locale: locale, productId:product.metaUrl})" title="{{categoryDetails.category.title}}">
+                                <a ui-sref="productView({locale: locale, productId:product.meta_url})"
+                                   title="{{product.name}}">
                                     <img class="img-rounded"
-                                         src="{{product.mainImage.path}}"
+                                         src="{{media}}{{product.main_image.path}}"
                                          data-holder-rendered="true" style="width: 100%;">
                                 </a>
                             </div>
                             <div class="col-md-9">
                                 <p><span class="label label-warning">{{product.price}} {{currency}}</span></p>
+
                                 <p ng-bind-html="product.description"></p>
                             </div>
                         </div>
@@ -34,7 +40,7 @@
                             page="paginationPage"></pagination>
             </div>
             <div class="col-xs-6 col-md-6">
-                <p class="pull-right"><strong>Total pages: {{productList.total}} Current: {{paginationPage}}</strong>
+                <p class="pull-right"><strong>Total: {{productList.total}} Current: {{paginationPage}}</strong>
                 </p>
             </div>
         </div>

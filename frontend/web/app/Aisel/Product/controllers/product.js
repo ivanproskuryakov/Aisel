@@ -27,6 +27,7 @@ define(['app'], function (app) {
             // Product
             productService.getProducts($scope).success(
                 function (data, status) {
+                    console.log(data);
                     $scope.productList = data;
                 }
             );
