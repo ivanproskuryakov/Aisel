@@ -24,7 +24,7 @@ define(['app'], function (app) {
                 },
                 getProductByURL: function ($url) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/product/view/url/' + $url;
+                    var url = Environment.settings.api + '/' + locale + '/product/' + $url;
                     console.log(url);
                     return $http.get(url);
                 }

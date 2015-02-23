@@ -18,19 +18,19 @@ define(['app'], function (app) {
             return {
                 getCategories: function ($scope) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/product/category/list.json?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage;
+                    var url = Environment.settings.api + '/' + locale + '/product/category/?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage;
                     console.log(url);
                     return $http.get(url);
                 },
                 getCategory: function (categoryId) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/product/category/view/' + categoryId;
+                    var url = Environment.settings.api + '/' + locale + '/product/category/' + categoryId;
                     console.log(url);
                     return $http.get(url);
                 },
                 getProductCategoryTree: function () {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/product/category/tree.json';
+                    var url = Environment.settings.api + '/' + locale + '/product/category/tree/';
                     console.log(url);
                     return $http.get(url);
                 }

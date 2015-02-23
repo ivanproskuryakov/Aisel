@@ -15,7 +15,6 @@
                     <li ng-repeat="page in pageList.collection">
                         <h2><a ui-sref="pageView({locale: locale, pageId:page.meta_url})"
                                class="thumb">{{page.title}}</a></h2>
-
                         <p ng-bind-html="page.content"></p>
 
                         <p><span class="glyphicon glyphicon-calendar">

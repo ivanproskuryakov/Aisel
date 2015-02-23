@@ -33,25 +33,25 @@ api_aisel_pagelist:
         _method: GET
 
 api_aisel_pageview_by_url:
-    pattern:  /%frontend_api%/{locale}/page/view/url/{urlKey}.json
+    pattern:  /%frontend_api%/{locale}/page/{urlKey}
     defaults: { _controller: AiselPageBundle:ApiPage:pageViewByURL, _format: json }
     requirements:
         _method: GET
 
 api_aisel_page_categorylist:
-    pattern:  /%frontend_api%/{locale}/page/category/list.json
+    pattern:  /%frontend_api%/{locale}/page/category/list/
     defaults: { _controller: AiselPageBundle:ApiCategory:categoryList, _format: json }
     requirements:
         _method: GET
 
 api_aisel_page_categorytree:
-    pattern:  /%frontend_api%/{locale}/page/category/tree.json
+    pattern:  /%frontend_api%/{locale}/page/category/tree/
     defaults: { _controller: AiselPageBundle:ApiCategory:categoryTree, _format: json }
     requirements:
         _method: GET
 
 api_aisel_page_categoryview:
-    pattern:  /%frontend_api%/{locale}/page/category/view/{urlKey}.json
+    pattern:  /%frontend_api%/{locale}/page/category/view/{urlKey}
     defaults: { _controller: AiselPageBundle:ApiCategory:categoryView, _format: json }
     requirements:
         _method: GET

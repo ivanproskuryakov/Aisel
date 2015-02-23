@@ -24,7 +24,7 @@ define(['app'], function (app) {
                 },
                 getPageByURL: function ($url) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/page/view/url/' + $url + '.json';
+                    var url = Environment.settings.api + '/' + locale + '/page/' + $url;
                     console.log(url);
                     return $http.get(url);
                 }
