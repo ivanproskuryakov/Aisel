@@ -19,11 +19,12 @@ define(['app'], function (app) {
             $scope.search = $stateParams.query;
             $scope.limit = 5;
             $scope.paginationPage = 1;
-            $scope.results = {};
-            $scope.results.total = 0;
+            $scope.collection = {};
+            $scope.collection.total = 0;
 
             var handleSuccess = function (data, status) {
-                $scope.results = data;
+                console.log(data);
+                $scope.collection = data;
             };
             searchService.getSearchResult($scope).success(handleSuccess);
 

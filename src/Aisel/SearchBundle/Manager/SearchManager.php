@@ -38,10 +38,10 @@ class SearchManager
     public function search($params)
     {
         $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params);
-        $pages = $this->em->getRepository('AiselPageBundle:Page')->searchFromRequest($params);
+        $collection = $this->em->getRepository('AiselPageBundle:Page')->searchFromRequest($params);
         $return = array(
             'total' => $total,
-            'pages' => $pages
+            'collection' => $collection
         );
 
         return $return;

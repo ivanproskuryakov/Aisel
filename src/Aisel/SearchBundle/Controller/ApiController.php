@@ -51,15 +51,11 @@ class ApiController extends Controller
         );
 
         if (!$params['query']) return false;
+        $searchManager = $this
+            ->container
+            ->get("aisel.search.manager");
 
-        if ($request->get('user') && $this->isAuthenticated()) {
-            $userid = $this->get('security.context')->getToken()->getUser()->getId();
-            $params['userid'] = $userid;
-        }
-        $searchResult = $this->container->get("aisel.search.manager")->search($params);
-
-        return $searchResult;
-
+        return $searchManager->search($params);
     }
 
 }

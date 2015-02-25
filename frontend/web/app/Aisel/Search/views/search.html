@@ -9,17 +9,13 @@
     <hr/>
 
     <ul class="pageList">
-        <li ng-repeat="page in results.pages">
+        <li ng-repeat="page in collection.collection">
             <h2><a ui-sref="pageView({locale: locale, pageId:page.meta_url})" class="thumb">{{page.title}}</a></h2>
             <p>{{page.content}}</p>
             <p><span class="glyphicon glyphicon-calendar"></span>  {{page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
             <hr/>
         </li>
     </ul>
-    <div class="col-md-6">
-        <pagination ng-if="results.total > 0"  on-select-page="pageChanged(page)" items-per-page="{{limit}}" total-items="results.total"  page="paginationPage"></pagination>
-    </div>
-    <div class="col-md-6">
-        <p class="pagination-info pagination"><strong>Total results: {{results.total}} Current: {{paginationPage}}</strong></p>
-    </div>
+    <div ng-include="'/app/Kernel/Resource/views/pagination.html'"></div>
+
 </div>
