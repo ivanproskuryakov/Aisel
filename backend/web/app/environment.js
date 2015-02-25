@@ -20,7 +20,7 @@ define(['angular'],
             .service('Environment', function () {
                 return {
                     settings: {
-                        api: 'http://api.ecommerce.aisel.dev/backend/api',
+                        api: 'http://api.aisel.dev/backend/api',
                         pageTitle: 'Aisel - open source project | Admin',
                         locale: {
                             "primary": 'en',
