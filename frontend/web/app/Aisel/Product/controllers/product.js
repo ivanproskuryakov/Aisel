@@ -21,14 +21,14 @@ define(['app'], function (app) {
             $scope.categoryId = 0;
 
             var handleSuccess = function (data, status) {
-                $scope.productList = data;
+                $scope.collection = data;
             };
 
             // Product
             productService.getProducts($scope).success(
                 function (data, status) {
                     console.log(data);
-                    $scope.productList = data;
+                    $scope.collection = data;
                 }
             );
 
@@ -36,7 +36,7 @@ define(['app'], function (app) {
                 $scope.paginationPage = page;
                 productService.getProducts($scope).success(
                     function (data, status) {
-                        $scope.productList = data;
+                        $scope.collection = data;
                     }
                 );
             };

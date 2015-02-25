@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-xs-6 col-md-6">
+        <pagination ng-if="collection.total > 0"
+                    on-select-page="pageChanged(page)"
+                    items-per-page="{{pageLimit}}"
+                    total-items="collection.total"
+                    page="paginationPage"></pagination>
+    </div>
+    <div class="col-xs-6 col-md-6">
+        <p class="pagination-info pagination">
+            <strong>Total: {{collection.total}} Current: {{paginationPage}}</strong>
+        </p>
+    </div>
+</div>

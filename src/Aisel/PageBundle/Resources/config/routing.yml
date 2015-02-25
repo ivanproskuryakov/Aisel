@@ -39,7 +39,7 @@ api_aisel_pageview_by_url:
         _method: GET
 
 api_aisel_page_categorylist:
-    pattern:  /%frontend_api%/{locale}/page/category/list/
+    pattern:  /%frontend_api%/{locale}/page/category/
     defaults: { _controller: AiselPageBundle:ApiCategory:categoryList, _format: json }
     requirements:
         _method: GET

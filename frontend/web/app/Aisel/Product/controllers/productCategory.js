@@ -22,7 +22,7 @@ define(['app'], function (app) {
                 $scope.paginationPage = page;
                 productCategoryService.getCategories($scope).success(
                     function (data, status) {
-                        $scope.productCategoryList = data;
+                        $scope.collection = data;
                     }
                 );
             };
@@ -30,7 +30,7 @@ define(['app'], function (app) {
             // Categories
             productCategoryService.getCategories($scope).success(
                 function (data, status) {
-                    $scope.productCategoryList = data;
+                    $scope.collection = data;
                 }
             );
         }]);
