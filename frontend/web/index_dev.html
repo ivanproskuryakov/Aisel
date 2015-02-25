@@ -32,11 +32,11 @@
 
 <!-- Website content: START -->
 <div id="page-is-loading" class="loading-interceptor">Loading ...</div>
+<header ng-include="'/app/Kernel/Resource/views/header.html'"></header>
 <div class="container website-content">
-    <header ng-include="'/app/Kernel/Resource/views/header.html'"></header>
     <div id="dynamic-content" class="view" ui-view></div>
-    <footer ng-include="'/app/Kernel/Resource/views/footer.html'"></footer>
 </div>
+<footer ng-include="'/app/Kernel/Resource/views/footer.html'"></footer>
 <!-- Website content: END -->
 
 <script data-main="/app/main" src="/bower_components/requirejs/require.js"></script>

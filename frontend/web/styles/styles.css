@@ -88,6 +88,9 @@ body .panel-primary {
 /***********
     Header
 ***********/
+.navbar {
+    border-radius: 0;
+}
 .navbar .navbar-brand:hover, .navbar .navbar-brand {
     color: #999999;
     background: #657496;
@@ -151,7 +154,6 @@ body .panel-primary {
 
 .website-content {
     min-height: 500px;
-    margin-top: 30px;
 }
 
 .categoryList {
@@ -212,7 +214,6 @@ body .panel-primary {
 footer {
     margin-top: 30px;
     clear: both;
-    margin-bottom: 30px;
     float: left;
     width: 100%;
 }
