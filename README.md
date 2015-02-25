@@ -62,12 +62,6 @@ Tests
 [Protractor](http://angular.github.io/protractor/#/) <br/>
 `protractor protractor/conf.js`<br/>
 
-
-Documentation
------------------------------------
-Backend: http://aisel.co/documentation/backend/<br/>
-Frontend: http://aisel.co/documentation/frontend/<br/>
-
 Speed
 -----------------------------------
 Check with http://tools.pingdom.com/
