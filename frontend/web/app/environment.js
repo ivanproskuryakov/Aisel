@@ -20,8 +20,8 @@ define(['angular'],
             .service('Environment', function () {
                 return {
                     settings: {
-                        media: 'http://api.aisel.dev',
-                        api: 'http://api.aisel.dev/api',
+                        media: 'http://api.' + document.domain,
+                        api: 'http://api.' + document.domain + '/api',
                         locale: {
                             "primary": 'en',
                             "available": ['en', 'es', 'ru']

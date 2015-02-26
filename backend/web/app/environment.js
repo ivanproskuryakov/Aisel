@@ -18,9 +18,11 @@ define(['angular'],
         console.log('Environment loaded ...');
         angular.module('environment', [])
             .service('Environment', function () {
+                var api_domain = document.domain.replace("admin", "api");
+
                 return {
                     settings: {
-                        api: 'http://api.aisel.dev/backend/api',
+                        api: 'http://' + api_domain + '/backend/api',
                         pageTitle: 'Aisel - open source project | Admin',
                         locale: {
                             "primary": 'en',
