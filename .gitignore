@@ -15,7 +15,6 @@
 /frontend/web/build/*
 
 #Backend
-/backend/web/.htaccess
 /backend/web/bower_components/*
 /backend/web/npm-debug.log
 /backend/web/build/*
