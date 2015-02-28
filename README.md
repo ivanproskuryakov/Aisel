@@ -40,6 +40,36 @@ Notes:<br/>
 `grunt requirejs`
 <br/><br/>
 
+Apache hosts:<br/>
+```
+<VirtualHost *:80>
+    ServerName  ecommerce.aisel.co
+    <Directory "/var/www/ecommerce.aisel.co/Aisel/frontend/web">
+        Options FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+    DocumentRoot /var/www/ecommerce.aisel.co/Aisel/frontend/web
+</VirtualHost>
+<VirtualHost *:80>
+    ServerName  api.ecommerce.aisel.co
+    <Directory "/var/www/ecommerce.aisel.co/Aisel/web">
+                Options FollowSymLinks
+                AllowOverride All
+    </Directory>
+    DocumentRoot /var/www/ecommerce.aisel.co/Aisel/web
+</VirtualHost>
+<VirtualHost *:80>
+    ServerName  admin.ecommerce.aisel.co
+    <Directory "/var/www/ecommerce.aisel.co/Aisel/backend/web">
+                Options FollowSymLinks
+                AllowOverride All
+    </Directory>
+    DocumentRoot /var/www/ecommerce.aisel.co/Aisel/backend/web
+</VirtualHost>
+```
+
 Installation: v0.1.0
 -----------------------------------
 
@@ -61,6 +91,11 @@ Tests
 `bin/phpspec run`<br/>
 [Protractor](http://angular.github.io/protractor/#/) <br/>
 `protractor protractor/conf.js`<br/>
+
+XML Sitemap & Google indexing
+-----------------------------------
+http://ecommerce.aisel.co/sitemap.xml<br/>
+https://www.google.com/search?q=site%3Aecommerce.aisel.co
 
 Speed
 -----------------------------------
