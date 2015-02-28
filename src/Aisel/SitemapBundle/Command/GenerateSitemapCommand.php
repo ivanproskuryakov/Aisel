@@ -48,12 +48,12 @@ EOT
         // Pages
         $pages = $this->getContainer()->get('aisel.page.manager')->getEnabledPages();
         foreach ($pages as $p) {
-            $urls[] = '/' . $p->getLocale() . '/page/' . $p->getMetaUrl() . '/';
+            $urls[] = '/' . $p->getLocale() . '/page/view/' . $p->getMetaUrl() . '/';
         }
         // Products
         $pages = $this->getContainer()->get('aisel.product.manager')->getEnabledProducts();
         foreach ($pages as $p) {
-            $urls[] = '/' . $p->getLocale() . '/product/' . $p->getMetaUrl() . '/';
+            $urls[] = '/' . $p->getLocale() . '/product/view/' . $p->getMetaUrl() . '/';
         }
         $sitemapContents = $this->getContainer()->get('templating')->render(
             'AiselSitemapBundle:Default:sitemap.txt.twig',
