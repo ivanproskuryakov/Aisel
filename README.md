@@ -7,15 +7,14 @@ About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=mast
 [![License](https://poser.pugx.org/aisel/aisel/license.svg)](https://packagist.org/packages/aisel/aisel)
 <br/>
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
-Aisel is open-source CMS for highload projects based on Symfony2 and AngularJS
+Aisel is open-source CMS for high-load projects based on Symfony2 and AngularJS. http://aisel.co/
 
-Project website: `http://aisel.co/`<br/>
-Demo frontend: `http://ecommerce.aisel.co/en/` [frontenduser/frontenduser]<br/>
-Demo administration: `http://ecommerce.aisel.co/administration/en/` [backenduser/backenduser]<br/>
+Frontend demo: `http://ecommerce.aisel.co/en/` [frontenduser/frontenduser]<br/>
+Backend demo: `http://admin.ecommerce.aisel.co/` [backenduser/backenduser]<br/>
 
 <img width="200" src="http://aisel.co/screenshots/frontend_product_view.png"/>
+<img width="200" src="http://aisel.co/screenshots/frontend_dashboard.png"/>
 <img width="200" src="http://aisel.co/screenshots/frontend_checkout.png"/>
-<img width="200" src="http://aisel.co/screenshots/backend_dashboard.png"/>
 
 Installation: development branch
 -----------------------------------
