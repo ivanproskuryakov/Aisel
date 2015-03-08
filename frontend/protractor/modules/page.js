@@ -9,20 +9,20 @@
  */
 
 describe("E2E: Page module tests", function () {
-    console.log('E2E module loaded: Page');
+    console.log('Test loaded: Page');
 
     it('Page route is working', function () {
-        browser.get('http://ecommerce.aisel.dev/en/page/');
+        browser.get('http://aisel.dev/en/page/');
         expect(browser.getTitle()).toEqual('Aisel - open source project');
     });
 
     it('Page categories route is working', function () {
-        browser.get('http://ecommerce.aisel.dev/en/page/categories/');
+        browser.get('http://aisel.dev/en/page/categories/');
         expect(browser.getTitle()).toEqual('Aisel - open source project');
     });
 
     it('About Us page route is working', function () {
-        browser.get('http://ecommerce.aisel.dev/en/page/view/en-about-aisel/');
+        browser.get('http://aisel.dev/en/page/view/en-about-aisel/');
         expect(browser.getTitle()).toEqual('About Us');
     });
 });

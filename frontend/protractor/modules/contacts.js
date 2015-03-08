@@ -9,10 +9,10 @@
  */
 
 describe("E2E: Contact module tests", function () {
-    console.log('E2E module loaded: Contact');
+    console.log('Test loaded: Contact');
 
     it('Contact route is working', function () {
-        browser.get('http://ecommerce.aisel.dev/en/contact/');
+        browser.get('http://aisel.dev/en/contact/');
         expect(browser.getTitle()).toEqual('Aisel - open source project');
     });
 });

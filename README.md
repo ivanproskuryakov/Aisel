@@ -89,7 +89,8 @@ Tests
 [PHPSpec](http://phpspec.net/)<br/>
 `bin/phpspec run`<br/>
 [Protractor](http://angular.github.io/protractor/#/) <br/>
-`protractor protractor/conf.js`<br/>
+`protractor frontend/protractor/conf.js`<br/>
+`protractor backend/protractor/conf.js`<br/>
 
 XML Sitemap & Google indexing
 -----------------------------------

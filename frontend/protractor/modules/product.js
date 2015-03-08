@@ -9,20 +9,20 @@
  */
 
 describe("E2E: Product module tests", function () {
-    console.log('E2E module loaded: Product');
+    console.log('Test loaded: Product');
 
     it('Product route is working', function () {
-        browser.get('http://ecommerce.aisel.dev/en/products/');
+        browser.get('http://aisel.dev/en/products/');
         expect(browser.getTitle()).toEqual('Aisel - open source project');
     });
 
     it('Product categories route is working', function () {
-        browser.get('http://ecommerce.aisel.dev/en/product/categories/');
+        browser.get('http://aisel.dev/en/product/categories/');
         expect(browser.getTitle()).toEqual('Aisel - open source project');
     });
 
     it('Product page route is working', function () {
-        browser.get('http://ecommerce.aisel.dev/en/product/view/en-nike-baseball-hat-12/');
+        browser.get('http://aisel.dev/en/product/view/en-nike-baseball-hat-12/');
         expect(browser.getTitle()).toEqual('Aisel - open source project');
     });
 });

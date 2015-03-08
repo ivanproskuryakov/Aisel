@@ -9,10 +9,10 @@
  */
 
 describe("E2E: We check that our app is feeling nice", function () {
-    console.log('E2E module loaded: Homepage');
+    console.log('Test loaded: Homepage');
 
     it('should have a title', function () {
-        browser.get('http://ecommerce.aisel.dev/en/');
+        browser.get('http://aisel.dev/en/');
         expect(browser.getTitle()).toEqual('Aisel - open source project');
     });
 });
