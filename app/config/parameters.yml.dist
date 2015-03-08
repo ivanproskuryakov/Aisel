@@ -11,8 +11,8 @@ parameters:
     mailer_password:   ~
     website_email: ~
 
-    website_address:   http://ecommerce.aisel.co
-    backend_address:   http://admin.ecommerce.aisel.co
+    website_address: 'http://aisel.dev'
+    backend_address: 'http://admin.aisel.dev'
 
     locale: en
     locales: en|es|ru

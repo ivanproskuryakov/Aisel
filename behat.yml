@@ -16,7 +16,6 @@ default:
             paths:
                 features: src/Aisel/PageBundle
             contexts:
-                - Aisel\PageBundle\Features\Context\Admin\FeatureContext
                 - Aisel\PageBundle\Features\Context\Api\PageFeatureContext
                 - Aisel\PageBundle\Features\Context\Api\PageCategoryFeatureContext
         product:
@@ -24,48 +23,36 @@ default:
                 features: src/Aisel/ProductBundle
             contexts:
                 - Aisel\ProductBundle\Features\Context\Api\FeatureContext
-                - Aisel\ProductBundle\Features\Context\Admin\FeatureContext
         navigation:
             paths:
                 features: src/Aisel/NavigationBundle
             contexts:
                 - Aisel\NavigationBundle\Features\Context\Api\FeatureContext
-                - Aisel\NavigationBundle\Features\Context\Admin\FeatureContext
         addressing:
             paths:
                 features: src/Aisel/AddressingBundle
             contexts:
                 - Aisel\AddressingBundle\Features\Context\Api\FeatureContext
-                - Aisel\AddressingBundle\Features\Context\Admin\FeatureContext
-        backenduser:
-            paths:
-                features: src/Aisel/BackendUserBundle
-            contexts:
-                - Aisel\BackendUserBundle\Features\Context\Admin\FeatureContext
         cart:
             paths:
                 features: src/Aisel/CartBundle
             contexts:
                 - Aisel\CartBundle\Features\Context\Api\FeatureContext
-                - Aisel\CartBundle\Features\Context\Admin\FeatureContext
         order:
             paths:
                 features: src/Aisel/OrderBundle
             contexts:
                 - Aisel\OrderBundle\Features\Context\Api\FeatureContext
-                - Aisel\OrderBundle\Features\Context\Admin\FeatureContext
         frontenduser:
             paths:
                 features: src/Aisel/FrontendUserBundle
             contexts:
                 - Aisel\FrontendUserBundle\Features\Context\Api\FeatureContext
-                - Aisel\FrontendUserBundle\Features\Context\Admin\FeatureContext
         settings:
             paths:
                 features: src/Aisel/SettingsBundle
             contexts:
                 - Aisel\SettingsBundle\Features\Context\Api\FeatureContext
-                - Aisel\SettingsBundle\Features\Context\Admin\FeatureContext
         search:
             paths:
                 features: src/Aisel/SearchBundle
@@ -78,4 +65,3 @@ default:
                 features: src/Aisel/ContactBundle
             contexts:
                 - Aisel\ContactBundle\Features\Context\Api\FeatureContext
-                - Aisel\ContactBundle\Features\Context\Admin\FeatureContext

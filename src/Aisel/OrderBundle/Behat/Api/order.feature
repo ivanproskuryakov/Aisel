@@ -6,4 +6,3 @@ Feature: Order
 
   Scenario: Order API is working
     Given Script access api_aisel_orderlist route
-    Then Content contains valid JSON

@@ -20,14 +20,4 @@ class FeatureContext extends DefaultContext
         $this->assertSession()->statusCodeEquals(200);
     }
 
-    /**
-     * @Given /^Content contains valid JSON$/
-     */
-    public function contentContainsValidJSON()
-    {
-        $content = $this->getSession()->getPage()->getContent();
-        $json = (array) json_decode($content);
-        assertEmpty($json['status'], false);
-    }
-
 }
