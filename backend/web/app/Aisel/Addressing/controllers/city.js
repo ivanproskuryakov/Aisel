@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('AddressingCityCtrl', ['$scope', 'cityService', 'collectionService',
-        function ($scope, cityService, collectionService) {
+    app.controller('AddressingCityCtrl', ['$scope', '$state', 'Environment', 'cityService', 'collectionService',
+        function ($scope, $state, Environment, cityService, collectionService) {
 
             $scope.collectionTitle = 'City';
             $scope.pageLimit = 20;
@@ -22,8 +22,21 @@ define(['app'], function (app) {
             $scope.columns = [
                 {name: 'id', enableColumnMenu: false, width: '100'},
                 {name: 'name', enableColumnMenu: false},
+                {
+                    name: 'action',
+                    enableSorting: false,
+                    enableFiltering: false,
+                    enableColumnMenu: false,
+                    width: '100',
+                    cellTemplate: collectionService.viewTemplate()
+                }
             ];
             $scope.gridOptions = collectionService.gridOptions($scope);
+
+            // === View Item ===
+            $scope.viewDetails = function (id) {
+                $state.transitionTo('cityView', {locale: Environment.currentLocale(), id: id});
+            };
 
             // === Load collection from remote ===
             $scope.loadCollection = function (pageNumber) {

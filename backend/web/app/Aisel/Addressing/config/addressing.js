@@ -20,15 +20,30 @@ define(['app'], function (app) {
                 templateUrl: '/app/Kernel/Resource/views/collection.html',
                 controller: 'AddressingCountryCtrl'
             })
+            .state("countryView", {
+                url: "/:locale/addressing/country/view/:id/",
+                templateUrl: '/app/Aisel/Addressing/views/detail.html',
+                controller: 'AddressingCountryDetailsCtrl'
+            })
             .state("regions", {
                 url: "/:locale/addressing/region/",
                 templateUrl: '/app/Kernel/Resource/views/collection.html',
                 controller: 'AddressingRegionCtrl'
             })
+            .state("regionView", {
+                url: "/:locale/addressing/region/view/:id/",
+                templateUrl: '/app/Aisel/Addressing/views/detail.html',
+                controller: 'AddressingRegionDetailsCtrl'
+            })
             .state("cities", {
                 url: "/:locale/addressing/city/",
                 templateUrl: '/app/Kernel/Resource/views/collection.html',
                 controller: 'AddressingCityCtrl'
+            })
+            .state("cityView", {
+                url: "/:locale/addressing/city/view/:id/",
+                templateUrl: '/app/Aisel/Addressing/views/detail.html',
+                controller: 'AddressingCityDetailsCtrl'
             })
     }]);
 });

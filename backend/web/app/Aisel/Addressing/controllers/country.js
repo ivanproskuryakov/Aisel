@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('AddressingCountryCtrl', ['$scope', 'countryService', 'collectionService',
-        function ($scope, countryService, collectionService) {
+    app.controller('AddressingCountryCtrl', ['$scope', '$state', 'Environment', 'countryService', 'collectionService',
+        function ($scope, $state, Environment, countryService, collectionService) {
 
             $scope.collectionTitle = 'Countries';
             $scope.pageLimit = 20;
@@ -24,8 +24,22 @@ define(['app'], function (app) {
                 {name: 'name', enableColumnMenu: false},
                 {name: 'iso3', enableColumnMenu: false},
                 {name: 'short_name', enableColumnMenu: false},
-                {name: 'long_name', enableColumnMenu: false}
+                {name: 'long_name', enableColumnMenu: false},
+                {
+                    name: 'action',
+                    enableSorting: false,
+                    enableFiltering: false,
+                    enableColumnMenu: false,
+                    width: '100',
+                    cellTemplate: collectionService.viewTemplate()
+                }
             ];
+
+            // === View Item ===
+            $scope.viewDetails = function (id) {
+                $state.transitionTo('countryView', {locale: Environment.currentLocale(), id: id});
+            };
+
             $scope.gridOptions = collectionService.gridOptions($scope);
 
             // === Load collection from remote ===

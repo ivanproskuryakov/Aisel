@@ -21,7 +21,6 @@ define(['app'], function (app) {
                         + '/addressing/country/?limit=' + $scope.pageLimit
                         + '&current=' + pageNumber
                         + '&filter=' + $scope.filter;
-
                     console.log(url);
                     return $http.get(url);
                 },
