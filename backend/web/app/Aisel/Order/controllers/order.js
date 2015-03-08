@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('OrderCtrl', ['$scope', 'orderService', 'collectionService',
-        function ($scope, orderService, collectionService) {
+    app.controller('OrderCtrl', ['$scope', '$state', 'orderService', 'Environment', 'collectionService',
+        function ($scope, $state, orderService, Environment, collectionService) {
 
             $scope.collectionTitle = 'Orders';
             $scope.pageLimit = 20;
@@ -30,8 +30,21 @@ define(['app'], function (app) {
                 {name: 'city', enableColumnMenu: false},
                 {name: 'created_at', enableColumnMenu: false},
                 {name: 'updated_at', enableColumnMenu: false},
+                {
+                    name: 'action',
+                    enableSorting: false,
+                    enableFiltering: false,
+                    enableColumnMenu: false,
+                    width: '100',
+                    cellTemplate: collectionService.viewTemplate()
+                }
             ];
             $scope.gridOptions = collectionService.gridOptions($scope);
+
+            // === View Item ===
+            $scope.viewDetails = function (id) {
+                $state.transitionTo('orderView', {locale: Environment.currentLocale(), id: id});
+            };
 
             // === Load collection from remote ===
             $scope.loadCollection = function (pageNumber) {

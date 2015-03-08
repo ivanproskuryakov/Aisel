@@ -20,5 +20,10 @@ define(['app'], function (app) {
                 templateUrl: '/app/Kernel/Resource/views/collection.html',
                 controller: 'OrderCtrl'
             })
+            .state("orderView", {
+                url: "/:locale/order/view/:id/",
+                templateUrl: '/app/Aisel/Order/views/detail.html',
+                controller: 'OrderDetailsCtrl'
+            })
     }]);
 });

@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('FrontendUserCtrl', ['$scope', 'frontendUserService', 'collectionService',
-        function ($scope, frontendUserService, collectionService) {
+    app.controller('FrontendUserCtrl', ['$scope', '$state', 'Environment', 'frontendUserService', 'collectionService',
+        function ($scope, $state, Environment, frontendUserService, collectionService) {
 
             $scope.collectionTitle = 'Frontend Users';
             $scope.pageLimit = 20;

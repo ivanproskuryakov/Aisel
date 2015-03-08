@@ -15,6 +15,7 @@
 define(['app',
     './config/order',
     './controllers/order',
+    './controllers/orderDetails',
     './services/order',
 ], function (app) {
     console.log('Order module loaded ...');

@@ -13,11 +13,11 @@
  */
 
 define(['app'], function (app) {
-    app.controller('backendUserDetailCtrl', function ($scope, $stateParams, pageService, $rootScope) {
+    app.controller('BackendUserDetailCtrl', function ($scope, $stateParams, backendUserService, $rootScope) {
         var id = $stateParams.id;
         var handleSuccess = function (data, status) {
             $scope.item = data;
         };
-        pageService.get(id).success(handleSuccess);
+        backendUserService.get(id).success(handleSuccess);
     });
 });

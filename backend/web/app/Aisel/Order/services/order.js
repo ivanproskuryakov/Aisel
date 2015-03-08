@@ -24,6 +24,11 @@ define(['app'], function (app) {
 
                     console.log(url);
                     return $http.get(url);
+                },
+                get: function ($id) {
+                    var url = Environment.settings.api + '/order/' + $id;
+                    console.log(url);
+                    return $http.get(url);
                 }
             };
         }]);

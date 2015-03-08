@@ -11,10 +11,11 @@
 
 namespace Aisel\OrderBundle\Manager;
 
+use JMS\Serializer\Exception\LogicException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Aisel\OrderBundle\Entity\Order;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Payum\Core\Request\Capture;
+use Aisel\OrderBundle\Entity\Order;
 
 /**
  * Manager for Orders, mostly used in REST API
@@ -31,10 +32,12 @@ class OrderManager
     /**
      * {@inheritDoc}
      */
-    public function __construct($serviceContainer,
-                                $entityManager,
-                                $settingsManager,
-                                $cartManager)
+    public function __construct(
+        $serviceContainer,
+        $entityManager,
+        $settingsManager,
+        $cartManager
+    )
     {
         $this->sc = $serviceContainer;
         $this->em = $entityManager;
@@ -90,13 +93,13 @@ class OrderManager
      *
      * @param FrontendUser $user
      *
-     * @return Order $orderDetails
+     * @throws LogicException
      *
-     * @throws NotFoundHttpException
+     * @return Order $orderDetails
      */
     public function getUserOrders($user)
     {
-        if (!($user)) throw new NotFoundHttpException('User object is missing');
+        if (!($user)) throw new LogicException('User object is missing');
 
         $orders = $this->em
             ->getRepository('AiselOrderBundle:Order')
@@ -109,16 +112,15 @@ class OrderManager
      * Create order for given userId
      *
      * @param FrontendUser $user
-     * @param string $locale
      * @param mixed $orderInfo
      *
-     * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     * @throws LogicException
      *
-     * @throws NotFoundHttpException
+     * @return Order $order
      */
     public function createOrderFromCart($user, $orderInfo)
     {
-        if (!($user)) throw new NotFoundHttpException('User object is missing');
+        if (!($user)) throw new LogicException('User object is missing');
         if (count($user->getCart()) == 0) return false;
 
         $order = $this->em
@@ -199,14 +201,9 @@ class OrderManager
      */
     public function getItem($id)
     {
-        $page = $this->em->getRepository('AiselOrderBundle:Order')->find($id);
+        $order = $this->em->getRepository('AiselOrderBundle:Order')->find($id);
 
-        if (!($page)) {
-            throw new NotFoundHttpException('Nothing found');
-        }
-        $pageDetails = array('item' => $page, 'categories' => $this->getPageCategories($page));
-
-        return $pageDetails;
+        return $order;
     }
 
 }
