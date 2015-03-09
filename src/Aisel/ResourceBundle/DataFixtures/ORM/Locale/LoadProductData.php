@@ -15,6 +15,8 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
 use Aisel\ProductBundle\Entity\Product;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 /**
  * Product fixtures
@@ -46,13 +48,13 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
                     $product->setLocale($table->column[1]);
                     $product->setName($table->column[2]);
                     $product->setSku($table->column[3]);
-                    $product->setPrice((float) $table->column[4]);
-                    $product->setQty((int) $table->column[11]);
+                    $product->setPrice((float)$table->column[4]);
+                    $product->setQty((int)$table->column[11]);
                     $product->setDescriptionShort($table->column[14]);
                     $product->setDescription($table->column[15]);
-                    $product->setStatus((int) $table->column[16]);
-                    $product->setHidden((int) $table->column[17]);
-                    $product->setCommentStatus((int) $table->column[18]);
+                    $product->setStatus((int)$table->column[16]);
+                    $product->setHidden((int)$table->column[17]);
+                    $product->setCommentStatus((int)$table->column[18]);
                     $product->setMetaUrl($table->column[19]);
 
                     $categories = explode(",", $table->column[20]);
@@ -81,6 +83,16 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
             $this->container->getParameter('aisel_fixture.xml.path') .
             DIRECTORY_SEPARATOR . 'images/products/' . $this->productImage;
         $productDir = $uploadDir . DIRECTORY_SEPARATOR . $product->getId();
+
+        $fs = new Filesystem();
+        if (!$fs->exists($uploadDir)) {
+            try {
+                $fs->mkdir($uploadDir);
+            } catch (IOExceptionInterface $e) {
+                echo "An error occurred while creating your directory at " . $e->getPath();
+            }
+        }
+
 
         $sql = serialize(array(
             'fileName' => '/' . $product->getId() . '/' . $this->productImage,

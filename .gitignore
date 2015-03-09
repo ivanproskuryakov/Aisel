@@ -21,6 +21,7 @@
 
 #Symfony
 /web/media/product/*
+!/web/web/media/product/.htaccess
 /web/css/*
 /web/bundles/*
 /app/bootstrap.php.cache
