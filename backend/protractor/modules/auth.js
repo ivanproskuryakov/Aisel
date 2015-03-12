@@ -8,11 +8,12 @@
  * E2E User test
  */
 
-describe("E2E: User module tests", function () {
-    console.log('Test loaded: User');
+describe("E2E: Auth module tests", function () {
+    console.log('Test loaded: Auth');
     var ptor = protractor.getInstance();
 
     it('Sign in route is working and log-in with username and password', function () {
+        browser.driver.manage().deleteAllCookies();
         browser.get('http://admin.aisel.dev/en/user/login/');
         var el = element(by.css('.page-header'));
 

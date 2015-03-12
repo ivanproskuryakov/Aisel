@@ -3,5 +3,15 @@
 
 exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
-    specs: ['modules/*.js']
+    specs: [
+        'modules/auth.js',
+        'modules/dashboard.js',
+        'modules/addressing.js',
+        'modules/backendUser.js',
+        'modules/frontendUser.js',
+        'modules/orders.js',
+        'modules/products.js',
+        'modules/products.js',
+        'modules/page.js',
+    ]
 }
