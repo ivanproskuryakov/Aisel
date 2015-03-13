@@ -21,7 +21,7 @@ describe("E2E: Order module tests", function () {
 
         element(by.css('.ui-grid-canvas button')).click().then(function () {
             ptor.getCurrentUrl().then(function (url) {
-                expect(url.indexOf("/order/view/")).toBeGreaterThan(0);
+                expect(url.indexOf("/order/edit/")).toBeGreaterThan(0);
             });
         });
     });

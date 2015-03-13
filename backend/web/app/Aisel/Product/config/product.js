@@ -20,9 +20,9 @@ define(['app'], function (app) {
                 templateUrl: '/app/Kernel/Resource/views/collection.html',
                 controller: 'ProductCtrl'
             })
-            .state("productView", {
-                url: "/:locale/product/view/:id/",
-                templateUrl: '/app/Aisel/Product/views/product-detail.html',
+            .state("productEdit", {
+                url: "/:locale/product/edit/:id/",
+                templateUrl: '/app/Aisel/Product/views/edit.html',
                 controller: 'ProductDetailCtrl'
             })
     }]);

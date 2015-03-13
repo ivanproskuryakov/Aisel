@@ -60,9 +60,13 @@ define(['app'], function (app) {
                             }
                         }
                     },
+                    actionTemplate: function () {
+                        return '<button class="btn btn-link" ng-click="grid.appScope.editDetails(row.entity.id)">' +
+                        '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> edit</button>';
+                    },
                     viewTemplate: function () {
                         return '<button class="btn btn-link" ng-click="grid.appScope.viewDetails(row.entity.id)">' +
-                        'View <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>';
+                        '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> view</button>';
                     }
                 }
             }

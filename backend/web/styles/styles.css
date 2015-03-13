@@ -60,6 +60,10 @@ body {
     background: #fff;
 }
 
+body .tab-content {
+    margin-top: 20px;
+}
+
 body .website-content {
     color: #999;
 }
@@ -133,7 +137,12 @@ body .panel-primary {
     General
 ***********/
 .website-content .page-header {
-    margin-top: 0;
+    margin-top: 20px;
+}
+
+.website-content .details-navigation {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .related-categories {

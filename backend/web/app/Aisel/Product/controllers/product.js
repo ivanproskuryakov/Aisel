@@ -34,14 +34,14 @@ define(['app'], function (app) {
                     enableFiltering: false,
                     enableColumnMenu: false,
                     width: '100',
-                    cellTemplate: collectionService.viewTemplate()
+                    cellTemplate: collectionService.actionTemplate()
                 }
             ];
             $scope.gridOptions = collectionService.gridOptions($scope);
 
-            // === View Item ===
-            $scope.viewDetails = function (id) {
-                $state.transitionTo('productView', {locale: Environment.currentLocale(), id: id});
+            // === Item Action ===
+            $scope.editDetails = function (id) {
+                $state.transitionTo('productEdit', {locale: Environment.currentLocale(), id: id});
             };
 
             // === Load collection from remote ===

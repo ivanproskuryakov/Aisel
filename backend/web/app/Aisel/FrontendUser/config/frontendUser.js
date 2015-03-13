@@ -20,9 +20,9 @@ define(['app'], function (app) {
                 templateUrl: '/app/Kernel/Resource/views/collection.html',
                 controller: 'FrontendUserCtrl'
             })
-            .state("frontendUserView", {
-                url: "/:locale/users/frontend/view/:id/",
-                templateUrl: '/app/Aisel/FrontendUser/views/detail.html',
+            .state("frontendUserEdit", {
+                url: "/:locale/users/frontend/edit/:id/",
+                templateUrl: '/app/Aisel/FrontendUser/views/edit.html',
                 controller: 'FrontendUserDetailCtrl'
             })
     }]);

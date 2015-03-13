@@ -21,7 +21,7 @@ describe("E2E: Frontend User module tests", function () {
 
         element(by.css('.ui-grid-canvas button')).click().then(function () {
             ptor.getCurrentUrl().then(function (url) {
-                expect(url.indexOf("/users/frontend/view/")).toBeGreaterThan(0);
+                expect(url.indexOf("/users/frontend/edit/")).toBeGreaterThan(0);
             });
         });
     });

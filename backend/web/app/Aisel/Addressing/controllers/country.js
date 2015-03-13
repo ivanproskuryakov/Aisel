@@ -31,13 +31,13 @@ define(['app'], function (app) {
                     enableFiltering: false,
                     enableColumnMenu: false,
                     width: '100',
-                    cellTemplate: collectionService.viewTemplate()
+                    cellTemplate: collectionService.actionTemplate()
                 }
             ];
 
-            // === View Item ===
-            $scope.viewDetails = function (id) {
-                $state.transitionTo('countryView', {locale: Environment.currentLocale(), id: id});
+            // === Item Action ===
+            $scope.editDetails = function (id) {
+                $state.transitionTo('countryEdit', {locale: Environment.currentLocale(), id: id});
             };
 
             $scope.gridOptions = collectionService.gridOptions($scope);

@@ -21,7 +21,7 @@ describe("E2E: Page module tests", function () {
 
         element(by.css('.ui-grid-canvas button')).click().then(function () {
             ptor.getCurrentUrl().then(function (url) {
-                expect(url.indexOf("/page/view/")).toBeGreaterThan(0);
+                expect(url.indexOf("/page/edit/")).toBeGreaterThan(0);
             });
         });
     });

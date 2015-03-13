@@ -20,9 +20,9 @@ define(['app'], function (app) {
                 templateUrl: '/app/Kernel/Resource/views/collection.html',
                 controller: 'AddressingCountryCtrl'
             })
-            .state("countryView", {
-                url: "/:locale/addressing/country/view/:id/",
-                templateUrl: '/app/Aisel/Addressing/views/detail.html',
+            .state("countryEdit", {
+                url: "/:locale/addressing/country/edit/:id/",
+                templateUrl: '/app/Aisel/Addressing/views/edit-country.html',
                 controller: 'AddressingCountryDetailsCtrl'
             })
             .state("regions", {
@@ -30,9 +30,9 @@ define(['app'], function (app) {
                 templateUrl: '/app/Kernel/Resource/views/collection.html',
                 controller: 'AddressingRegionCtrl'
             })
-            .state("regionView", {
-                url: "/:locale/addressing/region/view/:id/",
-                templateUrl: '/app/Aisel/Addressing/views/detail.html',
+            .state("regionEdit", {
+                url: "/:locale/addressing/region/edit/:id/",
+                templateUrl: '/app/Aisel/Addressing/views/edit-region.html',
                 controller: 'AddressingRegionDetailsCtrl'
             })
             .state("cities", {
@@ -40,9 +40,9 @@ define(['app'], function (app) {
                 templateUrl: '/app/Kernel/Resource/views/collection.html',
                 controller: 'AddressingCityCtrl'
             })
-            .state("cityView", {
-                url: "/:locale/addressing/city/view/:id/",
-                templateUrl: '/app/Aisel/Addressing/views/detail.html',
+            .state("cityEdit", {
+                url: "/:locale/addressing/city/edit/:id/",
+                templateUrl: '/app/Aisel/Addressing/views/edit-city.html',
                 controller: 'AddressingCityDetailsCtrl'
             })
     }]);

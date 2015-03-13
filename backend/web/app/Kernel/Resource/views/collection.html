@@ -1,27 +1,30 @@
 <div class="">
     <div class="col-md-12 page-header">
         <div class="row">
-            <div class="col-md-4">
-                <h2 style="margin:0">{{collectionTitle}}</h2>
-            </div>
-            <div class="col-md-8 nav-buttons">
-                <div class="pull-right">
-                    <button type="submit"
-                            class="btn btn-success"
-                            ng-click="loadCollection()">
-                        Filter <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-                    </button>
-                    <button type="submit"
-                            class="btn btn-primary">
-                        Add New Item <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    </button>
+            <div class="row">
+                <div class="col-md-4">
+                    <h2 style="margin:0">{{collectionTitle}}</h2>
+                </div>
+                <div class="col-md-8 nav-buttons">
+                    <div class="pull-right">
+                        <button type="submit"
+                                class="btn btn-success"
+                                ng-click="loadCollection()">
+                            Filter <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                        </button>
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Add New Item <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-12">
-        <div id="content-grid" ui-grid="gridOptions" class="content-grid"></div>
         <div class="row">
+            <div id="content-grid" ui-grid="gridOptions" class="content-grid"></div>
+
             <div class="col-md-8">
                 <pagination ng-if="gridOptions.totalItems > 0" on-select-page="loadCollection(page)"
                             items-per-page="{{pageLimit}}"

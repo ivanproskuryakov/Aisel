@@ -14,10 +14,11 @@
 
 define(['app'], function (app) {
     app.controller('PageDetailCtrl', function ($scope, $stateParams, pageService, $rootScope) {
-        var id = $stateParams.id;
+
+        $scope.id = $stateParams.id;
         var handleSuccess = function (data, status) {
             $scope.item = data;
         };
-        pageService.get(id).success(handleSuccess);
+        pageService.get($scope.id).success(handleSuccess);
     });
 });

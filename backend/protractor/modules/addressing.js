@@ -21,7 +21,7 @@ describe("E2E: Addressing module tests", function () {
 
         element(by.css('.ui-grid-canvas button')).click().then(function () {
             ptor.getCurrentUrl().then(function (url) {
-                expect(url.indexOf("/addressing/country/view/")).toBeGreaterThan(0);
+                expect(url.indexOf("/addressing/country/edit/")).toBeGreaterThan(0);
             });
         });
 
@@ -36,7 +36,7 @@ describe("E2E: Addressing module tests", function () {
 
         element(by.css('.ui-grid-canvas button')).click().then(function () {
             ptor.getCurrentUrl().then(function (url) {
-                expect(url.indexOf("/addressing/region/view/")).toBeGreaterThan(0);
+                expect(url.indexOf("/addressing/region/edit/")).toBeGreaterThan(0);
             });
         });
     });
@@ -50,7 +50,7 @@ describe("E2E: Addressing module tests", function () {
 
         element(by.css('.ui-grid-canvas button')).click().then(function () {
             ptor.getCurrentUrl().then(function (url) {
-                expect(url.indexOf("/addressing/city/view/")).toBeGreaterThan(0);
+                expect(url.indexOf("/addressing/city/edit/")).toBeGreaterThan(0);
             });
         });
     });
