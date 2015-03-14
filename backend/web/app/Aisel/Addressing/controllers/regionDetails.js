@@ -14,10 +14,13 @@
 
 define(['app'], function (app) {
     app.controller('AddressingRegionDetailsCtrl', function ($scope, $stateParams, regionService, $rootScope) {
-        var id = $stateParams.id;
+        $scope.details = {
+            id: $stateParams.id,
+            name: 'Region'
+        };
         var handleSuccess = function (data, status) {
             $scope.item = data;
         };
-        regionService.get(id).success(handleSuccess);
+        regionService.get($scope.details.id).success(handleSuccess);
     });
 });

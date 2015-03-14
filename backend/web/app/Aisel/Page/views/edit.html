@@ -1,32 +1,4 @@
-<div class="col-md-12">
-    <div class="row details-navigation">
-        <div class="row">
-            <div class="col-md-4">
-                <h2 style="margin:0">Page #{{id}}</h2>
-            </div>
-            <div class="col-md-8 nav-buttons">
-                <div class="pull-right">
-                    <button type="submit"
-                            class="btn btn-success">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save
-                    </button>
-                    <button type="submit"
-                            class="btn btn-primary">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save & edit
-                    </button>
-                    <button type="submit"
-                            class="btn btn-danger">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
-                    </button>
-                    <button type="submit"
-                            class="btn btn-default">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div ng-include="'/app/Kernel/Resource/views/edit/heading.html'"></div>
 <div class="row">
     <div class="col-md-12">
         <tabset>

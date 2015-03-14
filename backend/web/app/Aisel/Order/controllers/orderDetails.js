@@ -14,10 +14,13 @@
 
 define(['app'], function (app) {
     app.controller('OrderDetailsCtrl', function ($scope, $stateParams, orderService, $rootScope) {
-        var id = $stateParams.id;
+        $scope.details = {
+            id: $stateParams.id,
+            name: 'Order'
+        };
         var handleSuccess = function (data, status) {
             $scope.item = data;
         };
-        orderService.get(id).success(handleSuccess);
+        orderService.get($scope.details.id).success(handleSuccess);
     });
 });

@@ -14,10 +14,13 @@
 
 define(['app'], function (app) {
     app.controller('BackendUserDetailCtrl', function ($scope, $stateParams, backendUserService, $rootScope) {
-        var id = $stateParams.id;
+        $scope.details = {
+            id: $stateParams.id,
+            name: 'Backend User'
+        };
         var handleSuccess = function (data, status) {
             $scope.item = data;
         };
-        backendUserService.get(id).success(handleSuccess);
+        backendUserService.get($scope.details.id).success(handleSuccess);
     });
 });

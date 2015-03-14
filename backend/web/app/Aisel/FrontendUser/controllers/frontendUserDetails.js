@@ -14,10 +14,13 @@
 
 define(['app'], function (app) {
     app.controller('FrontendUserDetailCtrl', function ($scope, $stateParams, frontendUserService, $rootScope) {
-        var id = $stateParams.id;
+        $scope.details = {
+            id: $stateParams.id,
+            name: 'Product'
+        };
         var handleSuccess = function (data, status) {
             $scope.item = data;
         };
-        frontendUserService.get(id).success(handleSuccess);
+        frontendUserService.get($scope.details.id).success(handleSuccess);
     });
 });
