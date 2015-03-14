@@ -7,18 +7,26 @@
             <div class="col-md-8 nav-buttons">
                 <div class="pull-right">
                     <button type="submit"
+                            id="item-edit-save"
+                            ng-click="editSave()"
                             class="btn btn-success">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save
                     </button>
                     <button type="submit"
+                            id="item-edit-save-and-exit"
+                            ng-click="editSaveAndExit()"
                             class="btn btn-primary">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save & edit
                     </button>
                     <button type="submit"
+                            id="item-edit-delete"
+                            ng-click="editDelete()"
                             class="btn btn-danger">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
                     </button>
                     <button type="submit"
+                            id="item-edit-cancel"
+                            ng-click="editCancel()"
                             class="btn btn-default">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
                     </button>

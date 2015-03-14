@@ -13,7 +13,7 @@
                                 ng-click="loadCollection()">
                             <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter
                         </button>
-                        <button type="submit"
+                        <button type="submit" ng-if="disableNew !== true"
                                 class="btn btn-primary add-new-item"
                                 ng-click="newItem()">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Item

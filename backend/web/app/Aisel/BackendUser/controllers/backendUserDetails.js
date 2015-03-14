@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('BackendUserDetailCtrl', function ($scope, $stateParams, backendUserService, $rootScope) {
+    app.controller('BackendUserDetailCtrl', function ($scope, $stateParams, backendUserService, $state, Environment) {
         $scope.details = {
             id: $stateParams.id,
             name: 'Backend User'
@@ -22,5 +22,9 @@ define(['app'], function (app) {
             $scope.item = data;
         };
         backendUserService.get($scope.details.id).success(handleSuccess);
+
+        $scope.editCancel = function () {
+            $state.transitionTo('backendUsers', {locale: Environment.currentLocale()});
+        }
     });
 });

@@ -17,6 +17,7 @@ define(['app'], function (app) {
         function ($scope, $state, orderService, Environment, collectionService) {
 
             $scope.collectionTitle = 'Orders';
+            $scope.disableNew = true;
             $scope.pageLimit = 20;
             $scope.pageNumber = 1;
             $scope.columns = [

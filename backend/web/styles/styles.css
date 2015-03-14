@@ -64,6 +64,10 @@ body .tab-content {
     margin-top: 20px;
 }
 
+body .nav-tabs > li > a {
+    cursor: pointer;
+}
+
 body .website-content {
     color: #999;
 }

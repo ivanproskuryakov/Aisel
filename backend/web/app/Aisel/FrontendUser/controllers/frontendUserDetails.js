@@ -13,14 +13,18 @@
  */
 
 define(['app'], function (app) {
-    app.controller('FrontendUserDetailCtrl', function ($scope, $stateParams, frontendUserService, $rootScope) {
+    app.controller('FrontendUserDetailCtrl', function ($scope, $stateParams, frontendUserService, $state, Environment) {
         $scope.details = {
             id: $stateParams.id,
-            name: 'Product'
+            name: 'Frontend User'
         };
         var handleSuccess = function (data, status) {
             $scope.item = data;
         };
         frontendUserService.get($scope.details.id).success(handleSuccess);
+
+        $scope.editCancel = function () {
+            $state.transitionTo('frontendUsers', {locale: Environment.currentLocale()});
+        }
     });
 });

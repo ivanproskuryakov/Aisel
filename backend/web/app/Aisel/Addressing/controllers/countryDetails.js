@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('AddressingCountryDetailsCtrl', function ($scope, $stateParams, countryService, $rootScope) {
+    app.controller('AddressingCountryDetailsCtrl', function ($scope, $stateParams, countryService, $state, Environment) {
         $scope.details = {
             id: $stateParams.id,
             name: 'Country'
@@ -22,5 +22,9 @@ define(['app'], function (app) {
             $scope.item = data;
         };
         countryService.get($scope.details.id).success(handleSuccess);
+
+        $scope.editCancel = function () {
+            $state.transitionTo('countries', {locale: Environment.currentLocale()});
+        }
     });
 });

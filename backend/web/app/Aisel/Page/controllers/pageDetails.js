@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageDetailCtrl', function ($scope, $stateParams, pageService, $rootScope) {
+    app.controller('PageDetailCtrl', function ($scope, $stateParams, pageService, $state, Environment) {
 
         $scope.details = {
             id: $stateParams.id,
@@ -23,5 +23,9 @@ define(['app'], function (app) {
             $scope.item = data;
         };
         pageService.get($scope.details.id).success(handleSuccess);
+
+        $scope.editCancel = function () {
+            $state.transitionTo('pages', {locale: Environment.currentLocale()});
+        }
     });
 });

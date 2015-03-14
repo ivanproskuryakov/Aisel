@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductDetailCtrl', function ($scope, $stateParams, productService, $rootScope) {
+    app.controller('ProductDetailCtrl', function ($scope, $stateParams, productService, $state, Environment) {
         $scope.details = {
             id: $stateParams.id,
             name: 'Product'
@@ -22,5 +22,9 @@ define(['app'], function (app) {
             $scope.item = data;
         };
         productService.get($scope.details.id).success(handleSuccess);
+
+        $scope.editCancel = function () {
+            $state.transitionTo('products', {locale: Environment.currentLocale()});
+        }
     });
 });
