@@ -64,13 +64,13 @@ require.config({
     // Kick start application
     deps: [
         './environment',
-        './Kernel/Resource/KernelResource',
-        './Aisel/Dashboard/AiselDashboard',
-        './Aisel/User/AiselUser',
-        './Aisel/Page/AiselPage',
-        './Aisel/Product/AiselProduct',
+        './Aisel/Auth/AiselAuth',
         './Aisel/FrontendUser/AiselFrontendUser',
         './Aisel/BackendUser/AiselBackendUser',
+        './Kernel/Resource/KernelResource',
+        './Aisel/Dashboard/AiselDashboard',
+        './Aisel/Page/AiselPage',
+        './Aisel/Product/AiselProduct',
         './Aisel/Addressing/AiselAddressing',
         './Aisel/Order/AiselOrder',
         'bootstrap',

@@ -8,12 +8,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselUser
+ * @name            AiselAuth
  * @description     ...
  */
 
 define(['app'], function (app) {
-    app.service('userService', ['$http', 'Environment', function ($http, Environment) {
+    app.service('authService', ['$http', 'Environment', function ($http, Environment) {
         return {
             signout: function () {
                 var url = Environment.settings.api + '/user/logout.json';

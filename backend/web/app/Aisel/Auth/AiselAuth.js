@@ -8,19 +8,19 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselUser
- * @description     User module
+ * @name            AiselAuth
+ * @description     Auth module
  */
 
 define(['app',
-    './config/user',
-    './controllers/user',
-    './services/user',
+    './config/auth',
+    './controllers/auth',
+    './services/auth',
 ], function (app) {
-    console.log('User module loaded ...');
+    console.log('Auth module loaded ...');
 
-    app.run(['$http', '$state', '$rootScope', 'userService', 'Environment',
-        function ($http, $state, $rootScope, userService, Environment) {
+    app.run(['$http', '$state', '$rootScope', 'authService', 'Environment',
+        function ($http, $state, $rootScope, authService, Environment) {
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
                 var locale = Environment.currentLocale();
@@ -31,7 +31,7 @@ define(['app',
                 } else {
                     if ($rootScope.user === undefined) {
                         // Load user status
-                        userService.getUserInformation().success(
+                        authService.getUserInformation().success(
                             function (data, status) {
                                 console.log('----------- User-----------');
                                 if (data.username) {
