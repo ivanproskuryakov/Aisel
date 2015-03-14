@@ -38,6 +38,9 @@ define(['app'], function (app) {
             $scope.editDetails = function (id) {
                 $state.transitionTo('backendUserEdit', {locale: Environment.currentLocale(), id: id});
             };
+            $scope.newItem = function () {
+                $state.transitionTo('backendUserNew', {locale: Environment.currentLocale()});
+            }
 
             // === Load collection from remote ===
             $scope.loadCollection = function (pageNumber) {

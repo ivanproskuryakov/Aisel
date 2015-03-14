@@ -11,17 +11,36 @@
 describe("E2E: Backend User module tests", function () {
     console.log('Test loaded: Backend Users');
     var ptor = protractor.getInstance();
-    var testUrl = 'http://admin.aisel.dev/en/users/backend/';
 
-    it('Backend User route is working', function () {
-        browser.get(testUrl);
+    var urlToCheck = 'http://admin.aisel.dev/en/users/backend/';
+    var textToCheck = 'Backend Users';
+
+    // == Collection route ==
+    it('Collection route is working', function () {
+        browser.get(urlToCheck);
         var el = element(By.css('.page-header h2'));
 
-        expect(el.getText()).toBe('Backend Users');
+        expect(el.getText()).toBe(textToCheck);
+    });
+
+    // == Edit item route ==
+    it('Edit route is working', function () {
+        browser.get(urlToCheck);
 
         element(by.css('.ui-grid-canvas button')).click().then(function () {
             ptor.getCurrentUrl().then(function (url) {
-                expect(url.indexOf("/users/backend/edit/")).toBeGreaterThan(0);
+                expect(url.indexOf("/edit/")).toBeGreaterThan(0);
+            });
+        });
+    });
+
+    // == New item route ==
+    it('New item route is working', function () {
+        browser.get(urlToCheck);
+
+        element(by.css('.add-new-item')).click().then(function () {
+            ptor.getCurrentUrl().then(function (url) {
+                expect(url.indexOf("/new/")).toBeGreaterThan(0);
             });
         });
     });

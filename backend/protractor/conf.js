@@ -11,7 +11,6 @@ exports.config = {
         'modules/frontendUser.js',
         'modules/orders.js',
         'modules/products.js',
-        'modules/products.js',
         'modules/page.js',
     ]
 }

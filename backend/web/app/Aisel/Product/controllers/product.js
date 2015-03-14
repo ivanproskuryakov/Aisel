@@ -43,6 +43,9 @@ define(['app'], function (app) {
             $scope.editDetails = function (id) {
                 $state.transitionTo('productEdit', {locale: Environment.currentLocale(), id: id});
             };
+            $scope.newItem = function () {
+                $state.transitionTo('productNew', {locale: Environment.currentLocale()});
+            }
 
             // === Load collection from remote ===
             $scope.loadCollection = function (pageNumber) {

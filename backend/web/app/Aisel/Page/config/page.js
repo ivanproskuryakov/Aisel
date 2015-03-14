@@ -25,5 +25,10 @@ define(['app'], function (app) {
                 templateUrl: '/app/Aisel/Page/views/edit.html',
                 controller: 'PageDetailCtrl'
             })
+            .state("pageNew", {
+                url: "/:locale/page/new/",
+                templateUrl: '/app/Aisel/Page/views/edit.html',
+                controller: 'PageDetailCtrl'
+            })
     }]);
 });

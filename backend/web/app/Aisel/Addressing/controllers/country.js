@@ -39,6 +39,9 @@ define(['app'], function (app) {
             $scope.editDetails = function (id) {
                 $state.transitionTo('countryEdit', {locale: Environment.currentLocale(), id: id});
             };
+            $scope.newItem = function () {
+                $state.transitionTo('countryNew', {locale: Environment.currentLocale()});
+            }
 
             $scope.gridOptions = collectionService.gridOptions($scope);
 

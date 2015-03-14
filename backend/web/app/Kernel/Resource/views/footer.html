@@ -7,30 +7,27 @@
 <!-- jQuery: End-->
 
 <div class="website-footer" ng-if="user">
-    <div class="row">
-        <div class="container">
-            <div class="col-xs-12">
-                <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
 
-                        <div class="locales">
-                            <div ng-if="availableLocales" class="availableLocales">
-                                <span>Language:</span>
-                                <ul class="list">
-                                    <li ng-repeat="item in availableLocales">
-                                        <span ng-if="item == locale">{{ item }}</span>
-                                        <a ng-if="item != locale" target="_self" ui-sref="home({locale: item})">{{ item }}</a>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="locales">
+                        <div ng-if="availableLocales" class="availableLocales">
+                            <span>Language:</span>
+                            <ul class="list">
+                                <li ng-repeat="item in availableLocales">
+                                    <span ng-if="item == locale">{{ item }}</span>
+                                    <a ng-if="item != locale" target="_self" ui-sref="home({locale: item})">{{ item }}</a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="copyright">Copyright © Aisel 2015</div>
                     </div>
-                    <div class="col-xs-4">
-                    </div>
-
+                    <div class="copyright">Copyright © Aisel 2015</div>
+                </div>
+                <div class="col-md-4">
                 </div>
             </div>
         </div>

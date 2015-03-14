@@ -16,7 +16,7 @@ define(['app'], function (app) {
     app.controller('AddressingCityCtrl', ['$scope', '$state', 'Environment', 'cityService', 'collectionService',
         function ($scope, $state, Environment, cityService, collectionService) {
 
-            $scope.collectionTitle = 'City';
+            $scope.collectionTitle = 'Cities';
             $scope.pageLimit = 20;
             $scope.pageNumber = 1;
             $scope.columns = [
@@ -37,6 +37,9 @@ define(['app'], function (app) {
             $scope.editDetails = function (id) {
                 $state.transitionTo('cityEdit', {locale: Environment.currentLocale(), id: id});
             };
+            $scope.newItem = function () {
+                $state.transitionTo('cityNew', {locale: Environment.currentLocale()});
+            }
 
             // === Load collection from remote ===
             $scope.loadCollection = function (pageNumber) {

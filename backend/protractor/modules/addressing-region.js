@@ -5,15 +5,15 @@
  * @name aiselApp
  * @description
  *
- * E2E Product test
+ * E2E Addressing Region test
  */
 
-describe("E2E: Product module tests", function () {
-    console.log('Test loaded: Products');
+describe("E2E: Addressing module tests", function () {
+    console.log('Test loaded: Addressing region');
     var ptor = protractor.getInstance();
 
-    var urlToCheck = 'http://admin.aisel.dev/en/products/';
-    var textToCheck = 'Products';
+    var urlToCheck = 'http://admin.aisel.dev/en/addressing/region/';
+    var textToCheck = 'Regions';
 
     // == Collection route ==
     it('Collection route is working', function () {

@@ -25,5 +25,10 @@ define(['app'], function (app) {
                 templateUrl: '/app/Aisel/BackendUser/views/edit.html',
                 controller: 'BackendUserDetailCtrl'
             })
+            .state("backendUserNew", {
+                url: "/:locale/users/backend/new/",
+                templateUrl: '/app/Aisel/Product/views/edit.html',
+                controller: 'BackendUserDetailCtrl'
+            })
     }]);
 });

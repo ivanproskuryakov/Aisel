@@ -25,5 +25,10 @@ define(['app'], function (app) {
                 templateUrl: '/app/Aisel/FrontendUser/views/edit.html',
                 controller: 'FrontendUserDetailCtrl'
             })
+            .state("frontendUserNew", {
+                url: "/:locale/users/frontend/new/",
+                templateUrl: '/app/Aisel/Product/views/edit.html',
+                controller: 'FrontendUserDetailCtrl'
+            })
     }]);
 });

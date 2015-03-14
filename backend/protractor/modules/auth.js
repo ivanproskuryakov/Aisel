@@ -5,7 +5,7 @@
  * @name aiselApp
  * @description
  *
- * E2E User test
+ * E2E Auth test
  */
 
 describe("E2E: Auth module tests", function () {

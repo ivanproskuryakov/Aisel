@@ -25,5 +25,10 @@ define(['app'], function (app) {
                 templateUrl: '/app/Aisel/Product/views/edit.html',
                 controller: 'ProductDetailCtrl'
             })
+            .state("productNew", {
+                url: "/:locale/product/new/",
+                templateUrl: '/app/Aisel/Product/views/edit.html',
+                controller: 'ProductDetailCtrl'
+            })
     }]);
 });
