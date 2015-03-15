@@ -11,6 +11,9 @@ before_install:
     # Install node.js
     - npm install -g grunt-cli
     - npm install -g bower
+    - npm install -g protractor
+    - npm install -g jasmine-node
+    - npm install -g webdriver-manager
 
     # Install node packages
     - npm install
