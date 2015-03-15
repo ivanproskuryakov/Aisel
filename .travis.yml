@@ -42,6 +42,9 @@ before_script:
     - php app/console assets:install web --symlink
     - php app/console cache:warmup --env=test
     - chmod -R 777 app/cache app/logs
+    - cd $TRAVIS_BUILD_DIR/backend
+    - bower install -f
+    - cd $TRAVIS_BUILD_DIR/frontend
     - bower install -f
 
 script:
