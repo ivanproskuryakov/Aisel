@@ -1,15 +1,42 @@
 <div ng-include="'/app/Kernel/Resource/views/edit/heading.html'"></div>
 <div class="row">
     <div class="col-md-12">
-        <tabset>
-            <tab>
-                <tab-heading>
-                    <i class="glyphicon glyphicon-font"></i> General Information
-                </tab-heading>
-            </tab>
-        </tabset>
+        <form class="form-horizontal-edit" name="editForm" role="form">
+            <tabset>
+
+                <!-- General -->
+                <tab>
+                    <tab-heading>
+                        <i class="glyphicon glyphicon-font"></i> General Information
+                    </tab-heading>
+                    <div class="tab-content">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text"
+                                   name="name"
+                                   id="name"
+                                   class="form-control"
+                                   ng-required="true"
+                                   ng-model="item.item.name">
+                        </div>
+                    </div>
+                </tab>
+
+                <!-- Dates -->
+                <tab>
+                    <tab-heading>
+                        <i class="glyphicon glyphicon-calendar"></i> Dates
+                    </tab-heading>
+                    <div class="tab-content">
+                        <ng-include src="'/app/Kernel/Resource/views/edit/tab-fields/dates.html'"></ng-include>
+                    </div>
+                </tab>
+            </tabset>
+        </form>
     </div>
 </div>
+
+<hr/>
 <pre>
     {{item}}
 </pre>

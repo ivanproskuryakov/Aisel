@@ -19,7 +19,8 @@ define(['app'], function (app) {
             name: 'City'
         };
         var handleSuccess = function (data, status) {
-            $scope.item = data;
+            $scope.item = {};
+            $scope.item.item = data;
         };
         cityService.get($scope.details.id).success(handleSuccess);
 

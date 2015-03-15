@@ -20,7 +20,8 @@ define(['app'], function (app) {
             name: 'Order'
         };
         var handleSuccess = function (data, status) {
-            $scope.item = data;
+            $scope.item = {};
+            $scope.item.item = data;
         };
         orderService.get($scope.details.id).success(handleSuccess);
 

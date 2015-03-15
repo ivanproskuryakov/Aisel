@@ -1,0 +1,16 @@
+<script type="text/ng-template" id="deletePageModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Are you sure you want to delete?</h3>
+    </div>
+    <div class="modal-body">
+        <strong><span class="glyphicon glyphicon-barcode"></span> Id: </strong>
+        {{ pageDetails.page.id }} <br/>
+
+        <strong><span class="glyphicon glyphicon-calendar"></span> Created at: </strong>
+        {{pageDetails.page.created_at | date:"MM/dd/yyyy @ h:mma" }}<br/>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">Yes</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

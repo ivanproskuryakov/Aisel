@@ -19,7 +19,8 @@ define(['app'], function (app) {
             name: 'Region'
         };
         var handleSuccess = function (data, status) {
-            $scope.item = data;
+            $scope.item = {};
+            $scope.item.item = data;
         };
         regionService.get($scope.details.id).success(handleSuccess);
 

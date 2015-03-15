@@ -21,7 +21,7 @@ define(['app'], function (app) {
             $scope.pageNumber = 1;
             $scope.columns = [
                 {name: 'id', enableColumnMenu: false, width: '100'},
-                {name: 'name', enableColumnMenu: false},
+                {name: 'iso2', enableColumnMenu: false},
                 {name: 'iso3', enableColumnMenu: false},
                 {name: 'short_name', enableColumnMenu: false},
                 {name: 'long_name', enableColumnMenu: false},
