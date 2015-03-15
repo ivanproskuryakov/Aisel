@@ -46,6 +46,7 @@ before_script:
     - bower install -f
     - cd $TRAVIS_BUILD_DIR/frontend
     - bower install -f
+    - cd $TRAVIS_BUILD_DIR
 
 script:
     - bin/phpspec run --stop-on-failure
