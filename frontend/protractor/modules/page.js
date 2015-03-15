@@ -12,7 +12,7 @@ describe("E2E: Page module tests", function () {
     console.log('Test loaded: Page');
 
     it('Page route is working', function () {
-        browser.get('http://aisel.dev/en/page/');
+        browser.get('http://aisel.dev/en/pages/');
         expect(browser.getTitle()).toEqual('Aisel - open source project');
     });
 
