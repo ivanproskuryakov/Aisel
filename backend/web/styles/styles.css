@@ -221,9 +221,8 @@ body .panel-primary {
     background: none;
 }
 
-body .content-grid .ui-grid-render-container-left .ui-grid-header-cell,
-body .content-grid .ui-grid-render-container-body .ui-grid-header-cell {
-    height: 55px;
+body .ui-grid-header {
+    height: 60px;
 }
 
 body .content-grid .ui-grid-footer-info {
