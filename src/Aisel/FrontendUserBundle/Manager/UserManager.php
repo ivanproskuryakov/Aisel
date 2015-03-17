@@ -219,10 +219,6 @@ class UserManager implements UserProviderInterface
         $user->setWebsite($userData['website']);
         $user->setFacebook($userData['facebook']);
         $user->setTwitter($userData['twitter']);
-        $user->setLinkedin($userData['linkedin']);
-        $user->setGoogleplus($userData['googleplus']);
-        $user->setGithub($userData['github']);
-        $user->setBehance($userData['behance']);
         $user->setAbout($userData['about']);
 
         $this->em->persist($user);
@@ -249,10 +245,6 @@ class UserManager implements UserProviderInterface
 
             if ($userData['facebook']) $user->setFacebook($userData['facebook']);
             if ($userData['twitter']) $user->setTwitter($userData['twitter']);
-            if ($userData['linkedin']) $user->setLinkedin($userData['linkedin']);
-            if ($userData['googleplus']) $user->setGoogleplus($userData['googleplus']);
-            if ($userData['github']) $user->setGithub($userData['github']);
-            if ($userData['behance']) $user->setBehance($userData['behance']);
 
             $this->em->persist($user);
             $this->em->flush();

@@ -30,11 +30,6 @@
         <field name="website" type="string" column="website" length="255" nullable="true"/>
         <field name="facebook" type="string" column="facebook" length="255" nullable="true"/>
         <field name="twitter" type="string" column="twitter" length="255" nullable="true"/>
-        <field name="linkedin" type="string" column="linkedin" length="255" nullable="true"/>
-        <field name="googleplus" type="string" column="googleplus" length="255" nullable="true"/>
-        <field name="github" type="string" column="github" length="255" nullable="true"/>
-        <field name="behance" type="string" column="behance" length="255" nullable="true"/>
-
 
         <one-to-many field="pages" target-entity="Aisel\PageBundle\Entity\Page" mapped-by="frontenduser">
             <cascade>

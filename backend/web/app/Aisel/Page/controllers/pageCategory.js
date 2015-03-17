@@ -9,15 +9,11 @@
  * file that was distributed with this source code.
  *
  * @name            AiselPage
- * @description     Page module
+ * @description     ...
  */
 
-define(['app',
-    './config/page',
-    './controllers/page',
-    './controllers/pageDetails',
-    './controllers/pageCategory',
-    './services/page',
-], function (app) {
-    console.log('Page module loaded ...');
+define(['app'], function (app) {
+    app.controller('PageCategoryCtrl', function ($scope, $stateParams, pageService, $state, Environment) {
+
+    });
 });

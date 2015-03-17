@@ -27,11 +27,3 @@ Aisel\FrontendUserBundle\Entity\FrontendUser:
         expose: true
     twitter:
         expose: true
-    linkedin:
-        expose: true
-    googleplus:
-        expose: true
-    github:
-        expose: true
-    behance:
-        expose: true

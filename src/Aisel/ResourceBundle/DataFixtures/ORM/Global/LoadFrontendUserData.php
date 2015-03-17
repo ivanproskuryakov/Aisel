@@ -57,10 +57,6 @@ class LoadFrontendUserData extends XMLFixture implements OrderedFixtureInterface
                         'website' => (string) $table->column[13],
                         'facebook' => (string) $table->column[14],
                         'twitter' => (string) $table->column[15],
-                        'linkedin' => (string) $table->column[16],
-                        'googleplus' => (string) $table->column[17],
-                        'github' => (string) $table->column[18],
-                        'behance' => (string) $table->column[19],
                     );
                     $user = $this->getUserManager()->registerFixturesUser($userData);
                     $this->addReference('frontenduser_' . $table->column[0], $user);

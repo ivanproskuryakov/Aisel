@@ -1,0 +1,30 @@
+<!-- Heading actions -->
+<div class="col-md-12 page-header">
+    <div class="row">
+        <div class="row">
+            <div class="col-md-4">
+                <h2 style="margin:0">Categories</h2>
+            </div>
+            <div class="col-md-8 nav-buttons">
+                <div class="pull-right">
+                    <button type="submit" ng-if="disableNew !== true"
+                            class="btn btn-primary add-new-item"
+                            ng-click="newItem()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Item
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        categories ...
+    </div>
+</div>
+
+<hr/>
+<pre>
+    {{item}}
+</pre>

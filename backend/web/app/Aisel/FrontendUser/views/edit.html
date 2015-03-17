@@ -64,6 +64,42 @@
                                    ng-required="true"
                                    ng-model="item.item.twitter">
                         </div>
+                        <div class="form-group">
+                            <label for="about">About</label>
+                            <input type="text"
+                                   name="about"
+                                   id="about"
+                                   class="form-control"
+                                   ng-required="true"
+                                   ng-model="item.item.about">
+                        </div>
+                    </div>
+                </tab>
+
+                <!-- Password -->
+                <tab>
+                    <tab-heading>
+                        <i class="glyphicon glyphicon-lock"></i> Password
+                    </tab-heading>
+                    <div class="tab-content">
+                        <div class="form-group">
+                            <label for="lastLogin">Password</label>
+                            <input name="password"
+                                   id="password"
+                                   type="text"
+                                   class="form-control"
+                                   ng-required="true"
+                                   ng-model="item.item.password">
+                        </div>
+                        <div class="form-group">
+                            <label for="password_repeat">Password Repeat</label>
+                            <input name="password_repeat"
+                                   id="password_repeat"
+                                   type="text"
+                                   class="form-control"
+                                   ng-required="true"
+                                   ng-model="item.item.password_repeat">
+                        </div>
                     </div>
                 </tab>
 

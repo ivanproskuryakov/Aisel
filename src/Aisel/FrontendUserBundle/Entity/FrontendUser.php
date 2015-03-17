@@ -467,25 +467,6 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      */
     private $twitter;
 
-    /**
-     * @var string
-     */
-    private $linkedin;
-
-    /**
-     * @var string
-     */
-    private $googleplus;
-
-    /**
-     * @var string
-     */
-    private $github;
-
-    /**
-     * @var string
-     */
-    private $behance;
 
     /**
      * Set phone
@@ -577,98 +558,6 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     public function getTwitter()
     {
         return $this->twitter;
-    }
-
-    /**
-     * Set linkedin
-     *
-     * @param  string       $linkedin
-     * @return FrontendUser
-     */
-    public function setLinkedin($linkedin)
-    {
-        $this->linkedin = $linkedin;
-
-        return $this;
-    }
-
-    /**
-     * Get linkedin
-     *
-     * @return string
-     */
-    public function getLinkedin()
-    {
-        return $this->linkedin;
-    }
-
-    /**
-     * Set googleplus
-     *
-     * @param  string       $googleplus
-     * @return FrontendUser
-     */
-    public function setGoogleplus($googleplus)
-    {
-        $this->googleplus = $googleplus;
-
-        return $this;
-    }
-
-    /**
-     * Get googleplus
-     *
-     * @return string
-     */
-    public function getGoogleplus()
-    {
-        return $this->googleplus;
-    }
-
-    /**
-     * Set github
-     *
-     * @param  string       $github
-     * @return FrontendUser
-     */
-    public function setGithub($github)
-    {
-        $this->github = $github;
-
-        return $this;
-    }
-
-    /**
-     * Get github
-     *
-     * @return string
-     */
-    public function getGithub()
-    {
-        return $this->github;
-    }
-
-    /**
-     * Set behance
-     *
-     * @param  string       $behance
-     * @return FrontendUser
-     */
-    public function setBehance($behance)
-    {
-        $this->behance = $behance;
-
-        return $this;
-    }
-
-    /**
-     * Get behance
-     *
-     * @return string
-     */
-    public function getBehance()
-    {
-        return $this->behance;
     }
 
     /**
