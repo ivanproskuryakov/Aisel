@@ -16,6 +16,8 @@ require.config({
     // Load paths from global variable
     paths: {
         'jQuery': '../bower_components/jquery/jquery.min',
+        'jQuery-ui': '../bower_components/jquery-ui/jquery-ui',
+        'fancytree': '../bower_components/fancytree/dist/jquery.fancytree-all',
         'underscore': '../bower_components/underscore/underscore-min',
         'domReady': '../bower_components/domReady/domReady',
         'angular': '../bower_components/angular/angular',
@@ -36,7 +38,12 @@ require.config({
         'angular-gravatar': '../bower_components/angular-gravatar/build/angular-gravatar',
         'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus',
         'angular-touch': '../bower_components/angular-touch/angular-touch.min',
-        'ui-grid': '../bower_components/angular-ui-grid/ui-grid.min'
+        'ui-grid': '../bower_components/angular-ui-grid/ui-grid.min',
+
+
+        //'ui-contextmenu': '../bower_components/ui-contextmenu/jquery.ui-contextmenu'
+
+
     },
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {
@@ -47,6 +54,8 @@ require.config({
         'angular-touch': ['angular'],
         'angular' : {'exports' : 'angular', deps: ['jQuery']},
         'jQuery': {'exports' : 'jQuery'},
+        "jQuery-ui": {'exports' : 'jQuery-ui', deps: ['jQuery']},
+        "fancytree": ["jQuery-ui"],
         "domReady": ["angular"],
         "angular-resource": ["angular"],
         "textAngular": ["angular"],
@@ -64,10 +73,10 @@ require.config({
     // Kick start application
     deps: [
         './environment',
+        './Kernel/Resource/KernelResource',
         './Aisel/Auth/AiselAuth',
         './Aisel/FrontendUser/AiselFrontendUser',
         './Aisel/BackendUser/AiselBackendUser',
-        './Kernel/Resource/KernelResource',
         './Aisel/Dashboard/AiselDashboard',
         './Aisel/Page/AiselPage',
         './Aisel/Product/AiselProduct',

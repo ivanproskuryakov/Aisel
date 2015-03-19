@@ -13,12 +13,29 @@
  */
 
 define([
-        'angular', 'jQuery', 'underscore', 'angular-resource',
-        'angular-cookies', 'angular-sanitize', 'textAngular',
-        'ui-bootstrap-tpls', 'ui-utils', 'angular-gravatar',
-        'md5', 'angular-disqus', 'angular-notify', 'twitter-bootstrap',
-        'angular-ui-router', 'angular-route', 'angular-animate',
-        'angular-loading-bar', 'angular-touch', 'ui-grid'],
+        'angular',
+        'jQuery',
+        'jQuery-ui',
+        'fancytree',
+        'underscore',
+        'angular-resource',
+        'angular-cookies',
+        'angular-sanitize',
+        'textAngular',
+        'ui-bootstrap-tpls',
+        'ui-utils',
+        'angular-gravatar',
+        'md5',
+        'angular-disqus',
+        'angular-notify',
+        'twitter-bootstrap',
+        'angular-ui-router',
+        'angular-route',
+        'angular-animate',
+        'angular-loading-bar',
+        'angular-touch',
+        'ui-grid',
+    ],
     function (angular) {
         'use strict';
 
