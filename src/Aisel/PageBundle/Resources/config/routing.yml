@@ -7,7 +7,7 @@
 
 # Backend
 admin_api_aisel_page_category_update:
-    pattern:   /%website_admin%/page/category/update.json
+    pattern:   /%backend_api%/page/category/update.json
     defaults:  { _controller: AiselPageBundle:Admin/Node:update, _format: json }
     requirements:
         _method: GET

@@ -16,6 +16,7 @@ define([
         'angular',
         'jQuery',
         'jQuery-ui',
+        'ui-contextmenu',
         'fancytree',
         'underscore',
         'angular-resource',
