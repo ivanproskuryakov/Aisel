@@ -17,4 +17,5 @@ services:
 
     aisel.navigation.node.manager:
         class: %aisel_navigation_node_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager]
+        arguments:
+          - @doctrine.orm.entity_manager

@@ -26,4 +26,5 @@ services:
 
     aisel.productcategory.node.manager:
         class: %aisel_product_category_node_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager]
+        arguments:
+          - @doctrine.orm.entity_manager

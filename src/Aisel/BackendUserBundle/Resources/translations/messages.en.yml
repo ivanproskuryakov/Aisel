@@ -1,6 +1,0 @@
-security:
-    login:
-        username: Username
-        password: Password
-        submit: Submit
-    signout: Sign Out...

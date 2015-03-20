@@ -11,6 +11,12 @@ api_aisel_navigationmenu:
     requirements:
         _method: GET
 
+admin_aisel_navigation_menu_get:
+    pattern:   /%backend_api%/navigation/category/
+    defaults:  { _controller: AiselNavigationBundle:Admin/Node:get, _format: json }
+    requirements:
+        _method: GET
+
 admin_aisel_navigation_menu_update:
     pattern:   /%website_admin%/navigation/menu/update.json
     defaults:  { _controller: AiselNavigationBundle:Admin/Node:update, _format: json }

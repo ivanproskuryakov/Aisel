@@ -30,7 +30,7 @@ class NodeController extends Controller
      *
      * @param Request $request
      *
-     * @return array $tree
+     * @return array
      */
     public function getAction(Request $request)
     {
@@ -61,25 +61,25 @@ class NodeController extends Controller
 
         switch ($params['action']) {
             case 'save':
-                $menu = $nodeManager->save($params);
+                $node = $nodeManager->save($params);
                 break;
             case 'remove':
-                $menu = $nodeManager->remove($params);
+                $node = $nodeManager->remove($params);
                 break;
             case 'addChild':
-                $menu = $nodeManager->addChild($params);
+                $node = $nodeManager->addChild($params);
                 break;
             case 'addSibling':
-                $menu = $nodeManager->addSibling($params);
+                $node = $nodeManager->addSibling($params);
                 break;
             case 'dragDrop':
-                $menu = $nodeManager->updateParent($params);
+                $node = $nodeManager->updateParent($params);
                 break;
             default:
-                $menu = null;
+                $node = null;
         }
 
-        return $menu;
+        return $node;
     }
 
 }

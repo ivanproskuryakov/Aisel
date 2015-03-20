@@ -25,11 +25,28 @@ class NodeController extends Controller
     protected $nodeManager = "aisel.productcategory.node.manager";
 
     /**
-     * AJAX update action for node with $id
+     * Load category tree
      *
-     * @param int     $id
      * @param Request $request
      *
+     * @return array
+     */
+    public function getAction(Request $request)
+    {
+        $nodes = $this
+            ->container
+            ->get($this->nodeManager)
+            ->load();
+
+        return $nodes;
+    }
+
+    /**
+     * AJAX update action for node with $id
+     *
+     * @param Request $request
+     *
+     * @return object
      */
     public function updateAction(Request $request)
     {
@@ -39,29 +56,29 @@ class NodeController extends Controller
             'parentId' => $request->query->get('parentId'),
             'action' => $request->query->get('action'),
         );
+        $nodeManager = $this->container->get($this->nodeManager);
 
         switch ($params['action']) {
             case 'save':
-                $menu = $this->container->get($this->nodeManager)->save($params);
+                $node = $nodeManager->save($params);
                 break;
             case 'remove':
-                $menu = $this->container->get($this->nodeManager)->remove($params);
+                $node = $nodeManager->remove($params);
                 break;
             case 'addChild':
-                $menu = $this->container->get($this->nodeManager)->addChild($params);
+                $node = $nodeManager->addChild($params);
                 break;
             case 'addSibling':
-                $menu = $this->container->get($this->nodeManager)->addSibling($params);
+                $node = $nodeManager->addSibling($params);
                 break;
             case 'dragDrop':
-                $menu = $this->container->get($this->nodeManager)->updateParent($params);
+                $node = $nodeManager->updateParent($params);
                 break;
             default:
-                $menu = null;
+                $node = null;
         }
 
-        return $menu;
-
+        return $node;
     }
 
 }
