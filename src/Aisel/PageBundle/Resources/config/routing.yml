@@ -6,11 +6,17 @@
 # file that was distributed with this source code.
 
 # Backend
-admin_api_aisel_page_category_update:
-    pattern:   /%backend_api%/page/category/update.json
-    defaults:  { _controller: AiselPageBundle:Admin/Node:update, _format: json }
+admin_api_aisel_page_category_get:
+    pattern:   /%backend_api%/page/category/
+    defaults:  { _controller: AiselPageBundle:Admin/Node:get, _format: json }
     requirements:
         _method: GET
+
+admin_api_aisel_page_category_update:
+    pattern:   /%backend_api%/page/category/
+    defaults:  { _controller: AiselPageBundle:Admin/Node:update, _format: json }
+    requirements:
+        _method: POST
 
 admin_api_aisel_page_get_collection:
     pattern:   /%backend_api%/page/

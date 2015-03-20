@@ -25,22 +25,6 @@ var routeCategoryEdit = '';
 var routeCategoryDelete = '';
 var routeCategoryAjaxUpdate = '';
 var routeCategory = null;
-var SOURCE = [
-            {
-                locale: "en", title: "node 1", url: "#", folder: true, expanded: true, children: [
-                {locale: "en", url: "#", title: "node 1.1"},
-                {locale: "en", url: "#", title: "node 1.2"}
-            ]
-            },
-            {
-                locale: "en", url: "#", title: "node 2", folder: true, expanded: false, children: [
-                {locale: "en", url: "#", title: "node 2.1"},
-                {locale: "en", url: "#", title: "node 2.2"}
-            ]
-            }
-        ],
-        CLIPBOARD = null;
-
 
 $(function () {
     $("#adminNodeTree").fancytree({
@@ -52,7 +36,10 @@ $(function () {
         },
         checkbox: false,
         titlesTabbable: true,     // Add all node titles to TAB chain
-        source: SOURCE,
+        source: {
+            url: "http://api.aisel.dev/backend/api/page/category/",
+            cache: false
+        },
         selectMode: 2,
         filter: {
             mode: "hide"
@@ -66,14 +53,13 @@ $(function () {
                 checkboxUnknown: "glyphicon glyphicon-share",
                 error: "glyphicon glyphicon-warning-sign",
                 expanderClosed: "glyphicon glyphicon-plus-sign",
-                expanderLazy: "glyphicon glyphicon-plus-sign",
                 expanderLazy: "glyphicon glyphicon-expand",
                 expanderOpen: "glyphicon glyphicon-minus-sign",
                 // expanderOpen: "glyphicon glyphicon-collapse-down",
                 folder: "glyphicon glyphicon-folder-close",
                 folderOpen: "glyphicon glyphicon-folder-open",
                 //                loading: "glyphicon glyphicon-refresh",
-                loading: "icon-spinner icon-spin"
+                loading: "icon-spinner icon-spin"=
             }
         },
 
@@ -143,9 +129,9 @@ $(function () {
                     $select = $("<select data-id='" + node.key + "' id='category-" + node.key + "' class='category-action form-control' />"),
                     $tdList = $(node.tr).find(">td");
 
-            $tdList.eq(0).text(node.key).addClass("alignRight");
+            $tdList.eq(0).text(node.data.id).addClass("alignRight");
             $tdList.eq(1).html(node.data.locale);
-            $tdList.eq(3).html("<input type='input' disabled class='form-control' value='" + node.data.url + "'>");
+            $tdList.eq(3).html("<input type='input' disabled class='form-control' value='" + node.data.meta_url + "'>");
             $("<option />", {text: "", value: "please-select"}).appendTo($select);
             $("<option />", {
                 text: "View",
@@ -264,10 +250,8 @@ $(function () {
 
 <script type="text/javascript">
     $(function () {
-
         // Category Actions
         $(".category-action").change(function () {
-
             if ($(this).val() == 'view') {
                 routeCategory = routeCategoryShow.replace('__CATEGORYID__', $(this).data("id"));
             }
@@ -347,8 +331,3 @@ $(function () {
 
 </div>
 </div>
-
-<!--<hr/>-->
-<!--<pre>-->
-<!--{{item}}-->
-<!--</pre>-->

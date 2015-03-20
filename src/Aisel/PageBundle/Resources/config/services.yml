@@ -22,4 +22,5 @@ services:
 
     aisel.pagecategory.node.manager:
         class: %aisel_page_category_mode_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager]
+        arguments:
+          - @doctrine.orm.entity_manager
