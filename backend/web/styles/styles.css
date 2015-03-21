@@ -60,6 +60,16 @@ body {
     background: #fff;
 }
 
+body #adminNodeTree .form-control {
+    height: 24px;
+}
+
+body #adminNodeTree.table-bordered > thead > tr > th {
+    border-bottom-width: 1px;
+    font-size: 14px;
+    padding: 5px;
+}
+
 body #adminNodeTree .fancytree-childcounter {
     background: #777;
     padding: 2px;
