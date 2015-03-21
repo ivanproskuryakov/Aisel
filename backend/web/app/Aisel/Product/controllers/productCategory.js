@@ -16,6 +16,6 @@ define(['app'], function (app) {
     app.controller('ProductCategoryCtrl', function ($scope, $stateParams, pageService, $state, Environment) {
 
         $scope.sectionName = 'Product categories';
-
+        $scope.categoryJson = Environment.settings.api + '/product/category/';
     });
 });

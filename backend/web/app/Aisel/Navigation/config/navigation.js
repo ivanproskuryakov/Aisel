@@ -15,15 +15,16 @@
 define(['app'], function (app) {
     app.config(['$stateProvider', function ($stateProvider) {
         $stateProvider
-            .state("navigationEdit", {
-                url: "/:locale/navigation/edit/:id/",
-                templateUrl: '/app/Aisel/Navigation/views/edit.html',
-                controller: 'NavigationDetailCtrl'
-            })
             .state("navigation", {
                 url: "/:locale/navigation/",
                 templateUrl: '/app/Kernel/Resource/views/category.html',
                 controller: 'NavigationCtrl'
             })
+            .state("navigationEdit", {
+                url: "/:locale/navigation/edit/:id/",
+                templateUrl: '/app/Aisel/Navigation/edit-category.html',
+                controller: 'NavigationDetailCtrl'
+            })
+
     }]);
 });

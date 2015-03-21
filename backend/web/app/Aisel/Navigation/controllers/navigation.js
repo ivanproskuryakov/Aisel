@@ -16,6 +16,6 @@ define(['app'], function (app) {
     app.controller('NavigationCtrl', function ($scope, $stateParams, navigationService, $state, Environment) {
 
         $scope.sectionName = 'Navigation';
-
+        $scope.categoryJson = Environment.settings.api + '/navigation/category/';
     });
 });

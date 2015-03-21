@@ -14,10 +14,10 @@
 
 define(['app'], function (app) {
     angular.module('app')
-        .directive('fancyTree', function () {
+        .directive('aiselFancyTree', ['$timeout', function ($timeout) {
             return {
-                restrict: 'E',
+                restrict: 'EA',
                 templateUrl: '/app/Kernel/Resource/views/fancyTree.html'
             };
-        });
+        }]);
 });

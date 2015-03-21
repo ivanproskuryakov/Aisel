@@ -1,5 +1,4 @@
-<!--<input type="hidden" id="categoryJson" ng-model="categoryJson" ng-value="categoryJson">-->
-<input type="hidden" id="categoryJson" value="http://api.aisel.dev/backend/api/page/category/">
+<input type="hidden" id="categoryJson" ng-model="categoryJson" ng-value="categoryJson" name="categotyTree">
 
 <table id="adminNodeTree" class="table table-bordered table-striped col-md-12">
     <colgroup>
@@ -24,287 +23,285 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-    var routeCategoryShow = '';
-    var routeCategoryEdit = '';
-    var routeCategoryDelete = '';
-    var routeCategoryAjaxUpdate = '';
-    var routeCategory = null;
-    var categoryJson = document.getElementById("categoryJson").value;
-    console.log('CATEGORIES: ' + categoryJson);
+    setTimeout(function () {
+        var routeCategoryShow = '';
+        var routeCategoryEdit = '';
+        var routeCategoryDelete = '';
+        var routeCategoryAjaxUpdate = '';
+        var routeCategory = null;
+        var categoryJson = document.getElementById("categoryJson").value;
 
-    $("#adminNodeTree").fancytree({
-        extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter", "childcounter"],
-        childcounter: {
-            deep: true,
-            hideZeros: true,
-            hideExpanded: true
-        },
-        checkbox: false,
-        titlesTabbable: true,     // Add all node titles to TAB chain
-        source: {
-            url: categoryJson,
-            cache: false
-        },
-        selectMode: 2,
-        filter: {
-            mode: "hide"
-        },
-        glyph: {
-            map: {
-                doc: "glyphicon glyphicon-file",
-                docOpen: "glyphicon glyphicon-file",
-                checkbox: "glyphicon glyphicon-unchecked",
-                checkboxSelected: "glyphicon glyphicon-check",
-                checkboxUnknown: "glyphicon glyphicon-share",
-                error: "glyphicon glyphicon-warning-sign",
-                expanderClosed: "glyphicon glyphicon-plus-sign",
-                expanderLazy: "glyphicon glyphicon-expand",
-                expanderOpen: "glyphicon glyphicon-minus-sign",
-                // expanderOpen: "glyphicon glyphicon-collapse-down",
-                folder: "glyphicon glyphicon-folder-close",
-                folderOpen: "glyphicon glyphicon-folder-open",
-                //                loading: "glyphicon glyphicon-refresh",
-                loading: "icon-spinner icon-spin"
+        $("#adminNodeTree").fancytree({
+            extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter", "childcounter"],
+            childcounter: {
+                deep: true,
+                hideZeros: true,
+                hideExpanded: true
+            },
+            checkbox: false,
+            titlesTabbable: true,     // Add all node titles to TAB chain
+            source: {
+                url: categoryJson,
+                cache: false
+            },
+            selectMode: 2,
+            filter: {
+                mode: "hide"
+            },
+            glyph: {
+                map: {
+                    doc: "glyphicon glyphicon-file",
+                    docOpen: "glyphicon glyphicon-file",
+                    checkbox: "glyphicon glyphicon-unchecked",
+                    checkboxSelected: "glyphicon glyphicon-check",
+                    checkboxUnknown: "glyphicon glyphicon-share",
+                    error: "glyphicon glyphicon-warning-sign",
+                    expanderClosed: "glyphicon glyphicon-plus-sign",
+                    expanderLazy: "glyphicon glyphicon-expand",
+                    expanderOpen: "glyphicon glyphicon-minus-sign",
+                    // expanderOpen: "glyphicon glyphicon-collapse-down",
+                    folder: "glyphicon glyphicon-folder-close",
+                    folderOpen: "glyphicon glyphicon-folder-open",
+                    //                loading: "glyphicon glyphicon-refresh",
+                    loading: "icon-spinner icon-spin"
+                }
+            },
+
+            dnd: {
+                preventVoidMoves: true,
+                preventRecursiveMoves: true,
+                autoExpandMS: 400,
+                dragStart: function (node, data) {
+                    return true;
+                },
+                dragEnter: function (node, data) {
+                    // return ["before", "after"];
+                    return true;
+                },
+                dragDrop: function (node, data) {
+                    console.log(node.key);
+                    console.log(data.otherNode.key);
+                    data.otherNode.moveTo(node, data.hitMode);
+
+                    var categoryId = data.otherNode.key;
+                    var categoryParentId = node.key;
+
+                    $.get(routeCategoryAjaxUpdate, {action: 'dragDrop', id: categoryId, parentId: categoryParentId})
+                            .done(function (data) {
+                                console.log('AJAX done');
+                            });
+
+                }
+            },
+            edit: {
+                triggerStart: ["f2", "dblclick", "shift+click", "mac+enter"],
+                beforeClose: function (event, data) {
+                    // Return false to prevent cancel/save (data.input is available)
+                },
+                beforeEdit: function (event, data) {
+                    // Return false to prevent edit mode
+                },
+                close: function (event, data) {
+                    // Editor was removed
+                },
+                edit: function (event, data) {
+                    // Editor was opened (available as data.input)
+                },
+                save: function (event, data) {
+                    console.log(data.node);
+                    var categoryUrl = data.node.data.url;
+                    var categoryId = data.node.key;
+                    var categoryTitle = data.value;
+                    $.get(routeCategoryAjaxUpdate, {
+                        action: 'save',
+                        name: categoryTitle,
+                        id: categoryId,
+                        url: categoryUrl
+                    })
+                            .done(function (data) {
+                                console.log('AJAX done');
+                            });
+                }
+            },
+            table: {
+                indentation: 20,
+                nodeColumnIdx: 2,
+                //            checkboxColumnIdx: 0
+            },
+            gridnav: {
+                autofocusInput: false,
+                handleCursorKeys: true
+            },
+
+            renderColumns: function (event, data) {
+                var node = data.node,
+                        $select = $("<select data-id='" + node.key + "' id='category-" + node.key + "' class='category-action form-control' />"),
+                        $tdList = $(node.tr).find(">td");
+
+                $tdList.eq(0).text(node.data.id).addClass("alignRight");
+                $tdList.eq(1).html(node.data.locale);
+                $tdList.eq(3).html("<input type='input' disabled class='form-control' value='" + node.data.meta_url + "'>");
+                $("<option />", {text: "", value: "please-select"}).appendTo($select);
+                $("<option />", {
+                    text: "Edit",
+                    value: "edit"
+                }).appendTo($select);
+                $("<option />", {
+                    text: "Delete",
+                    value: "delete"
+                }).appendTo($select);
+                $tdList.eq(4).html($select);
             }
-        },
+        }).on("nodeCommand", function (event, data) {
+            var refNode, moveMode,
+                    tree = $(this).fancytree("getTree"),
+                    node = tree.getActiveNode();
 
-        dnd: {
-            preventVoidMoves: true,
-            preventRecursiveMoves: true,
-            autoExpandMS: 400,
-            dragStart: function (node, data) {
-                return true;
-            },
-            dragEnter: function (node, data) {
-                // return ["before", "after"];
-                return true;
-            },
-            dragDrop: function (node, data) {
-                console.log(node.key);
-                console.log(data.otherNode.key);
-                data.otherNode.moveTo(node, data.hitMode);
+            switch (data.cmd) {
+                case "moveUp":
+                    node.moveTo(node.getPrevSibling(), "before");
+                    node.setActive();
+                    break;
+                case "moveDown":
+                    node.moveTo(node.getNextSibling(), "after");
+                    node.setActive();
+                    break;
+                case "indent":
+                    refNode = node.getPrevSibling();
+                    node.moveTo(refNode, "child");
+                    refNode.setExpanded();
+                    node.setActive();
+                    break;
+                case "outdent":
+                    node.moveTo(node.getParent(), "after");
+                    node.setActive();
+                    break;
+                case "rename":
+                    node.editStart();
+                    break;
+                case "remove":
+                    var categoryId = node.key;
+                    $.get(routeCategoryAjaxUpdate, {action: 'remove', id: categoryId})
+                            .done(function (data) {
+                                console.log('AJAX done');
+                            });
+                    node.remove();
+                    break;
+                case "addChild":
+                    refNode = node.addChildren({
+                        title: "{{ 'aisel.admin.new_child_node'|trans({}, 'admin') }}",
+                        url: "/#!/",
+                        isNew: true
+                    });
+                    node.setExpanded();
+                    refNode.editStart();
 
-                var categoryId = data.otherNode.key;
-                var categoryParentId = node.key;
+                    var categoryId = node.key;
+                    var categoryTitle = refNode.title;
+                    $.get(routeCategoryAjaxUpdate, {action: 'addChild', name: categoryTitle, parentId: categoryId})
+                            .done(function (data) {
+                                console.log('AJAX done');
+                            });
 
-                $.get(routeCategoryAjaxUpdate, {action: 'dragDrop', id: categoryId, parentId: categoryParentId})
-                        .done(function (data) {
-                            console.log('AJAX done');
-                        });
 
+                    break;
+                case "addSibling":
+                    refNode = node.getParent().addChildren({
+                        title: "{{ 'aisel.admin.new_node'|trans({}, 'admin') }}",
+                        url: "/#!/",
+                        isNew: true
+                    }, node.getNextSibling());
+
+                    var categoryTitle = refNode.title;
+                    $.get(routeCategoryAjaxUpdate, {action: 'addSibling', name: categoryTitle})
+                            .done(function (data) {
+                                console.log('AJAX done');
+                            });
+                    refNode.editStart();
+                    break;
+                default:
+                    alert("Unhandled command: " + data.cmd);
+                    return;
             }
-        },
-        edit: {
-            triggerStart: ["f2", "dblclick", "shift+click", "mac+enter"],
-            beforeClose: function (event, data) {
-                // Return false to prevent cancel/save (data.input is available)
-            },
-            beforeEdit: function (event, data) {
-                // Return false to prevent edit mode
-            },
-            close: function (event, data) {
-                // Editor was removed
-            },
-            edit: function (event, data) {
-                // Editor was opened (available as data.input)
-            },
-            save: function (event, data) {
-                console.log(data.node);
-                var categoryUrl = data.node.data.url;
-                var categoryId = data.node.key;
-                var categoryTitle = data.value;
-                $.get(routeCategoryAjaxUpdate, {action: 'save', name: categoryTitle, id: categoryId, url: categoryUrl})
-                        .done(function (data) {
-                            console.log('AJAX done');
-                        });
+
+        }).on("keydown", function (e) {
+            var c = String.fromCharCode(e.which),
+                    cmd = null;
+
+            if (c === "N" && e.ctrlKey && e.shiftKey) {
+                cmd = "addChild";
+            } else if (c === "N" && e.ctrlKey) {
+                cmd = "addSibling";
+            } else if (e.which === $.ui.keyCode.DELETE) {
+                cmd = "remove";
+            } else if (e.which === $.ui.keyCode.F2) {
+                cmd = "rename";
+            } else if (e.which === $.ui.keyCode.UP && e.ctrlKey) {
+                cmd = "moveUp";
+            } else if (e.which === $.ui.keyCode.DOWN && e.ctrlKey) {
+                cmd = "moveDown";
+            } else if (e.which === $.ui.keyCode.RIGHT && e.ctrlKey) {
+                cmd = "indent";
+            } else if (e.which === $.ui.keyCode.LEFT && e.ctrlKey) {
+                cmd = "outdent";
             }
-        },
-        table: {
-            indentation: 20,
-            nodeColumnIdx: 2,
-            //            checkboxColumnIdx: 0
-        },
-        gridnav: {
-            autofocusInput: false,
-            handleCursorKeys: true
-        },
-
-        renderColumns: function (event, data) {
-            var node = data.node,
-                    $select = $("<select data-id='" + node.key + "' id='category-" + node.key + "' class='category-action form-control' />"),
-                    $tdList = $(node.tr).find(">td");
-
-            $tdList.eq(0).text(node.data.id).addClass("alignRight");
-            $tdList.eq(1).html(node.data.locale);
-            $tdList.eq(3).html("<input type='input' disabled class='form-control' value='" + node.data.meta_url + "'>");
-            $("<option />", {text: "", value: "please-select"}).appendTo($select);
-            $("<option />", {
-                text: "View",
-                value: "view"
-            }).appendTo($select);
-            $("<option />", {
-                text: "Edit",
-                value: "edit"
-            }).appendTo($select);
-            $("<option />", {
-                text: "Delete",
-                value: "delete"
-            }).appendTo($select);
-            $tdList.eq(4).html($select);
-        }
-    }).on("nodeCommand", function (event, data) {
-        var refNode, moveMode,
-                tree = $(this).fancytree("getTree"),
-                node = tree.getActiveNode();
-
-        switch (data.cmd) {
-            case "moveUp":
-                node.moveTo(node.getPrevSibling(), "before");
-                node.setActive();
-                break;
-            case "moveDown":
-                node.moveTo(node.getNextSibling(), "after");
-                node.setActive();
-                break;
-            case "indent":
-                refNode = node.getPrevSibling();
-                node.moveTo(refNode, "child");
-                refNode.setExpanded();
-                node.setActive();
-                break;
-            case "outdent":
-                node.moveTo(node.getParent(), "after");
-                node.setActive();
-                break;
-            case "rename":
-                node.editStart();
-                break;
-            case "remove":
-                var categoryId = node.key;
-                $.get(routeCategoryAjaxUpdate, {action: 'remove', id: categoryId})
-                        .done(function (data) {
-                            console.log('AJAX done');
-                        });
-                node.remove();
-                break;
-            case "addChild":
-                refNode = node.addChildren({
-                    title: "{{ 'aisel.admin.new_child_node'|trans({}, 'admin') }}",
-                    url: "/#!/",
-                    isNew: true
-                });
-                node.setExpanded();
-                refNode.editStart();
-
-                var categoryId = node.key;
-                var categoryTitle = refNode.title;
-                $.get(routeCategoryAjaxUpdate, {action: 'addChild', name: categoryTitle, parentId: categoryId})
-                        .done(function (data) {
-                            console.log('AJAX done');
-                        });
-
-
-                break;
-            case "addSibling":
-                refNode = node.getParent().addChildren({
-                    title: "{{ 'aisel.admin.new_node'|trans({}, 'admin') }}",
-                    url: "/#!/",
-                    isNew: true
-                }, node.getNextSibling());
-
-                var categoryTitle = refNode.title;
-                $.get(routeCategoryAjaxUpdate, {action: 'addSibling', name: categoryTitle})
-                        .done(function (data) {
-                            console.log('AJAX done');
-                        });
-                refNode.editStart();
-                break;
-            default:
-                alert("Unhandled command: " + data.cmd);
-                return;
-        }
-
-    }).on("keydown", function (e) {
-        var c = String.fromCharCode(e.which),
-                cmd = null;
-
-        if (c === "N" && e.ctrlKey && e.shiftKey) {
-            cmd = "addChild";
-        } else if (c === "N" && e.ctrlKey) {
-            cmd = "addSibling";
-        } else if (e.which === $.ui.keyCode.DELETE) {
-            cmd = "remove";
-        } else if (e.which === $.ui.keyCode.F2) {
-            cmd = "rename";
-        } else if (e.which === $.ui.keyCode.UP && e.ctrlKey) {
-            cmd = "moveUp";
-        } else if (e.which === $.ui.keyCode.DOWN && e.ctrlKey) {
-            cmd = "moveDown";
-        } else if (e.which === $.ui.keyCode.RIGHT && e.ctrlKey) {
-            cmd = "indent";
-        } else if (e.which === $.ui.keyCode.LEFT && e.ctrlKey) {
-            cmd = "outdent";
-        }
-        if (cmd) {
-            $(this).trigger("nodeCommand", {cmd: cmd});
-            return false;
-        }
-    });
-});
-
-$(function () {
-    // Category Actions
-    $(".category-action").change(function () {
-        if ($(this).val() == 'view') {
-            routeCategory = routeCategoryShow.replace('__CATEGORYID__', $(this).data("id"));
-        }
-        if ($(this).val() == 'edit') {
-            routeCategory = routeCategoryEdit.replace('__CATEGORYID__', $(this).data("id"));
-        }
-        if ($(this).val() == 'delete') {
-            routeCategory = routeCategoryDelete.replace('__CATEGORYID__', $(this).data("id"));
-        }
-        if (routeCategory) {
-            window.location.href = routeCategory;
-        }
-    });
-
-    /*
-     * Context menu
-     */
-    $("#adminNodeTree").contextmenu({
-        delegate: "span.fancytree-title",
-        menu: [
-            {title: "Rename", cmd: "rename", uiIcon: "ui-icon-pencil"},
-            {title: "Remove", cmd: "remove", uiIcon: "ui-icon-trash"},
-            {title: "----"},
-            {title: "Add Sibling", cmd: "addSibling", uiIcon: "ui-icon-plus"},
-            {title: "Add Child", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e"},],
-        beforeOpen: function (event, ui) {
-            var node = $.ui.fancytree.getNode(ui.target);
-            $("#adminNodeTree").contextmenu("enableEntry", "paste", !!CLIPBOARD);
-            node.setActive();
-        },
-        select: function (event, ui) {
-            var that = this;
-            // delay the event, so the menu can close and the click event does
-            // not interfere with the edit control
-            setTimeout(function () {
-                $(that).trigger("nodeCommand", {cmd: ui.cmd});
-            }, 100);
-        }
-    });
-
-    $("#btnExpandAll").click(function () {
-        $("#adminNodeTree").fancytree("getTree").visit(function (node) {
-            node.setExpanded(true);
-        });
-    });
-    $("#btnCollapseAll").click(function () {
-        $("#adminNodeTree").fancytree("getTree").visit(function (node) {
-            node.setExpanded(false);
+            if (cmd) {
+                $(this).trigger("nodeCommand", {cmd: cmd});
+                return false;
+            }
         });
     });
 
+    $(function () {
+        // Category Actions
+        $(".category-action").change(function () {
+            if ($(this).val() == 'edit') {
+                routeCategory = routeCategoryEdit.replace('__CATEGORYID__', $(this).data("id"));
+            }
+            if ($(this).val() == 'delete') {
+                routeCategory = routeCategoryDelete.replace('__CATEGORYID__', $(this).data("id"));
+            }
+            if (routeCategory) {
+                window.location.href = routeCategory;
+            }
+        });
+
+        /*
+         * Context menu
+         */
+        $("#adminNodeTree").contextmenu({
+            delegate: "span.fancytree-title",
+            menu: [
+                {title: "Rename", cmd: "rename", uiIcon: "ui-icon-pencil"},
+                {title: "Remove", cmd: "remove", uiIcon: "ui-icon-trash"},
+                {title: "----"},
+                {title: "Add Sibling", cmd: "addSibling", uiIcon: "ui-icon-plus"},
+                {title: "Add Child", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e"},],
+            beforeOpen: function (event, ui) {
+                var node = $.ui.fancytree.getNode(ui.target);
+                $("#adminNodeTree").contextmenu("enableEntry", "paste", !!CLIPBOARD);
+                node.setActive();
+            },
+            select: function (event, ui) {
+                var that = this;
+                // delay the event, so the menu can close and the click event does
+                // not interfere with the edit control
+                setTimeout(function () {
+                    $(that).trigger("nodeCommand", {cmd: ui.cmd});
+                }, 100);
+            }
+        });
+
+        $("#btnExpandAll").click(function () {
+            $("#adminNodeTree").fancytree("getTree").visit(function (node) {
+                node.setExpanded(true);
+            });
+        });
+        $("#btnCollapseAll").click(function () {
+            $("#adminNodeTree").fancytree("getTree").visit(function (node) {
+                node.setExpanded(false);
+            });
+        });
+    }, 0);
 });
 </script>

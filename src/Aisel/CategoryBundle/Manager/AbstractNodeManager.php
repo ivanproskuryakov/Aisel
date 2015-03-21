@@ -20,6 +20,7 @@ use \LogicException;
  */
 class AbstractNodeManager
 {
+
     protected $em;
 
     protected $repository = null;
@@ -179,6 +180,24 @@ class AbstractNodeManager
         $node->setParent($nodeParent);
         $this->em->persist($node);
         $this->em->flush();
+
+        return $node;
+    }
+
+    /**
+     * Update parent for Node
+     *
+     * @param  int $id
+     * @return object
+     *
+     * @throws LogicException
+     */
+    public function getNode($id)
+    {
+        $node = $this
+            ->em
+            ->getRepository($this->repository)
+            ->find($id);
 
         return $node;
     }

@@ -21,5 +21,5 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ApiController extends AbstractCollectionController
 {
-    protected $manager = "aisel.page.manager";
+    public $manager = "aisel.page.manager";
 }

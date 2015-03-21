@@ -35,5 +35,10 @@ define(['app'], function (app) {
                 templateUrl: '/app/Kernel/Resource/views/category.html',
                 controller: 'ProductCategoryCtrl'
             })
+            .state("productCategoryEdit", {
+                url: "/:locale/page/category/edit/:id/",
+                templateUrl: '/app/Aisel/Product/edit-category.html',
+                controller: 'PageCategoryCtrl'
+            })
     }]);
 });

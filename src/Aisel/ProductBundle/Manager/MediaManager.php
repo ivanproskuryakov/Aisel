@@ -33,7 +33,6 @@ class MediaManager
         $this->em = $em;
         $this->appMediaProductPath = $appMediaProductPath;
         $this->websiteAddress = $websiteAddress;
-
     }
 
     /**

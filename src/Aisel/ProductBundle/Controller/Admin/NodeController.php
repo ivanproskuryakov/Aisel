@@ -11,74 +11,18 @@
 
 namespace Aisel\ProductBundle\Controller\Admin;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aisel\CategoryBundle\Controller\Admin\AbstractNodeController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Backend AJAX actions for product categories
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeController extends Controller
+class NodeController extends AbstractNodeController
 {
 
     protected $nodeManager = "aisel.productcategory.node.manager";
-
-    /**
-     * Load category tree
-     *
-     * @param Request $request
-     *
-     * @return array
-     */
-    public function getAction(Request $request)
-    {
-        $nodes = $this
-            ->container
-            ->get($this->nodeManager)
-            ->load();
-
-        return $nodes;
-    }
-
-    /**
-     * AJAX update action for node with $id
-     *
-     * @param Request $request
-     *
-     * @return object
-     */
-    public function updateAction(Request $request)
-    {
-        $params = array(
-            'name' => $request->query->get('name'),
-            'id' => $request->query->get('id'),
-            'parentId' => $request->query->get('parentId'),
-            'action' => $request->query->get('action'),
-        );
-        $nodeManager = $this->container->get($this->nodeManager);
-
-        switch ($params['action']) {
-            case 'save':
-                $node = $nodeManager->save($params);
-                break;
-            case 'remove':
-                $node = $nodeManager->remove($params);
-                break;
-            case 'addChild':
-                $node = $nodeManager->addChild($params);
-                break;
-            case 'addSibling':
-                $node = $nodeManager->addSibling($params);
-                break;
-            case 'dragDrop':
-                $node = $nodeManager->updateParent($params);
-                break;
-            default:
-                $node = null;
-        }
-
-        return $node;
-    }
 
 }
