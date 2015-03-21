@@ -8,14 +8,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselProduct
+ * @name            AiselNavigation
  * @description     ...
  */
 
 define(['app'], function (app) {
-    app.controller('ProductCategoryCtrl', function ($scope, $stateParams, pageService, $state, Environment) {
+    app.controller('NavigationCtrl', function ($scope, $stateParams, navigationService, $state, Environment) {
 
-        $scope.sectionName = 'Product categories';
+        $scope.sectionName = 'Navigation';
 
     });
 });

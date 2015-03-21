@@ -3,7 +3,7 @@
     <div class="row">
         <div class="row">
             <div class="col-md-4">
-                <h2 style="margin:0">Categories</h2>
+                <h2 style="margin:0">{{sectionName}}</h2>
             </div>
             <div class="col-md-8 nav-buttons">
                 <div class="pull-right">
@@ -14,19 +14,18 @@
         </div>
     </div>
 </div>
-
 <div class="row">
 <div class="col-md-12">
-
+<input type="hidden" id="categoryJson" value="http://api.aisel.dev/backend/api/page/category/">
 <script type="text/javascript">
-
-var routeCategoryShow = '';
-var routeCategoryEdit = '';
-var routeCategoryDelete = '';
-var routeCategoryAjaxUpdate = '';
-var routeCategory = null;
-
 $(function () {
+    var routeCategoryShow = '';
+    var routeCategoryEdit = '';
+    var routeCategoryDelete = '';
+    var routeCategoryAjaxUpdate = '';
+    var routeCategory = null;
+    var categoryJson = document.getElementById("categoryJson").value;
+
     $("#adminNodeTree").fancytree({
         extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter", "childcounter"],
         childcounter: {
@@ -37,7 +36,7 @@ $(function () {
         checkbox: false,
         titlesTabbable: true,     // Add all node titles to TAB chain
         source: {
-            url: "http://api.aisel.dev/backend/api/page/category/",
+            url: categoryJson,
             cache: false
         },
         selectMode: 2,
@@ -59,7 +58,7 @@ $(function () {
                 folder: "glyphicon glyphicon-folder-close",
                 folderOpen: "glyphicon glyphicon-folder-open",
                 //                loading: "glyphicon glyphicon-refresh",
-                loading: "icon-spinner icon-spin"=
+                loading: "icon-spinner icon-spin"
             }
         },
 
@@ -246,65 +245,62 @@ $(function () {
         }
     });
 });
-</script>
+$(function () {
+    // Category Actions
+    $(".category-action").change(function () {
+        if ($(this).val() == 'view') {
+            routeCategory = routeCategoryShow.replace('__CATEGORYID__', $(this).data("id"));
+        }
+        if ($(this).val() == 'edit') {
+            routeCategory = routeCategoryEdit.replace('__CATEGORYID__', $(this).data("id"));
+        }
+        if ($(this).val() == 'delete') {
+            routeCategory = routeCategoryDelete.replace('__CATEGORYID__', $(this).data("id"));
+        }
 
-<script type="text/javascript">
-    $(function () {
-        // Category Actions
-        $(".category-action").change(function () {
-            if ($(this).val() == 'view') {
-                routeCategory = routeCategoryShow.replace('__CATEGORYID__', $(this).data("id"));
-            }
-            if ($(this).val() == 'edit') {
-                routeCategory = routeCategoryEdit.replace('__CATEGORYID__', $(this).data("id"));
-            }
-            if ($(this).val() == 'delete') {
-                routeCategory = routeCategoryDelete.replace('__CATEGORYID__', $(this).data("id"));
-            }
-
-            if (routeCategory) {
-                window.location.href = routeCategory;
-            }
-        });
-
-        /*
-         * Context menu
-         */
-        $("#adminNodeTree").contextmenu({
-            delegate: "span.fancytree-title",
-            menu: [
-                {title: "Rename", cmd: "rename", uiIcon: "ui-icon-pencil"},
-                {title: "Remove", cmd: "remove", uiIcon: "ui-icon-trash"},
-                {title: "----"},
-                {title: "Add Sibling", cmd: "addSibling", uiIcon: "ui-icon-plus"},
-                {title: "Add Child", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e"},],
-            beforeOpen: function (event, ui) {
-                var node = $.ui.fancytree.getNode(ui.target);
-                $("#adminNodeTree").contextmenu("enableEntry", "paste", !!CLIPBOARD);
-                node.setActive();
-            },
-            select: function (event, ui) {
-                var that = this;
-                // delay the event, so the menu can close and the click event does
-                // not interfere with the edit control
-                setTimeout(function () {
-                    $(that).trigger("nodeCommand", {cmd: ui.cmd});
-                }, 100);
-            }
-        });
-
-        $("#btnExpandAll").click(function () {
-            $("#adminNodeTree").fancytree("getTree").visit(function (node) {
-                node.setExpanded(true);
-            });
-        });
-        $("#btnCollapseAll").click(function () {
-            $("#adminNodeTree").fancytree("getTree").visit(function (node) {
-                node.setExpanded(false);
-            });
-        });
-
+        if (routeCategory) {
+            window.location.href = routeCategory;
+        }
     });
+
+    /*
+     * Context menu
+     */
+    $("#adminNodeTree").contextmenu({
+        delegate: "span.fancytree-title",
+        menu: [
+            {title: "Rename", cmd: "rename", uiIcon: "ui-icon-pencil"},
+            {title: "Remove", cmd: "remove", uiIcon: "ui-icon-trash"},
+            {title: "----"},
+            {title: "Add Sibling", cmd: "addSibling", uiIcon: "ui-icon-plus"},
+            {title: "Add Child", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e"},],
+        beforeOpen: function (event, ui) {
+            var node = $.ui.fancytree.getNode(ui.target);
+            $("#adminNodeTree").contextmenu("enableEntry", "paste", !!CLIPBOARD);
+            node.setActive();
+        },
+        select: function (event, ui) {
+            var that = this;
+            // delay the event, so the menu can close and the click event does
+            // not interfere with the edit control
+            setTimeout(function () {
+                $(that).trigger("nodeCommand", {cmd: ui.cmd});
+            }, 100);
+        }
+    });
+
+    $("#btnExpandAll").click(function () {
+        $("#adminNodeTree").fancytree("getTree").visit(function (node) {
+            node.setExpanded(true);
+        });
+    });
+    $("#btnCollapseAll").click(function () {
+        $("#adminNodeTree").fancytree("getTree").visit(function (node) {
+            node.setExpanded(false);
+        });
+    });
+
+});
 </script>
 
 <table id="adminNodeTree" class="table table-bordered table-striped col-md-12">

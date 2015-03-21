@@ -42,7 +42,6 @@ require.config({
         'ui-grid': '../bower_components/angular-ui-grid/ui-grid.min'
 
 
-
     },
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {
@@ -51,9 +50,9 @@ require.config({
         'angular-animate': ['angular'],
         'angular-ui-router': ['angular'],
         'angular-touch': ['angular'],
-        'angular' : {'exports' : 'angular', deps: ['jQuery']},
-        'jQuery': {'exports' : 'jQuery'},
-        "jQuery-ui": {'exports' : 'jQuery-ui', deps: ['jQuery']},
+        'angular': {'exports': 'angular', deps: ['jQuery']},
+        'jQuery': {'exports': 'jQuery'},
+        "jQuery-ui": {'exports': 'jQuery-ui', deps: ['jQuery']},
         "fancytree": ["jQuery-ui"],
         "ui-contextmenu": ["jQuery-ui"],
         "domReady": ["angular"],
@@ -75,13 +74,14 @@ require.config({
         './environment',
         './Kernel/Resource/KernelResource',
         './Aisel/Auth/AiselAuth',
+        './Aisel/Dashboard/AiselDashboard',
         './Aisel/FrontendUser/AiselFrontendUser',
         './Aisel/BackendUser/AiselBackendUser',
-        './Aisel/Dashboard/AiselDashboard',
         './Aisel/Page/AiselPage',
         './Aisel/Product/AiselProduct',
         './Aisel/Addressing/AiselAddressing',
         './Aisel/Order/AiselOrder',
+        './Aisel/Navigation/AiselNavigation',
         './Aisel/Settings/AiselSettings',
         'bootstrap',
     ],
