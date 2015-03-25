@@ -30,7 +30,6 @@ admin_api_aisel_page_get:
     requirements:
         _method: GET
 
-
 # Frontend
 api_aisel_pagelist:
     pattern:  /%frontend_api%/{locale}/page/

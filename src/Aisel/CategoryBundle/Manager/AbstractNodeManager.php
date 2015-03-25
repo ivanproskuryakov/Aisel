@@ -36,6 +36,21 @@ class AbstractNodeManager
     }
 
     /**
+     * Get single detailed item by its Id
+     *
+     * @param int $id
+     *
+     * @return mixed $details
+     */
+    public function getItem($id)
+    {
+        $page = $this->em->getRepository($this->repository)->find($id);
+        $details = array('item' => $page);
+
+        return $details;
+    }
+
+    /**
      * Load node tree
      */
     public function load()

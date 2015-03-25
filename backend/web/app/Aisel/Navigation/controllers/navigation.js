@@ -17,5 +17,6 @@ define(['app'], function (app) {
 
         $scope.sectionName = 'Navigation';
         $scope.categoryJson = Environment.settings.api + '/navigation/category/';
+
     });
 });

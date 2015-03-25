@@ -13,7 +13,7 @@ namespace Aisel\CategoryBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Backend AJAX actions for page categories
@@ -26,13 +26,25 @@ class AbstractNodeController extends Controller
     protected $nodeManager;
 
     /**
-     * Load category tree
+     * @param integer $id
+     *
+     * @return JsonResponse $response
+     */
+    public function getAction($id)
+    {
+        $nodeManager = $this->container->get($this->nodeManager);
+
+        return $nodeManager->getItem($id);
+    }
+
+    /**
+     * Load tree
      *
      * @param Request $request
      *
      * @return array
      */
-    public function getAction(Request $request)
+    public function getTreeAction(Request $request)
     {
         $nodes = $this
             ->container

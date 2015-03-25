@@ -5,20 +5,22 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
+# Frontend
 api_aisel_navigationmenu:
     pattern:  /%frontend_api%/{locale}/navigation/menu.json
     defaults: { _controller: AiselNavigationBundle:Api:menu, _format: json }
     requirements:
         _method: GET
 
+# Backend
 admin_aisel_navigation_menu_get:
-    pattern:   /%backend_api%/navigation/category/
-    defaults:  { _controller: AiselNavigationBundle:Admin/Node:get, _format: json }
+    pattern:   /%backend_api%/navigation/tree/
+    defaults:  { _controller: AiselNavigationBundle:Admin/Node:getTree, _format: json }
     requirements:
         _method: GET
 
-admin_aisel_navigation_menu_update:
-    pattern:   /%website_admin%/navigation/menu/update.json
-    defaults:  { _controller: AiselNavigationBundle:Admin/Node:update, _format: json }
+admin_aisel_navigation_get:
+    pattern:   /%backend_api%/navigation/{id}
+    defaults:  { _controller: AiselNavigationBundle:Admin/Node:get, _format: json }
     requirements:
         _method: GET

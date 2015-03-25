@@ -22,7 +22,7 @@ define(['app'], function (app) {
         var handleSuccess = function (data, status) {
             $scope.item = data;
         };
-        pageService.get($scope.details.id).success(handleSuccess);
+        navigationService.get($scope.details.id).success(handleSuccess);
 
         $scope.editCancel = function () {
             $state.transitionTo('navigation', {locale: Environment.currentLocale()});

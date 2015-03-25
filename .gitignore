@@ -1,4 +1,7 @@
 #Node.js
+/.idea/*
+
+#Node.js
 /node_modules/*
 
 #Frontend
