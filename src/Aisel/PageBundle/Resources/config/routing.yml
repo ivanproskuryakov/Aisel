@@ -7,12 +7,18 @@
 
 # Backend
 admin_api_aisel_page_category_get:
-    pattern:   /%backend_api%/page/category/
+    pattern:   /%backend_api%/page/category/{id}
     defaults:  { _controller: AiselPageBundle:Admin/Node:get, _format: json }
     requirements:
         _method: GET
 
-admin_api_aisel_page_category_update:
+admin_api_aisel_page_category_tree_get:
+    pattern:   /%backend_api%/page/category/
+    defaults:  { _controller: AiselPageBundle:Admin/Node:getTree, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_page_category_tree_update:
     pattern:   /%backend_api%/page/category/
     defaults:  { _controller: AiselPageBundle:Admin/Node:update, _format: json }
     requirements:
