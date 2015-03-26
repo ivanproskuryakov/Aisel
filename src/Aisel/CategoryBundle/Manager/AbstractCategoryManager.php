@@ -12,6 +12,7 @@
 namespace Aisel\CategoryBundle\Manager;
 
 use Aisel\ResourceBundle\Utility\UrlUtility;
+use LogicException;
 
 class AbstractCategoryManager
 {
@@ -176,6 +177,8 @@ class AbstractCategoryManager
      * @param string $urlKey
      * @param string $locale
      *
+     * @throws LogicException
+     *
      * @return mixed
      */
     public function getCategoryByURL($urlKey, $locale = null)
@@ -183,7 +186,7 @@ class AbstractCategoryManager
         $category = $this->em->getRepository($this->categoryEntity)->getEnabledCategoryByUrl($urlKey, $locale);
 
         if (!($category)) {
-            throw $this->createNotFoundException();
+            throw new LogicException('Object not found');
         }
         $pages = $this->em->getRepository('AiselPageBundle:Page')->getPagesByCategory($category->getId());
         $categoryDetails = array('category' => $category, 'pages' => $pages);
@@ -196,14 +199,16 @@ class AbstractCategoryManager
      *
      * @param int $id
      *
-     * @return object
+     * @throws LogicException
+     *
+     * @return mixed
      */
     public function getCategory($id)
     {
         $category = $this->em->getRepository($this->categoryEntity)->getEnabledCategory($id);
 
         if (!($category)) {
-            throw $this->createNotFoundException();
+            throw new LogicException('Object not found');
         }
         $pages = $this->em->getRepository('AiselPageBundle:Page')->getPagesByCategory($category->getId());
         $categoryDetails = array('category' => $category, 'pages' => $pages);

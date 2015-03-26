@@ -11,7 +11,7 @@
 
 namespace Aisel\CategoryBundle\Manager;
 
-use \LogicException;
+use LogicException;
 
 /**
  * Abstract Manager Class

@@ -15,6 +15,7 @@ use Aisel\BackendUserBundle\Entity\BackendUser;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use LogicException;
 
 /**
  * Manager for backend users. Register, Load and others ...
@@ -69,14 +70,14 @@ class UserManager implements UserProviderInterface
      *
      * @return \Aisel\PageBundle\Entity\Page $pageDetails
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function getItem($id)
     {
         $item = $this->getRepository()->find($id);
 
         if (!($item)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
         return array('item' => $item);
     }

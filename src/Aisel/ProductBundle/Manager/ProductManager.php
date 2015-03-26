@@ -11,8 +11,8 @@
 
 namespace Aisel\ProductBundle\Manager;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Aisel\ResourceBundle\Utility\UrlUtility;
+use LogicException;
 
 /**
  * Manager for Products, mostly used in REST API
@@ -75,14 +75,14 @@ class ProductManager
      *
      * @return \Aisel\ProductBundle\Entity\Product $productDetails
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function getItem($id)
     {
         $product = $this->em->getRepository('AiselProductBundle:Product')->find($id);
 
         if (!($product)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
         $productDetails = array('item' => $product, 'categories' => $this->getProductCategories($product));
 
@@ -96,14 +96,14 @@ class ProductManager
      *
      * @return \Aisel\ProductBundle\Entity\Product $product
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function getProductByURL($urlKey)
     {
         $product = $this->em->getRepository('AiselProductBundle:Product')->findOneBy(array('metaUrl' => $urlKey));
 
         if (!($product)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
         $productDetails = array('product' => $product, 'categories' => $this->getProductCategories($product));
 
@@ -150,14 +150,14 @@ class ProductManager
      *
      * @return \Aisel\ProductBundle\Entity\Product $product
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function loadById($productId)
     {
         $product = $this->em->getRepository('AiselProductBundle:Product')->findOneBy(array('id' => $productId));
 
         if (!($product)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
 
         return $product;

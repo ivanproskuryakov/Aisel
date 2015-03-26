@@ -11,8 +11,7 @@
 
 namespace Aisel\OrderBundle\Manager;
 
-use JMS\Serializer\Exception\LogicException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use LogicException;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Payum\Core\Request\Capture;
 use Aisel\OrderBundle\Entity\Order;
@@ -150,13 +149,15 @@ class OrderManager
      * @param array $products
      * @param mixed $orderInfo
      *
-     * @return Order $orderDetails
+     * @throws LogicException
      *
-     * @throws NotFoundHttpException
+     * @return Order $orderDetails
      */
     public function createOrderFromProducts($user, $products, $orderInfo)
     {
-        if (!($user)) throw new NotFoundHttpException('User object is missing');
+        if (!($user)) {
+            throw new LogicException('User object is missing');
+        }
 
         $order = $this
             ->em
@@ -196,8 +197,6 @@ class OrderManager
      * @param int $id
      *
      * @return \Aisel\PageBundle\Entity\Page $pageDetails
-     *
-     * @throws NotFoundHttpException
      */
     public function getItem($id)
     {

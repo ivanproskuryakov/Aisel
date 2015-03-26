@@ -11,7 +11,7 @@
 
 namespace Aisel\SettingsBundle\Manager;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use LogicException;
 
 /**
  * Manager to retrieve CMS settings
@@ -40,14 +40,14 @@ class SettingsManager
      *
      * @return array $config
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function getConfig($locale = null)
     {
         $config = $this->em->getRepository('AiselConfigBundle:Config')->getAllSettings($locale);
 
         if (!($config)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
         $config['settings'] = array();
         $config['settings']['locale'] = $this->locale;
@@ -64,7 +64,7 @@ class SettingsManager
      *
      * @return array $config
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function getConfigForEntity($locale = null, $entity)
     {

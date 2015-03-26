@@ -13,7 +13,7 @@ admin_aisel_product_media_upload:
         _method:  OPTIONS|HEAD|GET|POST|PUT|PATCH|DELETE
         productId: "\d+"
 
-admin_api_aisel_page_category_get:
+admin_api_aisel_product_category_get:
     pattern:   /%backend_api%/product/category/{id}
     defaults:  { _controller: AiselProductBundle:Admin/Node:get, _format: json }
     requirements:

@@ -11,7 +11,7 @@
 
 namespace Aisel\AddressingBundle\Manager;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use LogicException;
 
 /**
  * Addressing manager mostly used in API
@@ -55,14 +55,14 @@ class AddressingManager
      * @param  integer $id
      * @return \Aisel\AddressingBundle\Entity\Country $countries
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function getCountryById($id)
     {
         $country = $this->em->getRepository('AiselAddressingBundle:Country')->findOneBy(array('id' => $id));
 
         if (!($country)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
 
         return $country;
@@ -93,14 +93,14 @@ class AddressingManager
      * @param  integer $id
      * @return \Aisel\AddressingBundle\Entity\City $countries
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function getCityById($id)
     {
         $city = $this->em->getRepository('AiselAddressingBundle:City')->findOneBy(array('id' => $id));
 
         if (!($city)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
 
         return $city;
@@ -132,14 +132,14 @@ class AddressingManager
      * @param  integer $id
      * @return \Aisel\AddressingBundle\Entity\Region $region
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function getRegionById($id)
     {
         $region = $this->em->getRepository('AiselAddressingBundle:Region')->findOneBy(array('id' => $id));
 
         if (!($region)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
 
         return $region;

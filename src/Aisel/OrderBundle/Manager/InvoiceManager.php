@@ -11,7 +11,7 @@
 
 namespace Aisel\OrderBundle\Manager;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use LogicException;
 use Aisel\OrderBundle\Entity\Invoice;
 
 /**
@@ -40,14 +40,14 @@ class InvoiceManager
      *
      * @return \Aisel\OrderBundle\Entity\Order $orderDetails
      *
-     * @throws NotFoundHttpException*
+     * @throws LogicException
      */
     public function getInvoice($id)
     {
         $invoice = $this->em->getRepository('AiselOrderBundle:Invoice')->find($id);
 
         if (!($invoice)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
 
         return $invoice;

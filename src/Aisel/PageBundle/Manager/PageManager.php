@@ -11,7 +11,7 @@
 
 namespace Aisel\PageBundle\Manager;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use LogicException;
 use Aisel\ResourceBundle\Utility\UrlUtility;
 
 /**
@@ -79,14 +79,14 @@ class PageManager
      *
      * @return \Aisel\PageBundle\Entity\Page $pageDetails
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function getItem($id)
     {
         $page = $this->em->getRepository('AiselPageBundle:Page')->find($id);
 
         if (!($page)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
         $pageDetails = array('item' => $page, 'categories' => $this->getPageCategories($page));
 
@@ -101,14 +101,14 @@ class PageManager
      *
      * @return \Aisel\PageBundle\Entity\Page $page
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function getPageByURL($urlKey, $locale)
     {
         $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(array('metaUrl' => $urlKey));
 
         if (!($page)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
         $pageDetails = array('page' => $page, 'categories' => $this->getPageCategories($page));
 

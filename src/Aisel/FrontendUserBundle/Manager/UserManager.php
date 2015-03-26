@@ -14,12 +14,12 @@ namespace Aisel\FrontendUserBundle\Manager;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Aisel\ResourceBundle\Utility\PasswordUtility;
+use LogicException;
 
 /**
- * Manager for frontend users. Register, Load and others ...
+ * Manager for frontend users.
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -100,14 +100,14 @@ class UserManager implements UserProviderInterface
      *
      * @return \Aisel\PageBundle\Entity\Page $pageDetails
      *
-     * @throws NotFoundHttpException
+     * @throws LogicException
      */
     public function getItem($id)
     {
         $item = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->find($id);
 
         if (!($item)) {
-            throw new NotFoundHttpException('Nothing found');
+            throw new LogicException('Nothing found');
         }
         $itemDetails = array('item' => $item);
         return $itemDetails;
@@ -362,7 +362,7 @@ class UserManager implements UserProviderInterface
         $user = $this->getRepository()->findOneBy(array('id' => $id));
 
         if (!($user)) {
-            throw new NotFoundHttpException('User not found');
+            throw new LogicException('User not found');
         }
 
         return $user;
@@ -373,7 +373,7 @@ class UserManager implements UserProviderInterface
         $user = $this->getRepository()->findOneBy(array('email' => $email));
 
         if (!($user)) {
-            throw new NotFoundHttpException('User not found');
+            throw new LogicException('User not found');
         }
 
         return $user;
@@ -384,7 +384,7 @@ class UserManager implements UserProviderInterface
         $user = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->findUser($username, $email);
 
         if (!($user)) {
-            throw new NotFoundHttpException('User not found');
+            throw new LogicException('User not found');
         }
 
         return $user;

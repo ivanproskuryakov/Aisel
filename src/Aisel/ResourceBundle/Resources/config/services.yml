@@ -7,15 +7,10 @@
 
 parameters:
     aisel_media_product_extension.class: Aisel\ResourceBundle\Twig\MediaProductExtension
-    aisel_resource_manager.class: Aisel\ResourceBundle\Manager\ResourceManager
     aisel_resource_form_tree.class: Aisel\ResourceBundle\Form\Type\TreeType
     aisel_resource_form_locale.class:  Aisel\ResourceBundle\Form\Type\LocaleType
 
 services:
-    aisel.resource.manager:
-        class: %aisel_resource_manager.class%
-        arguments: [@service_container, @doctrine.orm.entity_manager]
-
     aisel.twig.media_product_extension:
             class: %aisel_media_product_extension.class%
             arguments: [@service_container, %application.media.product.path%, %website_address% ]

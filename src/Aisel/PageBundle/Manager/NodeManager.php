@@ -12,6 +12,7 @@
 namespace Aisel\PageBundle\Manager;
 
 use Aisel\CategoryBundle\Manager\AbstractNodeManager;
+use LogicException;
 
 /**
  * Manager for page categories
@@ -31,7 +32,7 @@ class NodeManager extends AbstractNodeManager
         if ($categoryId = $params['parentId']) {
             $nodeParent = $this->em->getRepository($this->repository)->find($categoryId);
             if (!($nodeParent)) {
-                throw new NotFoundHttpException('Nothing found');
+                throw new LogicException('Nothing found');
             }
         }
 
