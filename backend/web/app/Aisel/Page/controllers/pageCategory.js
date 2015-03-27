@@ -14,7 +14,9 @@
 
 define(['app'], function (app) {
     app.controller('PageCategoryCtrl', function ($scope, $stateParams, pageService, $state, Environment) {
+
         $scope.sectionName = 'Page categories';
         $scope.categoryJson = Environment.settings.api + '/page/category/';
+
     });
 });

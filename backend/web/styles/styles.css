@@ -64,6 +64,10 @@ body #adminNodeTree .form-control {
     height: 24px;
 }
 
+body #adminNodeTree .btn-link {
+    padding: 0 2px;
+}
+
 body #adminNodeTree.table-bordered > thead > tr > th {
     border-bottom-width: 1px;
     font-size: 14px;
@@ -87,6 +91,13 @@ body #adminNodeTree .fancytree-childcounter {
 body #adminNodeTree tbody tr td {
     padding: 2px 4px;
     font-size: 14px;
+}
+
+body table.fancytree-ext-table.fancytree-treefocus tbody tr.fancytree-active,
+body table.fancytree-ext-table.fancytree-treefocus tbody tr.fancytree-active span.fancytree-node,
+body table.fancytree-ext-table tbody tr.fancytree-active,
+body table.fancytree-ext-table tbody tr.fancytree-active span.fancytree-node {
+    background: none;
 }
 
 body .tab-content {

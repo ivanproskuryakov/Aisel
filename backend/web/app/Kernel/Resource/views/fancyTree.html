@@ -22,11 +22,12 @@
 </table>
 
 <script type="text/javascript">
+var editNode = function (id) {
+    window.location = document.URL + "edit/" + id + "/";
+};
+
 $(document).ready(function () {
     setTimeout(function () {
-        var routeCategoryShow = '';
-        var routeCategoryEdit = '';
-        var routeCategoryDelete = '';
         var routeCategoryAjaxUpdate = '';
         var routeCategory = null;
         var categoryJson = document.getElementById("categoryJson").value;
@@ -118,9 +119,9 @@ $(document).ready(function () {
                         id: categoryId,
                         url: categoryUrl
                     })
-                            .done(function (data) {
-                                console.log('AJAX done');
-                            });
+                    .done(function (data) {
+                        console.log('AJAX done');
+                    });
                 }
             },
             table: {
@@ -141,16 +142,10 @@ $(document).ready(function () {
                 $tdList.eq(0).text(node.data.id).addClass("alignRight");
                 $tdList.eq(1).html(node.data.locale);
                 $tdList.eq(3).html("<input type='input' disabled class='form-control' value='" + node.data.meta_url + "'>");
-                $("<option />", {text: "", value: "please-select"}).appendTo($select);
-                $("<option />", {
-                    text: "Edit",
-                    value: "edit"
-                }).appendTo($select);
-                $("<option />", {
-                    text: "Delete",
-                    value: "delete"
-                }).appendTo($select);
-                $tdList.eq(4).html($select);
+                $tdList.eq(4).html('<button ' +
+                'class="btn btn-link"' +
+                'onclick="editNode(' + node.data.id + ')">' +
+                '<span class="glyphicon glyphicon-edit"></span> edit</button>');
             }
         }).on("nodeCommand", function (event, data) {
             var refNode, moveMode,
@@ -253,19 +248,6 @@ $(document).ready(function () {
     });
 
     $(function () {
-        // Category Actions
-        $(".category-action").change(function () {
-            if ($(this).val() == 'edit') {
-                routeCategory = routeCategoryEdit.replace('__CATEGORYID__', $(this).data("id"));
-            }
-            if ($(this).val() == 'delete') {
-                routeCategory = routeCategoryDelete.replace('__CATEGORYID__', $(this).data("id"));
-            }
-            if (routeCategory) {
-                window.location.href = routeCategory;
-            }
-        });
-
         /*
          * Context menu
          */
