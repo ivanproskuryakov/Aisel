@@ -12,10 +12,13 @@
 namespace Aisel\ConfigBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aisel\ConfigBundle\Entity\ConfigRepository;
+use Aisel\ConfigBundle\Manager\ConfigManager;
 
 /**
- * To implement settings functionality extend class
- * and override protected vars
+ *
+ * Settings functionality
+ *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class SettingsController extends Controller
@@ -79,7 +82,9 @@ class SettingsController extends Controller
 
     /**
      * Repository for config
-     * @return \Aisel\ConfigBundle\Entity\ConfigRepository
+     *
+     * @return ConfigRepository
+     *
      */
     private function getRepository()
     {
@@ -88,7 +93,8 @@ class SettingsController extends Controller
 
     /**
      * Wrapper function for manager service
-     * @return \Aisel\ConfigBundle\Manager\ConfigManager
+     *
+     * @return ConfigManager
      */
     private function getManager()
     {

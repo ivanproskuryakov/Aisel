@@ -25,19 +25,21 @@ class AbstractCollectionController extends Controller
     protected $manager = '';
 
     /**
-     *  Get collection Manager
+     * Get collection Manager
+     *
+     * @return mixed
      */
     protected function getManager()
     {
-        $container = $this->container;
-        $manager = $container->get($this->manager);
-        return $manager;
+        return $this->container->get($this->manager);
     }
 
     /**
+     * getCollectionAction
+     *
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return $collection
      */
     public function getCollectionAction(Request $request)
     {
@@ -56,14 +58,11 @@ class AbstractCollectionController extends Controller
     /**
      * @param integer $id
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return mixed $item
      */
     public function getAction($id)
     {
-        $manager = $this->getManager();
-        $product = $manager->getItem($id);
-
-        return $product;
+        return $this->getManager()->getItem($id);
     }
 
 }

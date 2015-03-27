@@ -9,30 +9,27 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\SettingsBundle\Controller;
+namespace Aisel\ConfigBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * ApiSettingsController
+ * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiSettingsController extends Controller
+class ApiController extends Controller
 {
 
     /**
-     * /api/config/settings.json
-     *
-     * @param string $locale
-     *
      * @return mixed $config
      */
-    public function configAction($locale)
+    public function getAction()
     {
-        $config = $this->container
-            ->get("aisel.settings.manager")
-            ->getConfig($locale);
+        $config = $this
+            ->container
+            ->get("aisel.config.manager")
+            ->getConfig();
 
         return $config;
     }

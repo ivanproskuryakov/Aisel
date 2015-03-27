@@ -11,6 +11,10 @@
 
 namespace Aisel\ConfigBundle\Manager;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\EntityManager;
+use LogicException;
+
 /**
  * Class mainly used in SettingsController
  *
@@ -18,14 +22,66 @@ namespace Aisel\ConfigBundle\Manager;
  */
 class ConfigManager
 {
+
+    protected $em;
+    protected $locale = array();
     protected $container;
 
     /**
-     * {@inheritDoc}
+     * Constructor
+     *
+     * @param EntityManager $em
+     * @param string $locale
+     * @param string $locales
      */
-    public function __construct($sc)
+    public function __construct(EntityManager $em, $locale, $locales)
     {
-        $this->container = $sc;
+        $this->em = $em;
+        $this->locale['primary'] = $locale;
+        $this->locale['available'] = explode('|', $locales);
+    }
+
+    /**
+     * Get all settings
+     *
+     * @param string $locale
+     *
+     * @throws LogicException
+     *
+     * @return array $config
+     */
+    public function getConfig($locale = null)
+    {
+        $config = $this->em->getRepository('AiselConfigBundle:Config')->getAllSettings($locale);
+
+        if (!($config)) {
+            throw new LogicException('Nothing found');
+        }
+        $config['settings'] = array();
+        $config['settings']['locale'] = $this->locale;
+        $config['time'] = time(); // inject timestamp
+
+        return $config;
+    }
+
+    /**
+     * Get all setting
+     *
+     * @param string $entity
+     * @param string $locale
+     *
+     * @throws LogicException
+     *
+     * @return array $config
+     */
+    public function getConfigForEntity($locale = null, $entity)
+    {
+        $config = $this->em
+            ->getRepository('AiselConfigBundle:Config')
+            ->getConfig($locale, $entity);
+        $value = (array)json_decode($config->getValue());
+
+        return $value;
     }
 
     /**
@@ -40,7 +96,7 @@ class ConfigManager
         $decoded = array();
 
         if ($config && $config) {
-            $decoded = (array) json_decode($config->getValue());
+            $decoded = (array)json_decode($config->getValue());
         }
 
         return $decoded;

@@ -9,13 +9,6 @@ parameters:
     aisel_settings_manager.class: Aisel\SettingsBundle\Manager\SettingsManager
 
 services:
-    aisel.settings.manager:
-        class: %aisel_settings_manager.class%
-        arguments:
-            - @doctrine.orm.entity_manager
-            - "%locale%"
-            - "%locales%"
-
     aisel.settings.form.general:
         class: Aisel\SettingsBundle\Form\Type\ConfigGeneralType
         arguments:

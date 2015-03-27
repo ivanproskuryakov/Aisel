@@ -12,3 +12,10 @@ aisel_config:
     requirements:
       _locale: %locales%
       editLocale: %locales%
+
+# Backend
+admin_api_aisel_settings:
+    pattern:   /%backend_api%/settings/
+    defaults:  { _controller: AiselConfigBundle:Admin/Api:get, _format: json }
+    requirements:
+        _method: GET

@@ -15,7 +15,7 @@ services:
         arguments:
             - @service_container
             - @doctrine.orm.entity_manager
-            - @aisel.settings.manager
+            - @aisel.config.manager
             - @aisel.cart.manager
 
     aisel.invoice.manager:
