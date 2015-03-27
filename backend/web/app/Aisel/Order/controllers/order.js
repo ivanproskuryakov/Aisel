@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  *
  * @name            AiselOrder
- * @description     ...
+ * @description     OrderCtrl
  */
 
 define(['app'], function (app) {

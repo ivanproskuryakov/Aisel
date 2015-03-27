@@ -22,21 +22,11 @@ Installation: development branch
 `git clone https://github.com/ivanproskuryakov/Aisel.git`
 then `cd to aisel/` and download composer <br/>
 `curl -sS https://getcomposer.org/installer | php` <br/>
-2. Install Aisel environment
-`php app/console aisel:install`
-3. Install frontend dependencies with Bower<br/>
-`bower install`
+2. Install frontend dependencies with Bower for "/frontend" and "/backend" directories<br/>
+running `bower install` command
 <br/>
-Once this steps done you will be able to access the backend:<br/>
-`http://ecommmerce.aisel.dev/administration/en/`<br/>
-
-
-Notes:<br/>
-1. Bower is a command line utility install with nodejs<br/>
-`npm install -g bower`<br/>
-2.For full javascript minification on frontend use grunt task<br/>
-`grunt requirejs`
-<br/><br/>
+Once this steps done you will be able to access admin section:<br/>
+`http://admin.aisel.dev/`<br/>
 
 Apache hosts:<br/>
 ```

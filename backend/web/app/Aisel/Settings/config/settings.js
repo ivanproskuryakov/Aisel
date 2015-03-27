@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  *
  * @name            AiselSettings
- * @description     ...
+ * @description     Module configuration
  */
 
 define(['app'], function (app) {

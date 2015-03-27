@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  *
  * @name            AiselProduct
- * @description     ...
+ * @description     ProductDetailsCtrl
  */
 
 define(['app'], function (app) {
-    app.controller('ProductDetailCtrl', function ($scope, $stateParams, productService, $state, Environment) {
+    app.controller('ProductDetailsCtrl', function ($scope, $stateParams, productService, $state, Environment) {
         $scope.details = {
             id: $stateParams.id,
             name: 'Product'

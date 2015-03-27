@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  *
  * @name            AiselProduct
- * @description     ...
+ * @description     ProductCtrl
  */
 
 define(['app'], function (app) {

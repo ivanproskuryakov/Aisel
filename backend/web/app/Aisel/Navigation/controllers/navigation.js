@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  *
  * @name            AiselNavigation
- * @description     ...
+ * @description     NavigationCtrl
  */
 
 define(['app'], function (app) {
     app.controller('NavigationCtrl', function ($scope, $stateParams, navigationService, $state, Environment) {
 
         $scope.sectionName = 'Navigation';
-        $scope.categoryJson = Environment.settings.api + '/navigation/category/';
+        $scope.categoryJson = Environment.settings.api + '/navigation/tree/';
 
     });
 });

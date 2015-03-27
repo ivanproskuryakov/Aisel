@@ -23,12 +23,12 @@ define(['app'], function (app) {
             .state("pageEdit", {
                 url: "/:locale/page/edit/:id/",
                 templateUrl: '/app/Aisel/Page/views/edit.html',
-                controller: 'PageDetailCtrl'
+                controller: 'PageDetailsCtrl'
             })
             .state("pageNew", {
                 url: "/:locale/page/new/",
                 templateUrl: '/app/Aisel/Page/views/edit.html',
-                controller: 'PageDetailCtrl'
+                controller: 'PageDetailsCtrl'
             })
             .state("pageCategory", {
                 url: "/:locale/page/category/",
@@ -38,7 +38,7 @@ define(['app'], function (app) {
             .state("pageCategoryEdit", {
                 url: "/:locale/page/category/edit/:id/",
                 templateUrl: '/app/Aisel/Page/views/edit-category.html',
-                controller: 'PageCategoryCtrl'
+                controller: 'PageCategoryDetailsCtrl'
             })
     }]);
 });

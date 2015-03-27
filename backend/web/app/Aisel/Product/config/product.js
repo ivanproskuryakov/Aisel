@@ -28,7 +28,7 @@ define(['app'], function (app) {
             .state("productNew", {
                 url: "/:locale/product/new/",
                 templateUrl: '/app/Aisel/Product/views/edit.html',
-                controller: 'ProductDetailCtrl'
+                controller: 'ProductDetailsCtrl'
             })
             .state("productCategory", {
                 url: "/:locale/product/category/",
@@ -36,9 +36,9 @@ define(['app'], function (app) {
                 controller: 'ProductCategoryCtrl'
             })
             .state("productCategoryEdit", {
-                url: "/:locale/page/category/edit/:id/",
-                templateUrl: '/app/Aisel/Product/edit-category.html',
-                controller: 'PageCategoryCtrl'
+                url: "/:locale/product/category/edit/:id/",
+                templateUrl: '/app/Aisel/Product/views/edit-category.html',
+                controller: 'ProductCategoryDetailsCtrl'
             })
     }]);
 });

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  *
  * @name            AiselNavigation
- * @description     ...
+ * @description     navigationService
  */
 
 define(['app'], function (app) {

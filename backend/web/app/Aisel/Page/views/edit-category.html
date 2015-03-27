@@ -11,7 +11,7 @@
                     </tab-heading>
                     <div class="tab-content">
                         <div class="form-group">
-                            <label for="title">Page Title</label>
+                            <label for="title">Title</label>
                             <input type="text"
                                    name="title"
                                    id="title"
@@ -35,9 +35,18 @@
                                     ng-required="true"
                                     ng-model="item.item.status"
                                     name="status">
-                                <option value="false" ng-selected="!item.item.status">Draft</option>
-                                <option value="true" ng-selected="item.item.status">Published</option>
+                                <option value="false" ng-selected="!item.item.status">Disabled</option>
+                                <option value="true" ng-selected="item.item.status">Enabled</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea
+                                   name="description"
+                                   id="description"
+                                   class="form-control"
+                                   ng-required="true"
+                                   ng-model="item.item.description"></textarea>
                         </div>
                     </div>
                 </tab>

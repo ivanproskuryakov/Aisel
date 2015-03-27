@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  *
  * @name            AiselPage
- * @description     ...
+ * @description     PageCtrl
  */
 
 define(['app'], function (app) {

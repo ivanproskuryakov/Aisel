@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  *
  * @name            AiselPage
- * @description     ...
+ * @description     pageService
  */
 
 define(['app'], function (app) {
@@ -27,6 +27,11 @@ define(['app'], function (app) {
                 },
                 get: function ($id) {
                     var url = Environment.settings.api + '/page/' + $id;
+                    console.log(url);
+                    return $http.get(url);
+                },
+                getCategory: function ($id) {
+                    var url = Environment.settings.api + '/page/category/' + $id;
                     console.log(url);
                     return $http.get(url);
                 }

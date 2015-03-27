@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  *
  * @name            AiselPage
- * @description     ...
+ * @description     PageDetailsCtrl
  */
 
 define(['app'], function (app) {
-    app.controller('PageDetailCtrl', function ($scope, $stateParams, pageService, $state, Environment) {
+    app.controller('PageDetailsCtrl', function ($scope, $stateParams, pageService, $state, Environment) {
 
         $scope.details = {
             id: $stateParams.id,

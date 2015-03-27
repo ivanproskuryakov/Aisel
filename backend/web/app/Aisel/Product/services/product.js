@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  *
  * @name            AiselProduct
- * @description     ...
+ * @description     productService
  */
 
 define(['app'], function (app) {
@@ -29,7 +29,13 @@ define(['app'], function (app) {
                     var url = Environment.settings.api + '/product/' + $id;
                     console.log(url);
                     return $http.get(url);
+                },
+                getCategory: function ($id) {
+                    var url = Environment.settings.api + '/product/category/' + $id;
+                    console.log(url);
+                    return $http.get(url);
                 }
+
             };
         }]);
 });

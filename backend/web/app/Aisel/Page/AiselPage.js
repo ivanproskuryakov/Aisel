@@ -17,6 +17,7 @@ define(['app',
     './controllers/page',
     './controllers/pageDetails',
     './controllers/pageCategory',
+    './controllers/pageCategoryDetails',
     './services/page',
 ], function (app) {
     console.log('Page module loaded ...');
