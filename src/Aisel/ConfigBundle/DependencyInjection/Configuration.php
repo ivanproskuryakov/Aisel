@@ -25,19 +25,15 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('aisel_config');
         $rootNode
             ->children()
-            ->scalarNode('route_prefix')
-            ->defaultValue('config_')
-            ->end()
-            ->scalarNode('settings_route')
-            ->defaultValue('/administration/settings/{editLocale}/')
-            ->end()
             ->arrayNode('entities')
-            ->requiresAtLeastOneElement()
-            ->useAttributeAsKey('name')
             ->prototype('array')
             ->children()
             ->scalarNode('order')->end()
-            ->scalarNode('controller')->end()
+            ->arrayNode('fields')
+            ->requiresAtLeastOneElement()
+            ->prototype('array')
+            ->children()
+            ->scalarNode('type')->end()
             ->end();
 
         return $treeBuilder;

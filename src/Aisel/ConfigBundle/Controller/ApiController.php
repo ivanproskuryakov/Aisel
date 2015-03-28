@@ -22,9 +22,11 @@ class ApiController extends Controller
 {
 
     /**
+     * Config for frontend
+     *
      * @param string $locale
      *
-     * @return mixed $config
+     * @return array $config
      */
     public function getAction($locale)
     {

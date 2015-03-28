@@ -22,14 +22,15 @@ class ApiController extends Controller
 {
 
     /**
-     * @return mixed $config
+     * Config for backend
+     *
+     * @return array $config
      */
     public function getAction()
     {
-        $config = $this
-            ->container
-            ->get("aisel.config.manager")
-            ->getConfig();
+        $container = $this->container;
+        $config = $container->get("aisel.config.manager")->getConfig();
+        $config['fields'] = $container->getParameter('aisel_config');
 
         return $config;
     }

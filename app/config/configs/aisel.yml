@@ -13,15 +13,39 @@ parameters:
 aisel_config:
     entities:
         content:
-            order: 0
+            order: 100
+            fields:
+                homepage:
+                    type: textarea
+                footer:
+                    type: input
+
         meta:
-            order: 10
-        disqus:
-            order: 20
+            order: 200
+            fields:
+                title:
+                    type: input
+                description:
+                    type: input
+                keywords:
+                    type: input
         contact:
-            order: 30
-        general:
-            order: 30
+            order: 300
+            fields:
+              name:
+                type: input
+              email:
+                type: input
+              phone:
+                type: input
+              message:
+                type: textarea
+
+        disqus:
+            order: 500
+            fields:
+              key:
+                type: input
 
 aisel_fixture:
     xml_path: /fixtures/xml
