@@ -16,7 +16,7 @@ define(['app',
     './config/resource',
     './services/init',
     './services/collection',
-    './directive/fancyTree'
+    './directives/fancyTree',
 ], function (app) {
     console.log('----------- Kernel Loaded! -----------');
 });

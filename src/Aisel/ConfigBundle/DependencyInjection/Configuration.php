@@ -25,15 +25,11 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('aisel_config');
         $rootNode
             ->children()
-            ->arrayNode('entities')
-            ->prototype('array')
-            ->children()
+            ->arrayNode('entities')->prototype('array')->children()
             ->scalarNode('order')->end()
-            ->arrayNode('fields')
-            ->requiresAtLeastOneElement()
-            ->prototype('array')
-            ->children()
+            ->arrayNode('fields')->requiresAtLeastOneElement()->prototype('array')->children()
             ->scalarNode('type')->end()
+            ->arrayNode('options')->requiresAtLeastOneElement()->prototype('scalar')->end()
             ->end();
 
         return $treeBuilder;

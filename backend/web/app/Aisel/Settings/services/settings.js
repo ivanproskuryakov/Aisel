@@ -17,7 +17,7 @@ define(['app'], function (app) {
         function ($http, Environment) {
             return {
                 get: function () {
-                    var url = Environment.settings.api + '/settings/';
+                    var url = Environment.settings.api + '/config/';
                     console.log(url);
                     return $http.get(url);
                 }

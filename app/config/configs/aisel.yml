@@ -44,6 +44,11 @@ aisel_config:
         disqus:
             order: 500
             fields:
+              enabled:
+                type: select
+                options:
+                  yes:  yes
+                  no:   no
               key:
                 type: input
 
