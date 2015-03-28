@@ -20,7 +20,7 @@ define(['app'], function (app) {
                 return {
                     getApplicationConfig: function () {
                         var locale = Environment.currentLocale();
-                        var url = Environment.settings.api + '/' + locale + '/config/settings.json';
+                        var url = Environment.settings.api + '/' + locale + '/config/';
                         // console.log(url);
                         return $http.get(url);
                     },

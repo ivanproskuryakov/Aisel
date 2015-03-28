@@ -52,13 +52,18 @@ class ConfigManager
      */
     public function getConfig($locale = null)
     {
-        $config = $this->em->getRepository('AiselConfigBundle:Config')->getAllSettings($locale);
+        $collection = $this->em->getRepository('AiselConfigBundle:Config')->getAllSettings($locale);
 
-        if (!($config)) {
+        if (!$collection) {
             throw new LogicException('Nothing found');
         }
-        $config['settings'] = array();
-        $config['settings']['locale'] = $this->locale;
+
+        $config = array();
+        foreach ($collection as $s) {
+            $config['settings'][$s['locale']][$s['entity']] = $s['value'];
+        }
+
+        $config['locale'] = $this->locale;
         $config['time'] = time(); // inject timestamp
 
         return $config;

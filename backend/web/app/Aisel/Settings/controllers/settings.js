@@ -13,7 +13,13 @@
  */
 
 define(['app'], function (app) {
-    app.controller('SettingsCtrl', ['$location', '$scope', '$routeParams', '$rootScope',
-        function ($location, $scope, $routeParams, $rootScope) {
+    app.controller('SettingsCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'settingsService',
+        function ($location, $scope, $routeParams, $rootScope, settingsService) {
+
+            settingsService.get().success(
+                function (data, status) {
+                    $scope.settings = data;
+                }
+            );
         }]);
 });

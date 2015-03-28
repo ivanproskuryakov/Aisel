@@ -1,5 +1,0 @@
-formatter.name: pretty
-suites:
-    AiselConfigBundle:
-        namespace: Aisel
-        spec_path: vendor/aisel/config-bundle/Aisel/ConfigBundle/

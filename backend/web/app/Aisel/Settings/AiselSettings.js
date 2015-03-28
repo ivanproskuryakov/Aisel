@@ -15,7 +15,8 @@
 define([
     'app',
     './config/settings',
-    './controllers/settings'
+    './controllers/settings',
+    './services/settings'
 ], function (app) {
     console.log('Settings module loaded ...');
 });

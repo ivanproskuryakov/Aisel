@@ -13,11 +13,13 @@
  */
 
 define(['app'], function (app) {
-    app.controller('HomepageCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'settingsService',
-        function ($location, $scope, $routeParams, $rootScope, settingsService) {
+    app.controller('HomepageCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'settingsService', 'Environment',
+        function ($location, $scope, $routeParams, $rootScope, settingsService, Environment) {
             settingsService.getApplicationConfig().success(
                 function (data, status) {
-                    $scope.content = JSON.parse(data.config_content).homepageContent;
+                    var locale = Environment.currentLocale();
+                    var content = data.settings[locale].config_content;
+                    $scope.content = JSON.parse(content).homepageContent;
                 }
             );
         }]);

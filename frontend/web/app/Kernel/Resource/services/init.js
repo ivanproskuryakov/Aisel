@@ -42,10 +42,13 @@ define(['app'], function (app) {
                         // Load settings data
                         settingsService.getApplicationConfig().success(
                             function (data, status) {
-                                general = JSON.parse(data.config_general);
-                                meta = JSON.parse(data.config_meta);
-                                disqus = JSON.parse(data.config_disqus);
-                                $rootScope.footer = JSON.parse(data.config_content).footerContent;
+
+                                var settings = data.settings[Environment.currentLocale()];
+
+                                general = JSON.parse(settings.config_general);
+                                meta = JSON.parse(settings.config_meta);
+                                disqus = JSON.parse(settings.config_disqus);
+                                $rootScope.footer = JSON.parse(settings.config_content).footerContent;
                                 $rootScope.disqusShortname = disqus.shortname;
                                 $rootScope.disqusStatus = false;
                                 $rootScope.currency = general.currency;

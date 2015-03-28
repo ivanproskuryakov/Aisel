@@ -8,7 +8,6 @@ default:
                     selenium2: ~
             browser_name: firefox
             show_auto:    false
-#            base_url: 'http://ecommerce.aisel.dev/' # this will be the url of our application
         Behat\Symfony2Extension: ~
 
     suites:
@@ -48,11 +47,6 @@ default:
                 features: src/Aisel/FrontendUserBundle
             contexts:
                 - Aisel\FrontendUserBundle\Features\Context\Api\FeatureContext
-        settings:
-            paths:
-                features: src/Aisel/SettingsBundle
-            contexts:
-                - Aisel\SettingsBundle\Features\Context\Api\FeatureContext
         search:
             paths:
                 features: src/Aisel/SearchBundle

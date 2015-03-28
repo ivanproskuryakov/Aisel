@@ -1,0 +1,26 @@
+'use strict';
+
+/**
+ * This file is part of the Aisel package.
+ *
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @name            AiselSettings
+ * @description     settingsService
+ */
+
+define(['app'], function (app) {
+    app.service('settingsService', ['$http', 'Environment',
+        function ($http, Environment) {
+            return {
+                get: function () {
+                    var url = Environment.settings.api + '/settings/';
+                    console.log(url);
+                    return $http.get(url);
+                }
+            };
+        }]);
+});

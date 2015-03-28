@@ -23,35 +23,19 @@
     <div class="col-md-12">
         <form class="form-horizontal-edit" name="editForm" role="form">
             <tabset>
-
-                <!-- General -->
-                <tab>
+                <tab ng-repeat="(key, value) in settings.settings">
                     <tab-heading>
-                        <i class="glyphicon glyphicon-list"></i> General
+                        <i class="glyphicon glyphicon-globe"></i> {{key | uppercase}}
                     </tab-heading>
                     <div class="tab-content">
+                        {{value}}
                     </div>
                 </tab>
-
-                <!-- Meta -->
-                <tab>
-                    <tab-heading>
-                        <i class="glyphicon glyphicon-list"></i> Meta
-                    </tab-heading>
-                    <div class="tab-content">
-                    </div>
-                </tab>
-
-                <!-- Meta -->
-                <tab>
-                    <tab-heading>
-                        <i class="glyphicon glyphicon-list"></i> Disqus
-                    </tab-heading>
-                    <div class="tab-content">
-                    </div>
-                </tab>
-
             </tabset>
         </form>
     </div>
 </div>
+
+<pre>
+    {{settings.locale.available}}
+</pre>

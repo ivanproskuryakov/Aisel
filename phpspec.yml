@@ -42,6 +42,3 @@ suites:
     AiselSearchBundle:
         namespace: Aisel
         spec_path: src/Aisel/SearchBundle/
-    AiselSettingsBundle:
-        namespace: Aisel
-        spec_path: src/Aisel/SettingsBundle/
