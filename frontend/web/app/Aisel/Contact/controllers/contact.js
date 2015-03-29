@@ -21,8 +21,7 @@ define(['app'], function (app) {
             settingsService.getApplicationConfig().success(
                 function (data, status) {
                     var locale = Environment.currentLocale();
-                    var contact = data.settings[locale].config_contact;
-                    $scope.config = JSON.parse(contact);
+                    $scope.config = data.settings[locale].contact;
                 }
             );
 

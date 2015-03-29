@@ -18,7 +18,7 @@
         <table name="aisel_config">
             <column name="id">181</column>
             <column name="locale">es</column>
-            <column name="entity">config_contact</column>
+            <column name="entity">contact</column>
             <column name="value">{&quot;Name&quot;:&quot;Aisel Co.&quot;,&quot;Email&quot;:&quot;service@email.com&quot;,&quot;AddressLine1&quot;:&quot;1234 South Manhattan Place, LA&quot;,&quot;AddressLine2&quot;:null,&quot;information&quot;:&quot;&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.&lt;\/p&gt;&quot;}</column>
         </table>
     </database>

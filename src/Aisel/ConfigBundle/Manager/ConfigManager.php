@@ -60,7 +60,8 @@ class ConfigManager
 
         $config = array();
         foreach ($collection as $s) {
-            $config['settings'][$s['locale']][$s['entity']] = $s['value'];
+
+            $config['settings'][$s['locale']][$s['entity']] = json_decode($s['value'], true);
         }
 
         $config['locale'] = $this->locale;
@@ -84,6 +85,7 @@ class ConfigManager
         $config = $this->em
             ->getRepository('AiselConfigBundle:Config')
             ->getConfig($locale, $entity);
+
         $value = (array)json_decode($config->getValue());
 
         return $value;

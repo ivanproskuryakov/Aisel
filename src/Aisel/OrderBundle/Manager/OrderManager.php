@@ -15,6 +15,10 @@ use LogicException;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Payum\Core\Request\Capture;
 use Aisel\OrderBundle\Entity\Order;
+use Aisel\CartBundle\Manager\CartManager;
+use Aisel\ConfigBundle\Manager\ConfigManager;
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Manager for Orders, mostly used in REST API
@@ -23,35 +27,45 @@ use Aisel\OrderBundle\Entity\Order;
  */
 class OrderManager
 {
+    /**
+     * @var ContainerInterface
+     */
     protected $sc;
+
+    /**
+     * @var EntityManager
+     */
     protected $em;
-    protected $settingsManager;
+
+    /**
+     * @var ConfigManager
+     */
+    protected $configManager;
+
+    /**
+     * @var CartManager
+     */
     protected $cartManager;
 
     /**
-     * {@inheritDoc}
+     * Constructor
+     *
+     * @param ContainerInterface $serviceContainer
+     * @param EntityManager $entityManager
+     * @param ConfigManager $configManager
+     * @param CartManager $cartManager
      */
     public function __construct(
-        $serviceContainer,
-        $entityManager,
-        $settingsManager,
-        $cartManager
+        ContainerInterface $serviceContainer,
+        EntityManager $entityManager,
+        ConfigManager $configManager,
+        CartManager $cartManager
     )
     {
         $this->sc = $serviceContainer;
         $this->em = $entityManager;
-        $this->settingsManager = $settingsManager;
+        $this->settingsManager = $configManager;
         $this->cartManager = $cartManager;
-    }
-
-    /**
-     * Get cart Manager
-     *
-     * @return \Aisel\CartBundle\Manager\CartManager
-     */
-    public function getCartManager()
-    {
-        return $this->cartManager;
     }
 
     /**
@@ -65,7 +79,7 @@ class OrderManager
     {
         $config = $this
             ->settingsManager
-            ->getConfigForEntity($locale, 'config_general');
+            ->getConfigForEntity($locale, 'general');
 
         return $config['currency'];
     }
@@ -129,7 +143,6 @@ class OrderManager
                 $this->getCurrencyCode($orderInfo['locale']),
                 $orderInfo
             );
-
         $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
             $orderInfo['payment_method'],
             $order,
@@ -158,6 +171,7 @@ class OrderManager
         if (!($user)) {
             throw new LogicException('User object is missing');
         }
+        $currencyCode = $this->getCurrencyCode($orderInfo['locale']);
 
         $order = $this
             ->em
@@ -165,7 +179,7 @@ class OrderManager
             ->createOrderFromProductsForUser(
                 $user,
                 $products,
-                $this->getCurrencyCode($orderInfo['locale']),
+                $currencyCode,
                 $orderInfo
             );
 

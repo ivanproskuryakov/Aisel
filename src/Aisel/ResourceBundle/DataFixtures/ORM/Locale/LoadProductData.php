@@ -93,7 +93,6 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
             }
         }
 
-
         $sql = serialize(array(
             'fileName' => '/' . $product->getId() . '/' . $this->productImage,
             'originalName' => $this->productImage,

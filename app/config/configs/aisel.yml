@@ -12,45 +12,59 @@ parameters:
 
 aisel_config:
     entities:
+        general:
+            order: 0
+            fields:
+                currency:
+                    type: input
+                paymentMethods:
+                    type: select
+                    options:
+                        offline:  offline
+                        paypal_express_checkout_nvp:   paypal_express_checkout_nvp
+
         content:
             order: 100
             fields:
-                homepage:
+                homepageContent:
                     type: textarea
-                footer:
-                    type: input
+                footerContent:
+                    type: textarea
 
         meta:
             order: 200
             fields:
-                title:
+                defaultMetaTitle:
                     type: input
-                description:
+                defaultMetaDescription:
                     type: input
-                keywords:
+                defaultMetaKeywords:
                     type: input
+
         contact:
             order: 300
             fields:
-              name:
-                type: input
-              email:
-                type: input
-              phone:
-                type: input
-              message:
-                type: textarea
+                Name:
+                    type: input
+                Email:
+                    type: input
+                AddressLine1:
+                    type: input
+                AddressLine2:
+                    type: input
+                information:
+                    type: textarea
 
         disqus:
-            order: 500
+            order: 400
             fields:
-              enabled:
-                type: select
-                options:
-                  yes:  yes
-                  no:   no
-              key:
-                type: input
+                shortname:
+                    type: input
+                enabled:
+                    type: select
+                    options:
+                        yes:  yes
+                        no:   no
 
 aisel_fixture:
     xml_path: /fixtures/xml

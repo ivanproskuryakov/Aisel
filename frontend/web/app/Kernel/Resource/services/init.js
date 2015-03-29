@@ -23,9 +23,6 @@ define(['app'], function (app) {
                       productCategoryService, Environment) {
                 return {
                     launch: function () {
-                        var meta = false;
-                        var disqus = false;
-                        var general = false;
 
                         // Load user status
                         userService.getUserInformation().success(
@@ -45,14 +42,11 @@ define(['app'], function (app) {
 
                                 var settings = data.settings[Environment.currentLocale()];
 
-                                general = JSON.parse(settings.config_general);
-                                meta = JSON.parse(settings.config_meta);
-                                disqus = JSON.parse(settings.config_disqus);
-                                $rootScope.footer = JSON.parse(settings.config_content).footerContent;
-                                $rootScope.disqusShortname = disqus.shortname;
+                                $rootScope.footer = settings.content.footerContent;
+                                $rootScope.disqusShortname = settings.disqus.shortname;
                                 $rootScope.disqusStatus = false;
-                                $rootScope.currency = general.currency;
-                                $rootScope.paymentMethods = general.paymentMethods;
+                                $rootScope.currency = settings.general.currency;
+                                $rootScope.paymentMethods = settings.general.paymentMethods;
 
                                 console.log('----------- Aisel Loaded! -----------');
                                 var setLocale = function () {
@@ -60,9 +54,9 @@ define(['app'], function (app) {
                                     $rootScope.locale = Environment.currentLocale();
                                 }
                                 var setMetaData = function () {
-                                    $rootScope.pageTitle = meta.defaultMetaTitle;
-                                    $rootScope.metaDescription = meta.defaultMetaDescription;
-                                    $rootScope.metaKeywords = meta.defaultMetaKeywords;
+                                    $rootScope.pageTitle = settings.meta.defaultMetaTitle;
+                                    $rootScope.metaDescription = settings.meta.defaultMetaDescription;
+                                    $rootScope.metaKeywords = settings.meta.defaultMetaKeywords;
                                 }
 
                                 // Init

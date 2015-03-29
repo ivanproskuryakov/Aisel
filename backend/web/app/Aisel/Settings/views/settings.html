@@ -39,6 +39,7 @@
                                             <label for="{{section}}{{name}}">{{name}}</label>
                                             <input ng-if="field.type == 'input'"
                                                    name="{{section}}{{name}}"
+                                                   value="{{settings.settings[locale][section][name]}}"
                                                    id="{{section}}{{name}}"
                                                    type="text"
                                                    class="form-control"
@@ -46,13 +47,18 @@
 
                                             <textarea ng-if="field.type == 'textarea'"
                                                       name="{{section}}{{name}}"
+                                                      value="{{settings.settings[locale][section][name]}}"
                                                       id="{{section}}{{name}}"
                                                       type="text"
                                                       class="form-control"
-                                                      ng-required="true"></textarea>
+                                                      rows="10"
+                                                      ng-required="true">
+                                                {{settings.settings[locale][section][name]}}
+                                            </textarea>
 
                                             <select ng-if="field.type == 'select'"
                                                     name="{{section}}{{name}}"
+                                                    value="{{settings.settings[locale][section][name]}}"
                                                     id="{{section}}{{name}}"
                                                     type="text"
                                                     class="form-control"
@@ -74,3 +80,7 @@
         </form>
     </div>
 </div>
+
+<pre>
+  {{settings}}
+</pre>
