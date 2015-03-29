@@ -18,5 +18,8 @@ define(['app'], function (app) {
         $scope.sectionName = 'Navigation';
         $scope.categoryJson = Environment.settings.api + '/navigation/tree/';
 
+        $scope.editCategory = function () {
+            console.log('editCategory');
+        }
     });
 });

@@ -119,9 +119,9 @@ $(document).ready(function () {
                         id: categoryId,
                         url: categoryUrl
                     })
-                    .done(function (data) {
-                        console.log('AJAX done');
-                    });
+                            .done(function (data) {
+                                console.log('AJAX done');
+                            });
                 }
             },
             table: {
@@ -135,9 +135,9 @@ $(document).ready(function () {
             },
 
             renderColumns: function (event, data) {
-                var node = data.node,
-                        $select = $("<select data-id='" + node.key + "' id='category-" + node.key + "' class='category-action form-control' />"),
-                        $tdList = $(node.tr).find(">td");
+                var node = data.node;
+                var $select = $("<select data-id='" + node.key + "' id='category-" + node.key + "' class='category-action form-control' />");
+                var $tdList = $(node.tr).find(">td");
 
                 $tdList.eq(0).text(node.data.id).addClass("alignRight");
                 $tdList.eq(1).html(node.data.locale);
@@ -184,8 +184,8 @@ $(document).ready(function () {
                     break;
                 case "addChild":
                     refNode = node.addChildren({
-                        title: "{{ 'aisel.admin.new_child_node'|trans({}, 'admin') }}",
-                        url: "/#!/",
+                        title: "New children",
+                        url: "/",
                         isNew: true
                     });
                     node.setExpanded();
@@ -197,13 +197,11 @@ $(document).ready(function () {
                             .done(function (data) {
                                 console.log('AJAX done');
                             });
-
-
                     break;
                 case "addSibling":
                     refNode = node.getParent().addChildren({
-                        title: "{{ 'aisel.admin.new_node'|trans({}, 'admin') }}",
-                        url: "/#!/",
+                        title: "New sibling",
+                        url: "/",
                         isNew: true
                     }, node.getNextSibling());
 
@@ -245,34 +243,32 @@ $(document).ready(function () {
                 return false;
             }
         });
-    });
 
-    $(function () {
-        /*
-         * Context menu
-         */
         $("#adminNodeTree").contextmenu({
-            delegate: "span.fancytree-title",
-            menu: [
-                {title: "Rename", cmd: "rename", uiIcon: "ui-icon-pencil"},
-                {title: "Remove", cmd: "remove", uiIcon: "ui-icon-trash"},
-                {title: "----"},
-                {title: "Add Sibling", cmd: "addSibling", uiIcon: "ui-icon-plus"},
-                {title: "Add Child", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e"},],
-            beforeOpen: function (event, ui) {
-                var node = $.ui.fancytree.getNode(ui.target);
-                $("#adminNodeTree").contextmenu("enableEntry", "paste", !!CLIPBOARD);
-                node.setActive();
-            },
-            select: function (event, ui) {
-                var that = this;
-                // delay the event, so the menu can close and the click event does
-                // not interfere with the edit control
-                setTimeout(function () {
-                    $(that).trigger("nodeCommand", {cmd: ui.cmd});
-                }, 100);
-            }
-        });
+                    delegate: "span.fancytree-title",
+                    menu: [
+                        {title: "Rename", cmd: "rename", uiIcon: "ui-icon-pencil"},
+                        {title: "Remove", cmd: "remove", uiIcon: "ui-icon-trash"},
+                        {title: "----"},
+                        {title: "Add Sibling", cmd: "addSibling", uiIcon: "ui-icon-plus"},
+                        {title: "Add Child", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e"},],
+                    beforeOpen: function (event, ui) {
+
+                        var node = $.ui.fancytree.getNode(ui.target);
+                        $("#adminNodeTree").contextmenu("enableEntry", "paste", false);
+                        node.setActive();
+
+                    },
+                    select: function (event, ui) {
+                        var that = this;
+                        // delay the event, so the menu can close and the click event does
+                        // not interfere with the edit control
+                        setTimeout(function () {
+                            $(that).trigger("nodeCommand", {cmd: ui.cmd});
+                        }, 100);
+                    }
+                }
+        );
 
         $("#btnExpandAll").click(function () {
             $("#adminNodeTree").fancytree("getTree").visit(function (node) {
