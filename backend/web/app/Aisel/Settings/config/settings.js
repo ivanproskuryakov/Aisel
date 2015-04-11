@@ -22,23 +22,14 @@ define(['app'], function (app) {
                     controller: 'SettingsCtrl'
                 })
         }])
-        .run(['$rootScope', function ($rootScope) {
-            //$rootScope.topMenu = _.union(
-                //    {
-                //        "settings": {
-                //            "ordering": 900,
-                //            "glyphicon": 'glyphicon-cog',
-                //            "slug": '/settings/',
-                //            "title": 'Settings'
-                //        }
-                //    }, {
-                //        "settings": {
-                //            "ordering": 900,
-                //            "glyphicon": 'glyphicon-cog',
-                //            "slug": '/settings/',
-                //            "title": 'Settings'
-                //        }
-                //    }
-            //);
+        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
+            $rootScope.topMenu.push(
+                {
+                    "ordering": 900,
+                    "glyphicon": 'glyphicon-cog',
+                    "slug": '/settings/',
+                    "title": 'Settings'
+                }
+            );
         }]);
 });

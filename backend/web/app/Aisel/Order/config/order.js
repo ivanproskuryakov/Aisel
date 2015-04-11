@@ -13,17 +13,27 @@
  */
 
 define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-            .state("orders", {
-                url: "/:locale/orders/",
-                templateUrl: '/app/Kernel/Resource/views/collection.html',
-                controller: 'OrderCtrl'
-            })
-            .state("orderEdit", {
-                url: "/:locale/order/edit/:id/",
-                templateUrl: '/app/Aisel/Order/views/edit.html',
-                controller: 'OrderDetailsCtrl'
-            })
-    }]);
+    app
+        .config(['$stateProvider', function ($stateProvider) {
+            $stateProvider
+                .state("orders", {
+                    url: "/:locale/orders/",
+                    templateUrl: '/app/Kernel/Resource/views/collection.html',
+                    controller: 'OrderCtrl'
+                })
+                .state("orderEdit", {
+                    url: "/:locale/order/edit/:id/",
+                    templateUrl: '/app/Aisel/Order/views/edit.html',
+                    controller: 'OrderDetailsCtrl'
+                })
+        }])
+        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
+            $rootScope.topMenu.push(
+                {
+                    "ordering": 400,
+                    "slug": '/orders/',
+                    "title": 'Orders'
+                }
+            );
+        }]);
 });

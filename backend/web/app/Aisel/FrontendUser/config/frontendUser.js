@@ -13,22 +13,32 @@
  */
 
 define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-            .state("frontendUsers", {
-                url: "/:locale/users/frontend/",
-                templateUrl: '/app/Kernel/Resource/views/collection.html',
-                controller: 'FrontendUserCtrl'
-            })
-            .state("frontendUserEdit", {
-                url: "/:locale/users/frontend/edit/:id/",
-                templateUrl: '/app/Aisel/FrontendUser/views/edit.html',
-                controller: 'FrontendUserDetailCtrl'
-            })
-            .state("frontendUserNew", {
-                url: "/:locale/users/frontend/new/",
-                templateUrl: '/app/Aisel/Product/views/edit.html',
-                controller: 'FrontendUserDetailCtrl'
-            })
-    }]);
+    app
+        .config(['$stateProvider', function ($stateProvider) {
+            $stateProvider
+                .state("frontendUsers", {
+                    url: "/:locale/users/frontend/",
+                    templateUrl: '/app/Kernel/Resource/views/collection.html',
+                    controller: 'FrontendUserCtrl'
+                })
+                .state("frontendUserEdit", {
+                    url: "/:locale/users/frontend/edit/:id/",
+                    templateUrl: '/app/Aisel/FrontendUser/views/edit.html',
+                    controller: 'FrontendUserDetailCtrl'
+                })
+                .state("frontendUserNew", {
+                    url: "/:locale/users/frontend/new/",
+                    templateUrl: '/app/Aisel/Product/views/edit.html',
+                    controller: 'FrontendUserDetailCtrl'
+                })
+        }])
+        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
+            $rootScope.topMenu.push(
+                {
+                    "ordering": 300,
+                    "title": 'Admins',
+                    "slug": '/users/backend/'
+                }
+            );
+        }]);
 });

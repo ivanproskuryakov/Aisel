@@ -13,22 +13,32 @@
  */
 
 define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-            .state("backendUsers", {
-                url: "/:locale/users/backend/",
-                templateUrl: '/app/Kernel/Resource/views/collection.html',
-                controller: 'BackendUserCtrl'
-            })
-            .state("backendUserEdit", {
-                url: "/:locale/users/backend/edit/:id/",
-                templateUrl: '/app/Aisel/BackendUser/views/edit.html',
-                controller: 'BackendUserDetailCtrl'
-            })
-            .state("backendUserNew", {
-                url: "/:locale/users/backend/new/",
-                templateUrl: '/app/Aisel/Product/views/edit.html',
-                controller: 'BackendUserDetailCtrl'
-            })
-    }]);
+    app
+        .config(['$stateProvider', function ($stateProvider) {
+            $stateProvider
+                .state("backendUsers", {
+                    url: "/:locale/users/backend/",
+                    templateUrl: '/app/Kernel/Resource/views/collection.html',
+                    controller: 'BackendUserCtrl'
+                })
+                .state("backendUserEdit", {
+                    url: "/:locale/users/backend/edit/:id/",
+                    templateUrl: '/app/Aisel/BackendUser/views/edit.html',
+                    controller: 'BackendUserDetailCtrl'
+                })
+                .state("backendUserNew", {
+                    url: "/:locale/users/backend/new/",
+                    templateUrl: '/app/Aisel/Product/views/edit.html',
+                    controller: 'BackendUserDetailCtrl'
+                })
+        }])
+        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
+            $rootScope.topMenu.push(
+                {
+                    "ordering": 300,
+                    "title": 'Users',
+                    "slug": '/users/frontend/',
+                }
+            );
+        }]);
 });

@@ -13,32 +13,53 @@
  */
 
 define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-            .state("pages", {
-                url: "/:locale/pages/",
-                templateUrl: '/app/Kernel/Resource/views/collection.html',
-                controller: 'PageCtrl'
-            })
-            .state("pageEdit", {
-                url: "/:locale/page/edit/:id/",
-                templateUrl: '/app/Aisel/Page/views/edit.html',
-                controller: 'PageDetailsCtrl'
-            })
-            .state("pageNew", {
-                url: "/:locale/page/new/",
-                templateUrl: '/app/Aisel/Page/views/edit.html',
-                controller: 'PageDetailsCtrl'
-            })
-            .state("pageCategory", {
-                url: "/:locale/page/category/",
-                templateUrl: '/app/Kernel/Resource/views/category.html',
-                controller: 'PageCategoryCtrl'
-            })
-            .state("pageCategoryEdit", {
-                url: "/:locale/page/category/edit/:id/",
-                templateUrl: '/app/Aisel/Page/views/edit-category.html',
-                controller: 'PageCategoryDetailsCtrl'
-            })
-    }]);
+    app
+        .config(['$stateProvider', function ($stateProvider) {
+            $stateProvider
+                .state("pages", {
+                    url: "/:locale/pages/",
+                    templateUrl: '/app/Kernel/Resource/views/collection.html',
+                    controller: 'PageCtrl'
+                })
+                .state("pageEdit", {
+                    url: "/:locale/page/edit/:id/",
+                    templateUrl: '/app/Aisel/Page/views/edit.html',
+                    controller: 'PageDetailsCtrl'
+                })
+                .state("pageNew", {
+                    url: "/:locale/page/new/",
+                    templateUrl: '/app/Aisel/Page/views/edit.html',
+                    controller: 'PageDetailsCtrl'
+                })
+                .state("pageCategory", {
+                    url: "/:locale/page/category/",
+                    templateUrl: '/app/Kernel/Resource/views/category.html',
+                    controller: 'PageCategoryCtrl'
+                })
+                .state("pageCategoryEdit", {
+                    url: "/:locale/page/category/edit/:id/",
+                    templateUrl: '/app/Aisel/Page/views/edit-category.html',
+                    controller: 'PageCategoryDetailsCtrl'
+                })
+        }])
+        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
+            $rootScope.topMenu.push(
+                {
+                    "ordering": 100,
+                    "title": 'Pages',
+                    "children": {
+                        "pages": {
+                            "ordering": 100,
+                            "slug": '/pages/',
+                            "title": 'Pages'
+                        },
+                        "pageCategory": {
+                            "ordering": 200,
+                            "slug": '/page/category/',
+                            "title": 'Categories'
+                        }
+                    }
+                }
+            );
+        }]);
 });

@@ -13,18 +13,28 @@
  */
 
 define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-            .state("navigation", {
-                url: "/:locale/navigation/",
-                templateUrl: '/app/Kernel/Resource/views/category.html',
-                controller: 'NavigationCtrl'
-            })
-            .state("navigationEdit", {
-                url: "/:locale/navigation/edit/:id/",
-                templateUrl: '/app/Aisel/Navigation/views/edit-category.html',
-                controller: 'NavigationDetailCtrl'
-            })
+    app
+        .config(['$stateProvider', function ($stateProvider) {
+            $stateProvider
+                .state("navigation", {
+                    url: "/:locale/navigation/",
+                    templateUrl: '/app/Kernel/Resource/views/category.html',
+                    controller: 'NavigationCtrl'
+                })
+                .state("navigationEdit", {
+                    url: "/:locale/navigation/edit/:id/",
+                    templateUrl: '/app/Aisel/Navigation/views/edit-category.html',
+                    controller: 'NavigationDetailCtrl'
+                })
 
-    }]);
+        }])
+        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
+            $rootScope.topMenu.push(
+                {
+                    "ordering": 500,
+                    "slug": '/navigation/',
+                    "title": 'Navigation'
+                }
+            );
+        }]);
 });
