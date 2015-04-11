@@ -7,10 +7,9 @@
             </div>
             <div class="col-md-8 nav-buttons">
                 <div class="pull-right">
-                    </button>
                     <button type="submit"
-                            class="btn btn-success"
-                            ng-click="save()">
+                            ng-click="save()"
+                            class="btn btn-success">
                         Save Settings
                     </button>
                 </div>
@@ -21,14 +20,14 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form class="form-horizontal-edit" name="editForm" role="form">
+        <form class="form-horizontal-edit" name="settingsForm" role="form">
             <tabset>
-                <tab ng-repeat="locale in settings.locale.available">
+                <tab ng-repeat="locale in config.locale.available">
                     <tab-heading>
                         <i class="glyphicon glyphicon-th-list"></i> {{locale}}
                     </tab-heading>
                     <div class="tab-content">
-                        <div class="section" ng-repeat="(section,sectionData) in settings.fields">
+                        <div class="section" ng-repeat="(section, sectionData) in config.fields">
                             <div class="row">
                                 <div class="col-md-2">
                                     <h2>{{section}}</h2>
@@ -36,33 +35,33 @@
                                 <div class="col-md-10">
                                     <div class="section" ng-repeat="(name,field) in sectionData.fields">
                                         <div class="form-group">
-                                            <label for="{{section}}{{name}}">{{name}}</label>
+                                            <label for="locale[{{section}}][{{name}}]">{{name}}</label>
                                             <input ng-if="field.type == 'input'"
-                                                   name="{{section}}{{name}}"
-                                                   value="{{settings.settings[locale][section][name]}}"
-                                                   id="{{section}}{{name}}"
+                                                   name="locale[{{section}}][{{name}}]"
+                                                   id="locale[{{section}}][{{name}}]"
                                                    type="text"
+                                                   ng-model="config.settings[locale][section][name]"
                                                    class="form-control"
-                                                   ng-required="true"/>
+                                                   ng-required="false"/>
 
                                             <textarea ng-if="field.type == 'textarea'"
-                                                      name="{{section}}{{name}}"
-                                                      value="{{settings.settings[locale][section][name]}}"
-                                                      id="{{section}}{{name}}"
+                                                      name="locale[{{section}}][{{name}}]"
+                                                      id="locale[{{section}}][{{name}}]"
                                                       type="text"
+                                                      ng-model="config.settings[locale][section][name]"
                                                       class="form-control"
                                                       rows="10"
-                                                      ng-required="true">
-                                                {{settings.settings[locale][section][name]}}
+                                                      ng-required="false">
+                                                {{config.settings[locale][section][name]}}
                                             </textarea>
 
                                             <select ng-if="field.type == 'select'"
-                                                    name="{{section}}{{name}}"
-                                                    value="{{settings.settings[locale][section][name]}}"
-                                                    id="{{section}}{{name}}"
+                                                    name="locale[{{section}}][{{name}}]"
+                                                    id="locale[{{section}}][{{name}}]"
                                                     type="text"
+                                                    ng-model="config.settings[locale][section][name]"
                                                     class="form-control"
-                                                    ng-required="true">
+                                                    ng-required="false">
                                                 <option ng-repeat="(key,option) in field.options"
                                                         value="{{key}}">
                                                     {{option}}
@@ -73,14 +72,9 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </tab>
             </tabset>
         </form>
     </div>
 </div>
-
-<pre>
-  {{settings}}
-</pre>

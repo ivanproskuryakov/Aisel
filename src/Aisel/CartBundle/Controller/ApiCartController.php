@@ -38,9 +38,8 @@ class ApiCartController extends Controller
     }
 
     /**
-     * /%frontend_api%/cart.json
+     * cartAction
      *
-     * @return
      */
     public function cartAction()
     {

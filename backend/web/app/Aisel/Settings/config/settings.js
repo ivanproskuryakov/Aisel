@@ -13,12 +13,32 @@
  */
 
 define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-            .state("settings", {
-                url: "/:locale/settings/",
-                templateUrl: '/app/Aisel/Settings/views/settings.html',
-                controller: 'SettingsCtrl'
-            });
-    }]);
+    app
+        .config(['$stateProvider', function ($stateProvider) {
+            $stateProvider
+                .state("settings", {
+                    url: "/:locale/settings/",
+                    templateUrl: '/app/Aisel/Settings/views/settings.html',
+                    controller: 'SettingsCtrl'
+                })
+        }])
+        .run(['$rootScope', function ($rootScope) {
+            //$rootScope.topMenu = _.union(
+                //    {
+                //        "settings": {
+                //            "ordering": 900,
+                //            "glyphicon": 'glyphicon-cog',
+                //            "slug": '/settings/',
+                //            "title": 'Settings'
+                //        }
+                //    }, {
+                //        "settings": {
+                //            "ordering": 900,
+                //            "glyphicon": 'glyphicon-cog',
+                //            "slug": '/settings/',
+                //            "title": 'Settings'
+                //        }
+                //    }
+            //);
+        }]);
 });

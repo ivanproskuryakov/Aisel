@@ -13,13 +13,30 @@
  */
 
 define(['app'], function (app) {
-    app.controller('SettingsCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'settingsService',
-        function ($location, $scope, $routeParams, $rootScope, settingsService) {
+    app.controller('SettingsCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'settingsService', 'notify',
+        function ($location, $scope, $routeParams, $rootScope, settingsService, notify) {
 
             settingsService.get().success(
                 function (data, status) {
-                    $scope.settings = data;
+                    $scope.config = data;
                 }
             );
+
+            $scope.save = function () {
+                var settingsData = angular.toJson($scope.config.settings);
+
+                settingsService.save(settingsData).success(
+                    function (data, status) {
+
+                        console.log(data);
+                        notify(data.message);
+
+                        if (data.status) {
+                            console.log(data);
+                        }
+                    }
+                );
+            };
+
         }]);
 });

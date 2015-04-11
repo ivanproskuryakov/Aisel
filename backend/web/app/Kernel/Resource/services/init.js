@@ -23,6 +23,7 @@ define(['app'], function (app) {
                         $rootScope.pageTitle = Environment.settings.pageTitle;
                         $rootScope.availableLocales = Environment.settings.locale.available;
                         $rootScope.locale = Environment.currentLocale();
+                        $rootScope.topMenu = Environment.settings.menu;
                     }
                 }
             }

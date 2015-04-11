@@ -54,9 +54,10 @@ class ResponseListener
         $headers = $event
             ->getResponse()
             ->headers;
+
         $headers->set('Access-Control-Allow-Credentials', 'true');
         $headers->set('Access-Control-Allow-Origin', $allowOrigin);
         $headers->set('Access-Control-Allow-Headers', 'origin, x-requested-with, content-type');
-        $headers->set('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+        $headers->set('Access-Control-Allow-Methods', 'PUT, GET, HEAD, POST, DELETE, OPTIONS');
     }
 }

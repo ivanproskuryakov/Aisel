@@ -11,6 +11,7 @@
 
 namespace Aisel\ConfigBundle\Controller\Admin;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -22,17 +23,32 @@ class ApiController extends Controller
 {
 
     /**
-     * Config for backend
+     * Get config data
      *
      * @return array $config
      */
     public function getAction()
     {
         $container = $this->container;
-        $config = $container->get("aisel.config.manager")->getConfig();
+        $config = $this->container->get("aisel.config.manager")->getConfig();
         $config['fields'] = $container->getParameter('aisel_config');
 
         return $config;
+    }
+
+    /**
+     * Save config data
+     *
+     * @param Request $request
+     *
+     * @return array $config
+     */
+    public function saveAction(Request $request)
+    {
+        $settingsData = $request->getContent();
+        $this->container->get("aisel.config.manager")->saveConfig($settingsData);
+
+        return array('status' => true, 'message' => 'Settings have been saved!');
     }
 
 }

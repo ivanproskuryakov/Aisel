@@ -19,7 +19,18 @@ define(['app'], function (app) {
                 get: function () {
                     var url = Environment.settings.api + '/config/';
                     console.log(url);
+
                     return $http.get(url);
+                },
+                save: function (settingsData) {
+                    var url = Environment.settings.api + '/config/';
+
+                    return $http({
+                        method: 'POST',
+                        url: url,
+                        data: settingsData
+                        //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    });
                 }
             };
         }]);

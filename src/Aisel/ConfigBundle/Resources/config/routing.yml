@@ -6,11 +6,17 @@
 # file that was distributed with this source code.
 
 # Backend
-admin_api_aisel_config:
+admin_api_aisel_config_get:
     pattern:   /%backend_api%/config/
     defaults:  { _controller: AiselConfigBundle:Admin/Api:get, _format: json }
     requirements:
         _method: GET
+
+admin_api_aisel_config_update:
+    pattern:   /%backend_api%/config/
+    defaults:  { _controller: AiselConfigBundle:Admin/Api:save, _format: json }
+    requirements:
+        _method: POST
 
 # Frontend
 api_aisel_config:

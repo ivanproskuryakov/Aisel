@@ -65,13 +65,25 @@ class ConfigRepository extends EntityRepository
     }
 
     /**
+     * saveConfig
+     *
+     * @param array $settings
+     */
+    public function saveConfig($settings)
+    {
+        foreach ($settings as $locale => $entities) {
+            foreach ($entities as $entity => $value) {
+                $this->setConfig($locale, $entity, $value);
+            }
+        }
+    }
+
+    /**
      * Set config data for current entity & locale
      *
      * @param string $locale
      * @param string $entity
      * @param string $value
-     *
-     * @return boolean $entity
      *
      * @throws \RuntimeException
      */
@@ -86,14 +98,11 @@ class ConfigRepository extends EntityRepository
         try {
             $config->setlocale($locale);
             $config->setEntity($entity);
-            $config->setValue($value);
+            $config->setValue(json_encode($value));
             $this->_em->persist($config);
             $this->_em->flush();
-
         } catch (Exception $e) {
             throw new \RuntimeException($e);
         }
-
-        return true;
     }
 }
