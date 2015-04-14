@@ -28,10 +28,15 @@ define(['app'], function (app) {
                     return $http({
                         method: 'POST',
                         url: url,
-                        data: settingsData
+                        data: settingsData,
+                        withCredentials: true,
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8'
+                        }
                         //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                     });
                 }
+
             };
         }]);
 });

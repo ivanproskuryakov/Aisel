@@ -4,6 +4,7 @@ imports:
     - { resource: twig.yml }
     - { resource: configs/aisel.yml }
     - { resource: configs/payum.yml }
+    - { resource: configs/cors.yml }
 
 framework:
     #esi:             ~
@@ -97,4 +98,3 @@ jms_serializer:
 fos_rest:
     view:
         view_response_listener: 'force'
-

@@ -34,7 +34,6 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/rest-bundle": "1.4.*@dev",
 
-        "egeloen/ckeditor-bundle": "~2.0",
         "jms/serializer-bundle": "0.13.*@dev",
         "mopa/bootstrap-bundle": "2.3.x-dev",
         "twbs/bootstrap": "v2.3.2",
@@ -50,7 +49,8 @@
         "behat/mink": "~1.6@dev",
 
         "phpspec/phpspec": "~2.0",
-        "phpunit/phpunit": "3.7.*"
+        "phpunit/phpunit": "3.7.*",
+        "nelmio/cors-bundle": "~1.4"
 
     },
     "scripts": {

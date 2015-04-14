@@ -28,7 +28,8 @@ define(['app'], function (app) {
                 settingsService.save(settingsData).success(
                     function (data, status) {
 
-                        console.log(data);
+                        //console.log(data);
+                        //
                         notify(data.message);
 
                         if (data.status) {

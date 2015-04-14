@@ -21,8 +21,8 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Payum\Bundle\PayumBundle\PayumBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
 
             // Aisel bundles
             new Aisel\FrontendUserBundle\AiselFrontendUserBundle(),
