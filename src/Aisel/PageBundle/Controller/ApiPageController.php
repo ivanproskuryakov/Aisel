@@ -21,16 +21,16 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ApiPageController extends Controller
 {
-
-    /**
-     * Is User Authenticated
-     *
-     * @return boolean
-     */
-    private function isAuthenticated()
-    {
-        return $this->get('frontend.user.manager')->isAuthenticated();
-    }
+//
+//    /**
+//     * Is User Authenticated
+//     *
+//     * @return boolean
+//     */
+//    private function isAuthenticated()
+//    {
+//        return $this->get('frontend.user.manager')->isAuthenticated();
+//    }
 
     /**
      * /api/page/list.json?limit=2&current=3

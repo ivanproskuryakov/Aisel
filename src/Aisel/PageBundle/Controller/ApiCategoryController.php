@@ -23,12 +23,12 @@ class ApiCategoryController extends Controller
 {
 
     /**
-     * /api/page/category/list.json?limit=2&current=3
+     * categoryListAction
      *
      * @param Request $request
      * @param string  $locale
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return mixed $categoryList
      */
     public function categoryListAction(Request $request, $locale)
     {
@@ -42,12 +42,12 @@ class ApiCategoryController extends Controller
     }
 
     /**
-     * /api/page/category/list.json?limit=2&current=3
+     * categoryTreeAction
      *
      * @param Request $request
      * @param string  $locale
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return mixed $categoryList
      */
     public function categoryTreeAction(Request $request, $locale)
     {
@@ -57,12 +57,12 @@ class ApiCategoryController extends Controller
     }
 
     /**
-     * /api/page/category/view/{$$urlKey}.json
+     * categoryViewAction
      *
      * @param string $urlKey
      * @param string $locale
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return mixed $category
      */
     public function categoryViewAction($urlKey, $locale)
     {

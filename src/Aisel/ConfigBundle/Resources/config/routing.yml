@@ -16,7 +16,7 @@ admin_api_aisel_config_update:
     pattern:   /%backend_api%/config/
     defaults:  { _controller: AiselConfigBundle:Admin/Api:save, _format: json }
     requirements:
-        _method: POST
+        _method: PUT
 
 # Frontend
 api_aisel_config:

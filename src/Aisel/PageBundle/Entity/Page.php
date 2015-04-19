@@ -35,11 +35,6 @@ class Page
     /**
      * @var boolean
      */
-    private $hidden;
-
-    /**
-     * @var boolean
-     */
     private $commentStatus;
 
     /**
@@ -198,29 +193,6 @@ class Page
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * Set hidden
-     *
-     * @param  boolean $hidden
-     * @return Page
-     */
-    public function setHidden($hidden)
-    {
-        $this->hidden = $hidden;
-
-        return $this;
-    }
-
-    /**
-     * Get hidden
-     *
-     * @return boolean
-     */
-    public function getHidden()
-    {
-        return $this->hidden;
     }
 
     /**

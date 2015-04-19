@@ -1,0 +1,10 @@
+<div class="form-group">
+    <label for="locale">Locale</label>
+    <select id="locale"
+            class="form-control"
+            ng-required="true"
+            ng-model="details.item.locale"
+            name="status">
+        <option ng-repeat="locale in availableLocales" value="{{locale}}">{{locale}}</option>
+    </select>
+</div>

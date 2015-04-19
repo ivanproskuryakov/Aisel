@@ -30,6 +30,27 @@ define(['app'], function (app) {
                     console.log(url);
                     return $http.get(url);
                 },
+                remove: function ($id) {
+                    var url = Environment.settings.api + '/page/' + $id;
+                    console.log(url);
+                    return $http.delete(url);
+                },
+                save: function (data) {
+                    var url = Environment.settings.api + '/page/' + data.id;
+                    return $http({
+                        method: 'PUT',
+                        url: url,
+                        data: data
+                    });
+                },
+                create: function (data) {
+                    var url = Environment.settings.api + '/page/';
+                    return $http({
+                        method: 'POST',
+                        url: url,
+                        data: data
+                    });
+                },
                 getCategory: function ($id) {
                     var url = Environment.settings.api + '/page/category/' + $id;
                     console.log(url);

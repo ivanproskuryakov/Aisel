@@ -44,6 +44,17 @@
                                                    class="form-control"
                                                    ng-required="false"/>
 
+                                            <textarea text-angular ng-if="field.type == 'wysiwyg'"
+                                                      name="{{locale}}locale[{{section}}][{{name}}]"
+                                                      id="locale[{{section}}][{{name}}]"
+                                                      type="text"
+                                                      ng-model="config.settings[locale][section][name]"
+                                                      class="form-control"
+                                                      rows="10"
+                                                      ng-required="false">
+                                                {{config.settings[locale][section][name]}}
+                                            </textarea>
+
                                             <textarea ng-if="field.type == 'textarea'"
                                                       name="locale[{{section}}][{{name}}]"
                                                       id="locale[{{section}}][{{name}}]"

@@ -13,19 +13,18 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageDetailsCtrl', function ($scope, $stateParams, pageService, $state, Environment) {
+    app.controller('PageDetailsCtrl', function ($controller, $scope, pageService) {
 
-        $scope.details = {
-            id: $stateParams.id,
-            name: 'Page'
+        $scope.route = {
+            name: 'Page',
+            collection: 'pages',
+            edit: 'pageEdit'
         };
-        var handleSuccess = function (data, status) {
-            $scope.item = data;
-        };
-        pageService.get($scope.details.id).success(handleSuccess);
 
-        $scope.editCancel = function () {
-            $state.transitionTo('pages', {locale: Environment.currentLocale()});
-        }
+        angular.extend(this, $controller('AbstractDetailsCtrl', {
+            $scope: $scope,
+            service: pageService
+        }));
+
     });
 });

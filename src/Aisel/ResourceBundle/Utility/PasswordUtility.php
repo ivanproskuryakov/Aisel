@@ -20,7 +20,7 @@ class PasswordUtility
     /**
      * Generate password string
      *
-     * @param string $length
+     * @param int $length
      *
      * @return string $password
      */

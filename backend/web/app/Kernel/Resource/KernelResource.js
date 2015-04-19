@@ -14,6 +14,7 @@
 
 define(['app',
     './config/resource',
+    './controllers/abstractDetails',
     './services/init',
     './services/collection',
     './directives/fancyTree',

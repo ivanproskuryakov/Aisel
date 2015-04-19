@@ -22,21 +22,15 @@ define(['app'], function (app) {
 
                     return $http.get(url);
                 },
-                save: function (settingsData) {
+                save: function (data) {
                     var url = Environment.settings.api + '/config/';
 
                     return $http({
-                        method: 'POST',
+                        method: 'PUT',
                         url: url,
-                        data: settingsData,
-                        withCredentials: true,
-                        headers: {
-                            'Content-Type': 'application/json; charset=utf-8'
-                        }
-                        //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                        data: data
                     });
                 }
-
             };
         }]);
 });

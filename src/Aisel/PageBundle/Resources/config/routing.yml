@@ -36,6 +36,24 @@ admin_api_aisel_page_get:
     requirements:
         _method: GET
 
+admin_api_aisel_page_delete:
+    pattern:   /%backend_api%/page/{id}
+    defaults:  { _controller: AiselPageBundle:Admin/Api:delete, _format: json }
+    requirements:
+        _method: DELETE
+
+admin_api_aisel_page_put:
+    pattern:   /%backend_api%/page/{id}
+    defaults:  { _controller: AiselPageBundle:Admin/Api:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_page_post:
+    pattern:   /%backend_api%/page/
+    defaults:  { _controller: AiselPageBundle:Admin/Api:post, _format: json }
+    requirements:
+        _method: POST
+
 # Frontend
 api_aisel_pagelist:
     pattern:  /%frontend_api%/{locale}/page/

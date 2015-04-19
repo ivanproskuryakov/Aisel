@@ -13,18 +13,24 @@ namespace Aisel\PageBundle\Manager;
 
 use LogicException;
 use Aisel\ResourceBundle\Utility\UrlUtility;
+use Aisel\PageBundle\Entity\Page;
+use Doctrine\ORM\EntityManager;
 
 /**
- * Manager for Pages, mostly used in REST API
+ * PageManager
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class PageManager
 {
+
+    /**
+     * @var EntityManager
+     */
     protected $em;
 
     /**
-     * {@inheritDoc}
+     * @param EntityManager $entityManager
      */
     public function __construct($entityManager)
     {
@@ -34,7 +40,7 @@ class PageManager
     /**
      * Get categories in array for page
      *
-     * @param int $page
+     * @param Page $page
      *
      * @return array $categories
      */
@@ -77,20 +83,61 @@ class PageManager
      *
      * @param int $id
      *
-     * @return \Aisel\PageBundle\Entity\Page $pageDetails
+     * @return mixed $pageDetails
      *
      * @throws LogicException
      */
     public function getItem($id)
     {
-        $page = $this->em->getRepository('AiselPageBundle:Page')->find($id);
-
-        if (!($page)) {
-            throw new LogicException('Nothing found');
-        }
-        $pageDetails = array('item' => $page, 'categories' => $this->getPageCategories($page));
+        $page = $this->getPageById($id);
+        $pageDetails = array(
+            'item' => $page,
+            'categories' => $this->getPageCategories($page)
+        );
 
         return $pageDetails;
+    }
+
+    /**
+     * Delete Page
+     *
+     * @param int $id
+     */
+    public function deleteItem($id)
+    {
+        $page = $this->getPageById($id);
+        $this->em->remove($page);
+        $this->em->flush();
+    }
+
+    /**
+     * Create or Save page
+     *
+     * @param array $data
+     *
+     * @return Page $page
+     */
+    public function saveItem(array $data)
+    {
+        if (isset($data['id']) === false) {
+            $page = new Page();
+        } else {
+            $page = $this->getPageById($data['id']);
+        }
+
+        $page->setLocale($data['locale']);
+        $page->setTitle($data['title']);
+        $page->setContent($data['content']);
+        $page->setMetaUrl($this->normalizePageUrl($data['meta_url']));
+        $page->setMetaDescription($data['meta_description']);
+        $page->setMetaKeywords($data['meta_keywords']);
+        $page->setStatus($data['status']);
+        $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $this->em->persist($page);
+        $this->em->flush();
+
+        return $page;
     }
 
     /**
@@ -99,24 +146,47 @@ class PageManager
      * @param string $urlKey
      * @param string $locale
      *
-     * @return \Aisel\PageBundle\Entity\Page $page
-     *
      * @throws LogicException
+     *
+     * @return mixed $pageDetails
      */
     public function getPageByURL($urlKey, $locale)
     {
         $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(array('metaUrl' => $urlKey));
 
-        if (!($page)) {
+        if (!$page) {
             throw new LogicException('Nothing found');
         }
-        $pageDetails = array('page' => $page, 'categories' => $this->getPageCategories($page));
+        $pageDetails = array(
+            'page' => $page,
+            'categories' => $this->getPageCategories($page)
+        );
 
         return $pageDetails;
     }
 
     /**
-     * validate metaUrl for Page Entity and return one we can use
+     * Load page by Id
+     *
+     * @param integer $id
+     *
+     * @throws LogicException
+     *
+     * @return Page $page
+     */
+    public function getPageById($id)
+    {
+        $page = $this->em->getRepository('AiselPageBundle:Page')->find($id);
+
+        if (!$page) {
+            throw new LogicException('Nothing found');
+        }
+
+        return $page;
+    }
+
+    /**
+     * Validate metaUrl for Page Entity and return one we can use
      *
      * @param string $url
      * @param int $pageId

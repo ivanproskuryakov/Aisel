@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageCtrl', ['$state', '$scope', 'pageService', 'collectionService', 'Environment',
-        function ($state, $scope, pageService, collectionService, Environment) {
+    app.controller('PageCtrl', ['$state', '$scope', 'pageService', 'collectionService', 'Environment', 'notify',
+        function ($state, $scope, pageService, collectionService, Environment, notify) {
 
             $scope.collectionTitle = 'Pages';
             $scope.pageLimit = 20;
@@ -43,12 +43,12 @@ define(['app'], function (app) {
             };
             $scope.newItem = function () {
                 $state.transitionTo('pageNew', {locale: Environment.currentLocale()});
-            }
+            };
 
             // === Load collection from remote ===
             $scope.loadCollection = function (pageNumber) {
                 collectionService.loadCollection($scope, pageService, pageNumber);
-            }
+            };
             $scope.loadCollection();
 
         }]);
