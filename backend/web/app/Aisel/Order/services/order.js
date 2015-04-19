@@ -13,23 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.service('orderService', ['$http', 'Environment',
-        function ($http, Environment) {
-            return {
-                getCollection: function ($scope, pageNumber) {
-                    var url = Environment.settings.api
-                        + '/order/?limit=' + $scope.pageLimit
-                        + '&current=' + pageNumber
-                        + '&filter=' + $scope.filter;
-
-                    console.log(url);
-                    return $http.get(url);
-                },
-                get: function ($id) {
-                    var url = Environment.settings.api + '/order/' + $id;
-                    console.log(url);
-                    return $http.get(url);
-                }
-            };
-        }]);
+    app.service('orderService', ['resourceService', function (resourceService) {
+        return new resourceService('order');
+    }]);
 });

@@ -9,27 +9,11 @@
  * file that was distributed with this source code.
  *
  * @name            AiselAddressing
- * @description     ...
+ * @description     cityService
  */
 
 define(['app'], function (app) {
-    app.service('cityService', ['$http', 'Environment',
-        function ($http, Environment) {
-            return {
-                getCollection: function ($scope, pageNumber) {
-                    var url = Environment.settings.api
-                        + '/addressing/city/?limit=' + $scope.pageLimit
-                        + '&current=' + pageNumber
-                        + '&filter=' + $scope.filter;
-
-                    console.log(url);
-                    return $http.get(url);
-                },
-                get: function ($id) {
-                    var url = Environment.settings.api + '/addressing/city/' + $id;
-                    console.log(url);
-                    return $http.get(url);
-                }
-            };
-        }]);
+    app.service('cityService', ['resourceService', function (resourceService) {
+        return new resourceService('addressing/city');
+    }]);
 });

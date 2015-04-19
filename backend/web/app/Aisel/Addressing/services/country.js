@@ -9,26 +9,11 @@
  * file that was distributed with this source code.
  *
  * @name            AiselAddressing
- * @description     ...
+ * @description     countryService
  */
 
 define(['app'], function (app) {
-    app.service('countryService', ['$http', 'Environment',
-        function ($http, Environment) {
-            return {
-                getCollection: function ($scope, pageNumber) {
-                    var url = Environment.settings.api
-                        + '/addressing/country/?limit=' + $scope.pageLimit
-                        + '&current=' + pageNumber
-                        + '&filter=' + $scope.filter;
-                    console.log(url);
-                    return $http.get(url);
-                },
-                get: function ($id) {
-                    var url = Environment.settings.api + '/addressing/country/' + $id;
-                    console.log(url);
-                    return $http.get(url);
-                }
-            };
-        }]);
+    app.service('countryService', ['resourceService', function (resourceService) {
+        return new resourceService('addressing/country');
+    }]);
 });

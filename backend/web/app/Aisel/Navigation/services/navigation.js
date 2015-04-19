@@ -13,14 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.service('navigationService', ['$http', 'Environment',
-        function ($http, Environment) {
-            return {
-                get: function ($id) {
-                    var url = Environment.settings.api + '/navigation/' + $id;
-                    console.log(url);
-                    return $http.get(url);
-                }
-            };
-        }]);
+    app.service('navigationService', ['resourceService', function (resourceService) {
+        return new resourceService('navigation');
+    }]);
 });

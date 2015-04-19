@@ -24,7 +24,7 @@ define(['app'], function (app) {
                 .state("productEdit", {
                     url: "/:locale/product/edit/:id/",
                     templateUrl: '/app/Aisel/Product/views/edit.html',
-                    controller: 'ProductDetailCtrl'
+                    controller: 'ProductDetailsCtrl'
                 })
                 .state("productNew", {
                     url: "/:locale/product/new/",

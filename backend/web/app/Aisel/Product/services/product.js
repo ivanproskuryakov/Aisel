@@ -13,29 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.service('productService', ['$http', 'Environment',
-        function ($http, Environment) {
-            return {
-                getCollection: function ($scope, pageNumber) {
-                    var url = Environment.settings.api
-                        + '/product/?limit=' + $scope.pageLimit
-                        + '&current=' + pageNumber
-                        + '&filter=' + $scope.filter;
-
-                    console.log(url);
-                    return $http.get(url);
-                },
-                get: function ($id) {
-                    var url = Environment.settings.api + '/product/' + $id;
-                    console.log(url);
-                    return $http.get(url);
-                },
-                getCategory: function ($id) {
-                    var url = Environment.settings.api + '/product/category/' + $id;
-                    console.log(url);
-                    return $http.get(url);
-                }
-
-            };
-        }]);
+    app.service('productService', ['resourceService', function (resourceService) {
+        return new resourceService('product');
+    }]);
 });
