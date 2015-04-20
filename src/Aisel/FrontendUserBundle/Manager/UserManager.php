@@ -17,6 +17,11 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Aisel\ResourceBundle\Utility\PasswordUtility;
 use LogicException;
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\Security\Core\Encoder\EncoderFactory;
+use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Swift_Mailer;
 
 /**
  * Manager for frontend users.
@@ -26,42 +31,60 @@ use LogicException;
 class UserManager implements UserProviderInterface
 {
 
+    /**
+     * @var EncoderFactory
+     */
     protected $encoder;
-    protected $em;
-    protected $templating;
-    protected $mailer;
-    protected $websiteEmail;
+
+    /**
+     * @var SecurityContext
+     */
     protected $securityContext;
 
     /**
-     * {@inheritDoc}
+     * @var EntityManager
      */
-    public function __construct($em, $encoder, $mailer,
-                                $templating, $websiteEmail, $securityContext
-                               )
-    {
+    protected $em;
+
+    /**
+     * @var EngineInterface
+     */
+    protected $templating;
+
+    /**
+     * @var Swift_Mailer
+     */
+    protected $mailer;
+
+    /**
+     * @var string
+     */
+    protected $websiteEmail;
+
+    /**
+     * Constructor
+     *
+     * @param EntityManager $entityManager
+     * @param EncoderFactory $encoder
+     * @param SecurityContext $securityContext
+     * @param Swift_Mailer $mailer
+     * @param EngineInterface $templating
+     * @param string $websiteEmail
+     */
+    public function __construct(
+        EntityManager $em,
+        EncoderFactory $encoder,
+        SecurityContext $securityContext,
+        Swift_Mailer $mailer,
+        EngineInterface $templating,
+        $websiteEmail
+    ) {
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->encoder = $encoder;
         $this->em = $em;
         $this->websiteEmail = $websiteEmail;
         $this->securityContext = $securityContext;
-    }
-
-    /**
-     * Get Templating service
-     */
-    public function getTemplating()
-    {
-        return $this->templating;
-    }
-
-    /**
-     * Get Mailer service
-     */
-    public function getMailer()
-    {
-        return $this->mailer;
     }
 
     /**
@@ -75,7 +98,7 @@ class UserManager implements UserProviderInterface
     /**
      * Get collection
      *
-     * @param array  $params
+     * @param array $params
      * @param string $locale
      *
      * @return array
@@ -176,7 +199,7 @@ class UserManager implements UserProviderInterface
      * Is user password correct
      *
      * @param FrontendUser $user
-     * @param string       $password
+     * @param string $password
      *
      * @return boolean $isValid
      */
@@ -288,7 +311,7 @@ class UserManager implements UserProviderInterface
                     ->setFrom($this->websiteEmail)
                     ->setTo($user->getEmail())
                     ->setBody(
-                        $this->getTemplating()->render(
+                        $this->templating->render(
                             'AiselFrontendUserBundle:Email:registration.txt.twig',
                             array(
                                 'username' => $user->getUsername(),
@@ -298,7 +321,7 @@ class UserManager implements UserProviderInterface
                         )
                     );
 
-                $this->getMailer()->send($message);
+                $this->mailer->send($message);
             } catch (\Swift_TransportException $e) {
             }
 
@@ -329,7 +352,7 @@ class UserManager implements UserProviderInterface
                     ->setFrom($this->websiteEmail)
                     ->setTo($user->getEmail())
                     ->setBody(
-                        $this->getTemplating()->render(
+                        $this->templating->render(
                             'AiselFrontendUserBundle:Email:newPassword.txt.twig',
                             array(
                                 'username' => $user->getUsername(),
@@ -337,7 +360,7 @@ class UserManager implements UserProviderInterface
                             )
                         )
                     );
-                $response = $this->getMailer()->send($message);
+                $response = $this->mailer->send($message);
             } catch (\Swift_TransportException $e) {
                 $response = $e->getMessage();
             }

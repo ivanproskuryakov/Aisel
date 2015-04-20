@@ -27,7 +27,14 @@ use Symfony\Component\Security\Core\SecurityContext;
  */
 class UserManager implements UserProviderInterface
 {
+    /**
+     * @var EncoderFactory
+     */
     protected $encoder;
+
+    /**
+     * @var SecurityContext
+     */
     protected $securityContext;
 
     /**

@@ -11,7 +11,7 @@ services:
         arguments:
           - @doctrine.orm.entity_manager
           - @security.encoder_factory
+          - @security.context
           - @mailer
           - @templating
           - %website_email%
-          - @security.context
