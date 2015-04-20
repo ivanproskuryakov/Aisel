@@ -46,7 +46,7 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                     $page->setTitle($table->column[2]);
                     $page->setContent($table->column[3]);
                     $page->setStatus($table->column[4]);
-                    $page->setHidden($table->column[5]);
+//                    $page->setHidden($table->column[5]);
                     $page->setCommentStatus($table->column[6]);
                     $page->setMetaUrl($table->column[7]);
 
