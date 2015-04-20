@@ -18,5 +18,9 @@ define(['app'], function (app) {
         $scope.sectionName = 'Page categories';
         $scope.categoryJson = Environment.settings.api + '/page/category/';
 
+        $scope.editNode = function (id) {
+            $state.transitionTo('pageCategoryEdit', {locale: Environment.currentLocale(), id: id});
+        };
+
     });
 });

@@ -1,5 +1,3 @@
-<input type="hidden" id="categoryJson" ng-model="categoryJson" ng-value="categoryJson" name="categotyTree">
-
 <table id="adminNodeTree" class="table table-bordered table-striped col-md-12">
     <colgroup>
         <col class="col-md-0"></col>
@@ -23,14 +21,14 @@
 
 <script type="text/javascript">
 var editNode = function (id) {
-    window.location = document.URL + "edit/" + id + "/";
+    angular.element(document.getElementById('dynamic-content')).scope().editNode(id);
 };
 
 $(document).ready(function () {
     setTimeout(function () {
         var routeCategoryAjaxUpdate = '';
         var routeCategory = null;
-        var categoryJson = document.getElementById("categoryJson").value;
+        var categoryJson = angular.element(document.getElementById('dynamic-content')).scope().categoryJson;
 
         $("#adminNodeTree").fancytree({
             extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter", "childcounter"],
@@ -245,29 +243,29 @@ $(document).ready(function () {
         });
 
         $("#adminNodeTree").contextmenu({
-                    delegate: "span.fancytree-title",
-                    menu: [
-                        {title: "Rename", cmd: "rename", uiIcon: "ui-icon-pencil"},
-                        {title: "Remove", cmd: "remove", uiIcon: "ui-icon-trash"},
-                        {title: "----"},
-                        {title: "Add Sibling", cmd: "addSibling", uiIcon: "ui-icon-plus"},
-                        {title: "Add Child", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e"},],
-                    beforeOpen: function (event, ui) {
+                delegate: "span.fancytree-title",
+                menu: [
+                    {title: "Rename", cmd: "rename", uiIcon: "ui-icon-pencil"},
+                    {title: "Remove", cmd: "remove", uiIcon: "ui-icon-trash"},
+                    {title: "----"},
+                    {title: "Add Sibling", cmd: "addSibling", uiIcon: "ui-icon-plus"},
+                    {title: "Add Child", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e"},],
+                beforeOpen: function (event, ui) {
 
-                        var node = $.ui.fancytree.getNode(ui.target);
-                        $("#adminNodeTree").contextmenu("enableEntry", "paste", false);
-                        node.setActive();
+                    var node = $.ui.fancytree.getNode(ui.target);
+                    $("#adminNodeTree").contextmenu("enableEntry", "paste", false);
+                    node.setActive();
 
-                    },
-                    select: function (event, ui) {
-                        var that = this;
-                        // delay the event, so the menu can close and the click event does
-                        // not interfere with the edit control
-                        setTimeout(function () {
-                            $(that).trigger("nodeCommand", {cmd: ui.cmd});
-                        }, 100);
-                    }
+                },
+                select: function (event, ui) {
+                    var that = this;
+                    // delay the event, so the menu can close and the click event does
+                    // not interfere with the edit control
+                    setTimeout(function () {
+                        $(that).trigger("nodeCommand", {cmd: ui.cmd});
+                    }, 100);
                 }
+            }
         );
 
         $("#btnExpandAll").click(function () {
