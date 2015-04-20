@@ -12,6 +12,11 @@
 namespace Aisel\CartBundle\Manager;
 
 use LogicException;
+use Doctrine\ORM\EntityManager;
+use Aisel\FrontendUserBundle\Manager\UserManager;
+use Aisel\ProductBundle\Manager\ProductManager;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\CartBundle\Entity\Cart;
 
 /**
  * Manager for Cart, mostly used in REST API
@@ -20,14 +25,34 @@ use LogicException;
  */
 class CartManager
 {
+
+    /**
+     * @var EntityManager
+     */
     protected $em;
+
+    /**
+     * @var UserManager
+     */
     protected $userManager;
+
+    /**
+     * @var ProductManager
+     */
     protected $productManager;
 
     /**
-     * {@inheritDoc}
+     * Constructor
+     *
+     * @param EntityManager $entityManager
+     * @param UserManager $frontendUserManager
+     * @param ProductManager $productManager
      */
-    public function __construct($entityManager, $frontendUserManager, $productManager)
+    public function __construct(
+        EntityManager $entityManager,
+        UserManager $frontendUserManager,
+        ProductManager $productManager
+    )
     {
         $this->em = $entityManager;
         $this->userManager = $frontendUserManager;
@@ -35,27 +60,11 @@ class CartManager
     }
 
     /**
-     * Cart manager
-     */
-    private function getProductManager()
-    {
-        return $this->productManager;
-    }
-
-    /**
-     * User manager
-     */
-    private function getUserManager()
-    {
-        return $this->userManager;
-    }
-
-    /**
      * Get get cart products for given $userId
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param FrontendUser $user
      *
-     * @return \Aisel\CartBundle\Entity\Cart $cartItems
+     * @return Cart $cartItems
      */
     public function getUserCart($user)
     {
@@ -67,11 +76,11 @@ class CartManager
     /**
      * Adds product to cart by given $id and $qty
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
-     * @param int                                           $productId
-     * @param int                                           $qty
+     * @param FrontendUser $user
+     * @param int $productId
+     * @param int $qty
      *
-     * @return \Aisel\CartBundle\Entity\Cart $cartItem
+     * @return Cart $cartItem
      *
      * @throws LogicException
      */
@@ -79,7 +88,7 @@ class CartManager
     {
         if (!($user)) throw new LogicException('User object is missing');
 
-        $product = $this->getProductManager()->loadById($productId);
+        $product = $this->productManager->loadById($productId);
         $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->addProduct($user, $product, $qty);
 
         return $cartItem;
@@ -88,11 +97,11 @@ class CartManager
     /**
      * Updates product item inside cart by given $id and $qty
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
-     * @param int                                           $productId
-     * @param int                                           $qty
+     * @param FrontendUser $user
+     * @param int $productId
+     * @param int $qty
      *
-     * @return \Aisel\CartBundle\Entity\Cart $cartItem
+     * @return Cart $cartItem
      *
      * @throws LogicException
      */
@@ -100,7 +109,7 @@ class CartManager
     {
         if (!($user)) throw new LogicException('User object is missing');
 
-        $product = $this->getProductManager()->loadById($productId);
+        $product = $this->productManager->loadById($productId);
         $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->updateProduct($user, $product, $qty);
 
         return $cartItem;

@@ -16,6 +16,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use LogicException;
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\Security\Core\Encoder\EncoderFactory;
+use Symfony\Component\Security\Core\SecurityContext;
 
 /**
  * Manager for backend users. Register, Load and others ...
@@ -25,18 +28,30 @@ use LogicException;
 class UserManager implements UserProviderInterface
 {
     protected $encoder;
-    protected $em;
     protected $securityContext;
 
     /**
-     * {@inheritDoc}
+     * @var EntityManager
      */
-    public function __construct($em, $encoder, $securityContext)
-    {
+    protected $em;
+
+    /**
+     * Constructor
+     *
+     * @param EntityManager $entityManager
+     * @param EncoderFactory $encoder
+     * @param SecurityContext $securityContext
+     */
+    public function __construct(
+        EntityManager $entityManager,
+        EncoderFactory $encoder,
+        SecurityContext $securityContext
+    ) {
+        $this->em = $entityManager;
         $this->encoder = $encoder;
-        $this->em = $em;
         $this->securityContext = $securityContext;
     }
+
 
     protected function getRepository()
     {
@@ -47,7 +62,6 @@ class UserManager implements UserProviderInterface
      * Get collection
      *
      * @param array $params
-     * @param string $locale
      *
      * @return array
      */

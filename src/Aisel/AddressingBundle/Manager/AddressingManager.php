@@ -12,20 +12,27 @@
 namespace Aisel\AddressingBundle\Manager;
 
 use LogicException;
+use Doctrine\ORM\EntityManager;
 
 /**
- * Addressing manager mostly used in API
+ * AddressingManager
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class AddressingManager
 {
+
+    /**
+     * @var EntityManager
+     */
     protected $em;
 
     /**
-     * {@inheritDoc}
+     * Constructor
+     *
+     * @param EntityManager $entityManager
      */
-    public function __construct($entityManager)
+    public function __construct(EntityManager $entityManager)
     {
         $this->em = $entityManager;
     }

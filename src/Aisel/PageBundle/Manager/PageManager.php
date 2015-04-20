@@ -30,6 +30,8 @@ class PageManager
     protected $em;
 
     /**
+     * Constructor
+     *
      * @param EntityManager $entityManager
      */
     public function __construct($entityManager)

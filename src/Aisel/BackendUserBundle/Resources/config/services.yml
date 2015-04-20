@@ -8,4 +8,7 @@
 services:
     backend.user.manager:
         class: Aisel\BackendUserBundle\Manager\UserManager
-        arguments: [@doctrine.orm.entity_manager, @security.encoder_factory, @security.context]
+        arguments:
+          - @doctrine.orm.entity_manager
+          - @security.encoder_factory
+          - @security.context
