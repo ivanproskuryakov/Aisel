@@ -11,6 +11,8 @@
 
 namespace Aisel\SearchBundle\Manager;
 
+use Doctrine\ORM\EntityManager;
+
 /**
  * Manager for search search in REST API
  *
@@ -18,15 +20,22 @@ namespace Aisel\SearchBundle\Manager;
  */
 class SearchManager
 {
+
+    /**
+     * @var EntityManager
+     */
     protected $em;
 
     /**
-     * {@inheritDoc}
+     * Constructor
+     *
+     * @param EntityManager $entityManager
      */
-    public function __construct($em)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->em = $em;
+        $this->em = $entityManager;
     }
+
 
     /**
      * Get list of results

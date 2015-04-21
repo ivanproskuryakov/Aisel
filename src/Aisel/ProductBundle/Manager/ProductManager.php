@@ -13,6 +13,7 @@ namespace Aisel\ProductBundle\Manager;
 
 use Aisel\ResourceBundle\Utility\UrlUtility;
 use LogicException;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Manager for Products, mostly used in REST API
@@ -21,19 +22,26 @@ use LogicException;
  */
 class ProductManager
 {
+    /**
+     * @var EntityManager
+     */
     protected $em;
 
     /**
-     * {@inheritDoc}
+     * Constructor
+     *
+     * @param EntityManager $entityManager
      */
-    public function __construct($em)
+    public function __construct($entityManager)
     {
-        $this->em = $em;
+        $this->em = $entityManager;
     }
 
     /**
      * Get categories in array for product
+     *
      * @param  int $product
+     *
      * @return array $categories
      */
     public function getProductCategories($product)
@@ -53,7 +61,9 @@ class ProductManager
 
     /**
      * Get list of all products
+     *
      * @param  array $params
+     *
      * @return array
      */
     public function getCollection($params)

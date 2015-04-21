@@ -11,12 +11,11 @@
 
 namespace Aisel\ConfigBundle\Manager;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\ORM\EntityManager;
 use LogicException;
 
 /**
- * Class mainly used in SettingsController
+ * ConfigManager
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

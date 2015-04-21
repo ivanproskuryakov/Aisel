@@ -12,6 +12,7 @@
 namespace Aisel\NavigationBundle\Manager;
 
 use Aisel\NavigationBundle\Entity\Menu;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Manager for Navigation
@@ -21,12 +22,17 @@ use Aisel\NavigationBundle\Entity\Menu;
 class NavigationManager
 {
 
+    /**
+     * @var EntityManager
+     */
     protected $em;
 
     /**
-     * {@inheritDoc}
+     * Constructor
+     *
+     * @param EntityManager $entityManager
      */
-    public function __construct($entityManager)
+    public function __construct(EntityManager $entityManager)
     {
         $this->em = $entityManager;
     }

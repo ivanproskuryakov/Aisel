@@ -13,26 +13,30 @@ namespace Aisel\OrderBundle\Manager;
 
 use LogicException;
 use Aisel\OrderBundle\Entity\Invoice;
+use Doctrine\ORM\EntityManager;
 
 /**
- * Manager for Orders, mostly used in REST API
+ * InvoiceManager
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class InvoiceManager
 {
-    protected $sc;
+
+    /**
+     * @var EntityManager
+     */
     protected $em;
 
     /**
-     * {@inheritDoc}
+     * Constructor
+     *
+     * @param EntityManager $entityManager
      */
-    public function __construct($sc, $em)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->sc = $sc;
-        $this->em = $em;
+        $this->em = $entityManager;
     }
-
     /**
      * Get single invoice by Id
      *

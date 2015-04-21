@@ -21,12 +21,13 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ApiController extends Controller
 {
+
     /**
-     * /api/contact/send.json
+     * sendAction
      *
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return array $status;
      */
     public function sendAction(Request $request)
     {

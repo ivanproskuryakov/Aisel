@@ -11,20 +11,44 @@
 
 namespace Aisel\ContactBundle\Manager;
 
+use Doctrine\ORM\EntityManager;
+use Swift_Mailer;
+use Symfony\Component\Templating\EngineInterface;
+
 /**
- * Contact manager, sends "contact us" email
+ * ContactManager
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class ContactManager
 {
+
+    /**
+     * @var EntityManager
+     */
     protected $em;
+
+    /**
+     * @var Swift_Mailer
+     */
     protected $mailer;
+
+    /**
+     * @var string
+     */
     protected $appEmail;
+
+    /**
+     * @var EngineInterface
+     */
     protected $templating;
 
-    public function __construct($em, $mailer, $templating, $appEmail)
-    {
+    public function __construct(
+        EntityManager $em,
+        Swift_Mailer $mailer,
+        $templating,
+        $appEmail
+    ) {
         $this->em = $em;
         $this->mailer = $mailer;
         $this->templating = $templating;
