@@ -52,5 +52,4 @@ security:
         - { path: ^/%website_admin%/, role: [ROLE_ADMIN] }
 
         # Secured part
-#        - { path: ^/%backend_api%/, role: [ROLE_ADMIN] }
         - { path: ^/%frontend_api%/orders.json, role: ROLE_USER }

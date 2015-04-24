@@ -19,3 +19,4 @@ services:
         class: %aisel_navigation_node_manager.class%
         arguments:
           - @doctrine.orm.entity_manager
+          - "%locales%"

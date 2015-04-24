@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Tests\Controller\Admin;
+namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
@@ -31,7 +31,7 @@ class NodeControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testGetPageNodesAction()
+    public function testGetProductNodesAction()
     {
         $this->client->request(
             'GET',

@@ -31,6 +31,11 @@ abstract class AbstractWebTestCase extends KernelTestCase
     protected $um;
 
     /**
+     * @var array $locales
+     */
+    protected $locales;
+
+    /**
      * @var KernelInterface
      */
     protected static $kernel = null;
@@ -52,18 +57,20 @@ abstract class AbstractWebTestCase extends KernelTestCase
 
     public function logInBackend($username = 'backenduser')
     {
-        $security = static::$kernel->getContainer()->get('security.context');
-        $session = static::$kernel->getContainer()->get('session');
-
         if ($this->um->isAuthenticated() === false) {
+
+            $security = static::$kernel->getContainer()->get('security.context');
+            $session = $this->client->getContainer()->get('session');
+            $session->start();
+
             $user = $this->um->loadUserByUsername($username);
             $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
             $security->setToken($token);
-            $session->set('user_backend', serialize($token));
-            $session->save();
-
             $cookie = new Cookie($session->getName(), $session->getId());
             $this->client->getCookieJar()->set($cookie);
+
+            $session->set('user_backend', serialize($token));
+            $session->save();
         }
 
         return $this->um->isAuthenticated();
@@ -77,6 +84,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
         $this->client = static::createClient([], ['HTTP_HOST' => static::$httpHost]);
         $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
         $this->um = static::$kernel->getContainer()->get('backend.user.manager');
+        $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
 
         parent::setUp();
     }
