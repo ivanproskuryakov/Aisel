@@ -16,15 +16,19 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Aisel\BackendUserBundle\Manager\UserManager;
 
 /**
- * Api for backend users
+ * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class ApiController extends Controller
 {
 
+    /**
+     * @return UserManager
+     */
     protected function getUserManager()
     {
         return $this->get('backend.user.manager');
@@ -62,8 +66,9 @@ class ApiController extends Controller
         if (!$this->isAuthenticated()) {
             $username = $request->get('username');
             $password = $request->get('password');
-            $um = $this->getUserManager();
-            $user = $um->loadUserByUsername($username);
+            $user = $this
+                ->getUserManager()
+                ->loadUserByUsername($username);
 
             if ((!$user instanceof BackendUser) || (!$this->getUserManager()->checkUserPassword($user, $password)))
                 return array('message' => 'Wrong username or password!');

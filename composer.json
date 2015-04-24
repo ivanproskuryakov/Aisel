@@ -49,7 +49,7 @@
         "behat/mink": "~1.6@dev",
 
         "phpspec/phpspec": "~2.0",
-        "phpunit/phpunit": "3.7.*",
+        "phpunit/phpunit": "4.6.4",
         "nelmio/cors-bundle": "~1.4"
 
     },

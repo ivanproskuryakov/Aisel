@@ -12,20 +12,20 @@
 namespace Aisel\ResourceBundle\Tests\Utility;
 
 use Aisel\ResourceBundle\Utility\UrlUtility;
-use Aisel\ResourceBundle\PHPUnit\BaseTestCase;
+use Aisel\ResourceBundle\Tests\AbstractKernelTestCase;
 
 /**
- * Url manipulations test case
+ * UrlUtilityTest
  */
-class UrlUtilityTest extends BaseTestCase
+class UrlUtilityTest extends AbstractKernelTestCase
 {
 
     /**
-     * URL conversion tests
+     * testUrlUtiliry
      *
      * @return null
      */
-    public function testProcess()
+    public function testUrlUtiliry()
     {
         $url = 'текст урл на русском с пробелами';
         $utility = new UrlUtility();

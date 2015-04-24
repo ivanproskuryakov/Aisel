@@ -26,3 +26,4 @@ services:
         class: %aisel_page_category_mode_manager.class%
         arguments:
           - @doctrine.orm.entity_manager
+          - "%locales%"

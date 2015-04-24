@@ -12,26 +12,39 @@
 namespace Aisel\CategoryBundle\Manager;
 
 use LogicException;
+use Doctrine\ORM\EntityManager;
 
 /**
- * Abstract Manager Class
+ * AbstractNodeManager
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class AbstractNodeManager
 {
 
-    protected $em;
-
     protected $repository = null;
 
     protected $nodeEntity = null;
 
     /**
-     * {@inheritDoc}
+     * @var EntityManager
      */
-    public function __construct($entityManager)
+    protected $em;
+
+    /**
+     * @var array
+     */
+    protected $locales;
+
+    /**
+     * Constructor
+     *
+     * @param EntityManager $entityManager
+     * @param string $locales
+     */
+    public function __construct(EntityManager $entityManager, $locales)
     {
+        $this->locales = explode('|', $locales);
         $this->em = $entityManager;
     }
 
@@ -52,13 +65,23 @@ class AbstractNodeManager
 
     /**
      * Load node tree
+     *
+     * @return array $nodes
      */
-    public function load()
+    public function getTree()
     {
-        $nodes = $this
-            ->em
-            ->getRepository($this->repository)
-            ->findAll();
+        $nodes = array();
+
+        foreach ($this->locales as $locale) {
+            $nodes[$locale] = $this
+                ->em
+                ->getRepository($this->repository)
+                ->findBy(
+                    array(
+                        'locale' => $locale
+                    )
+                );
+        }
 
         return $nodes;
     }

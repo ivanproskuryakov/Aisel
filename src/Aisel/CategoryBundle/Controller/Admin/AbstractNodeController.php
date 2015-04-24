@@ -49,7 +49,7 @@ class AbstractNodeController extends Controller
         $nodes = $this
             ->container
             ->get($this->nodeManager)
-            ->load();
+            ->getTree();
 
         return $nodes;
     }

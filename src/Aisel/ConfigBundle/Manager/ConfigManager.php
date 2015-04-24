@@ -28,7 +28,7 @@ class ConfigManager
     protected $em;
 
     /**
-     * @var string
+     * @var array
      */
     protected $locale = array();
 
