@@ -33,9 +33,10 @@ class NodeControllerTest extends AbstractWebTestCase
 
     public function testGetNavigationNodesAction()
     {
+        $locale = reset($this->locales);
         $this->client->request(
             'GET',
-            '/backend/api/navigation/tree/'
+            '/backend/api/navigation/tree/?locale=' . $locale . '/'
         );
 
         $response = $this->client->getResponse();
@@ -44,11 +45,6 @@ class NodeControllerTest extends AbstractWebTestCase
         $result = json_decode($content, true);
         $this->assertJson($content);
         $this->assertTrue(200 === $statusCode);
-
-        foreach($this->locales as $locale) {
-            $this->assertNotEmpty($result[$locale]);
-        }
-
     }
 
 }
