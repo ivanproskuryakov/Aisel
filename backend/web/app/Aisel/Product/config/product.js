@@ -32,7 +32,7 @@ define(['app'], function (app) {
                     controller: 'ProductDetailsCtrl'
                 })
                 .state("productCategory", {
-                    url: "/:locale/product/category/",
+                    url: "/:locale/product/category/:lang/",
                     templateUrl: '/app/Kernel/Resource/views/category.html',
                     controller: 'ProductCategoryCtrl'
                 })
@@ -55,7 +55,7 @@ define(['app'], function (app) {
                         },
                         "productCategory": {
                             "ordering": 200,
-                            "slug": '/product/category/',
+                            "slug": '/product/category/' + Environment.currentLocale() + '/',
                             "title": 'Categories'
                         }
                     }

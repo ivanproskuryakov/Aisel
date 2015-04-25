@@ -32,7 +32,7 @@ define(['app'], function (app) {
                     controller: 'PageDetailsCtrl'
                 })
                 .state("pageCategory", {
-                    url: "/:locale/page/category/",
+                    url: "/:locale/page/category/:lang/",
                     templateUrl: '/app/Kernel/Resource/views/category.html',
                     controller: 'PageCategoryCtrl'
                 })
@@ -55,7 +55,7 @@ define(['app'], function (app) {
                         },
                         "pageCategory": {
                             "ordering": 200,
-                            "slug": '/page/category/',
+                            "slug": '/page/category/' + Environment.currentLocale() + '/',
                             "title": 'Categories'
                         }
                     }

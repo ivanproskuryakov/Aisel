@@ -17,6 +17,9 @@ define(['app'], function (app) {
         .directive('aiselFancyTree', ['$timeout', function ($timeout) {
             return {
                 restrict: 'EA',
+                scope: {
+                    lang: "@lang"
+                },
                 templateUrl: '/app/Kernel/Resource/views/fancyTree.html'
             };
         }]);

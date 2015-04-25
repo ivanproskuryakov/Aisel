@@ -46,10 +46,11 @@ class AbstractNodeController extends Controller
      */
     public function getTreeAction(Request $request)
     {
+        $locale = $request->query->get('locale');
         $nodes = $this
             ->container
             ->get($this->nodeManager)
-            ->getTree();
+            ->getTree($locale);
 
         return $nodes;
     }

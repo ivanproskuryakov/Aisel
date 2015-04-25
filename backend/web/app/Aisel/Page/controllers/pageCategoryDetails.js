@@ -28,6 +28,11 @@ define(['app'], function (app) {
 
         $scope.editCancel = function () {
             $state.transitionTo('pageCategory', {locale: Environment.currentLocale()});
+        };
+
+        $scope.changeLocale = function (locale) {
+            alert('!');
+            $state.transitionTo('pageCategory', {locale: locale});
         }
     });
 });

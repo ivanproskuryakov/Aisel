@@ -1,13 +1,16 @@
-<div class="col-md-12 page-header">
+<div class="col-md-12 page-header" xmlns="http://www.w3.org/1999/html">
     <div class="row">
         <div class="row">
             <div class="col-md-4">
                 <h2 style="margin:0">{{sectionName}}</h2>
             </div>
             <div class="col-md-8 nav-buttons">
-                <div class="pull-right">
-                    <button type="submit" id="btnExpandAll" class="btn btn-sm btn-primary">Expand All</button>
-                    <button id="btnCollapseAll" class="btn btn-sm btn-warning">Collapse All</button>
+                <div ng-repeat="locale in availableLocales">
+                    <div class="pull-right">
+                        &nbsp; <button type="submit" class="btn btn-primary" ng-click="changeCategoryLocale(locale)">
+                            {{locale}}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

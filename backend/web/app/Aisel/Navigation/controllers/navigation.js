@@ -16,10 +16,17 @@ define(['app'], function (app) {
     app.controller('NavigationCtrl', function ($scope, $stateParams, navigationService, $state, Environment) {
 
         $scope.sectionName = 'Navigation';
-        $scope.categoryJson = Environment.settings.api + '/navigation/tree/';
+        $scope.categoryJson = Environment.settings.api + '/navigation/tree/?locale=' + $stateParams.lang;
 
         $scope.editCategory = function () {
             console.log('editCategory');
         }
+
+        $scope.changeCategoryLocale = function (lang) {
+            $state.transitionTo('navigation', {
+                locale: Environment.currentLocale(),
+                lang: lang
+            });
+        };
     });
 });

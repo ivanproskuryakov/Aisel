@@ -26,6 +26,13 @@ define(['app'], function (app) {
             }
         );
 
+        $scope.changeCategoryLocale = function (lang) {
+            $state.transitionTo('productCategory', {
+                locale: Environment.currentLocale(),
+                lang: lang
+            });
+        };
+
         $scope.editCancel = function () {
             $state.transitionTo('productCategory', {locale: Environment.currentLocale()});
         }

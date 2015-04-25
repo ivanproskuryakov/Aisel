@@ -66,22 +66,20 @@ class AbstractNodeManager
     /**
      * Load node tree
      *
+     * @param string $locale
+     *
      * @return array $nodes
      */
-    public function getTree()
+    public function getTree($locale)
     {
-        $nodes = array();
-
-        foreach ($this->locales as $locale) {
-            $nodes[$locale] = $this
-                ->em
-                ->getRepository($this->repository)
-                ->findBy(
-                    array(
-                        'locale' => $locale
-                    )
-                );
-        }
+        $nodes = $this
+            ->em
+            ->getRepository($this->repository)
+            ->findBy(
+                array(
+                    'locale' => $locale
+                )
+            );
 
         return $nodes;
     }

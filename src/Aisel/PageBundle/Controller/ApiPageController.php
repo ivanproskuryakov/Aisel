@@ -13,31 +13,22 @@ namespace Aisel\PageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Aisel\PageBundle\Entity\Page;
 
 /**
- * Frontend Page REST API controller
+ * ApiPageController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class ApiPageController extends Controller
 {
-//
-//    /**
-//     * Is User Authenticated
-//     *
-//     * @return boolean
-//     */
-//    private function isAuthenticated()
-//    {
-//        return $this->get('frontend.user.manager')->isAuthenticated();
-//    }
 
     /**
-     * /api/page/list.json?limit=2&current=3
+     * pageListAction
      *
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return mixed $pageList
      */
     public function pageListAction(Request $request)
     {
@@ -56,7 +47,7 @@ class ApiPageController extends Controller
      * @param string $urlKey
      * @param string $locale
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return Page $page
      */
     public function pageViewByURLAction($urlKey, $locale)
     {

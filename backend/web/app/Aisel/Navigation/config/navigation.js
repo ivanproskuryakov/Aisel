@@ -17,7 +17,7 @@ define(['app'], function (app) {
         .config(['$stateProvider', function ($stateProvider) {
             $stateProvider
                 .state("navigation", {
-                    url: "/:locale/navigation/",
+                    url: "/:locale/navigation/:lang/",
                     templateUrl: '/app/Kernel/Resource/views/category.html',
                     controller: 'NavigationCtrl'
                 })
@@ -32,7 +32,7 @@ define(['app'], function (app) {
             $rootScope.topMenu.push(
                 {
                     "ordering": 500,
-                    "slug": '/navigation/',
+                    "slug": '/navigation/' + Environment.currentLocale() + '/',
                     "title": 'Navigation'
                 }
             );
