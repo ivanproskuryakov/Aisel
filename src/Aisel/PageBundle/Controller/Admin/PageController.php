@@ -20,6 +20,9 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
  */
 class PageController extends AbstractCollectionController
 {
-    protected $entity = "Aisel\PageBundle\Entity\Page";
-    protected $route = "admin_api_aisel_page";
+
+    protected $model = array(
+        'class' => "Aisel\PageBundle\Entity\Page",
+    );
+
 }

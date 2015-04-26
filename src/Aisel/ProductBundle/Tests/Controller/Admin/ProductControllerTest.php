@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Tests\Controller\Admin;
+namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
- * PageControllerTest
+ * ProductControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class PageControllerTest extends AbstractWebTestCase
+class ProductControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -35,17 +35,11 @@ class PageControllerTest extends AbstractWebTestCase
     {
         $data = [
             'locale' => 'en',
-            'title' => 'test',
-            'content' => 'test',
-            'status' => true,
-            'meta_url' => 'metaUrl_'.time(),
-            'meta_title' => 'metaTitle_'.time(),
-            'comment_status' => false,
         ];
 
         $this->client->request(
             'POST',
-            '/backend/api/page/',
+            '/backend/api/product/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -57,6 +51,8 @@ class PageControllerTest extends AbstractWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
+        var_dump($content);
+        exit();
         $this->assertEmpty($content);
         $this->assertTrue(201 === $statusCode);
     }

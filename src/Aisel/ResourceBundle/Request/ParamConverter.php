@@ -72,7 +72,6 @@ class ParamConverter extends RequestBodyParamConverter
         $resolvedClass = $configuration->getClass();
         $id = $request->attributes->get('id');
 
-
         if (('DELETE' === $request->getMethod()) or ('GET' === $request->getMethod())) {
             $convertedValue = $this->em->find($resolvedClass, $id);
 
@@ -84,6 +83,7 @@ class ParamConverter extends RequestBodyParamConverter
             $rawPayload = $request->getContent();
             $serializerGroups = isset($options['serializerGroups']) ? $options['serializerGroups'] : null;
             $deserializationContext = DeserializationContext::create();
+
             if ($serializerGroups) {
                 $deserializationContext
                     ->setGroups($serializerGroups)
@@ -93,6 +93,7 @@ class ParamConverter extends RequestBodyParamConverter
             if ($id) {
                 $deserializationContext->attributes->set('put_id', $id);
             }
+
             try {
                 $convertedValue = $this->serializer->deserialize(
                     $rawPayload,

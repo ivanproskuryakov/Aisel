@@ -14,28 +14,24 @@ namespace Aisel\ResourceBundle\Controller\Admin;
 use Aisel\PageBundle\Entity\Page;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManager;
+
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Class AbstractCollectionController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
  */
 class AbstractCollectionController extends Controller
 {
-
     /**
-     * @var string
+     * @var array
      */
-    protected $route = null;
-
-    /**
-     * @var string
-     */
-    protected $entity = null;
+    protected $model = array();
 
     /**
      * @return EntityManager
@@ -45,21 +41,19 @@ class AbstractCollectionController extends Controller
         return $this->get('doctrine.orm.entity_manager');
     }
 
-    protected function getRouteNameFor($method)
-    {
-        $method = strtolower($method);
+    /**
+     * @param Request $request
+     *
+     * @return null|mixed $entity
+     */
+    protected function getEntityFromRequest(Request $request) {
 
-        return sprintf('%s_%s', $this->route, $method);
-    }
-
-    public function postAction(Request $request)
-    {
-        $configuration = new ParamConverter(array());
-        $configuration->setName('page');
-        $configuration->setClass($this->entity);
+        $configuration = new ParamConverter(array(
+            'class' => $this->model['class']
+        ));
         $entity = $this->get('api_param_converter')->execute($request, $configuration);
 
-        return $this->processEntity($entity);
+        return $entity;
     }
 
     protected function processEntity($entity, $id = null)
@@ -78,10 +72,15 @@ class AbstractCollectionController extends Controller
 
         // set the `Location` header only when creating new resources
         if (201 === $statusCode) {
+            $route = str_replace(
+                "_post",
+                '_get',
+                $this->container->get('request')->get('_route')
+            );
             $response->headers->set(
                 'Location',
                 $this->generateUrl(
-                    $this->getRouteNameFor('GET'),
+                    $route,
                     array('id' => $entity->getId()),
                     true // absolute
                 )
@@ -89,6 +88,26 @@ class AbstractCollectionController extends Controller
         }
 
         return $response;
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return mixed $entity
+     */
+    public function postAction(Request $request)
+    {
+        return $this->processEntity($this->getEntityFromRequest($request));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return mixed $entity
+     */
+    public function getAction(Request $request)
+    {
+        return $this->processEntity($this->getEntityFromRequest($request));
     }
 
 }

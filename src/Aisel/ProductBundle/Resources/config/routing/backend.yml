@@ -1,0 +1,51 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+## Backend
+#admin_aisel_product_media_upload:
+#    pattern:  /%website_admin%/product/media/{productId}/
+#    defaults: { _controller: AiselProductBundle:Admin/Media:upload, productId: 0 }
+#    requirements:
+#        _method:  OPTIONS|HEAD|GET|POST|PUT|PATCH|DELETE
+#        productId: "\d+"
+#
+#admin_api_aisel_product_category_get:
+#    pattern:   /%backend_api%/product/category/{id}
+#    defaults:  { _controller: AiselProductBundle:Admin/Node:get, _format: json }
+#    requirements:
+#        _method: GET
+#
+#admin_aisel_product_category_tree_get:
+#    pattern:   /%backend_api%/product/category/
+#    defaults:  { _controller: AiselProductBundle:Admin/Node:getTree, _format: json }
+#    requirements:
+#        _method: GET
+#
+#admin_aisel_product_category_tree_update:
+#    pattern:   /%website_admin%/product/category/
+#    defaults:  { _controller: AiselProductBundle:Admin/Node:update, _format: json }
+#    requirements:
+#        _method: GET
+#
+#admin_api_aisel_product_get_collection:
+#    pattern:   /%backend_api%/product/
+#    defaults:  { _controller: AiselProductBundle:Admin/Api:getCollection, _format: json }
+#    requirements:
+#        _method: GET
+#
+#admin_api_aisel_product_get:
+#    pattern:   /%backend_api%/product/{id}
+#    defaults:  { _controller: AiselProductBundle:Admin/Product:get, _format: json }
+#    requirements:
+#        _method: GET
+
+
+admin_api_aisel_product:
+    pattern:   /%backend_api%/product/
+    defaults:  { _controller: AiselProductBundle:Admin/Product:post, _format: json }
+    requirements:
+        _method: POST

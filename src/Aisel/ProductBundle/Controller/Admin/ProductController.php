@@ -12,14 +12,17 @@
 namespace Aisel\ProductBundle\Controller\Admin;
 
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Backend Product REST API controller
+ * ProductController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiController extends AbstractCollectionController
+class ProductController extends AbstractCollectionController
 {
-    protected $manager = "aisel.product.manager";
+
+    protected $model = array(
+        'class' => "Aisel\ProductBundle\Entity\Product",
+    );
+
 }

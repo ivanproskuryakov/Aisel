@@ -8,7 +8,7 @@ aisel_navigation:
     prefix:   /
 
 aisel_page:
-    resource: "@AiselPageBundle/Resources/config/routing.yml"
+    resource: "@AiselPageBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
 aisel_search:
@@ -16,7 +16,7 @@ aisel_search:
     prefix:   /
 
 aisel_product:
-    resource: "@AiselProductBundle/Resources/config/routing.yml"
+    resource: "@AiselProductBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
 aisel_cart:
