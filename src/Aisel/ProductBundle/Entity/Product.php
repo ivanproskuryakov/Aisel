@@ -4,10 +4,12 @@ namespace Aisel\ProductBundle\Entity;
 
 use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @FileStore\Uploadable
  * Product
+ *
+ * @FileStore\Uploadable
  */
 class Product
 {
@@ -18,21 +20,25 @@ class Product
 
     /**
      * @var string
+     * @Assert\NotNull()
      */
     private $locale;
 
     /**
      * @var string
+     * @Assert\NotNull()
      */
     private $name;
 
     /**
      * @var string
+     * @Assert\NotNull()
      */
     private $sku;
 
     /**
      * @var float
+     * @Assert\NotNull()
      */
     private $price;
 
@@ -54,12 +60,12 @@ class Product
     /**
      * @var boolean
      */
-    private $new;
+    private $new = false;
 
     /**
      * @var \DateTime
      */
-    private $newFrom;
+    private $newFrom ;
 
     /**
      * @var \DateTime
@@ -69,12 +75,12 @@ class Product
     /**
      * @var integer
      */
-    private $qty;
+    private $qty = 0;
 
     /**
      * @var boolean
      */
-    private $inStock;
+    private $inStock = false;
 
     /**
      * @var boolean
@@ -88,13 +94,16 @@ class Product
 
     /**
      * @var string
+     * @Assert\NotNull()
      */
     private $description;
 
     /**
      * @var boolean
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
-    private $status;
+    private $status = false;
 
     /**
      * @var boolean
@@ -108,6 +117,7 @@ class Product
 
     /**
      * @var string
+     * @Assert\NotNull()
      */
     private $metaUrl;
 
@@ -128,11 +138,13 @@ class Product
 
     /**
      * @var \DateTime
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 

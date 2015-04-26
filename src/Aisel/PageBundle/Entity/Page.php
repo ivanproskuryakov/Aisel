@@ -38,7 +38,7 @@ class Page
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
-    private $status;
+    private $status = false;
 
     /**
      * @var boolean
@@ -55,7 +55,6 @@ class Page
 
     /**
      * @var string
-     * @Assert\NotNull()
      */
     private $metaTitle;
 

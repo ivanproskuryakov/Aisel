@@ -31,7 +31,7 @@ class ProductControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testPostProductAction()
+    public function testPostProductActionFails()
     {
         $data = [
             'locale' => 'en',
@@ -51,9 +51,33 @@ class ProductControllerTest extends AbstractWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        $this->assertEmpty($content);
-        $this->assertTrue(201 === $statusCode);
+        $this->assertEquals(5, count($result['errors']));
+        $this->assertTrue(400 === $statusCode);
     }
+
+//    public function testPostProductAction()
+//    {
+//        $data = [
+//            'locale' => 'en',
+//        ];
+//
+//        $this->client->request(
+//            'POST',
+//            '/backend/api/product/',
+//            [],
+//            [],
+//            ['CONTENT_TYPE' => 'application/json'],
+//            json_encode($data)
+//        );
+//
+//        $response = $this->client->getResponse();
+//        $content = $response->getContent();
+//        $statusCode = $response->getStatusCode();
+//        $result = json_decode($content, true);
+//
+//        $this->assertEmpty($content);
+//        $this->assertTrue(201 === $statusCode);
+//    }
 
     public function testGetProductAction()
     {
