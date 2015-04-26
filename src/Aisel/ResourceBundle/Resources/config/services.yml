@@ -4,3 +4,26 @@
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
+
+
+parameters:
+    aisel_param_converter.class: Aisel\ResourceBundle\Request\ParamConverter
+    aisel_exception_listener.class: Aisel\ResourceBundle\Request\ExceptionListener
+
+services:
+    api_param_converter:
+        class: %aisel_param_converter.class%
+        arguments:
+            - @jms_serializer
+            - @doctrine.orm.entity_manager
+            - @validator
+            - @security.token_storage
+            - @event_dispatcher
+        tags:
+            - { name: request.param_converter, converter: api_param_converter }
+
+    aisel_exception_listener:
+        class: %aisel_exception_listener.class%
+        arguments:
+        tags:
+            - { name: "kernel.event_listener", event: "kernel.exception", method: "onKernelException" }

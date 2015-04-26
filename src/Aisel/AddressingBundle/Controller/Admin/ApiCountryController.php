@@ -14,7 +14,7 @@ namespace Aisel\AddressingBundle\Controller\Admin;
 use Aisel\AddressingBundle\Controller\ApiCountryController as BaseApiCountryController;
 
 /**
- * class ApiCountryController
+ * ApiCountryController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

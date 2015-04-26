@@ -2,9 +2,12 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: twig.yml }
+
     - { resource: configs/aisel.yml }
     - { resource: configs/payum.yml }
     - { resource: configs/cors.yml }
+
+    - { resource: services/gedmo.yml }
 
 framework:
     #esi:             ~

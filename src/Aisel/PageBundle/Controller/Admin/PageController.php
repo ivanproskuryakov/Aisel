@@ -12,14 +12,14 @@
 namespace Aisel\PageBundle\Controller\Admin;
 
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Backend Page REST API controller
+ * PageController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiController extends AbstractCollectionController
+class PageController extends AbstractCollectionController
 {
-    protected $manager = "aisel.page.manager";
+    protected $entity = "Aisel\PageBundle\Entity\Page";
+    protected $route = "admin_api_aisel_page";
 }

@@ -16,11 +16,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Aisel\PageBundle\Entity\Page;
 
 /**
- * ApiPageController
+ * PageController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiPageController extends Controller
+class PageController extends Controller
 {
 
     /**

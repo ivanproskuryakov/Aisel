@@ -14,7 +14,7 @@ namespace Aisel\AddressingBundle\Controller\Admin;
 use Aisel\AddressingBundle\Controller\ApiRegionController as BaseApiRegionController;
 
 /**
- * class ApiRegionController
+ * ApiRegionController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

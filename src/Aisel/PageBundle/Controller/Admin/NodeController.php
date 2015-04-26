@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Backend AJAX actions for page categories
+ * NodeController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

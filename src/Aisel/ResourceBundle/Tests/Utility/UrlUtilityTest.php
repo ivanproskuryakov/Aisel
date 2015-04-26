@@ -22,8 +22,6 @@ class UrlUtilityTest extends AbstractKernelTestCase
 
     /**
      * testUrlUtiliry
-     *
-     * @return null
      */
     public function testUrlUtiliry()
     {

@@ -113,36 +113,6 @@ class PageManager
     }
 
     /**
-     * Create or Save page
-     *
-     * @param array $data
-     *
-     * @return Page $page
-     */
-    public function saveItem(array $data)
-    {
-        if (isset($data['id']) === false) {
-            $page = new Page();
-        } else {
-            $page = $this->getPageById($data['id']);
-        }
-
-        $page->setLocale($data['locale']);
-        $page->setTitle($data['title']);
-        $page->setContent($data['content']);
-        $page->setMetaUrl($this->normalizePageUrl($data['meta_url']));
-        $page->setMetaDescription($data['meta_description']);
-        $page->setMetaKeywords($data['meta_keywords']);
-        $page->setStatus($data['status']);
-        $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $this->em->persist($page);
-        $this->em->flush();
-
-        return $page;
-    }
-
-    /**
      * Get single detailed page with category by URLKey
      *
      * @param string $urlKey

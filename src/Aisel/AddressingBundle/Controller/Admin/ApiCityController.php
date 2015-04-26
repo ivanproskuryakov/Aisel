@@ -14,7 +14,7 @@ namespace Aisel\AddressingBundle\Controller\Admin;
 use Aisel\AddressingBundle\Controller\ApiCityController as BaseApiCityController;
 
 /**
- * class ApiCityController
+ * ApiCityController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

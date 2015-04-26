@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Frontend Addressing Regions REST API controller
+ * ApiRegionController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

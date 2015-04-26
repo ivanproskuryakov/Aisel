@@ -2,6 +2,9 @@
 
 namespace Aisel\PageBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * Page
  */
@@ -14,36 +17,45 @@ class Page
 
     /**
      * @var string
+     * @Assert\NotNull()
      */
     private $locale;
 
     /**
      * @var string
+     * @Assert\NotNull()
      */
     private $title;
 
     /**
      * @var string
+     * @Assert\NotNull()
      */
     private $content;
 
     /**
      * @var boolean
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $status;
 
     /**
      * @var boolean
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $commentStatus;
 
     /**
      * @var string
+     * @Assert\NotNull()
      */
     private $metaUrl;
 
     /**
      * @var string
+     * @Assert\NotNull()
      */
     private $metaTitle;
 
@@ -59,11 +71,13 @@ class Page
 
     /**
      * @var \DateTime
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
@@ -308,19 +322,6 @@ class Page
     public function getMetaKeywords()
     {
         return $this->metaKeywords;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return Page
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     /**

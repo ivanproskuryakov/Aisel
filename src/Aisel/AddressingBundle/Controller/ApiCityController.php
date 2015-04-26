@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Сities REST API controller
+ * ApiCityController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

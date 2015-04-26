@@ -11,90 +11,84 @@
 
 namespace Aisel\ResourceBundle\Controller\Admin;
 
+use Aisel\PageBundle\Entity\Page;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
- * AbstractApiCollectionController
+ * Class AbstractCollectionController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class AbstractCollectionController extends Controller
 {
 
-    protected $manager = '';
+    /**
+     * @var string
+     */
+    protected $route = null;
 
     /**
-     * Get collection Manager
-     *
-     * @return mixed
+     * @var string
      */
-    protected function getManager()
+    protected $entity = null;
+
+    /**
+     * @return EntityManager
+     */
+    protected function getEntityManager()
     {
-        return $this->container->get($this->manager);
+        return $this->get('doctrine.orm.entity_manager');
     }
 
-    /**
-     * getCollectionAction
-     *
-     * @param Request $request
-     *
-     * @return $collection
-     */
-    public function getCollectionAction(Request $request)
+    protected function getRouteNameFor($method)
     {
-        $params = array(
-            'current' => $request->get('current'),
-            'limit' => $request->get('limit'),
-            'category' => $request->get('category'),
-            'filter' => $request->get('filter')
-        );
-        $manager = $this->getManager();
-        $collection = $manager->getCollection($params);
+        $method = strtolower($method);
 
-        return $collection;
+        return sprintf('%s_%s', $this->route, $method);
     }
 
-    /**
-     * @param integer $id
-     *
-     * @return mixed $item
-     */
-    public function deleteAction($id)
-    {
-        $this->getManager()->deleteItem($id);
-    }
-
-    /**
-     * @param integer $id
-     *
-     * @return mixed $item
-     */
-    public function getAction($id)
-    {
-        return $this->getManager()->getItem($id);
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return mixed $item
-     */
-    public function putAction(Request $request)
-    {
-        $data = json_decode($request->getContent(), true);
-
-        return $this->getManager()->saveItem($data);
-    }
-
-    /**
-     * @return mixed $item
-     */
     public function postAction(Request $request)
     {
-        $data = (array)json_decode($request->getContent(), true);
+        $configuration = new ParamConverter(array());
+        $configuration->setName('page');
+        $configuration->setClass($this->entity);
+        $entity = $this->get('api_param_converter')->execute($request, $configuration);
 
-        return $this->getManager()->saveItem($data);
+        return $this->processEntity($entity);
+    }
+
+    protected function processEntity($entity, $id = null)
+    {
+        if ($id) {
+            $statusCode = 204;
+        } else {
+            $statusCode = (null === $entity->getId()) ? 201 : 204;
+        }
+
+        $this->getEntityManager()->persist($entity);
+        $this->getEntityManager()->flush();
+
+        $response = new Response();
+        $response->setStatusCode($statusCode);
+
+        // set the `Location` header only when creating new resources
+        if (201 === $statusCode) {
+            $response->headers->set(
+                'Location',
+                $this->generateUrl(
+                    $this->getRouteNameFor('GET'),
+                    array('id' => $entity->getId()),
+                    true // absolute
+                )
+            );
+        }
+
+        return $response;
     }
 
 }
