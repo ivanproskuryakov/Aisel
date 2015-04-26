@@ -7,6 +7,8 @@
 
 be_api_aisel_product:
     resource: "@AiselProductBundle/Resources/config/routing/backend.yml"
+    prefix:   /%backend_api%
 
 fe_api_aisel_product:
     resource: "@AiselProductBundle/Resources/config/routing/frontend.yml"
+    prefix:   /%frontend_api%

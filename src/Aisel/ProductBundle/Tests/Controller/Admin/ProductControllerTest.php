@@ -31,7 +31,7 @@ class ProductControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testPostPageAction()
+    public function testPostProductAction()
     {
         $data = [
             'locale' => 'en',
@@ -51,10 +51,32 @@ class ProductControllerTest extends AbstractWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        var_dump($content);
-        exit();
         $this->assertEmpty($content);
         $this->assertTrue(201 === $statusCode);
+    }
+
+    public function testGetProductAction()
+    {
+        $product = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['locale' => 'en']);
+
+        $this->client->request(
+            'GET',
+            '/backend/api/product/' . $product->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $product->getId());
     }
 
 }

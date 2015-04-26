@@ -14,13 +14,13 @@
 #        productId: "\d+"
 #
 #admin_api_aisel_product_category_get:
-#    pattern:   /%backend_api%/product/category/{id}
+#    pattern:   /product/category/{id}
 #    defaults:  { _controller: AiselProductBundle:Admin/Node:get, _format: json }
 #    requirements:
 #        _method: GET
 #
 #admin_aisel_product_category_tree_get:
-#    pattern:   /%backend_api%/product/category/
+#    pattern:   /product/category/
 #    defaults:  { _controller: AiselProductBundle:Admin/Node:getTree, _format: json }
 #    requirements:
 #        _method: GET
@@ -32,20 +32,19 @@
 #        _method: GET
 #
 #admin_api_aisel_product_get_collection:
-#    pattern:   /%backend_api%/product/
+#    pattern:   /product/
 #    defaults:  { _controller: AiselProductBundle:Admin/Api:getCollection, _format: json }
 #    requirements:
 #        _method: GET
 #
-#admin_api_aisel_product_get:
-#    pattern:   /%backend_api%/product/{id}
-#    defaults:  { _controller: AiselProductBundle:Admin/Product:get, _format: json }
-#    requirements:
-#        _method: GET
-
+admin_api_aisel_product_get:
+    pattern:   /product/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/Product:get, _format: json }
+    requirements:
+        _method: GET
 
 admin_api_aisel_product:
-    pattern:   /%backend_api%/product/
+    pattern:   /product/
     defaults:  { _controller: AiselProductBundle:Admin/Product:post, _format: json }
     requirements:
         _method: POST

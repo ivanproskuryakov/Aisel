@@ -11,12 +11,9 @@
 
 namespace Aisel\ResourceBundle\Controller\Admin;
 
-use Aisel\PageBundle\Entity\Page;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManager;
-
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
@@ -93,7 +90,7 @@ class AbstractCollectionController extends Controller
     /**
      * @param Request $request
      *
-     * @return mixed $entity
+     * @return mixed
      */
     public function postAction(Request $request)
     {
@@ -103,11 +100,11 @@ class AbstractCollectionController extends Controller
     /**
      * @param Request $request
      *
-     * @return mixed $entity
+     * @return mixed
      */
     public function getAction(Request $request)
     {
-        return $this->processEntity($this->getEntityFromRequest($request));
+        return $this->getEntityFromRequest($request);
     }
 
 }

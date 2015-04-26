@@ -38,8 +38,8 @@ class PageControllerTest extends AbstractWebTestCase
             'title' => 'test',
             'content' => 'test',
             'status' => true,
-            'meta_url' => 'metaUrl_'.time(),
-            'meta_title' => 'metaTitle_'.time(),
+            'meta_url' => 'metaUrl_' . time(),
+            'meta_title' => 'metaTitle_' . time(),
             'comment_status' => false,
         ];
 
@@ -55,10 +55,33 @@ class PageControllerTest extends AbstractWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
-        $result = json_decode($content, true);
 
         $this->assertEmpty($content);
         $this->assertTrue(201 === $statusCode);
+    }
+
+    public function testGetPageAction()
+    {
+        $page = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->findOneBy(['locale' => 'en']);
+
+        $this->client->request(
+            'GET',
+            '/backend/api/page/' . $page->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $page->getId());
     }
 
 }

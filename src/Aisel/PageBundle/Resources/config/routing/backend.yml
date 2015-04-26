@@ -5,51 +5,50 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-# Backend
 admin_api_aisel_page_category_get:
-    pattern:   /%backend_api%/page/category/{id}
+    pattern:   /page/category/{id}
     defaults:  { _controller: AiselPageBundle:Admin/Node:get, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_page_category_tree_get:
-    pattern:   /%backend_api%/page/category/
+    pattern:   /page/category/
     defaults:  { _controller: AiselPageBundle:Admin/Node:getTree, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_page_category_tree_update:
-    pattern:   /%backend_api%/page/category/
+    pattern:   /page/category/
     defaults:  { _controller: AiselPageBundle:Admin/Node:update, _format: json }
     requirements:
         _method: POST
 
 admin_api_aisel_page_get_collection:
-    pattern:   /%backend_api%/page/
+    pattern:   /page/
     defaults:  { _controller: AiselPageBundle:Admin/Page:getCollection, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_page_get:
-    pattern:   /%backend_api%/page/{id}
+    pattern:   /page/{id}
     defaults:  { _controller: AiselPageBundle:Admin/Page:get, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_page_delete:
-    pattern:   /%backend_api%/page/{id}
+    pattern:   /page/{id}
     defaults:  { _controller: AiselPageBundle:Admin/Page:delete, _format: json }
     requirements:
         _method: DELETE
 
 admin_api_aisel_page_put:
-    pattern:   /%backend_api%/page/{id}
+    pattern:   /page/{id}
     defaults:  { _controller: AiselPageBundle:Admin/Page:put, _format: json }
     requirements:
         _method: PUT
 
 admin_api_aisel_page_post:
-    pattern:   /%backend_api%/page/
+    pattern:   /page/
     defaults:  { _controller: AiselPageBundle:Admin/Page:post, _format: json }
     requirements:
         _method: POST
