@@ -16,6 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * FrontendUser
@@ -114,17 +115,79 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      */
     protected $plainPassword;
 
-    // Interface methods
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Aisel\CartBundle\Entity\Cart", mappedBy="frontenduser")
+     */
+    private $cart;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\Order", mappedBy="frontenduser")
+     */
+    private $orders;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\Address", mappedBy="frontenduser", cascade={"remove"})
+     */
+    private $addresses;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $about;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=15)
+     * @Assert\Type(type="string")
+     */
+    private $phone;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $website;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $twitter;
+
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->salt = md5(uniqid(null, true));
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getUsername();
     }
 
+    /**
+     * @param string $password
+     * @return $this
+     */
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
@@ -415,65 +478,6 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     }
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $pages;
-
-    /**
-     * Add pages
-     *
-     * @param  \Aisel\PageBundle\Entity\Page $pages
-     * @return FrontendUser
-     */
-    public function addPage(\Aisel\PageBundle\Entity\Page $pages)
-    {
-        $this->pages[] = $pages;
-
-        return $this;
-    }
-
-    /**
-     * Remove pages
-     *
-     * @param \Aisel\PageBundle\Entity\Page $pages
-     */
-    public function removePage(\Aisel\PageBundle\Entity\Page $pages)
-    {
-        $this->pages->removeElement($pages);
-    }
-
-    /**
-     * Get pages
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPages()
-    {
-        return $this->pages;
-    }
-
-    /**
-     * @var string
-     */
-    private $phone;
-
-    /**
-     * @var string
-     */
-    private $website;
-
-    /**
-     * @var string
-     */
-    private $facebook;
-
-    /**
-     * @var string
-     */
-    private $twitter;
-
-
-    /**
      * Set phone
      *
      * @param  string       $phone
@@ -566,11 +570,6 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     }
 
     /**
-     * @var string
-     */
-    private $about;
-
-    /**
      * Set about
      *
      * @param  string       $about
@@ -592,10 +591,6 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     {
         return $this->about;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $addresses;
 
     /**
      * Add addresses
@@ -623,16 +618,12 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     /**
      * Get addresses
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getAddresses()
     {
         return $this->addresses;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $orders;
 
     /**
      * Add orders
@@ -660,16 +651,12 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     /**
      * Get orders
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getOrders()
     {
         return $this->orders;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $cart;
 
     /**
      * Add cart
@@ -697,7 +684,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     /**
      * Get cart
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getCart()
     {

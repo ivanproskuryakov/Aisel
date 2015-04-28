@@ -56,12 +56,15 @@ class LoadOrderCartData extends XMLFixture implements OrderedFixtureInterface
                         'billing_phone' => (string) $table->column[7],
                         'locale' => (string) $locale,
                     );
+
                     $order = $this
                         ->getOrderManager()
                         ->createOrderFromCart(
                             $frontendUser,
                             $orderInfo
                         );
+
+
                     $this->addReference('order_' . $table->column[0], $order);
                 }
             }

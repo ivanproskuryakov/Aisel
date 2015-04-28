@@ -134,6 +134,11 @@ class BackendUser implements AdvancedUserInterface
         return $this->getUsername();
     }
 
+    /**
+     * @param string $password
+     *
+     * @return $this
+     */
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
@@ -141,6 +146,9 @@ class BackendUser implements AdvancedUserInterface
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function getPlainPassword()
     {
         return $this->plainPassword;
@@ -157,7 +165,8 @@ class BackendUser implements AdvancedUserInterface
     /**
      * Set salt
      *
-     * @param  string      $salt
+     * @param  string $salt
+     *
      * @return BackendUser
      */
     public function setSalt($salt)
@@ -233,7 +242,7 @@ class BackendUser implements AdvancedUserInterface
     /**
      * Set username
      *
-     * @param  string      $username
+     * @param  string $username
      * @return BackendUser
      */
     public function setUsername($username)
@@ -256,7 +265,7 @@ class BackendUser implements AdvancedUserInterface
     /**
      * Set email
      *
-     * @param  string      $email
+     * @param  string $email
      * @return BackendUser
      */
     public function setEmail($email)
@@ -279,7 +288,7 @@ class BackendUser implements AdvancedUserInterface
     /**
      * Set password
      *
-     * @param  string      $password
+     * @param  string $password
      * @return BackendUser
      */
     public function setPassword($password)
@@ -302,7 +311,7 @@ class BackendUser implements AdvancedUserInterface
     /**
      * Set enabled
      *
-     * @param  boolean     $enabled
+     * @param  boolean $enabled
      * @return BackendUser
      */
     public function setEnabled($enabled)
@@ -325,7 +334,7 @@ class BackendUser implements AdvancedUserInterface
     /**
      * Set locked
      *
-     * @param  boolean     $locked
+     * @param  boolean $locked
      * @return BackendUser
      */
     public function setLocked($locked)
@@ -368,7 +377,7 @@ class BackendUser implements AdvancedUserInterface
     /**
      * Set expiresAt
      *
-     * @param  \DateTime   $expiresAt
+     * @param  \DateTime $expiresAt
      * @return BackendUser
      */
     public function setExpiresAt($expiresAt)
@@ -391,7 +400,7 @@ class BackendUser implements AdvancedUserInterface
     /**
      * Set lastLogin
      *
-     * @param  \DateTime   $lastLogin
+     * @param  \DateTime $lastLogin
      * @return BackendUser
      */
     public function setLastLogin($lastLogin)

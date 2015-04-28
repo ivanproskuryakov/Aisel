@@ -60,8 +60,7 @@ class OrderManager
         EntityManager $entityManager,
         ConfigManager $configManager,
         CartManager $cartManager
-    )
-    {
+    ) {
         $this->sc = $serviceContainer;
         $this->em = $entityManager;
         $this->settingsManager = $configManager;
@@ -92,7 +91,7 @@ class OrderManager
      *
      * @return Order $orderDetails
      */
-    public function getUserOrder($user, $orderId)
+    public function getUserOrder(FrontendUser $user, $orderId)
     {
         $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
@@ -110,7 +109,7 @@ class OrderManager
      *
      * @return Order $orderDetails
      */
-    public function getUserOrders($user)
+    public function getUserOrders(FrontendUser $user)
     {
         if (!($user)) throw new LogicException('User object is missing');
 
@@ -131,11 +130,15 @@ class OrderManager
      *
      * @return Order $order
      */
-    public function createOrderFromCart($user, $orderInfo)
+    public function createOrderFromCart(FrontendUser $user, $orderInfo)
     {
-        if (!($user)) throw new LogicException('User object is missing');
-        if (count($user->getCart()) == 0) return false;
+        if (!($user)) {
+            throw new LogicException('User object is missing');
+        }
 
+        if (count($user->getCart()) == 0){
+            throw new LogicException('User cart is empty');
+        };
         $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromCartForUser(
