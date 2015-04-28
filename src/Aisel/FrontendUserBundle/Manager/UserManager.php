@@ -233,11 +233,7 @@ class UserManager implements UserProviderInterface
         $user->setPassword($encodedPassword);
         $user->setEnabled($userData['enabled']);
         $user->setLocked($userData['locked']);
-
-        $user->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
-
         $user->setPhone($userData['phone']);
         $user->setWebsite($userData['website']);
         $user->setFacebook($userData['facebook']);

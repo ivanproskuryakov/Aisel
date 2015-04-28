@@ -11,70 +11,101 @@
 
 namespace Aisel\FrontendUserBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
- * Frontend user entity
+ * FrontendUser
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\FrontendUserBundle\Entity\FrontendUserRepository")
+ * @ORM\Table(name="aisel_user_frontend")
  */
 class FrontendUser implements AdvancedUserInterface//, \Serializable
 {
 
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $username;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $email;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $password;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
-    private $email;
-
-    /**
-     * @var \DateTime
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    private $updatedAt;
-
-    /**
-     * @var \DateTime
-     */
-    private $lastLogin;
-
-    /**
-     * @var \DateTime
-     */
-    private $expiresAt;
+    private $salt;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $enabled;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $locked;
 
     /**
-     * @var string
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
-    private $salt;
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $lastLogin;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $expiresAt;
 
     /**
      * Plain password. Used for model validation. Must not be persisted.
@@ -199,19 +230,6 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     }
 
     /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return FrontUser
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
      * Get createdAt
      *
      * @return \DateTime
@@ -219,19 +237,6 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param  \DateTime $updatedAt
-     * @return FrontUser
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
@@ -248,7 +253,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * Set username
      *
      * @param  string    $username
-     * @return FrontUser
+     * @return FrontendUser
      */
     public function setUsername($username)
     {
@@ -271,7 +276,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * Set password
      *
      * @param  string    $password
-     * @return FrontUser
+     * @return FrontendUser
      */
     public function setPassword($password)
     {
@@ -294,7 +299,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * Set email
      *
      * @param  string    $email
-     * @return FrontUser
+     * @return FrontendUser
      */
     public function setEmail($email)
     {

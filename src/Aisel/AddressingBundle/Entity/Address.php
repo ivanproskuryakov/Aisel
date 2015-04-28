@@ -2,33 +2,102 @@
 
 namespace Aisel\AddressingBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\AddressingBundle\Entity\Country;
+use Aisel\AddressingBundle\Entity\Region;
+use Aisel\AddressingBundle\Entity\City;
+
 /**
  * Address
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\AddressingBundle\Entity\AddressRepository")
+ * @ORM\Table(name="aisel_addressing_address")
  */
 class Address
 {
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
-    private $address;
+    private $street;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $phone;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $comment;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
     /**
-     * @var \Aisel\FrontendUserBundle\Entity\FrontendUser
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $zip;
+
+    /**
+     * @var City
+     * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\City")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     */
+    private $city;
+
+    /**
+     * @var Region
+     * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\Region")
+     * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     */
+    private $region;
+
+    /**
+     * @var Country
+     * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     */
+    private $country;
+
+    /**
+     * @var FrontendUser
+     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="addresses")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
      */
     private $frontenduser;
 
@@ -43,42 +112,6 @@ class Address
     }
 
     /**
-     * Set address
-     *
-     * @param  string  $address
-     * @return Address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Get address
-     *
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return Address
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
      * Get createdAt
      *
      * @return \DateTime
@@ -86,19 +119,6 @@ class Address
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param  \DateTime $updatedAt
-     * @return Address
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
@@ -114,10 +134,10 @@ class Address
     /**
      * Set frontenduser
      *
-     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
+     * @param  FrontendUser $frontenduser
      * @return Address
      */
-    public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
+    public function setFrontenduser(FrontendUser $frontenduser = null)
     {
         $this->frontenduser = $frontenduser;
 
@@ -127,26 +147,12 @@ class Address
     /**
      * Get frontenduser
      *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
+     * @return FrontendUser
      */
     public function getFrontenduser()
     {
         return $this->frontenduser;
     }
-    /**
-     * @var string
-     */
-    private $street;
-
-    /**
-     * @var string
-     */
-    private $zip;
-
-    /**
-     * @var \Aisel\AddressingBundle\Entity\Country
-     */
-    private $country;
 
     /**
      * Set street
@@ -197,10 +203,10 @@ class Address
     /**
      * Set country
      *
-     * @param  \Aisel\AddressingBundle\Entity\Country $country
+     * @param  Country $country
      * @return Address
      */
-    public function setCountry(\Aisel\AddressingBundle\Entity\Country $country = null)
+    public function setCountry(Country $country = null)
     {
         $this->country = $country;
 
@@ -210,24 +216,20 @@ class Address
     /**
      * Get country
      *
-     * @return \Aisel\AddressingBundle\Entity\Country
+     * @return Country
      */
     public function getCountry()
     {
         return $this->country;
     }
-    /**
-     * @var \Aisel\AddressingBundle\Entity\Region
-     */
-    private $region;
 
     /**
      * Set region
      *
-     * @param  \Aisel\AddressingBundle\Entity\Region $region
+     * @param  Region $region
      * @return Address
      */
-    public function setRegion(\Aisel\AddressingBundle\Entity\Region $region = null)
+    public function setRegion(Region $region = null)
     {
         $this->region = $region;
 
@@ -237,24 +239,19 @@ class Address
     /**
      * Get region
      *
-     * @return \Aisel\AddressingBundle\Entity\Region
+     * @return Region
      */
     public function getRegion()
     {
         return $this->region;
     }
     /**
-     * @var \Aisel\AddressingBundle\Entity\City
-     */
-    private $city;
-
-    /**
      * Set city
      *
-     * @param  \Aisel\AddressingBundle\Entity\City $city
+     * @param  City $city
      * @return Address
      */
-    public function setCity(\Aisel\AddressingBundle\Entity\City $city = null)
+    public function setCity(City $city = null)
     {
         $this->city = $city;
 
@@ -264,21 +261,12 @@ class Address
     /**
      * Get city
      *
-     * @return \Aisel\AddressingBundle\Entity\City
+     * @return City
      */
     public function getCity()
     {
         return $this->city;
     }
-    /**
-     * @var string
-     */
-    private $phone;
-
-    /**
-     * @var string
-     */
-    private $comment;
 
     /**
      * Set phone
@@ -324,32 +312,5 @@ class Address
     public function getComment()
     {
         return $this->comment;
-    }
-    /**
-     * @var integer
-     */
-    private $fixtureId;
-
-    /**
-     * Set fixtureId
-     *
-     * @param  integer $fixtureId
-     * @return Address
-     */
-    public function setFixtureId($fixtureId)
-    {
-        $this->fixtureId = $fixtureId;
-
-        return $this;
-    }
-
-    /**
-     * Get fixtureId
-     *
-     * @return integer
-     */
-    public function getFixtureId()
-    {
-        return $this->fixtureId;
     }
 }

@@ -67,6 +67,13 @@ doctrine:
                 mappings:
                     AiselPageBundle:
                         type: annotation
+                    AiselAddressingBundle:
+                        type: annotation
+                    AiselFrontendUserBundle:
+                        type: annotation
+                    AiselBackendUserBundle:
+                        type: annotation
+
                     gedmo_tree:
                         type: annotation
                         prefix: Gedmo\Tree\Entity

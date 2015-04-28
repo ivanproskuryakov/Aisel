@@ -2,7 +2,7 @@
 
 namespace Aisel\AddressingBundle\Entity;
 
-use Doctrine\ORM\EntityRepository;
+use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
 
 /**
  * AddressRepository

@@ -2,28 +2,63 @@
 
 namespace Aisel\AddressingBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Aisel\AddressingBundle\Entity\Country;
+use Aisel\AddressingBundle\Entity\Region;
+
 /**
  * City
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\AddressingBundle\Entity\CityRepository")
+ * @ORM\Table(name="aisel_addressing_city")
  */
 class City
 {
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $name;
 
     /**
+     * @var Region
+     * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\Region")
+     * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     */
+    private $region;
+
+    /**
+     * @var Country
+     * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     */
+    private $country;
+
+    /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
@@ -65,19 +100,6 @@ class City
     }
 
     /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return City
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
      * Get createdAt
      *
      * @return \DateTime
@@ -85,19 +107,6 @@ class City
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param  \DateTime $updatedAt
-     * @return City
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
@@ -109,23 +118,14 @@ class City
     {
         return $this->updatedAt;
     }
-    /**
-     * @var \Aisel\AddressingBundle\Entity\Country
-     */
-    private $country;
-
-    /**
-     * @var \Aisel\AddressingBundle\Entity\Region
-     */
-    private $region;
 
     /**
      * Set country
      *
-     * @param  \Aisel\AddressingBundle\Entity\Country $country
+     * @param  Country $country
      * @return City
      */
-    public function setCountry(\Aisel\AddressingBundle\Entity\Country $country = null)
+    public function setCountry(Country $country = null)
     {
         $this->country = $country;
 
@@ -135,7 +135,7 @@ class City
     /**
      * Get country
      *
-     * @return \Aisel\AddressingBundle\Entity\Country
+     * @return Country
      */
     public function getCountry()
     {
@@ -145,10 +145,10 @@ class City
     /**
      * Set region
      *
-     * @param  \Aisel\AddressingBundle\Entity\Region $region
+     * @param  Region $region
      * @return City
      */
-    public function setRegion(\Aisel\AddressingBundle\Entity\Region $region = null)
+    public function setRegion(Region $region = null)
     {
         $this->region = $region;
 
@@ -158,7 +158,7 @@ class City
     /**
      * Get region
      *
-     * @return \Aisel\AddressingBundle\Entity\Region
+     * @return Region
      */
     public function getRegion()
     {

@@ -2,53 +2,83 @@
 
 namespace Aisel\AddressingBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Country
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\AddressingBundle\Entity\CountryRepository")
+ * @ORM\Table(name="aisel_addressing_country")
  */
 class Country
 {
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=2)
+     * @Assert\Type(type="string")
      */
     private $iso2;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=3)
+     * @Assert\Type(type="string")
      */
     private $iso3;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $shortName;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $longName;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=10)
+     * @Assert\Type(type="string")
      */
     private $numcode;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $unMember;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=10)
+     * @Assert\Type(type="string")
      */
     private $callingCode;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=10)
+     * @Assert\Type(type="string")
      */
     private $cctld;
 
@@ -56,6 +86,7 @@ class Country
     {
         return $this->getShortName();
     }
+
     /**
      * Get id
      *
@@ -260,19 +291,6 @@ class Country
     private $updatedAt;
 
     /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return Country
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
      * Get createdAt
      *
      * @return \DateTime
@@ -280,19 +298,6 @@ class Country
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param  \DateTime $updatedAt
-     * @return Country
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**

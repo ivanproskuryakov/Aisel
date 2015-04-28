@@ -115,17 +115,12 @@ class UserManager implements UserProviderInterface
         $user = new BackendUser();
         $encoder = $this->encoder->getEncoder($user);
         $encodedPassword = $encoder->encodePassword($userData['password'], $user->getSalt());
-
         $user->setEmail($userData['email']);
         $user->setUsername($userData['username']);
         $user->setPassword($encodedPassword);
         $user->setEnabled(true);
         $user->setLocked(false);
-
-        $user->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
-
         $this->em->persist($user);
         $this->em->flush();
 

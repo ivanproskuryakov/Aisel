@@ -11,77 +11,99 @@
 
 namespace Aisel\BackendUserBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
- * Backend users CRUD configuration for Backend
+ * BackendUser
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\BackendUserBundle\Entity\BackendUserRepository")
+ * @ORM\Table(name="aisel_user_backend")
  */
 class BackendUser implements AdvancedUserInterface
 {
     /**
-     * @var integer $id
+     * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
-
-    /**
-     * Get id
-     *
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $username;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $email;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $password;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $salt;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $enabled;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $locked;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $expiresAt;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $lastLogin;
 
@@ -92,10 +114,19 @@ class BackendUser implements AdvancedUserInterface
      */
     protected $plainPassword;
 
-    // Interface methods
     public function __construct()
     {
         $this->salt = md5(uniqid(null, true));
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function __toString()
@@ -120,8 +151,6 @@ class BackendUser implements AdvancedUserInterface
      */
     public function getSalt()
     {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
         return null;
     }
 
@@ -317,19 +346,6 @@ class BackendUser implements AdvancedUserInterface
     }
 
     /**
-     * Set createdAt
-     *
-     * @param  \DateTime   $createdAt
-     * @return BackendUser
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
      * Get createdAt
      *
      * @return \DateTime
@@ -337,19 +353,6 @@ class BackendUser implements AdvancedUserInterface
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param  \DateTime   $updatedAt
-     * @return BackendUser
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**

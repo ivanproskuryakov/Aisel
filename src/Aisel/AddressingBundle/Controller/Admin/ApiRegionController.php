@@ -21,5 +21,4 @@ use Aisel\AddressingBundle\Controller\ApiRegionController as BaseApiRegionContro
 class ApiRegionController extends BaseApiRegionController
 {
 
-
 }

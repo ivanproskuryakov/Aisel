@@ -52,8 +52,6 @@ class LoadAddressData extends XMLFixture implements OrderedFixtureInterface
                     $address->setCountry($country);
                     $address->setRegion($region);
                     $address->setCity($city);
-                    $address->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $address->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $manager->persist($address);
                     $manager->flush();
                 }

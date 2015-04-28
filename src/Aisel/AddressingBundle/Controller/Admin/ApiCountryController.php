@@ -21,5 +21,4 @@ use Aisel\AddressingBundle\Controller\ApiCountryController as BaseApiCountryCont
 class ApiCountryController extends BaseApiCountryController
 {
 
-
 }

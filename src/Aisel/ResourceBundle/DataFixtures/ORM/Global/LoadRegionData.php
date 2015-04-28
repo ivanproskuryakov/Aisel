@@ -43,8 +43,6 @@ class LoadRegionData extends XMLFixture implements OrderedFixtureInterface
                     $region = new Region();
                     $region->setName($table->column[1]);
                     $region->setCountry($country);
-                    $region->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $region->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $manager->persist($region);
                     $manager->flush();
                 }

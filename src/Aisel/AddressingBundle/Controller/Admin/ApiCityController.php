@@ -21,5 +21,4 @@ use Aisel\AddressingBundle\Controller\ApiCityController as BaseApiCityController
 class ApiCityController extends BaseApiCityController
 {
 
-
 }

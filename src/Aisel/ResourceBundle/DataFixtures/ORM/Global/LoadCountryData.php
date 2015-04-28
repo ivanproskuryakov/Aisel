@@ -47,8 +47,6 @@ class LoadCountryData extends XMLFixture implements OrderedFixtureInterface
                     $country->setUnMember($table->column[6]);
                     $country->setCallingCode($table->column[7]);
                     $country->setCctld($table->column[8]);
-                    $country->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $country->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $manager->persist($country);
                     $manager->flush();
                     $this->addReference('country_' . $table->column[0], $country);
