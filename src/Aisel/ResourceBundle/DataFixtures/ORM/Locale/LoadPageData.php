@@ -46,7 +46,6 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                     $page->setTitle($table->column[2]);
                     $page->setContent($table->column[3]);
                     $page->setStatus($table->column[4]);
-//                    $page->setHidden($table->column[5]);
                     $page->setCommentStatus($table->column[6]);
                     $page->setMetaUrl($table->column[7]);
 
@@ -56,8 +55,6 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                         $page->addCategory($category);
                     }
 
-                    $page->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $page->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $manager->persist($page);
                     $manager->flush();
                     $this->addReference('page_' . $table->column[0], $page);

@@ -7,8 +7,6 @@ imports:
     - { resource: configs/payum.yml }
     - { resource: configs/cors.yml }
 
-    - { resource: services/gedmo.yml }
-
 framework:
     #esi:             ~
     translator:      { fallback: "%locale%" }
@@ -67,6 +65,8 @@ doctrine:
             default:
                 auto_mapping: true
                 mappings:
+                    AiselPageBundle:
+                        type: annotation
                     gedmo_tree:
                         type: annotation
                         prefix: Gedmo\Tree\Entity
@@ -84,6 +84,7 @@ stof_doctrine_extensions:
     orm:
         default:
             tree: true
+            timestampable: true
 
 # Swiftmailer Configuration
 swiftmailer:

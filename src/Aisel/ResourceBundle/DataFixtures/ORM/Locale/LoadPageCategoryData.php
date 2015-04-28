@@ -52,8 +52,6 @@ class LoadPageCategoryData extends XMLFixture implements OrderedFixtureInterface
                     $category->setDescription($table->column[8]);
                     $category->setStatus($table->column[9]);
                     $category->setMetaUrl($table->column[10]);
-                    $category->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $category->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
                     if ($rootCategory) {
                         $category->setParent($rootCategory);

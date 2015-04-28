@@ -2,95 +2,139 @@
 
 namespace Aisel\PageBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Category
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\PageBundle\Entity\CategoryRepository")
+ * @ORM\Table(name="aisel_page_category")
+ * @Gedmo\Tree(type="nested")
  */
 class Category
 {
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=2, nullable=false)
+     * @Assert\NotNull()
      */
     private $locale;
 
     /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var integer
+     * @Gedmo\TreeLeft
+     * @ORM\Column(name="lft", type="integer")
      */
     private $lft;
 
     /**
-     * @var integer
-     */
-    private $rgt;
-
-    /**
-     * @var integer
-     */
-    private $root;
-
-    /**
-     * @var integer
+     * @Gedmo\TreeLevel
+     * @ORM\Column(name="lvl", type="integer")
      */
     private $lvl;
 
     /**
+     * @Gedmo\TreeRight
+     * @ORM\Column(name="rgt", type="integer")
+     */
+    private $rgt;
+
+    /**
+     * @Gedmo\TreeRoot
+     * @ORM\Column(name="root", type="integer", nullable=true)
+     */
+    private $root;
+
+    /**
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     * @ORM\OrderBy({"lft" = "ASC"})
+     */
+    private $children;
+
+    /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull()
+     */
+    private $title;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text")
+     * @Assert\NotNull()
      */
     private $description;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $status;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Type(type="string")
+     * @Assert\NotNull()
      */
     private $metaUrl;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type(type="string")
      */
     private $metaTitle;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type(type="string")
      */
     private $metaDescription;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type(type="string")
      */
     private $metaKeywords;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $children;
-
-    /**
-     * @var \Aisel\PageBundle\Entity\Category
-     */
-    private $parent;
 
     /**
      * @inheritdoc
@@ -105,7 +149,7 @@ class Category
      */
     public function __construct()
     {
-        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->children = new ArrayCollection();
     }
 
     /**
@@ -443,10 +487,10 @@ class Category
     /**
      * Add children
      *
-     * @param  \Aisel\PageBundle\Entity\Category $children
+     * @param  Category $children
      * @return Category
      */
-    public function addChild(\Aisel\PageBundle\Entity\Category $children)
+    public function addChild(Category $children)
     {
         $this->children[] = $children;
 
@@ -456,9 +500,9 @@ class Category
     /**
      * Remove children
      *
-     * @param \Aisel\PageBundle\Entity\Category $children
+     * @param Category $children
      */
-    public function removeChild(\Aisel\PageBundle\Entity\Category $children)
+    public function removeChild(Category $children)
     {
         $this->children->removeElement($children);
     }
@@ -466,7 +510,7 @@ class Category
     /**
      * Get children
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getChildren()
     {
@@ -476,10 +520,10 @@ class Category
     /**
      * Set parent
      *
-     * @param  \Aisel\PageBundle\Entity\Category $parent
+     * @param  Category $parent
      * @return Category
      */
-    public function setParent(\Aisel\PageBundle\Entity\Category $parent = null)
+    public function setParent(Category $parent = null)
     {
         $this->parent = $parent;
 
@@ -489,7 +533,7 @@ class Category
     /**
      * Get parent
      *
-     * @return \Aisel\PageBundle\Entity\Category
+     * @return Category
      */
     public function getParent()
     {

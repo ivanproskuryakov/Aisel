@@ -4,37 +4,53 @@ namespace Aisel\PageBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Aisel\PageBundle\Entity\Category;
 
 /**
  * Page
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\PageBundle\Entity\PageRepository")
+ * @ORM\Table(name="aisel_page")
  */
 class Page
 {
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=2, nullable=false)
      * @Assert\NotNull()
      */
     private $locale;
 
     /**
      * @var string
-     * @Assert\NotNull()
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $title;
 
     /**
      * @var string
+     * @ORM\Column(type="text")
      * @Assert\NotNull()
      */
     private $content;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
@@ -42,6 +58,7 @@ class Page
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
@@ -49,44 +66,56 @@ class Page
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Type(type="string")
      * @Assert\NotNull()
      */
     private $metaUrl;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type(type="string")
      */
     private $metaTitle;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type(type="string")
      */
     private $metaDescription;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type(type="string")
      */
     private $metaKeywords;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
     /**
-     * @var \Aisel\FrontendUserBundle\Entity\FrontendUser
-     */
-    private $frontenduser;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Aisel\PageBundle\Entity\Category")
+     * @ORM\JoinTable(
+     *     name="aisel_page_page_category",
+     *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     * )
      */
     private $categories;
 
@@ -103,7 +132,7 @@ class Page
      */
     public function __construct()
     {
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     /**
@@ -357,35 +386,13 @@ class Page
     }
 
     /**
-     * Set frontenduser
-     *
-     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
-     * @return Page
-     */
-    public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
-    {
-        $this->frontenduser = $frontenduser;
-
-        return $this;
-    }
-
-    /**
-     * Get frontenduser
-     *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
-     */
-    public function getFrontenduser()
-    {
-        return $this->frontenduser;
-    }
-
-    /**
      * Add categories
      *
-     * @param  \Aisel\PageBundle\Entity\Category $categories
+     * @param Category $categories
+     *
      * @return Page
      */
-    public function addCategory(\Aisel\PageBundle\Entity\Category $categories)
+    public function addCategory(Category $categories)
     {
         $this->categories[] = $categories;
 
@@ -395,9 +402,9 @@ class Page
     /**
      * Remove categories
      *
-     * @param \Aisel\PageBundle\Entity\Category $categories
+     * @param Category $categories
      */
-    public function removeCategory(\Aisel\PageBundle\Entity\Category $categories)
+    public function removeCategory(Category $categories)
     {
         $this->categories->removeElement($categories);
     }
@@ -405,7 +412,7 @@ class Page
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getCategories()
     {
