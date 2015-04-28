@@ -12,8 +12,6 @@
 namespace Aisel\NavigationBundle\Controller\Admin;
 
 use Aisel\CategoryBundle\Controller\Admin\AbstractNodeController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Backend AJAX actions for navigation menu

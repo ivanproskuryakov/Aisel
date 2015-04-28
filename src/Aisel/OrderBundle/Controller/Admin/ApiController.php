@@ -12,7 +12,6 @@
 namespace Aisel\OrderBundle\Controller\Admin;
 
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Backend Order REST API controller

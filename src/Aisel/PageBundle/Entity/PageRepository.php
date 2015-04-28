@@ -25,7 +25,7 @@ class PageRepository extends AbstractCollectionRepository
 
     /**
      * Get pages based on limit, current pagination and search query
-     * @param  array $params
+     * @param  array                         $params
      * @return \Aisel\PageBundle\Entity\Page
      */
     public function searchFromRequest($params)
@@ -87,7 +87,7 @@ class PageRepository extends AbstractCollectionRepository
      * Find pages by URL
      *
      * @param string $url
-     * @param int $pageId
+     * @param int    $pageId
      *
      * @return int $found
      */

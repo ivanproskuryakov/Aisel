@@ -45,8 +45,8 @@ class UserManager implements UserProviderInterface
     /**
      * Constructor
      *
-     * @param EntityManager $entityManager
-     * @param EncoderFactory $encoder
+     * @param EntityManager   $entityManager
+     * @param EncoderFactory  $encoder
      * @param SecurityContext $securityContext
      */
     public function __construct(
@@ -58,7 +58,6 @@ class UserManager implements UserProviderInterface
         $this->encoder = $encoder;
         $this->securityContext = $securityContext;
     }
-
 
     protected function getRepository()
     {
@@ -100,6 +99,7 @@ class UserManager implements UserProviderInterface
         if (!($item)) {
             throw new LogicException('Nothing found');
         }
+
         return array('item' => $item);
     }
 
@@ -131,7 +131,7 @@ class UserManager implements UserProviderInterface
      * Is user password correct
      *
      * @param BackendUser $user
-     * @param string $password
+     * @param string      $password
      *
      * @return boolean $isValid
      */

@@ -59,7 +59,7 @@ class AddressingManager
     /**
      * Get country city by its id
      *
-     * @param  integer $id
+     * @param  integer                                $id
      * @return \Aisel\AddressingBundle\Entity\Country $countries
      *
      * @throws LogicException
@@ -97,7 +97,7 @@ class AddressingManager
     /**
      * Get single city by its id
      *
-     * @param  integer $id
+     * @param  integer                             $id
      * @return \Aisel\AddressingBundle\Entity\City $countries
      *
      * @throws LogicException
@@ -136,7 +136,7 @@ class AddressingManager
     /**
      * Get single region by its id
      *
-     * @param  integer $id
+     * @param  integer                               $id
      * @return \Aisel\AddressingBundle\Entity\Region $region
      *
      * @throws LogicException

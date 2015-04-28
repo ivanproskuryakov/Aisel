@@ -46,10 +46,10 @@ class ParamConverter extends RequestBodyParamConverter
     private $dispatcher;
 
     /**
-     * @param Serializer $serializer
-     * @param EntityManager $entityManager
-     * @param ValidatorInterface $validator
-     * @param TokenStorageInterface $tokenStorage
+     * @param Serializer               $serializer
+     * @param EntityManager            $entityManager
+     * @param ValidatorInterface       $validator
+     * @param TokenStorageInterface    $tokenStorage
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
@@ -120,6 +120,5 @@ class ParamConverter extends RequestBodyParamConverter
 
         return $convertedValue;
     }
-
 
 }

@@ -12,7 +12,6 @@
 namespace Aisel\FrontendUserBundle\Controller\Admin;
 
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * ApiController

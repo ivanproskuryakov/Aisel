@@ -43,8 +43,8 @@ class AbstractCollectionController extends Controller
      *
      * @return null|mixed $entity
      */
-    protected function getEntityFromRequest(Request $request) {
-
+    protected function getEntityFromRequest(Request $request)
+    {
         $configuration = new ParamConverter(array(
             'class' => $this->model['class']
         ));

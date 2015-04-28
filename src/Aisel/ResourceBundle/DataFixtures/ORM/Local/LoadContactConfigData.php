@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\DataFixtures\ORM;
+namespace Aisel\ResourceBundle\DataFixtures\ORM\Local;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,13 +21,12 @@ use Aisel\ConfigBundle\Entity\Config;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadAdminConfigData extends XMLFixture implements OrderedFixtureInterface
+class LoadContactConfigData extends XMLFixture implements OrderedFixtureInterface
 {
-
     protected $fixturesName = array(
-        'en/aisel_config_admin.xml',
-        'ru/aisel_config_admin.xml',
-        'es/aisel_config_admin.xml',
+        'en/aisel_config_contact.xml',
+        'ru/aisel_config_contact.xml',
+        'es/aisel_config_contact.xml',
     );
 
     /**
@@ -58,6 +57,6 @@ class LoadAdminConfigData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 10;
+        return 20;
     }
 }

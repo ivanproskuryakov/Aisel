@@ -34,20 +34,16 @@ class CartRepository extends EntityRepository
     public function addProduct($user, $product, $qty)
     {
         $em = $this->getEntityManager();
-        // Summarise Qty if product already inside the cart
+
         if ($cartItem = $this->findProduct($user, $product)) {
             $originalQty = $cartItem->getQty();
             $newQty = $originalQty + $qty;
             $cartItem->setQty($newQty);
-            $cartItem->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         } else {
-            // else add product to cart
             $cartItem = new Cart();
             $cartItem->setFrontenduser($user);
             $cartItem->setProduct($product);
             $cartItem->setQty($qty);
-            $cartItem->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-            $cartItem->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         }
         $em->persist($cartItem);
         $em->flush();

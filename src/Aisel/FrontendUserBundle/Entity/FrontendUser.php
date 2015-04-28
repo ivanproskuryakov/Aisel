@@ -14,7 +14,6 @@ namespace Aisel\FrontendUserBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\Collection;
 
@@ -185,7 +184,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     }
 
     /**
-     * @param string $password
+     * @param  string $password
      * @return $this
      */
     public function setPlainPassword($password)
@@ -315,7 +314,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     /**
      * Set username
      *
-     * @param  string    $username
+     * @param  string       $username
      * @return FrontendUser
      */
     public function setUsername($username)
@@ -338,7 +337,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     /**
      * Set password
      *
-     * @param  string    $password
+     * @param  string       $password
      * @return FrontendUser
      */
     public function setPassword($password)
@@ -361,7 +360,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     /**
      * Set email
      *
-     * @param  string    $email
+     * @param  string       $email
      * @return FrontendUser
      */
     public function setEmail($email)

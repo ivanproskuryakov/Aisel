@@ -36,7 +36,6 @@ class SearchManager
         $this->em = $entityManager;
     }
 
-
     /**
      * Get list of results
      *

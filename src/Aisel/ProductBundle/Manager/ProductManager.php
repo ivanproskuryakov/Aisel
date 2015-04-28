@@ -40,7 +40,7 @@ class ProductManager
     /**
      * Get categories in array for product
      *
-     * @param  int $product
+     * @param int $product
      *
      * @return array $categories
      */
@@ -62,7 +62,7 @@ class ProductManager
     /**
      * Get list of all products
      *
-     * @param  array $params
+     * @param array $params
      *
      * @return array
      */

@@ -11,25 +11,47 @@
 
 namespace Aisel\ConfigBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Config Entity
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\ConfigBundle\Entity\ConfigRepository")
+ * @ORM\Table(name="aisel_config")
  */
 class Config
 {
+
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=2, nullable=false)
+     * @Assert\NotNull()
+     */
+    private $locale;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $entity;
 
     /**
      * @var string
+     * @ORM\Column(type="text")
+     * @Assert\NotNull()
      */
     private $value;
 
@@ -88,10 +110,6 @@ class Config
     {
         return $this->value;
     }
-    /**
-     * @var string
-     */
-    private $locale;
 
     /**
      * Set locale

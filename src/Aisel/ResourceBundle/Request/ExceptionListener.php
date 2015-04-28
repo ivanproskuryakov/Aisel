@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Monolog\Logger;
 use Exception;
 use Aisel\ResourceBundle\Exception\ValidationFailedException;
 use Symfony\Component\Validator\ConstraintViolation;
@@ -67,7 +66,7 @@ class ExceptionListener
      *
      * @param string $code
      * @param string $message
-     * @param array $headers
+     * @param array  $headers
      *
      * @return JsonResponse $response
      */
@@ -196,11 +195,11 @@ class ExceptionListener
          * You should not mask these codes. You should display $exception->getMessage() and debug
          * exception.
          */
+
         return $this->createResponse(
             $code,
             $exception->getMessage()
         );
     }
-
 
 }

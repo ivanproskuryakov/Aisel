@@ -51,9 +51,9 @@ class OrderManager
      * Constructor
      *
      * @param ContainerInterface $serviceContainer
-     * @param EntityManager $entityManager
-     * @param ConfigManager $configManager
-     * @param CartManager $cartManager
+     * @param EntityManager      $entityManager
+     * @param ConfigManager      $configManager
+     * @param CartManager        $cartManager
      */
     public function __construct(
         ContainerInterface $serviceContainer,
@@ -87,7 +87,7 @@ class OrderManager
      * Get single order by given userId and orderId
      *
      * @param FrontendUser $user
-     * @param int $orderId
+     * @param int          $orderId
      *
      * @return Order $orderDetails
      */
@@ -124,7 +124,7 @@ class OrderManager
      * Create order for given userId
      *
      * @param FrontendUser $user
-     * @param mixed $orderInfo
+     * @param mixed        $orderInfo
      *
      * @throws LogicException
      *
@@ -136,7 +136,7 @@ class OrderManager
             throw new LogicException('User object is missing');
         }
 
-        if (count($user->getCart()) == 0){
+        if (count($user->getCart()) == 0) {
             throw new LogicException('User cart is empty');
         };
         $order = $this->em
@@ -162,8 +162,8 @@ class OrderManager
      * Create order for user
      *
      * @param FrontendUser $user
-     * @param array $products
-     * @param mixed $orderInfo
+     * @param array        $products
+     * @param mixed        $orderInfo
      *
      * @throws LogicException
      *

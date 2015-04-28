@@ -44,8 +44,8 @@ class CartManager
     /**
      * Constructor
      *
-     * @param EntityManager $entityManager
-     * @param UserManager $frontendUserManager
+     * @param EntityManager  $entityManager
+     * @param UserManager    $frontendUserManager
      * @param ProductManager $productManager
      */
     public function __construct(
@@ -77,8 +77,8 @@ class CartManager
      * Adds product to cart by given $id and $qty
      *
      * @param FrontendUser $user
-     * @param int $productId
-     * @param int $qty
+     * @param int          $productId
+     * @param int          $qty
      *
      * @return Cart $cartItem
      *
@@ -98,8 +98,8 @@ class CartManager
      * Updates product item inside cart by given $id and $qty
      *
      * @param FrontendUser $user
-     * @param int $productId
-     * @param int $qty
+     * @param int          $productId
+     * @param int          $qty
      *
      * @return Cart $cartItem
      *

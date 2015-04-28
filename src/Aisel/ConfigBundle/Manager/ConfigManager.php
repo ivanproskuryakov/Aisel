@@ -36,8 +36,8 @@ class ConfigManager
      * Constructor
      *
      * @param EntityManager $em
-     * @param string $locale
-     * @param string $locales
+     * @param string        $locale
+     * @param string        $locales
      */
     public function __construct(EntityManager $em, $locale, $locales)
     {
@@ -103,7 +103,7 @@ class ConfigManager
             ->getRepository('AiselConfigBundle:Config')
             ->getConfig($locale, $entity);
 
-        $value = (array)json_decode($config->getValue());
+        $value = (array) json_decode($config->getValue());
 
         return $value;
     }
@@ -120,7 +120,7 @@ class ConfigManager
         $decoded = array();
 
         if ($config && $config) {
-            $decoded = (array)json_decode($config->getValue());
+            $decoded = (array) json_decode($config->getValue());
         }
 
         return $decoded;

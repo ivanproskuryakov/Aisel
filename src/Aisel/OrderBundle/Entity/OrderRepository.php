@@ -2,7 +2,6 @@
 
 namespace Aisel\OrderBundle\Entity;
 
-use Doctrine\ORM\EntityRepository;
 use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
 
 /**

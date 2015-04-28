@@ -80,7 +80,7 @@ class ProductRepository extends AbstractCollectionRepository
     /**
      * Find product by URL
      *
-     * @param string $url
+     * @param string   $url
      * @param int|null $productId
      *
      * @return int $found

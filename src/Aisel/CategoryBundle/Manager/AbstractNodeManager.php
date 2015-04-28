@@ -40,7 +40,7 @@ class AbstractNodeManager
      * Constructor
      *
      * @param EntityManager $entityManager
-     * @param string $locales
+     * @param string        $locales
      */
     public function __construct(EntityManager $entityManager, $locales)
     {
@@ -87,7 +87,7 @@ class AbstractNodeManager
     /**
      * Save name for single node
      *
-     * @param  array $params
+     * @param  array  $params
      * @return object
      *
      * @throws LogicException
@@ -115,7 +115,7 @@ class AbstractNodeManager
     /**
      * Remove single node
      *
-     * @param  array $params
+     * @param  array  $params
      * @return object
      *
      * @throws LogicException
@@ -139,7 +139,7 @@ class AbstractNodeManager
     /**
      * Creates child node
      *
-     * @param  array $params
+     * @param  array  $params
      * @return object
      *
      * @throws LogicException
@@ -170,7 +170,7 @@ class AbstractNodeManager
     /**
      * Creates Node
      *
-     * @param  array $params
+     * @param  array  $params
      * @return object
      *
      * @throws LogicException
@@ -192,7 +192,7 @@ class AbstractNodeManager
     /**
      * Update parent for Node
      *
-     * @param  array $params
+     * @param  array  $params
      * @return object
      *
      * @throws LogicException
@@ -223,7 +223,7 @@ class AbstractNodeManager
     /**
      * Update parent for Node
      *
-     * @param  int $id
+     * @param  int    $id
      * @return object
      *
      * @throws LogicException

@@ -64,12 +64,12 @@ class UserManager implements UserProviderInterface
     /**
      * Constructor
      *
-     * @param EntityManager $entityManager
-     * @param EncoderFactory $encoder
+     * @param EntityManager   $entityManager
+     * @param EncoderFactory  $encoder
      * @param SecurityContext $securityContext
-     * @param Swift_Mailer $mailer
+     * @param Swift_Mailer    $mailer
      * @param EngineInterface $templating
-     * @param string $websiteEmail
+     * @param string          $websiteEmail
      */
     public function __construct(
         EntityManager $em,
@@ -98,7 +98,7 @@ class UserManager implements UserProviderInterface
     /**
      * Get collection
      *
-     * @param array $params
+     * @param array  $params
      * @param string $locale
      *
      * @return array
@@ -111,7 +111,6 @@ class UserManager implements UserProviderInterface
             'total' => $total,
             'collection' => $collection
         );
-
 
         return $return;
     }
@@ -133,6 +132,7 @@ class UserManager implements UserProviderInterface
             throw new LogicException('Nothing found');
         }
         $itemDetails = array('item' => $item);
+
         return $itemDetails;
     }
 
@@ -199,7 +199,7 @@ class UserManager implements UserProviderInterface
      * Is user password correct
      *
      * @param FrontendUser $user
-     * @param string $password
+     * @param string       $password
      *
      * @return boolean $isValid
      */

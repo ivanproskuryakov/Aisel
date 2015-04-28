@@ -168,7 +168,7 @@ class AbstractCategoryRepository extends NestedTreeRepository
     /**
      * Find categories by url
      *
-     * @param string $url
+     * @param string   $url
      * @param int|null $categoryId
      *
      * @return int $result

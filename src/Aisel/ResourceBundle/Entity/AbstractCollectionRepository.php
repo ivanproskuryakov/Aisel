@@ -71,11 +71,10 @@ class AbstractCollectionRepository extends EntityRepository
         }
         // Filter
         if (isset($params['filter'])) {
-            $this->filter = (array)json_decode($params['filter']);
+            $this->filter = (array) json_decode($params['filter']);
         }
         $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
     }
-
 
     /**
      * Get page total

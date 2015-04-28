@@ -6,9 +6,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
-use Aisel\AddressingBundle\Entity\Country;
-use Aisel\AddressingBundle\Entity\Region;
-use Aisel\AddressingBundle\Entity\City;
 
 /**
  * Address
@@ -226,7 +223,7 @@ class Address
     /**
      * Set region
      *
-     * @param  Region $region
+     * @param  Region  $region
      * @return Address
      */
     public function setRegion(Region $region = null)
@@ -248,7 +245,7 @@ class Address
     /**
      * Set city
      *
-     * @param  City $city
+     * @param  City    $city
      * @return Address
      */
     public function setCity(City $city = null)

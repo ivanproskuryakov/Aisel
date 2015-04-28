@@ -161,7 +161,7 @@ class PageManager
      * Validate metaUrl for Page Entity and return one we can use
      *
      * @param string $url
-     * @param int $pageId
+     * @param int    $pageId
      *
      * @return string $validUrl
      */

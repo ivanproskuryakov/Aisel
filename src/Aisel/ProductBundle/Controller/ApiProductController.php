@@ -26,7 +26,7 @@ class ApiProductController extends Controller
      * /api/product/list.json?limit=2&current=3
      *
      * @param Request $request
-     * @param string $locale
+     * @param string  $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $list
      */

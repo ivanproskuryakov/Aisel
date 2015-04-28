@@ -64,7 +64,6 @@ class LoadOrderCartData extends XMLFixture implements OrderedFixtureInterface
                             $orderInfo
                         );
 
-
                     $this->addReference('order_' . $table->column[0], $order);
                 }
             }

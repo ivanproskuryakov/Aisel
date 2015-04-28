@@ -9,25 +9,25 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\DataFixtures\ORM;
+namespace Aisel\ResourceBundle\DataFixtures\ORM\Local;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\NavigationBundle\Entity\Menu;
+use Aisel\PageBundle\Entity\Category;
 
 /**
- * Navigation menu fixtures
+ * Page Category fixtures
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoadMenuTopData extends XMLFixture implements OrderedFixtureInterface
+class LoadPageCategoryData extends XMLFixture implements OrderedFixtureInterface
 {
 
     protected $fixturesName = array(
-        'en/aisel_menu_top.xml',
-        'ru/aisel_menu_top.xml',
-        'es/aisel_menu_top.xml',
+        'en/aisel_page_category.xml',
+        'ru/aisel_page_category.xml',
+        'es/aisel_page_category.xml',
     );
 
     /**
@@ -41,25 +41,24 @@ class LoadMenuTopData extends XMLFixture implements OrderedFixtureInterface
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
-
                     $rootCategory = null;
+
                     if ($table->column[2] != 'NULL') {
-                        $rootCategory = $this->getReference('menu_top_' . $table->column[2]);
+                        $rootCategory = $this->getReference('page_category_' . $table->column[2]);
                     }
-                    $menu = new Menu();
-                    $menu->setLocale($table->column[1]);
-                    $menu->setTitle($table->column[7]);
-                    $menu->setMetaUrl($table->column[8]);
-                    $menu->setStatus($table->column[9]);
-                    $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                    $category = new Category();
+                    $category->setLocale($table->column[1]);
+                    $category->setTitle($table->column[3]);
+                    $category->setDescription($table->column[8]);
+                    $category->setStatus($table->column[9]);
+                    $category->setMetaUrl($table->column[10]);
 
                     if ($rootCategory) {
-                        $menu->setParent($rootCategory);
+                        $category->setParent($rootCategory);
                     }
-                    $manager->persist($menu);
+                    $manager->persist($category);
                     $manager->flush();
-                    $this->addReference('menu_top_' . $table->column[0], $menu);
+                    $this->addReference('page_category_' . $table->column[0], $category);
                 }
             }
         }
@@ -70,6 +69,6 @@ class LoadMenuTopData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 900;
+        return 200;
     }
 }
