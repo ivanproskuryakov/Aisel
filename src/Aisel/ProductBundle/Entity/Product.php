@@ -6,32 +6,47 @@ use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 /**
  * Product
  *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
  * @FileStore\Uploadable
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\ProductBundle\Entity\ProductRepository")
+ * @ORM\Table(name="aisel_product")
  */
 class Product
 {
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=2, nullable=false)
      * @Assert\NotNull()
      */
     private $locale;
 
     /**
      * @var string
-     * @Assert\NotNull()
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $name;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotNull()
      */
     private $sku;
@@ -39,61 +54,78 @@ class Product
     /**
      * @var float
      * @Assert\NotNull()
+     * @ORM\Column(type="float", scale=2, nullable=true)
      */
     private $price;
 
     /**
      * @var float
+     * @ORM\Column(type="float", scale=2, nullable=true)
      */
     private $priceSpecial;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $priceSpecialFrom;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $priceSpecialTo;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $new = false;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $newFrom ;
+    private $newFrom;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $newTo;
 
     /**
      * @var integer
+     * @ORM\Column(type="integer")
      */
     private $qty = 0;
 
     /**
      * @var boolean
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $inStock = false;
 
     /**
      * @var boolean
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $manageStock;
 
     /**
      * @var string
+     * @ORM\Column(type="text")
+     * @Assert\NotNull()
      */
     private $descriptionShort;
 
     /**
      * @var string
+     * @ORM\Column(type="text")
      * @Assert\NotNull()
      */
     private $description;
@@ -107,61 +139,84 @@ class Product
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $hidden;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
      */
     private $commentStatus;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Type(type="string")
      * @Assert\NotNull()
      */
     private $metaUrl;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type(type="string")
      */
     private $metaTitle;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type(type="string")
      */
     private $metaDescription;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type(type="string")
      */
     private $metaKeywords;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
     /**
      * @var array
-     * @Assert\Image( maxSize="10M")
-     * @FileStore\UploadableField(mapping="mainImage")
+     * @ORM\Column(type="text", length=255, nullable=true)
      */
     private $mainImage;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Image", mappedBy="product")
      */
     private $image;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Aisel\ProductBundle\Entity\Category")
+     * @ORM\JoinTable(
+     *     name="aisel_product_product_category",
+     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     * )
      */
     private $categories;
 
@@ -178,8 +233,8 @@ class Product
      */
     public function __construct()
     {
-        $this->image = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->image = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     /**
@@ -770,10 +825,10 @@ class Product
     /**
      * Add image
      *
-     * @param  \Aisel\ProductBundle\Entity\Image $image
+     * @param  Image   $image
      * @return Product
      */
-    public function addImage(\Aisel\ProductBundle\Entity\Image $image)
+    public function addImage(Image $image)
     {
         $this->image[] = $image;
 
@@ -783,9 +838,9 @@ class Product
     /**
      * Remove image
      *
-     * @param \Aisel\ProductBundle\Entity\Image $image
+     * @param Image $image
      */
-    public function removeImage(\Aisel\ProductBundle\Entity\Image $image)
+    public function removeImage(Image $image)
     {
         $this->image->removeElement($image);
     }
@@ -793,7 +848,7 @@ class Product
     /**
      * Get image
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getImage()
     {
@@ -803,10 +858,10 @@ class Product
     /**
      * Add categories
      *
-     * @param  \Aisel\ProductBundle\Entity\Category $categories
+     * @param  Category $categories
      * @return Product
      */
-    public function addCategory(\Aisel\ProductBundle\Entity\Category $categories)
+    public function addCategory(Category $categories)
     {
         $this->categories[] = $categories;
 
@@ -816,9 +871,9 @@ class Product
     /**
      * Remove categories
      *
-     * @param \Aisel\ProductBundle\Entity\Category $categories
+     * @param Category $categories
      */
-    public function removeCategory(\Aisel\ProductBundle\Entity\Category $categories)
+    public function removeCategory(Category $categories)
     {
         $this->categories->removeElement($categories);
     }
@@ -826,7 +881,7 @@ class Product
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getCategories()
     {

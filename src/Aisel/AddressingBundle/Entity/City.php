@@ -33,7 +33,7 @@ class City
     private $name;
 
     /**
-     * @var Region
+     * @var     Region
      * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\Region")
      * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
      */

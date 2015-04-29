@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\CategoryBundle\Controller\Admin;
+namespace Aisel\ResourceBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * Backend AJAX actions for page categories
+ * AbstractNodeController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */

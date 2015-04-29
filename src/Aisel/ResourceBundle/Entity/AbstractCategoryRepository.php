@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\CategoryBundle\Entity;
+namespace Aisel\ResourceBundle\Entity;
 
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
@@ -25,7 +25,7 @@ class AbstractCategoryRepository extends NestedTreeRepository
     private $pageLimit = 5;
     private $pageSkip = 1;
 
-    protected $categoryEntity = 'AiselCategoryBundle:Category';
+    protected $categoryEntity = 'AiselResourceBundle:Category';
 
     /**
      * Update vars with values from request

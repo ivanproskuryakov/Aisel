@@ -11,7 +11,7 @@
 
 namespace Aisel\ProductBundle\Manager;
 
-use Aisel\CategoryBundle\Manager\AbstractCategoryManager;
+use Aisel\ResourceBundle\Manager\AbstractCategoryManager;
 
 class ProductCategoryManager extends AbstractCategoryManager
 {

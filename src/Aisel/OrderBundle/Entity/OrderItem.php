@@ -2,35 +2,56 @@
 
 namespace Aisel\OrderBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Aisel\ProductBundle\Entity\Product;
+
 /**
  * OrderItem
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\PageBundle\Entity\OrderItemRepository")
+ * @ORM\Table(name="aisel_order_item")
  */
 class OrderItem
 {
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
+     * @var \Aisel\OrderBundle\Entity\Order
+     * @ORM\ManyToOne(targetEntity="Aisel\OrderBundle\Entity\Order", inversedBy="orderItem")
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
+     */
+    private $order;
+
+    /**
+     * @var Product
+     * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="orderItem")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    private $product;
+
+    /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
-
-    /**
-     * @var \Aisel\OrderBundle\Entity\Order
-     */
-    private $order;
-
-    /**
-     * @var \Aisel\ProductBundle\Entity\Product
-     */
-    private $product;
 
     /**
      * Get id
@@ -114,10 +135,10 @@ class OrderItem
     /**
      * Set product
      *
-     * @param  \Aisel\ProductBundle\Entity\Product $product
+     * @param  Product   $product
      * @return OrderItem
      */
-    public function setProduct(\Aisel\ProductBundle\Entity\Product $product = null)
+    public function setProduct(Product $product = null)
     {
         $this->product = $product;
 
@@ -127,7 +148,7 @@ class OrderItem
     /**
      * Get product
      *
-     * @return \Aisel\ProductBundle\Entity\Product
+     * @return Product
      */
     public function getProduct()
     {

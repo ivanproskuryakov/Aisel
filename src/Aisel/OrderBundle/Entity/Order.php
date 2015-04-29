@@ -2,71 +2,151 @@
 
 namespace Aisel\OrderBundle\Entity;
 
-use Payum\Core\Model\Order as BaseOrder;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\ProductBundle\Entity\Product;
 
 /**
  * Order
  *
- * TODO: Finish with order variables
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\OrderBundle\Entity\OrderRepository")
+ * @ORM\Table(name="aisel_order")
  */
-class Order //extends BaseOrder
+class Order
 {
+
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=2, nullable=false)
+     * @Assert\NotNull()
      */
     private $locale;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
-    private $status;
+    private $status = false;
 
     /**
-     * @var integer
+     * @var float
+     * @Assert\NotNull()
+     * @ORM\Column(type="float", scale=2, nullable=true)
      */
     private $subtotal;
 
     /**
-     * @var integer
+     * @var float
+     * @Assert\NotNull()
+     * @ORM\Column(type="float", scale=2, nullable=true)
      */
     private $grandtotal;
 
     /**
+     * @var string
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=3)
+     * @Assert\NotNull()
+     */
+    private $currency;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $country;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $region;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $city;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $phone;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
+     */
+    private $paymentMethod;
+
+    /**
+     * @var FrontendUser
+     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="order")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $frontenduser;
+
+    /**
+     * @var Product
+     * @ORM\ManyToOne(targetEntity="Aisel\OrderBundle\Entity\Invoice", inversedBy="order")
+     * @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
+     */
+    private $invoice;
+
+    /**
+     * @var OrderItem
+     * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\OrderItem", mappedBy="order")
+     */
+    private $item;
+
+    /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
-
-    /**
-     * @var \Aisel\FrontendUserBundle\Entity\FrontendUser
-     */
-    private $frontenduser;
-
-    /**
-     * @var \Aisel\OrderBundle\Entity\Invoice
-     */
-    private $invoice;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $item;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->item = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->item = new ArrayCollection();
     }
 
     /**
@@ -220,10 +300,10 @@ class Order //extends BaseOrder
     /**
      * Set frontenduser
      *
-     * @param  \Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser
+     * @param  FrontendUser $frontenduser
      * @return Order
      */
-    public function setFrontenduser(\Aisel\FrontendUserBundle\Entity\FrontendUser $frontenduser = null)
+    public function setFrontenduser(FrontendUser $frontenduser = null)
     {
         $this->frontenduser = $frontenduser;
 
@@ -233,7 +313,7 @@ class Order //extends BaseOrder
     /**
      * Get frontenduser
      *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser
+     * @return FrontendUser
      */
     public function getFrontenduser()
     {
@@ -243,10 +323,10 @@ class Order //extends BaseOrder
     /**
      * Set invoice
      *
-     * @param  \Aisel\OrderBundle\Entity\Invoice $invoice
+     * @param  Invoice $invoice
      * @return Order
      */
-    public function setInvoice(\Aisel\OrderBundle\Entity\Invoice $invoice = null)
+    public function setInvoice(Invoice $invoice = null)
     {
         $this->invoice = $invoice;
 
@@ -256,7 +336,7 @@ class Order //extends BaseOrder
     /**
      * Get invoice
      *
-     * @return \Aisel\OrderBundle\Entity\Invoice
+     * @return Invoice
      */
     public function getInvoice()
     {
@@ -266,10 +346,10 @@ class Order //extends BaseOrder
     /**
      * Add item
      *
-     * @param  \Aisel\OrderBundle\Entity\OrderItem $item
+     * @param  OrderItem $item
      * @return Order
      */
-    public function addItem(\Aisel\OrderBundle\Entity\OrderItem $item)
+    public function addItem(OrderItem $item)
     {
         $this->item[] = $item;
 
@@ -279,9 +359,9 @@ class Order //extends BaseOrder
     /**
      * Remove item
      *
-     * @param \Aisel\OrderBundle\Entity\OrderItem $item
+     * @param OrderItem $item
      */
-    public function removeItem(\Aisel\OrderBundle\Entity\OrderItem $item)
+    public function removeItem(OrderItem $item)
     {
         $this->item->removeElement($item);
     }
@@ -322,15 +402,6 @@ class Order //extends BaseOrder
     {
         return $this->totalamount;
     }
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * @var string
-     */
-    private $currency;
 
     /**
      * Set description
@@ -377,25 +448,6 @@ class Order //extends BaseOrder
     {
         return $this->currency;
     }
-    /**
-     * @var string
-     */
-    private $country;
-
-    /**
-     * @var string
-     */
-    private $region;
-
-    /**
-     * @var string
-     */
-    private $city;
-
-    /**
-     * @var string
-     */
-    private $phone;
 
     /**
      * Set country
@@ -488,10 +540,6 @@ class Order //extends BaseOrder
     {
         return $this->phone;
     }
-    /**
-     * @var string
-     */
-    private $paymentMethod;
 
     /**
      * Set paymentMethod

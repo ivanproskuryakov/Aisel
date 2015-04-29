@@ -104,10 +104,18 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
         ));
 
         if (file_exists($fixtureImage)) {
-            if (mkdir($productDir)) {
-                copy($fixtureImage, realpath($productDir) . DIRECTORY_SEPARATOR . $this->productImage);
-                $connection->exec("UPDATE `aisel_product` SET `main_image` = '" . $sql . "' WHERE `aisel_product`.`id` = " . $product->getId() . ";");
+
+            if (file_exists($productDir) === false ) {
+                mkdir($productDir);
             }
+
+            $newPath = realpath($productDir) . DIRECTORY_SEPARATOR . $this->productImage;
+
+            if (file_exists($newPath)) {
+                unlink($newPath);
+            }
+            copy($fixtureImage, $newPath);
+            $connection->exec("UPDATE `aisel_product` SET `mainImage` = '" . $sql . "' WHERE `aisel_product`.`id` = " . $product->getId() . ";");
         }
     }
 

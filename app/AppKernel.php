@@ -28,7 +28,6 @@ class AppKernel extends Kernel
             new Aisel\FrontendUserBundle\AiselFrontendUserBundle(),
             new Aisel\BackendUserBundle\AiselBackendUserBundle(),
             new Aisel\PageBundle\AiselPageBundle(),
-            new Aisel\CategoryBundle\AiselCategoryBundle(),
             new Aisel\SearchBundle\AiselSearchBundle(),
             new Aisel\ProductBundle\AiselProductBundle(),
             new Aisel\CartBundle\AiselCartBundle(),

@@ -107,4 +107,14 @@ class AbstractCollectionController extends Controller
         return $this->getEntityFromRequest($request);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function getCollectionAction(Request $request)
+    {
+        return $this->getEntityFromRequest($request);
+    }
+
 }

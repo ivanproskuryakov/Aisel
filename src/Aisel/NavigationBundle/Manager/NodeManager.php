@@ -11,7 +11,7 @@
 
 namespace Aisel\NavigationBundle\Manager;
 
-use Aisel\CategoryBundle\Manager\AbstractNodeManager;
+use Aisel\ResourceBundle\Manager\AbstractNodeManager;
 
 /**
  * Manager for Navigation Menu Nodes

@@ -2,7 +2,7 @@
 
 namespace Aisel\ProductBundle\Entity;
 
-use Aisel\CategoryBundle\Entity\AbstractCategoryRepository;
+use Aisel\ResourceBundle\Entity\AbstractCategoryRepository;
 
 /**
  * CategoryRepository for Products

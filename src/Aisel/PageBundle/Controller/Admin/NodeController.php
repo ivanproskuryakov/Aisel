@@ -11,7 +11,7 @@
 
 namespace Aisel\PageBundle\Controller\Admin;
 
-use Aisel\CategoryBundle\Controller\Admin\AbstractNodeController;
+use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 
 /**
  * NodeController

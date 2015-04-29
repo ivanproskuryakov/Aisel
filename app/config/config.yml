@@ -77,6 +77,12 @@ doctrine:
                         type: annotation
                     AiselCartBundle:
                         type: annotation
+                    AiselProductBundle:
+                        type: annotation
+                    AiselNavigationBundle:
+                        type: annotation
+                    AiselOrderBundle:
+                        type: annotation
 
                     gedmo_tree:
                         type: annotation

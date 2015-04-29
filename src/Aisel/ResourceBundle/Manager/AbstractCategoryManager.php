@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\CategoryBundle\Manager;
+namespace Aisel\ResourceBundle\Manager;
 
 use Aisel\ResourceBundle\Utility\UrlUtility;
 use LogicException;
@@ -18,7 +18,7 @@ class AbstractCategoryManager
 {
     protected $sc;
     protected $em;
-    protected $categoryEntity = 'AiselCategoryBundle:Category';
+    protected $categoryEntity = 'AiselResourceBundle:Category';
 
     /**
      * {@inheritDoc}

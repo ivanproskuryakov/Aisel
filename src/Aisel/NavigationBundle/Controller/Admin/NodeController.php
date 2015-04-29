@@ -11,7 +11,7 @@
 
 namespace Aisel\NavigationBundle\Controller\Admin;
 
-use Aisel\CategoryBundle\Controller\Admin\AbstractNodeController;
+use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 
 /**
  * Backend AJAX actions for navigation menu

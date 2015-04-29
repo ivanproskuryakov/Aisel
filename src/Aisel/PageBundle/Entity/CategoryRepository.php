@@ -11,7 +11,7 @@
 
 namespace Aisel\PageBundle\Entity;
 
-use Aisel\CategoryBundle\Entity\AbstractCategoryRepository;
+use Aisel\ResourceBundle\Entity\AbstractCategoryRepository;
 
 /**
  * CategoryRepository for Pages

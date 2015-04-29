@@ -2,23 +2,39 @@
 
 namespace Aisel\ProductBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Image
+ *
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
+ *
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Aisel\ProductBundle\Entity\ImageRepository")
+ * @ORM\Table(name="aisel_product_image")
  */
 class Image
 {
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Type(type="string")
      */
     private $filename;
 
     /**
-     * @var \Aisel\ProductBundle\Entity\Product
+     * @var Product
+     * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="images")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
     private $product;
 

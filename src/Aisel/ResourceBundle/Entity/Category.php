@@ -1,34 +1,24 @@
 <?php
 
-/*
- * This file is part of the Aisel package.
- *
- * (c) Ivan Proskuryakov
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-namespace Aisel\NavigationBundle\Entity;
+namespace Aisel\ResourceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
- * Menu
+ * Category
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  *
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(repositoryClass="Aisel\NavigationBundle\Entity\MenuRepository")
- * @ORM\Table(name="aisel_navigation_menu")
  * @Gedmo\Tree(type="nested")
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\MappedSuperclass
  */
-class Menu
+abstract class Category
 {
-
     /**
      * @var integer
      * @ORM\Id
@@ -70,13 +60,13 @@ class Menu
 
     /**
      * @Gedmo\TreeParent
-     * @ORM\ManyToOne(targetEntity="Menu", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Menu", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
      * @ORM\OrderBy({"lft" = "ASC"})
      */
     protected $children;
@@ -140,7 +130,7 @@ class Menu
      * Set locale
      *
      * @param  string   $locale
-     * @return Menu
+     * @return Category
      */
     public function setLocale($locale)
     {
@@ -163,7 +153,7 @@ class Menu
      * Set title
      *
      * @param  string   $title
-     * @return Menu
+     * @return Category
      */
     public function setTitle($title)
     {
@@ -186,7 +176,7 @@ class Menu
      * Set lft
      *
      * @param  integer  $lft
-     * @return Menu
+     * @return Category
      */
     public function setLft($lft)
     {
@@ -209,7 +199,7 @@ class Menu
      * Set rgt
      *
      * @param  integer  $rgt
-     * @return Menu
+     * @return Category
      */
     public function setRgt($rgt)
     {
@@ -232,7 +222,7 @@ class Menu
      * Set root
      *
      * @param  integer  $root
-     * @return Menu
+     * @return Category
      */
     public function setRoot($root)
     {
@@ -255,7 +245,7 @@ class Menu
      * Set lvl
      *
      * @param  integer  $lvl
-     * @return Menu
+     * @return Category
      */
     public function setLvl($lvl)
     {
@@ -278,7 +268,7 @@ class Menu
      * Set status
      *
      * @param  boolean  $status
-     * @return Menu
+     * @return Category
      */
     public function setStatus($status)
     {
@@ -301,7 +291,7 @@ class Menu
      * Set createdAt
      *
      * @param  \DateTime $createdAt
-     * @return Menu
+     * @return Category
      */
     public function setCreatedAt($createdAt)
     {
@@ -324,7 +314,7 @@ class Menu
      * Set updatedAt
      *
      * @param  \DateTime $updatedAt
-     * @return Menu
+     * @return Category
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -346,10 +336,10 @@ class Menu
     /**
      * Add children
      *
-     * @param  Menu $children
-     * @return Menu
+     * @param  Category $children
+     * @return Category
      */
-    public function addChild(Menu $children)
+    public function addChild(Category $children)
     {
         $this->children[] = $children;
 
@@ -359,9 +349,9 @@ class Menu
     /**
      * Remove children
      *
-     * @param Menu $children
+     * @param Category $children
      */
-    public function removeChild(Menu $children)
+    public function removeChild(Category $children)
     {
         $this->children->removeElement($children);
     }
@@ -379,10 +369,10 @@ class Menu
     /**
      * Set parent
      *
-     * @param  Menu $parent
-     * @return Menu
+     * @param  Category $parent
+     * @return Category
      */
-    public function setParent(Menu $parent = null)
+    public function setParent(Category $parent = null)
     {
         $this->parent = $parent;
 
@@ -392,42 +382,10 @@ class Menu
     /**
      * Get parent
      *
-     * @return Menu
+     * @return Category
      */
     public function getParent()
     {
         return $this->parent;
     }
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\Type(type="string")
-     * @Assert\NotNull()
-     */
-    private $metaUrl;
-
-    /**
-     * Set metaUrl
-     *
-     * @param  string $metaUrl
-     * @return Menu
-     */
-    public function setMetaUrl($metaUrl)
-    {
-        $this->metaUrl = $metaUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get metaUrl
-     *
-     * @return string
-     */
-    public function getMetaUrl()
-    {
-        return $this->metaUrl;
-    }
-
 }

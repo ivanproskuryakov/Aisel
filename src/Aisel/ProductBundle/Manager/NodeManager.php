@@ -11,7 +11,7 @@
 
 namespace Aisel\ProductBundle\Manager;
 
-use Aisel\CategoryBundle\Manager\AbstractNodeManager;
+use Aisel\ResourceBundle\Manager\AbstractNodeManager;
 use LogicException;
 
 /**
