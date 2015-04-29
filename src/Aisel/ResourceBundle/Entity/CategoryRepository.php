@@ -18,7 +18,7 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class AbstractCategoryRepository extends NestedTreeRepository
+class CategoryRepository extends NestedTreeRepository
 {
 
     private $pageCurrent = 1;

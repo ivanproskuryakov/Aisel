@@ -51,7 +51,7 @@ class ProductControllerTest extends AbstractWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        $this->assertEquals(5, count($result['errors']));
+        $this->assertTrue(count($result['errors']) > 0);
         $this->assertTrue(400 === $statusCode);
     }
 

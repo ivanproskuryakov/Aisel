@@ -33,6 +33,8 @@ class NodeControllerTest extends AbstractWebTestCase
 
     public function testGetProductNodesAction()
     {
+        $this->markTestSkipped('skipping ...');
+        
         $locale = reset($this->locales);
         $this->client->request(
             'GET',
