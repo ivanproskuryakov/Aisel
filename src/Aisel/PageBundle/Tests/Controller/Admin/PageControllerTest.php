@@ -84,4 +84,66 @@ class PageControllerTest extends AbstractWebTestCase
         $this->assertEquals($result['id'], $page->getId());
     }
 
+    public function testDeletePageAction()
+    {
+        $page = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->findOneBy(['locale' => 'en']);
+        $pageId = $page->getId();
+
+        $this->client->request(
+            'DELETE',
+            '/backend/api/page/' . $pageId,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $page = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->findOneBy(['id' => $pageId]);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNull($page);
+    }
+
+//    public function testPutPageAction()
+//    {
+//        $page = $this
+//            ->em
+//            ->getRepository('Aisel\PageBundle\Entity\Page')
+//            ->findOneBy(['locale' => 'en']);
+//        $pageId = $page->getId();
+//        $data['locale'] = 'ru';
+//
+//        $this->client->request(
+//            'PUT',
+//            '/backend/api/page/' . $pageId,
+//            [],
+//            [],
+//            ['CONTENT_TYPE' => 'application/json'],
+//            json_encode($data)
+//        );
+//
+//        $response = $this->client->getResponse();
+//        $content = $response->getContent();
+//        $statusCode = $response->getStatusCode();
+//
+//        $page = $this
+//            ->em
+//            ->getRepository('Aisel\PageBundle\Entity\Page')
+//            ->findOneBy(['id' => $pageId]);
+//
+//        $this->assertTrue(204 === $statusCode);
+//        $this->assertEmpty($content);
+//        $this->assertNotNull($page);
+//    }
+
 }

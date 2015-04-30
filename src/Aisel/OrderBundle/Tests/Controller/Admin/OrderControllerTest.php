@@ -31,40 +31,16 @@ class ProductControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testPostProductActionFails()
+    public function testGetOrdersAction()
     {
-        $data = [
-            'locale' => 'en',
-        ];
-
-        $this->client->request(
-            'POST',
-            '/backend/api/product/',
-            [],
-            [],
-            ['CONTENT_TYPE' => 'application/json'],
-            json_encode($data)
-        );
-
-        $response = $this->client->getResponse();
-        $content = $response->getContent();
-        $statusCode = $response->getStatusCode();
-        $result = json_decode($content, true);
-
-        $this->assertTrue(count($result['errors']) > 0);
-        $this->assertTrue(400 === $statusCode);
-    }
-
-    public function testGetProductAction()
-    {
-        $product = $this
+        $order = $this
             ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->getRepository('Aisel\OrderBundle\Entity\Order')
             ->findOneBy(['locale' => 'en']);
 
         $this->client->request(
             'GET',
-            '/backend/api/product/' . $product->getId(),
+            '/backend/api/order/' . $order->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -74,6 +50,31 @@ class ProductControllerTest extends AbstractWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertJson($content);
+    }
+
+    public function testGetProductAction()
+    {
+        $product = $this
+            ->em
+            ->getRepository('Aisel\OrderBundle\Entity\Order')
+            ->findOneBy(['locale' => 'en']);
+
+        $this->client->request(
+            'GET',
+            '/backend/api/order/' . $product->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $product->getId());

@@ -14,11 +14,13 @@ namespace Aisel\OrderBundle\Controller\Admin;
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**
- * Backend Order REST API controller
+ * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class ApiController extends AbstractCollectionController
 {
-    protected $manager = "aisel.order.manager";
+    protected $model = array(
+        'class' => "Aisel\OrderBundle\Entity\Order",
+    );
 }

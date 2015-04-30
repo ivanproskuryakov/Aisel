@@ -13,19 +13,23 @@ namespace Aisel\ResourceBundle\Manager;
 
 use Aisel\ResourceBundle\Utility\UrlUtility;
 use LogicException;
+use Doctrine\ORM\EntityManager;
 
 class AbstractCategoryManager
 {
-    protected $sc;
+
+    /**
+     * @var EntityManager $em
+     */
     protected $em;
+
     protected $categoryEntity = 'AiselResourceBundle:Category';
 
     /**
-     * {@inheritDoc}
+     * @param EntityManager $entityManager
      */
-    public function __construct($serviceContainer, $entityManager)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->sc = $serviceContainer;
         $this->em = $entityManager;
     }
 

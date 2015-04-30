@@ -60,46 +60,6 @@ class ProductManager
     }
 
     /**
-     * Get list of all products
-     *
-     * @param array $params
-     *
-     * @return array
-     */
-    public function getCollection($params)
-    {
-        $total = $this->em->getRepository('AiselProductBundle:Product')->getTotalFromRequest($params);
-        $collection = $this->em->getRepository('AiselProductBundle:Product')->getCollectionFromRequest($params);
-        $return = array(
-            'total' => $total,
-            'collection' => $collection
-        );
-
-        return $return;
-    }
-
-    /**
-     * Get single detailed product with category by ID
-     *
-     * @param int $id
-     *
-     * @return \Aisel\ProductBundle\Entity\Product $productDetails
-     *
-     * @throws LogicException
-     */
-    public function getItem($id)
-    {
-        $product = $this->em->getRepository('AiselProductBundle:Product')->find($id);
-
-        if (!($product)) {
-            throw new LogicException('Nothing found');
-        }
-        $productDetails = array('item' => $product, 'categories' => $this->getProductCategories($product));
-
-        return $productDetails;
-    }
-
-    /**
      * Get single detailed product with category by URLKey
      *
      * @param string $urlKey

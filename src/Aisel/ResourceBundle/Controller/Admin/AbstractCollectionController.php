@@ -87,6 +87,18 @@ class AbstractCollectionController extends Controller
         return $response;
     }
 
+
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function putAction(Request $request)
+    {
+        $entity = $this->getEntityFromRequest($request);
+        $this->processEntity($entity);
+    }
+
     /**
      * @param Request $request
      *
@@ -94,7 +106,9 @@ class AbstractCollectionController extends Controller
      */
     public function postAction(Request $request)
     {
-        return $this->processEntity($this->getEntityFromRequest($request));
+        $entity = $this->getEntityFromRequest($request);
+
+        return $this->processEntity($entity);
     }
 
     /**
@@ -112,9 +126,42 @@ class AbstractCollectionController extends Controller
      *
      * @return mixed
      */
+    public function deleteAction(Request $request)
+    {
+        $page = $this->getEntityFromRequest($request);
+
+        $em = $this->getEntityManager();
+        $em->remove($page);
+        $em->flush();
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
     public function getCollectionAction(Request $request)
     {
-        return $this->getEntityFromRequest($request);
+        $params = array(
+            'current' => $request->get('current'),
+            'limit' => $request->get('limit'),
+            'category' => $request->get('category'),
+            'filter' => $request->get('filter')
+        );
+
+        $em = $this->getEntityManager();
+        $total = $em
+            ->getRepository($this->model['class'])
+            ->getTotalFromRequest($params);
+        $collection = $em
+            ->getRepository($this->model['class'])
+            ->getCollectionFromRequest($params);
+
+        return array(
+            'total' => $total,
+            'collection' => $collection
+        );
+
     }
 
 }

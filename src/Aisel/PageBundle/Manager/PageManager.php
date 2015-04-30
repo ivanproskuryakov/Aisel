@@ -62,57 +62,6 @@ class PageManager
     }
 
     /**
-     * Get list of all pages
-     *
-     * @param array $params
-     *
-     * @return array
-     */
-    public function getCollection($params)
-    {
-        $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params);
-        $collection = $this->em->getRepository('AiselPageBundle:Page')->getCollectionFromRequest($params);
-        $return = array(
-            'total' => $total,
-            'collection' => $collection
-        );
-
-        return $return;
-    }
-
-    /**
-     * Get single detailed page with category by ID
-     *
-     * @param int $id
-     *
-     * @return mixed $pageDetails
-     *
-     * @throws LogicException
-     */
-    public function getItem($id)
-    {
-        $page = $this->getPageById($id);
-        $pageDetails = array(
-            'item' => $page,
-            'categories' => $this->getPageCategories($page)
-        );
-
-        return $pageDetails;
-    }
-
-    /**
-     * Delete Page
-     *
-     * @param int $id
-     */
-    public function deleteItem($id)
-    {
-        $page = $this->getPageById($id);
-        $this->em->remove($page);
-        $this->em->flush();
-    }
-
-    /**
      * Get single detailed page with category by URLKey
      *
      * @param string $urlKey
@@ -138,26 +87,6 @@ class PageManager
     }
 
     /**
-     * Load page by Id
-     *
-     * @param integer $id
-     *
-     * @throws LogicException
-     *
-     * @return Page $page
-     */
-    public function getPageById($id)
-    {
-        $page = $this->em->getRepository('AiselPageBundle:Page')->find($id);
-
-        if (!$page) {
-            throw new LogicException('Nothing found');
-        }
-
-        return $page;
-    }
-
-    /**
      * Validate metaUrl for Page Entity and return one we can use
      *
      * @param string $url
@@ -178,16 +107,5 @@ class PageManager
         return $validUrl;
     }
 
-    /**
-     * Get List of all pages, except disabled
-     *
-     * @return string
-     */
-    public function getEnabledPages()
-    {
-        $pageList = $this->em->getRepository('AiselPageBundle:Page')->getEnabledPages();
-
-        return $pageList;
-    }
 
 }

@@ -158,9 +158,6 @@ class AbstractNodeManager
         $node->setTitle($params['name']);
         $node->setParent($nodeParent);
         $node->setStatus(false);
-        $node->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $node->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-
         $this->em->persist($node);
         $this->em->flush();
 
@@ -180,9 +177,6 @@ class AbstractNodeManager
         $node = new $this->nodeEntity();
         $node->setTitle($params['name']);
         $node->setStatus(false);
-        $node->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $node->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-
         $this->em->persist($node);
         $this->em->flush();
 
@@ -201,6 +195,7 @@ class AbstractNodeManager
     {
         if ($categoryParentId = $params['parentId']) {
             $nodeParent = $this->em->getRepository($this->repository)->find($categoryParentId);
+
             if (!($nodeParent)) {
                 throw new LogicException('Nothing found');
             }
@@ -208,6 +203,7 @@ class AbstractNodeManager
 
         if ($categoryId = $params['id']) {
             $node = $this->em->getRepository($this->repository)->find($categoryId);
+
             if (!($node)) {
                 throw new LogicException('Nothing found');
             }

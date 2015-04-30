@@ -188,38 +188,4 @@ class OrderManager
 
         return $order;
     }
-
-    /**
-     * Get list of all pages
-     *
-     * @param array $params
-     *
-     * @return array
-     */
-    public function getCollection($params)
-    {
-        $total = $this->em->getRepository('AiselOrderBundle:Order')->getTotalFromRequest($params);
-        $collection = $this->em->getRepository('AiselOrderBundle:Order')->getCollectionFromRequest($params);
-        $return = array(
-            'total' => $total,
-            'collection' => $collection
-        );
-
-        return $return;
-    }
-
-    /**
-     * Get single detailed page with category by ID
-     *
-     * @param int $id
-     *
-     * @return \Aisel\PageBundle\Entity\Page $pageDetails
-     */
-    public function getItem($id)
-    {
-        $order = $this->em->getRepository('AiselOrderBundle:Order')->find($id);
-
-        return $order;
-    }
-
 }

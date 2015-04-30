@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Frontend Search REST API controller
+ * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -23,21 +23,11 @@ class ApiController extends Controller
 {
 
     /**
-     * Is User Authenticated
-     *
-     * @return boolean
-     */
-    private function isAuthenticated()
-    {
-        return $this->get('frontend.user.manager')->isAuthenticated();
-    }
-
-    /**
-     * /api/search/?query=abc
+     * searchAction
      *
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $category
+     * @return mixed
      */
     public function searchAction(Request $request)
     {
