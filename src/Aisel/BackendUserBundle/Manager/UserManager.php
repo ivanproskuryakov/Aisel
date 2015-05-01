@@ -65,45 +65,6 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * Get collection
-     *
-     * @param array $params
-     *
-     * @return array
-     */
-    public function getCollection($params)
-    {
-        $total = $this->getRepository()->getTotalFromRequest($params);
-        $collection = $this->getRepository()->getCollectionFromRequest($params);
-        $return = array(
-            'total' => $total,
-            'collection' => $collection
-        );
-
-        return $return;
-    }
-
-    /**
-     * Get single item
-     *
-     * @param int $id
-     *
-     * @return \Aisel\PageBundle\Entity\Page $pageDetails
-     *
-     * @throws LogicException
-     */
-    public function getItem($id)
-    {
-        $item = $this->getRepository()->find($id);
-
-        if (!($item)) {
-            throw new LogicException('Nothing found');
-        }
-
-        return array('item' => $item);
-    }
-
-    /**
      * Creates User, specially for fixtures
      *
      * @param array $userData

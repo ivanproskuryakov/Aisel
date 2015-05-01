@@ -11,14 +11,14 @@
 
 namespace Aisel\AddressingBundle\Controller\Admin;
 
-use Aisel\AddressingBundle\Controller\ApiCityController as BaseApiCityController;
+use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**
  * ApiCityController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiCityController extends BaseApiCityController
+class ApiCityController extends AbstractCollectionController
 {
 
     protected $model = array(

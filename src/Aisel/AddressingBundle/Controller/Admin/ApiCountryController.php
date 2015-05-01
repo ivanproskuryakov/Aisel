@@ -11,14 +11,14 @@
 
 namespace Aisel\AddressingBundle\Controller\Admin;
 
-use Aisel\AddressingBundle\Controller\ApiCountryController as BaseApiCountryController;
+use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**
  * ApiCountryController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiCountryController extends BaseApiCountryController
+class ApiCountryController extends AbstractCollectionController
 {
 
     protected $model = array(

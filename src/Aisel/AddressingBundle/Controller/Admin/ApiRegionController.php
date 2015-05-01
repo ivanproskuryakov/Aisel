@@ -11,14 +11,14 @@
 
 namespace Aisel\AddressingBundle\Controller\Admin;
 
-use Aisel\AddressingBundle\Controller\ApiRegionController as BaseApiRegionController;
+use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**
  * ApiRegionController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiRegionController extends BaseApiRegionController
+class ApiRegionController extends AbstractCollectionController
 {
 
     protected $model = array(
