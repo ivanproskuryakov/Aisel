@@ -11,55 +11,18 @@
 
 namespace Aisel\AddressingBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
+use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**
  * ApiCountryController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiCountryController extends Controller
+class ApiCountryController extends AbstractCollectionController
 {
 
-    /**
-     * Addressing manager
-     */
-    private function getAddressingManager()
-    {
-        return $this->get('aisel.addressing.manager');
-    }
-
-    /**
-     * Get country collection
-     *
-     * @return JsonResponse
-     */
-    public function getCollectionAction(Request $request)
-    {
-        $params = array(
-            'current' => $request->get('current'),
-            'limit' => $request->get('limit'),
-            'category' => $request->get('category'),
-            'filter' => $request->get('filter')
-        );
-
-        return $this->getAddressingManager()->getCountries($params);
-    }
-
-    /**
-     * Get single country entity
-     *
-     * @param integer $id
-     *
-     * @return JsonResponse
-     */
-    public function getAction($id)
-    {
-        $countryDetails = $this->getAddressingManager()->getCountryById($id);
-
-        return $countryDetails;
-    }
+    protected $model = array(
+        'class' => "Aisel\AddressingBundle\Entity\Country",
+    );
 
 }

@@ -16,11 +16,11 @@ use PhpSpec\ObjectBehavior;
 /**
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class LoginControllerSpec extends ObjectBehavior
+class ApiControllerSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\Aisel\BackendUserBundle\Controller\LoginController');
+        $this->shouldHaveType('\Aisel\BackendUserBundle\Controller\ApiController');
     }
 
 }

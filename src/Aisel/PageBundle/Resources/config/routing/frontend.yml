@@ -7,31 +7,31 @@
 
 api_aisel_pagelist:
     pattern:  /{locale}/page/
-    defaults: { _controller: AiselPageBundle:Page:pageList, _format: json }
+    defaults: { _controller: AiselPageBundle:ApiPage:pageList, _format: json }
     requirements:
         _method: GET
 
 api_aisel_pageview_by_url:
     pattern:  /{locale}/page/{urlKey}
-    defaults: { _controller: AiselPageBundle:Page:pageViewByURL, _format: json }
+    defaults: { _controller: AiselPageBundle:ApiPage:pageViewByURL, _format: json }
     requirements:
         _method: GET
 
 api_aisel_page_categorylist:
     pattern:  /{locale}/page/category/
-    defaults: { _controller: AiselPageBundle:Node:categoryList, _format: json }
+    defaults: { _controller: AiselPageBundle:ApiNode:categoryList, _format: json }
     requirements:
         _method: GET
 
 api_aisel_page_categorytree:
     pattern:  /{locale}/page/category/tree/
-    defaults: { _controller: AiselPageBundle:Node:categoryTree, _format: json }
+    defaults: { _controller: AiselPageBundle:ApiNode:categoryTree, _format: json }
     requirements:
         _method: GET
 
 api_aisel_page_categoryview:
     pattern:  /{locale}/page/category/view/{urlKey}
-    defaults: { _controller: AiselPageBundle:Node:categoryView, _format: json }
+    defaults: { _controller: AiselPageBundle:ApiNode:categoryView, _format: json }
     requirements:
         _method: GET
         id: "\d+"

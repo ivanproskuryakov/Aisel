@@ -18,7 +18,7 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeController extends AbstractNodeController
+class ApiNodeController extends AbstractNodeController
 {
 
     protected $nodeManager = "aisel.pagecategory.node.manager";

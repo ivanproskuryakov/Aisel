@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\PageBundle\Controller\Admin;
+namespace spec\Aisel\PageBundle\Controller;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeControllerSpec extends ObjectBehavior
+class ApiNodeControllerSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\Aisel\PageBundle\Controller\Admin\NodeController');
+        $this->shouldHaveType('\Aisel\PageBundle\Controller\ApiNodeController');
     }
 
 }

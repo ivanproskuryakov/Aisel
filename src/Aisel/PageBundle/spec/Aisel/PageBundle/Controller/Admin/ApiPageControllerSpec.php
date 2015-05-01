@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\PageBundle\Controller;
+namespace spec\Aisel\PageBundle\Controller\Admin;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiCategoryControllerSpec extends ObjectBehavior
+class ApiPageControllerSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\Aisel\PageBundle\Controller\ApiCategoryController');
+        $this->shouldHaveType('\Aisel\PageBundle\Controller\Admin\ApiPageController');
     }
 
 }

@@ -18,7 +18,7 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class PageController extends AbstractCollectionController
+class ApiPageController extends AbstractCollectionController
 {
 
     protected $model = array(
