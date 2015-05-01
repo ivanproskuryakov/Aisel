@@ -24,7 +24,7 @@ aisel_cart:
     prefix:   /
 
 aisel_order:
-    resource: "@AiselOrderBundle/Resources/config/routing.yml"
+    resource: "@AiselOrderBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
 aisel_addressing:

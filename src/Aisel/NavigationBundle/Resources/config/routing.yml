@@ -13,9 +13,9 @@ api_aisel_navigationmenu:
         _method: GET
 
 # Backend
-admin_aisel_navigation_menu_get:
-    pattern:   /%backend_api%/navigation/tree/
-    defaults:  { _controller: AiselNavigationBundle:Admin/Node:getTree, _format: json }
+admin_aisel_navigation_get_collection:
+    pattern:   /%backend_api%/navigation/
+    defaults:  { _controller: AiselNavigationBundle:Admin/Node:getCollection, _format: json }
     requirements:
         _method: GET
 

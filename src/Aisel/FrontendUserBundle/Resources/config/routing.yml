@@ -5,7 +5,6 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-
 # Backend
 admin_api_aisel_frontenduser_get_collection:
     pattern:   /%backend_api%/frontenduser/

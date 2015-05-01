@@ -20,5 +20,9 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
  */
 class ApiController extends AbstractCollectionController
 {
-    protected $manager = "frontend.user.manager";
+
+    protected $model = array(
+        'class' => "Aisel\FrontendUserBundle\Entity\FrontendUser",
+    );
+
 }

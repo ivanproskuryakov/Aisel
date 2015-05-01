@@ -12,14 +12,18 @@
 namespace Aisel\NavigationBundle\Entity;
 
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
+use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
 
 /**
  * Repository for Menu entity
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class MenuRepository extends NestedTreeRepository
+//class MenuRepository extends NestedTreeRepository
+class MenuRepository extends AbstractCollectionRepository
 {
+
+    protected $entity = 'AiselNavigationBundle:Menu';
 
     /**
      * Get enabled menu items sorted as tree
@@ -32,7 +36,7 @@ class MenuRepository extends NestedTreeRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $r = $qb->select('m')
-            ->from('AiselNavigationBundle:Menu', 'm')
+            ->from($this->entity, 'm')
             ->where('m.status = 1')
             ->andWhere('m.locale = :locale')->setParameter('locale', $locale)
             ->orderBy('m.root', 'ASC')

@@ -31,20 +31,46 @@ class NodeControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testGetNavigationNodesAction()
+    public function testGetNodesAction()
     {
-        $locale = reset($this->locales);
         $this->client->request(
             'GET',
-            '/backend/api/navigation/tree/?locale=' . $locale . '/'
+            '/backend/api/navigation/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertJson($content);
+    }
+
+    public function testGetNodeAction()
+    {
+        $node = $this
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
+            ->findOneBy(['locale' => 'en']);
+
+        $this->client->request(
+            'GET',
+            '/backend/api/navigation/' . $node->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
         );
 
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
-        $this->assertJson($content);
+
         $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $node->getId());
     }
 
 }

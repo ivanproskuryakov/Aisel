@@ -6,37 +6,37 @@
 # file that was distributed with this source code.
 
 admin_api_aisel_addressing_city_list:
-    pattern:  /%backend_api%/addressing/city/
+    pattern:  /addressing/city/
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCity:getCollection, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_addressing_city_details:
-    pattern:  /%backend_api%/addressing/city/{id}
+    pattern:  /addressing/city/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCity:get, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_addressing_region_list:
-    pattern:  /%backend_api%/addressing/region/
+    pattern:  /addressing/region/
     defaults: { _controller: AiselAddressingBundle:Admin/ApiRegion:getCollection, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_addressing_region_details:
-    pattern:  /%backend_api%/addressing/region/{id}
+    pattern:  /addressing/region/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiRegion:get, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_addressing_countries_list:
-    pattern:  /%backend_api%/addressing/country/
+    pattern:  /addressing/country/
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:getCollection, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_addressing_countries_details:
-    pattern:  /%backend_api%/addressing/country/{id}
+    pattern:  /addressing/country/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:get, _format: json }
     requirements:
         _method: GET

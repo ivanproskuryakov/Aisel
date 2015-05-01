@@ -21,4 +21,8 @@ use Aisel\AddressingBundle\Controller\ApiCountryController as BaseApiCountryCont
 class ApiCountryController extends BaseApiCountryController
 {
 
+    protected $model = array(
+        'class' => "Aisel\AddressingBundle\Entity\Country",
+    );
+
 }

@@ -11,16 +11,18 @@
 
 namespace Aisel\NavigationBundle\Controller\Admin;
 
-use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
+use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**
  * Backend AJAX actions for navigation menu
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeController extends AbstractNodeController
+class NodeController extends AbstractCollectionController
 {
 
-    protected $nodeManager = "aisel.navigation.node.manager";
+    protected $model = array(
+        'class' => "Aisel\NavigationBundle\Entity\Menu",
+    );
 
 }

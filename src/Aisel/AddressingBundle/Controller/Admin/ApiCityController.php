@@ -21,4 +21,8 @@ use Aisel\AddressingBundle\Controller\ApiCityController as BaseApiCityController
 class ApiCityController extends BaseApiCityController
 {
 
+    protected $model = array(
+        'class' => "Aisel\AddressingBundle\Entity\City",
+    );
+
 }

@@ -21,4 +21,8 @@ use Aisel\AddressingBundle\Controller\ApiRegionController as BaseApiRegionContro
 class ApiRegionController extends BaseApiRegionController
 {
 
+    protected $model = array(
+        'class' => "Aisel\AddressingBundle\Entity\Region",
+    );
+
 }
