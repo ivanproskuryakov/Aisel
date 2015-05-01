@@ -40,7 +40,9 @@ class ApiController extends Controller
             'locale' => $request->get('locale')
         );
 
-        if (!$params['query']) return false;
+        if (!$params['query']) {
+            return false;
+        };
         $searchManager = $this
             ->container
             ->get("aisel.search.manager");

@@ -12,7 +12,7 @@ admin_api_aisel_config_get:
     requirements:
         _method: GET
 
-admin_api_aisel_config_update:
+admin_api_aisel_config_put:
     pattern:   /%backend_api%/config/
     defaults:  { _controller: AiselConfigBundle:Admin/Api:save, _format: json }
     requirements:

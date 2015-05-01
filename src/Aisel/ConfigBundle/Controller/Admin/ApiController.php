@@ -29,9 +29,13 @@ class ApiController extends Controller
      */
     public function getAction()
     {
-        $container = $this->container;
-        $config = $this->container->get("aisel.config.manager")->getConfig();
-        $config['fields'] = $container->getParameter('aisel_config');
+        $config = $this
+            ->container
+            ->get("aisel.config.manager")
+            ->getConfig();
+        $config['fields'] = $this
+            ->container
+            ->getParameter('aisel_config');
 
         return $config;
     }
@@ -46,7 +50,10 @@ class ApiController extends Controller
     public function saveAction(Request $request)
     {
         $settingsData = $request->getContent();
-        $this->container->get("aisel.config.manager")->saveConfig($settingsData);
+        $this
+            ->container
+            ->get("aisel.config.manager")
+            ->saveConfig($settingsData);
 
         return array('status' => true, 'message' => 'Settings have been saved!');
     }

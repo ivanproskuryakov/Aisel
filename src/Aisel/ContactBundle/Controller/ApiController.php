@@ -40,7 +40,6 @@ class ApiController extends Controller
 
         if ($params['name'] && $params['name'] && $params['name'] && $params['name']) {
             $response = $this->container->get("aisel.contact.manager")->sendMail($params);
-            $status = array('message' => 'Something went wrong, please get in contact with us directly!');
 
             if ($response == 1) {
                 $status = array('status' => true, 'message' => 'Your message has been sent!');

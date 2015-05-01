@@ -49,12 +49,12 @@ class ApiCartController extends Controller
     }
 
     /**
-     * /%frontend_api%/cart/product/{productId}/qty/{qty}/add.json
+     * cartProductAddAction
      *
      * @param int $productId
      * @param int $qty
      *
-     * @return JsonResponse $response
+     * @return mixed
      */
     public function cartProductAddAction($productId, $qty)
     {
@@ -71,12 +71,12 @@ class ApiCartController extends Controller
     }
 
     /**
-     * /%frontend_api%/cart/product/{productId}/qty/{qty}/update.json
+     * cartProductUpdateAction
      *
      * @param int $productId
      * @param int $qty
      *
-     * @return JsonResponse $response
+     * @return mixed
      */
     public function cartProductUpdateAction($productId, $qty)
     {
