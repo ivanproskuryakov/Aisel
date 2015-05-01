@@ -19,7 +19,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.7.*",
+        "symfony/symfony": "2.6.*",
         "doctrine/orm": "=v2.4.2",
         "doctrine/doctrine-bundle": "~1.3",
         "stof/doctrine-extensions-bundle": "1.2.*@dev",
@@ -35,8 +35,6 @@
         "friendsofsymfony/rest-bundle": "1.4.*@dev",
 
         "jms/serializer-bundle": "0.13.*@dev",
-        "mopa/bootstrap-bundle": "2.3.x-dev",
-        "twbs/bootstrap": "v2.3.2",
         "iphp/filestore-bundle": "dev-master",
         "payum/payum-bundle": "0.13.*@dev",
         "payum/payum": "0.13.*@dev",

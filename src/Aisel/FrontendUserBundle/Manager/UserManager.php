@@ -96,47 +96,6 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * Get collection
-     *
-     * @param array  $params
-     * @param string $locale
-     *
-     * @return array
-     */
-    public function getCollection($params)
-    {
-        $total = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->getTotalFromRequest($params);
-        $collection = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->getCollectionFromRequest($params);
-        $return = array(
-            'total' => $total,
-            'collection' => $collection
-        );
-
-        return $return;
-    }
-
-    /**
-     * Get single item
-     *
-     * @param int $id
-     *
-     * @return \Aisel\PageBundle\Entity\Page $pageDetails
-     *
-     * @throws LogicException
-     */
-    public function getItem($id)
-    {
-        $item = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->find($id);
-
-        if (!($item)) {
-            throw new LogicException('Nothing found');
-        }
-        $itemDetails = array('item' => $item);
-
-        return $itemDetails;
-    }
-
-    /**
      * Get current user entity
      *
      * @param int $userId
