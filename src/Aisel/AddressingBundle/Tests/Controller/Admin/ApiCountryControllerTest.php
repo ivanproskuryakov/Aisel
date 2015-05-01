@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AddressingBundle\Tests\Controller;
+namespace Aisel\AddressingBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
- * CountryControllerTest
+ * ApiCountryControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class CountryControllerTest extends AbstractWebTestCase
+class ApiCountryControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -35,7 +35,7 @@ class CountryControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/api/addressing/country/',
+            '/backend/api/addressing/country/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -58,7 +58,7 @@ class CountryControllerTest extends AbstractWebTestCase
 
         $this->client->request(
             'GET',
-            '/api/addressing/country/' . $country->getId(),
+            '/backend/api/addressing/country/' . $country->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

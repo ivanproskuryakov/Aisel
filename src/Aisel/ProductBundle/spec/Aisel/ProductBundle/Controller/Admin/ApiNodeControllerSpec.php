@@ -16,11 +16,11 @@ use PhpSpec\ObjectBehavior;
 /**
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeControllerSpec extends ObjectBehavior
+class ApiNodeControllerSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\Aisel\ProductBundle\Controller\Admin\NodeController');
+        $this->shouldHaveType('\Aisel\ProductBundle\Controller\Admin\ApiNodeController');
     }
 
 }

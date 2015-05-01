@@ -14,11 +14,11 @@ namespace Aisel\ProductBundle\Controller\Admin;
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**
- * ProductController
+ * ApiProductController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ProductController extends AbstractCollectionController
+class ApiProductController extends AbstractCollectionController
 {
 
     protected $model = array(

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AddressingBundle\Tests\Controller;
+namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
- * RegionControllerTest
+ * ApiOrderControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class RegionControllerTest extends AbstractWebTestCase
+class ApiOrderControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -31,34 +31,11 @@ class RegionControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testGetCitiesAction()
+    public function testGetOrdersAction()
     {
         $this->client->request(
             'GET',
-            '/api/addressing/region/',
-            [],
-            [],
-            ['CONTENT_TYPE' => 'application/json']
-        );
-
-        $response = $this->client->getResponse();
-        $content = $response->getContent();
-        $statusCode = $response->getStatusCode();
-
-        $this->assertTrue(200 === $statusCode);
-        $this->assertJson($content);
-    }
-
-    public function testGetRegionAction()
-    {
-        $region = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
-            ->findOneBy(['name' => 'Comunidad de Madrid']);
-
-        $this->client->request(
-            'GET',
-            '/api/addressing/region/' . $region->getId(),
+            '/backend/api/order/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -70,7 +47,32 @@ class RegionControllerTest extends AbstractWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $region->getId());
+        $this->assertJson($content);
+    }
+
+    public function testGetOrderAction()
+    {
+        $product = $this
+            ->em
+            ->getRepository('Aisel\OrderBundle\Entity\Order')
+            ->findOneBy(['locale' => 'en']);
+
+        $this->client->request(
+            'GET',
+            '/backend/api/order/' . $product->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $product->getId());
     }
 
 }

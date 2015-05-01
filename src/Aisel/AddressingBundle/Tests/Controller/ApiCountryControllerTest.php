@@ -14,11 +14,11 @@ namespace Aisel\AddressingBundle\Tests\Controller;
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
- * CityControllerTest
+ * ApiCountryControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class CityControllerTest extends AbstractWebTestCase
+class ApiCountryControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -35,7 +35,7 @@ class CityControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/backend/api/addressing/city/',
+            '/api/addressing/country/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -49,16 +49,16 @@ class CityControllerTest extends AbstractWebTestCase
         $this->assertJson($content);
     }
 
-    public function testGetCityAction()
+    public function testGetCountryAction()
     {
-        $city = $this
+        $country = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\City')
-            ->findOneBy(['name' => 'Madrid']);
+            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->findOneBy(['iso2' => 'ES']);
 
         $this->client->request(
             'GET',
-            '/backend/api/addressing/city/' . $city->getId(),
+            '/api/addressing/country/' . $country->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -70,7 +70,7 @@ class CityControllerTest extends AbstractWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $city->getId());
+        $this->assertEquals($result['id'], $country->getId());
     }
 
 }

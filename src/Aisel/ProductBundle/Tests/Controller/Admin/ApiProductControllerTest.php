@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AddressingBundle\Tests\Controller\Admin;
+namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
- * RegionControllerTest
+ * ApiProductControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class RegionControllerTest extends AbstractWebTestCase
+class ApiProductControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -31,34 +31,41 @@ class RegionControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testGetCitiesAction()
+    public function testPostProductActionFails()
     {
+        $this->markTestSkipped('skipping for nearest future ...');
+        $data = [
+            'locale' => 'en',
+        ];
+
         $this->client->request(
-            'GET',
-            '/backend/api/addressing/region/',
+            'POST',
+            '/backend/api/product/',
             [],
             [],
-            ['CONTENT_TYPE' => 'application/json']
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
         );
 
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
 
-        $this->assertTrue(200 === $statusCode);
-        $this->assertJson($content);
+        $this->assertTrue(count($result['errors']) > 0);
+        $this->assertTrue(400 === $statusCode);
     }
 
-    public function testGetRegionAction()
+    public function testGetProductAction()
     {
-        $region = $this
+        $product = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
-            ->findOneBy(['name' => 'Comunidad de Madrid']);
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['locale' => 'en']);
 
         $this->client->request(
             'GET',
-            '/backend/api/addressing/region/' . $region->getId(),
+            '/backend/api/product/' . $product->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -70,7 +77,7 @@ class RegionControllerTest extends AbstractWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $region->getId());
+        $this->assertEquals($result['id'], $product->getId());
     }
 
 }

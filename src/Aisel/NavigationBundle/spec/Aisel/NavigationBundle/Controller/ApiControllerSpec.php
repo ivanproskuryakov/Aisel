@@ -18,6 +18,7 @@ use PhpSpec\ObjectBehavior;
  */
 class ApiControllerSpec extends ObjectBehavior
 {
+
     public function it_is_initializable()
     {
         $this->shouldHaveType('\Aisel\NavigationBundle\Controller\ApiController');

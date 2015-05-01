@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AddressingBundle\Tests\Controller\Admin;
+namespace Aisel\AddressingBundle\Tests\Controller;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
- * CityControllerTest
+ * ApiCityControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class CityControllerTest extends AbstractWebTestCase
+class ApiCityControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()

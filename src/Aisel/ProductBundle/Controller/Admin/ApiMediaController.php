@@ -16,11 +16,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Frontend Product REST API controller
+ * ApiMediaController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class MediaController extends Controller
+class ApiMediaController extends Controller
 {
     /**
      * /%website_admin%/product/media/{productId}/

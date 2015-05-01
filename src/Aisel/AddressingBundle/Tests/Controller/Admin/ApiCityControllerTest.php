@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Tests\Controller\Admin;
+namespace Aisel\AddressingBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
- * ProductControllerTest
+ * ApiCityControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ProductControllerTest extends AbstractWebTestCase
+class ApiCityControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -31,41 +31,34 @@ class ProductControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testPostProductActionFails()
+    public function testGetCitiesAction()
     {
-        $this->markTestSkipped('skipping for nearest future ...');
-        $data = [
-            'locale' => 'en',
-        ];
-
         $this->client->request(
-            'POST',
-            '/backend/api/product/',
+            'GET',
+            '/backend/api/addressing/city/',
             [],
             [],
-            ['CONTENT_TYPE' => 'application/json'],
-            json_encode($data)
+            ['CONTENT_TYPE' => 'application/json']
         );
 
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
-        $result = json_decode($content, true);
 
-        $this->assertTrue(count($result['errors']) > 0);
-        $this->assertTrue(400 === $statusCode);
+        $this->assertTrue(200 === $statusCode);
+        $this->assertJson($content);
     }
 
-    public function testGetProductAction()
+    public function testGetCityAction()
     {
-        $product = $this
+        $city = $this
             ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
-            ->findOneBy(['locale' => 'en']);
+            ->getRepository('Aisel\AddressingBundle\Entity\City')
+            ->findOneBy(['name' => 'Madrid']);
 
         $this->client->request(
             'GET',
-            '/backend/api/product/' . $product->getId(),
+            '/backend/api/addressing/city/' . $city->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -77,7 +70,7 @@ class ProductControllerTest extends AbstractWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $product->getId());
+        $this->assertEquals($result['id'], $city->getId());
     }
 
 }

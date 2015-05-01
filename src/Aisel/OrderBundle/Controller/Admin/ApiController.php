@@ -20,7 +20,9 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
  */
 class ApiController extends AbstractCollectionController
 {
+
     protected $model = array(
         'class' => "Aisel\OrderBundle\Entity\Order",
     );
+
 }

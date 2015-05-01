@@ -14,10 +14,13 @@ namespace spec\Aisel\OrderBundle\Controller;
 use PhpSpec\ObjectBehavior;
 
 /**
+ * ApiOrderControllerSpec
+ *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class ApiOrderControllerSpec extends ObjectBehavior
 {
+
     public function it_is_initializable()
     {
         $this->shouldHaveType('\Aisel\OrderBundle\Controller\ApiOrderController');

@@ -14,11 +14,11 @@ namespace Aisel\NavigationBundle\Controller\Admin;
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**
- * Backend AJAX actions for navigation menu
+ * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeController extends AbstractCollectionController
+class ApiController extends AbstractCollectionController
 {
 
     protected $model = array(

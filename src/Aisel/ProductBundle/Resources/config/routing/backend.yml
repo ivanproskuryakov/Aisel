@@ -7,18 +7,18 @@
 
 admin_api_aisel_product_get:
     pattern:   /product/{id}
-    defaults:  { _controller: AiselProductBundle:Admin/Product:get, _format: json }
+    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:get, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_product_delete:
     pattern:   /product/{id}
-    defaults:  { _controller: AiselProductBundle:Admin/Product:delete, _format: json }
+    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:delete, _format: json }
     requirements:
         _method: DELETE
 
 admin_api_aisel_product:
     pattern:   /product/
-    defaults:  { _controller: AiselProductBundle:Admin/Product:getCollection, _format: json }
+    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:getCollection, _format: json }
     requirements:
         _method: GET

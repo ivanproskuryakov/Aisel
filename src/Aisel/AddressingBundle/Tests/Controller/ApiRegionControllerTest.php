@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AddressingBundle\Tests\Controller\Admin;
+namespace Aisel\AddressingBundle\Tests\Controller;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
- * CountryControllerTest
+ * ApiRegionControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class CountryControllerTest extends AbstractWebTestCase
+class ApiRegionControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -35,7 +35,7 @@ class CountryControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/backend/api/addressing/country/',
+            '/api/addressing/region/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -49,16 +49,16 @@ class CountryControllerTest extends AbstractWebTestCase
         $this->assertJson($content);
     }
 
-    public function testGetCountryAction()
+    public function testGetRegionAction()
     {
-        $country = $this
+        $region = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-            ->findOneBy(['iso2' => 'ES']);
+            ->getRepository('Aisel\AddressingBundle\Entity\Region')
+            ->findOneBy(['name' => 'Comunidad de Madrid']);
 
         $this->client->request(
             'GET',
-            '/backend/api/addressing/country/' . $country->getId(),
+            '/api/addressing/region/' . $region->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -70,7 +70,7 @@ class CountryControllerTest extends AbstractWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $country->getId());
+        $this->assertEquals($result['id'], $region->getId());
     }
 
 }

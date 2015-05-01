@@ -9,18 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Controller\Admin;
+namespace spec\Aisel\NavigationBundle\Controller\Admin;
 
-use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
+use PhpSpec\ObjectBehavior;
 
 /**
- * Backend AJAX actions for product categories
- *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeController extends AbstractNodeController
+class ApiControllerSpec extends ObjectBehavior
 {
 
-    protected $nodeManager = "aisel.productcategory.node.manager";
+    public function it_is_initializable()
+    {
+        $this->shouldHaveType('\Aisel\NavigationBundle\Controller\Admin\ApiController');
+    }
 
 }

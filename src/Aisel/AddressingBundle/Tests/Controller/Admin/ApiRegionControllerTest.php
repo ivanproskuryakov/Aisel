@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\NavigationBundle\Tests\Controller\Admin;
+namespace Aisel\AddressingBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
- * NodeControllerTest
+ * ApiRegionControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeControllerTest extends AbstractWebTestCase
+class ApiRegionControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -31,11 +31,11 @@ class NodeControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testGetNodesAction()
+    public function testGetCitiesAction()
     {
         $this->client->request(
             'GET',
-            '/backend/api/navigation/',
+            '/backend/api/addressing/region/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -49,16 +49,16 @@ class NodeControllerTest extends AbstractWebTestCase
         $this->assertJson($content);
     }
 
-    public function testGetNodeAction()
+    public function testGetRegionAction()
     {
-        $node = $this
+        $region = $this
             ->em
-            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
-            ->findOneBy(['locale' => 'en']);
+            ->getRepository('Aisel\AddressingBundle\Entity\Region')
+            ->findOneBy(['name' => 'Comunidad de Madrid']);
 
         $this->client->request(
             'GET',
-            '/backend/api/navigation/' . $node->getId(),
+            '/backend/api/addressing/region/' . $region->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -70,7 +70,7 @@ class NodeControllerTest extends AbstractWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $node->getId());
+        $this->assertEquals($result['id'], $region->getId());
     }
 
 }

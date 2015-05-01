@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\NavigationBundle\Controller\Admin;
+namespace Aisel\ProductBundle\Controller\Admin;
 
-use PhpSpec\ObjectBehavior;
+use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 
 /**
+ * ApiNodeController
+ *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeControllerSpec extends ObjectBehavior
+class ApiNodeController extends AbstractNodeController
 {
-    public function it_is_initializable()
-    {
-        $this->shouldHaveType('\Aisel\NavigationBundle\Controller\Admin\NodeController');
-    }
+
+    protected $nodeManager = "aisel.productcategory.node.manager";
 
 }

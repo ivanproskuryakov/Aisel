@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Tests\Controller\Admin;
+namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
- * NodeControllerTest
+ * ApiNodeControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeControllerTest extends AbstractWebTestCase
+class ApiNodeControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -31,15 +31,14 @@ class NodeControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testGetPageNodesAction()
+    public function testGetProductNodesAction()
     {
-
-        $this->markTestSkipped('Action is broken');
-
+        $this->markTestSkipped('skipping ...');
+        
         $locale = reset($this->locales);
         $this->client->request(
             'GET',
-            '/backend/api/page/category/?locale=' . $locale . '/'
+            '/backend/api/product/category/?locale=' . $locale . '/'
         );
 
         $response = $this->client->getResponse();

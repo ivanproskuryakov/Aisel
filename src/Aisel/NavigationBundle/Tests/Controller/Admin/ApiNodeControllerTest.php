@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Tests\Controller\Admin;
+namespace Aisel\NavigationBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
- * OrderControllerTest
+ * ApiNodeControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class OrderControllerTest extends AbstractWebTestCase
+class ApiNodeControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -31,11 +31,11 @@ class OrderControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testGetOrdersAction()
+    public function testGetNodesAction()
     {
         $this->client->request(
             'GET',
-            '/backend/api/order/',
+            '/backend/api/navigation/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -44,22 +44,21 @@ class OrderControllerTest extends AbstractWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
-        $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
         $this->assertJson($content);
     }
 
-    public function testGetOrderAction()
+    public function testGetNodeAction()
     {
-        $product = $this
+        $node = $this
             ->em
-            ->getRepository('Aisel\OrderBundle\Entity\Order')
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['locale' => 'en']);
 
         $this->client->request(
             'GET',
-            '/backend/api/order/' . $product->getId(),
+            '/backend/api/navigation/' . $node->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -70,9 +69,8 @@ class OrderControllerTest extends AbstractWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $product->getId());
+        $this->assertEquals($result['id'], $node->getId());
     }
 
 }
