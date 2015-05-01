@@ -32,7 +32,7 @@ aisel_addressing:
     prefix:   /
 
 aisel_user_frontend:
-    resource: "@AiselFrontendUserBundle/Resources/config/routing.yml"
+    resource: "@AiselFrontendUserBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
 aisel_user_backend:
