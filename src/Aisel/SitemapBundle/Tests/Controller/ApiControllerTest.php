@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Tests\Controller\Admin;
+namespace Aisel\SitemapBundle\Tests\Controller;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
@@ -31,22 +31,15 @@ class ApiControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testSearchAction()
+    public function testConfigAction()
     {
+        $this->markTestSkipped('Not implemented yet');
 
         $this->client->request(
-            'GET',
-            '/api/en/search/?query=something that does not exists'
+            'POST',
+            '/api/contact/'
         );
 
-        $response = $this->client->getResponse();
-        $content = $response->getContent();
-        $statusCode = $response->getStatusCode();
-        $result = json_decode($content, true);
-
-        $this->assertJson($content);
-        $this->assertTrue(200 === $statusCode);
-        $this->assertEquals(0, $result['total']);
     }
 
 }
