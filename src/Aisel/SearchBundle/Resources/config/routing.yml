@@ -10,4 +10,3 @@ api_aisel_search:
     defaults: { _controller: AiselSearchBundle:Api:search, _format: json }
     requirements:
         _method: GET
-#        id: "\d+"

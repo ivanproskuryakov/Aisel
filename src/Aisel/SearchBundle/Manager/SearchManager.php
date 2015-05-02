@@ -14,7 +14,7 @@ namespace Aisel\SearchBundle\Manager;
 use Doctrine\ORM\EntityManager;
 
 /**
- * Manager for search search in REST API
+ * SearchManager
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
