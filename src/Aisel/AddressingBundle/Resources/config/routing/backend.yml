@@ -5,7 +5,6 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-#City
 admin_api_aisel_addressing_city_get_collection:
     pattern:  /addressing/city/
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCity:getCollection, _format: json }
@@ -49,15 +48,52 @@ admin_api_aisel_addressing_region_get:
     requirements:
         _method: GET
 
+admin_api_aisel_addressing_region_post:
+    pattern:  /addressing/region/
+    defaults: { _controller: AiselAddressingBundle:Admin/ApiRegion:post, _format: json }
+    requirements:
+        _method: POST
+
+admin_api_aisel_addressing_region_put:
+    pattern:  /addressing/region/{id}
+    defaults: { _controller: AiselAddressingBundle:Admin/ApiRegion:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_addressing_region_delete:
+    pattern:  /addressing/region/{id}
+    defaults: { _controller: AiselAddressingBundle:Admin/ApiRegion:delete, _format: json }
+    requirements:
+        _method: DELETE
+
+
 #Countries
-admin_api_aisel_addressing_countries_get_collection:
+admin_api_aisel_addressing_country_get_collection:
     pattern:  /addressing/country/
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:getCollection, _format: json }
     requirements:
         _method: GET
 
-admin_api_aisel_addressing_countries_get:
+admin_api_aisel_addressing_country_get:
     pattern:  /addressing/country/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:get, _format: json }
     requirements:
         _method: GET
+
+admin_api_aisel_addressing_country_post:
+    pattern:  /addressing/country/
+    defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:post, _format: json }
+    requirements:
+        _method: POST
+
+admin_api_aisel_addressing_country_put:
+    pattern:  /addressing/country/{id}
+    defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_addressing_country_delete:
+    pattern:  /addressing/country/{id}
+    defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:delete, _format: json }
+    requirements:
+        _method: DELETE

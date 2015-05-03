@@ -87,7 +87,7 @@ class ApiCityControllerTest extends AbstractWebTestCase
 
         $this->assertTrue(201 === $statusCode);
         $this->assertEmpty($content);
-        $this->assertNotNull($id);
+        $this->assertNotNull($city);
         $this->assertEquals($country->getId(),$city->getCountry()->getId());
         $this->assertEquals($region->getId(),$city->getRegion()->getId());
     }

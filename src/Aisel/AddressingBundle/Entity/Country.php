@@ -42,6 +42,7 @@ class Country
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @Assert\NotNull()
      */
     private $shortName;
 
@@ -49,6 +50,7 @@ class Country
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @Assert\NotNull()
      */
     private $longName;
 
@@ -56,6 +58,7 @@ class Country
      * @var string
      * @ORM\Column(type="string", length=10)
      * @Assert\Type(type="string")
+     * @Assert\NotNull()
      */
     private $numcode;
 
@@ -65,7 +68,7 @@ class Country
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
-    private $unMember;
+    private $unMember = false;
 
     /**
      * @var string
