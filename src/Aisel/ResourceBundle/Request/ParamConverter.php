@@ -71,51 +71,88 @@ class ParamConverter extends RequestBodyParamConverter
         $options = $configuration->getOptions();
         $resolvedClass = $configuration->getClass();
         $id = $request->attributes->get('id');
+        $method = $request->getMethod();
+        $rawPayload = $request->getContent();
 
-        if (('DELETE' === $request->getMethod()) or ('GET' === $request->getMethod())) {
-            $convertedValue = $this->em->find($resolvedClass, $id);
+        switch (true) {
+            case ('GET' === $method):
+                $convertedValue = $this->loadEntity($resolvedClass, $id);
+                break;
 
-            if (null === $convertedValue) {
-                throw new NotFoundHttpException('Not found');
-            }
+            case ('DELETE' === $method):
+                $convertedValue = $this->loadEntity($resolvedClass, $id);
+                break;
 
-        } else {
-            $rawPayload = $request->getContent();
-            $serializerGroups = isset($options['serializerGroups']) ? $options['serializerGroups'] : null;
-            $deserializationContext = DeserializationContext::create();
-
-            if ($serializerGroups) {
-                $deserializationContext
-                    ->setGroups($serializerGroups)
-                ;
-            }
-
-            if ($id) {
-                $deserializationContext->attributes->set('put_id', $id);
-            }
-
-            try {
-                $convertedValue = $this->serializer->deserialize(
-                    $rawPayload,
-                    $resolvedClass,
-                    'json',
-                    $deserializationContext
+            case ('PUT' === $method):
+                $payload = array_merge(
+                    array('id' => $id),
+                    json_decode($rawPayload, true)
                 );
+                $convertedValue = $this->updateEntity($resolvedClass, json_encode($payload));
+                break;
 
-                if ($id) {
-                    if ($id !== $convertedValue->getId()) {
-                        throw new \LogicException('Ids do not match');
-                    }
-                }
-            } catch (\Exception $e) {
-                throw new \LogicException($e);
-            }
+            case ('POST' === $method):
+                $convertedValue = $this->updateEntity($resolvedClass, $rawPayload);
+                break;
+        }
 
-            $violations = $this->validator->validate($convertedValue);
+        return $convertedValue;
+    }
 
-            if ($violations->count()) {
-                throw new ValidationFailedException($violations);
-            }
+
+    /**
+     * @param $resolvedClass
+     * @param $id
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     * @throws NotFoundHttpException
+     *
+     * @return mixed $entity
+     */
+    protected function loadEntity($resolvedClass, $id ) {
+        $entity = $this->em->find($resolvedClass, $id);
+
+        if (null === $entity) {
+            throw new NotFoundHttpException('Not found');
+        }
+
+        return $entity;
+    }
+
+    /**
+     * @param $resolvedClass
+     * @param $rawPayload
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     * @throws NotFoundHttpException
+     *
+     * @return mixed $entity
+     */
+    protected function updateEntity($resolvedClass, $rawPayload ) {
+        $serializerGroups = isset($options['serializerGroups']) ? $options['serializerGroups'] : null;
+        $deserializationContext = DeserializationContext::create();
+
+        if ($serializerGroups) {
+            $deserializationContext
+                ->setGroups($serializerGroups)
+            ;
+        }
+
+        $convertedValue = $this->serializer->deserialize(
+            $rawPayload,
+            $resolvedClass,
+            'json'
+        );
+        $violations = $this->validator->validate($convertedValue);
+
+        if ($violations->count()) {
+            throw new ValidationFailedException($violations);
         }
 
         return $convertedValue;

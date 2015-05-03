@@ -11,6 +11,10 @@ parameters:
     aisel_exception_listener.class: Aisel\ResourceBundle\Request\ExceptionListener
 
 services:
+    jms_serializer.object_constructor:
+        alias: jms_serializer.doctrine_object_constructor
+        public: false
+
     api_param_converter:
         class: %aisel_param_converter.class%
         arguments:

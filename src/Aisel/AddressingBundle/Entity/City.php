@@ -5,6 +5,7 @@ namespace Aisel\AddressingBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * City
@@ -22,6 +23,7 @@ class City
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Type("integer")
      */
     private $id;
 
@@ -29,20 +31,23 @@ class City
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $name;
 
     /**
-     * @var     Region
-     * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\Region")
+     * @var Region
+     * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Region")
      * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     * @JMS\Type("Aisel\AddressingBundle\Entity\Region")
      */
     private $region;
 
     /**
      * @var Country
-     * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
+     * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * @JMS\Type("Aisel\AddressingBundle\Entity\Country")
      */
     private $country;
 
@@ -50,6 +55,7 @@ class City
      * @var \DateTime
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
+     * @JMS\Type("DateTime")
      */
     private $createdAt;
 
@@ -57,6 +63,7 @@ class City
      * @var \DateTime
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
+     * @JMS\Type("DateTime")
      */
     private $updatedAt;
 
@@ -64,6 +71,7 @@ class City
     {
         return $this->getName();
     }
+
     /**
      * Get id
      *
