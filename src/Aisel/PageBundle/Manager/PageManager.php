@@ -78,12 +78,8 @@ class PageManager
         if (!$page) {
             throw new LogicException('Nothing found');
         }
-        $pageDetails = array(
-            'page' => $page,
-            'categories' => $this->getPageCategories($page)
-        );
 
-        return $pageDetails;
+        return $page;
     }
 
     /**

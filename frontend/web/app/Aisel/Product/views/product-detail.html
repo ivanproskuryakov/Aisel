@@ -1,18 +1,18 @@
 <div class="">
     <div class="col-xs-12 page-header">
-        <h2>{{productDetails.product.name}}</h2>
+        <h2>{{productDetails.name}}</h2>
     </div>
     <div class="col-md-4">
         <img class="img-rounded"
-             src="{{media}}{{productDetails.product.main_image.path}}"
+             src="{{media}}{{productDetails.main_image.path}}"
              data-holder-rendered="true" style="width: 100%;">
     </div>
     <div class="col-md-8">
         <div class="row">
             <div class="col-md-12">
-                <p><span class="label label-warning">{{productDetails.product.price}} {{currency}}</span></p>
+                <p><span class="label label-warning">{{productDetails.price}} {{currency}}</span></p>
 
-                <p><span class="glyphicon glyphicon-calendar"></span> {{productDetails.product.created_at |
+                <p><span class="glyphicon glyphicon-calendar"></span> {{productDetails.created_at |
                     date:"MM/dd/yyyy @ h:mma" }}</p>
             </div>
             <div class="col-md-12">
@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <br/>
 
-                <p ng-bind-html="productDetails.product.description"></p>
+                <p ng-bind-html="productDetails.description"></p>
             </div>
         </div>
     </div>
@@ -36,12 +36,12 @@
             <ul class="categoryList">
                 <li ng-repeat="category in productDetails.categories">
                         <span class="label label-primary">
-                            <a ui-sref="productCategoryView({locale: locale, categoryId:category.url})">{{ category.title }}</a>
+                            <a ui-sref="productCategoryView({locale: locale, categoryId:category.meta_url})">{{ category.title }}</a>
                         </span>&nbsp;
                 </li>
             </ul>
         </div>
-        <div ng-if="showComments" disqus="productDetails.product.meta_url"></div>
+        <div ng-if="showComments" disqus="productDetails.meta_url"></div>
     </div>
 </div>
 

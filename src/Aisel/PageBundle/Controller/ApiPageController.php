@@ -11,7 +11,7 @@
 
 namespace Aisel\PageBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 use Symfony\Component\HttpFoundation\Request;
 use Aisel\PageBundle\Entity\Page;
 
@@ -20,28 +20,12 @@ use Aisel\PageBundle\Entity\Page;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiPageController extends Controller
+class ApiPageController extends AbstractCollectionController
 {
 
-    /**
-     * pageListAction
-     *
-     * @param Request $request
-     *
-     * @return mixed $pageList
-     */
-    public function pageListAction(Request $request)
-    {
-        $params = array(
-            'current' => $request->get('current'),
-            'limit' => $request->get('limit'),
-            'category' => $request->get('category'),
-            'locale' => $request->get('locale'),
-        );
-        $pageList = $this->container->get("aisel.page.manager")->getCollection($params);
-
-        return $pageList;
-    }
+    protected $model = array(
+        'class' => "Aisel\PageBundle\Entity\Page",
+    );
 
     /**
      * @param string $urlKey

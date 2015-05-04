@@ -5,25 +5,25 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-api_aisel_pagelist:
+api_aisel_page_get:
     pattern:  /{locale}/page/
-    defaults: { _controller: AiselPageBundle:ApiPage:pageList, _format: json }
+    defaults: { _controller: AiselPageBundle:ApiPage:getCollection, _format: json }
     requirements:
         _method: GET
 
-api_aisel_pageview_by_url:
+api_aisel_page_get_by_url:
     pattern:  /{locale}/page/{urlKey}
     defaults: { _controller: AiselPageBundle:ApiPage:pageViewByURL, _format: json }
     requirements:
         _method: GET
 
-api_aisel_page_categorylist:
+api_aisel_page_category_get:
     pattern:  /{locale}/page/category/
     defaults: { _controller: AiselPageBundle:ApiNode:categoryList, _format: json }
     requirements:
         _method: GET
 
-api_aisel_page_categorytree:
+api_aisel_page_category_get_tree:
     pattern:  /{locale}/page/category/tree/
     defaults: { _controller: AiselPageBundle:ApiNode:categoryTree, _format: json }
     requirements:

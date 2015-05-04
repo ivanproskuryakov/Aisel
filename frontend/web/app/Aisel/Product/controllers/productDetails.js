@@ -21,9 +21,9 @@ define(['app'], function (app) {
             var productURL = $stateParams.productId;
             var handleSuccess = function (data, status) {
                 $scope.productDetails = data;
-                $rootScope.productTitle = $scope.productDetails.product.title;
+                $rootScope.productTitle = $scope.title;
 
-                if ($scope.productDetails.product) {
+                if ($scope.product) {
                     $scope.isDisabled = false;
                 }
                 window.disqus_shortname = $rootScope.disqusShortname;

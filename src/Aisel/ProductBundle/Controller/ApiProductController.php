@@ -11,7 +11,7 @@
 
 namespace Aisel\ProductBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -19,29 +19,12 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiProductController extends Controller
+class ApiProductController extends AbstractCollectionController
 {
 
-    /**
-     * /api/product/list.json?limit=2&current=3
-     *
-     * @param Request $request
-     * @param string  $locale
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $list
-     */
-    public function productListAction(Request $request, $locale)
-    {
-        $params = array(
-            'current' => $request->get('current'),
-            'limit' => $request->get('limit'),
-            'category' => $request->get('category'),
-            'locale' => $request->get('locale')
-        );
-        $list = $this->container->get("aisel.product.manager")->getCollection($params, $locale);
-
-        return $list;
-    }
+    protected $model = array(
+        'class' => "Aisel\ProductBundle\Entity\Product",
+    );
 
     /**
      * @param string $urlKey

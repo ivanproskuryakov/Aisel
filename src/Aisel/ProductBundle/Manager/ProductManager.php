@@ -38,28 +38,6 @@ class ProductManager
     }
 
     /**
-     * Get categories in array for product
-     *
-     * @param int $product
-     *
-     * @return array $categories
-     */
-    public function getProductCategories($product)
-    {
-        $categories = array();
-
-        foreach ($product->getCategories() as $c) {
-            $category = array();
-            $category['id'] = $c->getId();
-            $category['title'] = $c->getTitle();
-            $category['url'] = $c->getMetaUrl();
-            $categories[$c->getId()] = $category;
-        }
-
-        return $categories;
-    }
-
-    /**
      * Get single detailed product with category by URLKey
      *
      * @param string $urlKey
@@ -75,9 +53,7 @@ class ProductManager
         if (!($product)) {
             throw new LogicException('Nothing found');
         }
-        $productDetails = array('product' => $product, 'categories' => $this->getProductCategories($product));
-
-        return $productDetails;
+        return $product;
     }
 
     /**

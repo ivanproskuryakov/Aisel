@@ -17,7 +17,7 @@ define(['app'], function (app) {
         var pageURL = $stateParams.pageId;
         var handleSuccess = function (data, status) {
             $scope.pageDetails = data;
-            $rootScope.pageTitle = $scope.pageDetails.page.title;
+            $rootScope.pageTitle = $scope.pageDetails.title;
 
             // Disqus comments
             window.disqus_shortname = $rootScope.disqusShortname;
