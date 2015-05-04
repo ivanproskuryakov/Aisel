@@ -36,8 +36,8 @@ define(['app'], function (app) {
             $rootScope.topMenu.push(
                 {
                     "ordering": 300,
-                    "title": 'Users',
-                    "slug": '/users/frontend/',
+                    "title": 'Admin Users',
+                    "slug": '/users/backend/'
                 }
             );
         }]);

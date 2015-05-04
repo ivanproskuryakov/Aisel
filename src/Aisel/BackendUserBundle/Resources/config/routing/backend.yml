@@ -16,3 +16,21 @@ admin_api_aisel_backenduser_get:
     defaults:  { _controller: AiselBackendUserBundle:Admin/Api:get, _format: json }
     requirements:
         _method: GET
+
+admin_api_aisel_backenduser_login:
+    pattern:  /user/login/
+    defaults: { _controller: AiselBackendUserBundle:Api:login, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_backenduser_logout:
+    pattern:  /user/logout/
+    defaults: { _controller: AiselBackendUserBundle:Api:logout, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_backenduser_information:
+    pattern:  /user/information/
+    defaults: { _controller: AiselBackendUserBundle:Api:information, _format: json }
+    requirements:
+        _method: GET
