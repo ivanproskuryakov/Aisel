@@ -35,7 +35,7 @@ class OrderItem
     /**
      * @var Product
      * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="orderItem")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $product;
 

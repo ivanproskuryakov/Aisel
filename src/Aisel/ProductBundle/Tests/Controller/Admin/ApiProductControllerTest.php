@@ -155,12 +155,10 @@ class ApiProductControllerTest extends AbstractWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        var_dump($content);
-        exit();
         $product = $this
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
-            ->findOneBy(['locale' => 'en']);
+            ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);

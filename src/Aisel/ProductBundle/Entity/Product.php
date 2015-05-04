@@ -204,7 +204,7 @@ class Product
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Image", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Image", mappedBy="product", cascade={"remove"})
      */
     private $image;
 
