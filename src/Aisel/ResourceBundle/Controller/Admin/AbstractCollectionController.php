@@ -143,6 +143,7 @@ class AbstractCollectionController extends Controller
     public function getCollectionAction(Request $request)
     {
         $params = array(
+            'locale' => $request->get('locale'),
             'current' => $request->get('current'),
             'limit' => $request->get('limit'),
             'category' => $request->get('category'),
