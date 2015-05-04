@@ -34,7 +34,7 @@ class Region
 
     /**
      * @var Country
-     * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
+     * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
