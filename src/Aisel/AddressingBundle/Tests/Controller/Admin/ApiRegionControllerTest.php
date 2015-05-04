@@ -178,5 +178,4 @@ class ApiRegionControllerTest extends AbstractWebTestCase
         $this->assertEmpty($region);
     }
 
-
 }
