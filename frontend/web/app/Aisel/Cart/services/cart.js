@@ -17,7 +17,7 @@ define(['app'], function (app) {
         function ($http, Environment) {
             return {
                 getCartItems: function ($scope) {
-                    var url = Environment.settings.api + '/cart.json';
+                    var url = Environment.settings.api + '/cart/';
                     console.log(url);
                     return $http.get(url);
                 },

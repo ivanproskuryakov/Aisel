@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\CartBundle\Tests\Controller;
+namespace Aisel\FrontendUserBundle\Tests\Controller;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
@@ -31,11 +31,11 @@ class ApiControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testConfigAction()
+    public function testGetUserAction()
     {
         $this->client->request(
             'GET',
-            '/api/cart/',
+            '/api/user/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -47,7 +47,7 @@ class ApiControllerTest extends AbstractWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals(array(), $result);
+        $this->assertFalse($result);
     }
 
 }

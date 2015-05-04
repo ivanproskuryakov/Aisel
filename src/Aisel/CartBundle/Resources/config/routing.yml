@@ -6,7 +6,7 @@
 # file that was distributed with this source code.
 
 api_aisel_cart_details:
-    pattern:  /%frontend_api%/cart.json
+    pattern:  /%frontend_api%/cart/
     defaults: { _controller: AiselCartBundle:ApiCart:cart, _format: json }
     requirements:
         _method: GET
