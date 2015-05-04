@@ -31,11 +31,34 @@ class ApiProductControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
+    public function testGetProductsAction()
+    {
+        $this->client->request(
+            'GET',
+            '/backend/api/product/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertJson($content);
+    }
+
     public function testPostProductActionFails()
     {
-        $this->markTestSkipped('skipping for nearest future ...');
         $data = [
             'locale' => 'en',
+            'name' => 'AAAAA',
+            'sku' => time(),
+            'price' => '100',
+            'description' => time(),
+            'description_short' => time(),
+            'meta_url' => time(),
         ];
 
         $this->client->request(
@@ -50,10 +73,42 @@ class ApiProductControllerTest extends AbstractWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
-        $result = json_decode($content, true);
 
-        $this->assertTrue(count($result['errors']) > 0);
-        $this->assertTrue(400 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertTrue(201 === $statusCode);
+    }
+
+    public function testPutProductAction()
+    {
+        $product = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['name' => 'AAAAA']);
+        $id = $product->getId();
+        $data['locale'] = 'ru';
+
+        $this->client->request(
+            'PUT',
+            '/backend/api/product/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $product = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['id' => $id]);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNotNull($product);
+        $this->assertEquals($data['locale'], $product->getLocale());
     }
 
     public function testGetProductAction()
@@ -61,7 +116,7 @@ class ApiProductControllerTest extends AbstractWebTestCase
         $product = $this
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
-            ->findOneBy(['locale' => 'en']);
+            ->findOneBy(['name' => 'AAAAA']);
 
         $this->client->request(
             'GET',
@@ -80,4 +135,35 @@ class ApiProductControllerTest extends AbstractWebTestCase
         $this->assertEquals($result['id'], $product->getId());
     }
 
+    public function testDeleteProductAction()
+    {
+        $product = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['locale' => 'en']);
+        $id = $product->getId();
+
+        $this->client->request(
+            'DELETE',
+            '/backend/api/product/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        var_dump($content);
+        exit();
+        $product = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['locale' => 'en']);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNull($product);
+    }
 }

@@ -128,10 +128,10 @@ class AbstractCollectionController extends Controller
      */
     public function deleteAction(Request $request)
     {
-        $page = $this->getEntityFromRequest($request);
+        $entity = $this->getEntityFromRequest($request);
 
         $em = $this->getEntityManager();
-        $em->remove($page);
+        $em->remove($entity);
         $em->flush();
     }
 

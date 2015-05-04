@@ -114,7 +114,7 @@ class Product
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
-    private $manageStock;
+    private $manageStock = false;
 
     /**
      * @var string
@@ -143,7 +143,7 @@ class Product
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
-    private $hidden;
+    private $hidden = false;
 
     /**
      * @var boolean
@@ -151,7 +151,7 @@ class Product
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
-    private $commentStatus;
+    private $commentStatus = false;
 
     /**
      * @var string
