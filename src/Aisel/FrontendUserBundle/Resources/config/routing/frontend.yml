@@ -9,7 +9,7 @@ api_aisel_user_login:
     pattern:  /user/login/
     defaults: { _controller: AiselFrontendUserBundle:Api:login, _format: json }
     requirements:
-        _method: GET
+        _method: POST
 
 api_aisel_user_logout:
     pattern:  /user/logout/
@@ -24,19 +24,19 @@ api_aisel_user_password_forgot:
         _method: GET
 
 api_aisel_user_post:
-    pattern:  /user/
+    pattern:  /user/register/
     defaults: { _controller: AiselFrontendUserBundle:Api:register, _format: json }
     requirements:
         _method: POST
 
 api_aisel_user_put:
-    pattern:  /user/
+    pattern:  /user/information/
     defaults: { _controller: AiselFrontendUserBundle:Api:editdetails, _format: json }
     requirements:
         _method: PUT
 
 api_aisel_user_get:
-    pattern:  /user/
+    pattern:  /user/information/
     defaults: { _controller: AiselFrontendUserBundle:Api:information, _format: json }
     requirements:
         _method: GET

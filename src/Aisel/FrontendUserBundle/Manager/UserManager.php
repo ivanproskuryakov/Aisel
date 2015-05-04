@@ -252,8 +252,6 @@ class UserManager implements UserProviderInterface
             $user->setEnabled(true);
             $user->setLocked(false);
 
-            $user->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-            $user->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
             $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
 
             $this->em->persist($user);
@@ -357,15 +355,15 @@ class UserManager implements UserProviderInterface
         return $user;
     }
 
+    /**
+     * @param $username
+     * @param $email
+     *
+     * @return UserInterface
+     */
     public function findUser($username, $email)
     {
-        $user = $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->findUser($username, $email);
-
-        if (!($user)) {
-            throw new LogicException('User not found');
-        }
-
-        return $user;
+        return $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->findUser($username, $email);
     }
 
     /**

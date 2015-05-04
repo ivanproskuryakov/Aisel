@@ -43,22 +43,22 @@ define(['app'], function (app) {
             },
             passwordforgot: function (form) {
                 var email = form.email.$modelValue;
-                var url = Environment.settings.api + '/user/passwordforgot.json?email=' + email;
+                var url = Environment.settings.api + '/user/password/forgot/?email=' + email;
                 console.log(url);
                 return $http.get(url);
             },
             signout: function () {
-                var url = Environment.settings.api + '/user/logout.json';
+                var url = Environment.settings.api + '/user/logout/';
                 console.log(url);
                 return $http.get(url);
             },
             login: function (username, password) {
-                var url = Environment.settings.api + '/user/login.json?username=' + username + '&password=' + password;
+                var url = Environment.settings.api + '/user/login/?username=' + username + '&password=' + password;
                 console.log(url);
                 return $http.get(url);
             },
             getUserInformation: function () {
-                var url = Environment.settings.api + '/user/information.json';
+                var url = Environment.settings.api + '/user/';
                 console.log(url);
                 return $http.get(url);
             }

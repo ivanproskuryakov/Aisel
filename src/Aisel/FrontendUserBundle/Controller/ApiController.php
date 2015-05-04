@@ -16,15 +16,19 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Aisel\FrontendUserBundle\Manager\UserManager;
 
 /**
- * Api for frontend users. Login, registration, etc..
+ * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class ApiController extends Controller
 {
 
+    /**
+     * @return UserManager
+     */
     protected function getUserManager()
     {
         return $this->get('frontend.user.manager');
@@ -40,6 +44,9 @@ class ApiController extends Controller
         return $this->getUserManager()->isAuthenticated();
     }
 
+    /**
+     * @param FrontendUser $user
+     */
     protected function loginUser(FrontendUser $user)
     {
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
@@ -50,25 +57,28 @@ class ApiController extends Controller
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return array|false
      */
     public function loginAction(Request $request)
     {
+        /** @var \Aisel\FrontendUserBundle\Entity\FrontendUserRepository $um */
+
         if (!$this->isAuthenticated()) {
             $username = $request->get('username');
             $password = $request->get('password');
-            /** @var \Aisel\FrontendUserBundle\Entity\FrontendUserRepository $um */
             $um = $this->getUserManager();
             $user = $um->loadUserByUsername($username);
 
-            if ((!$user instanceof FrontendUser) || (!$this->getUserManager()->checkUserPassword($user, $password)))
+            if ((!$user instanceof FrontendUser) || (!$um->checkUserPassword($user, $password))) {
                 return array('message' => 'Wrong username or password!');
+            }
             $this->loginUser($user);
 
-            return array('status' => true,
-                'message' => 'Successfully logged in',
-                'user' => $this->get('security.context')->getToken()->getUser()
+            return array(
+                'status' => true,
+                'message' => 'Successfully logged in'
             );
+
         } else {
             return array('message' => 'You already logged in. Try to refresh page');
         }
@@ -79,24 +89,24 @@ class ApiController extends Controller
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return array|false
      */
     public function registerAction(Request $request)
     {
         if ($this->isAuthenticated())
             return array('message' => 'You already logged in, Please logout first');
 
-        $userData = array(
+        $params = array(
             'username' => $request->get('username'),
             'password' => $request->get('password'),
             'email' => $request->get('email'),
         );
-        $username = $request->get('username');
-        $email = $request->get('email');
 
-        if ($this->getUserManager()->findUser($username, $email))
+        if ($this->getUserManager()->findUser($params['username'], $params['email'])) {
             return array('message' => 'Username or e-mail already taken!');
-        $user = $this->getUserManager()->registerUser($userData);
+        }
+
+        $user = $this->getUserManager()->registerUser($params);
 
         if ($user) {
             $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
@@ -104,11 +114,12 @@ class ApiController extends Controller
             $this->get('session')->set('_security_main', serialize($token));
         }
 
-        return array('status' => true, 'message' => 'User has been registered ');
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * passwordforgotAction
+     *
+     * @return array|false
      */
     public function passwordforgotAction()
     {
@@ -127,7 +138,7 @@ class ApiController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * logoutAction
      */
     public function logoutAction()
     {
@@ -139,7 +150,9 @@ class ApiController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * informationAction
+     *
+     * @return FrontendUser|false
      */
     public function informationAction()
     {
@@ -155,7 +168,7 @@ class ApiController extends Controller
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return array|false
      */
     public function editdetailsAction(Request $request)
     {

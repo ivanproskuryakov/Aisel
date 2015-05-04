@@ -41,6 +41,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @Assert\NotNull()
      */
     private $username;
 
@@ -48,6 +49,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @Assert\NotNull()
      */
     private $email;
 
@@ -55,6 +57,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @Assert\NotNull()
      */
     private $password;
 
@@ -79,7 +82,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
-    private $locked;
+    private $locked = false;
 
     /**
      * @var \DateTime
@@ -134,35 +137,35 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
      */
     private $about;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=15, nullable=true)
      * @Assert\Type(type="string")
      */
     private $phone;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
      */
     private $website;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
      */
     private $facebook;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
      */
     private $twitter;
