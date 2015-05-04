@@ -51,14 +51,15 @@ class ApiControllerTest extends AbstractWebTestCase
 
     public function testGetUserAction()
     {
-        $city = $this
+        $user = $this
             ->em
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
             ->findOneBy(['username' => 'backenduser']);
+        $id = $user->getId();
 
         $this->client->request(
             'GET',
-            '/backend/api/backenduser/' . $city->getId(),
+            '/backend/api/backenduser/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -70,7 +71,22 @@ class ApiControllerTest extends AbstractWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $city->getId());
+        $this->assertEquals($result['id'], $user->getId());
+    }
+
+    public function testPostUserAction()
+    {
+        $this->markTestSkipped('Test missing ..');
+    }
+
+    public function testPutUserAction()
+    {
+        $this->markTestSkipped('Test missing ..');
+    }
+
+    public function testDeleteUserAction()
+    {
+        $this->markTestSkipped('Test missing ..');
     }
 
 }
