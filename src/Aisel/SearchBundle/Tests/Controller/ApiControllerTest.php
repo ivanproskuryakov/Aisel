@@ -31,9 +31,8 @@ class ApiControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testSearchAction()
+    public function testSearchNotFoundAction()
     {
-
         $this->client->request(
             'GET',
             '/api/en/search/?query=something that does not exists'
@@ -47,6 +46,24 @@ class ApiControllerTest extends AbstractWebTestCase
         $this->assertJson($content);
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals(0, $result['total']);
+    }
+
+
+    public function testSearchFoundAction()
+    {
+        $this->client->request(
+            'GET',
+            '/api/en/search/?query=lo'
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertJson($content);
+        $this->assertTrue(200 === $statusCode);
+        $this->assertTrue(count($result['total']) > 0);
     }
 
 }

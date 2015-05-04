@@ -33,20 +33,19 @@ class ApiNodeControllerTest extends AbstractWebTestCase
 
     public function testGetProductNodesAction()
     {
-        $this->markTestSkipped('skipping ...');
-        
-        $locale = reset($this->locales);
         $this->client->request(
             'GET',
-            '/backend/api/product/category/?locale=' . $locale . '/'
+            '/backend/api/product/category/?locale=en/'
         );
 
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
+
         $this->assertJson($content);
         $this->assertTrue(200 === $statusCode);
+        $this->assertTrue(is_array($result));
     }
 
 }

@@ -5,6 +5,13 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
+
+admin_api_aisel_product_category_tree_get:
+    pattern:   /product/category/
+    defaults:  { _controller: AiselProductBundle:Admin/ApiNode:getTree, _format: json }
+    requirements:
+        _method: GET
+
 admin_api_aisel_product_get:
     pattern:   /product/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:get, _format: json }
