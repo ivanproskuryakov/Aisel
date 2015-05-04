@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AddressingBundle\Tests\Controller;
+namespace Aisel\AddressingBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
@@ -54,8 +54,10 @@ class ApiCountryControllerTest extends AbstractWebTestCase
         $data = array(
             'iso2' => 'AA',
             'iso3' => 'AAA',
-            'shortName' => 'Z',
-            'longName' => 'Z',
+            'short_name' => 'A',
+            'long_name' => 'AA',
+            'calling_code' => '123',
+            'numcode' => '123',
         );
 
         $this->client->request(
@@ -78,9 +80,6 @@ class ApiCountryControllerTest extends AbstractWebTestCase
             ->getRepository('Aisel\AddressingBundle\Entity\Country')
             ->find($id);
 
-//        var_dump($content);
-//        exit();
-
         $this->assertTrue(201 === $statusCode);
         $this->assertEmpty($content);
         $this->assertNotNull($country);
@@ -88,90 +87,91 @@ class ApiCountryControllerTest extends AbstractWebTestCase
         $this->assertEquals($data['iso3'], $country->getIso3());
     }
 
-//    public function testGetCountryAction()
-//    {
-//        $country = $this
-//            ->em
-//            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-//            ->findOneBy(['iso3' => 'AAA']);
-//        $id = $country->getId();
-//
-//        $this->client->request(
-//            'GET',
-//            '/backend/api/addressing/country/' . $id,
-//            [],
-//            [],
-//            ['CONTENT_TYPE' => 'application/json']
-//        );
-//
-//        $response = $this->client->getResponse();
-//        $content = $response->getContent();
-//        $statusCode = $response->getStatusCode();
-//        $result = json_decode($content, true);
-//
-//        $this->assertTrue(200 === $statusCode);
-//        $this->assertEquals($result['id'], $country->getId());
-//    }
-//
-//    public function testPutCountryAction()
-//    {
-//        $country = $this
-//            ->em
-//            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-//            ->findOneBy(['iso2' => 'AA']);
-//        $id = $country->getId();
-//        $data = array(
-//            'iso2' => 'ZZ',
-//        );
-//
-//        $this->client->request(
-//            'PUT',
-//            '/backend/api/addressing/country/' . $id,
-//            [],
-//            [],
-//            ['CONTENT_TYPE' => 'application/json'],
-//            json_encode($data)
-//        );
-//
-//        $response = $this->client->getResponse();
-//        $content = $response->getContent();
-//        $statusCode = $response->getStatusCode();
-//        $country = $this
-//            ->em
-//            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-//            ->find($id);
-//
-//        $this->assertTrue(204 === $statusCode);
-//        $this->assertEmpty($content);
-//        $this->assertEquals($data['iso2'], $country->getIso2());
-//    }
-//
-//    public function testDeleteCountryAction()
-//    {
-//        $country = $this
-//            ->em
-//            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-//            ->findOneBy(['iso2' => 'AA']);
-//        $id = $country->getId();
-//
-//        $this->client->request(
-//            'DELETE',
-//            '/backend/api/addressing/country/'. $id,
-//            [],
-//            [],
-//            ['CONTENT_TYPE' => 'application/json']
-//        );
-//
-//        $response = $this->client->getResponse();
-//        $content = $response->getContent();
-//        $statusCode = $response->getStatusCode();
-//        $country = $this
-//            ->em
-//            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-//            ->find($id);
-//
-//        $this->assertTrue(204 === $statusCode);
-//        $this->assertEmpty($content);
-//        $this->assertEmpty($country);
-//    }
+    public function testGetCountryAction()
+    {
+        $country = $this
+            ->em
+            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->findOneBy(['iso3' => 'AAA']);
+        $id = $country->getId();
+
+        $this->client->request(
+            'GET',
+            '/backend/api/addressing/country/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $country->getId());
+    }
+
+    public function testPutCountryAction()
+    {
+        $country = $this
+            ->em
+            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->findOneBy(['iso2' => 'AA']);
+        $id = $country->getId();
+        $data = array(
+            'iso2' => 'ZZ',
+        );
+
+        $this->client->request(
+            'PUT',
+            '/backend/api/addressing/country/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $country = $this
+            ->em
+            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->find($id);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertEquals($data['iso2'], $country->getIso2());
+    }
+
+    public function testDeleteCountryAction()
+    {
+        $country = $this
+            ->em
+            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->findOneBy(['iso3' => 'AAA']);
+        $id = $country->getId();
+
+        $this->client->request(
+            'DELETE',
+            '/backend/api/addressing/country/'. $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $country = $this
+            ->em
+            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->find($id);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertEmpty($country);
+    }
+
 }

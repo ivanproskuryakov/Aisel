@@ -28,6 +28,7 @@ class Country
      * @var string
      * @ORM\Column(type="string", length=2)
      * @Assert\Type(type="string")
+     * @Assert\NotNull()
      */
     private $iso2;
 
@@ -35,6 +36,7 @@ class Country
      * @var string
      * @ORM\Column(type="string", length=3)
      * @Assert\Type(type="string")
+     * @Assert\NotNull()
      */
     private $iso3;
 
@@ -79,7 +81,7 @@ class Country
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=10, nullable=true)
      * @Assert\Type(type="string")
      */
     private $cctld;
