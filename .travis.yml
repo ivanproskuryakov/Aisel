@@ -53,7 +53,7 @@ before_script:
 
 script:
     - protractor backend/protractor/conf.js
-    - protractor frontend/protractor/conf.js
-    - bin/phpspec run --stop-on-failure
-    - bin/phpunit -c app src/
+#    - protractor frontend/protractor/conf.js
+#    - bin/phpspec run --stop-on-failure
+#    - bin/phpunit -c app src/
 #    - bin/behat --stop-on-failure

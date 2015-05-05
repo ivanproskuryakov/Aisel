@@ -31,7 +31,9 @@ exports.config = {
     // and
     // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'firefox'
+        //'browserName': 'chrome',
+        //'chromeOptions': { args: ['--test-type', 'show-fps-counter=true'] }
     }
 
 };
