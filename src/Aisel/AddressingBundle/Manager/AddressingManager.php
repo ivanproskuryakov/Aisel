@@ -36,5 +36,4 @@ class AddressingManager
         $this->em = $entityManager;
     }
 
-
 }

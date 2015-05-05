@@ -70,7 +70,6 @@ class ApiOrderControllerTest extends AbstractWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $product->getId());
     }

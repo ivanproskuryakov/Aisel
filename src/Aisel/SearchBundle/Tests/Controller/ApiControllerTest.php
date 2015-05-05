@@ -48,7 +48,6 @@ class ApiControllerTest extends AbstractWebTestCase
         $this->assertEquals(0, $result['total']);
     }
 
-
     public function testSearchFoundAction()
     {
         $this->client->request(

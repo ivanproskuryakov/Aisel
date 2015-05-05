@@ -117,20 +117,25 @@ class ApiController extends Controller
     }
 
     /**
-     * passwordforgotAction
+     * @param Request $request
      *
-     * @return array|false
+     * @return array
      */
-    public function passwordforgotAction()
+    public function passwordForgotAction(Request $request)
     {
-        if ($this->isAuthenticated())
+        if ($this->isAuthenticated()) {
             return array('message' => 'You already logged in, Please logout first');
-        $email = $this->getRequest()->get('email');
+        }
+        $email = $request->get('email');
 
         if ($user = $this->getUserManager()->findUserByEmail($email)) {
             $response = $this->getUserManager()->resetPassword($user);
-            if ($response != 1) return array('message' => $response);
+
+            if ($response != 1) {
+                return array('message' => $response);
+            }
         } else {
+
             return array('message' => 'User not found!');
         }
 
@@ -139,6 +144,8 @@ class ApiController extends Controller
 
     /**
      * logoutAction
+     *
+     * @return array
      */
     public function logoutAction()
     {
@@ -146,7 +153,7 @@ class ApiController extends Controller
         $this->get('security.context')->setToken($token);
         $this->get('session')->invalidate();
 
-        return array('success' => true, 'message' => 'You have been successfully logged out!');
+        return array('status' => true, 'message' => 'You have been successfully logged out!');
     }
 
     /**
@@ -160,9 +167,9 @@ class ApiController extends Controller
             $user = $this->get('security.context')->getToken()->getUser();
 
             return $user;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**
@@ -170,7 +177,7 @@ class ApiController extends Controller
      *
      * @return array|false
      */
-    public function editdetailsAction(Request $request)
+    public function editAction(Request $request)
     {
         if ($this->isAuthenticated()) {
             $json = utf8_decode($request->get('userdata'));
@@ -178,9 +185,9 @@ class ApiController extends Controller
             $message = $this->getUserManager()->updateDetailsCurrentUser($userData);
 
             return array('status' => true, 'message' => $message);
-        } else {
-            return false;
         }
+
+        return false;
     }
 
 }

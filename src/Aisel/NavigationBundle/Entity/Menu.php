@@ -139,7 +139,7 @@ class Menu
     /**
      * Set locale
      *
-     * @param  string   $locale
+     * @param  string $locale
      * @return Menu
      */
     public function setLocale($locale)
@@ -162,7 +162,7 @@ class Menu
     /**
      * Set title
      *
-     * @param  string   $title
+     * @param  string $title
      * @return Menu
      */
     public function setTitle($title)
@@ -185,7 +185,7 @@ class Menu
     /**
      * Set lft
      *
-     * @param  integer  $lft
+     * @param  integer $lft
      * @return Menu
      */
     public function setLft($lft)
@@ -208,7 +208,7 @@ class Menu
     /**
      * Set rgt
      *
-     * @param  integer  $rgt
+     * @param  integer $rgt
      * @return Menu
      */
     public function setRgt($rgt)
@@ -231,7 +231,7 @@ class Menu
     /**
      * Set root
      *
-     * @param  integer  $root
+     * @param  integer $root
      * @return Menu
      */
     public function setRoot($root)
@@ -254,7 +254,7 @@ class Menu
     /**
      * Set lvl
      *
-     * @param  integer  $lvl
+     * @param  integer $lvl
      * @return Menu
      */
     public function setLvl($lvl)
@@ -277,7 +277,7 @@ class Menu
     /**
      * Set status
      *
-     * @param  boolean  $status
+     * @param  boolean $status
      * @return Menu
      */
     public function setStatus($status)

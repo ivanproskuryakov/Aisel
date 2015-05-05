@@ -12,7 +12,6 @@
 namespace Aisel\ProductBundle\Controller;
 
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Frontend Product REST API controller

@@ -87,7 +87,6 @@ class AbstractCollectionController extends Controller
         return $response;
     }
 
-
     /**
      * @param Request $request
      *

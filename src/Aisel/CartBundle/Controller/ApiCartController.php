@@ -12,7 +12,6 @@
 namespace Aisel\CartBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * Frontend API controller to for Cart CRUD
  *

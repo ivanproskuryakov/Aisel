@@ -103,5 +103,4 @@ class PageManager
         return $validUrl;
     }
 
-
 }

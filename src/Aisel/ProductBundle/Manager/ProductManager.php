@@ -53,6 +53,7 @@ class ProductManager
         if (!($product)) {
             throw new LogicException('Nothing found');
         }
+
         return $product;
     }
 

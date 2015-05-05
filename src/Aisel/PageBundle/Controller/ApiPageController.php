@@ -12,7 +12,6 @@
 namespace Aisel\PageBundle\Controller;
 
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
-use Symfony\Component\HttpFoundation\Request;
 use Aisel\PageBundle\Entity\Page;
 
 /**

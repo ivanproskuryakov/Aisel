@@ -41,4 +41,3 @@ admin_api_aisel_product_post:
     defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:post, _format: json }
     requirements:
         _method: POST
-

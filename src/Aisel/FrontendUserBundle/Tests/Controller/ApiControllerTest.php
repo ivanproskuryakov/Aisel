@@ -101,4 +101,63 @@ class ApiControllerTest extends AbstractWebTestCase
         $this->assertTrue($result['message'] === 'Successfully logged in');
     }
 
+    public function testLogoutUserAction()
+    {
+        $this->client->request(
+            'GET',
+            '/api/user/logout/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertTrue($result['status'] === true);
+        $this->assertTrue($result['message'] === 'You have been successfully logged out!');
+    }
+
+    public function testUserForgotPasswordUserNotFoundAction()
+    {
+        $this->client->request(
+            'GET',
+            '/api/user/password/forgot/?email=fontenduser@aisel.co',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(500 === $statusCode);
+        $this->assertEquals('User not found', $result['message']);
+    }
+
+    public function testUserForgotPasswordEmailSentAction()
+    {
+        $this->client->request(
+            'GET',
+            '/api/user/password/forgot/?email=volgodark@gmail.com',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals(true, $result['status']);
+        $this->assertEquals('New password has been sent!', $result['message']);
+    }
+
 }

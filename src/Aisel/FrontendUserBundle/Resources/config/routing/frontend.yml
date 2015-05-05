@@ -19,7 +19,7 @@ api_aisel_user_logout:
 
 api_aisel_user_password_forgot:
     pattern:  /user/password/forgot/
-    defaults: { _controller: AiselFrontendUserBundle:Api:passwordforgot, _format: json }
+    defaults: { _controller: AiselFrontendUserBundle:Api:passwordForgot, _format: json }
     requirements:
         _method: GET
 
@@ -31,7 +31,7 @@ api_aisel_user_post:
 
 api_aisel_user_put:
     pattern:  /user/information/
-    defaults: { _controller: AiselFrontendUserBundle:Api:editdetails, _format: json }
+    defaults: { _controller: AiselFrontendUserBundle:Api:edit, _format: json }
     requirements:
         _method: PUT
 

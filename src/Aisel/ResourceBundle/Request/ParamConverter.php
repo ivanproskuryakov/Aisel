@@ -99,7 +99,6 @@ class ParamConverter extends RequestBodyParamConverter
         return $convertedValue;
     }
 
-
     /**
      * @param $resolvedClass
      * @param $id
@@ -112,7 +111,8 @@ class ParamConverter extends RequestBodyParamConverter
      *
      * @return mixed $entity
      */
-    protected function loadEntity($resolvedClass, $id ) {
+    protected function loadEntity($resolvedClass, $id)
+    {
         $entity = $this->em->find($resolvedClass, $id);
 
         if (null === $entity) {
@@ -134,7 +134,8 @@ class ParamConverter extends RequestBodyParamConverter
      *
      * @return mixed $entity
      */
-    protected function updateEntity($resolvedClass, $rawPayload ) {
+    protected function updateEntity($resolvedClass, $rawPayload)
+    {
         $serializerGroups = isset($options['serializerGroups']) ? $options['serializerGroups'] : null;
         $deserializationContext = DeserializationContext::create();
 
