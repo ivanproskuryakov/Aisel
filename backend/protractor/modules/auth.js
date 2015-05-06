@@ -10,7 +10,6 @@
 
 describe("E2E: Auth module tests", function () {
     console.log('Test loaded: Auth');
-    var ptor = protractor.getInstance();
 
     it('Sign in route is working and log-in with username and password', function () {
         browser.driver.manage().deleteAllCookies();
@@ -25,7 +24,7 @@ describe("E2E: Auth module tests", function () {
         element(by.model('username')).sendKeys('wrong-backenduser');
         element(by.model('password')).sendKeys('backenduser');
         element(by.id('login-button')).click().then(function () {
-            ptor.getCurrentUrl().then(function (url) {
+            browser.getCurrentUrl().then(function (url) {
 
                 expect(url).toBe('http://admin.aisel.dev/en/user/login/');
             });
@@ -37,7 +36,7 @@ describe("E2E: Auth module tests", function () {
         element(by.model('username')).sendKeys('backenduser');
         element(by.model('password')).sendKeys('backenduser');
         element(by.id('login-button')).click().then(function () {
-            ptor.getCurrentUrl().then(function (url) {
+            browser.getCurrentUrl().then(function (url) {
 
                 expect(url).toBe('http://admin.aisel.dev/en/');
             });

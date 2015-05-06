@@ -10,8 +10,6 @@
 
 describe("E2E: Product module tests", function () {
     console.log('Test loaded: Products');
-    var ptor = protractor.getInstance();
-
     var urlToCheck = 'http://admin.aisel.dev/en/products/';
     var textToCheck = 'Products';
 
@@ -28,7 +26,7 @@ describe("E2E: Product module tests", function () {
         browser.get(urlToCheck);
 
         element(by.css('.ui-grid-canvas button')).click().then(function () {
-            ptor.getCurrentUrl().then(function (url) {
+            browser.getCurrentUrl().then(function (url) {
                 expect(url.indexOf("/edit/")).toBeGreaterThan(0);
             });
         });
@@ -39,7 +37,7 @@ describe("E2E: Product module tests", function () {
         browser.get(urlToCheck);
 
         element(by.css('.add-new-item')).click().then(function () {
-            ptor.getCurrentUrl().then(function (url) {
+            browser.getCurrentUrl().then(function (url) {
                 expect(url.indexOf("/new/")).toBeGreaterThan(0);
             });
         });
