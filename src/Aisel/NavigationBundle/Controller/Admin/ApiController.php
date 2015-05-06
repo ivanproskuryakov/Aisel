@@ -11,18 +11,16 @@
 
 namespace Aisel\NavigationBundle\Controller\Admin;
 
-use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
+use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 
 /**
  * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiController extends AbstractCollectionController
+class ApiController extends AbstractNodeController
 {
 
-    protected $model = array(
-        'class' => "Aisel\NavigationBundle\Entity\Menu",
-    );
+    protected $nodeManager = "aisel.navigation.node.manager";
 
 }
