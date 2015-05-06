@@ -42,17 +42,18 @@ install:
     - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
 
     # Create VirtualHost
-    - sed 's?%basedir%?'`pwd`'?' .travis/apache/virtual.host > .travis/apache/vhost
-#    - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
-    - sudo mv .travis/apache/vhost /etc/apache2/sites-available/travistest
-    - sudo a2ensite travistest
+    - sudo cp .travis/apache/vhost /etc/apache2/sites-available/default
+    - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
+
+#    - sudo mv .travis/apache/vhost /etc/apache2/sites-available/travistest
+#    - sudo a2ensite travistest
 #    - sudo sed -i -e "/DocumentRoot/i\ServerName aisel.dev" /etc/apache2/sites-available/default
 #    - sudo sed -i -e "/DocumentRoot/i\ServerName admin.aisel.dev" /etc/apache2/sites-available/default
 #    - sudo sed -i -e "/DocumentRoot/i\ServerName api.aisel.dev" /etc/apache2/sites-available/default
+
     - echo "127.0.0.1 aisel.dev" | sudo tee -a /etc/hosts
     - echo "127.0.0.1 admin.aisel.dev" | sudo tee -a /etc/hosts
     - echo "127.0.0.1 api.aisel.dev" | sudo tee -a /etc/hosts
-
     - sudo /etc/init.d/apache2 restart
 
 before_script:
