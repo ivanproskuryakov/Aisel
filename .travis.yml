@@ -48,7 +48,7 @@ install:
     - sudo cp -f .travis/apache/virtual.host /etc/apache2/sites-available/default
     - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
     - sudo /etc/init.d/apache2 restart
-    - cat /etc/hosts
+    - echo "cat /etc/hosts"
 #    - sudo mv .travis/apache/vhost /etc/apache2/sites-available/travistest
 #    - sudo a2ensite travistest
 #    - sudo sed -i -e "/DocumentRoot/i\ServerName aisel.dev" /etc/apache2/sites-available/default
@@ -57,7 +57,6 @@ install:
 
 before_script:
     # Update composer
-    - pwd
     - composer self-update
     - composer install
 
@@ -79,5 +78,5 @@ script:
     - protractor backend/protractor/conf.js
 #    - protractor frontend/protractor/conf.js
 #    - bin/phpspec run --stop-on-failure
-#    - bin/phpunit -c app src/
+    - bin/phpunit -c app src/
 #    - bin/behat --stop-on-failure
