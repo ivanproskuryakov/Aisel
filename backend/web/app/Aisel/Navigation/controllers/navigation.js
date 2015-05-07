@@ -18,9 +18,13 @@ define(['app'], function (app) {
         $scope.sectionName = 'Navigation';
         $scope.categoryJson = Environment.settings.api + '/navigation/?locale=' + $stateParams.lang;
 
-        $scope.editCategory = function () {
-            console.log('editCategory');
-        }
+        $scope.editNode = function (id) {
+            $state.transitionTo('navigationEdit', {
+                locale: Environment.currentLocale(),
+                lang: $stateParams.lang,
+                id: id
+            });
+        };
 
         $scope.changeCategoryLocale = function (lang) {
             $state.transitionTo('navigation', {

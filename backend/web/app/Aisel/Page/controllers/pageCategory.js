@@ -20,7 +20,9 @@ define(['app'], function (app) {
 
         $scope.editNode = function (id) {
             $state.transitionTo('pageCategoryEdit', {
-                locale: Environment.currentLocale(), id: id
+                locale: Environment.currentLocale(),
+                lang: $stateParams.lang,
+                id: id
             });
         };
 

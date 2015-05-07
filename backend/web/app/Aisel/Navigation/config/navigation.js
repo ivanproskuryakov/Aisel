@@ -22,7 +22,7 @@ define(['app'], function (app) {
                     controller: 'NavigationCtrl'
                 })
                 .state("navigationEdit", {
-                    url: "/:locale/navigation/edit/:id/",
+                    url: "/:locale/navigation/edit/:lang/:id/",
                     templateUrl: '/app/Aisel/Navigation/views/edit-category.html',
                     controller: 'NavigationDetailCtrl'
                 })

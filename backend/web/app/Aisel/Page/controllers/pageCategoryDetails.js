@@ -27,7 +27,10 @@ define(['app'], function (app) {
         );
 
         $scope.editCancel = function () {
-            $state.transitionTo('pageCategory', {locale: Environment.currentLocale()});
+            $state.transitionTo('pageCategory', {
+                locale: Environment.currentLocale(),
+                lang: $stateParams.lang
+            });
         };
 
         $scope.changeLocale = function (locale) {

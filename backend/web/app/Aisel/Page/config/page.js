@@ -37,7 +37,7 @@ define(['app'], function (app) {
                     controller: 'PageCategoryCtrl'
                 })
                 .state("pageCategoryEdit", {
-                    url: "/:locale/page/category/edit/:id/",
+                    url: "/:locale/page/category/edit/:lang/:id/",
                     templateUrl: '/app/Aisel/Page/views/edit-category.html',
                     controller: 'PageCategoryDetailsCtrl'
                 })

@@ -37,7 +37,7 @@ define(['app'], function (app) {
                     controller: 'ProductCategoryCtrl'
                 })
                 .state("productCategoryEdit", {
-                    url: "/:locale/product/category/edit/:id/",
+                    url: "/:locale/product/category/edit/:lang/:id/",
                     templateUrl: '/app/Aisel/Product/views/edit-category.html',
                     controller: 'ProductCategoryDetailsCtrl'
                 })

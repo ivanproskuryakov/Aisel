@@ -43,4 +43,15 @@ describe("E2E: Product module tests", function () {
         });
     });
 
+    // == Page category route ==
+    it('Page categories route is working', function () {
+        browser.get('http://admin.aisel.dev/en/product/category/en/');
+
+        element(by.css('.glyphicon-edit')).click().then(function () {
+            browser.getCurrentUrl().then(function (url) {
+                expect(url.indexOf("/edit/en/")).toBeGreaterThan(0);
+            });
+        });
+    });
+
 });

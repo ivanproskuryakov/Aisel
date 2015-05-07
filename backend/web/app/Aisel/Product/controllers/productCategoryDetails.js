@@ -34,7 +34,10 @@ define(['app'], function (app) {
         };
 
         $scope.editCancel = function () {
-            $state.transitionTo('productCategory', {locale: Environment.currentLocale()});
+            $state.transitionTo('productCategory', {
+                locale: Environment.currentLocale(),
+                lang: $stateParams.lang
+            });
         }
     });
 });

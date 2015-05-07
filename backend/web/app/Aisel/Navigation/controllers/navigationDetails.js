@@ -25,7 +25,10 @@ define(['app'], function (app) {
         navigationService.get($scope.details.id).success(handleSuccess);
 
         $scope.editCancel = function () {
-            $state.transitionTo('navigation', {locale: Environment.currentLocale()});
+            $state.transitionTo('navigation',{
+                locale: Environment.currentLocale(),
+                lang: $stateParams.lang
+            });
         }
     });
 });

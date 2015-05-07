@@ -23,6 +23,7 @@ exports.config = {
         'modules/orders.js',
         'modules/products.js',
         'modules/page.js',
+        'modules/navigation.js',
     ],
 
     // ----- Capabilities to be passed to the webdriver instance.
