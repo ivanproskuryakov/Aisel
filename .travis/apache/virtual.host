@@ -1,6 +1,6 @@
-#############
-### Aisel ###
-#############
+########################################################
+### Do not forget to change %TRAVIS_BUILD_DIR% param ###
+########################################################
 
 <VirtualHost *:80>
     ServerAdmin volgodark@gmail.com

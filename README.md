@@ -25,61 +25,24 @@ then `cd to aisel/` and download composer <br/>
 2. Install frontend dependencies with Bower for "/frontend" and "/backend" directories<br/>
 running `bower install` command
 <br/>
-Once this steps done you will be able to access admin section:<br/>
+Once this steps is done you will be able to access admin section:<br/>
 `http://admin.aisel.dev/`<br/>
 
 Apache hosts:<br/>
-```
-<VirtualHost *:80>
-    ServerName  ecommerce.aisel.co
-    <Directory "/var/www/ecommerce.aisel.co/Aisel/frontend/web">
-        Options FollowSymLinks MultiViews
-        AllowOverride All
-        Order allow,deny
-        allow from all
-    </Directory>
-    DocumentRoot /var/www/ecommerce.aisel.co/Aisel/frontend/web
-</VirtualHost>
-<VirtualHost *:80>
-    ServerName  api.ecommerce.aisel.co
-    <Directory "/var/www/ecommerce.aisel.co/Aisel/web">
-                Options FollowSymLinks
-                AllowOverride All
-    </Directory>
-    DocumentRoot /var/www/ecommerce.aisel.co/Aisel/web
-</VirtualHost>
-<VirtualHost *:80>
-    ServerName  admin.ecommerce.aisel.co
-    <Directory "/var/www/ecommerce.aisel.co/Aisel/backend/web">
-                Options FollowSymLinks
-                AllowOverride All
-    </Directory>
-    DocumentRoot /var/www/ecommerce.aisel.co/Aisel/backend/web
-</VirtualHost>
-```
+https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host
 
-Installation: v0.1.0
+Running Tests
 -----------------------------------
-
-1. Download composer<br/>
-`curl -sS https://getcomposer.org/installer | php`
-2. Create project, installer will ask you dbname, username, password, etc.. <br/>
-`php composer.phar create-project -s dev aisel/aisel`
-`cd aisel/` and finish installation with commands bellow:<br/>
-3. Launch installation:<br/>
-`php app/console aisel:install`
-4. Install frontend dependencies with Bower<br/>
-`bower install`
-
-Tests
------------------------------------
-[Behat](http://behat.org) <br/>
-`bin/behat`<br/>
-[PHPSpec](http://phpspec.net/)<br/>
-`bin/phpspec run`<br/>
 [Protractor](http://angular.github.io/protractor/#/) <br/>
 `protractor frontend/protractor/conf.js`<br/>
 `protractor backend/protractor/conf.js`<br/>
+
+[PHPUnit](https://phpunit.de/)
+`bin/phpunit -c app src/`<br/>
+
+[Behat](http://behat.org) & [PHPSpec](http://phpspec.net/)
+`bin/behat`<br/>
+`bin/phpspec run`<br/>
 
 XML Sitemap & Google indexing
 -----------------------------------
@@ -96,7 +59,6 @@ http://www.responsinator.com/?url=ecommerce.aisel.co%2Fen%2Fproducts%2F
 
 Bug tracking
 -----------------------------------
-
 Project uses [GitHub issues](https://github.com/ivanproskuryakov/Aisel/issues).
 If you have found bug, please create an issue.
 
