@@ -17,6 +17,7 @@ exports.config = {
     specs: [
         'modules/*.js'
     ],
+    framework: 'jasmine2',
 
     // ----- Capabilities to be passed to the webdriver instance.
     // For a full list of available capabilities, see

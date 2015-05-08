@@ -10,6 +10,7 @@
 
 describe("E2E: Contact module tests", function () {
     console.log('Test loaded: User');
+    browser.ignoreSynchronization = true;
 
     it('Sign in route is working', function () {
         browser.get('http://aisel.dev/en/user/login/');
