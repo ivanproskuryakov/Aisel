@@ -10,15 +10,7 @@
                         <i class="glyphicon glyphicon-font"></i> General Information
                     </tab-heading>
                     <div class="tab-content">
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <input type="text"
-                                   name="status"
-                                   id="status"
-                                   class="form-control"
-                                   ng-required="true"
-                                   ng-model="item.item.status">
-                        </div>
+                        <ng-include src="'/app/Kernel/Resource/views/edit/field/status.html'"></ng-include>
                         <div class="form-group">
                             <label for="description">Description</label>
                             <input type="text"
@@ -26,7 +18,7 @@
                                    id="description"
                                    class="form-control"
                                    ng-required="true"
-                                   ng-model="item.item.description">
+                                   ng-model="item.description">
                         </div>
                         <div class="form-group">
                             <label for="currency">Currency</label>
@@ -35,7 +27,7 @@
                                    id="currency"
                                    class="form-control"
                                    ng-required="true"
-                                   ng-model="item.item.currency">
+                                   ng-model="item.currency">
                         </div>
                         <div class="form-group">
                             <label for="country">Country</label>
@@ -44,7 +36,7 @@
                                    id="country"
                                    class="form-control"
                                    ng-required="true"
-                                   ng-model="item.item.country">
+                                   ng-model="item.country">
                         </div>
                         <div class="form-group">
                             <label for="region">Region</label>
@@ -53,7 +45,7 @@
                                    id="region"
                                    class="form-control"
                                    ng-required="true"
-                                   ng-model="item.item.region">
+                                   ng-model="item.region">
                         </div>
                         <div class="form-group">
                             <label for="city">City</label>
@@ -62,7 +54,7 @@
                                    id="city"
                                    class="form-control"
                                    ng-required="true"
-                                   ng-model="item.item.city">
+                                   ng-model="item.city">
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
@@ -71,7 +63,7 @@
                                    id="phone"
                                    class="form-control"
                                    ng-required="true"
-                                   ng-model="item.item.phone">
+                                   ng-model="item.phone">
                         </div>
                         <div class="form-group">
                             <label for="payment_method">Payment Method</label>
@@ -80,7 +72,7 @@
                                    id="payment_method"
                                    class="form-control"
                                    ng-required="true"
-                                   ng-model="item.item.payment_method">
+                                   ng-model="item.payment_method">
                         </div>
                     </div>
                 </tab>
@@ -92,7 +84,7 @@
                     </tab-heading>
                     <div class="tab-content">
                         <!-- Order Items -->
-                        <div class="cartItem" ng-repeat="productItem in item.item.item">
+                        <div class="cartItem" ng-repeat="productItem in item.item">
                             <div class="col-md-2">
                                 #{{productItem.id}}
                             </div>
@@ -103,7 +95,7 @@
                                 {{productItem.qty}}
                             </div>
                             <div class="col-md-2">
-                                {{productItem.price}} {{item.item.currency}}
+                                {{productItem.price}} {{item.currency}}
                             </div>
                             <div class="col-md-12">
                                 <hr>

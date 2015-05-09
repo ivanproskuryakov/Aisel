@@ -17,28 +17,10 @@
                                    id="title"
                                    class="form-control"
                                    ng-required="true"
-                                   ng-model="item.item.title">
+                                   ng-model="item.title">
                         </div>
-                        <div class="form-group">
-                            <label for="title">Locale</label>
-                            <input type="text"
-                                   name="locale"
-                                   id="locale"
-                                   class="form-control"
-                                   ng-required="true"
-                                   ng-model="item.item.locale">
-                        </div>
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <select id="status"
-                                    class="form-control"
-                                    ng-required="true"
-                                    ng-model="item.item.status"
-                                    name="status">
-                                <option value="false" ng-selected="!item.item.status">Disabled</option>
-                                <option value="true" ng-selected="item.item.status">Enabled</option>
-                            </select>
-                        </div>
+                        <ng-include src="'/app/Kernel/Resource/views/edit/field/locale.html'"></ng-include>
+                        <ng-include src="'/app/Kernel/Resource/views/edit/field/status.html'"></ng-include>
                         <div class="form-group">
                             <label for="description">Description</label>
                             <textarea
@@ -46,7 +28,7 @@
                                    id="description"
                                    class="form-control"
                                    ng-required="true"
-                                   ng-model="item.item.description"></textarea>
+                                   ng-model="item.description"></textarea>
                         </div>
                     </div>
                 </tab>
