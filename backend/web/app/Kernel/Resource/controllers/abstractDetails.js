@@ -21,7 +21,9 @@ define(['app'], function (app) {
         };
         $scope.item = {};
 
-        // GET
+        /**
+         * GET
+         */
         if ($scope.details.id !== undefined) {
             itemService.get($scope.details.id).success(
                 function (data, status) {
@@ -30,9 +32,11 @@ define(['app'], function (app) {
             );
         };
 
-        // SAVE
+        /**
+         * SAVE
+         */
         $scope.editSave = function () {
-            // Existent page
+            // Existent item
             if ($scope.details.id !== undefined) {
                 itemService.save($scope.item).success(
                     function (data, status) {
@@ -41,7 +45,7 @@ define(['app'], function (app) {
                     }
                 );
             }
-            // New page
+            // New item
             if ($scope.details.id === undefined) {
                 itemService.create($scope.item).success(
                     function (data, status) {
@@ -55,7 +59,9 @@ define(['app'], function (app) {
             }
         };
 
-        // SAVE & EXIT
+        /**
+         * SAVE & EXIT
+         */
         $scope.editSaveAndExit = function () {
             itemService.save($scope.item).success(
                 function (data, status) {
@@ -68,7 +74,9 @@ define(['app'], function (app) {
             );
         };
 
-        // CANCEL
+        /**
+         * CANCEL
+         */
         $scope.editCancel = function () {
             $state.transitionTo(
                 $scope.route.collection,
@@ -76,7 +84,9 @@ define(['app'], function (app) {
             );
         };
 
-        // DELETE
+        /**
+         * DELETE
+         */
         $scope.editDelete = function () {
             itemService.remove($scope.details.id).success(
                 function (data, status) {

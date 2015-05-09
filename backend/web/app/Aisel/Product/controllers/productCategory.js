@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductCategoryCtrl', function ($scope, $stateParams, pageService, $state, Environment) {
+    app.controller('ProductCategoryCtrl', function ($scope, $stateParams, $state, Environment) {
 
         $scope.sectionName = 'Product categories';
         $scope.categoryJson = Environment.settings.api + '/product/category/?locale=' + $stateParams.lang;

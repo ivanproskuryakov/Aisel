@@ -40,8 +40,6 @@ require.config({
         'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus',
         'angular-touch': '../bower_components/angular-touch/angular-touch.min',
         'ui-grid': '../bower_components/angular-ui-grid/ui-grid.min'
-
-
     },
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {
