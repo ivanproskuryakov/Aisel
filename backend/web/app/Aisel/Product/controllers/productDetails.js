@@ -13,18 +13,18 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductDetailsCtrl', function ($scope, $stateParams, productService, $state, Environment) {
-        $scope.details = {
-            id: $stateParams.id,
-            name: 'Product'
-        };
-        var handleSuccess = function (data, status) {
-            $scope.item = data;
-        };
-        productService.get($scope.details.id).success(handleSuccess);
+    app.controller('ProductDetailsCtrl', function ($controller, $scope, productService) {
 
-        $scope.editCancel = function () {
-            $state.transitionTo('products', {locale: Environment.currentLocale()});
-        }
+        $scope.route = {
+            name: 'Product',
+            collection: 'product',
+            edit: 'productEdit'
+        };
+
+        angular.extend(this, $controller('AbstractDetailsCtrl', {
+            $scope: $scope,
+            itemService: productService
+        }));
+
     });
 });

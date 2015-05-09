@@ -9,22 +9,22 @@
  * file that was distributed with this source code.
  *
  * @name            AiselBackendUser
- * @description     ...
+ * @description     BackendUserDetailCtrl
  */
 
 define(['app'], function (app) {
-    app.controller('BackendUserDetailCtrl', function ($scope, $stateParams, backendUserService, $state, Environment) {
-        $scope.details = {
-            id: $stateParams.id,
-            name: 'Backend User'
-        };
-        var handleSuccess = function (data, status) {
-            $scope.item = data;
-        };
-        backendUserService.get($scope.details.id).success(handleSuccess);
+    app.controller('BackendUserDetailCtrl', function ($controller, $scope, backendUserService) {
 
-        $scope.editCancel = function () {
-            $state.transitionTo('backendUsers', {locale: Environment.currentLocale()});
-        }
+        $scope.route = {
+            name: 'Backend User',
+            collection: 'backendUsers',
+            edit: 'backendUserEdit'
+        };
+
+        angular.extend(this, $controller('AbstractDetailsCtrl', {
+            $scope: $scope,
+            itemService: backendUserService
+        }));
+
     });
 });

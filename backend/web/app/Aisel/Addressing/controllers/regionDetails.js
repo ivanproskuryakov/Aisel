@@ -9,23 +9,22 @@
  * file that was distributed with this source code.
  *
  * @name            AiselAddressing
- * @description     ...
+ * @description     AddressingRegionDetailsCtrl
  */
 
 define(['app'], function (app) {
-    app.controller('AddressingRegionDetailsCtrl', function ($scope, $stateParams, regionService, $state, Environment) {
-        $scope.details = {
-            id: $stateParams.id,
-            name: 'Region'
-        };
-        var handleSuccess = function (data, status) {
-            $scope.item = {};
-            $scope.item.item = data;
-        };
-        regionService.get($scope.details.id).success(handleSuccess);
+    app.controller('AddressingRegionDetailsCtrl', function ($controller, $scope, regionService) {
 
-        $scope.editCancel = function () {
-            $state.transitionTo('regions', {locale: Environment.currentLocale()});
-        }
+        $scope.route = {
+            name: 'Region',
+            collection: 'regions',
+            edit: 'regionEdit'
+        };
+
+        angular.extend(this, $controller('AbstractDetailsCtrl', {
+            $scope: $scope,
+            itemService: regionService
+        }));
+
     });
 });

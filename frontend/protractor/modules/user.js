@@ -5,10 +5,10 @@
  * @name aiselApp
  * @description
  *
- * E2E Cotact test
+ * E2E User test
  */
 
-describe("E2E: Contact module tests", function () {
+describe("E2E: User module tests", function () {
     console.log('Test loaded: User');
 
     it('Sign in route is working', function () {

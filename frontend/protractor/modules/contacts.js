@@ -5,7 +5,7 @@
  * @name aiselApp
  * @description
  *
- * E2E Cotact test
+ * E2E Contact test
  */
 
 describe("E2E: Contact module tests", function () {

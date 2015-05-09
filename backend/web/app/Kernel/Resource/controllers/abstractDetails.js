@@ -13,20 +13,19 @@
  */
 
 define(['app'], function (app) {
-    app.controller('AbstractDetailsCtrl', function ($controller, $scope, $stateParams, pageService, $state, Environment, notify) {
+    app.controller('AbstractDetailsCtrl', function ($controller, $scope, $stateParams, itemService, $state, Environment, notify) {
 
         $scope.details = {
             id: $stateParams.id,
-            name: $scope.route.name,
-            item: {}
+            name: $scope.route.name
         };
+        $scope.item = {};
 
         // GET
         if ($scope.details.id !== undefined) {
-            pageService.get($scope.details.id).success(
+            itemService.get($scope.details.id).success(
                 function (data, status) {
-                    $scope.details.item = data.item;
-                    $scope.details.item.categories = data.item.categories;
+                    $scope.item = data;
                 }
             );
         };
@@ -35,7 +34,7 @@ define(['app'], function (app) {
         $scope.editSave = function () {
             // Existent page
             if ($scope.details.id !== undefined) {
-                pageService.save($scope.details.item).success(
+                itemService.save($scope.item).success(
                     function (data, status) {
                         notify($scope.route.name + ' has been saved');
                         console.log(data);
@@ -44,7 +43,7 @@ define(['app'], function (app) {
             }
             // New page
             if ($scope.details.id === undefined) {
-                pageService.create($scope.details.item).success(
+                itemService.create($scope.item).success(
                     function (data, status) {
                         notify($scope.route.name + ' was added');
                         $state.transitionTo(
@@ -58,7 +57,7 @@ define(['app'], function (app) {
 
         // SAVE & EXIT
         $scope.editSaveAndExit = function () {
-            pageService.save($scope.details.item).success(
+            itemService.save($scope.item).success(
                 function (data, status) {
                     notify($scope.route.name + ' has been saved');
                     $state.transitionTo(
@@ -79,7 +78,7 @@ define(['app'], function (app) {
 
         // DELETE
         $scope.editDelete = function () {
-            pageService.remove($scope.details.id).success(
+            itemService.remove($scope.details.id).success(
                 function (data, status) {
                     notify($scope.route.name + ' has been deleted');
                     $state.transitionTo(

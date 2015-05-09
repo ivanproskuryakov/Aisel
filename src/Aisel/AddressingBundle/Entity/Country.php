@@ -3,7 +3,9 @@
 namespace Aisel\AddressingBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Country
@@ -85,6 +87,22 @@ class Country
      * @Assert\Type(type="string")
      */
     private $cctld;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     * @JMS\Type("DateTime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     * @JMS\Type("DateTime")
+     */
+    private $updatedAt;
 
     public function __toString()
     {
@@ -284,15 +302,6 @@ class Country
     {
         return $this->cctld;
     }
-    /**
-     * @var \DateTime
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    private $updatedAt;
 
     /**
      * Get createdAt

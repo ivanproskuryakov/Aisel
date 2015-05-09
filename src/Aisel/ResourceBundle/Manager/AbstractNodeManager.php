@@ -57,10 +57,12 @@ class AbstractNodeManager
      */
     public function getItem($id)
     {
-        $page = $this->em->getRepository($this->repository)->find($id);
-        $details = array('item' => $page);
+        $item = $this
+            ->em
+            ->getRepository($this->repository)
+            ->find($id);
 
-        return $details;
+        return $item;
     }
 
     /**
@@ -105,7 +107,9 @@ class AbstractNodeManager
             }
         }
 
-        if ($params['name']) $node->setTitle($params['name']);
+        if ($params['name']) {
+            $node->setTitle($params['name']);
+        }
         $this->em->persist($node);
         $this->em->flush();
 

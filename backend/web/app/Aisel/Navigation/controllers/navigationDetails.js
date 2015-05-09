@@ -9,26 +9,22 @@
  * file that was distributed with this source code.
  *
  * @name            AiselNavigation
- * @description     ...
+ * @description     NavigationDetailCtrl
  */
 
 define(['app'], function (app) {
-    app.controller('NavigationDetailCtrl', function ($scope, $stateParams, navigationService, $state, Environment) {
+    app.controller('NavigationDetailCtrl', function ($controller, $scope, navigationService) {
 
-        $scope.details = {
-            id: $stateParams.id,
-            name: 'Navigation'
+        $scope.route = {
+            name: 'Navigation',
+            collection: 'navigation',
+            edit: 'navigationEdit'
         };
-        var handleSuccess = function (data, status) {
-            $scope.item = data;
-        };
-        navigationService.get($scope.details.id).success(handleSuccess);
 
-        $scope.editCancel = function () {
-            $state.transitionTo('navigation',{
-                locale: Environment.currentLocale(),
-                lang: $stateParams.lang
-            });
-        }
+        angular.extend(this, $controller('AbstractDetailsCtrl', {
+            $scope: $scope,
+            itemService: navigationService
+        }));
+
     });
 });

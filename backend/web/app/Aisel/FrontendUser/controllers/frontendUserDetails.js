@@ -13,18 +13,18 @@
  */
 
 define(['app'], function (app) {
-    app.controller('FrontendUserDetailCtrl', function ($scope, $stateParams, frontendUserService, $state, Environment) {
-        $scope.details = {
-            id: $stateParams.id,
-            name: 'Frontend User'
-        };
-        var handleSuccess = function (data, status) {
-            $scope.item = data;
-        };
-        frontendUserService.get($scope.details.id).success(handleSuccess);
+    app.controller('FrontendUserDetailCtrl', function ($controller, $scope, frontendUserService) {
 
-        $scope.editCancel = function () {
-            $state.transitionTo('frontendUsers', {locale: Environment.currentLocale()});
-        }
+        $scope.route = {
+            name: 'Frontend User',
+            collection: 'frontendUsers',
+            edit: 'productEdit'
+        };
+
+        angular.extend(this, $controller('AbstractDetailsCtrl', {
+            $scope: $scope,
+            itemService: frontendUserService
+        }));
+
     });
 });

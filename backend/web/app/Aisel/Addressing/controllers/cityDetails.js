@@ -13,19 +13,18 @@
  */
 
 define(['app'], function (app) {
-    app.controller('AddressingCityDetailsCtrl', function ($scope, $stateParams, cityService, $state, Environment) {
-        $scope.details = {
-            id: $stateParams.id,
-            name: 'City'
-        };
-        var handleSuccess = function (data, status) {
-            $scope.item = {};
-            $scope.item.item = data;
-        };
-        cityService.get($scope.details.id).success(handleSuccess);
+    app.controller('AddressingCityDetailsCtrl', function ($controller, $scope, cityService) {
 
-        $scope.editCancel = function () {
-            $state.transitionTo('cities', {locale: Environment.currentLocale()});
-        }
+        $scope.route = {
+            name: 'City',
+            collection: 'cities',
+            edit: 'cityEdit'
+        };
+
+        angular.extend(this, $controller('AbstractDetailsCtrl', {
+            $scope: $scope,
+            itemService: cityService
+        }));
+
     });
 });

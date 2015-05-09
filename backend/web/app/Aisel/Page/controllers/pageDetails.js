@@ -23,7 +23,7 @@ define(['app'], function (app) {
 
         angular.extend(this, $controller('AbstractDetailsCtrl', {
             $scope: $scope,
-            service: pageService
+            itemService: pageService
         }));
 
     });
