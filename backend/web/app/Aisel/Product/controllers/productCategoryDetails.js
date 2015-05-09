@@ -13,31 +13,28 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductCategoryDetailsCtrl', function ($scope, $stateParams, productService, $state, Environment) {
+    app.controller('ProductCategoryDetailsCtrl', function ($controller, $stateParams, $state, Environment, $scope, productCategoryService) {
 
-        $scope.details = {
-            id: $stateParams.id,
-            name: 'Product Сategory'
+        $scope.route = {
+            name: 'Product Category',
+            collection: 'productCategory',
+            edit: 'productCategoryEdit'
         };
 
-        productService.getCategory($scope.details.id).success(
-            function (data, status) {
-                $scope.item = data;
-            }
-        );
+        angular.extend(this, $controller('AbstractDetailsCtrl', {
+            $scope: $scope,
+            itemService: productCategoryService
+        }));
 
-        $scope.changeCategoryLocale = function (lang) {
-            $state.transitionTo('productCategory', {
-                locale: Environment.currentLocale(),
-                lang: lang
-            });
-        };
-
+        // CANCEL
         $scope.editCancel = function () {
-            $state.transitionTo('productCategory', {
-                locale: Environment.currentLocale(),
-                lang: $stateParams.lang
-            });
-        }
+            $state.transitionTo(
+                $scope.route.collection, {
+                    locale: Environment.currentLocale(),
+                    lang: $stateParams.lang
+                }
+            );
+        };
+
     });
 });

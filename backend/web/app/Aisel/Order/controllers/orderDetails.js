@@ -13,20 +13,18 @@
  */
 
 define(['app'], function (app) {
-    app.controller('OrderDetailsCtrl', function ($scope, $stateParams, orderService, $state, Environment) {
+    app.controller('OrderDetailsCtrl', function ($controller, $scope, orderService) {
 
-        $scope.details = {
-            id: $stateParams.id,
-            name: 'Order'
+        $scope.route = {
+            name: 'Order',
+            collection: 'orders',
+            edit: 'orderEdit'
         };
-        var handleSuccess = function (data, status) {
-            $scope.item = {};
-            $scope.item.item = data;
-        };
-        orderService.get($scope.details.id).success(handleSuccess);
 
-        $scope.editCancel = function () {
-            $state.transitionTo('orders', {locale: Environment.currentLocale()});
-        }
+        angular.extend(this, $controller('AbstractDetailsCtrl', {
+            $scope: $scope,
+            itemService: orderService
+        }));
+
     });
 });

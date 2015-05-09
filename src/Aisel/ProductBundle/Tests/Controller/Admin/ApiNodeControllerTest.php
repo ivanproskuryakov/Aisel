@@ -48,4 +48,9 @@ class ApiNodeControllerTest extends AbstractWebTestCase
         $this->assertTrue(is_array($result));
     }
 
+    public function testGetProductNodeAction()
+    {
+        $this->markTestSkipped('Unit test is missing');
+    }
+
 }

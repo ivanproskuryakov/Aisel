@@ -12,6 +12,12 @@ admin_api_aisel_product_category_tree_get:
     requirements:
         _method: GET
 
+admin_api_aisel_product_category_get:
+    pattern:   /product/category/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiNode:get, _format: json }
+    requirements:
+        _method: GET
+
 admin_api_aisel_product_get:
     pattern:   /product/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:get, _format: json }
