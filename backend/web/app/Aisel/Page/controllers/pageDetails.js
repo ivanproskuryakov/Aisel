@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageDetailsCtrl', function ($controller, $scope, pageService) {
+    app.controller('PageDetailsCtrl', function ($controller, $scope, resourceService) {
 
         $scope.route = {
             name: 'Page',
@@ -21,9 +21,10 @@ define(['app'], function (app) {
             edit: 'pageEdit'
         };
 
+        var itemService = new resourceService('page');
         angular.extend(this, $controller('AbstractDetailsCtrl', {
             $scope: $scope,
-            itemService: pageService
+            itemService: itemService
         }));
 
     });

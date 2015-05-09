@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('NavigationCtrl', function ($scope, $stateParams, navigationService, $state, Environment) {
+    app.controller('NavigationCtrl', function ($scope, $stateParams, $state, Environment) {
 
         $scope.sectionName = 'Navigation';
         $scope.categoryJson = Environment.settings.api + '/navigation/?locale=' + $stateParams.lang;
