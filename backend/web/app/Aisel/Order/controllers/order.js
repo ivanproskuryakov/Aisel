@@ -13,8 +13,10 @@
  */
 
 define(['app'], function (app) {
-    app.controller('OrderCtrl', ['$scope', '$state', 'orderService', 'Environment', 'collectionService',
-        function ($scope, $state, orderService, Environment, collectionService) {
+    app.controller('OrderCtrl', ['$scope', '$state', 'resourceService', 'Environment', 'collectionService',
+        function ($scope, $state, resourceService, Environment, collectionService) {
+
+            var itemService = new resourceService('order');
 
             $scope.collectionTitle = 'Orders';
             $scope.disableNew = true;
@@ -49,8 +51,8 @@ define(['app'], function (app) {
 
             // === Load collection from remote ===
             $scope.loadCollection = function (pageNumber) {
-                collectionService.loadCollection($scope, orderService, pageNumber);
-            }
+                collectionService.loadCollection($scope, itemService, pageNumber);
+            };
             $scope.loadCollection();
 
         }]);

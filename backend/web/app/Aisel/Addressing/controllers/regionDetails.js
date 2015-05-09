@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('AddressingRegionDetailsCtrl', function ($controller, $scope, regionService) {
+    app.controller('AddressingRegionDetailsCtrl', function ($controller, $scope, resourceService) {
 
         $scope.route = {
             name: 'Region',
@@ -21,9 +21,10 @@ define(['app'], function (app) {
             edit: 'regionEdit'
         };
 
+        var itemService = new resourceService('addressing/region');
         angular.extend(this, $controller('AbstractDetailsCtrl', {
             $scope: $scope,
-            itemService: regionService
+            itemService: itemService
         }));
 
     });

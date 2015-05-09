@@ -13,8 +13,10 @@
  */
 
 define(['app'], function (app) {
-    app.controller('FrontendUserCtrl', ['$scope', '$state', 'Environment', 'frontendUserService', 'collectionService',
-        function ($scope, $state, Environment, frontendUserService, collectionService) {
+    app.controller('FrontendUserCtrl', ['$scope', '$state', 'Environment', 'resourceService', 'collectionService',
+        function ($scope, $state, Environment, resourceService, collectionService) {
+
+            var itemService = new resourceService('frontenduser');
 
             $scope.collectionTitle = 'Frontend Users';
             $scope.pageLimit = 20;
@@ -44,7 +46,7 @@ define(['app'], function (app) {
 
             // === Load collection from remote ===
             $scope.loadCollection = function (pageNumber) {
-                collectionService.loadCollection($scope, frontendUserService, pageNumber);
+                collectionService.loadCollection($scope, itemService, pageNumber);
             }
             $scope.loadCollection();
 

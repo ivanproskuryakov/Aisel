@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  *
  * @name            AiselAddressing
- * @description     ...
+ * @description     AddressingCityDetailsCtrl
  */
 
 define(['app'], function (app) {
-    app.controller('AddressingCityDetailsCtrl', function ($controller, $scope, cityService) {
+    app.controller('AddressingCityDetailsCtrl', function ($controller, $scope, resourceService) {
 
         $scope.route = {
             name: 'City',
@@ -21,9 +21,10 @@ define(['app'], function (app) {
             edit: 'cityEdit'
         };
 
+        var itemService = new resourceService('addressing/city');
         angular.extend(this, $controller('AbstractDetailsCtrl', {
             $scope: $scope,
-            itemService: cityService
+            itemService: itemService
         }));
 
     });

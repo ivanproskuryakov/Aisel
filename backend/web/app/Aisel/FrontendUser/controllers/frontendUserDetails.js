@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('FrontendUserDetailCtrl', function ($controller, $scope, frontendUserService) {
+    app.controller('FrontendUserDetailCtrl', function ($controller, $scope, resourceService) {
 
         $scope.route = {
             name: 'Frontend User',
@@ -21,9 +21,10 @@ define(['app'], function (app) {
             edit: 'productEdit'
         };
 
+        var itemService = new resourceService('frontenduser');
         angular.extend(this, $controller('AbstractDetailsCtrl', {
             $scope: $scope,
-            itemService: frontendUserService
+            itemService: itemService
         }));
 
     });

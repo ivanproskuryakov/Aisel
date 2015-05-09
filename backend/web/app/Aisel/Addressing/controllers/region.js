@@ -13,8 +13,10 @@
  */
 
 define(['app'], function (app) {
-    app.controller('AddressingRegionCtrl', ['$scope', '$state', 'Environment', 'regionService', 'collectionService',
-        function ($scope, $state, Environment, regionService, collectionService) {
+    app.controller('AddressingRegionCtrl', ['$scope', '$state', 'Environment', 'resourceService', 'collectionService',
+        function ($scope, $state, Environment, resourceService, collectionService) {
+
+            var itemService = new resourceService('addressing/region');
 
             $scope.collectionTitle = 'Regions';
             $scope.pageLimit = 20;
@@ -43,7 +45,7 @@ define(['app'], function (app) {
 
             // === Load collection from remote ===
             $scope.loadCollection = function (pageNumber) {
-                collectionService.loadCollection($scope, regionService, pageNumber);
+                collectionService.loadCollection($scope, itemService, pageNumber);
             }
             $scope.loadCollection();
 

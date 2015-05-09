@@ -16,7 +16,6 @@ define(['app',
     './config/backendUser',
     './controllers/backendUser',
     './controllers/backendUserDetails',
-    './services/backendUser',
 ], function (app) {
     console.log('BackendUser module loaded ...');
 });

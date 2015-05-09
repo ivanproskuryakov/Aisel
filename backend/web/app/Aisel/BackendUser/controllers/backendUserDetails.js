@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('BackendUserDetailCtrl', function ($controller, $scope, backendUserService) {
+    app.controller('BackendUserDetailCtrl', function ($controller, $scope, resourceService) {
 
         $scope.route = {
             name: 'Backend User',
@@ -21,9 +21,10 @@ define(['app'], function (app) {
             edit: 'backendUserEdit'
         };
 
+        var itemService = new resourceService('backenduser');
         angular.extend(this, $controller('AbstractDetailsCtrl', {
             $scope: $scope,
-            itemService: backendUserService
+            itemService: itemService
         }));
 
     });

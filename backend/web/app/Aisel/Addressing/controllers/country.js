@@ -9,13 +9,14 @@
  * file that was distributed with this source code.
  *
  * @name            AiselAddressing
- * @description     ...
+ * @description     AddressingCountryCtrl
  */
 
 define(['app'], function (app) {
-    app.controller('AddressingCountryCtrl', ['$scope', '$state', 'Environment', 'countryService', 'collectionService',
-        function ($scope, $state, Environment, countryService, collectionService) {
+    app.controller('AddressingCountryCtrl', ['$scope', '$state', 'Environment', 'resourceService', 'collectionService',
+        function ($scope, $state, Environment, resourceService, collectionService) {
 
+            var itemService = new resourceService('addressing/country');
             $scope.collectionTitle = 'Countries';
             $scope.pageLimit = 20;
             $scope.pageNumber = 1;
@@ -47,7 +48,7 @@ define(['app'], function (app) {
 
             // === Load collection from remote ===
             $scope.loadCollection = function (pageNumber) {
-                collectionService.loadCollection($scope, countryService, pageNumber);
+                collectionService.loadCollection($scope, itemService, pageNumber);
             }
             $scope.loadCollection();
 
