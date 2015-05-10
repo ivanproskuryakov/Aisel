@@ -48,8 +48,8 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
-     * @Assert\Type(type="string")
-     * @Assert\NotNull()
+     * @Assert\NotEmpty
+     * @Assert\Email
      */
     private $email;
 

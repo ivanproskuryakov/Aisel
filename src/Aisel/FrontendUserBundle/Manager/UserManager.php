@@ -390,8 +390,9 @@ class UserManager implements UserProviderInterface
      */
     public function supportsClass($class)
     {
-        return $this->getEntityName() === $class
-        || is_subclass_of($class, $this->getEntityName());
+        $name = 'Aisel\FrontendUserBundle\Entity\FrontendUser';
+
+        return $name === $class || is_subclass_of($class, $name);
     }
 
 }

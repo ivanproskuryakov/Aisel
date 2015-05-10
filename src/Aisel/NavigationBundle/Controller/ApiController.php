@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Frontend navigation REST API controller
+ * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -23,16 +23,18 @@ class ApiController extends Controller
 {
 
     /**
-     * /api/navigation/menu.json
+     * menuAction
      *
-     * @param Request $request
-     * @param string  $locale
+     * @param string $locale
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse $response
      */
-    public function menuAction(Request $request, $locale)
+    public function menuAction($locale)
     {
-        $menu = $this->container->get("aisel.navigation.manager")->getMenu($locale);
+        $menu = $this
+            ->container
+            ->get("aisel.navigation.manager")
+            ->getMenu($locale);
 
         return $menu;
     }

@@ -30,4 +30,4 @@ services:
         class: %aisel_exception_listener.class%
         arguments:
         tags:
-            - { name: "kernel.event_listener", event: "kernel.exception", method: "onKernelException" }
+            - { name: "kernel.event_listener", event: "kernel.request", method: "onKernelRequest" }

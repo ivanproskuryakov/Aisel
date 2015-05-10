@@ -12,6 +12,7 @@ use Symfony\Component\BrowserKit\Cookie;
 
 /**
  * Class AbstractWebTestCase.
+ *
  */
 abstract class AbstractWebTestCase extends KernelTestCase
 {
