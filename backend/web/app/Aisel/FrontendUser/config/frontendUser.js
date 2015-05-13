@@ -18,7 +18,7 @@ define(['app'], function (app) {
             $stateProvider
                 .state("frontendUsers", {
                     url: "/:locale/users/frontend/",
-                    templateUrl: '/app/Aisel/Resource/views/collection.html',
+                    templateUrl: '/app/Aisel/Kernel/views/collection.html',
                     controller: 'FrontendUserCtrl'
                 })
                 .state("frontendUserEdit", {

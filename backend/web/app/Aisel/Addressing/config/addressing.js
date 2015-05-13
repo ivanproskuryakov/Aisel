@@ -18,7 +18,7 @@ define(['app'], function (app) {
             $stateProvider
                 .state("countries", {
                     url: "/:locale/addressing/country/",
-                    templateUrl: '/app/Aisel/Resource/views/collection.html',
+                    templateUrl: '/app/Aisel/Kernel/views/collection.html',
                     controller: 'AddressingCountryCtrl'
                 })
                 .state("countryEdit", {
@@ -34,7 +34,7 @@ define(['app'], function (app) {
 
                 .state("regions", {
                     url: "/:locale/addressing/region/",
-                    templateUrl: '/app/Aisel/Resource/views/collection.html',
+                    templateUrl: '/app/Aisel/Kernel/views/collection.html',
                     controller: 'AddressingRegionCtrl'
                 })
                 .state("regionEdit", {
@@ -50,7 +50,7 @@ define(['app'], function (app) {
 
                 .state("cities", {
                     url: "/:locale/addressing/city/",
-                    templateUrl: '/app/Aisel/Resource/views/collection.html',
+                    templateUrl: '/app/Aisel/Kernel/views/collection.html',
                     controller: 'AddressingCityCtrl'
                 })
                 .state("cityEdit", {

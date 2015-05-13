@@ -70,7 +70,7 @@ require.config({
     // Kick start application
     deps: [
         './environment',
-        './Aisel/Resource/AiselResource',
+        './Aisel/Kernel/AiselKernel',
         './Aisel/Auth/AiselAuth',
         './Aisel/Dashboard/AiselDashboard',
         './Aisel/FrontendUser/AiselFrontendUser',
