@@ -18,7 +18,7 @@ define(['app'], function (app) {
             $stateProvider
                 .state("navigation", {
                     url: "/:locale/navigation/:lang/",
-                    templateUrl: '/app/Kernel/Resource/views/category.html',
+                    templateUrl: '/app/Aisel/Resource/views/category.html',
                     controller: 'NavigationCtrl'
                 })
                 .state("navigationEdit", {

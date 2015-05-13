@@ -18,7 +18,7 @@ define(['app'], function (app) {
             $stateProvider
                 .state("pages", {
                     url: "/:locale/pages/",
-                    templateUrl: '/app/Kernel/Resource/views/collection.html',
+                    templateUrl: '/app/Aisel/Resource/views/collection.html',
                     controller: 'PageCtrl'
                 })
                 .state("pageEdit", {
@@ -33,7 +33,7 @@ define(['app'], function (app) {
                 })
                 .state("pageCategory", {
                     url: "/:locale/page/category/:lang/",
-                    templateUrl: '/app/Kernel/Resource/views/category.html',
+                    templateUrl: '/app/Aisel/Resource/views/category.html',
                     controller: 'PageCategoryCtrl'
                 })
                 .state("pageCategoryEdit", {

@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselKernel
+ * @name            AiselResource
  * @description     Display tree collections with fancyTree
  */
 
@@ -20,7 +20,7 @@ define(['app'], function (app) {
                 scope: {
                     lang: "@lang"
                 },
-                templateUrl: '/app/Kernel/Resource/views/fancyTree.html'
+                templateUrl: '/app/Aisel/Resource/views/fancyTree.html'
             };
         }]);
 });
