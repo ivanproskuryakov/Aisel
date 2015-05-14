@@ -29,27 +29,6 @@ DirectoryIndex index_dev.html
     </IfModule>
 </IfModule>
 
-
-#<IfModule !mod_rewrite.c>
-#    <IfModule mod_alias.c>
-#        # When mod_rewrite is not available, we instruct a temporary redirect of
-#        # the start page to the front controller explicitly so that the website
-#        # and the generated links can still be used.
-#        RedirectMatch 302 ^/$ /app_dev.php/
-#        # RedirectTemp cannot be used instead
-#    </IfModule>
-#</IfModule>
-
-# Apache Configuration File
-
-# (!) Using `.htaccess` files slows down Apache, therefore, if you have access
-# to the main server config file (usually called `httpd.conf`), you should add
-# this logic there: http://httpd.apache.org/docs/current/howto/htaccess.html.
-
-# ##############################################################################
-# # CROSS-ORIGIN RESOURCE SHARING (CORS)                                       #
-# ##############################################################################
-
 # ------------------------------------------------------------------------------
 # | Cross-domain AJAX requests                                                 |
 # ------------------------------------------------------------------------------
@@ -58,9 +37,9 @@ DirectoryIndex index_dev.html
 # http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
 # http://enable-cors.org/
 
-# <IfModule mod_headers.c>
-#    Header set Access-Control-Allow-Origin "*"
-# </IfModule>
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
 
 # ------------------------------------------------------------------------------
 # | CORS-enabled images                                                        |
