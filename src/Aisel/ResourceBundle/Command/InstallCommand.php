@@ -16,6 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Process\Process;
 
 /**
@@ -49,6 +50,7 @@ EOT
         $output->writeln('<info>**************************************</info>');
         $output->writeln('');
 
+        $this->checkPrerequisites();
         $this->launchSetup($input, $output);
         $output->writeln('<info>Installation finished.</info>');
     }
@@ -58,32 +60,30 @@ EOT
      */
     protected function launchSetup(InputInterface $input, OutputInterface $output)
     {
-//        $output->writeln('<info>Database settings.</info>');
-//        $dialog = $this->getHelperSet()->get('dialog');
+        $output->writeln('<info>Database settings.</info>');
+        $dialog = $this->getHelperSet()->get('dialog');
 
-//        if ($dialog->askConfirmation($output, '<question>Create database and load fixtures (Y/N)?</question>', false)) {
-//            $this->setupDatabase($input, $output);
-//        }
-//
-//        if ($dialog->askConfirmation($output, '<question>Setup files (Y/N)?</question>', false)) {
-//            $this->setupFiles($output);
-//        }
-//        if (self::commandExists('npm')) {
+        if ($dialog->askConfirmation($output, '<question>Create database and load fixtures (Y/N)?</question>', false)) {
+            $this->setupDatabase($input, $output);
+        }
 
+        if ($dialog->askConfirmation($output, '<question>Update demo files (Y/N)?</question>', false)) {
+            $this->setupFiles($output);
+        }
 
-        $commands = [
+        $commands = array(
             'pwd',
             'sh bower.sh',
             'bin/phpunit -c app src/',
-        ];
+        );
 
         foreach ($commands as $command) {
-            $process = new Process($command);
+            $process = new Process($command, null, null, null, 3600);
             $process->run(function ($type, $buffer) {
                 if (Process::ERR === $type) {
-                    echo 'ERR > '.$buffer;
+                    echo 'ERR > ' . $buffer;
                 } else {
-                    echo 'OUT > '.$buffer;
+                    echo 'OUT > ' . $buffer;
                 }
             });
 
@@ -135,6 +135,26 @@ EOT
         return $this;
     }
 
+
+    /**
+     * checkPrerequisites
+     *
+     * @return bool
+     */
+    private static function checkPrerequisites()
+    {
+        $commands = array(
+            'bower'
+        );
+
+        foreach ($commands as $command) {
+            if (self::commandExists($command) === false) {
+                throw new LogicException("$command is required and must be installed");
+            }
+        }
+
+        return true;
+    }
 
     /**
      * @param $command
