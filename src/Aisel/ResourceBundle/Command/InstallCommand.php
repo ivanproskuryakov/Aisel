@@ -50,7 +50,7 @@ EOT
         $output->writeln('<info>**************************************</info>');
         $output->writeln('');
 
-        $this->checkPrerequisites();
+        $this->checkDependencies();
         $this->launchSetup($input, $output);
         $output->writeln('<info>Installation finished.</info>');
     }
@@ -71,28 +71,9 @@ EOT
             $this->setupFiles($output);
         }
 
-        $commands = array(
-            'pwd',
-            'sh bower.sh',
-            'bin/phpunit -c app src/',
-        );
-
-        foreach ($commands as $command) {
-            $process = new Process($command, null, null, null, 3600);
-            $process->run(function ($type, $buffer) {
-                if (Process::ERR === $type) {
-                    echo 'ERR > ' . $buffer;
-                } else {
-                    echo 'OUT > ' . $buffer;
-                }
-            });
-
-            if (!$process->isSuccessful()) {
-                throw new \RuntimeException($process->getErrorOutput());
-            }
-            echo $process->getOutput();
+        if ($dialog->askConfirmation($output, '<question>Install frontend dependencies (Y/N)?</question>', false)) {
+            $this->installDependencies($output);
         }
-
 
         return $this;
     }
@@ -112,6 +93,29 @@ EOT
         $this->runCommand('doctrine:schema:create', $input, $output);
         $this->runCommand('doctrine:fixtures:load', $input, $output);
     }
+
+    /**
+     * setupFiles
+     */
+    protected function installDependencies(OutputInterface $output)
+    {
+        $commands = array(
+            'sh bower.sh',
+        );
+
+        foreach ($commands as $command) {
+            $process = new Process($command, null, null, null, 3600);
+            $process->run(function ($type, $buffer) {
+                echo $buffer;
+            });
+
+            if (!$process->isSuccessful()) {
+                throw new \RuntimeException($process->getErrorOutput());
+            }
+            echo $process->getOutput();
+        }
+    }
+
 
     /**
      * setupFiles
@@ -141,7 +145,7 @@ EOT
      *
      * @return bool
      */
-    private static function checkPrerequisites()
+    private static function checkDependencies()
     {
         $commands = array(
             'bower'

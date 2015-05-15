@@ -58,7 +58,7 @@ define(['app'], function (app) {
                 return $http.get(url);
             },
             getUserInformation: function () {
-                var url = Environment.settings.api + '/user/';
+                var url = Environment.settings.api + '/user/information/';
                 console.log(url);
                 return $http.get(url);
             }
