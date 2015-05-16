@@ -18,10 +18,10 @@ Backend demo: `http://admin.ecommerce.aisel.co/` [backenduser/backenduser]<br/>
 Installation
 -----------------------------------
 ```
-git clone git@github.com:ivanproskuryakov/Aisel.git
-cd Aisel
-composer install
-php app/console aisel:install
+1. git clone git@github.com:ivanproskuryakov/Aisel.git
+2. cd Aisel
+3. composer install
+4. php app/console aisel:install
 ```
 Apache virtual hosts<br/>
 https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
