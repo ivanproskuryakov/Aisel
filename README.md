@@ -15,21 +15,18 @@ Backend demo: `http://admin.ecommerce.aisel.co/` [backenduser/backenduser]<br/>
 <img width="200" src="http://aisel.co/screenshots/frontend_dashboard.png"/>
 <img width="200" src="http://aisel.co/screenshots/frontend_checkout.png"/>
 
-Installation: development branch
+Installation
 -----------------------------------
+```
+git clone git@github.com:ivanproskuryakov/Aisel.git
+cd Aisel
+composer install
+php app/console aisel:install
+```
+Apache virtual hosts<br/>
+https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
+Aisel uses Bower as for managing dependencies, make sure that you have it.
 
-1. Download latest from master: <br/>
-`git clone https://github.com/ivanproskuryakov/Aisel.git`
-then `cd to aisel/` and download composer <br/>
-`curl -sS https://getcomposer.org/installer | php` <br/>
-2. Install frontend dependencies with Bower for "/frontend" and "/backend" directories<br/>
-running `bower install` command
-<br/>
-Once this steps is done you will be able to access admin section:<br/>
-`http://admin.aisel.dev/`<br/>
-
-Apache hosts:<br/>
-https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host
 
 Running Tests
 -----------------------------------
