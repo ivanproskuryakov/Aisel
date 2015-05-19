@@ -4,7 +4,7 @@
 #Node.js
 /node_modules/*
 
-#Frontend
+#Frontend AngularJS
 /frontend/web/.htaccess
 /frontend/web/robots.txt
 /frontend/web/sitemap.xml
@@ -17,12 +17,14 @@
 /frontend/web/css/*
 /frontend/web/build/*
 
-#Backend
+#Backend AngularJS
+/backend/web/.htaccess
 /backend/web/bower_components/*
 /backend/web/npm-debug.log
 /backend/web/build/*
 
-#Symfony
+#Symfony API
+/web/.htaccess
 /web/media/product/*
 !/web/web/media/product/.htaccess
 /web/css/*

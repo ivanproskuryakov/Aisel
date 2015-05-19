@@ -121,10 +121,14 @@ EOT
     protected function setupFiles(OutputInterface $output)
     {
         $fs = new Filesystem();
+        $apiDir = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../web');
         $frontendDir = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../frontend/web');
+        $backendDir = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../backend/web');
         $fs->copy($frontendDir . '/robots.txt.dist', $frontendDir . '/robots.txt');
         $fs->copy($frontendDir . '/images/logo.png.dist', $frontendDir . '/images/logo.png');
         $fs->copy($frontendDir . '/.htaccess.dist', $frontendDir . '/.htaccess');
+        $fs->copy($backendDir . '/.htaccess.dist', $backendDir . '/.htaccess');
+        $fs->copy($apiDir . '/.htaccess.dist', $apiDir . '/.htaccess');
     }
 
     protected function runCommand($command, InputInterface $input, OutputInterface $output)

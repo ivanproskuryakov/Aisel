@@ -83,8 +83,8 @@ class OrderRepository extends AbstractCollectionRepository
             $orderItem->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
             $orderItem->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
             $em->persist($orderItem);
-            $em->flush();
         }
+        $em->flush();
 
         // Set totals
         $order->setTotalAmount($total);
