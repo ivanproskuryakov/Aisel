@@ -115,7 +115,7 @@ class ConfigManager
      *
      * @return array $formArray
      */
-    public function prepare($config)
+    public function prepare(array $config)
     {
         $decoded = array();
 

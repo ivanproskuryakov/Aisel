@@ -135,7 +135,6 @@ class ApiController extends Controller
                 return array('message' => $response);
             }
         } else {
-
             return array('message' => 'User not found!');
         }
 

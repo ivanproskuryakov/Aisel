@@ -13,24 +13,18 @@ namespace Aisel\OrderBundle\Manager;
 
 use LogicException;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
-use Payum\Core\Request\Capture;
 use Aisel\OrderBundle\Entity\Order;
 use Aisel\CartBundle\Manager\CartManager;
 use Aisel\ConfigBundle\Manager\ConfigManager;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Manager for Orders, mostly used in REST API
+ * OrderManager
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class OrderManager
 {
-    /**
-     * @var ContainerInterface
-     */
-    protected $sc;
 
     /**
      * @var EntityManager
@@ -50,18 +44,15 @@ class OrderManager
     /**
      * Constructor
      *
-     * @param ContainerInterface $serviceContainer
-     * @param EntityManager      $entityManager
-     * @param ConfigManager      $configManager
-     * @param CartManager        $cartManager
+     * @param EntityManager $entityManager
+     * @param ConfigManager $configManager
+     * @param CartManager   $cartManager
      */
     public function __construct(
-        ContainerInterface $serviceContainer,
         EntityManager $entityManager,
         ConfigManager $configManager,
         CartManager $cartManager
     ) {
-        $this->sc = $serviceContainer;
         $this->em = $entityManager;
         $this->settingsManager = $configManager;
         $this->cartManager = $cartManager;
@@ -139,6 +130,7 @@ class OrderManager
         if (count($user->getCart()) == 0) {
             throw new LogicException('User cart is empty');
         };
+
         $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromCartForUser(
@@ -146,12 +138,12 @@ class OrderManager
                 $this->getCurrencyCode($orderInfo['locale']),
                 $orderInfo
             );
-        $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
-            $orderInfo['payment_method'],
-            $order,
-            'aisel_payum_order'
-        );
-        $token->getTargetUrl();
+//        $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
+//            $orderInfo['payment_method'],
+//            $order,
+//            'aisel_payum_order'
+//        );
+//        $token->getTargetUrl();
 
 //        $payment = $this->sc->get('payum')->getPayment('offline');
 //        $payment->execute(new Capture($order));

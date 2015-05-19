@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Process\Process;
@@ -116,7 +115,6 @@ EOT
         }
     }
 
-
     /**
      * setupFiles
      */
@@ -138,7 +136,6 @@ EOT
 
         return $this;
     }
-
 
     /**
      * checkPrerequisites
@@ -169,7 +166,7 @@ EOT
     {
         $installedCommand = "command -v $command";
 
-        return (bool)shell_exec($installedCommand);
+        return (bool) shell_exec($installedCommand);
     }
 
 }
