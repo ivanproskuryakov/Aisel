@@ -51,8 +51,6 @@ class LoadMenuTopData extends XMLFixture implements OrderedFixtureInterface
                     $menu->setTitle($table->column[7]);
                     $menu->setMetaUrl($table->column[8]);
                     $menu->setStatus($table->column[9]);
-                    $menu->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $menu->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
                     if ($rootCategory) {
                         $menu->setParent($rootCategory);

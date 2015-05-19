@@ -63,8 +63,6 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
                         $product->addCategory($category);
                     }
 
-                    $product->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                    $product->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                     $manager->persist($product);
                     $manager->flush();
                     $this->addReference('product_' . $table->column[0], $product);

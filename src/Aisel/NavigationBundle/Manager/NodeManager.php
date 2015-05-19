@@ -40,8 +40,6 @@ class NodeManager extends AbstractNodeManager
         $node->setParent($nodeParent);
         $node->setMetaUrl('/#!/');
         $node->setStatus(false);
-        $node->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $node->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
         $this->em->persist($node);
         $this->em->flush();
@@ -59,8 +57,6 @@ class NodeManager extends AbstractNodeManager
         $node->setTitle($params['name']);
         $node->setMetaUrl('/#!/');
         $node->setStatus(false);
-        $node->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $node->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
         $this->em->persist($node);
         $this->em->flush();

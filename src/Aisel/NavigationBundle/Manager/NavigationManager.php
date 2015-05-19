@@ -11,7 +11,6 @@
 
 namespace Aisel\NavigationBundle\Manager;
 
-use Aisel\NavigationBundle\Entity\Menu;
 use Doctrine\ORM\EntityManager;
 
 /**

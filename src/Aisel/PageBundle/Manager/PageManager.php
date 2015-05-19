@@ -34,7 +34,7 @@ class PageManager
      *
      * @param EntityManager $entityManager
      */
-    public function __construct($entityManager)
+    public function __construct(EntityManager $entityManager)
     {
         $this->em = $entityManager;
     }
@@ -46,7 +46,7 @@ class PageManager
      *
      * @return array $categories
      */
-    public function getPageCategories($page)
+    public function getPageCategories(Page $page)
     {
         $categories = array();
 
