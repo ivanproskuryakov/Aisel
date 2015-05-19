@@ -21,7 +21,6 @@ services:
             - @jms_serializer
             - @doctrine.orm.entity_manager
             - @validator
-            - @security.token_storage
             - @event_dispatcher
         tags:
             - { name: request.param_converter, converter: api_param_converter }

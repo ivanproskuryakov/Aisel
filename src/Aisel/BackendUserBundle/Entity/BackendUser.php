@@ -199,8 +199,7 @@ class BackendUser implements AdvancedUserInterface
             $this->id,
             $this->username,
             $this->password,
-            // see section on salt below
-//             $this->salt,
+            $this->salt,
         ));
     }
 
@@ -213,8 +212,7 @@ class BackendUser implements AdvancedUserInterface
             $this->id,
             $this->username,
             $this->password,
-            // see section on salt below
-//             $this->salt
+            $this->salt
             ) = unserialize($serialized);
     }
 

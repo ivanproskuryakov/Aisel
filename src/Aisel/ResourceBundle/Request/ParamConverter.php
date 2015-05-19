@@ -18,7 +18,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter as SensioPar
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Aisel\ResourceBundle\Exception\ValidationFailedException;
@@ -35,10 +34,6 @@ class ParamConverter extends RequestBodyParamConverter
      */
     protected $em;
 
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
 
     /**
      * @var EventDispatcherInterface
@@ -49,19 +44,16 @@ class ParamConverter extends RequestBodyParamConverter
      * @param Serializer               $serializer
      * @param EntityManager            $entityManager
      * @param ValidatorInterface       $validator
-     * @param TokenStorageInterface    $tokenStorage
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
         Serializer $serializer,
         EntityManager $entityManager,
         ValidatorInterface $validator,
-        TokenStorageInterface $tokenStorage,
         EventDispatcherInterface $dispatcher
     ) {
         parent::__construct($serializer, null, null, $validator, 'error');
         $this->em = $entityManager;
-        $this->tokenStorage = $tokenStorage;
         $this->dispatcher = $dispatcher;
     }
 

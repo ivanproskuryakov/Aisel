@@ -14,7 +14,7 @@ namespace Aisel\OrderBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * Controller to handle Payum order capture
+ * PayumController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -22,23 +22,9 @@ class PayumController extends Controller
 {
 
     /**
-     * Cart manager
-     */
-    private function getOrderManager()
-    {
-        return $this->get('aisel.order.manager');
-    }
-
-    /**
-     * User manager
-     */
-    private function getUserManager()
-    {
-        return $this->get('frontend.user.manager');
-    }
-
-    /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * orderAction
+     *
+     * @return null
      */
     public function orderAction()
     {
