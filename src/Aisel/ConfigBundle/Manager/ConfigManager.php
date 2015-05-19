@@ -111,9 +111,9 @@ class ConfigManager
     /**
      * Prepare config data for later use in form
      *
-     * @param string $config
+     * @param array $config
      *
-     * @return array $formArray
+     * @return array $decoded
      */
     public function prepare(array $config)
     {

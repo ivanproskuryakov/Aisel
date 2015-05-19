@@ -11,7 +11,6 @@
 
 namespace Aisel\NavigationBundle\Entity;
 
-use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
 
 /**
@@ -19,7 +18,6 @@ use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-//class MenuRepository extends NestedTreeRepository
 class MenuRepository extends AbstractCollectionRepository
 {
 

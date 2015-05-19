@@ -138,15 +138,7 @@ class OrderManager
                 $this->getCurrencyCode($orderInfo['locale']),
                 $orderInfo
             );
-//        $token = $this->sc->get('payum.security.token_factory')->createCaptureToken(
-//            $orderInfo['payment_method'],
-//            $order,
-//            'aisel_payum_order'
-//        );
-//        $token->getTargetUrl();
 
-//        $payment = $this->sc->get('payum')->getPayment('offline');
-//        $payment->execute(new Capture($order));
         return $order;
     }
 

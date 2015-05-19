@@ -35,7 +35,7 @@
         "friendsofsymfony/rest-bundle": "1.4.*@dev",
 
         "jms/serializer-bundle": "0.13.*@dev",
-        "iphp/filestore-bundle": "dev-master",
+        "iphp/filestore-bundle" : "@stable",
         "payum/payum-bundle": "0.13.*@dev",
         "payum/payum": "0.13.*@dev",
 

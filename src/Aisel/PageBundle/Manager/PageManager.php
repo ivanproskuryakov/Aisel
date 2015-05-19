@@ -73,7 +73,12 @@ class PageManager
      */
     public function getPageByURL($urlKey, $locale)
     {
-        $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(array('metaUrl' => $urlKey));
+        $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(
+            array(
+                'metaUrl' => $urlKey,
+                'locale' => $locale
+            )
+        );
 
         if (!$page) {
             throw new LogicException('Nothing found');

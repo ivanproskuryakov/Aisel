@@ -14,6 +14,7 @@ namespace Aisel\OrderBundle\Manager;
 use LogicException;
 use Aisel\OrderBundle\Entity\Invoice;
 use Doctrine\ORM\EntityManager;
+use Aisel\OrderBundle\Entity\Order;
 
 /**
  * InvoiceManager
@@ -60,12 +61,12 @@ class InvoiceManager
     /**
      * Create invoice for order Id
      *
-     * @param \Aisel\OrderBundle\Entity\Order $order
+     * @param Order $order
      *
-     * @return \Aisel\OrderBundle\Entity\Invoice $invoice|false
+     * @return Invoice $invoice|false
      *
      */
-    public function createInvoiceForOrder($order)
+    public function createInvoiceForOrder(Order $order)
     {
         if ($order) {
 
