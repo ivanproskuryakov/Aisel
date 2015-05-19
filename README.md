@@ -23,6 +23,8 @@ Installation
 3. composer install
 4. php app/console aisel:install
 ```
+Screencast: http://www.youtube.com/watch?v=Z1FDuhCtc38<br/>
+
 Apache virtual hosts<br/>
 https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
 Aisel uses Bower as for managing dependencies, make sure that you have it.
