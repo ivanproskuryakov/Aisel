@@ -15,6 +15,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
 use Aisel\ProductBundle\Entity\Product;
+use Aisel\ProductBundle\Entity\Image;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
@@ -66,17 +67,16 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
                     $manager->persist($product);
                     $manager->flush();
                     $this->addReference('product_' . $table->column[0], $product);
-                    $this->setProductImage($manager->getConnection(), $product);
+                    $this->setProductImage($manager, $product);
                 }
             }
         }
     }
 
-    private function setProductImage($connection, $product)
+    private function setProductImage(ObjectManager $manager, $product)
     {
 
         $uploadDir = $this->container->getParameter('application.media.product.upload_dir');
-        $uploadPath = $this->container->getParameter('application.media.product.upload_path');
         $fixtureImage = dirname($this->container->getParameter('kernel.root_dir')) .
             $this->container->getParameter('aisel_fixture.xml.path') .
             DIRECTORY_SEPARATOR . 'images/products/' . $this->productImage;
@@ -90,30 +90,26 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
                 echo "An error occurred while creating your directory at " . $e->getPath();
             }
         }
-
-        $sql = serialize(array(
-            'fileName' => '/' . $product->getId() . '/' . $this->productImage,
-            'originalName' => $this->productImage,
-            'mimeType' => 'image/jpeg',
-            'size' => 0,
-            'path' => $uploadPath . "/" . $product->getId() . '/' . $this->productImage,
-            'width' => 500,
-            'height' => 500
-        ));
+        $fileName = '/' . $product->getId() . '/' . $this->productImage;
 
         if (file_exists($fixtureImage)) {
 
             if (file_exists($productDir) === false ) {
                 mkdir($productDir);
             }
-
             $newPath = realpath($productDir) . DIRECTORY_SEPARATOR . $this->productImage;
 
             if (file_exists($newPath)) {
                 unlink($newPath);
             }
             copy($fixtureImage, $newPath);
-            $connection->exec("UPDATE `aisel_product` SET `mainImage` = '" . $sql . "' WHERE `aisel_product`.`id` = " . $product->getId() . ";");
+
+            $image = new Image();
+            $image->setFilename($fileName);
+            $image->setProduct($product);
+            $image->setMainImage(true);
+            $manager->persist($image);
+            $manager->flush();
         }
     }
 

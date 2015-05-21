@@ -4,6 +4,7 @@ namespace Aisel\ProductBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Image
@@ -25,6 +26,13 @@ class Image
     private $id;
 
     /**
+     * @var boolean
+     * @Assert\Type(type="bool")
+     * @ORM\Column(type="boolean")
+     */
+    private $mainImage = false;
+
+    /**
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
@@ -37,6 +45,20 @@ class Image
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
     private $product;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
 
     /**
      * Get id
@@ -93,4 +115,42 @@ class Image
     {
         return $this->product;
     }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isMainImage()
+    {
+        return $this->mainImage;
+    }
+
+    /**
+     * @param boolean $mainImage
+     */
+    public function setMainImage($mainImage)
+    {
+        $this->mainImage = $mainImage;
+    }
+
+
 }

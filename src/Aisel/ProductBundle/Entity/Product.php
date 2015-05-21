@@ -2,7 +2,6 @@
 
 namespace Aisel\ProductBundle\Entity;
 
-use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -15,7 +14,6 @@ use Doctrine\Common\Collections\Collection;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  *
- * @FileStore\Uploadable
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\ProductBundle\Entity\ProductRepository")
  * @ORM\Table(name="aisel_product")
@@ -183,30 +181,10 @@ class Product
     private $metaKeywords;
 
     /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime")
-     * @Gedmo\Timestampable(on="create")
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime")
-     * @Gedmo\Timestampable(on="update")
-     */
-    private $updatedAt;
-
-    /**
-     * @var array
-     * @ORM\Column(type="text", length=255, nullable=true)
-     */
-    private $mainImage;
-
-    /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Image", mappedBy="product", cascade={"remove"})
      */
-    private $image;
+    private $images;
 
     /**
      * @var ArrayCollection
@@ -221,6 +199,20 @@ class Product
     private $categories;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
+
+    /**
      * @inheritdoc
      */
     public function __toString()
@@ -233,7 +225,7 @@ class Product
      */
     public function __construct()
     {
-        $this->image = new ArrayCollection();
+        $this->simage = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
 
@@ -619,7 +611,7 @@ class Product
      * Set hidden
      *
      * @param  boolean $hidden
-     * @return Page
+     * @return Product
      */
     public function setHidden($hidden)
     {
@@ -754,19 +746,6 @@ class Product
     }
 
     /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return Product
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
      * Get createdAt
      *
      * @return \DateTime
@@ -774,19 +753,6 @@ class Product
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param  \DateTime $updatedAt
-     * @return Product
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
@@ -800,29 +766,6 @@ class Product
     }
 
     /**
-     * Set mainImage
-     *
-     * @param  array   $mainImage
-     * @return Product
-     */
-    public function setMainImage($mainImage)
-    {
-        $this->mainImage = $mainImage;
-
-        return $this;
-    }
-
-    /**
-     * Get mainImage
-     *
-     * @return array
-     */
-    public function getMainImage()
-    {
-        return $this->mainImage;
-    }
-
-    /**
      * Add image
      *
      * @param  Image   $image
@@ -830,7 +773,7 @@ class Product
      */
     public function addImage(Image $image)
     {
-        $this->image[] = $image;
+        $this->images[] = $image;
 
         return $this;
     }
@@ -842,17 +785,27 @@ class Product
      */
     public function removeImage(Image $image)
     {
-        $this->image->removeElement($image);
+        $this->images->removeElement($image);
     }
 
     /**
-     * Get image
+     * Get images
      *
      * @return Collection
      */
-    public function getImage()
+    public function getImages()
     {
-        return $this->image;
+        return $this->images;
+    }
+
+    /**
+     * Get images
+     *
+     * @return Collection
+     */
+    public function getMainImage()
+    {
+        return $this->images;
     }
 
     /**

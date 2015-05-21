@@ -3,13 +3,17 @@
         <h2>{{productDetails.name}}</h2>
     </div>
     <div class="col-md-4">
-        <img class="img-rounded"
-             src="{{media}}{{productDetails.main_image.path}}"
-             data-holder-rendered="true" style="width: 100%;">
+        <div ng-repeat="image in productDetails.images">
+            <img class="img-rounded"
+                 ng-if="image.main_image === true"
+                 src="{{media}}{{image.filename}}"
+                 data-holder-rendered="true" style="width: 100%;">
+        </div>
     </div>
     <div class="col-md-8">
         <div class="row">
             <div class="col-md-12">
+                {{productDetails.main_image}}
                 <p><span class="label label-warning">{{productDetails.price}} {{currency}}</span></p>
 
                 <p><span class="glyphicon glyphicon-calendar"></span> {{productDetails.created_at |

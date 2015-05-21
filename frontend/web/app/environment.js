@@ -20,7 +20,7 @@ define(['angular'],
             .service('Environment', function () {
                 return {
                     settings: {
-                        media: 'http://api.' + document.domain,
+                        media: 'http://api.' + document.domain + '/media/product',
                         api: 'http://api.' + document.domain + '/api',
                         locale: {
                             "primary": 'en',

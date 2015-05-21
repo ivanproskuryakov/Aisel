@@ -15,12 +15,25 @@
 define(['app'], function (app) {
     console.log('Kernel init service loaded ...');
     angular.module('app')
-        .service('initService', ['$http', '$rootScope', 'settingsService',
-            'authService', 'userService', 'pageCategoryService',
-            'productCategoryService', 'Environment',
-            function ($http, $rootScope, settingsService,
-                      authService, userService, pageCategoryService,
-                      productCategoryService, Environment) {
+        .service('initService', [
+            '$http',
+            '$rootScope',
+            'settingsService',
+            'authService',
+            'userService',
+            'pageCategoryService',
+            'productCategoryService',
+            'Environment',
+            function (
+                $http,
+                $rootScope,
+                settingsService,
+                authService,
+                userService,
+                pageCategoryService,
+                productCategoryService,
+                Environment
+                ) {
                 return {
                     launch: function () {
 
