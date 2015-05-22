@@ -184,12 +184,9 @@ class UserManager implements UserProviderInterface
     public function registerFixturesUser(array $userData)
     {
         $user = new FrontendUser();
-        $encoder = $this->encoder->getEncoder($user);
-        $encodedPassword = $encoder->encodePassword($userData['password'], $user->getSalt());
-
         $user->setEmail($userData['email']);
         $user->setUsername($userData['username']);
-        $user->setPassword($encodedPassword);
+        $user->setPlainPassword($userData['password']);
         $user->setEnabled($userData['enabled']);
         $user->setLocked($userData['locked']);
         $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
