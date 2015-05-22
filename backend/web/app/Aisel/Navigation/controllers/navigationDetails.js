@@ -13,7 +13,14 @@
  */
 
 define(['app'], function (app) {
-    app.controller('NavigationDetailCtrl', function ($controller, $scope, resourceService) {
+    app.controller('NavigationDetailCtrl', function (
+        $controller,
+        $scope,
+        resourceService,
+        $state,
+        $stateParams,
+        Environment
+        ) {
 
         $scope.route = {
             name: 'Navigation',
@@ -26,6 +33,16 @@ define(['app'], function (app) {
             $scope: $scope,
             itemService: itemService
         }));
+
+        // CANCEL
+        $scope.editCancel = function () {
+            $state.transitionTo(
+                $scope.route.collection, {
+                    locale: Environment.currentLocale(),
+                    lang: $stateParams.lang
+                }
+            );
+        };
 
     });
 });

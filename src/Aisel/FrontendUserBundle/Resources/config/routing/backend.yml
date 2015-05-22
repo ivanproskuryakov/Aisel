@@ -16,3 +16,21 @@ admin_api_aisel_frontenduser_get:
     defaults:  { _controller: AiselFrontendUserBundle:Admin/Api:get, _format: json }
     requirements:
         _method: GET
+
+admin_api_aisel_frontenduser_put:
+    pattern:   /frontenduser/{id}
+    defaults:  { _controller: AiselFrontendUserBundle:Admin/Api:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_frontenduser_delete:
+    pattern:   /frontenduser/{id}
+    defaults:  { _controller: AiselFrontendUserBundle:Admin/Api:delete, _format: json }
+    requirements:
+        _method: DELETE
+
+admin_api_aisel_frontenduser_post:
+    pattern:   /frontenduser/
+    defaults:  { _controller: AiselFrontendUserBundle:Admin/Api:post, _format: json }
+    requirements:
+        _method: POST

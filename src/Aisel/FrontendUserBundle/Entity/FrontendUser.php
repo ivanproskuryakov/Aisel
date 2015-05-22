@@ -16,6 +16,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as JMS;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * FrontendUser
@@ -25,6 +27,8 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\FrontendUserBundle\Entity\FrontendUserRepository")
  * @ORM\Table(name="aisel_user_frontend")
+ * @UniqueEntity("username")
+ * @UniqueEntity("email")
  */
 class FrontendUser implements AdvancedUserInterface//, \Serializable
 {
@@ -57,7 +61,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
-     * @Assert\NotNull()
+     * @JMS\Exclude
      */
     private $password;
 
@@ -65,6 +69,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @JMS\Exclude
      */
     private $salt;
 
@@ -74,7 +79,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
-    private $enabled;
+    private $enabled = false;
 
     /**
      * @var boolean
@@ -114,6 +119,8 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * Plain password. Used for model validation. Must not be persisted.
      *
      * @var string
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $plainPassword;
 

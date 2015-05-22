@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Aisel\ProductBundle\Entity\Product;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Order
@@ -111,6 +112,9 @@ class Order
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
      */
     private $frontenduser;
 
@@ -124,6 +128,9 @@ class Order
     /**
      * @var OrderItem
      * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\OrderItem", mappedBy="order")
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("Aisel\OrderBundle\Entity\OrderItem")
      */
     private $item;
 

@@ -25,4 +25,5 @@ class ApiNodeController extends AbstractCollectionController
     protected $model = array(
         'class' => "Aisel\NavigationBundle\Entity\Menu",
     );
+
 }

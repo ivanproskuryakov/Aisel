@@ -17,6 +17,24 @@ admin_api_aisel_backenduser_get:
     requirements:
         _method: GET
 
+admin_api_aisel_backenduser_put:
+    pattern:   /backenduser/{id}
+    defaults:  { _controller: AiselBackendUserBundle:Admin/Api:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_backenduser_delete:
+    pattern:   /backenduser/{id}
+    defaults:  { _controller: AiselBackendUserBundle:Admin/Api:delete, _format: json }
+    requirements:
+        _method: DELETE
+
+admin_api_aisel_backenduser_post:
+    pattern:   /backenduser/
+    defaults:  { _controller: AiselBackendUserBundle:Admin/Api:post, _format: json }
+    requirements:
+        _method: POST
+
 admin_api_aisel_backenduser_login:
     pattern:  /user/login/
     defaults: { _controller: AiselBackendUserBundle:Api:login, _format: json }

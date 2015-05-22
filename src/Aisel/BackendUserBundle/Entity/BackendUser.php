@@ -14,8 +14,9 @@ namespace Aisel\BackendUserBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
-
+use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * BackendUser
@@ -25,6 +26,8 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\BackendUserBundle\Entity\BackendUserRepository")
  * @ORM\Table(name="aisel_user_backend")
+ * @UniqueEntity("username")
+ * @UniqueEntity("email")
  */
 class BackendUser implements AdvancedUserInterface
 {
@@ -40,6 +43,7 @@ class BackendUser implements AdvancedUserInterface
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @Assert\NotNull()
      */
     private $username;
 
@@ -47,6 +51,7 @@ class BackendUser implements AdvancedUserInterface
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @Assert\NotNull()
      */
     private $email;
 
@@ -54,6 +59,7 @@ class BackendUser implements AdvancedUserInterface
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @JMS\Exclude
      */
     private $password;
 
@@ -61,6 +67,7 @@ class BackendUser implements AdvancedUserInterface
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @JMS\Exclude
      */
     private $salt;
 
@@ -70,7 +77,7 @@ class BackendUser implements AdvancedUserInterface
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
-    private $enabled;
+    private $enabled = false;
 
     /**
      * @var boolean
@@ -78,7 +85,7 @@ class BackendUser implements AdvancedUserInterface
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
-    private $locked;
+    private $locked = true;
 
     /**
      * @var \DateTime
@@ -110,13 +117,10 @@ class BackendUser implements AdvancedUserInterface
      * Plain password. Used for model validation. Must not be persisted.
      *
      * @var string
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $plainPassword;
-
-    public function __construct()
-    {
-        $this->salt = md5(uniqid(null, true));
-    }
 
     /**
      * Get id
@@ -416,4 +420,5 @@ class BackendUser implements AdvancedUserInterface
     {
         return $this->lastLogin;
     }
+
 }
