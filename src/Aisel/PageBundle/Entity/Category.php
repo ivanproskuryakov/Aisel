@@ -15,6 +15,7 @@ use Aisel\ResourceBundle\Entity\Category as BaseCategory;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Category
@@ -33,6 +34,8 @@ class Category extends BaseCategory
      * @var string
      * @ORM\Column(type="text")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $description;
 
@@ -41,6 +44,8 @@ class Category extends BaseCategory
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaUrl;
 
@@ -48,6 +53,8 @@ class Category extends BaseCategory
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaTitle;
 
@@ -55,6 +62,8 @@ class Category extends BaseCategory
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaDescription;
 
@@ -62,6 +71,8 @@ class Category extends BaseCategory
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaKeywords;
 

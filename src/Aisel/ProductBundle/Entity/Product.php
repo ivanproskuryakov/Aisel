@@ -102,6 +102,7 @@ class Product
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
@@ -109,6 +110,7 @@ class Product
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
@@ -130,6 +132,7 @@ class Product
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */

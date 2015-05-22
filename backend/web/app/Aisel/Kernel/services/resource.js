@@ -41,6 +41,7 @@ define(['app'], function (app) {
             };
             resourceService.prototype.save = function (data) {
                 var url = Environment.settings.api + '/' + this.resource + '/' + data.id;
+                console.log(data);
                 return $http({
                     method: 'PUT',
                     url: url,

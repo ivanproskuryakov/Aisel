@@ -12,6 +12,7 @@
 namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * ApiNodeControllerTest
@@ -31,11 +32,39 @@ class ApiNodeControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
+    public function testPostProductNodeAction()
+    {
+        $data = [
+            'locale' => 'en',
+            'title' => 'AAA',
+            'description' => 'test',
+            'status' => true,
+            'meta_url' => 'metaUrl_' . time(),
+            'meta_title' => 'metaTitle_' . time(),
+        ];
+
+        $this->client->request(
+            'POST',
+            '/backend/api/product/category/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->assertEmpty($content);
+        $this->assertTrue(201 === $statusCode);
+    }
+
     public function testGetProductNodesAction()
     {
         $this->client->request(
             'GET',
-            '/backend/api/product/category/?locale=en/'
+            '/backend/api/product/category/?locale=en'
         );
 
         $response = $this->client->getResponse();
@@ -50,7 +79,89 @@ class ApiNodeControllerTest extends AbstractWebTestCase
 
     public function testGetProductNodeAction()
     {
-        $this->markTestSkipped('Unit test is missing');
+        $ProductNode = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Category')
+            ->findOneBy(['title' => 'AAA']);
+
+        $this->client->request(
+            'GET',
+            '/backend/api/product/category/' . $ProductNode->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $ProductNode->getId());
     }
 
+
+    public function testPutProductNodeAction()
+    {
+        $ProductNode = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Category')
+            ->findOneBy(['title' => 'AAA']);
+        $id = $ProductNode->getId();
+        $data['locale'] = 'ru';
+
+        $this->client->request(
+            'PUT',
+            '/backend/api/product/category/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $ProductNode = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Category')
+            ->findOneBy(['title' => 'AAA']);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNotNull($ProductNode);
+        $this->assertEquals($data['locale'], $ProductNode->getLocale());
+    }
+
+    public function testDeleteProductNodeAction()
+    {
+        $ProductNode = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Category')
+            ->findOneBy(['title' => 'AAA']);
+        $id = $ProductNode->getId();
+
+        $this->client->request(
+            'DELETE',
+            '/backend/api/product/category/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $ProductNode = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Category')
+            ->findOneBy(['id' => $id]);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNull($ProductNode);
+    }
 }

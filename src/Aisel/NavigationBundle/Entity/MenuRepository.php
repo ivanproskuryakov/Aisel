@@ -23,26 +23,4 @@ class MenuRepository extends AbstractCollectionRepository
 
     protected $entity = 'AiselNavigationBundle:Menu';
 
-    /**
-     * Get enabled menu items sorted as tree
-     *
-     * @param string $locale
-     *
-     * @return object
-     */
-    public function getEnabledMenuItems($locale)
-    {
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $r = $qb->select('m')
-            ->from($this->entity, 'm')
-            ->where('m.status = 1')
-            ->andWhere('m.locale = :locale')->setParameter('locale', $locale)
-            ->orderBy('m.root', 'ASC')
-            ->addOrderBy('m.lft', 'ASC')
-            ->getQuery()
-            ->execute();
-
-        return $r;
-    }
-
 }

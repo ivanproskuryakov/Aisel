@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Category
@@ -23,6 +24,8 @@ abstract class Category
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $id;
 
@@ -30,8 +33,29 @@ abstract class Category
      * @var string
      * @ORM\Column(type="string", length=2, nullable=false)
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $locale;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
+     */
+    protected $title;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("boolean")
+     */
+    protected $status;
 
     /**
      * @Gedmo\TreeLeft
@@ -69,21 +93,6 @@ abstract class Category
      * @ORM\OrderBy({"lft" = "ASC"})
      */
     protected $children;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotNull()
-     */
-    protected $title;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean")
-     * @Assert\Type(type="bool")
-     * @Assert\NotNull()
-     */
-    protected $status;
 
     /**
      * @var \DateTime

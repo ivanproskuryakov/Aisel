@@ -12,6 +12,7 @@
 namespace Aisel\PageBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * ApiNodeControllerTest
@@ -31,6 +32,34 @@ class ApiNodeControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
+    public function testPostPageNodeAction()
+    {
+        $data = [
+            'locale' => 'en',
+            'title' => 'AAA',
+            'description' => 'test',
+            'status' => true,
+            'meta_url' => 'metaUrl_' . time(),
+            'meta_title' => 'metaTitle_' . time(),
+        ];
+
+        $this->client->request(
+            'POST',
+            '/backend/api/page/category/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->assertEmpty($content);
+        $this->assertTrue(201 === $statusCode);
+    }
+
     public function testGetPageNodesAction()
     {
         $this->client->request(
@@ -48,4 +77,91 @@ class ApiNodeControllerTest extends AbstractWebTestCase
         $this->assertTrue(is_array($result));
     }
 
+    public function testGetPageNodeAction()
+    {
+        $pageNode = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Category')
+            ->findOneBy(['title' => 'AAA']);
+
+        $this->client->request(
+            'GET',
+            '/backend/api/page/category/' . $pageNode->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $pageNode->getId());
+    }
+
+
+    public function testPutPageNodeAction()
+    {
+        $pageNode = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Category')
+            ->findOneBy(['title' => 'AAA']);
+        $id = $pageNode->getId();
+        $data['locale'] = 'ru';
+
+        $this->client->request(
+            'PUT',
+            '/backend/api/page/category/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $pageNode = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Category')
+            ->findOneBy(['title' => 'AAA']);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNotNull($pageNode);
+        $this->assertEquals($data['locale'], $pageNode->getLocale());
+    }
+
+    public function testDeletePageNodeAction()
+    {
+        $pageNode = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Category')
+            ->findOneBy(['title' => 'AAA']);
+        $id = $pageNode->getId();
+
+        $this->client->request(
+            'DELETE',
+            '/backend/api/page/category/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $pageNode = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Category')
+            ->findOneBy(['id' => $id]);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNull($pageNode);
+    }
 }

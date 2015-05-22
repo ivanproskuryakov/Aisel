@@ -6,17 +6,35 @@
 # file that was distributed with this source code.
 
 
-admin_api_aisel_product_category_tree_get:
-    pattern:   /product/category/
-    defaults:  { _controller: AiselProductBundle:Admin/ApiNode:getTree, _format: json }
-    requirements:
-        _method: GET
-
 admin_api_aisel_product_category_get:
     pattern:   /product/category/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:get, _format: json }
     requirements:
         _method: GET
+
+admin_api_aisel_product_category_get_collection:
+    pattern:   /product/category/
+    defaults:  { _controller: AiselProductBundle:Admin/ApiNode:getCollection, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_product_category_put:
+    pattern:   /product/category/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiNode:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_product_category_post:
+    pattern:   /product/category/
+    defaults:  { _controller: AiselProductBundle:Admin/ApiNode:post, _format: json }
+    requirements:
+        _method: POST
+
+admin_api_aisel_product_category_delete:
+    pattern:   /product/category/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiNode:delete, _format: json }
+    requirements:
+        _method: DELETE
 
 admin_api_aisel_product_get:
     pattern:   /product/{id}

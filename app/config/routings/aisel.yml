@@ -4,7 +4,7 @@ aisel_contact:
     prefix:   /
 
 aisel_navigation:
-    resource: "@AiselNavigationBundle/Resources/config/routing.yml"
+    resource: "@AiselNavigationBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
 aisel_page:

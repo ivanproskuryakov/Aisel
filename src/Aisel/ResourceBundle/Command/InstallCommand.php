@@ -62,16 +62,16 @@ EOT
         $output->writeln('<info>Database settings.</info>');
         $dialog = $this->getHelperSet()->get('dialog');
 
-        if ($dialog->askConfirmation($output, '<question>Create database and load fixtures (Y/N)?</question>', false)) {
-            $this->setupDatabase($input, $output);
+        if ($dialog->askConfirmation($output, '<question>Install frontend dependencies (Y/N)?</question>', false)) {
+            $this->installDependencies($output);
         }
 
         if ($dialog->askConfirmation($output, '<question>Update demo files (Y/N)?</question>', false)) {
             $this->setupFiles($output);
         }
 
-        if ($dialog->askConfirmation($output, '<question>Install frontend dependencies (Y/N)?</question>', false)) {
-            $this->installDependencies($output);
+        if ($dialog->askConfirmation($output, '<question>Create database and load fixtures (Y/N)?</question>', false)) {
+            $this->setupDatabase($input, $output);
         }
 
         return $this;

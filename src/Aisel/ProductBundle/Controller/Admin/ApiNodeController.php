@@ -11,16 +11,18 @@
 
 namespace Aisel\ProductBundle\Controller\Admin;
 
-use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
+use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**
- * ApiNodeController
+ * NodeController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiNodeController extends AbstractNodeController
+class ApiNodeController extends AbstractCollectionController
 {
 
-    protected $nodeManager = "aisel.productcategory.node.manager";
+    protected $model = array(
+        'class' => "Aisel\ProductBundle\Entity\Category",
+    );
 
 }

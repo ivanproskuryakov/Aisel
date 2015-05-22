@@ -11,17 +11,29 @@ admin_api_aisel_page_category_get:
     requirements:
         _method: GET
 
-admin_api_aisel_page_category_tree_get:
+admin_api_aisel_page_category_get_collection:
     pattern:   /page/category/
-    defaults:  { _controller: AiselPageBundle:Admin/ApiNode:getTree, _format: json }
+    defaults:  { _controller: AiselPageBundle:Admin/ApiNode:getCollection, _format: json }
     requirements:
         _method: GET
 
-admin_api_aisel_page_category_tree_update:
+admin_api_aisel_page_category_put:
+    pattern:   /page/category/{id}
+    defaults:  { _controller: AiselPageBundle:Admin/ApiNode:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_page_category_post:
     pattern:   /page/category/
-    defaults:  { _controller: AiselPageBundle:Admin/ApiNode:update, _format: json }
+    defaults:  { _controller: AiselPageBundle:Admin/ApiNode:post, _format: json }
     requirements:
         _method: POST
+
+admin_api_aisel_page_category_delete:
+    pattern:   /page/category/{id}
+    defaults:  { _controller: AiselPageBundle:Admin/ApiNode:delete, _format: json }
+    requirements:
+        _method: DELETE
 
 admin_api_aisel_page_get_collection:
     pattern:   /page/
