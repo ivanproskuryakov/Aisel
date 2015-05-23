@@ -5,7 +5,7 @@
             ng-required="true"
             ng-model="item.status"
             name="status">
-        <option value="false" ng-selected="status === 'false'">Draft</option>
-        <option value="true" ng-selected="status === 'true'">Published</option>
+        <option value="1" ng-selected="item.status === true">Enabled</option>
+        <option value="0" ng-selected="item.status === false">Disabled</option>
     </select>
 </div>

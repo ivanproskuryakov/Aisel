@@ -47,16 +47,16 @@ class Order
     /**
      * @var float
      * @Assert\NotNull()
-     * @ORM\Column(type="float", scale=2, nullable=true)
+     * @ORM\Column(type="float", scale=2, nullable=false)
      */
-    private $subtotal;
+    private $subtotal = 0;
 
     /**
      * @var float
      * @Assert\NotNull()
-     * @ORM\Column(type="float", scale=2, nullable=true)
+     * @ORM\Column(type="float", scale=2, nullable=false)
      */
-    private $grandtotal;
+    private $grandtotal = 0;
 
     /**
      * @var string

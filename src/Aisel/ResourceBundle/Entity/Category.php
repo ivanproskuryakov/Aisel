@@ -60,24 +60,32 @@ abstract class Category
     /**
      * @Gedmo\TreeLeft
      * @ORM\Column(name="lft", type="integer")
+     * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $lft;
 
     /**
      * @Gedmo\TreeLevel
      * @ORM\Column(name="lvl", type="integer")
+     * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $lvl;
 
     /**
      * @Gedmo\TreeRight
      * @ORM\Column(name="rgt", type="integer")
+     * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $rgt;
 
     /**
      * @Gedmo\TreeRoot
      * @ORM\Column(name="root", type="integer", nullable=true)
+     * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $root;
 
@@ -85,12 +93,16 @@ abstract class Category
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
+     * @JMS\Expose
+     * @JMS\Type("Aisel\ResourceBundle\Entity\Category")
      */
     protected $parent;
 
     /**
      * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
      * @ORM\OrderBy({"lft" = "ASC"})
+     * @JMS\Expose
+     * @JMS\Type("Aisel\ResourceBundle\Entity\Category")
      */
     protected $children;
 

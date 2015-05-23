@@ -30,7 +30,15 @@
                         <i class="glyphicon glyphicon-list"></i> Meta
                     </tab-heading>
                     <div class="tab-content">
-                        <ng-include src="'/app/Aisel/Kernel/views/edit/field/meta.html'"></ng-include>
+                        <div class="form-group">
+                            <label for="metaTitle">Meta URL</label>
+                            <input name="metaTitle"
+                                   id="metaTitle"
+                                   type="text"
+                                   class="form-control"
+                                   ng-required="true"
+                                   ng-model="item.meta_url">
+                        </div>
                     </div>
                 </tab>
 

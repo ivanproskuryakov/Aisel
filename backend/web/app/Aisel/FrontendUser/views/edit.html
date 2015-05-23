@@ -83,22 +83,13 @@
                     </tab-heading>
                     <div class="tab-content">
                         <div class="form-group">
-                            <label for="lastLogin">Password</label>
+                            <label for="lastLogin">New password</label>
                             <input name="password"
                                    id="password"
                                    type="text"
                                    class="form-control"
                                    ng-required="true"
-                                   ng-model="item.password">
-                        </div>
-                        <div class="form-group">
-                            <label for="password_repeat">Password Repeat</label>
-                            <input name="password_repeat"
-                                   id="password_repeat"
-                                   type="text"
-                                   class="form-control"
-                                   ng-required="true"
-                                   ng-model="item.password_repeat">
+                                   ng-model="item.plain_password">
                         </div>
                     </div>
                 </tab>

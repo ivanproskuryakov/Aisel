@@ -21,6 +21,15 @@
                         </div>
                         <ng-include src="'/app/Aisel/Kernel/views/edit/field/locale.html'"></ng-include>
                         <ng-include src="'/app/Aisel/Kernel/views/edit/field/status.html'"></ng-include>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea
+                                    name="description"
+                                    id="description"
+                                    class="form-control"
+                                    ng-required="true"
+                                    ng-model="item.description"></textarea>
+                        </div>
                     </div>
                 </tab>
 

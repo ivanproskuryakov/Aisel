@@ -16,3 +16,21 @@ admin_api_aisel_order_get:
     defaults:  { _controller: AiselOrderBundle:Admin/Api:get, _format: json }
     requirements:
         _method: GET
+
+admin_api_aisel_order_put:
+    pattern:   /order/{id}
+    defaults:  { _controller: AiselOrderBundle:Admin/Api:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_order_delete:
+    pattern:   /order/{id}
+    defaults:  { _controller: AiselOrderBundle:Admin/Api:delete, _format: json }
+    requirements:
+        _method: DELETE
+
+admin_api_aisel_order_post:
+    pattern:   /order/
+    defaults:  { _controller: AiselOrderBundle:Admin/Api:post, _format: json }
+    requirements:
+        _method: POST

@@ -26,8 +26,8 @@ var editNode = function (id) {
 
 $(document).ready(function () {
     setTimeout(function () {
-        var routeCategoryAjaxUpdate = '';
         var routeCategory = null;
+        var routeCategoryAjaxUpdate = angular.element(document.getElementById('dynamic-content')).scope().categoryUpdate;
         var categoryJson = angular.element(document.getElementById('dynamic-content')).scope().categoryJson;
 
         $("#adminNodeTree").fancytree({
@@ -87,7 +87,7 @@ $(document).ready(function () {
 
                     $.get(routeCategoryAjaxUpdate, {action: 'dragDrop', id: categoryId, parentId: categoryParentId})
                             .done(function (data) {
-                                console.log('AJAX done');
+//                                console.log('AJAX done');
                             });
 
                 }
