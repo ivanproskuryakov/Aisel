@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Contact REST API for Frontend
+ * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -23,22 +23,17 @@ class ApiController extends Controller
 {
 
     /**
-     * sendAction
+     * sendMessageAction
      *
      * @param Request $request
      *
      * @return array $status;
      */
-    public function sendAction(Request $request)
+    public function sendMessageAction(Request $request)
     {
-        $params = array(
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'phone' => $request->get('phone'),
-            'message' => $request->get('message'),
-        );
+        $params = json_decode($request->getContent(),true);
 
-        if ($params['name'] && $params['name'] && $params['name'] && $params['name']) {
+        if ($params['name'] && $params['email'] && $params['phone'] && $params['message']) {
             $response = $this->container->get("aisel.contact.manager")->sendMail($params);
 
             if ($response == 1) {
@@ -51,7 +46,6 @@ class ApiController extends Controller
         }
 
         return $status;
-
     }
 
 }

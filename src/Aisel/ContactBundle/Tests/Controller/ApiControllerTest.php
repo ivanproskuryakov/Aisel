@@ -31,15 +31,32 @@ class ApiControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testConfigAction()
+    public function testContactPostAction()
     {
-        $this->markTestSkipped('Not implemented yet');
+        $data = [
+            'name' => 'name',
+            'email' => 'email@mail.com',
+            'phone' => '+0100000000',
+            'message' => '....',
+        ];
 
         $this->client->request(
             'POST',
-            '/api/contact/'
+            '/api/contact/message/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
         );
 
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $result = json_decode($content, true);
+        $statusCode = $response->getStatusCode();
+
+        $this->assertEquals($result['status'], false);
+        $this->assertEquals($result['message'], 0);
+        $this->assertTrue(200 === $statusCode);
     }
 
 }

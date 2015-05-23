@@ -6,7 +6,7 @@
 # file that was distributed with this source code.
 
 api_aisel_contactsend:
-    pattern:  /%frontend_api%/contact/send.json
-    defaults: { _controller: AiselContactBundle:Api:send, _format: json }
+    pattern:  /%frontend_api%/contact/message/
+    defaults: { _controller: AiselContactBundle:Api:sendMessage, _format: json }
     requirements:
-        _method: POST|GET
+        _method: POST

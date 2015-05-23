@@ -40,7 +40,6 @@ class ApiControllerTest extends AbstractWebTestCase
 
     public function testGetConfigAction()
     {
-
         $this->client->request(
             'GET',
             '/backend/api/config/'

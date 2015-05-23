@@ -31,15 +31,9 @@ class ApiControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testConfigAction()
+    public function testSitemapAction()
     {
         $this->markTestSkipped('Not implemented yet');
-
-        $this->client->request(
-            'POST',
-            '/api/contact/'
-        );
-
     }
 
 }
