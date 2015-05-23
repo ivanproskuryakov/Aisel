@@ -12,29 +12,20 @@
 namespace Aisel\PageBundle\Controller\Admin;
 
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
- * NodeController
+ * ApiNodeController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class ApiNodeController extends AbstractCollectionController
 {
 
+    /**
+     * @var array
+     */
     protected $model = array(
         'class' => "Aisel\PageBundle\Entity\Category",
     );
-
-    /**
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function nodeAction(Request $request)
-    {
-        return false;
-    }
-
 
 }

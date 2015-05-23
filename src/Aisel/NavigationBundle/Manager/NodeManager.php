@@ -38,7 +38,7 @@ class NodeManager extends AbstractNodeManager
         $node = new $this->nodeEntity();
         $node->setTitle($params['name']);
         $node->setParent($nodeParent);
-        $node->setMetaUrl('/#!/');
+        $node->setMetaUrl('/');
         $node->setStatus(false);
 
         $this->em->persist($node);
@@ -55,7 +55,7 @@ class NodeManager extends AbstractNodeManager
 
         $node = new $this->nodeEntity();
         $node->setTitle($params['name']);
-        $node->setMetaUrl('/#!/');
+        $node->setMetaUrl('/');
         $node->setStatus(false);
 
         $this->em->persist($node);

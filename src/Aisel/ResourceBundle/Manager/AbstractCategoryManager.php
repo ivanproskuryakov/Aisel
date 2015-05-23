@@ -38,28 +38,16 @@ class AbstractCategoryManager
      *
      * @param string $locale
      *
-     * @return array $tree
+     * @return array $categories
      */
     public function getCategoryTree($locale)
     {
-        $categories = $this->em->getRepository($this->categoryEntity)->getEnabledCategoriesAsTree($locale);
-        $tree = array();
-        foreach ($categories as $rootItem) {
+        $categories = $this
+            ->em
+            ->getRepository($this->categoryEntity)
+            ->getEnabledCategoriesAsTree($locale);
 
-            if (!$rootItem->getStatus()) continue;
-            if ($rootItem->getRoot() == $rootItem->getId()) {
-                $_category = array(
-                    'id' => $rootItem->getId(),
-                    'title' => $rootItem->getTitle(),
-                    'url' => $rootItem->getMetaUrl(),
-                    'selected' => false,
-                    'children' => $this->generatePageTree($rootItem->getChildren(), $rootItem->getId())
-                );
-                $tree[] = $_category;
-            }
-        }
-
-        return $tree;
+        return $categories;
     }
 
     /**

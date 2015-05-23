@@ -13,13 +13,13 @@ admin_api_aisel_page_category_get:
 
 admin_api_aisel_page_category_node_edit:
     pattern:   /page/category/node/
-    defaults:  { _controller: AiselPageBundle:Admin/ApiNode:node, _format: json }
+    defaults:  { _controller: AiselPageBundle:Admin/ApiNodeEdit:nodeEdit, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_page_category_get_collection:
     pattern:   /page/category/
-    defaults:  { _controller: AiselPageBundle:Admin/ApiNode:getNodeCollection, _format: json }
+    defaults:  { _controller: AiselPageBundle:Admin/ApiNodeEdit:getNodeCollection, _format: json }
     requirements:
         _method: GET
 

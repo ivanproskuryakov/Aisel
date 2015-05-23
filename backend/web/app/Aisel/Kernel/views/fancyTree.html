@@ -78,17 +78,19 @@ $(document).ready(function () {
                     return true;
                 },
                 dragDrop: function (node, data) {
-                    console.log(node.key);
-                    console.log(data.otherNode.key);
                     data.otherNode.moveTo(node, data.hitMode);
 
-                    var categoryId = data.otherNode.key;
-                    var categoryParentId = node.key;
+                    var categoryId = data.otherNode.data.id;
+                    var categoryParentId = node.data.id;
 
-                    $.get(routeCategoryAjaxUpdate, {action: 'dragDrop', id: categoryId, parentId: categoryParentId})
-                            .done(function (data) {
+                    $.get(routeCategoryAjaxUpdate, {
+                        action: 'dragDrop',
+                        id: categoryId,
+                        parentId: categoryParentId}
+                    )
+                    .done(function (data) {
 //                                console.log('AJAX done');
-                            });
+                    });
 
                 }
             },
@@ -102,24 +104,24 @@ $(document).ready(function () {
                 },
                 close: function (event, data) {
                     // Editor was removed
-                },
-                edit: function (event, data) {
-                    // Editor was opened (available as data.input)
-                },
-                save: function (event, data) {
-                    console.log(data.node);
                     var categoryUrl = data.node.data.url;
-                    var categoryId = data.node.key;
-                    var categoryTitle = data.value;
+                    var categoryId = data.node.data.id;
+                    var categoryTitle = data.node.title;
+
                     $.get(routeCategoryAjaxUpdate, {
                         action: 'save',
                         name: categoryTitle,
                         id: categoryId,
                         url: categoryUrl
                     })
-                            .done(function (data) {
-                                console.log('AJAX done');
-                            });
+                    .done(function (data) {
+                        console.log('AJAX done');
+                    });
+                },
+                edit: function (event, data) {
+                    // Editor was opened (available as data.input)
+                },
+                save: function (event, data) {
                 }
             },
             table: {
@@ -173,12 +175,16 @@ $(document).ready(function () {
                     node.editStart();
                     break;
                 case "remove":
-                    var categoryId = node.key;
-                    $.get(routeCategoryAjaxUpdate, {action: 'remove', id: categoryId})
-                            .done(function (data) {
-                                console.log('AJAX done');
-                            });
+                    var categoryId = node.data.id;
+                    $.get(routeCategoryAjaxUpdate, {
+                        action: 'remove',
+                        id: categoryId
+                    })
+                    .done(function (data) {
+                        console.log('AJAX done');
+                    });
                     node.remove();
+
                     break;
                 case "addChild":
                     refNode = node.addChildren({
@@ -189,13 +195,18 @@ $(document).ready(function () {
                     node.setExpanded();
                     refNode.editStart();
 
-                    var categoryId = node.key;
+                    var categoryId = node.data.id;
                     var categoryTitle = refNode.title;
-                    $.get(routeCategoryAjaxUpdate, {action: 'addChild', name: categoryTitle, parentId: categoryId})
-                            .done(function (data) {
-                                console.log('AJAX done');
-                            });
+
+                    $.get(routeCategoryAjaxUpdate, {
+                        action: 'addChild',
+                        name: categoryTitle,
+                        parentId: categoryId
+                    }).done(function (data) {
+                        console.log('AJAX done');
+                    });
                     break;
+
                 case "addSibling":
                     refNode = node.getParent().addChildren({
                         title: "New sibling",
@@ -215,31 +226,6 @@ $(document).ready(function () {
                     return;
             }
 
-        }).on("keydown", function (e) {
-            var c = String.fromCharCode(e.which),
-                    cmd = null;
-
-            if (c === "N" && e.ctrlKey && e.shiftKey) {
-                cmd = "addChild";
-            } else if (c === "N" && e.ctrlKey) {
-                cmd = "addSibling";
-            } else if (e.which === $.ui.keyCode.DELETE) {
-                cmd = "remove";
-            } else if (e.which === $.ui.keyCode.F2) {
-                cmd = "rename";
-            } else if (e.which === $.ui.keyCode.UP && e.ctrlKey) {
-                cmd = "moveUp";
-            } else if (e.which === $.ui.keyCode.DOWN && e.ctrlKey) {
-                cmd = "moveDown";
-            } else if (e.which === $.ui.keyCode.RIGHT && e.ctrlKey) {
-                cmd = "indent";
-            } else if (e.which === $.ui.keyCode.LEFT && e.ctrlKey) {
-                cmd = "outdent";
-            }
-            if (cmd) {
-                $(this).trigger("nodeCommand", {cmd: cmd});
-                return false;
-            }
         });
 
         $("#adminNodeTree").contextmenu({

@@ -55,7 +55,7 @@ abstract class Category
      * @JMS\Expose
      * @JMS\Type("boolean")
      */
-    protected $status;
+    protected $status = false;
 
     /**
      * @Gedmo\TreeLeft

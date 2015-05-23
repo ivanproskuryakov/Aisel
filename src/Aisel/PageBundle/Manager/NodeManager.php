@@ -21,8 +21,8 @@ use LogicException;
  */
 class NodeManager extends AbstractNodeManager
 {
-    protected $repository = 'AiselPageBundle:Category';
-    protected $nodeEntity = 'Aisel\PageBundle\Entity\Category';
+
+    protected $entity = 'Aisel\PageBundle\Entity\Category';
 
     /**
      * {@inheritDoc}
@@ -30,17 +30,20 @@ class NodeManager extends AbstractNodeManager
     public function addChild($params)
     {
         if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->repository)->find($categoryId);
+            $nodeParent = $this->em->getRepository($this->entity)->find($categoryId);
+
             if (!($nodeParent)) {
                 throw new LogicException('Nothing found');
             }
         }
 
-        $node = new $this->nodeEntity();
+        $node = new $this->entity();
+        $node->setlocale($params['locale']);
         $node->setTitle($params['name']);
         $node->setParent($nodeParent);
         $node->setStatus(false);
-
+        $node->setDescription('');
+        $node->setMetaUrl('/');
         $this->em->persist($node);
         $this->em->flush();
 
@@ -52,13 +55,12 @@ class NodeManager extends AbstractNodeManager
      */
     public function addSibling($params)
     {
-        $url = time();
-        $node = new $this->nodeEntity();
+        $node = new $this->entity();
+        $node->setlocale($params['locale']);
         $node->setTitle($params['name']);
         $node->setStatus(false);
         $node->setDescription('');
-        $node->setMetaUrl($url);
-
+        $node->setMetaUrl('/');
         $this->em->persist($node);
         $this->em->flush();
 

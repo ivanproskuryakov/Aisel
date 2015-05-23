@@ -22,9 +22,10 @@ use Doctrine\ORM\EntityManager;
 class AbstractNodeManager
 {
 
-    protected $repository = null;
-
-    protected $nodeEntity = null;
+    /**
+     * @var null
+     */
+    protected $entity = null;
 
     /**
      * @var EntityManager
@@ -49,23 +50,6 @@ class AbstractNodeManager
     }
 
     /**
-     * Get single detailed item by its Id
-     *
-     * @param int $id
-     *
-     * @return mixed $details
-     */
-    public function getItem($id)
-    {
-        $item = $this
-            ->em
-            ->getRepository($this->repository)
-            ->find($id);
-
-        return $item;
-    }
-
-    /**
      * Load node tree
      *
      * @param string $locale
@@ -76,7 +60,7 @@ class AbstractNodeManager
     {
         $nodes = $this
             ->em
-            ->getRepository($this->repository)
+            ->getRepository($this->entity)
             ->findBy(
                 array(
                     'locale' => $locale
@@ -99,7 +83,7 @@ class AbstractNodeManager
         if ($categoryId = $params['id']) {
             $node = $this
                 ->em
-                ->getRepository($this->repository)
+                ->getRepository($this->entity)
                 ->find($categoryId);
 
             if (!($node)) {
@@ -127,7 +111,7 @@ class AbstractNodeManager
     public function remove($params)
     {
         if ($categoryId = $params['id']) {
-            $node = $this->em->getRepository($this->repository)->find($categoryId);
+            $node = $this->em->getRepository($this->entity)->find($categoryId);
 
             if (!($node)) {
                 throw new LogicException('Nothing found');
@@ -151,7 +135,7 @@ class AbstractNodeManager
     public function addChild($params)
     {
         if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->repository)->find($categoryId);
+            $nodeParent = $this->em->getRepository($this->entity)->find($categoryId);
 
             if (!($nodeParent)) {
                 throw new LogicException('Nothing found');
@@ -197,8 +181,11 @@ class AbstractNodeManager
      */
     public function updateParent($params)
     {
+        /**
+         * @var $node \Aisel\ResourceBundle\Entity\Category
+         */
         if ($categoryParentId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->repository)->find($categoryParentId);
+            $nodeParent = $this->em->getRepository($this->entity)->find($categoryParentId);
 
             if (!($nodeParent)) {
                 throw new LogicException('Nothing found');
@@ -206,7 +193,7 @@ class AbstractNodeManager
         }
 
         if ($categoryId = $params['id']) {
-            $node = $this->em->getRepository($this->repository)->find($categoryId);
+            $node = $this->em->getRepository($this->entity)->find($categoryId);
 
             if (!($node)) {
                 throw new LogicException('Nothing found');
@@ -216,24 +203,6 @@ class AbstractNodeManager
         $node->setParent($nodeParent);
         $this->em->persist($node);
         $this->em->flush();
-
-        return $node;
-    }
-
-    /**
-     * Update parent for Node
-     *
-     * @param  int    $id
-     * @return object
-     *
-     * @throws LogicException
-     */
-    public function getNode($id)
-    {
-        $node = $this
-            ->em
-            ->getRepository($this->repository)
-            ->find($id);
 
         return $node;
     }

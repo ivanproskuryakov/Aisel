@@ -163,23 +163,23 @@ class AbstractCollectionController extends Controller
         );
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return array
-     */
-    public function getNodeCollectionAction(Request $request)
-    {
-        $params = array(
-            'locale' => $request->get('locale'),
-        );
-
-        $em = $this->getEntityManager();
-        $collection = $em
-            ->getRepository($this->model['class'])
-            ->getCollectionFromRequest($params);
-
-        return $collection;
-    }
+//    /**
+//     * @param Request $request
+//     *
+//     * @return array
+//     */
+//    public function getNodeCollectionAction(Request $request)
+//    {
+//        $params = array(
+//            'locale' => $request->get('locale'),
+//        );
+//
+//        $em = $this->getEntityManager();
+//        $collection = $em
+//            ->getRepository($this->model['class'])
+//            ->getCollectionFromRequest($params);
+//
+//        return $collection;
+//    }
 
 }

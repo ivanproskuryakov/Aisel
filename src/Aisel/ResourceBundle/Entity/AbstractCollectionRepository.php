@@ -22,7 +22,6 @@ class AbstractCollectionRepository extends EntityRepository
 {
 
     protected $entity = '';
-
     protected $search = '';
     protected $locale = null;
     protected $filter = null;
@@ -38,7 +37,7 @@ class AbstractCollectionRepository extends EntityRepository
      * Map request variables for later use in SQL
      * @param array $params
      */
-    protected function mapRequest($params)
+    protected function mapRequest(array $params)
     {
         // Pagination
         if (isset($params['current'])) {
@@ -165,4 +164,99 @@ class AbstractCollectionRepository extends EntityRepository
         return $collection;
     }
 
+    // ---------------------------------
+    // ---------- CATEGORIES -----------
+    // ---------------------------------
+
+    /**
+     * Returns enabled categories sorted as tree
+     *
+     * @param string $locale
+     *
+     * @return array $result
+     */
+    public function getEnabledCategoriesAsTree($locale)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $result = $qb->select('c')
+            ->from($this->entity, 'c')
+            ->where('c.status = 1')
+            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
+            ->orderBy('c.root', 'ASC')
+            ->addOrderBy('c.lft', 'ASC')
+            ->getQuery()
+            ->execute();
+
+        return $result;
+    }
+
+    /**
+     * Returns enabled categories
+     *
+     * @param string $urlKey
+     * @param string $locale
+     *
+     * @return array $result
+     */
+    public function getEnabledCategoryByUrl($urlKey, $locale)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $result = $qb->select('c')
+            ->from($this->entity, 'c')
+            ->where('c.metaUrl = :metaUrl')->setParameter('metaUrl', $urlKey)
+            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
+            ->andWhere('c.status = 1')
+            ->getQuery()
+            ->getSingleResult();
+
+        return $result;
+    }
+
+    /**
+     * Returns enabled categories
+     *
+     * @param int $categoryId
+     *
+     * @return array $result
+     */
+    public function getEnabledCategory($categoryId)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $result = $qb->select('c')
+            ->from($this->entity, 'c')
+            ->where('c.id = :categoryId')->setParameter('categoryId', $categoryId)
+            ->andWhere('c.status = 1')
+            ->getQuery()
+            ->getSingleResult();
+
+        return $result;
+    }
+
+    /**
+     * Returns enabled categories sorted as tree
+     *
+     * @param array $params
+     * @param array $locale
+     *
+     * @return array $result
+     */
+    public function getCurrentCategoriesFromRequest($params, $locale)
+    {
+        $this->mapRequest($params);
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $query = $qb->select('c')
+            ->from($this->entity, 'c')
+            ->where('c.status = 1');
+
+        if ($locale) {
+            $query->andWhere('c.locale = :locale')->setParameter('locale', $locale);
+        }
+        $query
+            ->addOrderBy('c.title', 'ASC')
+            ->setMaxResults($this->pageLimit)
+            ->setFirstResult($this->pageSkip);
+        $result = $query->getQuery()->execute();
+
+        return $result;
+    }
 }
