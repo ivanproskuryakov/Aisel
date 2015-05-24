@@ -36,7 +36,7 @@ class AbstractNodeController extends Controller
         $tree = $this
             ->container
             ->get($this->nodeManager)
-            ->getCategoryTree($request->get('locale'));
+            ->getNodesTree($request->get('locale'));
 
         return $tree;
     }
