@@ -11,7 +11,6 @@
 
 namespace Aisel\NavigationBundle\Controller\Admin;
 
-
 use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**

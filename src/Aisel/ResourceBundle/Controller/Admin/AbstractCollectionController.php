@@ -21,7 +21,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
  * Class AbstractCollectionController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
- *
  */
 class AbstractCollectionController extends Controller
 {

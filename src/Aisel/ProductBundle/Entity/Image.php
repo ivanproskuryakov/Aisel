@@ -152,5 +152,4 @@ class Image
         $this->mainImage = $mainImage;
     }
 
-
 }

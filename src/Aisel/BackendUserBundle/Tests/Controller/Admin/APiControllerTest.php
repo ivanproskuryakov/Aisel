@@ -65,7 +65,6 @@ class APiControllerTest extends AbstractWebTestCase
         $this->assertEmpty($content);
         $this->assertTrue(201 === $statusCode);
 
-
         $this->client->request(
             'POST',
             '/backend/api/backenduser/',

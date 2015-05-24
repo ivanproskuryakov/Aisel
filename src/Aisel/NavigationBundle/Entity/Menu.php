@@ -407,7 +407,6 @@ class Menu
         return $this->parent;
     }
 
-
     /**
      * Set metaUrl
      *

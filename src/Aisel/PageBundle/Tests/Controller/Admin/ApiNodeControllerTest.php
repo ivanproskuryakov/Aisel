@@ -12,7 +12,6 @@
 namespace Aisel\PageBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use JMS\Serializer\Annotation as JMS;
 
 /**
  * ApiNodeControllerTest
@@ -102,7 +101,6 @@ class ApiNodeControllerTest extends AbstractWebTestCase
         $this->assertEquals($result['id'], $pageNode->getId());
     }
 
-
     public function testPutPageNodeAction()
     {
         $pageNode = $this
@@ -165,6 +163,5 @@ class ApiNodeControllerTest extends AbstractWebTestCase
         $this->assertEmpty($content);
         $this->assertNull($pageNode);
     }
-
 
 }

@@ -34,7 +34,6 @@ class ParamConverter extends RequestBodyParamConverter
      */
     protected $em;
 
-
     /**
      * @var EventDispatcherInterface
      */
@@ -57,6 +56,14 @@ class ParamConverter extends RequestBodyParamConverter
         $this->dispatcher = $dispatcher;
     }
 
+    /**
+     * execute
+     *
+     * @param Request              $request
+     * @param SensioParamConverter $configuration
+     *
+     * @return bool|mixed
+     */
     public function execute(Request $request, SensioParamConverter $configuration)
     {
         $name = $configuration->getName();

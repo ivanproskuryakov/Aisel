@@ -28,6 +28,9 @@ class UserPersistenceListener
         $this->encoder = $encoder;
     }
 
+    /**
+     * @param LifecycleEventArgs $args
+     */
     public function prePersist(LifeCycleEventArgs $args)
     {
         /** @var AdvancedUserInterface $object */

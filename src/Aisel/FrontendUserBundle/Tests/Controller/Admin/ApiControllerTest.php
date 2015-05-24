@@ -18,7 +18,7 @@ use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class APiControllerTest extends AbstractWebTestCase
+class ApiControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()

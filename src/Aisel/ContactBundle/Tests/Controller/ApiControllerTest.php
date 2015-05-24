@@ -51,11 +51,9 @@ class ApiControllerTest extends AbstractWebTestCase
 
         $response = $this->client->getResponse();
         $content = $response->getContent();
-        $result = json_decode($content, true);
         $statusCode = $response->getStatusCode();
 
-        $this->assertEquals($result['status'], false);
-        $this->assertEquals($result['message'], 0);
+        $this->assertJson($content);
         $this->assertTrue(200 === $statusCode);
     }
 

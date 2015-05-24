@@ -12,7 +12,6 @@
 namespace Aisel\PageBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use JMS\Serializer\Annotation as JMS;
 use Aisel\PageBundle\Entity\Category;
 
 /**
@@ -33,7 +32,8 @@ class ApiNodeEditControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function createNode($name){
+    public function createNode($name)
+    {
         $node = new Category();
         $node->setLocale('en');
         $node->setDescription('');

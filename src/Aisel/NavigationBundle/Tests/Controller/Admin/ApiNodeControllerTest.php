@@ -12,7 +12,6 @@
 namespace Aisel\NavigationBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use JMS\Serializer\Annotation as JMS;
 
 /**
  * ApiNodeControllerTest
@@ -100,7 +99,6 @@ class ApiNodeControllerTest extends AbstractWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $NavigationNode->getId());
     }
-
 
     public function testPutNavigationNodeAction()
     {
