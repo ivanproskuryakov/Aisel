@@ -14,7 +14,7 @@ admin_api_aisel_product_category_get:
 
 admin_api_aisel_product_category_get_collection:
     pattern:   /product/category/
-    defaults:  { _controller: AiselProductBundle:Admin/ApiNode:getNodeCollection, _format: json }
+    defaults:  { _controller: AiselProductBundle:Admin/ApiNode:getCollection, _format: json }
     requirements:
         _method: GET
 
@@ -65,3 +65,9 @@ admin_api_aisel_product_post:
     defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:post, _format: json }
     requirements:
         _method: POST
+
+admin_api_aisel_product_category_node_edit:
+    pattern:   /product/category/node/
+    defaults:  { _controller: AiselProductBundle:Admin/ApiNodeEdit:nodeEdit, _format: json }
+    requirements:
+        _method: GET

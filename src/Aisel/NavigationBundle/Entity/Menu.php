@@ -94,7 +94,15 @@ class Menu
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
-    protected $status;
+    protected $status = false;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, unique=false)
+     * @Assert\Type(type="string")
+     * @Assert\NotNull()
+     */
+    private $metaUrl;
 
     /**
      * @var \DateTime
@@ -399,13 +407,6 @@ class Menu
         return $this->parent;
     }
 
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\Type(type="string")
-     * @Assert\NotNull()
-     */
-    private $metaUrl;
 
     /**
      * Set metaUrl

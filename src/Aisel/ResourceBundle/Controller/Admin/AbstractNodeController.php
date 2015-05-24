@@ -26,73 +26,53 @@ class AbstractNodeController extends Controller
     protected $nodeManager;
 
     /**
-     * @param integer $id
+     * getNodeCollectionAction
      *
-     * @return JsonResponse $response
+     * @param Request $request
+     *
+     * @return mixed
      */
-    public function getAction($id)
+    public function getNodeCollectionAction(Request $request)
+    {
+        $tree = $this
+            ->container
+            ->get($this->nodeManager)
+            ->getCategoryTree($request->get('locale'));
+
+        return $tree;
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function nodeEditAction(Request $request)
     {
         $nodeManager = $this->container->get($this->nodeManager);
 
-        return $nodeManager->getItem($id);
-    }
-
-    /**
-     * Load tree
-     *
-     * @param Request $request
-     *
-     * @return array
-     */
-    public function getTreeAction(Request $request)
-    {
-        $locale = $request->query->get('locale');
-        $nodes = $this
-            ->container
-            ->get($this->nodeManager)
-            ->getTree($locale);
-
-        return $nodes;
-    }
-
-    /**
-     * AJAX update action for node with $id
-     *
-     * @param Request $request
-     *
-     * @return object
-     */
-    public function updateAction(Request $request)
-    {
         $params = array(
+            'locale' => $request->query->get('locale'),
             'name' => $request->query->get('name'),
             'id' => $request->query->get('id'),
             'parentId' => $request->query->get('parentId'),
             'action' => $request->query->get('action'),
         );
-        $nodeManager = $this->container->get($this->nodeManager);
 
         switch ($params['action']) {
             case 'save':
-                $node = $nodeManager->save($params);
-                break;
+                return $nodeManager->save($params);
             case 'remove':
-                $node = $nodeManager->remove($params);
-                break;
+                return $nodeManager->remove($params);
             case 'addChild':
-                $node = $nodeManager->addChild($params);
-                break;
+                return $nodeManager->addChild($params);
             case 'addSibling':
-                $node = $nodeManager->addSibling($params);
-                break;
+                return $nodeManager->addSibling($params);
             case 'dragDrop':
-                $node = $nodeManager->updateParent($params);
-                break;
-            default:
-                $node = null;
+                return $nodeManager->updateParent($params);
         }
 
-        return $node;
+        return false;
     }
 
 }

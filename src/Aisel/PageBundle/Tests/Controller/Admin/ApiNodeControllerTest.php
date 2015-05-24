@@ -75,6 +75,7 @@ class ApiNodeControllerTest extends AbstractWebTestCase
         $this->assertJson($content);
         $this->assertTrue(200 === $statusCode);
         $this->assertTrue(is_array($result));
+
     }
 
     public function testGetPageNodeAction()
@@ -164,4 +165,6 @@ class ApiNodeControllerTest extends AbstractWebTestCase
         $this->assertEmpty($content);
         $this->assertNull($pageNode);
     }
+
+
 }

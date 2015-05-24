@@ -20,27 +20,31 @@ use Aisel\ResourceBundle\Manager\AbstractNodeManager;
  */
 class NodeManager extends AbstractNodeManager
 {
-    protected $repository = 'AiselNavigationBundle:Menu';
-    protected $nodeEntity = 'Aisel\NavigationBundle\Entity\Menu';
+
+    protected $entity = 'Aisel\NavigationBundle\Entity\Menu';
 
     /**
      * {@inheritDoc}
      */
     public function addChild($params)
     {
+        /**
+         * @var $node \Aisel\NavigationBundle\Entity\Menu
+         */
         if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->repository)->find($categoryId);
+            $nodeParent = $this->em->getRepository($this->entity)->find($categoryId);
+
             if (!($nodeParent)) {
                 throw new \LogicException('Nothing found');
             }
         }
 
-        $node = new $this->nodeEntity();
+        $node = new $this->entity();
         $node->setTitle($params['name']);
         $node->setParent($nodeParent);
+        $node->setLocale($params['locale']);
         $node->setMetaUrl('/');
         $node->setStatus(false);
-
         $this->em->persist($node);
         $this->em->flush();
 
@@ -52,12 +56,14 @@ class NodeManager extends AbstractNodeManager
      */
     public function addSibling($params)
     {
-
-        $node = new $this->nodeEntity();
+        /**
+         * @var $node \Aisel\NavigationBundle\Entity\Menu
+         */
+        $node = new $this->entity();
         $node->setTitle($params['name']);
+        $node->setLocale($params['locale']);
         $node->setMetaUrl('/');
         $node->setStatus(false);
-
         $this->em->persist($node);
         $this->em->flush();
 

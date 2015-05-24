@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Tests\Controller\Admin;
+namespace Aisel\NavigationBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\PageBundle\Entity\Category;
+use Aisel\NavigationBundle\Entity\Menu;
 
 /**
  * ApiNodeEditControllerTest
@@ -34,9 +34,8 @@ class ApiNodeEditControllerTest extends AbstractWebTestCase
     }
 
     public function createNode($name){
-        $node = new Category();
+        $node = new Menu();
         $node->setLocale('en');
-        $node->setDescription('');
         $node->setMetaUrl('/');
         $node->setTitle($name);
         $this->em->persist($node);
@@ -45,14 +44,14 @@ class ApiNodeEditControllerTest extends AbstractWebTestCase
         return $node;
     }
 
-    public function testPageNodeUpdateParentAction()
+    public function testNavigationNodeUpdateParentAction()
     {
         $node1 = $this->createNode('AAA');
         $node2 = $this->createNode('AAA');
 
         $this->client->request(
             'GET',
-            '/backend/api/page/category/node/'.
+            '/backend/api/navigation/node/'.
             '?locale=en&action=dragDrop'.
             '&id='. $node1->getId().
             '&parentId='. $node2->getId() . '',
@@ -70,15 +69,14 @@ class ApiNodeEditControllerTest extends AbstractWebTestCase
         $this->assertEquals($result['parent']['id'], $node2->getId());
     }
 
-    public function testPageNodeAddChildAction()
+    public function testNavigationNodeAddChildAction()
     {
         $node = $this->createNode('AAA');
 
         $this->client->request(
             'GET',
-            '/backend/api/page/category/node/'.
-            '?locale=en'.
-            '&action=addChild'.
+            '/backend/api/navigation/node/'.
+            '?locale=en&action=addChild'.
             '&name=New+children'.
             '&parentId='. $node->getId() . '',
             [],
@@ -95,13 +93,13 @@ class ApiNodeEditControllerTest extends AbstractWebTestCase
         $this->assertEquals($result['parent']['id'], $node->getId());
     }
 
-    public function testPageNodeChangeTitleAction()
+    public function testNavigationNodeChangeTitleAction()
     {
         $node = $this->createNode('AAA');
 
         $this->client->request(
             'GET',
-            '/backend/api/page/category/node/'.
+            '/backend/api/navigation/node/'.
             '?locale=en'.
             '&action=save'.
             '&name=BBB'.
@@ -120,13 +118,13 @@ class ApiNodeEditControllerTest extends AbstractWebTestCase
         $this->assertEquals($result['title'], 'BBB');
     }
 
-    public function testPageNodeDeleteAction()
+    public function testNavigationNodeDeleteAction()
     {
         $node = $this->createNode('ZZZZ');
 
         $this->client->request(
             'GET',
-            '/backend/api/page/category/node/'.
+            '/backend/api/navigation/node/'.
             '?locale=en'.
             '&action=remove'.
             '&id='. $node->getId(),
@@ -140,7 +138,7 @@ class ApiNodeEditControllerTest extends AbstractWebTestCase
 
         $node = $this
             ->em
-            ->getRepository('Aisel\PageBundle\Entity\Category')
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['title' => 'ZZZZ']);
 
         $this->assertTrue(200 === $statusCode);

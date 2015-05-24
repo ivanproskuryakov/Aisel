@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Controller\Admin;
+namespace Aisel\NavigationBundle\Controller\Admin;
 
 use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 
@@ -21,6 +21,6 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 class ApiNodeEditController extends AbstractNodeController
 {
 
-    protected $nodeManager = "aisel.pagecategory.node.manager";
+    protected $nodeManager = "aisel.navigation.node.manager";
 
 }

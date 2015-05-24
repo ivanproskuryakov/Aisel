@@ -21,8 +21,8 @@ use LogicException;
  */
 class NodeManager extends AbstractNodeManager
 {
-    protected $repository = 'AiselProductBundle:Category';
-    protected $nodeEntity = 'Aisel\ProductBundle\Entity\Category';
+
+    protected $entity = 'Aisel\ProductBundle\Entity\Category';
 
     /**
      * {@inheritDoc}
@@ -30,15 +30,17 @@ class NodeManager extends AbstractNodeManager
     public function addChild($params)
     {
         if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->repository)->find($categoryId);
+            $nodeParent = $this->em->getRepository($this->entity)->find($categoryId);
+
             if (!($nodeParent)) {
                 throw new LogicException('Nothing found');
             }
         }
 
         $url = time();
-        $node = new $this->nodeEntity();
+        $node = new $this->entity();
         $node->setTitle($params['name']);
+        $node->setLocale($params['locale']);
         $node->setParent($nodeParent);
         $node->setStatus(false);
         $node->setDescription('');
@@ -56,8 +58,9 @@ class NodeManager extends AbstractNodeManager
     public function addSibling($params)
     {
         $url = time();
-        $node = new $this->nodeEntity();
+        $node = new $this->entity();
         $node->setTitle($params['name']);
+        $node->setLocale($params['locale']);
         $node->setStatus(false);
         $node->setDescription('');
         $node->setMetaUrl($url);
