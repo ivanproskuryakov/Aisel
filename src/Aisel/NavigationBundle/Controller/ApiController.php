@@ -26,14 +26,14 @@ class ApiController extends Controller
      *
      * @param string $locale
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return mixed $menu
      */
-    public function menuAction($locale)
+    public function getAction($locale)
     {
         $menu = $this
             ->container
-            ->get("aisel.navigation.manager")
-            ->getMenu($locale);
+            ->get("aisel.navigation.node.manager")
+            ->getNodesTree($locale);
 
         return $menu;
     }

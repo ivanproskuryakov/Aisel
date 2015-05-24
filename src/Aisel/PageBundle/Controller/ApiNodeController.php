@@ -36,24 +36,30 @@ class ApiNodeController extends Controller
             'current' => $request->query->get('current'),
             'limit' => $request->query->get('limit'),
         );
-        $categoryList = $this->container->get("aisel.pagecategory.manager")->getCategories($params, $locale);
+        $categoryList = $this
+            ->container
+            ->get("aisel.pagecategory.node.manager")
+            ->getCategories($params, $locale);
 
         return $categoryList;
     }
 
     /**
-     * categoryTreeAction
+     * getTreeAction
      *
      * @param Request $request
      * @param string  $locale
      *
      * @return mixed $categoryList
      */
-    public function categoryTreeAction(Request $request, $locale)
+    public function getTreeAction(Request $request, $locale)
     {
-        $categoryList = $this->container->get("aisel.pagecategory.manager")->getCategoryTree($locale);
+        $tree = $this
+            ->container
+            ->get("aisel.pagecategory.node.manager")
+            ->getNodesTree($locale);
 
-        return $categoryList;
+        return $tree;
     }
 
     /**
@@ -66,7 +72,7 @@ class ApiNodeController extends Controller
      */
     public function categoryViewAction($urlKey, $locale)
     {
-        $category = $this->container->get("aisel.pagecategory.manager")->getCategoryByUrl($urlKey, $locale);
+        $category = $this->container->get("aisel.pagecategory.node.manager")->getCategoryByUrl($urlKey, $locale);
 
         return $category;
     }

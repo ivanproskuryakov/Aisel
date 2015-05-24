@@ -10,11 +10,6 @@ parameters:
     aisel_navigation_node_manager.class: Aisel\NavigationBundle\Manager\NodeManager
 
 services:
-    aisel.navigation.manager:
-        class: %aisel_navigation_manager.class%
-        arguments:
-            - @doctrine.orm.entity_manager
-
     aisel.navigation.node.manager:
         class: %aisel_navigation_node_manager.class%
         arguments:

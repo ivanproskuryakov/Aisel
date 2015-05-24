@@ -26,7 +26,7 @@ define(['app'], function (app) {
                     },
                     getMenu: function () {
                         var locale = Environment.currentLocale();
-                        var url = Environment.settings.api + '/' + locale + '/navigation/menu.json';
+                        var url = Environment.settings.api + '/' + locale + '/navigation/';
                         //console.log(url);
                         return $http.get(url);
                     }

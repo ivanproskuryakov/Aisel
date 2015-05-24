@@ -213,18 +213,18 @@ class AbstractNodeManager
     //--------- FRONTEND --------
     //---------------------------
     /**
-     * Get tree array of enabled categories
+     * Get tree array of enabled nodes
      *
      * @param string $locale
      *
      * @return array $categories
      */
-    public function getCategoryTree($locale)
+    public function getNodesTree($locale)
     {
         $categories = $this
             ->em
             ->getRepository($this->entity)
-            ->getEnabledCategoriesAsTree($locale);
+            ->getEnabledNodesAsTree($locale);
 
         return $categories;
     }

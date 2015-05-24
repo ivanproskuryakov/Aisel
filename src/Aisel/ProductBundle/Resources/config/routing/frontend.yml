@@ -33,6 +33,6 @@ api_aisel_product_category_get:
 
 api_aisel_product_category_get_tree:
     pattern:  /{locale}/product/category/tree/
-    defaults: { _controller: AiselProductBundle:ApiCategory:categoryTree, _format: json }
+    defaults: { _controller: AiselProductBundle:ApiCategory:getTree, _format: json }
     requirements:
         _method: GET

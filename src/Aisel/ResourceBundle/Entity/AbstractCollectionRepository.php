@@ -45,11 +45,13 @@ class AbstractCollectionRepository extends EntityRepository
         } else {
             $this->pageCurrent = 1;
         }
+
         if (isset($params['limit'])) {
             $this->pageLimit = $params['limit'];
         } else {
             $this->pageLimit = 5;
         }
+
         if (isset($params['category'])) {
             $this->category = $params['category'];
         } else {
@@ -60,14 +62,17 @@ class AbstractCollectionRepository extends EntityRepository
         if (isset($params['query'])) {
             $this->search = $params['query'];
         }
+
         // User
         if (isset($params['userid'])) {
             $this->userId = $params['userid'];
         }
+
         // Locale
         if (isset($params['locale'])) {
             $this->locale = $params['locale'];
         }
+
         // Filter
         if (isset($params['filter'])) {
             $this->filter = (array) json_decode($params['filter']);
@@ -116,7 +121,10 @@ class AbstractCollectionRepository extends EntityRepository
 
         $total = $query->getQuery()->getSingleScalarResult();
 
-        if (!$total) return 0;
+        if (!$total) {
+            return 0;
+        }
+
         return $total;
     }
 
@@ -175,7 +183,7 @@ class AbstractCollectionRepository extends EntityRepository
      *
      * @return array $result
      */
-    public function getEnabledCategoriesAsTree($locale)
+    public function getEnabledNodesAsTree($locale)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $result = $qb->select('c')

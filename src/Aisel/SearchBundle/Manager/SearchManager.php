@@ -45,8 +45,13 @@ class SearchManager
      */
     public function search($params)
     {
-        $total = $this->em->getRepository('AiselPageBundle:Page')->getTotalFromRequest($params);
-        $collection = $this->em->getRepository('AiselPageBundle:Page')->searchFromRequest($params);
+        $pageRepository = $this
+            ->em
+            ->getRepository('AiselPageBundle:Page');
+
+        $total = $pageRepository->getTotalFromRequest($params);
+        $collection = $pageRepository->searchFromRequest($params);
+
         $return = array(
             'total' => $total,
             'collection' => $collection
