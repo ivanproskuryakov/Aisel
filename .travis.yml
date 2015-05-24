@@ -75,8 +75,7 @@ before_script:
     - cd $TRAVIS_BUILD_DIR
 
 script:
-#    - protractor backend/protractor/conf.js
-    - protractor frontend/protractor/conf.js
-#    - bin/phpspec run --stop-on-failure
     - bin/phpunit -c app src/
-#    - bin/behat --stop-on-failure
+    - bin/phpspec run --stop-on-failure
+#    - protractor backend/protractor/conf.js
+#    - protractor frontend/protractor/conf.js

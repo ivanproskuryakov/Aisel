@@ -38,13 +38,6 @@
         "payum/payum-bundle": "0.13.*@dev",
         "payum/payum": "0.13.*@dev",
 
-        "behat/behat": "~3.0.7",
-        "behat/symfony2-extension": "~2.0@dev",
-        "behat/mink-extension": "~2.0@dev",
-        "behat/mink-browserkit-driver": "~1.2@dev",
-        "behat/mink-selenium2-driver": "~1.2.@dev",
-        "behat/mink": "~1.6@dev",
-
         "phpspec/phpspec": "~2.0",
         "phpunit/phpunit": "4.6.4",
         "nelmio/cors-bundle": "~1.4"

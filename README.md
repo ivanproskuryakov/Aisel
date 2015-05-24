@@ -39,8 +39,7 @@ Running Tests
 [PHPUnit](https://phpunit.de/) <br/>
 `bin/phpunit -c app src/`<br/>
 
-[Behat](http://behat.org) & [PHPSpec](http://phpspec.net/) <br/>
-`bin/behat`<br/>
+[PHPSpec](http://phpspec.net/) <br/>
 `bin/phpspec run`<br/>
 
 XML Sitemap & Google indexing
