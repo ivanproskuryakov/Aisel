@@ -7,7 +7,6 @@
 
 parameters:
     aisel_page_manager.class: Aisel\PageBundle\Manager\PageManager
-    aisel_page_category_manager.class: Aisel\PageBundle\Manager\CategoryManager
     aisel_page_category_mode_manager.class: Aisel\PageBundle\Manager\NodeManager
 
 services:
@@ -15,11 +14,6 @@ services:
         class: %aisel_page_manager.class%
         arguments:
             - @doctrine.orm.entity_manager
-
-    aisel.pagecategory.manager:
-        class: %aisel_page_category_manager.class%
-        arguments:
-          - @doctrine.orm.entity_manager
 
     aisel.pagecategory.node.manager:
         class: %aisel_page_category_mode_manager.class%

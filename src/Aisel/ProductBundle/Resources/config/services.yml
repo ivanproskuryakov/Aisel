@@ -8,7 +8,6 @@
 parameters:
     aisel_product_manager.class: Aisel\ProductBundle\Manager\ProductManager
     aisel_product_media_manager.class: Aisel\ProductBundle\Manager\MediaManager
-    aisel_product_category_manager.class: Aisel\ProductBundle\Manager\ProductCategoryManager
     aisel_product_category_node_manager.class: Aisel\ProductBundle\Manager\NodeManager
 
 services:
@@ -19,11 +18,6 @@ services:
     aisel.product.media.manager:
         class: %aisel_product_media_manager.class%
         arguments: [@doctrine.orm.entity_manager, %application.media.product.path%, %website_address%]
-
-    aisel.productcategory.manager:
-        class: %aisel_product_category_manager.class%
-        arguments:
-          - @doctrine.orm.entity_manager
 
     aisel.productcategory.node.manager:
         class: %aisel_product_category_node_manager.class%
