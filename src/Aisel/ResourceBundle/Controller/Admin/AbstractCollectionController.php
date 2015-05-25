@@ -148,13 +148,14 @@ class AbstractCollectionController extends Controller
             'filter' => $request->get('filter')
         );
 
-        $em = $this->getEntityManager();
-        $total = $em
-            ->getRepository($this->entity)
-            ->getTotalFromRequest($params);
-        $collection = $em
-            ->getRepository($this->entity)
-            ->getCollectionFromRequest($params);
+        /**
+         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
+         */
+        $repo = $this
+            ->getEntityManager()
+            ->getRepository($this->entity);
+        $total = $repo->getTotalFromRequest($params);
+        $collection = $repo->getCollectionFromRequest($params);
 
         return array(
             'total' => $total,
@@ -173,10 +174,13 @@ class AbstractCollectionController extends Controller
             'locale' => $request->get('locale'),
         );
 
-        $em = $this->getEntityManager();
-        $collection = $em
-            ->getRepository($this->entity)
-            ->getCollectionFromRequest($params);
+        /**
+         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
+         */
+        $repo = $this
+            ->getEntityManager()
+            ->getRepository($this->entity);
+        $collection = $repo->getCollectionFromRequest($params);
 
         return $collection;
     }
