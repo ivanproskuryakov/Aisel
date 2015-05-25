@@ -25,7 +25,7 @@ class AbstractNodeController extends Controller
     /**
      * @var string
      */
-    protected $entity;
+    protected $model;
 
     /**
      * @var string
@@ -46,7 +46,7 @@ class AbstractNodeController extends Controller
          */
         $repo = $this
             ->container->get('doctrine.orm.entity_manager')
-            ->getRepository($this->entity);
+            ->getRepository($this->model);
         $locale = $request->get('locale');
         $tree = $repo->getNodesAsTree($locale);
 
@@ -67,7 +67,7 @@ class AbstractNodeController extends Controller
          */
         $repo = $this
             ->container->get('doctrine.orm.entity_manager')
-            ->getRepository($this->entity);
+            ->getRepository($this->model);
         $locale = $request->get('locale');
         $tree = $repo->getNodesAsTree($locale, $onlyEnabled = true);
 

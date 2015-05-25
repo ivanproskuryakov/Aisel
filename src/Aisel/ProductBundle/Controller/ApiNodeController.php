@@ -25,7 +25,7 @@ class ApiNodeController extends AbstractNodeController
     /**
      * @var string
      */
-    protected $entity = "Aisel\ProductBundle\Entity\Category";
+    protected $model = "Aisel\ProductBundle\Entity\Category";
 
     /**
      * /api/product/category/list.json?limit=2&current=3

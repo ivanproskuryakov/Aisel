@@ -12,6 +12,6 @@ use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
  */
 class CountryRepository extends AbstractCollectionRepository
 {
-    protected $entity = 'AiselAddressingBundle:Country';
+    protected $model = 'AiselAddressingBundle:Country';
 
 }

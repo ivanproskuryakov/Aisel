@@ -25,7 +25,7 @@ class ApiPageController extends AbstractCollectionController
     /**
      * @var string
      */
-    protected $entity =  "Aisel\PageBundle\Entity\Page";
+    protected $model =  "Aisel\PageBundle\Entity\Page";
 
     /**
      * @param string $urlKey

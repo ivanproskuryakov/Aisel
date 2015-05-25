@@ -20,7 +20,7 @@ use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
  */
 class FrontendUserRepository extends AbstractCollectionRepository
 {
-    protected $entity = 'AiselFrontendUserBundle:FrontendUser';
+    protected $model = 'AiselFrontendUserBundle:FrontendUser';
 
     /**
      * Find user by Username and Email
@@ -35,7 +35,7 @@ class FrontendUserRepository extends AbstractCollectionRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
 
         $qb->select('COUNT(u.id)')
-            ->from($this->entity, 'u')
+            ->from($this->model, 'u')
             ->where('u.username = :username')
             ->orWhere('u.email = :email')
             ->setParameter('username', $username)

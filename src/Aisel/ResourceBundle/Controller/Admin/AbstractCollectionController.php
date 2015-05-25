@@ -27,7 +27,7 @@ class AbstractCollectionController extends Controller
     /**
      * @var string
      */
-    protected $entity;
+    protected $model;
 
     /**
      * @return EntityManager
@@ -45,7 +45,7 @@ class AbstractCollectionController extends Controller
     protected function getEntityFromRequest(Request $request)
     {
         $configuration = new ParamConverter(array(
-            'class' => $this->entity
+            'class' => $this->model
         ));
         $entity = $this->get('api_param_converter')->execute($request, $configuration);
 
@@ -153,7 +153,7 @@ class AbstractCollectionController extends Controller
          */
         $repo = $this
             ->getEntityManager()
-            ->getRepository($this->entity);
+            ->getRepository($this->model);
         $total = $repo->getTotalFromRequest($params);
         $collection = $repo->getCollectionFromRequest($params);
 
@@ -179,7 +179,7 @@ class AbstractCollectionController extends Controller
          */
         $repo = $this
             ->getEntityManager()
-            ->getRepository($this->entity);
+            ->getRepository($this->model);
         $collection = $repo->getCollectionFromRequest($params);
 
         return $collection;

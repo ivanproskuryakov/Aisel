@@ -20,5 +20,5 @@ use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
  */
 class BackendUserRepository extends AbstractCollectionRepository
 {
-    protected $entity = 'AiselBackendUserBundle:BackendUser';
+    protected $model = 'AiselBackendUserBundle:BackendUser';
 }

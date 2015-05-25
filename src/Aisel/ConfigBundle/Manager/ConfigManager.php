@@ -57,7 +57,10 @@ class ConfigManager
      */
     public function getConfig($locale = null)
     {
-        $collection = $this->em->getRepository('AiselConfigBundle:Config')->getAllSettings($locale);
+        $collection = $this
+            ->em
+            ->getRepository('AiselConfigBundle:Config')
+            ->getAllSettings($locale);
 
         if (!$collection) {
             throw new LogicException('Nothing found');

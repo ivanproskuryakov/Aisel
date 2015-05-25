@@ -26,7 +26,7 @@ class AbstractNodeManager
     /**
      * @var null
      */
-    protected $entity = null;
+    protected $model = null;
 
     /**
      * @var EntityManager
@@ -61,7 +61,7 @@ class AbstractNodeManager
     {
         $nodes = $this
             ->em
-            ->getRepository($this->entity)
+            ->getRepository($this->model)
             ->findBy(
                 array(
                     'locale' => $locale
@@ -84,7 +84,7 @@ class AbstractNodeManager
         if ($categoryId = $params['id']) {
             $node = $this
                 ->em
-                ->getRepository($this->entity)
+                ->getRepository($this->model)
                 ->find($categoryId);
 
             if (!($node)) {
@@ -112,7 +112,7 @@ class AbstractNodeManager
     public function remove($params)
     {
         if ($categoryId = $params['id']) {
-            $node = $this->em->getRepository($this->entity)->find($categoryId);
+            $node = $this->em->getRepository($this->model)->find($categoryId);
 
             if (!($node)) {
                 throw new LogicException('Nothing found');
@@ -136,7 +136,7 @@ class AbstractNodeManager
     public function addChild($params)
     {
         if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->entity)->find($categoryId);
+            $nodeParent = $this->em->getRepository($this->model)->find($categoryId);
 
             if (!($nodeParent)) {
                 throw new LogicException('Nothing found');
@@ -186,7 +186,7 @@ class AbstractNodeManager
          * @var $node \Aisel\ResourceBundle\Entity\Category
          */
         if ($categoryParentId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->entity)->find($categoryParentId);
+            $nodeParent = $this->em->getRepository($this->model)->find($categoryParentId);
 
             if (!($nodeParent)) {
                 throw new LogicException('Nothing found');
@@ -194,7 +194,7 @@ class AbstractNodeManager
         }
 
         if ($categoryId = $params['id']) {
-            $node = $this->em->getRepository($this->entity)->find($categoryId);
+            $node = $this->em->getRepository($this->model)->find($categoryId);
 
             if (!($node)) {
                 throw new LogicException('Nothing found');
@@ -252,7 +252,7 @@ class AbstractNodeManager
      */
     public function getHTMLCategoryTree()
     {
-        $categories = $this->em->getRepository($this->entity)->getEnabledCategoriesAsTree();
+        $categories = $this->em->getRepository($this->model)->getEnabledCategoriesAsTree();
         $treeHTML = '<ul>';
 
         foreach ($categories as $rootItem) {
@@ -315,8 +315,8 @@ class AbstractNodeManager
      */
     public function getCategories($params, $locale = null)
     {
-        $total = $this->em->getRepository($this->entity)->getTotalFromRequest($params, $locale);
-        $categories = $this->em->getRepository($this->entity)->getCurrentCategoriesFromRequest($params, $locale);
+        $total = $this->em->getRepository($this->model)->getTotalFromRequest($params, $locale);
+        $categories = $this->em->getRepository($this->model)->getCurrentCategoriesFromRequest($params, $locale);
         $return = array(
             'total' => $total,
             'categories' => $categories
@@ -337,7 +337,7 @@ class AbstractNodeManager
      */
     public function getCategoryByURL($urlKey, $locale = null)
     {
-        $category = $this->em->getRepository($this->entity)->getEnabledCategoryByUrl($urlKey, $locale);
+        $category = $this->em->getRepository($this->model)->getEnabledCategoryByUrl($urlKey, $locale);
 
         if (!($category)) {
             throw new LogicException('Object not found');
@@ -359,7 +359,7 @@ class AbstractNodeManager
      */
     public function getCategory($id)
     {
-        $category = $this->em->getRepository($this->entity)->getEnabledCategory($id);
+        $category = $this->em->getRepository($this->model)->getEnabledCategory($id);
 
         if (!($category)) {
             throw new LogicException('Object not found');
@@ -377,7 +377,7 @@ class AbstractNodeManager
      */
     public function getEnabledCategories()
     {
-        $pageList = $this->em->getRepository($this->entity)->getEnabledCategoriesAsTree();
+        $pageList = $this->em->getRepository($this->model)->getEnabledCategoriesAsTree();
 
         return $pageList;
     }
@@ -392,7 +392,7 @@ class AbstractNodeManager
      */
     public function normalizeCategoryUrl($url, $categoryId = null)
     {
-        $category = $this->em->getRepository($this->entity)->findTotalByURL($url, $categoryId);
+        $category = $this->em->getRepository($this->model)->findTotalByURL($url, $categoryId);
         $utility = new UrlUtility();
         $validUrl = $utility->process($url);
 

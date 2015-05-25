@@ -13,7 +13,7 @@ use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
 class OrderRepository extends AbstractCollectionRepository
 {
 
-    protected $entity = 'AiselOrderBundle:Order';
+    protected $model = 'AiselOrderBundle:Order';
 
     /**
      * Create from user cart

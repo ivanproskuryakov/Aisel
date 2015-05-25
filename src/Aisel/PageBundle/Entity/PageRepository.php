@@ -21,7 +21,7 @@ use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
 class PageRepository extends AbstractCollectionRepository
 {
 
-    protected $entity = 'AiselPageBundle:Page';
+    protected $model = 'AiselPageBundle:Page';
 
     /**
      * Get pages based on limit, current pagination and search query
@@ -33,7 +33,7 @@ class PageRepository extends AbstractCollectionRepository
         $this->mapRequest($params);
         $query = $this->getEntityManager()->createQueryBuilder();
         $pages = $query->select('p')
-            ->from($this->entity, 'p')
+            ->from($this->model, 'p')
             ->where('p.content LIKE :search')->setParameter('search', '%' . $this->search . '%')
             ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale)
             ->andWhere('p.status = 1')
@@ -54,7 +54,7 @@ class PageRepository extends AbstractCollectionRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $pages = $query->select('p')
-            ->from($this->entity, 'p')
+            ->from($this->model, 'p')
             ->andWhere('p.status = 1')
             ->getQuery()
             ->execute();
@@ -73,7 +73,7 @@ class PageRepository extends AbstractCollectionRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $pages = $query->select('p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt')
-            ->from($this->entity, 'p')
+            ->from($this->model, 'p')
             ->innerJoin('p.categories', 'c')
             ->where('p.status = 1')
             ->andWhere('c.id = :categoryId')->setParameter('categoryId', $categoryId)
@@ -95,7 +95,7 @@ class PageRepository extends AbstractCollectionRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('COUNT(p.id)')
-            ->from($this->entity, 'p')
+            ->from($this->model, 'p')
             ->where('p.metaUrl = :url')->setParameter('url', $url);
 
         if ($pageId) {

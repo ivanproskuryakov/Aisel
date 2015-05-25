@@ -12,5 +12,5 @@ use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
  */
 class CategoryRepository extends AbstractCollectionRepository
 {
-    protected $entity = 'AiselProductBundle:Category';
+    protected $model = 'AiselProductBundle:Category';
 }

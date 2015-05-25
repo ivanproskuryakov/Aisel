@@ -24,6 +24,6 @@ class ApiNodeController extends AbstractCollectionController
     /**
      * @var string
      */
-    protected $entity = "Aisel\PageBundle\Entity\Category";
+    protected $model = "Aisel\PageBundle\Entity\Category";
 
 }

@@ -24,6 +24,6 @@ class ApiCountryController extends AbstractCollectionController
     /**
      * @var string
      */
-    protected $entity = "Aisel\AddressingBundle\Entity\Country";
+    protected $model = "Aisel\AddressingBundle\Entity\Country";
 
 }

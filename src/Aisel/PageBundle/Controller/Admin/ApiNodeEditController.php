@@ -24,7 +24,7 @@ class ApiNodeEditController extends AbstractNodeController
     /**
      * @var string
      */
-    protected $entity = "Aisel\PageBundle\Entity\Category";
+    protected $model = "Aisel\PageBundle\Entity\Category";
 
     /**
      * @var string

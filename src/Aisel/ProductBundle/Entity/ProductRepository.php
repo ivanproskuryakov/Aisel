@@ -10,7 +10,7 @@ use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
 class ProductRepository extends AbstractCollectionRepository
 {
 
-    protected $entity = 'AiselProductBundle:Product';
+    protected $model = 'AiselProductBundle:Product';
 
     /**
      * Get products based on limit, current pagination and search query
@@ -24,7 +24,7 @@ class ProductRepository extends AbstractCollectionRepository
         $this->mapRequest($params);
         $query = $this->getEntityManager()->createQueryBuilder();
         $r = $query->select('p')
-            ->from($this->entity, 'p')
+            ->from($this->model, 'p')
             ->where('p.content LIKE :search')->setParameter('search', '%' . $this->search . '%')
             ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale)
             ->andWhere('p.status = 1')
@@ -47,7 +47,7 @@ class ProductRepository extends AbstractCollectionRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $items = $query->select('p')
-            ->from($this->entity, 'p')
+            ->from($this->model, 'p')
             ->andWhere('p.status = 1')
             ->getQuery()
             ->execute();
@@ -66,7 +66,7 @@ class ProductRepository extends AbstractCollectionRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $items = $query->select('p.name, p.metaUrl, SUBSTRING(p.description, 1, 500) AS description,  p.createdAt')
-            ->from($this->entity, 'p')
+            ->from($this->model, 'p')
             ->innerJoin('p.categories', 'c')
             ->where('p.status = 1')
             ->andWhere('p.hidden != 1')
@@ -89,7 +89,7 @@ class ProductRepository extends AbstractCollectionRepository
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('COUNT(p.id)')
-            ->from($this->entity, 'p')
+            ->from($this->model, 'p')
             ->where('p.metaUrl = :url')->setParameter('url', $url);
 
         if ($productId) {

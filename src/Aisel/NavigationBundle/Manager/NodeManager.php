@@ -21,7 +21,7 @@ use Aisel\ResourceBundle\Manager\AbstractNodeManager;
 class NodeManager extends AbstractNodeManager
 {
 
-    protected $entity = 'Aisel\NavigationBundle\Entity\Menu';
+    protected $model = 'Aisel\NavigationBundle\Entity\Menu';
 
     /**
      * {@inheritDoc}
@@ -32,14 +32,14 @@ class NodeManager extends AbstractNodeManager
          * @var $node \Aisel\NavigationBundle\Entity\Menu
          */
         if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->entity)->find($categoryId);
+            $nodeParent = $this->em->getRepository($this->model)->find($categoryId);
 
             if (!($nodeParent)) {
                 throw new \LogicException('Nothing found');
             }
         }
 
-        $node = new $this->entity();
+        $node = new $this->model();
         $node->setTitle($params['name']);
         $node->setParent($nodeParent);
         $node->setLocale($params['locale']);
@@ -59,7 +59,7 @@ class NodeManager extends AbstractNodeManager
         /**
          * @var $node \Aisel\NavigationBundle\Entity\Menu
          */
-        $node = new $this->entity();
+        $node = new $this->model();
         $node->setTitle($params['name']);
         $node->setLocale($params['locale']);
         $node->setMetaUrl('/');

@@ -24,6 +24,6 @@ class ApiController extends AbstractCollectionController
     /**
      * @var string
      */
-    protected $entity = "Aisel\FrontendUserBundle\Entity\FrontendUser";
+    protected $model = "Aisel\FrontendUserBundle\Entity\FrontendUser";
 
 }

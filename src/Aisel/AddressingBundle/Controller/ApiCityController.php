@@ -24,6 +24,6 @@ class ApiCityController extends AbstractCollectionController
     /**
      * @var string
      */
-    protected $entity =  "Aisel\AddressingBundle\Entity\City";
+    protected $model =  "Aisel\AddressingBundle\Entity\City";
 
 }

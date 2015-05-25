@@ -21,7 +21,7 @@ use Doctrine\ORM\EntityRepository;
 class AbstractCollectionRepository extends EntityRepository
 {
 
-    protected $entity = '';
+    protected $model = '';
     protected $search = '';
     protected $locale = null;
     protected $filter = null;
@@ -92,7 +92,7 @@ class AbstractCollectionRepository extends EntityRepository
         $this->mapRequest($params);
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('COUNT(e.id)')
-            ->from($this->entity, 'e');
+            ->from($this->model, 'e');
 
         // === Filters ===
         if ($this->filter) {
@@ -140,7 +140,7 @@ class AbstractCollectionRepository extends EntityRepository
         $this->mapRequest($params);
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select('e')
-            ->from($this->entity, 'e');
+            ->from($this->model, 'e');
 
         // === Filters ===
         if ($this->filter) {
@@ -188,7 +188,7 @@ class AbstractCollectionRepository extends EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $result = $qb->select('c')
-            ->from($this->entity, 'c')
+            ->from($this->model, 'c')
             ->where('c.status = :enabled')->setParameter('enabled', $onlyEnabled)
             ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
             ->andWhere('c.lvl = :lvl')->setParameter('lvl', 0)
@@ -212,7 +212,7 @@ class AbstractCollectionRepository extends EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $result = $qb->select('c')
-            ->from($this->entity, 'c')
+            ->from($this->model, 'c')
             ->where('c.metaUrl = :metaUrl')->setParameter('metaUrl', $urlKey)
             ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
             ->andWhere('c.status = 1')
@@ -233,7 +233,7 @@ class AbstractCollectionRepository extends EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $result = $qb->select('c')
-            ->from($this->entity, 'c')
+            ->from($this->model, 'c')
             ->where('c.id = :categoryId')->setParameter('categoryId', $categoryId)
             ->andWhere('c.status = 1')
             ->getQuery()
@@ -255,7 +255,7 @@ class AbstractCollectionRepository extends EntityRepository
         $this->mapRequest($params);
         $qb = $this->getEntityManager()->createQueryBuilder();
         $query = $qb->select('c')
-            ->from($this->entity, 'c')
+            ->from($this->model, 'c')
             ->where('c.status = 1');
 
         if ($locale) {
