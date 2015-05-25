@@ -21,8 +21,9 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 class ApiCountryController extends AbstractCollectionController
 {
 
-    protected $model = array(
-        'class' => "Aisel\AddressingBundle\Entity\Country",
-    );
+    /**
+     * @var string
+     */
+    protected $entity = "Aisel\AddressingBundle\Entity\Country";
 
 }

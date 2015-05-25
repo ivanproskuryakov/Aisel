@@ -21,8 +21,9 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 class ApiNodeController extends AbstractCollectionController
 {
 
-    protected $model = array(
-        'class' => "Aisel\NavigationBundle\Entity\Menu",
-    );
+    /**
+     * @var string
+     */
+    protected $entity = "Aisel\NavigationBundle\Entity\Menu";
 
 }

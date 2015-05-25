@@ -21,8 +21,9 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 class ApiController extends AbstractCollectionController
 {
 
-    protected $model = array(
-        'class' => "Aisel\OrderBundle\Entity\Order",
-    );
+    /**
+     * @var string
+     */
+    protected $entity = "Aisel\OrderBundle\Entity\Order";
 
 }

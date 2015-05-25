@@ -21,8 +21,9 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 class ApiCityController extends AbstractCollectionController
 {
 
-    protected $model = array(
-        'class' => "Aisel\AddressingBundle\Entity\City",
-    );
+    /**
+     * @var string
+     */
+    protected $entity = "Aisel\AddressingBundle\Entity\City";
 
 }

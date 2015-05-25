@@ -20,9 +20,9 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
  */
 class ApiPageController extends AbstractCollectionController
 {
-
-    protected $model = array(
-        'class' => "Aisel\PageBundle\Entity\Page",
-    );
+    /**
+     * @var string
+     */
+    protected $entity = "Aisel\PageBundle\Entity\Page";
 
 }

@@ -22,10 +22,8 @@ class ApiNodeController extends AbstractCollectionController
 {
 
     /**
-     * @var array
+     * @var string
      */
-    protected $model = array(
-        'class' => "Aisel\PageBundle\Entity\Category",
-    );
+    protected $entity = "Aisel\PageBundle\Entity\Category";
 
 }

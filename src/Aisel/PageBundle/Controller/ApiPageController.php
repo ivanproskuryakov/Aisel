@@ -22,9 +22,10 @@ use Aisel\PageBundle\Entity\Page;
 class ApiPageController extends AbstractCollectionController
 {
 
-    protected $model = array(
-        'class' => "Aisel\PageBundle\Entity\Page",
-    );
+    /**
+     * @var string
+     */
+    protected $entity =  "Aisel\PageBundle\Entity\Page";
 
     /**
      * @param string $urlKey

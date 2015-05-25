@@ -25,9 +25,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class AbstractCollectionController extends Controller
 {
     /**
-     * @var array
+     * @var string
      */
-    protected $model = array();
+    protected $entity;
 
     /**
      * @return EntityManager
@@ -45,7 +45,7 @@ class AbstractCollectionController extends Controller
     protected function getEntityFromRequest(Request $request)
     {
         $configuration = new ParamConverter(array(
-            'class' => $this->model['class']
+            'class' => $this->entity
         ));
         $entity = $this->get('api_param_converter')->execute($request, $configuration);
 
@@ -150,10 +150,10 @@ class AbstractCollectionController extends Controller
 
         $em = $this->getEntityManager();
         $total = $em
-            ->getRepository($this->model['class'])
+            ->getRepository($this->entity)
             ->getTotalFromRequest($params);
         $collection = $em
-            ->getRepository($this->model['class'])
+            ->getRepository($this->entity)
             ->getCollectionFromRequest($params);
 
         return array(
@@ -175,7 +175,7 @@ class AbstractCollectionController extends Controller
 
         $em = $this->getEntityManager();
         $collection = $em
-            ->getRepository($this->model['class'])
+            ->getRepository($this->entity)
             ->getCollectionFromRequest($params);
 
         return $collection;
