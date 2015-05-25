@@ -21,6 +21,14 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 class ApiNodeEditController extends AbstractNodeController
 {
 
+    /**
+     * @var string
+     */
+    protected $entity = "Aisel\PageBundle\Entity\Category";
+
+    /**
+     * @var string
+     */
     protected $nodeManager = "aisel.pagecategory.node.manager";
 
 }

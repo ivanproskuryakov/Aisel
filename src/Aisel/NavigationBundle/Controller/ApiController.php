@@ -11,31 +11,19 @@
 
 namespace Aisel\NavigationBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 
 /**
  * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiController extends Controller
+class ApiController extends AbstractNodeController
 {
 
     /**
-     * menuAction
-     *
-     * @param string $locale
-     *
-     * @return mixed $menu
+     * @var string
      */
-    public function getAction($locale)
-    {
-        $menu = $this
-            ->container
-            ->get("aisel.navigation.node.manager")
-            ->getNodesTree($locale);
-
-        return $menu;
-    }
+    protected $entity = "Aisel\NavigationBundle\Entity\Menu";
 
 }

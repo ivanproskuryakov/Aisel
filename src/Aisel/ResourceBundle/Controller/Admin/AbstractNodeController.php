@@ -22,6 +22,14 @@ use Symfony\Component\HttpFoundation\Request;
 class AbstractNodeController extends Controller
 {
 
+    /**
+     * @var string
+     */
+    protected $entity;
+
+    /**
+     * @var string
+     */
     protected $nodeManager;
 
     /**
@@ -33,10 +41,35 @@ class AbstractNodeController extends Controller
      */
     public function getNodeCollectionAction(Request $request)
     {
-        $tree = $this
-            ->container
-            ->get($this->nodeManager)
-            ->getNodesTree($request->get('locale'));
+        /**
+         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
+         */
+        $repo = $this
+            ->container->get('doctrine.orm.entity_manager')
+            ->getRepository($this->entity);
+        $locale = $request->get('locale');
+        $tree = $repo->getNodesAsTree($locale);
+
+        return $tree;
+    }
+
+    /**
+     * getNodeCollectionAction
+     *
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function getNodeCollectionEnabledAction(Request $request)
+    {
+        /**
+         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
+         */
+        $repo = $this
+            ->container->get('doctrine.orm.entity_manager')
+            ->getRepository($this->entity);
+        $locale = $request->get('locale');
+        $tree = $repo->getNodesAsTree($locale, $onlyEnabled = true);
 
         return $tree;
     }

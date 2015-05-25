@@ -17,6 +17,7 @@ define(['app'], function (app) {
 
         $scope.sectionName = 'Navigation';
         $scope.categoryJson = Environment.settings.api + '/navigation/?locale=' + $stateParams.lang;
+        $scope.categoryUpdate = Environment.settings.api + '/navigation/node/?locale=' + $stateParams.lang;
 
         $scope.editNode = function (id) {
             $state.transitionTo('navigationEdit', {

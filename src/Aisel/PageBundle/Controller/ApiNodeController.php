@@ -11,16 +11,21 @@
 
 namespace Aisel\PageBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 
 /**
  * ApiNodeController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiNodeController extends Controller
+class ApiNodeController extends AbstractNodeController
 {
+
+    /**
+     * @var string
+     */
+    protected $entity = "Aisel\PageBundle\Entity\Category";
 
     /**
      * categoryListAction
@@ -42,24 +47,6 @@ class ApiNodeController extends Controller
             ->getCategories($params, $locale);
 
         return $categoryList;
-    }
-
-    /**
-     * getTreeAction
-     *
-     * @param Request $request
-     * @param string  $locale
-     *
-     * @return mixed $categoryList
-     */
-    public function getTreeAction(Request $request, $locale)
-    {
-        $tree = $this
-            ->container
-            ->get("aisel.pagecategory.node.manager")
-            ->getNodesTree($locale);
-
-        return $tree;
     }
 
     /**

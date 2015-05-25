@@ -21,6 +21,14 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 class ApiNodeEditController extends AbstractNodeController
 {
 
+    /**
+     * @var string
+     */
+    protected $entity = "Aisel\NavigationBundle\Entity\Menu";
+
+    /**
+     * @var string
+     */
     protected $nodeManager = "aisel.navigation.node.manager";
 
 }

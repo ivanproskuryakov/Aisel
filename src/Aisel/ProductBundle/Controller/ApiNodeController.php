@@ -11,16 +11,21 @@
 
 namespace Aisel\ProductBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 
 /**
  * Category REST API for Frontend
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiCategoryController extends Controller
+class ApiNodeController extends AbstractNodeController
 {
+
+    /**
+     * @var string
+     */
+    protected $entity = "Aisel\ProductBundle\Entity\Category";
 
     /**
      * /api/product/category/list.json?limit=2&current=3
@@ -39,24 +44,6 @@ class ApiCategoryController extends Controller
         $categoryList = $this->container->get("aisel.productcategory.node.manager")->getCategories($params, $locale);
 
         return $categoryList;
-    }
-
-    /**
-     * categoryViewAction
-     *
-     * @param Request $request
-     * @param string  $locale
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $categoryList
-     */
-    public function getTreeAction(Request $request, $locale)
-    {
-        $tree = $this
-            ->container
-            ->get("aisel.productcategory.node.manager")
-            ->getNodesTree($locale);
-
-        return $tree;
     }
 
     /**

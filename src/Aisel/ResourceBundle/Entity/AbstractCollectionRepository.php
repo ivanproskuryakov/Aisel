@@ -180,16 +180,18 @@ class AbstractCollectionRepository extends EntityRepository
      * Returns enabled categories sorted as tree
      *
      * @param string $locale
+     * @param boolean $onlyEnabled
      *
      * @return array $result
      */
-    public function getEnabledNodesAsTree($locale)
+    public function getNodesAsTree($locale, $onlyEnabled = false)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $result = $qb->select('c')
             ->from($this->entity, 'c')
-            ->where('c.status = 1')
+            ->where('c.status = :enabled')->setParameter('enabled', $onlyEnabled)
             ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
+            ->andWhere('c.lvl = :lvl')->setParameter('lvl', 0)
             ->orderBy('c.root', 'ASC')
             ->addOrderBy('c.lft', 'ASC')
             ->getQuery()
