@@ -52,6 +52,12 @@ class AbstractCollectionController extends Controller
         return $entity;
     }
 
+    /**
+     * @param $entity
+     * @param null $id
+     *
+     * @return Response
+     */
     protected function processEntity($entity, $id = null)
     {
         if ($id) {
