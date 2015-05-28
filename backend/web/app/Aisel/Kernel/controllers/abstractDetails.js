@@ -20,7 +20,7 @@ define(['app'], function (app) {
             name: $scope.route.name
         };
         $scope.item = {};
-
+        var locale = Environment.currentLocale();
 
         var errorNotify = function(data) {
             notify('Response:' + data.code + ' Message:' + data.message);
@@ -36,7 +36,13 @@ define(['app'], function (app) {
                     $scope.item = data;
                 }
             ).error(function(data, status) {
-                errorNotify(data);
+                if (data.error.code == 404) {
+                    $state.transitionTo('home', {locale: locale});
+                    notify('404 Noting found');
+                    console.log(data);
+                } else {
+                    errorNotify(data);
+                }
             });
         };
 
