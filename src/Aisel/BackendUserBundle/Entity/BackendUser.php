@@ -117,7 +117,6 @@ class BackendUser implements AdvancedUserInterface
      * Plain password. Used for model validation. Must not be persisted.
      *
      * @var string
-     * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $plainPassword;

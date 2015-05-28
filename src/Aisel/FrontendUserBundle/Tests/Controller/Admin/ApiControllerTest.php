@@ -132,7 +132,25 @@ class ApiControllerTest extends AbstractWebTestCase
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
         $id = $user->getId();
-        $data['email'] = 'test_frontend_user_aisel2@aisel.co';
+
+        $data = array(
+            'id' => 134,
+            'username' => 'volgodark',
+            'email' => 'volgodark@gmail.com',
+            'created_at' => '2015-05-26T05:04:54-0700',
+            'updated_at' => '2015-05-26T05:04:54-0700',
+            'last_login' => '2015-05-26T05:04:54-0700',
+            'phone' => '+123',
+            'enabled' => true,
+            'locked' => false,
+            'orders' => array(),
+            'cart' => array(),
+            'orders' => array(
+                0 => array(
+                    'id' => '248',
+                )
+            ),
+        );
 
         $this->client->request(
             'PUT',
@@ -146,6 +164,9 @@ class ApiControllerTest extends AbstractWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
+        var_dump($statusCode);
+        var_dump($response);
+        exit();
 
         $user = $this
             ->em
@@ -155,7 +176,6 @@ class ApiControllerTest extends AbstractWebTestCase
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
         $this->assertNotNull($user);
-        $this->assertEquals($data['email'], $user->getEmail());
     }
 
     public function testDeletePageNodeAction()

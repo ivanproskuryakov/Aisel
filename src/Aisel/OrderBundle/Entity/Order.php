@@ -18,6 +18,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\OrderBundle\Entity\OrderRepository")
  * @ORM\Table(name="aisel_order")
+ * @JMS\ExclusionPolicy("none")
  */
 class Order
 {
@@ -27,6 +28,7 @@ class Order
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Type("integer")
      */
     private $id;
 
@@ -34,6 +36,7 @@ class Order
      * @var string
      * @ORM\Column(type="string", length=2, nullable=false)
      * @Assert\NotNull()
+     * @JMS\Type("string")
      */
     private $locale;
 
@@ -48,6 +51,7 @@ class Order
      * @var float
      * @Assert\NotNull()
      * @ORM\Column(type="float", scale=2, nullable=false)
+     * @JMS\Type("float")
      */
     private $subtotal = 0;
 
@@ -55,12 +59,14 @@ class Order
      * @var float
      * @Assert\NotNull()
      * @ORM\Column(type="float", scale=2, nullable=false)
+     * @JMS\Type("float")
      */
     private $grandtotal = 0;
 
     /**
      * @var string
      * @ORM\Column(type="text")
+     * @JMS\Type("string")
      */
     private $description;
 
@@ -68,6 +74,7 @@ class Order
      * @var string
      * @ORM\Column(type="string", length=3)
      * @Assert\NotNull()
+     * @JMS\Type("string")
      */
     private $currency;
 
@@ -75,6 +82,7 @@ class Order
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $country;
 
@@ -82,6 +90,7 @@ class Order
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $region;
 
@@ -89,6 +98,7 @@ class Order
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $city;
 
@@ -96,6 +106,7 @@ class Order
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $phone;
 
@@ -103,6 +114,7 @@ class Order
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $paymentMethod;
 
@@ -112,7 +124,6 @@ class Order
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
-     * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
      */
@@ -122,15 +133,16 @@ class Order
      * @var Product
      * @ORM\ManyToOne(targetEntity="Aisel\OrderBundle\Entity\Invoice", inversedBy="order")
      * @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("Aisel\OrderBundle\Entity\Invoice")
      */
     private $invoice;
 
     /**
      * @var OrderItem
      * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\OrderItem", mappedBy="order")
-     * @JMS\Expose
      * @JMS\MaxDepth(1)
-     * @JMS\Type("Aisel\OrderBundle\Entity\OrderItem")
+     * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Entity\OrderItem>")
      */
     private $item;
 
@@ -138,6 +150,7 @@ class Order
      * @var \DateTime
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
+     * @JMS\Type("DateTime")
      */
     private $createdAt;
 
@@ -145,6 +158,7 @@ class Order
      * @var \DateTime
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
+     * @JMS\Type("DateTime")
      */
     private $updatedAt;
 

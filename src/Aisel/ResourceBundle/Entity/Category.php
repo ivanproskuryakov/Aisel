@@ -16,6 +16,7 @@ use JMS\Serializer\Annotation as JMS;
  * @Gedmo\Tree(type="nested")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\MappedSuperclass
+ * @JMS\ExclusionPolicy("all")
  */
 abstract class Category
 {
@@ -94,6 +95,7 @@ abstract class Category
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      * @JMS\Expose
+     * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\ResourceBundle\Entity\Category")
      */
     protected $parent;
@@ -102,7 +104,8 @@ abstract class Category
      * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
      * @ORM\OrderBy({"lft" = "ASC"})
      * @JMS\Expose
-     * @JMS\Type("Aisel\ResourceBundle\Entity\Category")
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\ResourceBundle\Entity\Category>")
      */
     protected $children;
 
@@ -110,6 +113,8 @@ abstract class Category
      * @var \DateTime
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
+     * @JMS\Expose
+     * @JMS\Type("DateTime")
      */
     protected $createdAt;
 
@@ -117,6 +122,8 @@ abstract class Category
      * @var \DateTime
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
+     * @JMS\Expose
+     * @JMS\Type("DateTime")
      */
     protected $updatedAt;
 

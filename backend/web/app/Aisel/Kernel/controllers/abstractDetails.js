@@ -21,6 +21,12 @@ define(['app'], function (app) {
         };
         $scope.item = {};
 
+
+        var errorNotify = function(data) {
+            notify('Response:' + data.code + ' Message:' + data.message);
+            console.log(data);
+        };
+
         /**
          * GET
          */
@@ -29,7 +35,9 @@ define(['app'], function (app) {
                 function (data, status) {
                     $scope.item = data;
                 }
-            );
+            ).error(function(data, status) {
+                errorNotify(data);
+            });
         };
 
         /**
@@ -43,7 +51,9 @@ define(['app'], function (app) {
                         notify($scope.route.name + ' has been saved');
                         console.log(data);
                     }
-                );
+                ).error(function(data, status) {
+                    errorNotify(data);
+                });
             }
             // New item
             if ($scope.details.id === undefined) {
@@ -55,7 +65,9 @@ define(['app'], function (app) {
                             {locale: Environment.currentLocale(), id: data.id}
                         );
                     }
-                );
+                ).error(function(data, status) {
+                    errorNotify(data);
+                });
             }
         };
 
@@ -71,7 +83,9 @@ define(['app'], function (app) {
                         {locale: Environment.currentLocale()}
                     );
                 }
-            );
+            ).error(function(data, status) {
+                errorNotify(data);
+            });
         };
 
         /**
@@ -96,7 +110,9 @@ define(['app'], function (app) {
                         {locale: Environment.currentLocale()}
                     );
                 }
-            );
+            ).error(function(data, status) {
+                errorNotify(data);
+            });
         };
 
     });

@@ -6,6 +6,7 @@ use Aisel\ResourceBundle\Entity\Category as BaseCategory;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Category
@@ -19,6 +20,25 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Category extends BaseCategory
 {
+
+    /**
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("Aisel\ProductBundle\Entity\Category")
+     */
+    protected $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     * @ORM\OrderBy({"lft" = "ASC"})
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Category>")
+     */
+    protected $children;
 
     /**
      * @var string

@@ -6,6 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Page
@@ -15,6 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\PageBundle\Entity\PageRepository")
  * @ORM\Table(name="aisel_page")
+ * @JMS\ExclusionPolicy("all")
  */
 class Page
 {
@@ -23,6 +25,8 @@ class Page
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Expose
+     * @JMS\Type("integer")
      */
     private $id;
 
@@ -30,6 +34,8 @@ class Page
      * @var string
      * @ORM\Column(type="string", length=2, nullable=false)
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $locale;
 
@@ -37,6 +43,8 @@ class Page
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $title;
 
@@ -44,6 +52,8 @@ class Page
      * @var string
      * @ORM\Column(type="text")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $content;
 
@@ -52,6 +62,8 @@ class Page
      * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("boolean")
      */
     private $status = false;
 
@@ -60,14 +72,18 @@ class Page
      * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("boolean")
      */
-    private $commentStatus;
+    private $commentStatus = false;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaUrl;
 
@@ -75,6 +91,8 @@ class Page
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaTitle;
 
@@ -82,6 +100,8 @@ class Page
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaDescription;
 
@@ -89,6 +109,8 @@ class Page
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaKeywords;
 
@@ -96,6 +118,8 @@ class Page
      * @var \DateTime
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
+     * @JMS\Expose
+     * @JMS\Type("DateTime")
      */
     private $createdAt;
 
@@ -103,18 +127,22 @@ class Page
      * @var \DateTime
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
+     * @JMS\Expose
+     * @JMS\Type("DateTime")
      */
     private $updatedAt;
 
     /**
      * @var ArrayCollection
-     *
      * @ORM\ManyToMany(targetEntity="Aisel\PageBundle\Entity\Category")
      * @ORM\JoinTable(
      *     name="aisel_page_page_category",
      *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
      * )
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Category>")
      */
     private $categories;
 
@@ -416,5 +444,17 @@ class Page
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Get categories
+     *
+     * @param Category $categories
+     *
+     * @return Page
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
     }
 }

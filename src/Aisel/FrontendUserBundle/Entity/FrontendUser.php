@@ -18,6 +18,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * FrontendUser
@@ -29,6 +30,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="aisel_user_frontend")
  * @UniqueEntity("username")
  * @UniqueEntity("email")
+ * @JMS\ExclusionPolicy("none")
  */
 class FrontendUser implements AdvancedUserInterface//, \Serializable
 {
@@ -38,6 +40,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Type("integer")
      */
     private $id;
 
@@ -46,6 +49,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Type("string")
      */
     private $username;
 
@@ -78,6 +82,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Type("boolean")
      */
     private $enabled = false;
 
@@ -86,6 +91,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Type("boolean")
      */
     private $locked = false;
 
@@ -93,6 +99,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @var \DateTime
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
+     * @JMS\Type("DateTime")
      */
     private $createdAt;
 
@@ -100,18 +107,21 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * @var \DateTime
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
+     * @JMS\Type("DateTime")
      */
     private $updatedAt;
 
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
+     * @JMS\Type("DateTime")
      */
     private $lastLogin;
 
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
+     * @JMS\Type("DateTime")
      */
     private $expiresAt;
 
@@ -119,7 +129,6 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      * Plain password. Used for model validation. Must not be persisted.
      *
      * @var string
-     * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $plainPassword;
@@ -127,25 +136,31 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="Aisel\CartBundle\Entity\Cart", mappedBy="frontenduser")
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\CartBundle\Entity\Cart>")
      */
     private $cart;
 
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\Order", mappedBy="frontenduser")
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Entity\Order>")
      */
     private $orders;
 
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\Address", mappedBy="frontenduser", cascade={"remove"})
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Entity\Address>")
      */
     private $addresses;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $about;
 
@@ -182,6 +197,9 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
      */
     public function __construct()
     {
+        $this->orders = new ArrayCollection();
+        $this->cart = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
         $this->salt = md5(uniqid(null, true));
     }
 

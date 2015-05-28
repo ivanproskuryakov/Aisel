@@ -143,7 +143,6 @@ class ParamConverter extends RequestBodyParamConverter
                 ->setGroups($serializerGroups)
             ;
         }
-
         $convertedValue = $this->serializer->deserialize(
             $rawPayload,
             $resolvedClass,

@@ -184,14 +184,19 @@ class AbstractCollectionRepository extends EntityRepository
      *
      * @return array $result
      */
-    public function getNodesAsTree($locale, $onlyEnabled = false)
+    public function getNodesAsTree($locale, $onlyEnabled = true)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $result = $qb->select('c')
+        $query = $qb->select('c')
             ->from($this->model, 'c')
-            ->where('c.status = :enabled')->setParameter('enabled', $onlyEnabled)
+            ->where('c.lvl = :lvl')->setParameter('lvl', 0);
+
+        if ($onlyEnabled) {
+            $query->andWhere('c.status = :enabled')->setParameter('enabled', $onlyEnabled);
+        }
+
+        $result = $query
             ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
-            ->andWhere('c.lvl = :lvl')->setParameter('lvl', 0)
             ->orderBy('c.root', 'ASC')
             ->addOrderBy('c.lft', 'ASC')
             ->getQuery()
