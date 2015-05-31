@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.controller('UserCtrl', ['$log', '$modal', '$scope', '$rootScope', '$state', '$routeParams', 'userService', 'notify', 'Environment',
-        function ($log, $modal, $scope, $rootScope, $routeParams, $state, userService, notify, Environment) {
+    app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$routeParams', 'userService', 'notify', 'Environment',
+        function ($scope, $rootScope, $state, $routeParams, userService, notify, Environment) {
             var locale = Environment.currentLocale();
 
             // User Registration
@@ -24,7 +24,10 @@ define(['app'], function (app) {
                         function (data, status) {
                             notify(data.message);
                             if (data.status) {
-                                $state.transitionTo('userInformation', {locale: locale});
+                                if (data.user.username) {
+                                    $rootScope.user = data.user;
+                                    $state.transitionTo('userInformation', {locale: locale});
+                                }
                             }
                         }
                     );
@@ -68,8 +71,7 @@ define(['app'], function (app) {
                         $state.transitionTo('homepage', {locale: locale});
                     }
                 );
-
-            }
+            };
 
             $scope.login = function (username, password) {
                 userService.login(username, password).success(
@@ -81,7 +83,5 @@ define(['app'], function (app) {
                     }
                 );
             };
-
         }]);
-
 });

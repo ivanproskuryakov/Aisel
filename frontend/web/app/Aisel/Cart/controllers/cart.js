@@ -13,8 +13,10 @@
  */
 
 define(['app'], function (app) {
-    app.controller('CartCtrl', ['$location', '$scope', 'cartService', 'notify',
-        function ($location, $scope, cartService, notify) {
+    app.controller('CartCtrl', ['$location', '$scope', 'cartService', 'notify', 'Environment',
+        function ($location, $scope, cartService, notify, Environment) {
+
+            $scope.media = Environment.settings.media;
 
             $scope.total = function () {
                 return cartService.getTotalFromCart($scope.cartItems);

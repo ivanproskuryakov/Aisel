@@ -72,9 +72,11 @@ class ApiController extends Controller
             if ((!$user instanceof FrontendUser) || (!$um->checkUserPassword($user, $password))) {
                 return array('message' => 'Wrong username or password!');
             }
+
             $this->loginUser($user);
 
             return array(
+                'user' => $user,
                 'status' => true,
                 'message' => 'Successfully logged in'
             );
@@ -94,7 +96,7 @@ class ApiController extends Controller
     public function registerAction(Request $request)
     {
         if ($this->isAuthenticated())
-            return array('message' => 'You already logged in, Please logout first');
+            return array('message' => 'You already logged in, please logout first');
 
         $params = array(
             'username' => $request->get('username'),
@@ -113,6 +115,12 @@ class ApiController extends Controller
             $this->get('security.context')->setToken($token);
             $this->get('session')->set('_security_main', serialize($token));
         }
+
+        return array(
+            'user' => $user,
+            'status' => true,
+            'message' => 'Successfully registered'
+        );
 
     }
 

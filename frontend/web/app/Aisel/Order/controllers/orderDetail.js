@@ -13,8 +13,9 @@
  */
 
 define(['app'], function (app) {
-    app.controller('OrderDetailCtrl', ['$location', '$scope', 'orderService', '$stateParams',
-        function ($location, $scope, orderService, $stateParams) {
+    app.controller('OrderDetailCtrl', ['$location', '$scope', 'orderService', '$stateParams', 'Environment',
+        function ($location, $scope, orderService, $stateParams, Environment) {
+            $scope.media = Environment.settings.media;
             $scope.orderId = $stateParams.orderId;
             var handleSuccess = function (data, status) {
                 $scope.orderDetails = data[0];

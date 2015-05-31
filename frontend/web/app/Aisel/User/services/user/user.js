@@ -19,9 +19,19 @@ define(['app'], function (app) {
                 var username = form.username.$modelValue;
                 var email = form.email.$modelValue;
                 var password = form.password.$modelValue;
-                var url = Environment.settings.api + '/user/register.json?username=' + username + '&password=' + password + '&email=' + email;
+                var url = Environment.settings.api + '/user/register/';
+                var data = {
+                    username: username,
+                    email: email,
+                    password: password
+                };
                 console.log(url);
-                return $http.get(url);
+
+                return $http({
+                    method: 'POST',
+                    url: url,
+                    data: data
+                });
             },
             editDetails: function (form) {
                 var formData = {};
@@ -53,9 +63,16 @@ define(['app'], function (app) {
                 return $http.get(url);
             },
             login: function (username, password) {
-                var url = Environment.settings.api + '/user/login/?username=' + username + '&password=' + password;
-                console.log(url);
-                return $http.get(url);
+                var url = Environment.settings.api + '/user/login/';
+                var data = {
+                    username: username,
+                    password: password
+                };
+                return $http({
+                    method: 'POST',
+                    url: url,
+                    data: data
+                });
             },
             getUserInformation: function () {
                 var url = Environment.settings.api + '/user/information/';

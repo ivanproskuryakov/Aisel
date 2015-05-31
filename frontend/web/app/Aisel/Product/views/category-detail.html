@@ -19,9 +19,12 @@
                             <div class="col-md-3">
                                 <a ui-sref="productView({locale: locale, productId:product.meta_url})"
                                    title="{{product.name}}">
-                                    <img class="img-rounded"
-                                         src="{{media}}{{product.main_image.path}}"
-                                         data-holder-rendered="true" style="width: 100%;">
+                                    <div ng-repeat="image in product.images">
+                                        <img class="img-rounded"
+                                             ng-if="image.main_image === true"
+                                             src="{{media}}{{image.filename}}"
+                                             data-holder-rendered="true" style="width: 100%;">
+                                    </div>
                                 </a>
                             </div>
                             <div class="col-md-9">

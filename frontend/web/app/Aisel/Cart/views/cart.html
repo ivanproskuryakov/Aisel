@@ -8,9 +8,12 @@
         <div ng-if="cartItems.length > 0">
             <div class="cartItem" ng-repeat="item in cartItems">
                 <div class="col-md-2">
-                    <img class="img-rounded"
-                         src="{{item.product.main_image.path}}"
-                         data-holder-rendered="true" style="width: 100%;">
+                    <div ng-repeat="image in item.product.images">
+                        <img class="img-rounded"
+                             ng-if="image.main_image === true"
+                             src="{{media}}{{image.filename}}"
+                             data-holder-rendered="true" style="width: 100%;">
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <h4>{{item.product.name}}</h4>
