@@ -39,10 +39,14 @@ $(document).ready(function () {
             },
             checkbox: false,
             titlesTabbable: true,     // Add all node titles to TAB chain
-            source: {
+            source: $.ajax({
                 url: categoryJson,
+                dataType: "json",
+                xhrFields: {
+                    withCredentials: true
+                },
                 cache: false
-            },
+            }),
             selectMode: 2,
             filter: {
                 mode: "hide"
@@ -86,8 +90,11 @@ $(document).ready(function () {
                     $.get(routeCategoryAjaxUpdate, {
                         action: 'dragDrop',
                         id: categoryId,
-                        parentId: categoryParentId}
-                    )
+                        parentId: categoryParentId,
+                        xhrFields: {
+                            withCredentials: true
+                        }
+                    })
                     .done(function (data) {
 //                                console.log('AJAX done');
                     });
@@ -103,16 +110,21 @@ $(document).ready(function () {
                     // Return false to prevent edit mode
                 },
                 close: function (event, data) {
-                    // Editor was removed
-                    var categoryUrl = data.node.data.url;
+//                    var categoryUrl = data.node.data.url;
                     var categoryId = data.node.data.id;
                     var categoryTitle = data.node.title;
 
-                    $.get(routeCategoryAjaxUpdate, {
-                        action: 'save',
-                        name: categoryTitle,
-                        id: categoryId,
-                        url: categoryUrl
+                    $.ajax({
+                        url: routeCategoryAjaxUpdate,
+                        dataType: "json",
+                        data : {
+                            action: 'save',
+                            name: categoryTitle,
+                            id: categoryId
+                        },
+                        xhrFields: {
+                            withCredentials: true
+                        }
                     })
                     .done(function (data) {
                         console.log('AJAX done');
@@ -176,9 +188,16 @@ $(document).ready(function () {
                     break;
                 case "remove":
                     var categoryId = node.data.id;
-                    $.get(routeCategoryAjaxUpdate, {
-                        action: 'remove',
-                        id: categoryId
+                    $.ajax({
+                        url: routeCategoryAjaxUpdate,
+                        dataType: "json",
+                        data : {
+                            action: 'remove',
+                            id: categoryId
+                        },
+                        xhrFields: {
+                            withCredentials: true
+                        }
                     })
                     .done(function (data) {
                         console.log('AJAX done');
@@ -197,12 +216,19 @@ $(document).ready(function () {
 
                     var categoryId = node.data.id;
                     var categoryTitle = refNode.title;
-
-                    $.get(routeCategoryAjaxUpdate, {
-                        action: 'addChild',
-                        name: categoryTitle,
-                        parentId: categoryId
-                    }).done(function (data) {
+                    $.ajax({
+                        url: routeCategoryAjaxUpdate,
+                        dataType: "json",
+                        data : {
+                            action: 'addChild',
+                            name: categoryTitle,
+                            parentId: categoryId
+                        },
+                        xhrFields: {
+                            withCredentials: true
+                        }
+                    })
+                    .done(function (data) {
                         console.log('AJAX done');
                     });
                     break;
@@ -215,10 +241,21 @@ $(document).ready(function () {
                     }, node.getNextSibling());
 
                     var categoryTitle = refNode.title;
-                    $.get(routeCategoryAjaxUpdate, {action: 'addSibling', name: categoryTitle})
-                            .done(function (data) {
-                                console.log('AJAX done');
-                            });
+                    $.ajax({
+                        url: routeCategoryAjaxUpdate,
+                        dataType: "json",
+                        data : {
+                            action: 'addSibling',
+                            name: categoryTitle
+                        },
+                        xhrFields: {
+                            withCredentials: true
+                        }
+                    })
+                    .done(function (data) {
+                        console.log('AJAX done');
+                    });
+
                     refNode.editStart();
                     break;
                 default:
