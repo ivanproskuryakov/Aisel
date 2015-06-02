@@ -72,8 +72,8 @@ class ApiControllerTest extends AbstractWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        $this->assertTrue(204 === $statusCode);
-        $this->assertNull($result);
+        $this->assertTrue(200 === $statusCode);
+        $this->assertNotNull($result);
     }
 
     public function testLoginUserAction()
@@ -103,6 +103,8 @@ class ApiControllerTest extends AbstractWebTestCase
 
     public function testLogoutUserAction()
     {
+        $this->logInBackend();
+
         $this->client->request(
             'GET',
             '/api/user/logout/',
@@ -115,6 +117,7 @@ class ApiControllerTest extends AbstractWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
+
 
         $this->assertTrue(200 === $statusCode);
         $this->assertTrue($result['status'] === true);

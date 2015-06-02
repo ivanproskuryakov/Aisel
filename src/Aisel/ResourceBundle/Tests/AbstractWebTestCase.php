@@ -71,9 +71,8 @@ abstract class AbstractWebTestCase extends KernelTestCase
             $result = json_decode($content, true);
 
             if ($result['status'] !== true ) {
-                throw new LogicException('Authentication failed.');
+                throw new \LogicException('Authentication failed.');
             }
-
         }
 
         return $this->um->isAuthenticated();

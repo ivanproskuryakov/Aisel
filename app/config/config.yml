@@ -25,8 +25,9 @@ framework:
     session:
         cookie_lifetime: 0
         save_path: %kernel.root_dir%/var/sessions
-        name: AISELSESSID
-        cookie_domain: .aisel.dev
+#        name: AISELSESSID
+#        cookie_domain: .aisel.dev
+
     fragments:       ~
     http_method_override: true
 

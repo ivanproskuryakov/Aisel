@@ -134,9 +134,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
         $id = $user->getId();
 
         $data = array(
-            'id' => 134,
-            'username' => 'volgodark',
-            'email' => 'volgodark@gmail.com',
+            'id' => $id,
             'created_at' => '2015-05-26T05:04:54-0700',
             'updated_at' => '2015-05-26T05:04:54-0700',
             'last_login' => '2015-05-26T05:04:54-0700',
@@ -145,11 +143,6 @@ class ApiControllerTest extends AbstractBackendWebTestCase
             'locked' => false,
             'orders' => array(),
             'cart' => array(),
-            'orders' => array(
-                0 => array(
-                    'id' => '248',
-                )
-            ),
         );
 
         $this->client->request(
