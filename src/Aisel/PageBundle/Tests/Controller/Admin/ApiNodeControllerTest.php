@@ -11,14 +11,14 @@
 
 namespace Aisel\PageBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 
 /**
  * ApiNodeControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiNodeControllerTest extends AbstractWebTestCase
+class ApiNodeControllerTest extends AbstractBackendWebTestCase
 {
 
     public function setUp()

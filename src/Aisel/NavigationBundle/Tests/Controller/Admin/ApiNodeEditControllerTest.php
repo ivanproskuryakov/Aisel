@@ -11,7 +11,7 @@
 
 namespace Aisel\NavigationBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 use Aisel\NavigationBundle\Entity\Menu;
 
 /**
@@ -19,7 +19,7 @@ use Aisel\NavigationBundle\Entity\Menu;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiNodeEditControllerTest extends AbstractWebTestCase
+class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 {
 
     public function setUp()

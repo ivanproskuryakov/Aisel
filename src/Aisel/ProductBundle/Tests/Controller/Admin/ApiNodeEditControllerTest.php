@@ -11,7 +11,7 @@
 
 namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 use Aisel\ProductBundle\Entity\Category;
 
 /**
@@ -19,7 +19,7 @@ use Aisel\ProductBundle\Entity\Category;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiNodeEditControllerTest extends AbstractWebTestCase
+class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 {
 
     public function setUp()

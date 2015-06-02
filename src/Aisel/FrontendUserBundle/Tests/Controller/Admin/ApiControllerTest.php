@@ -11,14 +11,14 @@
 
 namespace Aisel\FrontendUserBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 
 /**
  * ApiControllerTest
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiControllerTest extends AbstractWebTestCase
+class ApiControllerTest extends AbstractBackendWebTestCase
 {
 
     public function setUp()
@@ -164,9 +164,6 @@ class ApiControllerTest extends AbstractWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
-        var_dump($statusCode);
-        var_dump($response);
-        exit();
 
         $user = $this
             ->em
