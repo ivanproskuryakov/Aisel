@@ -11,9 +11,7 @@ Framework based on Symfony2 & AngularJS - http://aisel.co/
 Frontend demo: `http://ecommerce.aisel.co/en/` [frontenduser/frontenduser]<br/>
 Backend demo: `http://admin.ecommerce.aisel.co/` [backenduser/backenduser]<br/>
 
-<img width="200" src="http://aisel.co/screenshots/frontend_product_view.png"/>
-<img width="200" src="http://aisel.co/screenshots/frontend_dashboard.png"/>
-<img width="200" src="http://aisel.co/screenshots/frontend_checkout.png"/>
+<img width="400" src="http://aisel.co/images/frontend_product_view.png"/>
 
 Installation
 -----------------------------------

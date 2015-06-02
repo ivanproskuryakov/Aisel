@@ -2,13 +2,12 @@
 
 namespace Aisel\ResourceBundle\Tests;
 
+use Buzz\Exception\LogicException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpKernel\Client;
 use Aisel\BackendUserBundle\Manager\UserManager;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\BrowserKit\Cookie;
 
 /**
  * Class AbstractWebTestCase.
@@ -56,22 +55,25 @@ abstract class AbstractWebTestCase extends KernelTestCase
         static::$httpHost = $httpHost;
     }
 
-    public function logInBackend($username = 'backenduser')
+    public function logInBackend($username = 'backenduser', $password = 'backenduser')
     {
         if ($this->um->isAuthenticated() === false) {
 
-            $security = static::$kernel->getContainer()->get('security.context');
-            $session = $this->client->getContainer()->get('session');
-            $session->start();
+            $this->client->request(
+                'GET',
+                '/backend/api/user/login/?username='. $username . '&password='. $password,
+                [],
+                [],
+                ['CONTENT_TYPE' => 'application/json']
+            );
+            $response = $this->client->getResponse();
+            $content = $response->getContent();
+            $result = json_decode($content, true);
 
-            $user = $this->um->loadUserByUsername($username);
-            $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-            $security->setToken($token);
-            $cookie = new Cookie($session->getName(), $session->getId());
-            $this->client->getCookieJar()->set($cookie);
+            if ($result['status'] !== true ) {
+                throw new LogicException('Authentication failed.');
+            }
 
-            $session->set('user_backend', serialize($token));
-            $session->save();
         }
 
         return $this->um->isAuthenticated();

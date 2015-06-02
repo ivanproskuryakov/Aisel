@@ -20,36 +20,21 @@ security:
         user:
             pattern:             .*
             context:             user
-            form_login:
-                login_path:     /%frontend_api%/user/information.json
-            form_login:
-                provider:       user_frontend
-                use_forward:    true
-                failure_path:   true
-            anonymous:          true
+            anonymous:           true
 
         admin:
             pattern:             .*
             context:             admin
-            form_login:
-                login_path:     /%backend_api%/user/information.json
-            form_login:
-                provider:       user_backend
-                use_forward:    true
-                failure_path:   true
-            anonymous:          true
-
+            anonymous:           true
 
     access_control:
-        # Admin login needs to have access without any roles assigned
-        - { path: ^/%website_admin%/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/%website_admin%/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/%website_admin%/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%backend_api%/user/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%backend_api%/user/information/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%backend_api%/, role: IS_AUTHENTICATED_FULLY }
 
-        # Website secured
-        # This config requires being logged for the whole site and having the admin role for the admin part.
-        # Change these rules to adapt them to your needs
-        - { path: ^/%website_admin%/, role: [ROLE_ADMIN] }
+        - { path: ^/%frontend_api%/user/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%frontend_api%/user/information/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%frontend_api%/user/logout/, role: IS_AUTHENTICATED_FULLY }
 
-        # Secured part
-        - { path: ^/%frontend_api%/orders.json, role: ROLE_USER }
+#        Secured part
+#        - { path: ^/%frontend_api%/orders.json, role: ROLE_USER }
