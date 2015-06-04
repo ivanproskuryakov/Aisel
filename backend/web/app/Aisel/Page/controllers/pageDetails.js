@@ -13,7 +13,7 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageDetailsCtrl', function ($controller, $scope, resourceService) {
+    app.controller('PageDetailsCtrl', function ($controller, $scope, resourceService, $stateParams) {
 
         $scope.route = {
             name: 'Page',
@@ -26,6 +26,15 @@ define(['app'], function (app) {
             $scope: $scope,
             itemService: itemService
         }));
+
+        $scope.$watch("item.locale", function() {
+            itemService.getCategoryTree($scope.item.locale).success(
+                function (data, status) {
+                    $scope.categories = data;
+                }
+            )
+        });
+
 
     });
 });

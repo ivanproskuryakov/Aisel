@@ -27,5 +27,12 @@ define(['app'], function (app) {
             itemService: itemService
         }));
 
+        $scope.$watch("item.locale", function() {
+            itemService.getCategoryTree($scope.item.locale).success(
+                function (data, status) {
+                    $scope.categories = data;
+                }
+            )
+        });
     });
 });
