@@ -40,8 +40,6 @@ class OrderRepository extends AbstractCollectionRepository
             $orderItem->setQty($item->getQty());
             $orderItem->setProduct($item->getProduct());
             $orderItem->setOrder($order);
-            $orderItem->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-            $orderItem->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
             $em->persist($orderItem);
             $em->remove($item);
         }
@@ -80,8 +78,6 @@ class OrderRepository extends AbstractCollectionRepository
             $orderItem->setQty(1);
             $orderItem->setProduct($product);
             $orderItem->setOrder($order);
-            $orderItem->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-            $orderItem->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
             $em->persist($orderItem);
         }
         $em->flush();
@@ -119,8 +115,6 @@ class OrderRepository extends AbstractCollectionRepository
         $order->setCity($orderInfo['billing_city']);
         $order->setPhone($orderInfo['billing_phone']);
         $order->setDescription($orderInfo['billing_comment']);
-        $order->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        $order->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $em->persist($order);
         $em->flush();
 

@@ -72,8 +72,6 @@ class InvoiceManager
 
             if (!$order->getInvoice()) {
                 $invoice = new Invoice();
-                $invoice->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-                $invoice->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                 $this->em->persist($invoice);
                 $this->em->flush();
                 // Update order data
