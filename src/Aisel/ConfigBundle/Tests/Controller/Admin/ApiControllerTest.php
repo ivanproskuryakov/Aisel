@@ -42,7 +42,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/backend/api/config/'
+            '/'. $this->api['backend'] . '/config/'
         );
 
         $response = $this->client->getResponse();

@@ -45,7 +45,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/backend/api/page/',
+            '/'. $this->api['backend'] . '/page/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -69,7 +69,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/page/' . $page->getId(),
+            '/'. $this->api['backend'] . '/page/' . $page->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -94,7 +94,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'DELETE',
-            '/backend/api/page/' . $id,
+            '/'. $this->api['backend'] . '/page/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -125,7 +125,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'PUT',
-            '/backend/api/page/' . $id,
+            '/'. $this->api['backend'] . '/page/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],

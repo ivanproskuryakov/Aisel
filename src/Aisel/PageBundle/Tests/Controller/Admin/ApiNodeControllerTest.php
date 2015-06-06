@@ -44,7 +44,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/backend/api/page/category/',
+            '/'. $this->api['backend'] . '/page/category/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -63,7 +63,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/backend/api/page/category/?locale=en'
+            '/'. $this->api['backend'] . '/page/category/?locale=en'
         );
 
         $response = $this->client->getResponse();
@@ -86,7 +86,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/page/category/' . $pageNode->getId(),
+            '/'. $this->api['backend'] . '/page/category/' . $pageNode->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -112,7 +112,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'PUT',
-            '/backend/api/page/category/' . $id,
+            '/'. $this->api['backend'] . '/page/category/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -144,7 +144,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'DELETE',
-            '/backend/api/page/category/' . $id,
+            '/'. $this->api['backend'] . '/page/category/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

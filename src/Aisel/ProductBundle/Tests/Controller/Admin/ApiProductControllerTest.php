@@ -35,7 +35,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/backend/api/product/',
+            '/'. $this->api['backend'] . '/product/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -63,7 +63,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/backend/api/product/',
+            '/'. $this->api['backend'] . '/product/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -89,7 +89,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'PUT',
-            '/backend/api/product/' . $id,
+            '/'. $this->api['backend'] . '/product/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -120,7 +120,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/product/' . $product->getId(),
+            '/'. $this->api['backend'] . '/product/' . $product->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -145,7 +145,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'DELETE',
-            '/backend/api/product/' . $id,
+            '/'. $this->api['backend'] . '/product/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

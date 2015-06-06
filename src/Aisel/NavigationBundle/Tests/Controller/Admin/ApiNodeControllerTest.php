@@ -44,7 +44,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/backend/api/navigation/',
+            '/'. $this->api['backend'] . '/navigation/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -63,7 +63,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/backend/api/navigation/?locale=en'
+            '/'. $this->api['backend'] . '/navigation/?locale=en'
         );
 
         $response = $this->client->getResponse();
@@ -85,7 +85,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/navigation/' . $NavigationNode->getId(),
+            '/'. $this->api['backend'] . '/navigation/' . $NavigationNode->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -111,7 +111,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'PUT',
-            '/backend/api/navigation/' . $id,
+            '/'. $this->api['backend'] . '/navigation/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -143,7 +143,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'DELETE',
-            '/backend/api/navigation/' . $id,
+            '/'. $this->api['backend'] . '/navigation/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

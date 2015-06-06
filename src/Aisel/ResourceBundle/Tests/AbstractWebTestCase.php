@@ -66,7 +66,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
 
             $this->client->request(
                 'GET',
-                '/backend/api/user/login/?username='. $username . '&password='. $password,
+                '/'. $this->api['backend'] . '/user/login/?username='. $username . '&password='. $password,
                 [],
                 [],
                 ['CONTENT_TYPE' => 'application/json']

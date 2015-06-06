@@ -35,7 +35,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/api/addressing/city/',
+            '/'. $this->api['backend'] . '/addressing/city/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -68,7 +68,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/backend/api/addressing/city/',
+            '/'. $this->api['backend'] . '/addressing/city/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -102,7 +102,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/addressing/city/' . $id,
+            '/'. $this->api['backend'] . '/addressing/city/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -136,7 +136,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'PUT',
-            '/backend/api/addressing/city/' . $id,
+            '/'. $this->api['backend'] . '/addressing/city/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -166,7 +166,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'DELETE',
-            '/backend/api/addressing/city/'. $id,
+            '/'. $this->api['backend'] . '/addressing/city/'. $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

@@ -52,7 +52,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/page/category/node/'.
+            '/'. $this->api['backend'] . '/page/category/node/'.
             '?locale=en&action=dragDrop'.
             '&id='. $node1->getId().
             '&parentId='. $node2->getId() . '',
@@ -76,7 +76,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/page/category/node/'.
+            '/'. $this->api['backend'] . '/page/category/node/'.
             '?locale=en'.
             '&action=addChild'.
             '&name=New+children'.
@@ -101,7 +101,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/page/category/node/'.
+            '/'. $this->api['backend'] . '/page/category/node/'.
             '?locale=en'.
             '&action=save'.
             '&name=BBB'.
@@ -126,7 +126,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/page/category/node/'.
+            '/'. $this->api['backend'] . '/page/category/node/'.
             '?locale=en'.
             '&action=remove'.
             '&id='. $node->getId(),

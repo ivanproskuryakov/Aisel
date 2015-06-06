@@ -35,7 +35,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/backend/api/addressing/region/',
+            '/'. $this->api['backend'] . '/addressing/region/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -62,7 +62,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/backend/api/addressing/region/',
+            '/'. $this->api['backend'] . '/addressing/region/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -97,7 +97,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/addressing/region/' . $id,
+            '/'. $this->api['backend'] . '/addressing/region/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -129,7 +129,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'PUT',
-            '/backend/api/addressing/region/' . $id,
+            '/'. $this->api['backend'] . '/addressing/region/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -159,7 +159,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'DELETE',
-            '/backend/api/addressing/region/'. $id,
+            '/'. $this->api['backend'] . '/addressing/region/'. $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

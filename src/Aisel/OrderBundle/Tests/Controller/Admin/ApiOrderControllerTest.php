@@ -35,7 +35,7 @@ class ApiOrderControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/backend/api/order/',
+            '/'. $this->api['backend'] . '/order/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -59,7 +59,7 @@ class ApiOrderControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/order/' . $product->getId(),
+            '/'. $this->api['backend'] . '/order/' . $product->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

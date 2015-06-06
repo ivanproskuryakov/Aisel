@@ -51,7 +51,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/backend/api/frontenduser/',
+            '/'. $this->api['backend'] . '/frontenduser/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -64,7 +64,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/backend/api/frontenduser/',
+            '/'. $this->api['backend'] . '/frontenduser/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -86,7 +86,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/backend/api/frontenduser/',
+            '/'. $this->api['backend'] . '/frontenduser/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -110,7 +110,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/backend/api/frontenduser/' . $id,
+            '/'. $this->api['backend'] . '/frontenduser/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -147,7 +147,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'PUT',
-            '/backend/api/frontenduser/' . $id,
+            '/'. $this->api['backend'] . '/frontenduser/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -178,7 +178,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'DELETE',
-            '/backend/api/frontenduser/' . $id,
+            '/'. $this->api['backend'] . '/frontenduser/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
