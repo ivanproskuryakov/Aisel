@@ -25,23 +25,30 @@ define(['app'], function (app) {
                 itemService.getCategoryTree($scope.item.locale).success(
                     function (data, status) {
                         $scope.categories = data;
-                        $scope.setItemCategories();
+
+                        setItemCategories(
+                            $scope.item,
+                            $scope.categories
+                        );
                     }
                 )
             });
 
             /**
              * Set categories
+             *
+             * @param {Object} item
+             * @param {Object} categories
              */
-            $scope.setItemCategories = function () {
+            var setItemCategories = function (item, categories) {
                 var isAnySelected = false;
 
                 var setSelected = function (categories) {
                     angular.forEach(categories, function (category) {
-                        angular.forEach($scope.item.categories, function (c) {
-                            if (c.id == category.id){
+                        angular.forEach(item.categories, function (c) {
+                            if (c.id == category.id) {
                                 category.selected = true;
-                                //isAnySelected = true;
+                                isAnySelected = true;
                             }
                         });
                         if (category.children) {
@@ -50,25 +57,28 @@ define(['app'], function (app) {
                     });
                 };
 
-                if ($scope.categories.length) {
+                if (categories.length) {
                     setSelected($scope.categories);
 
                     if (!isAnySelected) {
-                        $scope.item.categories = [];
+                        item.categories = [];
                     }
                 }
             };
 
             /**
              * Update categories
+             *
+             * @param {Object} item
+             * @param {Object} categories
              */
-            $scope.updateItemCategories = function () {
-                $scope.item.categories = [];
+            $scope.updateItemCategories = function (item, categories) {
+                item.categories = [];
 
                 var findSelectedCategories = function (categories) {
                     angular.forEach(categories, function (category) {
                         if (category.selected) {
-                            $scope.item.categories.push(category);
+                            item.categories.push(category);
                         }
                         if (category.children) {
                             findSelectedCategories(category.children)
@@ -76,7 +86,7 @@ define(['app'], function (app) {
                     })
                 };
 
-                findSelectedCategories($scope.categories);
+                findSelectedCategories(categories);
             };
 
         });

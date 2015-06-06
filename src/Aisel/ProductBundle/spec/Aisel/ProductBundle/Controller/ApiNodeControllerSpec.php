@@ -16,7 +16,7 @@ use PhpSpec\ObjectBehavior;
 /**
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiCategoryControllerSpec extends ObjectBehavior
+class ApiNodeControllerSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {

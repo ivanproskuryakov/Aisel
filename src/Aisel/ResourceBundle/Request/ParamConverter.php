@@ -129,7 +129,6 @@ class ParamConverter extends RequestBodyParamConverter
             return json_decode($entity, true);
         }
 
-
         return $entity;
     }
 

@@ -1,6 +1,9 @@
 <div class="categoryTree">
     <script type="text/ng-template" id="field_renderer.html">
-        <input type="checkbox" ng-model="category.selected" ng-change="updateItemCategories()" > {{ category.title}}
+        <input type="checkbox"
+               ng-model="category.selected"
+               ng-change="updateItemCategories(item, categories)">
+        {{ category.title}}
         <ul>
             <li ng-repeat="category in category.children"
                 ng-include="'field_renderer.html'"></li>

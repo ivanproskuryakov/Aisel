@@ -179,7 +179,7 @@ class AbstractCollectionRepository extends EntityRepository
     /**
      * Returns enabled categories sorted as tree
      *
-     * @param string $locale
+     * @param string  $locale
      * @param boolean $onlyEnabled
      *
      * @return array $result
