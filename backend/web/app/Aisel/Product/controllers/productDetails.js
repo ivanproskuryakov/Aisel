@@ -22,17 +22,10 @@ define(['app'], function (app) {
         };
 
         var itemService = new resourceService('product');
-        angular.extend(this, $controller('AbstractDetailsCtrl', {
+        angular.extend(this, $controller('AbstractDetailsCategoryCtrl', {
             $scope: $scope,
             itemService: itemService
         }));
 
-        $scope.$watch("item.locale", function() {
-            itemService.getCategoryTree($scope.item.locale).success(
-                function (data, status) {
-                    $scope.categories = data;
-                }
-            )
-        });
     });
 });

@@ -199,7 +199,6 @@ class Product
      *     inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
      * )
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Category>")
      */
     private $categories;

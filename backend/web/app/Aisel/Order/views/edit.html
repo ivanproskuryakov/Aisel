@@ -80,25 +80,24 @@
                 <!-- Dates -->
                 <tab>
                     <tab-heading>
-                        <i class="glyphicon glyphicon-shopping-cart"></i> Products
+                        <i class="glyphicon glyphicon-shopping-cart"></i> Cart
                     </tab-heading>
                     <div class="tab-content">
                         <!-- Order Items -->
                         <div class="cartItem" ng-repeat="productItem in item.item">
-                            <div class="col-md-2">
-                                #{{productItem.id}}
-                            </div>
-                            <div class="col-md-6">
-                                {{productItem.name}}
-                            </div>
-                            <div class="col-md-2">
-                                {{productItem.qty}}
-                            </div>
-                            <div class="col-md-2">
-                                {{productItem.price}} {{item.currency}}
-                            </div>
-                            <div class="col-md-12">
-                                <hr>
+                            <div ng-if="productItem.product">
+                                <div class="col-md-2">
+                                    #{{productItem.product.id}}
+                                </div>
+                                <div class="col-md-8">
+                                    {{productItem.product.name}}
+                                </div>
+                                <div class="col-md-2">
+                                    {{productItem.product.price}} {{item.currency}}
+                                </div>
+                                <div class="col-md-12">
+                                    <hr>
+                                </div>
                             </div>
                         </div>
                     </div>

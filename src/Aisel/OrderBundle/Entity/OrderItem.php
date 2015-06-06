@@ -5,6 +5,7 @@ namespace Aisel\OrderBundle\Entity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Aisel\ProductBundle\Entity\Product;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * OrderItem
@@ -14,6 +15,7 @@ use Aisel\ProductBundle\Entity\Product;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\PageBundle\Entity\OrderItemRepository")
  * @ORM\Table(name="aisel_order_item")
+ * @JMS\ExclusionPolicy("all")
  */
 class OrderItem
 {
@@ -22,6 +24,8 @@ class OrderItem
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Expose
+     * @JMS\Type("integer")
      */
     private $id;
 
@@ -36,8 +40,32 @@ class OrderItem
      * @var Product
      * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="orderItem")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @JMS\Expose
+     * @JMS\MaxDepth(2)
+     * @JMS\Type("Aisel\ProductBundle\Entity\Product")
      */
     private $product;
+
+    /**
+     * @var string
+     * @JMS\Expose
+     * @JMS\Type("string")
+     */
+    private $title;
+
+    /**
+     * @var integer
+     * @JMS\Expose
+     * @JMS\Type("float")
+     */
+    private $price;
+
+    /**
+     * @var integer
+     * @JMS\Expose
+     * @JMS\Type("integer")
+     */
+    private $qty;
 
     /**
      * @var \DateTime
@@ -64,19 +92,6 @@ class OrderItem
     }
 
     /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return OrderItem
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
      * Get createdAt
      *
      * @return \DateTime
@@ -84,19 +99,6 @@ class OrderItem
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param  \DateTime $updatedAt
-     * @return OrderItem
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
@@ -154,20 +156,6 @@ class OrderItem
     {
         return $this->product;
     }
-    /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var integer
-     */
-    private $price;
-
-    /**
-     * @var integer
-     */
-    private $qty;
 
     /**
      * Set title
