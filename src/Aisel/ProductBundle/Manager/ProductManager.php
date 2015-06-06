@@ -32,7 +32,7 @@ class ProductManager
      *
      * @param EntityManager $entityManager
      */
-    public function __construct($entityManager)
+    public function __construct(EntityManager $entityManager)
     {
         $this->em = $entityManager;
     }

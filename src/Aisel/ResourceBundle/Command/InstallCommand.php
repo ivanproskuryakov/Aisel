@@ -124,10 +124,16 @@ EOT
         $apiDir = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../web');
         $frontendDir = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../frontend/web');
         $backendDir = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../backend/web');
+
+        // Frontend
         $fs->copy($frontendDir . '/robots.txt.dist', $frontendDir . '/robots.txt');
         $fs->copy($frontendDir . '/images/logo.png.dist', $frontendDir . '/images/logo.png');
         $fs->copy($frontendDir . '/.htaccess.dist', $frontendDir . '/.htaccess');
+
+        // Backend
         $fs->copy($backendDir . '/.htaccess.dist', $backendDir . '/.htaccess');
+
+        // Api
         $fs->copy($apiDir . '/.htaccess.dist', $apiDir . '/.htaccess');
     }
 
