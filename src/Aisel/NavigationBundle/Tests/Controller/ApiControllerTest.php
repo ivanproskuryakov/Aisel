@@ -35,7 +35,7 @@ class ApiControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/api/en/navigation/',
+            '/'. $this->api['frontend'] . '/en/navigation/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

@@ -35,7 +35,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/backend/api/addressing/city/',
+            '/'. $this->api['backend'] . '/api/addressing/city/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

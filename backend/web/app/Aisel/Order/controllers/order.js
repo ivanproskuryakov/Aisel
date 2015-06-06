@@ -32,7 +32,6 @@ define(['app'], function (app) {
                 {name: 'region', enableColumnMenu: false},
                 {name: 'city', enableColumnMenu: false},
                 {name: 'created_at', enableColumnMenu: false},
-                {name: 'updated_at', enableColumnMenu: false},
                 {
                     name: 'action',
                     enableSorting: false,

@@ -42,7 +42,7 @@ class ApiControllerTest extends AbstractWebTestCase
 
         $this->client->request(
             'POST',
-            '/api/contact/message/',
+            '/'. $this->api['frontend'] . '/contact/message/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],

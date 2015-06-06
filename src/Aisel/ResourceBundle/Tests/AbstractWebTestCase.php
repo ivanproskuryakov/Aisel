@@ -36,6 +36,11 @@ abstract class AbstractWebTestCase extends KernelTestCase
     protected $locales;
 
     /**
+     * @var array $api
+     */
+    protected $api;
+
+    /**
      * @var KernelInterface
      */
     protected static $kernel = null;
@@ -87,6 +92,10 @@ abstract class AbstractWebTestCase extends KernelTestCase
         $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
         $this->um = static::$kernel->getContainer()->get('backend.user.manager');
         $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
+        $this->api = array(
+            'frontend' => static::$kernel->getContainer()->getParameter('frontend_api'),
+            'backend' => static::$kernel->getContainer()->getParameter('backend_api')
+        );
 
         parent::setUp();
     }

@@ -35,7 +35,7 @@ class ApiRegionControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/api/addressing/region/',
+            '/'. $this->api['frontend'] . '/addressing/region/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -58,7 +58,7 @@ class ApiRegionControllerTest extends AbstractWebTestCase
 
         $this->client->request(
             'GET',
-            '/api/addressing/region/' . $region->getId(),
+            '/'. $this->api['frontend'] . '/addressing/region/' . $region->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

@@ -35,7 +35,7 @@ class ApiControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/api/en/search/?query=something that does not exists'
+            '/'. $this->api['frontend'] . '/en/search/?query=something that does not exists'
         );
 
         $response = $this->client->getResponse();
@@ -52,7 +52,7 @@ class ApiControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/api/en/search/?query=lo'
+            '/'. $this->api['frontend'] . '/en/search/?query=lo'
         );
 
         $response = $this->client->getResponse();

@@ -35,7 +35,7 @@ class ApiControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/api/user/information/',
+            '/'. $this->api['frontend'] . '/user/information/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -60,7 +60,7 @@ class ApiControllerTest extends AbstractWebTestCase
 
         $this->client->request(
             'POST',
-            '/api/user/register/',
+            '/'. $this->api['frontend'] . '/user/register/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -84,7 +84,7 @@ class ApiControllerTest extends AbstractWebTestCase
         ];
         $this->client->request(
             'POST',
-            '/api/user/login/',
+            '/'. $this->api['frontend'] . '/user/login/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -103,11 +103,22 @@ class ApiControllerTest extends AbstractWebTestCase
 
     public function testLogoutUserAction()
     {
-        $this->logInBackend();
+        $data = [
+            'username' => 'frontenduser',
+            'password' => 'frontenduser',
+        ];
+        $this->client->request(
+            'POST',
+            '/'. $this->api['frontend'] . '/user/login/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
 
         $this->client->request(
             'GET',
-            '/api/user/logout/',
+            '/'. $this->api['frontend'] . '/user/logout/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -118,7 +129,6 @@ class ApiControllerTest extends AbstractWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-
         $this->assertTrue(200 === $statusCode);
         $this->assertTrue($result['status'] === true);
         $this->assertTrue($result['message'] === 'You have been successfully logged out!');
@@ -128,7 +138,7 @@ class ApiControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/api/user/password/forgot/?email=fontenduser@aisel.co',
+            '/'. $this->api['frontend'] . '/user/password/forgot/?email=fontenduser@aisel.co',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -147,7 +157,7 @@ class ApiControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/api/user/password/forgot/?email=volgodark@gmail.com',
+            '/'. $this->api['frontend'] . '/user/password/forgot/?email=volgodark@gmail.com',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

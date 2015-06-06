@@ -21,7 +21,7 @@ define(['angular'],
                 return {
                     settings: {
                         media: 'http://api.' + document.domain + '/media/product',
-                        api: 'http://api.' + document.domain + '/api',
+                        api: 'http://api.' + document.domain + '/frontend/api',
                         locale: {
                             "primary": 'en',
                             "available": ['en', 'es', 'ru']

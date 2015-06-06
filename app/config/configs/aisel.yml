@@ -6,7 +6,7 @@ parameters:
     application.media.product.main.path: /media/product
     application.media.product.upload_dir: %kernel.root_dir%/../web%application.media.product.main.path%
     application.media.product.upload_path: %application.media.product.main.path%
-    frontend_api: api
+    frontend_api: frontend/api
     backend_api: backend/api
 
 aisel_config:

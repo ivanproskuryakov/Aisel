@@ -28,8 +28,8 @@ define(['app'], function (app) {
                 {name: 'name', enableColumnMenu: false},
                 {name: 'meta_url', enableColumnMenu: false},
                 {name: 'description', enableColumnMenu: false},
-                {name: 'created_at', enableColumnMenu: false},
                 {name: 'status', enableColumnMenu: false},
+                {name: 'created_at', enableColumnMenu: false},
                 {
                     name: 'action',
                     enableSorting: false,
