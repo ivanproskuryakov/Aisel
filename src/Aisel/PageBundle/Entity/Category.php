@@ -34,9 +34,6 @@ class Category extends BaseCategory
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
-     * @JMS\Expose
-     * @JMS\MaxDepth(1)
-     * @JMS\Type("Aisel\PageBundle\Entity\Category")
      */
     protected $parent;
 
@@ -44,7 +41,6 @@ class Category extends BaseCategory
      * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
      * @ORM\OrderBy({"lft" = "ASC"})
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Category>")
      */
     protected $children;

@@ -127,13 +127,13 @@ abstract class Category
      */
     protected $updatedAt;
 
-    /**
-     * @inheritdoc
-     */
-    public function __toString()
-    {
-        return $this->title;
-    }
+//    /**
+//     * @inheritdoc
+//     */
+//    public function __toString()
+//    {
+//        return $this->title;
+//    }
 
     /**
      * Constructor

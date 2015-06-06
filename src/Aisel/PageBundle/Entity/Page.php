@@ -141,7 +141,6 @@ class Page
      *     inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
      * )
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Category>")
      */
     private $categories;

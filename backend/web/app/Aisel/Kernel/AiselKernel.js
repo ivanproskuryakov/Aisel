@@ -15,6 +15,7 @@
 define(['app',
     './config/resource',
     './controllers/abstractDetails',
+    './controllers/abstractDetailsCategory',
     './services/init',
     './services/collection',
     './services/resource',
