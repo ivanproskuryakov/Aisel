@@ -35,13 +35,14 @@ class ApiCheckoutController extends Controller
             ->container
             ->get("aisel.config.manager")
             ->getConfigForEntity($request->getLocale(),'general');
+
         $paymentMethods = $configGeneral['paymentMethods'];
         $checkout = array();
+        $configMethods = $this->container->getParameter('aisel_order.payment_methods');
 
-        foreach ($paymentMethods as $m) {
-
-            if ($method = $this->container->getParameter('aisel_order.payment_methods')[$m]) {
-                $checkout['payment']['methods'][$m] = $method;
+        foreach ($paymentMethods as $k => $m) {
+            if (isset($configMethods[$m])) {
+                $checkout['payment']['methods'][$m] = $configMethods[$m];
             }
         }
 

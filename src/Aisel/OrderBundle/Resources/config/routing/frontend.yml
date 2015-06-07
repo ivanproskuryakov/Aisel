@@ -5,32 +5,26 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-api_aisel_orderlist:
-    pattern:  /orders.json
+api_aisel_order_collection:
+    pattern:  /orders/my
     defaults: { _controller: AiselOrderBundle:ApiOrder:orderList, _format: json }
     requirements:
         _method: GET
 
-api_aisel_orderview_by_id:
-    pattern:  /order/view/{id}.json
+api_aisel_order_get:
+    pattern:  /order/{id}
     defaults: { _controller: AiselOrderBundle:ApiOrder:orderViewById, _format: json }
     requirements:
         _method: GET
 
-api_aisel_ordersubmit:
-    pattern:  /{locale}/order/submit.json
+api_aisel_order_post:
+    pattern:  /{locale}/order
     defaults: { _controller: AiselOrderBundle:ApiOrder:orderSubmit, _format: json }
     requirements:
         _method: POST
 
-api_aisel_ordercheckout_init:
-    pattern:  /{locale}/order/checkout/init.json
+api_aisel_order_checkout:
+    pattern:  /{locale}/order/checkout
     defaults: { _controller: AiselOrderBundle:ApiCheckout:init, _format: json }
-    requirements:
-        _method: GET
-
-aisel_payum_order:
-    pattern:  /payum/
-    defaults: { _controller: AiselOrderBundle:Payum:order, _format: json }
     requirements:
         _method: GET

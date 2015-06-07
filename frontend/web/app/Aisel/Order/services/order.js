@@ -17,12 +17,12 @@ define(['app'], function (app) {
         function ($http, Environment) {
             return {
                 getOrders: function () {
-                    var url = Environment.settings.api + '/orders.json';
+                    var url = Environment.settings.api + '/orders/my';
                     console.log(url);
                     return $http.get(url);
                 },
                 getOrder: function (orderId) {
-                    var url = Environment.settings.api + '/order/view/' + orderId + '.json';
+                    var url = Environment.settings.api + '/order/' + orderId;
                     console.log(url);
                     return $http.get(url);
                 }

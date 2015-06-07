@@ -5,37 +5,37 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-api_aisel_addressing_city_list:
+api_aisel_addressing_city_collection:
     pattern:  /addressing/city/
     defaults: { _controller: AiselAddressingBundle:ApiCity:getCollection, _format: json }
     requirements:
         _method: GET
 
-api_aisel_addressing_city_details:
+api_aisel_addressing_city_get:
     pattern:  /addressing/city/{id}
     defaults: { _controller: AiselAddressingBundle:ApiCity:get, _format: json }
     requirements:
         _method: GET
 
-api_aisel_addressing_region_list:
+api_aisel_addressing_region_collection:
     pattern:  /addressing/region/
     defaults: { _controller: AiselAddressingBundle:ApiRegion:getCollection, _format: json }
     requirements:
         _method: GET
 
-api_aisel_addressing_region_details:
+api_aisel_addressing_region_get:
     pattern:  /addressing/region/{id}
     defaults: { _controller: AiselAddressingBundle:ApiRegion:get, _format: json }
     requirements:
         _method: GET
 
-api_aisel_addressing_countries_list:
+api_aisel_addressing_country_collection:
     pattern:  /addressing/country/
     defaults: { _controller: AiselAddressingBundle:ApiCountry:getCollection, _format: json }
     requirements:
         _method: GET
 
-api_aisel_addressing_countries_details:
+api_aisel_addressing_country_get:
     pattern:  /addressing/country/{id}
     defaults: { _controller: AiselAddressingBundle:ApiCountry:get, _format: json }
     requirements:

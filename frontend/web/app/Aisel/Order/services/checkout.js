@@ -18,7 +18,7 @@ define(['app'], function (app) {
             return {
                 init: function () {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/order/checkout/init.json';
+                    var url = Environment.settings.api + '/' + locale + '/order/checkout';
                     console.log(url);
                     return $http.get(url);
                 },
@@ -32,23 +32,24 @@ define(['app'], function (app) {
                     formData['payment_method'] = encodeURIComponent(form.payment_method.$modelValue);
 
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/order/submit.json';
+                    var url = Environment.settings.api + '/' + locale + '/order';
                     console.log(formData);
                     console.log(url);
                     return $http.post(url, formData);
                 },
+
                 getCountries: function () {
-                    var url = Environment.settings.api + '/addressing/country/list.json';
+                    var url = Environment.settings.api + '/addressing/country';
                     console.log(url);
                     return $http.get(url);
                 },
                 getRegions: function () {
-                    var url = Environment.settings.api + '/addressing/region/list.json';
+                    var url = Environment.settings.api + '/addressing/region';
                     console.log(url);
                     return $http.get(url);
                 },
                 getCities: function () {
-                    var url = Environment.settings.api + '/addressing/city/list.json';
+                    var url = Environment.settings.api + '/addressing/city';
                     console.log(url);
                     return $http.get(url);
                 }

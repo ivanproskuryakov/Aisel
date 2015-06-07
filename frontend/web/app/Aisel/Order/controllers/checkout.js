@@ -42,14 +42,14 @@ define(['app'], function (app) {
 
             // === Billing Address Suggestions ===
             checkoutService.getCountries().success(function (response) {
-                $scope.countries = response;
+                $scope.countries = response.collection;
             });
             $scope.onSelectCountry = function ($item, $model, $label) {
                 $scope.checkout.address.country = $item;
                 console.log($scope.checkout.address);
 
                 checkoutService.getRegions($scope.checkout.address.country).success(function (response) {
-                    $scope.regions = response;
+                    $scope.regions = response.collection;
                 });
             };
             $scope.onSelectRegion = function ($item, $model, $label) {
@@ -57,7 +57,7 @@ define(['app'], function (app) {
                 console.log($scope.checkout.address);
 
                 checkoutService.getCities($scope.checkout.address.region).success(function (response) {
-                    $scope.cities = response;
+                    $scope.cities = response.collection;
                 });
             };
             $scope.onSelectCity = function ($item, $model, $label) {
