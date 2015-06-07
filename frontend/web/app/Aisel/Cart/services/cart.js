@@ -21,17 +21,13 @@ define(['app'], function (app) {
                     console.log(url);
                     return $http.get(url);
                 },
-                addToCart: function ($scope) {
-                    var qty = 1;
-                    var productId = $scope.productDetails.product.id;
-                    var url = Environment.settings.api + '/cart/product/' + productId + '/qty/' + qty + '/add.json';
+                addToCart: function (productId, qty) {
+                    var url = Environment.settings.api + '/cart/product/' + productId + '/add/' + qty;
                     console.log(url);
-                    return $http.post(url);
+                    return $http.put(url);
                 },
-                updateInCart: function (item) {
-                    var qty = item.qty;
-                    var productId = item.product.id;
-                    var url = Environment.settings.api + '/cart/product/' + productId + '/qty/' + qty + '/update.json';
+                updateProductQty: function (productId, qty) {
+                    var url = Environment.settings.api + '/cart/product/' + productId + '/qty/' + qty;
                     console.log(url);
                     return $http.put(url);
                 },
@@ -39,7 +35,7 @@ define(['app'], function (app) {
                     var total = -1;
                     angular.forEach(cartItems, function (item) {
                         total += item.qty * item.product.price;
-                    })
+                    });
                     return total;
                 }
             };

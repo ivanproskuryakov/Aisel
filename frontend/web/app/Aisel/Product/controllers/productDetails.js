@@ -13,43 +13,51 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductDetailCtrl', ['$scope', '$location', '$stateParams', 'productService', '$rootScope', 'cartService', 'notify', 'Environment', 'authService',
-        function ($scope, $location, $stateParams, productService, $rootScope, cartService, notify, Environment, authService) {
-            $scope.media = Environment.settings.media;
-            $scope.isDisabled = true;
+    app.controller('ProductDetailCtrl',
+        ['$scope', '$location', '$stateParams', 'productService', '$rootScope',
+            'cartService', 'notify', 'Environment', 'authService',
+            function ($scope, $location, $stateParams, productService, $rootScope,
+                      cartService, notify, Environment, authService) {
 
-            var productURL = $stateParams.productId;
-            var handleSuccess = function (data, status) {
-                $scope.productDetails = data;
-                $rootScope.productTitle = $scope.title;
+                $scope.media = Environment.settings.media;
+                $scope.isDisabled = true;
 
-                if ($scope.product) {
-                    $scope.isDisabled = false;
-                }
-                window.disqus_shortname = $rootScope.disqusShortname;
-                $scope.showComments = false;
-            };
-            productService.getProductByURL(productURL).success(handleSuccess);
+                var productURL = $stateParams.productId;
+                productService.getProductByURL(productURL).success(
+                    function (data, status) {
+                        $scope.product = data;
+                        $rootScope.productTitle = $scope.title;
+                        $scope.isDisabled = false;
 
-            // Add product to cart
-            $scope.addToCart = function () {
+                        window.disqus_shortname = $rootScope.disqusShortname;
+                        $scope.showComments = false;
+                    }
+                );
 
-                // if user is guest - redirect or login page
-                if (typeof $rootScope.user === 'undefined') {
-                    authService.authenticateWithModal();
-                } else {
-                    $scope.isDisabled = true;
-                    cartService.addToCart($scope).success(
-                        function (data, status) {
-                            notify(data.message);
-                            $scope.isDisabled = false;
-                        }
-                    ).error(function (data, status) {
-                            notify(data.message);
-                            $scope.isDisabled = false;
-                        });
-                }
-            };
+                /**
+                 * Add product to cart
+                 *
+                 * @param {int} productId
+                 * @param {int} qty
+                 */
+                $scope.addToCart = function (productId, qty) {
 
-        }]);
+                    // if user is a guest - redirect or login page
+                    if (typeof $rootScope.user === 'undefined') {
+                        authService.authenticateWithModal();
+                    } else {
+                        $scope.isDisabled = true;
+                        cartService.addToCart(productId, qty).success(
+                            function (data, status) {
+                                notify(data.message);
+                                $scope.isDisabled = false;
+                            }
+                        ).error(function (data, status) {
+                                notify(data.message);
+                                $scope.isDisabled = false;
+                            });
+                    }
+                };
+
+            }]);
 });

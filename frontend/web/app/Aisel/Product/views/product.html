@@ -12,23 +12,27 @@
         <div class="col-md-12">
             <ul class="pageList">
                 <li ng-repeat="product in collection.collection">
-                    <h2><a ui-sref="productView({locale: locale, productId:product.meta_url})"
-                           class="thumb">{{product.name}}</a>
-                    </h2>
-
                     <div class="row">
                         <div class="col-md-3">
                             <div ng-repeat="image in product.images">
-                                <img class="img-rounded"
-                                     ng-if="image.main_image === true"
-                                     src="{{media}}{{image.filename}}"
-                                     data-holder-rendered="true" style="width: 100%;">
+                                <a ui-sref="productView({locale: locale, productId:product.meta_url})">
+                                    <img class="img-rounded"
+                                         ng-if="image.main_image === true"
+                                         src="{{media}}{{image.filename}}"
+                                         data-holder-rendered="true" style="width: 100%;">
+                                </a>
                             </div>
 
                         </div>
                         <div class="col-md-9">
-                            <p><span class="label label-warning">{{product.price}} {{currency}}</span></p>
-
+                            <h2 style="margin-top: -5px">
+                                <a ui-sref="productView({locale: locale, productId:product.meta_url})"
+                                   class="thumb">{{product.name}}
+                                </a>
+                            </h2>
+                            <h3>
+                                <span class="label label-warning">{{product.price}} {{currency}}</span>
+                            </h3>
                             <p ng-bind-html="product.description"></p>
                         </div>
                     </div>

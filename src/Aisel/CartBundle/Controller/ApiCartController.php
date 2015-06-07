@@ -12,6 +12,7 @@
 namespace Aisel\CartBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 /**
  * Frontend API controller to for Cart CRUD
  *
@@ -21,49 +22,48 @@ class ApiCartController extends Controller
 {
 
     /**
-     * Cart manager
-     */
-    private function getCartManager()
-    {
-        return $this->get('aisel.cart.manager');
-    }
-
-    /**
-     * User manager
-     */
-    private function getUserManager()
-    {
-        return $this->get('frontend.user.manager');
-    }
-
-    /**
      * cartAction
-     *
      */
     public function cartAction()
     {
-        $user = $this->getUserManager()->getUser();
+        $user = $this
+            ->get('frontend.user.manager')
+            ->getUser();
+        $cart = $this
+            ->get('aisel.cart.manager')
+            ->getUserCart($user);
 
-        return $this->getCartManager()->getUserCart($user);
+        return $cart;
     }
 
     /**
-     * cartProductAddAction
+     * cartProductUpdateAction
      *
      * @param int $productId
      * @param int $qty
      *
-     * @return mixed
+     * @return array $response
      */
-    public function cartProductAddAction($productId, $qty)
+    public function productQtyUpdateAction($productId, $qty)
     {
-        $user = $this->getUserManager()->getUser();
-        $cartItem = $this->getCartManager()->addProductToCart($user, $productId, $qty);
+        $user = $this
+            ->get('frontend.user.manager')
+            ->getUser();
+
+        $cartItem = $this
+            ->get('aisel.cart.manager')
+            ->updateProductInCart($user, $productId, $qty);
 
         if ($cartItem) {
-            $response = array('status' => true, 'message' => 'Product added to cart', 'cartItem' => $cartItem);
+            $response =
+                array('status' => true,
+                    'message' => 'Cart updated',
+                    'cartItem' => $cartItem);
         } else {
-            $response = array('status' => false, 'message' => 'Something went wrong during adding product to cart');
+            $response = array(
+                'status' => false,
+                'message' => 'Something went wrong during removing product from cart'
+            );
         }
 
         return $response;
@@ -75,20 +75,23 @@ class ApiCartController extends Controller
      * @param int $productId
      * @param int $qty
      *
-     * @return mixed
+     * @return array $response
      */
-    public function cartProductUpdateAction($productId, $qty)
+    public function productAddAction($productId, $qty)
     {
-        $user = $this->getUserManager()->getUser();
-        $cartItem = $this->getCartManager()->updateProductInCart($user, $productId, $qty);
+        $user = $this
+            ->get('frontend.user.manager')
+            ->getUser();
 
-        if ($cartItem) {
-            $response = array('status' => true, 'message' => 'Cart updated', 'cartItem' => $cartItem);
-        } else {
-            $response = array('status' => false, 'message' => 'Something went wrong during removing product from cart');
-        }
+        $cartItem = $this
+            ->get('aisel.cart.manager')
+            ->addProductToCart($user, $productId, $qty);
 
-        return $response;
+        return array(
+                'status' => true,
+                'message' => 'Product was added',
+                'cartItem' => $cartItem
+            );
     }
 
 }

@@ -1,9 +1,9 @@
 <div class="">
     <div class="col-xs-12 page-header">
-        <h2>{{productDetails.name}}</h2>
+        <h2>{{product.name}}</h2>
     </div>
     <div class="col-md-4">
-        <div ng-repeat="image in productDetails.images">
+        <div ng-repeat="image in product.images">
             <img class="img-rounded"
                  ng-if="image.main_image === true"
                  src="{{media}}{{image.filename}}"
@@ -13,39 +13,41 @@
     <div class="col-md-8">
         <div class="row">
             <div class="col-md-12">
-                {{productDetails.main_image}}
-                <p><span class="label label-warning">{{productDetails.price}} {{currency}}</span></p>
-
-                <p><span class="glyphicon glyphicon-calendar"></span> {{productDetails.created_at |
-                    date:"MM/dd/yyyy @ h:mma" }}</p>
+                <p>
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    {{product.created_at | date:"MM/dd/yyyy @ h:mma" }}
+                </p>
+                <h4>
+                    <span class="label label-warning">{{product.price}} {{currency}}</span>
+                </h4>
             </div>
             <div class="col-md-12">
                 <button type="button"
-                        ng-click="addToCart()"
+                        ng-click="addToCart(product.id, 1)"
                         ng-disabled="isDisabled"
-                        class="btn btn-success">Add to Cart
+                        class="btn btn-success">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
                 </button>
             </div>
             <div class="col-md-12">
                 <br/>
-
-                <p ng-bind-html="productDetails.description"></p>
+                <p ng-bind-html="product.description"></p>
             </div>
         </div>
     </div>
     <div class="col-xs-12 col-md-12">
-        <div class="related-categories" ng-if="productDetails.categories">
+        <div class="related-categories" ng-if="product.categories">
             <hr/>
             <p><strong>Product categories: </strong></p>
             <ul class="categoryList">
-                <li ng-repeat="category in productDetails.categories">
+                <li ng-repeat="category in product.categories">
                         <span class="label label-primary">
                             <a ui-sref="productCategoryView({locale: locale, categoryId:category.meta_url})">{{ category.title }}</a>
                         </span>&nbsp;
                 </li>
             </ul>
         </div>
-        <div ng-if="showComments" disqus="productDetails.meta_url"></div>
+        <div ng-if="showComments" disqus="product.meta_url"></div>
     </div>
 </div>
 

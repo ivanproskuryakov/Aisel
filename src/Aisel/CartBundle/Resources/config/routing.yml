@@ -11,14 +11,14 @@ api_aisel_cart_details:
     requirements:
         _method: GET
 
-api_aisel_cart_add:
-    pattern:  /%frontend_api%/cart/product/{productId}/qty/{qty}/add.json
-    defaults: { _controller: AiselCartBundle:ApiCart:cartProductAdd, _format: json }
+api_aisel_cart_product_add:
+    pattern:  /%frontend_api%/cart/product/{productId}/add/{qty}
+    defaults: { _controller: AiselCartBundle:ApiCart:productAdd, _format: json }
     requirements:
-        _method: POST
+        _method: PUT
 
-api_aisel_cart_update:
-    pattern:  /%frontend_api%/cart/product/{productId}/qty/{qty}/update.json
-    defaults: { _controller: AiselCartBundle:ApiCart:cartProductUpdate, _format: json }
+api_aisel_cart_product_qty:
+    pattern:  /%frontend_api%/cart/product/{productId}/qty/{qty}
+    defaults: { _controller: AiselCartBundle:ApiCart:productQtyUpdate, _format: json }
     requirements:
-        _method: GET
+        _method: PUT

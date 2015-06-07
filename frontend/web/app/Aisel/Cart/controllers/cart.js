@@ -31,18 +31,23 @@ define(['app'], function (app) {
             }
             $scope.getCartItems();
 
-            // Update product qty
-            $scope.updateProductQty = function (item) {
-                cartService.updateInCart(item).success(
+            /**
+             * Update product qty
+             *
+             * @param {int} productId
+             * @param {int} qty
+             */
+            $scope.updateProductQty = function (productId, qty) {
+                cartService.updateProductQty(productId, qty).success(
                     function (data, status) {
                         notify(data.message);
                         $scope.isDisabled = false;
                         $scope.getCartItems();
                     }
                 ).error(function (data, status) {
-                        notify(data.message);
-                        $scope.isDisabled = false;
-                    });
+                    notify(data.message);
+                    $scope.isDisabled = false;
+                });
             }
         }
     ])

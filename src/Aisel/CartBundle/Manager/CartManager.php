@@ -68,7 +68,10 @@ class CartManager
      */
     public function getUserCart($user)
     {
-        $cartItems = $this->em->getRepository('AiselCartBundle:Cart')->findBy(array('frontenduser' => $user));
+        $cartItems = $this
+            ->em
+            ->getRepository('AiselCartBundle:Cart')
+            ->findBy(array('frontenduser' => $user));
 
         return $cartItems;
     }
@@ -86,10 +89,15 @@ class CartManager
      */
     public function addProductToCart($user, $productId, $qty = 1)
     {
-        if (!($user)) throw new LogicException('User object is missing');
+        if (!$user) {
+            throw new LogicException('User object is missing');
+        }
 
         $product = $this->productManager->loadById($productId);
-        $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->addProduct($user, $product, $qty);
+        $cartItem = $this
+            ->em
+            ->getRepository('AiselCartBundle:Cart')
+            ->addProduct($user, $product, $qty);
 
         return $cartItem;
     }
@@ -107,10 +115,15 @@ class CartManager
      */
     public function updateProductInCart($user, $productId, $qty = null)
     {
-        if (!($user)) throw new LogicException('User object is missing');
+        if (!$user) {
+            throw new LogicException('User object is missing');
+        }
 
         $product = $this->productManager->loadById($productId);
-        $cartItem = $this->em->getRepository('AiselCartBundle:Cart')->updateProduct($user, $product, $qty);
+        $cartItem = $this
+            ->em
+            ->getRepository('AiselCartBundle:Cart')
+            ->updateProduct($user, $product, $qty);
 
         return $cartItem;
     }

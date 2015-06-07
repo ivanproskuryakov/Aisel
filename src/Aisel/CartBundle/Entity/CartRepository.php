@@ -69,7 +69,6 @@ class CartRepository extends EntityRepository
         if ($cartItem) {
             if ($qty) {
                 $cartItem->setQty($qty);
-                $cartItem->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
                 $em->persist($cartItem);
                 $em->flush();
             } else {
