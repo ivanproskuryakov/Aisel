@@ -25,8 +25,7 @@ define(['app'], function (app) {
             $scope.columns = [
                 {name: 'id', enableColumnMenu: false, width: '100'},
                 {name: 'status', enableColumnMenu: false},
-                {name: 'subtotal', enableColumnMenu: false},
-                {name: 'grandtotal', enableColumnMenu: false},
+                {name: 'total_amount', enableColumnMenu: false},
                 {name: 'currency', enableColumnMenu: false},
                 {name: 'country', enableColumnMenu: false},
                 {name: 'region', enableColumnMenu: false},

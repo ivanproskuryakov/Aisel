@@ -30,8 +30,11 @@
                     </div>
                 </form>
                 <div class="form-group pull-left">
-                    <button class="btn btn-success" ng-click="passwordForgot()">Forgot password</button>
-                    <button class="btn btn-success" ng-click="register()">Create Account</button>
+                    <div class="row">
+                        <button class="btn btn-default" ng-click="passwordForgot()">Forgot password</button>
+                        <button class="btn btn-default" ng-click="register()">Create Account</button> or
+                        <button class="btn btn-default" ng-click="$dismiss('close')">Close</button>
+                    </div>
                 </div>
 
             </div>
