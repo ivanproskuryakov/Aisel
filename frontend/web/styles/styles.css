@@ -291,6 +291,17 @@ footer {
 /***********
     Checkout
 ************/
+.tableHeading{
+    font-weight: bold;
+}
+
+.cartItem{
+    text-align: left;
+}
+
+/***********
+    Checkout
+************/
 .checkout .form-group {
     margin-bottom: 0;
 }

@@ -1,11 +1,12 @@
-<div class="">
-    <div class="col-xs-12 page-header">
-        <h2><span class="glyphicon glyphicon-user"></span> My Dashboard</h2>
-        <p class=""><span class="glyphicon glyphicon-edit"></span>
-            <a ui-sref="userInformationEdit({locale: locale})"> Edit account details</a></p>
-    </div>
-
-    <div class="" ng-if="user">
+<div class="col-md-12 page-header">
+    <h2><span class="glyphicon glyphicon-user"></span> My Dashboard</h2>
+    <p class="" ng-if="user">
+        <span class="glyphicon glyphicon-edit"></span>
+        <a ui-sref="userInformationEdit({locale: locale})"> Edit account details</a>
+    </p>
+</div>
+<div class="col-md-12">
+    <div ng-if="user">
         <div class="col-sm-4">
             <h3>Account Details</h3>
             <img class="gavatar-userdetails" gravatar-src="'{{ user.email }}'" gravatar-size="200">
@@ -32,4 +33,5 @@
             <div class="sidebar" ng-include="'/app/Aisel/User/views/sidebar.html'"></div>
         </div>
     </div>
+    <ng-include src="'/app/Aisel/Kernel/views/guest-user.html'"></ng-include>
 </div>

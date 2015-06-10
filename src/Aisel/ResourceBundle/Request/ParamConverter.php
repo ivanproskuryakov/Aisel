@@ -21,7 +21,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Aisel\ResourceBundle\Exception\ValidationFailedException;
-use JMS\Serializer\SerializationContext;
 
 /**
  * Class ParamConverter
@@ -76,7 +75,7 @@ class ParamConverter extends RequestBodyParamConverter
 
         switch (true) {
             case ('GET' === $method):
-                $convertedValue = $this->loadEntity($resolvedClass, $id, $maxDepth = true);
+                $convertedValue = $this->loadEntity($resolvedClass, $id);
                 break;
 
             case ('DELETE' === $method):
@@ -102,7 +101,6 @@ class ParamConverter extends RequestBodyParamConverter
     /**
      * @param $resolvedClass
      * @param $id
-     * @param $maxDepth
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -112,21 +110,12 @@ class ParamConverter extends RequestBodyParamConverter
      *
      * @return mixed $entity
      */
-    protected function loadEntity($resolvedClass, $id, $maxDepth = false)
+    protected function loadEntity($resolvedClass, $id)
     {
         $entity = $this->em->find($resolvedClass, $id);
 
         if (null === $entity) {
             throw new NotFoundHttpException('Not found');
-        }
-
-        if ($maxDepth) {
-            $entity = $this->serializer->serialize(
-                $entity, 'json',
-                SerializationContext::create()->enableMaxDepthChecks()
-            );
-
-            return json_decode($entity, true);
         }
 
         return $entity;

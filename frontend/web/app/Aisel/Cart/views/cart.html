@@ -6,8 +6,28 @@
 <div class="col-md-12">
     <div class="" ng-if="user">
         <div ng-if="cartItems.length > 0">
-            <div class="cartItem" ng-repeat="item in cartItems">
+            <div class="tableHeading" >
+                <div class="col-md-1">
+                    Image
+                </div>
+                <div class="col-md-5">
+                    Name
+                </div>
                 <div class="col-md-2">
+                    Qty
+                </div>
+                <div class="col-md-2">
+                    Price
+                </div>
+                <div class="col-md-2">
+                    Total
+                </div>
+                <div class="col-md-12">
+                    <hr>
+                </div>
+            </div>
+            <div class="cartItem" ng-repeat="item in cartItems">
+                <div class="col-md-1">
                     <div ng-repeat="image in item.product.images">
                         <img class="img-rounded"
                              ng-if="image.main_image === true"
@@ -15,26 +35,24 @@
                              data-holder-rendered="true" style="width: 100%;">
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <h4>{{item.product.name}}</h4>
                 </div>
                 <div class="col-md-2">
-                    <div class="col-md-8">
-                        <input type="number"
-                               class="form-control"
-                               ng-model="item.qty"
-                               ng-change="updateProductQty(item.product.id, item.qty)">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <input type="number"
+                                   class="form-control"
+                                   ng-model="item.qty"
+                                   ng-change="updateProductQty(item.product.id, item.qty)">
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <div class="pull-right">
-                        {{item.product.price}} {{currency}}
-                    </div>
+                    {{item.product.price}} {{currency}}
                 </div>
                 <div class="col-md-2">
-                    <div class="pull-right">
-                        {{item.product.price*item.qty}} {{currency}}
-                    </div>
+                    {{item.product.price*item.qty}} {{currency}}
                 </div>
 
                 <div class="col-md-12">
@@ -48,7 +66,7 @@
                     </div>
                     <div class="col-md-3">
                         <span class="pull-right">
-                            <strong>Cart Total: {{total()}} {{currency}}</strong>
+                            <strong>Cart Total:</strong> {{total()}} {{currency}}
                         </span>
                     </div>
                     <div class="col-md-3">
@@ -67,7 +85,5 @@
             <span>You have 0 items in your cart</span>
         </div>
     </div>
-    <div class="" ng-if="!user">
-        <span>You have to be an authenticated user, please log-in.</span>
-    </div>
+    <ng-include src="'/app/Aisel/Kernel/views/guest-user.html'"></ng-include>
 </div>

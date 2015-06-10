@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
 
 /**
- * Category REST API for Frontend
+ * ApiNodeController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
@@ -28,7 +28,7 @@ class ApiNodeController extends AbstractNodeController
     protected $model = "Aisel\ProductBundle\Entity\Category";
 
     /**
-     * /api/product/category/list.json?limit=2&current=3
+     * categoryListAction
      *
      * @param Request $request
      * @param string  $locale
@@ -47,7 +47,7 @@ class ApiNodeController extends AbstractNodeController
     }
 
     /**
-     * /api/product/category/view/{$$urlKey}.json
+     * categoryViewAction
      *
      * @param string $urlKey
      * @param string $locale

@@ -11,14 +11,14 @@
 
 namespace Aisel\CartBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**
  * Frontend API controller to for Cart CRUD
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiCartController extends Controller
+class ApiCartController extends AbstractCollectionController
 {
 
     /**
@@ -33,7 +33,7 @@ class ApiCartController extends Controller
             ->get('aisel.cart.manager')
             ->getUserCart($user);
 
-        return $cart;
+        return $this->filterMaxDepth($cart);
     }
 
     /**
@@ -62,7 +62,7 @@ class ApiCartController extends Controller
         } else {
             $response = array(
                 'status' => false,
-                'message' => 'Something went wrong during removing product from cart'
+                'message' => 'Something went wrong with remove from cart operation'
             );
         }
 

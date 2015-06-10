@@ -11,19 +11,20 @@
 
 namespace Aisel\OrderBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 
 /**
- * Frontend REST API for Order entities
+ * ApiOrderController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiOrderController extends Controller
+class ApiOrderController extends AbstractCollectionController
 {
 
     /**
-     * Cart manager
+     * getOrderManager
      */
     private function getOrderManager()
     {
@@ -32,67 +33,58 @@ class ApiOrderController extends Controller
 
     /**
      * User manager
+     *
+     * @return FrontendUser
      */
-    private function getUserManager()
+    private function getFrontendUser()
     {
-        return $this->get('frontend.user.manager');
+        return $this
+            ->get('frontend.user.manager')
+            ->getUser();
     }
 
     /**
-     * /%frontend_api%/orders.json
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * getOrderCollection
      */
-    public function orderListAction()
+    public function getOrderCollectionAction()
     {
-        $user = $this->getUserManager()->getUser();
+        $user = $this->getFrontendUser();
+        $orders = $this
+            ->getOrderManager()
+            ->getUserOrders($user->getId());
 
-        if (!$user) {
-            return array(
-                'status' => false,
-                'message' => 'User object is missing'
-            );
-        }
-
-        $orders = $this->getOrderManager()->getUserOrders($user);
-
-        return $orders;
+        return $this->filterMaxDepth($orders);
     }
 
     /**
-     * /%frontend_api%/order/view/{id}.json
+     * orderViewByIdAction
      *
-     * @param int $id
+     * @param int $orderId
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return mixed
      */
-    public function orderViewByIdAction($id)
+    public function getOrderAction($orderId)
     {
-        $user = $this->getUserManager()->getUser();
+        $user = $this->getFrontendUser();
+        $order = $this
+            ->getOrderManager()
+            ->getUserOrder($user->getId(), $orderId);
 
-        if (!$user) {
-            return array(
-                'status' => false,
-                'message' => 'User object is missing'
-            );
-        }
+        return $this->filterMaxDepth($order);
 
-        $order = $this->getOrderManager()->getUserOrder($user, $id);
-
-        return $order;
     }
 
     /**
-     * /%frontend_api%/order/submit.json
+     * orderSubmitAction
      *
      * @param Request $request
      * @param string  $locale
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $response
+     * @return mixed
      */
     public function orderSubmitAction(Request $request, $locale)
     {
-        $user = $this->getUserManager()->getUser();
+        $user = $this->getFrontendUser();
         $orderInfo = array(
             'payment_method' => $request->get('payment_method'),
             'billing_country' => $request->get('billing_country'),
@@ -104,18 +96,18 @@ class ApiOrderController extends Controller
         );
         $order = $this->getOrderManager()->createOrderFromCart($user, $orderInfo);
 
-        $response = array(
-            'status' => false,
-            'message' => 'Something went wrong during order submit'
-        );
-
         if ($order) {
             $response = array(
                 'status' => true,
                 'orderId' => $order->getId(),
                 'message' => 'Your order received, thank you!'
             );
-        };
+        } else {
+            $response = array(
+                'status' => false,
+                'message' => 'Something went wrong during order submit'
+            );
+        }
 
         return $response;
     }

@@ -35,26 +35,17 @@
                         <!-- Order Items -->
                         <div class="col-md-12">
                             <div ng-if="orderDetails.item.length > 0">
-                                <div class="cartItem" ng-repeat="item in orderDetails.item">
-                                    <div class="col-md-2">
-                                        <div ng-repeat="image in item.product.images">
-                                            <img class="img-rounded"
-                                                 ng-if="image.main_image === true"
-                                                 src="{{media}}{{image.filename}}"
-                                                 data-holder-rendered="true" style="width: 100%;">
-                                        </div>
+                                <div class="cartItem row" ng-repeat="item in orderDetails.item">
+                                    <div class="col-md-6">
+                                        <strong>{{item.product.name}}</strong>
                                     </div>
-                                    <div class="col-md-5">
-                                        <h4>{{item.product.name}}</h4>
-                                    </div>
-                                    <div class="col-md-1">
-                                    </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-4">
                                         {{item.product.price}} {{currency}}
                                     </div>
                                     <div class="col-md-2">
                                         <div class="pull-right">
-                                            <div class="alert alert-warning" role="alert">{{item.product.price*item.qty}}
+                                            <div class="alert alert-warning" role="alert">
+                                                {{item.product.price}}
                                                 {{currency}}
                                             </div>
                                         </div>

@@ -53,15 +53,7 @@ class Order
      * @ORM\Column(type="float", scale=2, nullable=false)
      * @JMS\Type("float")
      */
-    private $subtotal = 0;
-
-    /**
-     * @var float
-     * @Assert\NotNull()
-     * @ORM\Column(type="float", scale=2, nullable=false)
-     * @JMS\Type("float")
-     */
-    private $grandtotal = 0;
+    private $totalAmount = 0;
 
     /**
      * @var string
@@ -130,7 +122,7 @@ class Order
     private $frontenduser;
 
     /**
-     * @var Product
+     * @var Invoice
      * @ORM\ManyToOne(targetEntity="Aisel\OrderBundle\Entity\Invoice", inversedBy="order")
      * @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
      * @JMS\MaxDepth(1)
@@ -223,52 +215,6 @@ class Order
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * Set subtotal
-     *
-     * @param  integer $subtotal
-     * @return Order
-     */
-    public function setSubtotal($subtotal)
-    {
-        $this->subtotal = $subtotal;
-
-        return $this;
-    }
-
-    /**
-     * Get subtotal
-     *
-     * @return integer
-     */
-    public function getSubtotal()
-    {
-        return $this->subtotal;
-    }
-
-    /**
-     * Set grandtotal
-     *
-     * @param  integer $grandtotal
-     * @return Order
-     */
-    public function setGrandtotal($grandtotal)
-    {
-        $this->grandtotal = $grandtotal;
-
-        return $this;
-    }
-
-    /**
-     * Get grandtotal
-     *
-     * @return integer
-     */
-    public function getGrandtotal()
-    {
-        return $this->grandtotal;
     }
 
     /**
@@ -369,32 +315,28 @@ class Order
     {
         return $this->item;
     }
-    /**
-     * @var integer
-     */
-    private $totalamount;
 
     /**
-     * Set totalamount
+     * Set totalAmount
      *
-     * @param  integer $totalamount
+     * @param  integer $totalAmount
      * @return Order
      */
-    public function setTotalamount($totalamount)
+    public function setTotalAmount($totalamount)
     {
-        $this->totalamount = $totalamount;
+        $this->totalAmount = $totalamount;
 
         return $this;
     }
 
     /**
-     * Get totalamount
+     * Get totalAmount
      *
      * @return integer
      */
-    public function getTotalamount()
+    public function getTotalAmount()
     {
-        return $this->totalamount;
+        return $this->totalAmount;
     }
 
     /**

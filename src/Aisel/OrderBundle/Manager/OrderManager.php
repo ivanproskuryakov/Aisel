@@ -77,36 +77,38 @@ class OrderManager
     /**
      * Get single order by given userId and orderId
      *
-     * @param FrontendUser $user
+     * @param int          $userId
      * @param int          $orderId
      *
      * @return Order $orderDetails
      */
-    public function getUserOrder(FrontendUser $user, $orderId)
+    public function getUserOrder($userId, $orderId)
     {
         $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
-            ->findOrderForUser($user, $orderId);
+            ->findOrderForUser($userId, $orderId);
 
         return $order;
     }
 
     /**
-     * Get all order for user
+     * Get all order for the user id
      *
-     * @param FrontendUser $user
+     * @param int $userId
      *
      * @throws LogicException
      *
      * @return Order $orderDetails
      */
-    public function getUserOrders(FrontendUser $user)
+    public function getUserOrders($userId)
     {
-        if (!($user)) throw new LogicException('User object is missing');
+        if (!$userId) {
+            throw new LogicException('User Id is missing');
+        }
 
         $orders = $this->em
             ->getRepository('AiselOrderBundle:Order')
-            ->findAllOrdersForUser($user);
+            ->findAllOrdersForUser($userId);
 
         return $orders;
     }

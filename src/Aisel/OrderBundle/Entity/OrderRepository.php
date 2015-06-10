@@ -28,7 +28,6 @@ class OrderRepository extends AbstractCollectionRepository
     public function createOrderFromCartForUser($user, $currencyCode, $orderInfo)
     {
         $order = $this->createEmptyOrder($user, $currencyCode, $orderInfo);
-        // Set product items and remove from cart
         $em = $this->getEntityManager();
         $total = 0;
 
@@ -45,7 +44,6 @@ class OrderRepository extends AbstractCollectionRepository
         }
         $em->flush();
 
-        // Set totals
         $order->setTotalAmount($total);
         $em->persist($order);
         $em->flush();
@@ -124,16 +122,16 @@ class OrderRepository extends AbstractCollectionRepository
     /**
      * Grab all orders for given $user
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param int   $userId
      *
      * @return \Aisel\OrderBundle\Entity\Order $order
      */
-    public function findAllOrdersForUser($user)
+    public function findAllOrdersForUser($userId)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $orders = $query->select('o')
             ->from('AiselOrderBundle:Order', 'o')
-            ->where('o.frontenduser = :userId')->setParameter('userId', $user->getId())
+            ->where('o.frontenduser = :userId')->setParameter('userId', $userId)
             ->orderBy('o.id', 'DESC')
             ->getQuery()
             ->execute();
@@ -142,19 +140,19 @@ class OrderRepository extends AbstractCollectionRepository
     }
 
     /**
-     * Grab one order for given $user
+     * Grab one order for given $userId
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param integer                                       $userId
      * @param integer                                       $orderId
      *
      * @return \Aisel\OrderBundle\Entity\Order $order
      */
-    public function findOrderForUser($user, $orderId)
+    public function findOrderForUser($userId, $orderId)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $orders = $query->select('o')
             ->from('AiselOrderBundle:Order', 'o')
-            ->where('o.frontenduser = :userId')->setParameter('userId', $user->getId())
+            ->where('o.frontenduser = :userId')->setParameter('userId', $userId)
             ->andWhere('o.id = :orderId')->setParameter('orderId', $orderId)
             ->getQuery()
             ->execute();

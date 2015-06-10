@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use JMS\Serializer\SerializationContext;
 
 /**
  * Class AbstractCollectionController
@@ -35,6 +36,27 @@ class AbstractCollectionController extends Controller
     protected function getEntityManager()
     {
         return $this->get('doctrine.orm.entity_manager');
+    }
+
+    /**
+     * filterMaxDepth
+     *
+     * @param mixed $entity
+     *
+     * @return mixed $entity
+     */
+    protected function filterMaxDepth($entity)
+    {
+        $entity = $this
+            ->container
+            ->get('jms_serializer')
+            ->serialize(
+                $entity,
+                'json',
+                SerializationContext::create()->enableMaxDepthChecks()
+            );
+
+        return json_decode($entity, true);
     }
 
     /**
@@ -122,7 +144,9 @@ class AbstractCollectionController extends Controller
      */
     public function getAction(Request $request)
     {
-        return $this->getEntityFromRequest($request);
+        $entity = $this->getEntityFromRequest($request);
+
+        return $this->filterMaxDepth($entity);
     }
 
     /**

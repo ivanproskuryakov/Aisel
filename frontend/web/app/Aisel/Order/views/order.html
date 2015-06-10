@@ -38,13 +38,14 @@
                                             {{order.status}}
                                         </div>
                                         <div class="col-md-2">
-                                            <div class="alert alert-warning" role="alert">{{order.grandtotal}} {{currency}}</div>
+                                            {{order.total_amount}} {{currency}}
                                         </div>
                                         <div class="col-md-3">
                                             <div class="pull-right">
                                                 <a type="button"
-                                                       ui-sref="viewOrder({locale: locale, orderId:order.id})"
-                                                        class="btn btn-default">View Order</a>
+                                                   ui-sref="viewOrder({locale: locale, orderId:order.id})"
+                                                   class="btn btn-warning">View Order
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="col-md-12">

@@ -6,6 +6,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Aisel\ProductBundle\Entity\Product;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Cart
@@ -15,6 +16,7 @@ use Aisel\FrontendUserBundle\Entity\FrontendUser;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\CartBundle\Entity\CartRepository")
  * @ORM\Table(name="aisel_cart")
+ * @JMS\ExclusionPolicy("none")
  */
 class Cart
 {
@@ -38,6 +40,8 @@ class Cart
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
+     * @JMS\Exclude
+     * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
      */
     private $frontenduser;
 
@@ -45,6 +49,8 @@ class Cart
      * @var Product
      * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="cart")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @JMS\Type("Aisel\ProductBundle\Entity\Product")
+     * @JMS\MaxDepth(3)
      */
     private $product;
 
