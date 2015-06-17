@@ -15,7 +15,8 @@
 define(['app'], function (app) {
     app.config(['$provide', '$urlRouterProvider',
         function ($provide, $urlRouterProvider) {
-            $urlRouterProvider.otherwise(function ($injector, $location) {
+            $urlRouterProvider.otherwise(function ($injector) {
+
                 var Environment = $injector.get('Environment');
                 var $state = $injector.get('$state');
                 var locale = Environment.settings.locale.primary;
@@ -24,4 +25,5 @@ define(['app'], function (app) {
                 $state.transitionTo('homepage', {locale: locale});
             });
         }]);
+
 });

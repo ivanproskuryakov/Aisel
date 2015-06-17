@@ -47,9 +47,6 @@ class ExceptionListener
     }
 
     /**
-     * This listener is checking for mongo duplicate key exceptions and other serializer/validator exceptions
-     * so we can generate a proper error response for each.
-     *
      * @param GetResponseForExceptionEvent $event
      */
     public function onKernelException(GetResponseForExceptionEvent $event)

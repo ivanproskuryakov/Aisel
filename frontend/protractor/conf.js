@@ -15,7 +15,14 @@
 exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: [
-        'modules/*.js'
+        'modules/auth.js',
+        'modules/cart.js',
+        'modules/contact.js',
+        'modules/homepage.js',
+        'modules/page.js',
+        'modules/product.js',
+        'modules/search.js',
+        'modules/user.js',
     ],
     framework: 'jasmine2',
 

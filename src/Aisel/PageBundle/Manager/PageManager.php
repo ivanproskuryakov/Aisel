@@ -15,6 +15,7 @@ use LogicException;
 use Aisel\ResourceBundle\Utility\UrlUtility;
 use Aisel\PageBundle\Entity\Page;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * PageManager
@@ -81,7 +82,7 @@ class PageManager
         );
 
         if (!$page) {
-            throw new LogicException('Nothing found');
+            throw new NotFoundHttpException('Page not found');
         }
 
         return $page;

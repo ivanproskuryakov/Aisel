@@ -69,6 +69,7 @@ require.config({
         './Aisel/User/AiselUser',
         './Aisel/Cart/AiselCart',
         './Aisel/Order/AiselOrder',
+        './Aisel/Exception/AiselException',
         'bootstrap',
     ],
     priority: [

@@ -14,6 +14,7 @@ namespace Aisel\ResourceBundle\Manager;
 use LogicException;
 use Doctrine\ORM\EntityManager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * AbstractNodeManager
@@ -362,7 +363,7 @@ class AbstractNodeManager
         $category = $this->em->getRepository($this->model)->getEnabledCategory($id);
 
         if (!($category)) {
-            throw new LogicException('Object not found');
+            throw new NotFoundHttpException('Object not found');
         }
         $pages = $this->em->getRepository('AiselPageBundle:Page')->getPagesByCategory($category->getId());
         $categoryDetails = array('category' => $category, 'pages' => $pages);

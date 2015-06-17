@@ -1,0 +1,19 @@
+<div class="col-md-12 page-header">
+    <span class="pull-left">
+        <h2>Oops, something went wrong... </h2>
+    </span>
+</div>
+<div class="col-md-12" ng-if="exception">
+    <strong>Trace</strong>
+    <pre>
+        <small>
+            {{exception.data.error.exception | json}}
+        </small>
+    </pre>
+    <strong>Config</strong>
+    <pre>
+        <small>
+            {{exception.config | json}}
+        </small>
+    </pre>
+</div>

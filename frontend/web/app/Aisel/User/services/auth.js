@@ -14,6 +14,7 @@
 
 define(['app'], function (app) {
     console.log('Kernel Auth service loaded ...');
+
     angular.module('app')
         .service('authService', ['$modal',
             function ($modal) {
@@ -27,6 +28,7 @@ define(['app'], function (app) {
                 }
             }
         ]);
+
     angular.module('app')
         .controller('ModalAuthCtrl', ['$scope', '$rootScope', '$state', 'userService', 'notify', 'Environment',
             function ($scope, $rootScope, $state, userService, notify, Environment) {
@@ -58,5 +60,4 @@ define(['app'], function (app) {
                 };
             }
         ]);
-})
-;
+});

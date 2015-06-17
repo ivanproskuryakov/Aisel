@@ -14,6 +14,7 @@ namespace Aisel\ProductBundle\Manager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
 use LogicException;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Manager for Products, mostly used in REST API
@@ -51,7 +52,7 @@ class ProductManager
         $product = $this->em->getRepository('AiselProductBundle:Product')->findOneBy(array('metaUrl' => $urlKey));
 
         if (!($product)) {
-            throw new LogicException('Nothing found');
+            throw new NotFoundHttpException('Product not found');
         }
 
         return $product;
@@ -104,7 +105,7 @@ class ProductManager
         $product = $this->em->getRepository('AiselProductBundle:Product')->findOneBy(array('id' => $productId));
 
         if (!($product)) {
-            throw new LogicException('Nothing found');
+            throw new NotFoundHttpException('Product not found');
         }
 
         return $product;
