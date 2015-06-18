@@ -13,7 +13,7 @@ namespace Aisel\CartBundle\Manager;
 
 use LogicException;
 use Doctrine\ORM\EntityManager;
-use Aisel\ProductBundle\Manager\ProductManager;
+use Aisel\ProductBundle\Entity\Product;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Aisel\CartBundle\Entity\Cart;
 
@@ -31,23 +31,34 @@ class CartManager
     protected $em;
 
     /**
-     * @var ProductManager
-     */
-    protected $productManager;
-
-    /**
      * Constructor
      *
      * @param EntityManager  $entityManager
-     * @param ProductManager $productManager
      */
     public function __construct(
-        EntityManager $entityManager,
-        ProductManager $productManager
+        EntityManager $entityManager
     ) {
         $this->em = $entityManager;
-        $this->productManager = $productManager;
     }
+
+    /**
+     * Get get cart products for given $userId
+     *
+     * @param int $productId
+     *
+     * @return Product $product
+     */
+    public function loadProductById($productId)
+    {
+        $product = $this->em->find('Aisel\ProductBundle\Entity\Product', $productId);
+
+        if (!$product) {
+            throw new LogicException('Product was not found');
+        }
+
+        return $product;
+    }
+
 
     /**
      * Get get cart products for given $userId
@@ -83,7 +94,7 @@ class CartManager
             throw new LogicException('User object is missing');
         }
 
-        $product = $this->productManager->loadById($productId);
+        $product = $this->loadProductById($productId);
         $cartItem = $this
             ->em
             ->getRepository('AiselCartBundle:Cart')
@@ -108,7 +119,7 @@ class CartManager
         if (!$user) {
             throw new LogicException('User object is missing');
         }
-        $product = $this->productManager->loadById($productId);
+        $product = $this->loadProductById($productId);
         $cartItem = $this
             ->em
             ->getRepository('AiselCartBundle:Cart')

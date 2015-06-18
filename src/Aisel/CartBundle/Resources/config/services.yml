@@ -13,4 +13,3 @@ services:
         class: %aisel_cart_manager.class%
         arguments:
             - @doctrine.orm.entity_manager
-            - @aisel.product.manager

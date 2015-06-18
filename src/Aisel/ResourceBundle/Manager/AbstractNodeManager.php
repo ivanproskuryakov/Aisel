@@ -316,8 +316,10 @@ class AbstractNodeManager
      */
     public function getCategories($params, $locale = null)
     {
-        $total = $this->em->getRepository($this->model)->getTotalFromRequest($params, $locale);
-        $categories = $this->em->getRepository($this->model)->getCurrentCategoriesFromRequest($params, $locale);
+        /** @var \Aisel\ResourceBundle\Entity\AbstractCollectionRepository $repo */
+        $repo = $this->em->getRepository($this->model);
+        $total = $repo->getTotalFromRequest($params, $locale);
+        $categories = $repo->getCurrentCategoriesFromRequest($params, $locale);
         $return = array(
             'total' => $total,
             'categories' => $categories

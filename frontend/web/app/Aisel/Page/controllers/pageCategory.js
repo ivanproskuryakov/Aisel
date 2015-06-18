@@ -21,14 +21,14 @@ define(['app'], function (app) {
                 $scope.paginationPage = page;
                 pageCategoryService.getCategories($scope).success(
                     function (data, status) {
-                        $scope.collection = data;
+                        $scope.items = data;
                     }
                 );
             };
             // Categories
             pageCategoryService.getCategories($scope).success(
                 function (data, status) {
-                    $scope.collection = data;
+                    $scope.items = data;
                 }
             );
         }]);

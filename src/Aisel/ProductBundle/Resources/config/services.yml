@@ -6,15 +6,10 @@
 # file that was distributed with this source code.
 
 parameters:
-    aisel_product_manager.class: Aisel\ProductBundle\Manager\ProductManager
     aisel_product_media_manager.class: Aisel\ProductBundle\Manager\MediaManager
     aisel_product_category_node_manager.class: Aisel\ProductBundle\Manager\NodeManager
 
 services:
-    aisel.product.manager:
-        class: %aisel_product_manager.class%
-        arguments: [@doctrine.orm.entity_manager]
-
     aisel.product.media.manager:
         class: %aisel_product_media_manager.class%
         arguments: [@doctrine.orm.entity_manager, %application.media.product.path%, %website_address%]

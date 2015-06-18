@@ -29,7 +29,6 @@ class AbstractCollectionRepository extends EntityRepository
     protected $pageCurrent = 1;
     protected $pageLimit = 1;
     protected $pageSkip = 1;
-    protected $userId = null;
     protected $pageOrder = 'id';
     protected $pageOrderBy = 'DESC';
 
@@ -61,11 +60,6 @@ class AbstractCollectionRepository extends EntityRepository
         // Search
         if (isset($params['query'])) {
             $this->search = $params['query'];
-        }
-
-        // User
-        if (isset($params['userid'])) {
-            $this->userId = $params['userid'];
         }
 
         // Locale
@@ -114,11 +108,6 @@ class AbstractCollectionRepository extends EntityRepository
             $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
         }
 
-        if ($this->userId) {
-            $query->innerJoin('e.frontenduser', 'u')
-                ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
-        }
-
         $total = $query->getQuery()->getSingleScalarResult();
 
         if (!$total) {
@@ -151,12 +140,6 @@ class AbstractCollectionRepository extends EntityRepository
 
         if ($this->locale) {
             $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
-        }
-
-        if ($this->userId) {
-            $query
-                ->innerJoin('e.frontenduser', 'u')
-                ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
         }
 
         if ($this->category) {

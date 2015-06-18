@@ -33,7 +33,7 @@ class ApiNodeController extends AbstractNodeController
      * @param Request $request
      * @param string  $locale
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $categoryList
+     * @return array $categoryList
      */
     public function categoryListAction(Request $request, $locale)
     {
@@ -52,7 +52,7 @@ class ApiNodeController extends AbstractNodeController
      * @param string $urlKey
      * @param string $locale
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $category
+     * @return array $category
      */
     public function categoryViewAction($urlKey, $locale)
     {

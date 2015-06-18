@@ -26,16 +26,4 @@ class ApiProductController extends AbstractCollectionController
      */
     protected $model = "Aisel\ProductBundle\Entity\Product";
 
-    /**
-     * @param string $urlKey
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse $product
-     */
-    public function productViewByURLAction($urlKey)
-    {
-        /** @var \Aisel\ProductBundle\Entity\Product $product */
-        $product = $this->container->get("aisel.product.manager")->getProductByURL($urlKey);
-
-        return $product;
-    }
 }

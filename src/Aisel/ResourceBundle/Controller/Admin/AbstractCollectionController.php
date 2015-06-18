@@ -60,6 +60,21 @@ class AbstractCollectionController extends Controller
     }
 
     /**
+     *
+     * getByURLAction
+     *
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function getURLAction(Request $request)
+    {
+        $entity = $this->getEntityFromRequest($request);
+
+        return $this->filterMaxDepth($entity);
+    }
+
+    /**
      * @param Request $request
      *
      * @return null|mixed $entity
@@ -142,7 +157,7 @@ class AbstractCollectionController extends Controller
      *
      * @return mixed
      */
-    public function getAction(Request $request)
+    public function getByURLAction(Request $request)
     {
         $entity = $this->getEntityFromRequest($request);
 

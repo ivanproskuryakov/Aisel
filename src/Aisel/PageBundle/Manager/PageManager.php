@@ -11,11 +11,9 @@
 
 namespace Aisel\PageBundle\Manager;
 
-use LogicException;
 use Aisel\ResourceBundle\Utility\UrlUtility;
 use Aisel\PageBundle\Entity\Page;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * PageManager
@@ -38,54 +36,6 @@ class PageManager
     public function __construct(EntityManager $entityManager)
     {
         $this->em = $entityManager;
-    }
-
-    /**
-     * Get categories in array for page
-     *
-     * @param Page $page
-     *
-     * @return array $categories
-     */
-    public function getPageCategories(Page $page)
-    {
-        $categories = array();
-
-        foreach ($page->getCategories() as $c) {
-            $category = array();
-            $category['id'] = $c->getId();
-            $category['title'] = $c->getTitle();
-            $category['url'] = $c->getMetaUrl();
-            $categories[$c->getId()] = $category;
-        }
-
-        return $categories;
-    }
-
-    /**
-     * Get single detailed page with category by URLKey
-     *
-     * @param string $urlKey
-     * @param string $locale
-     *
-     * @throws LogicException
-     *
-     * @return mixed $pageDetails
-     */
-    public function getPageByURL($urlKey, $locale)
-    {
-        $page = $this->em->getRepository('AiselPageBundle:Page')->findOneBy(
-            array(
-                'metaUrl' => $urlKey,
-                'locale' => $locale
-            )
-        );
-
-        if (!$page) {
-            throw new NotFoundHttpException('Page not found');
-        }
-
-        return $page;
     }
 
     /**
