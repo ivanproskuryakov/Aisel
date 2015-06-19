@@ -11,14 +11,14 @@
 
 namespace Aisel\PageBundle\Controller\Admin;
 
-use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
+use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 
 /**
  * PageController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiPageController extends AbstractCollectionController
+class ApiPageController extends BaseApiController
 {
 
     /**

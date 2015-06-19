@@ -11,14 +11,14 @@
 
 namespace Aisel\CartBundle\Controller;
 
-use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
+use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 
 /**
  * Frontend API controller to for Cart CRUD
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiCartController extends AbstractCollectionController
+class ApiCartController extends BaseApiController
 {
 
     /**

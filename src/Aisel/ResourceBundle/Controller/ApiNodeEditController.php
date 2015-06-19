@@ -15,11 +15,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * BaseApiNodeController
+ * ApiNodeEditController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class BaseApiNodeEditController extends Controller
+class ApiNodeEditController extends Controller
 {
 
     /**

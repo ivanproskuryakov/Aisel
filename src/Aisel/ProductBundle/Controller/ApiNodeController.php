@@ -12,7 +12,7 @@
 namespace Aisel\ProductBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Aisel\ResourceBundle\Controller\BaseApiNodeController;
+use Aisel\ResourceBundle\Controller\ApiNodeController as BaseApiNodeController;;
 
 /**
  * ApiNodeController

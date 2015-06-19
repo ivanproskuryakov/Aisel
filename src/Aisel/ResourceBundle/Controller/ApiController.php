@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\Controller\Admin;
+namespace Aisel\ResourceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,11 +19,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use JMS\Serializer\SerializationContext;
 
 /**
- * Class AbstractCollectionController
+ * Class ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class AbstractCollectionController extends Controller
+class ApiController extends Controller
 {
     /**
      * @var string

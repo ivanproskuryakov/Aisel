@@ -11,7 +11,7 @@
 
 namespace Aisel\PageBundle\Controller;
 
-use Aisel\ResourceBundle\Controller\BaseApiNodeController;
+use Aisel\ResourceBundle\Controller\ApiNodeController as BaseApiNodeController;
 
 /**
  * ApiNodeController

@@ -11,7 +11,7 @@
 
 namespace Aisel\PageBundle\Controller\Admin;
 
-use Aisel\ResourceBundle\Controller\BaseApiNodeEditController;
+use Aisel\ResourceBundle\Controller\ApiNodeEditController as BaseApiNodeEditController;;
 
 /**
  * ApiNodeEditController

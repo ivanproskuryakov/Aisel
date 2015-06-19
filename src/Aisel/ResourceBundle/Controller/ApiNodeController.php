@@ -11,7 +11,7 @@
 
 namespace Aisel\ResourceBundle\Controller;
 
-use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
+use Aisel\ResourceBundle\Controller\ApiController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class BaseApiNodeController extends AbstractCollectionController
+class ApiNodeController extends ApiController
 {
 
     /**

@@ -11,14 +11,14 @@
 
 namespace Aisel\AddressingBundle\Controller;
 
-use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
+use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 
 /**
  * ApiRegionController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiRegionController extends AbstractCollectionController
+class ApiRegionController extends BaseApiController
 {
 
     /**
