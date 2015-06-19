@@ -11,14 +11,14 @@
 
 namespace Aisel\NavigationBundle\Controller;
 
-use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
+use Aisel\ResourceBundle\Controller\BaseApiNodeController;
 
 /**
  * ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiController extends AbstractNodeController
+class ApiController extends BaseApiNodeController
 {
 
     /**

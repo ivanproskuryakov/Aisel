@@ -9,28 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\Controller\Admin;
+namespace Aisel\ResourceBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * AbstractNodeController
+ * BaseApiNodeController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class AbstractNodeController extends Controller
+class BaseApiNodeController extends AbstractCollectionController
 {
-
-    /**
-     * @var string
-     */
-    protected $model;
-
-    /**
-     * @var string
-     */
-    protected $nodeManager;
 
     /**
      * getNodeCollectionAction
@@ -74,37 +64,5 @@ class AbstractNodeController extends Controller
         return $tree;
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function nodeEditAction(Request $request)
-    {
-        $nodeManager = $this->container->get($this->nodeManager);
-
-        $params = array(
-            'locale' => $request->query->get('locale'),
-            'name' => $request->query->get('name'),
-            'id' => $request->query->get('id'),
-            'parentId' => $request->query->get('parentId'),
-            'action' => $request->query->get('action'),
-        );
-
-        switch ($params['action']) {
-            case 'save':
-                return $nodeManager->save($params);
-            case 'remove':
-                return $nodeManager->remove($params);
-            case 'addChild':
-                return $nodeManager->addChild($params);
-            case 'addSibling':
-                return $nodeManager->addSibling($params);
-            case 'dragDrop':
-                return $nodeManager->updateParent($params);
-        }
-
-        return false;
-    }
 
 }

@@ -23,15 +23,15 @@ api_aisel_page_category_get:
     requirements:
         _method: GET
 
-api_aisel_page_category_get_tree:
-    pattern:  /{locale}/page/category/tree/
-    defaults: { _controller: AiselPageBundle:ApiNode:getCollection, _format: json }
-    requirements:
-        _method: GET
-
 api_aisel_page_category_get_by_url:
     pattern:  /{locale}/page/category/view/{url}
     defaults: { _controller: AiselPageBundle:ApiNode:getByURL, _format: json }
     requirements:
         _method: GET
         id: "\d+"
+
+api_aisel_page_category_get_tree:
+    pattern:  /{locale}/page/category/tree/
+    defaults: { _controller: AiselPageBundle:ApiNode:getNodeCollectionEnabled, _format: json }
+    requirements:
+        _method: GET

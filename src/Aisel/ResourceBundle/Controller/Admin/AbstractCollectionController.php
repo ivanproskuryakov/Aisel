@@ -157,6 +157,17 @@ class AbstractCollectionController extends Controller
      *
      * @return mixed
      */
+    public function getAction(Request $request)
+    {
+        $entity = $this->getEntityFromRequest($request);
+
+        return $this->filterMaxDepth($entity);
+    }
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
     public function getByURLAction(Request $request)
     {
         $entity = $this->getEntityFromRequest($request);

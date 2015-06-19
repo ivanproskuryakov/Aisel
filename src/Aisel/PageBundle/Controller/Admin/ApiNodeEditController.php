@@ -11,20 +11,15 @@
 
 namespace Aisel\PageBundle\Controller\Admin;
 
-use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
+use Aisel\ResourceBundle\Controller\BaseApiNodeEditController;
 
 /**
  * ApiNodeEditController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiNodeEditController extends AbstractNodeController
+class ApiNodeEditController extends BaseApiNodeEditController
 {
-
-    /**
-     * @var string
-     */
-    protected $model = "Aisel\PageBundle\Entity\Category";
 
     /**
      * @var string

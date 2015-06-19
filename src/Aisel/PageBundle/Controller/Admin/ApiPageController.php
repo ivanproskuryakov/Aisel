@@ -20,6 +20,7 @@ use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
  */
 class ApiPageController extends AbstractCollectionController
 {
+
     /**
      * @var string
      */

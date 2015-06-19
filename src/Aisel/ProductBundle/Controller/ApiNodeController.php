@@ -12,14 +12,14 @@
 namespace Aisel\ProductBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Aisel\ResourceBundle\Controller\Admin\AbstractNodeController;
+use Aisel\ResourceBundle\Controller\BaseApiNodeController;
 
 /**
  * ApiNodeController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiNodeController extends AbstractNodeController
+class ApiNodeController extends BaseApiNodeController
 {
 
     /**
@@ -46,19 +46,5 @@ class ApiNodeController extends AbstractNodeController
         return $categoryList;
     }
 
-    /**
-     * categoryViewAction
-     *
-     * @param string $urlKey
-     * @param string $locale
-     *
-     * @return array $category
-     */
-    public function categoryViewAction($urlKey, $locale)
-    {
-        $category = $this->container->get("aisel.productcategory.node.manager")->getCategoryByUrl($urlKey, $locale);
-
-        return $category;
-    }
 
 }
