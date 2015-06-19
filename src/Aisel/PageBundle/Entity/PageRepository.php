@@ -62,48 +62,28 @@ class PageRepository extends AbstractCollectionRepository
         return $pages;
     }
 
-    /**
-     * Get pages filtered by category
-     *
-     * @param int $categoryId
-     *
-     * @return \Aisel\PageBundle\Entity\Page $pages
-     */
-    public function getPagesByCategory($categoryId)
-    {
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $pages = $query->select('p.title, p.metaUrl, SUBSTRING(p.content, 1, 500) AS content,  p.createdAt')
-            ->from($this->model, 'p')
-            ->innerJoin('p.categories', 'c')
-            ->where('p.status = 1')
-            ->andWhere('c.id = :categoryId')->setParameter('categoryId', $categoryId)
-            ->getQuery()
-            ->execute();
-
-        return $pages;
-    }
-
-    /**
-     * Find pages by URL
-     *
-     * @param string $url
-     * @param int    $pageId
-     *
-     * @return int $found
-     */
-    public function findTotalByURL($url, $pageId = null)
-    {
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select('COUNT(p.id)')
-            ->from($this->model, 'p')
-            ->where('p.metaUrl = :url')->setParameter('url', $url);
-
-        if ($pageId) {
-            $query->andWhere('p.id != :pageId')->setParameter('pageId', $pageId);
-        }
-        $found = $query->getQuery()->getSingleScalarResult();
-
-        return $found;
-    }
+//
+//    /**
+//     * Find pages by URL
+//     *
+//     * @param string $url
+//     * @param int    $pageId
+//     *
+//     * @return int $found
+//     */
+//    public function findTotalByURL($url, $pageId = null)
+//    {
+//        $query = $this->getEntityManager()->createQueryBuilder();
+//        $query->select('COUNT(p.id)')
+//            ->from($this->model, 'p')
+//            ->where('p.metaUrl = :url')->setParameter('url', $url);
+//
+//        if ($pageId) {
+//            $query->andWhere('p.id != :pageId')->setParameter('pageId', $pageId);
+//        }
+//        $found = $query->getQuery()->getSingleScalarResult();
+//
+//        return $found;
+//    }
 
 }

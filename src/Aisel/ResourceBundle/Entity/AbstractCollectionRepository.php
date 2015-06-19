@@ -238,7 +238,7 @@ class AbstractCollectionRepository extends EntityRepository
      *
      * @return array $result
      */
-    public function getCurrentCategoriesFromRequest($params, $locale)
+    public function getCurrentCategoriesFromRequest($params)
     {
         $this->mapRequest($params);
         $qb = $this->getEntityManager()->createQueryBuilder();
@@ -246,8 +246,8 @@ class AbstractCollectionRepository extends EntityRepository
             ->from($this->model, 'c')
             ->where('c.status = 1');
 
-        if ($locale) {
-            $query->andWhere('c.locale = :locale')->setParameter('locale', $locale);
+        if ($this->locale) {
+            $query->andWhere('c.locale = :locale')->setParameter('locale', $this->locale);
         }
         $query
             ->addOrderBy('c.title', 'ASC')

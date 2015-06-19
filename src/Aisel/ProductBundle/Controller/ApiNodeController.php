@@ -11,7 +11,6 @@
 
 namespace Aisel\ProductBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use Aisel\ResourceBundle\Controller\ApiNodeController as BaseApiNodeController;;
 
 /**
@@ -26,25 +25,6 @@ class ApiNodeController extends BaseApiNodeController
      * @var string
      */
     protected $model = "Aisel\ProductBundle\Entity\Category";
-
-    /**
-     * categoryListAction
-     *
-     * @param Request $request
-     * @param string  $locale
-     *
-     * @return array $categoryList
-     */
-    public function categoryListAction(Request $request, $locale)
-    {
-        $params = array(
-            'current' => $request->query->get('current'),
-            'limit' => $request->query->get('limit'),
-        );
-        $categoryList = $this->container->get("aisel.productcategory.node.manager")->getCategories($params, $locale);
-
-        return $categoryList;
-    }
 
 
 }

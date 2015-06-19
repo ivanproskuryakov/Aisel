@@ -35,8 +35,10 @@ class ApiNodeController extends ApiController
          * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
          */
         $repo = $this
-            ->container->get('doctrine.orm.entity_manager')
+            ->container
+            ->get('doctrine.orm.entity_manager')
             ->getRepository($this->model);
+
         $locale = $request->get('locale');
         $tree = $repo->getNodesAsTree($locale);
 
@@ -56,12 +58,41 @@ class ApiNodeController extends ApiController
          * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
          */
         $repo = $this
-            ->container->get('doctrine.orm.entity_manager')
+            ->container
+            ->get('doctrine.orm.entity_manager')
             ->getRepository($this->model);
+
         $locale = $request->get('locale');
         $tree = $repo->getNodesAsTree($locale, $onlyEnabled = true);
 
         return $tree;
+    }
+
+    /**
+     * categoryListAction
+     *
+     * @param Request $request
+     * @param string  $locale
+     * @return array $categoryList
+     */
+    public function categoryListAction(Request $request, $locale)
+    {
+        $params = array(
+            'current' => $request->query->get('current'),
+            'limit' => $request->query->get('limit'),
+            'locale' => $locale,
+        );
+
+        /** @var \Aisel\ResourceBundle\Entity\AbstractCollectionRepository $repo */
+        $repo = $this->getEntityManager()->getRepository($this->model);
+        $total = $repo->getTotalFromRequest($params);
+        $categories = $repo->getCurrentCategoriesFromRequest($params);
+        $return = array(
+            'total' => $total,
+            'categories' => $categories
+        );
+
+        return $return;
     }
 
 

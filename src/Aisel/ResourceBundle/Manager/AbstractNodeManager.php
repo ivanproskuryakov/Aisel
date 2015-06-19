@@ -213,177 +213,38 @@ class AbstractNodeManager
     //--------- FRONTEND --------
     //---------------------------
 
-    /**
-     * Generate child categories for selected root
-     *
-     * @param object $items
-     * @param int    $pid
-     *
-     * @return array
-     */
-    public function generatePageTree($items, $pid = null)
-    {
-        $tree = array();
-        foreach ($items as $item) {
-
-            if (!$item->getStatus()) continue;
-            if ($item->getParent()) {
-                if ($parentId = $item->getParent()->getId()) {
-                    if ($parentId == $pid) {
-                        $tree[$item->getId()]['id'] = $item->getId();
-                        $tree[$item->getId()]['title'] = $item->getTitle();
-                        $tree[$item->getId()]['url'] = $item->getMetaUrl();
-                        $tree[$item->getId()]['selected'] = false;
-                        if ($item->getChildren()) {
-                            $children = $this->generatePageTree($item->getChildren(), $item->getId());
-                            $tree[$item->getId()]['children'] = $children;
-                        }
-                    }
-                }
-            }
-        }
-
-        return $tree;
-    }
-
-    /**
-     * Get enabled categories as HTML "ul li" tree - WILL BE REMOVED
-     *
-     * @return string $treeHTML
-     */
-    public function getHTMLCategoryTree()
-    {
-        $categories = $this->em->getRepository($this->model)->getEnabledCategoriesAsTree();
-        $treeHTML = '<ul>';
-
-        foreach ($categories as $rootItem) {
-
-            if (!$rootItem->getStatus()) continue;
-            if ($rootItem->getRoot() == $rootItem->getId()) {
-
-                $treeHTML .= '<li>';
-                $treeHTML .= '<a href="/#!/category/' . $rootItem->getMetaUrl() . '">' . $rootItem->getTitle() . '</a>';
-                $treeHTML .= '</li>';
-                $treeHTML .= $this->generatePageTreeHTML($rootItem->getChildren(), $rootItem->getId());
-            }
-        }
-        $treeHTML .= '</ul>';
-
-        return $treeHTML;
-    }
-
-    /**
-     * Generate child categories for selected in HTML format - WILL BE REMOVED
-     *
-     * @param object $items
-     * @param int    $pid
-     *
-     * @return array
-     */
-    public function generatePageTreeHTML($items, $pid = null)
-    {
-        $treeHTML = '<ul>';
-        foreach ($items as $item) {
-
-            if (!$item->getStatus()) continue;
-            if ($item->getParent()) {
-                if ($parentId = $item->getParent()->getId()) {
-                    if ($parentId == $pid) {
-                        $tree[$item->getId()]['title'] = $item->getTitle();
-                        if ($item->getChildren()) {
-                            $children = $this->generatePageTreeHTML($item->getChildren(), $item->getId());
-                            $treeHTML .= '<li>';
-                            $treeHTML .= '<a href="/#!/category/' . $item->getMetaUrl() . '">' . $item->getTitle() . '</a>';
-                            $treeHTML .= $children;
-                            $treeHTML .= '</li>';
-                        }
-                    }
-                }
-            }
-        }
-        $treeHTML .= '</ul>';
-
-        return $treeHTML;
-    }
-
-    /**
-     * Get list of all categories
-     *
-     * @param array  $params
-     * @param string $locale
-     *
-     * @return mixed
-     */
-    public function getCategories($params, $locale = null)
-    {
-        /** @var \Aisel\ResourceBundle\Entity\AbstractCollectionRepository $repo */
-        $repo = $this->em->getRepository($this->model);
-        $total = $repo->getTotalFromRequest($params, $locale);
-        $categories = $repo->getCurrentCategoriesFromRequest($params, $locale);
-        $return = array(
-            'total' => $total,
-            'categories' => $categories
-        );
-
-        return $return;
-    }
-
-    /**
-     * Get single detailed category by URLKey
-     *
-     * @param string $urlKey
-     * @param string $locale
-     *
-     * @throws LogicException
-     *
-     * @return mixed
-     */
-    public function getCategoryByURL($urlKey, $locale = null)
-    {
-        $category = $this->em->getRepository($this->model)->getEnabledCategoryByUrl($urlKey, $locale);
-
-        if (!($category)) {
-            throw new LogicException('Object not found');
-        }
-        $pages = $this->em->getRepository('AiselPageBundle:Page')->getPagesByCategory($category->getId());
-        $categoryDetails = array('category' => $category, 'pages' => $pages);
-
-        return $categoryDetails;
-    }
-
-    /**
-     * Get single category
-     *
-     * @param int $id
-     *
-     * @throws LogicException
-     *
-     * @return mixed
-     */
-    public function getCategory($id)
-    {
-        $category = $this->em->getRepository($this->model)->getEnabledCategory($id);
-
-        if (!($category)) {
-            throw new NotFoundHttpException('Object not found');
-        }
-        $pages = $this->em->getRepository('AiselPageBundle:Page')->getPagesByCategory($category->getId());
-        $categoryDetails = array('category' => $category, 'pages' => $pages);
-
-        return $categoryDetails;
-    }
-
-    /**
-     * Get List of all categories, except disabled
-     *
-     * @return string
-     */
-    public function getEnabledCategories()
-    {
-        $pageList = $this->em->getRepository($this->model)->getEnabledCategoriesAsTree();
-
-        return $pageList;
-    }
+//    /**
+//     * Generate child categories for selected root
+//     *
+//     * @param object $items
+//     * @param int    $pid
+//     *
+//     * @return array
+//     */
+//    public function generatePageTree($items, $pid = null)
+//    {
+//        $tree = array();
+//        foreach ($items as $item) {
+//
+//            if (!$item->getStatus()) continue;
+//            if ($item->getParent()) {
+//                if ($parentId = $item->getParent()->getId()) {
+//                    if ($parentId == $pid) {
+//                        $tree[$item->getId()]['id'] = $item->getId();
+//                        $tree[$item->getId()]['title'] = $item->getTitle();
+//                        $tree[$item->getId()]['url'] = $item->getMetaUrl();
+//                        $tree[$item->getId()]['selected'] = false;
+//                        if ($item->getChildren()) {
+//                            $children = $this->generatePageTree($item->getChildren(), $item->getId());
+//                            $tree[$item->getId()]['children'] = $children;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        return $tree;
+//    }
 
     /**
      * validate metaUrl for Category Entity and return one we can use

@@ -35,7 +35,10 @@ class ApiNodeEditController extends Controller
      */
     public function nodeEditAction(Request $request)
     {
-        $nodeManager = $this->container->get($this->nodeManager);
+        /** @var \Aisel\ResourceBundle\Manager\AbstractNodeManager $nodeManager */
+        $nodeManager = $this
+            ->container
+            ->get($this->nodeManager);
 
         $params = array(
             'locale' => $request->query->get('locale'),
