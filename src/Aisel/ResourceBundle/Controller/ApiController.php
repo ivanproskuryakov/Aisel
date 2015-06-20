@@ -224,7 +224,7 @@ class ApiController extends Controller
      *
      * @return array
      */
-    public function getNodeCollectionAction(Request $request)
+    public function getTreeAction(Request $request)
     {
         $params = array(
             'locale' => $request->get('locale'),

@@ -19,7 +19,7 @@ api_aisel_page_get_by_url:
 
 api_aisel_page_category_get:
     pattern:  /{locale}/page/category/
-    defaults: { _controller: AiselPageBundle:ApiNode:categoryList, _format: json }
+    defaults: { _controller: AiselPageBundle:ApiNode:getCollection, _format: json }
     requirements:
         _method: GET
 
@@ -32,6 +32,6 @@ api_aisel_page_category_get_by_url:
 
 api_aisel_page_category_get_tree:
     pattern:  /{locale}/page/category/tree/
-    defaults: { _controller: AiselPageBundle:ApiNode:getNodeCollectionEnabled, _format: json }
+    defaults: { _controller: AiselPageBundle:ApiNode:getTreeEnabled, _format: json }
     requirements:
         _method: GET

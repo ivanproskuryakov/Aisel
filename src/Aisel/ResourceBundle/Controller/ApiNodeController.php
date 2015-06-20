@@ -22,37 +22,37 @@ use Symfony\Component\HttpFoundation\Request;
 class ApiNodeController extends ApiController
 {
 
+//    /**
+//     * getTreeAction
+//     *
+//     * @param Request $request
+//     *
+//     * @return mixed
+//     */
+//    public function getTreeAction(Request $request)
+//    {
+//        /**
+//         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
+//         */
+//        $repo = $this
+//            ->container
+//            ->get('doctrine.orm.entity_manager')
+//            ->getRepository($this->model);
+//
+//        $locale = $request->get('locale');
+//        $tree = $repo->getNodesAsTree($locale);
+//
+//        return $tree;
+//    }
+
     /**
-     * getNodeCollectionAction
+     * getTreeAction
      *
      * @param Request $request
      *
      * @return mixed
      */
-    public function getNodeCollectionAction(Request $request)
-    {
-        /**
-         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
-         */
-        $repo = $this
-            ->container
-            ->get('doctrine.orm.entity_manager')
-            ->getRepository($this->model);
-
-        $locale = $request->get('locale');
-        $tree = $repo->getNodesAsTree($locale);
-
-        return $tree;
-    }
-
-    /**
-     * getNodeCollectionAction
-     *
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function getNodeCollectionEnabledAction(Request $request)
+    public function getTreeEnabledAction(Request $request)
     {
         /**
          * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
@@ -68,6 +68,7 @@ class ApiNodeController extends ApiController
         return $tree;
     }
 
+
     /**
      * categoryListAction
      *
@@ -75,7 +76,7 @@ class ApiNodeController extends ApiController
      * @param string  $locale
      * @return array $categoryList
      */
-    public function categoryListAction(Request $request, $locale)
+    public function getCollectionAction(Request $request, $locale)
     {
         $params = array(
             'current' => $request->query->get('current'),
@@ -86,7 +87,7 @@ class ApiNodeController extends ApiController
         /** @var \Aisel\ResourceBundle\Entity\AbstractCollectionRepository $repo */
         $repo = $this->getEntityManager()->getRepository($this->model);
         $total = $repo->getTotalFromRequest($params);
-        $categories = $repo->getCurrentCategoriesFromRequest($params);
+        $categories = $repo->getNodesFromRequest($params);
         $return = array(
             'total' => $total,
             'categories' => $categories

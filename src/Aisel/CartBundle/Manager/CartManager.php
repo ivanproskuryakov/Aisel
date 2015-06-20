@@ -35,9 +35,7 @@ class CartManager
      *
      * @param EntityManager  $entityManager
      */
-    public function __construct(
-        EntityManager $entityManager
-    ) {
+    public function __construct(EntityManager $entityManager) {
         $this->em = $entityManager;
     }
 
