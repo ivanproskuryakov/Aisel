@@ -14,7 +14,6 @@ namespace Aisel\ResourceBundle\Manager;
 use LogicException;
 use Doctrine\ORM\EntityManager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * AbstractNodeManager

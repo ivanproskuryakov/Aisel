@@ -11,14 +11,14 @@
 
 namespace Aisel\NavigationBundle\Entity;
 
-use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
+use Aisel\ResourceBundle\Repository\CollectionRepository;
 
 /**
  * Repository for Menu entity
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class MenuRepository extends AbstractCollectionRepository
+class MenuRepository extends CollectionRepository
 {
 
     protected $model = 'AiselNavigationBundle:Menu';

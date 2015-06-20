@@ -205,7 +205,7 @@ class ApiController extends Controller
         );
 
         /**
-         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
+         * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
             ->getEntityManager()
@@ -231,7 +231,7 @@ class ApiController extends Controller
         );
 
         /**
-         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
+         * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
             ->getEntityManager()

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\Entity;
+namespace Aisel\ResourceBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
 /**
- * AbstractCollectionRepository
+ * CollectionRepository
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class AbstractCollectionRepository extends EntityRepository
+class CollectionRepository extends EntityRepository
 {
 
     protected $model = '';
@@ -157,6 +157,33 @@ class AbstractCollectionRepository extends EntityRepository
 
         return $collection;
     }
+
+
+    /**
+     * Find pages by URL
+     *
+     * @param string $url
+     * @param int    $entityId
+     *
+     * @return int $found
+     */
+    public function findTotalByURL($url, $entityId = null)
+    {
+        $query = $this
+            ->getEntityManager()
+            ->createQueryBuilder();
+        $query->select('e')
+            ->from($this->model, 'e')
+            ->where('e.metaUrl = :url')->setParameter('url', $url);
+
+        if ($entityId) {
+            $query->andWhere('e.id != :pageId')->setParameter('pageId', $entityId);
+        }
+        $found = $query->getQuery()->getSingleScalarResult();
+
+        return $found;
+    }
+
 
     // ---------------------------------
     // ---------- CATEGORIES -----------

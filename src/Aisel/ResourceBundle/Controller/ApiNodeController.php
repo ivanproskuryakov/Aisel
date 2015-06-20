@@ -11,39 +11,30 @@
 
 namespace Aisel\ResourceBundle\Controller;
 
-use Aisel\ResourceBundle\Controller\ApiController;
+//use Aisel\ResourceBundle\Controller\ApiController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\ORM\EntityManager;
 
 /**
  * BaseApiNodeController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiNodeController extends ApiController
+class ApiNodeController extends Controller
 {
+    /**
+     * @var string
+     */
+    protected $model;
 
-//    /**
-//     * getTreeAction
-//     *
-//     * @param Request $request
-//     *
-//     * @return mixed
-//     */
-//    public function getTreeAction(Request $request)
-//    {
-//        /**
-//         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
-//         */
-//        $repo = $this
-//            ->container
-//            ->get('doctrine.orm.entity_manager')
-//            ->getRepository($this->model);
-//
-//        $locale = $request->get('locale');
-//        $tree = $repo->getNodesAsTree($locale);
-//
-//        return $tree;
-//    }
+    /**
+     * @return EntityManager
+     */
+    protected function getEntityManager()
+    {
+        return $this->get('doctrine.orm.entity_manager');
+    }
 
     /**
      * getTreeAction
@@ -55,7 +46,7 @@ class ApiNodeController extends ApiController
     public function getTreeEnabledAction(Request $request)
     {
         /**
-         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
+         * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
             ->container
@@ -84,7 +75,7 @@ class ApiNodeController extends ApiController
             'locale' => $locale,
         );
 
-        /** @var \Aisel\ResourceBundle\Entity\AbstractCollectionRepository $repo */
+        /** @var \Aisel\ResourceBundle\Repository\CollectionRepository $repo */
         $repo = $this->getEntityManager()->getRepository($this->model);
         $total = $repo->getTotalFromRequest($params);
         $categories = $repo->getNodesFromRequest($params);

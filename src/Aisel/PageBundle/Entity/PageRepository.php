@@ -11,14 +11,14 @@
 
 namespace Aisel\PageBundle\Entity;
 
-use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
+use Aisel\ResourceBundle\Repository\CollectionRepository;
 
 /**
  * PageRepository
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class PageRepository extends AbstractCollectionRepository
+class PageRepository extends CollectionRepository
 {
 
     protected $model = 'AiselPageBundle:Page';
@@ -61,29 +61,5 @@ class PageRepository extends AbstractCollectionRepository
 
         return $pages;
     }
-
-//
-//    /**
-//     * Find pages by URL
-//     *
-//     * @param string $url
-//     * @param int    $pageId
-//     *
-//     * @return int $found
-//     */
-//    public function findTotalByURL($url, $pageId = null)
-//    {
-//        $query = $this->getEntityManager()->createQueryBuilder();
-//        $query->select('COUNT(p.id)')
-//            ->from($this->model, 'p')
-//            ->where('p.metaUrl = :url')->setParameter('url', $url);
-//
-//        if ($pageId) {
-//            $query->andWhere('p.id != :pageId')->setParameter('pageId', $pageId);
-//        }
-//        $found = $query->getQuery()->getSingleScalarResult();
-//
-//        return $found;
-//    }
 
 }

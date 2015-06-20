@@ -7,7 +7,7 @@
 
 parameters:
     aisel_product_media_manager.class: Aisel\ProductBundle\Manager\MediaManager
-    aisel_product_category_node_manager.class: Aisel\ProductBundle\Manager\NodeManager
+    aisel_product_node_manager.class: Aisel\ProductBundle\Manager\NodeManager
 
 services:
     aisel.product.media.manager:
@@ -15,7 +15,7 @@ services:
         arguments: [@doctrine.orm.entity_manager, %application.media.product.path%, %website_address%]
 
     aisel.productcategory.node.manager:
-        class: %aisel_product_category_node_manager.class%
+        class: %aisel_product_node_manager.class%
         arguments:
           - @doctrine.orm.entity_manager
           - "%locales%"
