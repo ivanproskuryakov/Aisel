@@ -24,7 +24,7 @@ define(['app'], function (app) {
                 },
                 getCategory: function (categoryId) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/page/category/' + categoryId;
+                    var url = Environment.settings.api + '/' + locale + '/page/category/view/' + categoryId;
                     console.log(url);
                     return $http.get(url);
                 },

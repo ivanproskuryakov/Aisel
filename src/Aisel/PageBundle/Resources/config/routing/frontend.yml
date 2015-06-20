@@ -19,7 +19,8 @@ api_aisel_page_get_by_url:
 
 api_aisel_page_category_get:
     pattern:  /{locale}/page/category/
-    defaults: { _controller: AiselPageBundle:ApiNode:getCollection, _format: json }
+    defaults: { _controller: AiselPageBundle:ApiNode:getNodeCollection, _format: json }
+
     requirements:
         _method: GET
 
