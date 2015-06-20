@@ -16,11 +16,11 @@ use Doctrine\ORM\EntityManager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
 
 /**
- * AbstractNodeManager
+ * ApiNodeManager
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class AbstractNodeManager
+class ApiNodeManager
 {
 
     /**

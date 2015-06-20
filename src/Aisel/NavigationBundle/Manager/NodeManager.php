@@ -11,14 +11,14 @@
 
 namespace Aisel\NavigationBundle\Manager;
 
-use Aisel\ResourceBundle\Manager\AbstractNodeManager;
+use Aisel\ResourceBundle\Manager\ApiNodeManager;
 
 /**
  * Manager for Navigation Menu Nodes
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeManager extends AbstractNodeManager
+class NodeManager extends ApiNodeManager
 {
 
     protected $model = 'Aisel\NavigationBundle\Entity\Menu';

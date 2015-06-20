@@ -23,7 +23,7 @@ define(['app'], function (app) {
             // Category Information
             pageCategoryService.getCategory($scope.categoryId).success(
                 function (data, status) {
-                    $scope.categoryDetails = data;
+                    $scope.category = data;
                 }
             );
 
