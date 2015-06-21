@@ -164,8 +164,12 @@ class ApiNodeManager
         /**
          * @var $node \Aisel\ResourceBundle\Entity\Category
          */
+        $repo = $this
+            ->em
+            ->getRepository($this->model);
+
         if ($categoryParentId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->model)->find($categoryParentId);
+            $nodeParent = $repo->find($categoryParentId);
 
             if (!($nodeParent)) {
                 throw new LogicException('Nothing found');
@@ -173,7 +177,7 @@ class ApiNodeManager
         }
 
         if ($categoryId = $params['id']) {
-            $node = $this->em->getRepository($this->model)->find($categoryId);
+            $node = $repo->find($categoryId);
 
             if (!($node)) {
                 throw new LogicException('Nothing found');

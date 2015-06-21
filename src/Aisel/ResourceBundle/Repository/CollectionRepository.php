@@ -163,7 +163,6 @@ class CollectionRepository extends EntityRepository
         return $collection;
     }
 
-
     /**
      * Find pages by URL
      *
@@ -188,7 +187,6 @@ class CollectionRepository extends EntityRepository
 
         return $found;
     }
-
 
     // ---------------------------------
     // ---------- CATEGORIES -----------
@@ -223,30 +221,4 @@ class CollectionRepository extends EntityRepository
         return $result;
     }
 
-//    /**
-//     * Returns enabled nodes as list
-//     *
-//     * @param array $params
-//     *
-//     * @return array $result
-//     */
-//    public function getNodesFromRequest($params)
-//    {
-//        $this->mapRequest($params);
-//        $qb = $this->getEntityManager()->createQueryBuilder();
-//        $query = $qb->select('c')
-//            ->from($this->model, 'c')
-//            ->where('c.status = 1');
-//
-//        if ($this->locale) {
-//            $query->andWhere('c.locale = :locale')->setParameter('locale', $this->locale);
-//        }
-//        $query
-//            ->addOrderBy('c.title', 'ASC')
-//            ->setMaxResults($this->pageLimit)
-//            ->setFirstResult($this->pageSkip);
-//        $result = $query->getQuery()->execute();
-//
-//        return $result;
-//    }
 }
