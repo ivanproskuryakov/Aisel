@@ -22,14 +22,16 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-xs-6 col-md-6">
-                <pagination ng-if="pageList.total > 0" on-select-page="pageChanged(page)"
-                            categorys-per-page="{{pageLimit}}" total-categorys="pageList.total"
-                            page="paginationPage"></pagination>
-            </div>
-            <div class="col-xs-6 col-md-6">
-                <p class="pull-right"><strong>Total pages: {{pageList.total}} Current: {{paginationPage}}</strong>
-                </p>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <pagination ng-if="pageList.total > 0" on-select-page="pageChanged(page)"
+                                categorys-per-page="{{pageLimit}}" total-categorys="pageList.total"
+                                page="paginationPage"></pagination>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <p class="pull-right"><strong>Total pages: {{pageList.total}} Current: {{paginationPage}}</strong>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

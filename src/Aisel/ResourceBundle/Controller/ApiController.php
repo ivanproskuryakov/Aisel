@@ -141,6 +141,8 @@ class ApiController extends Controller
     }
 
     /**
+     * postAction
+     *
      * @param Request $request
      *
      * @return mixed
@@ -153,6 +155,8 @@ class ApiController extends Controller
     }
 
     /**
+     * getAction
+     *
      * @param Request $request
      *
      * @return mixed
@@ -226,17 +230,14 @@ class ApiController extends Controller
      */
     public function getTreeAction(Request $request)
     {
-        $params = array(
-            'locale' => $request->get('locale'),
-        );
-
+        $locale = $request->get('locale');
         /**
          * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
             ->getEntityManager()
             ->getRepository($this->model);
-        $collection = $repo->getCollectionFromRequest($params);
+        $collection = $repo->getNodesAsTree($locale);
 
         return $collection;
     }

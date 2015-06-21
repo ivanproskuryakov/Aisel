@@ -51,27 +51,6 @@ class ApiNodeManager
     }
 
     /**
-     * Load node tree
-     *
-     * @param string $locale
-     *
-     * @return array $nodes
-     */
-    public function getTree($locale)
-    {
-        $nodes = $this
-            ->em
-            ->getRepository($this->model)
-            ->findBy(
-                array(
-                    'locale' => $locale
-                )
-            );
-
-        return $nodes;
-    }
-
-    /**
      * Save name for single node
      *
      * @param  array  $params
@@ -213,57 +192,24 @@ class ApiNodeManager
     //---------------------------
 
 //    /**
-//     * Generate child categories for selected root
+//     * validate metaUrl for Category Entity and return one we can use
 //     *
-//     * @param object $items
-//     * @param int    $pid
+//     * @param string $url
+//     * @param int    $categoryId
 //     *
-//     * @return array
+//     * @return string
 //     */
-//    public function generatePageTree($items, $pid = null)
+//    public function normalizeCategoryUrl($url, $categoryId = null)
 //    {
-//        $tree = array();
-//        foreach ($items as $item) {
+//        $category = $this->em->getRepository($this->model)->findTotalByURL($url, $categoryId);
+//        $utility = new UrlUtility();
+//        $validUrl = $utility->process($url);
 //
-//            if (!$item->getStatus()) continue;
-//            if ($item->getParent()) {
-//                if ($parentId = $item->getParent()->getId()) {
-//                    if ($parentId == $pid) {
-//                        $tree[$item->getId()]['id'] = $item->getId();
-//                        $tree[$item->getId()]['title'] = $item->getTitle();
-//                        $tree[$item->getId()]['url'] = $item->getMetaUrl();
-//                        $tree[$item->getId()]['selected'] = false;
-//                        if ($item->getChildren()) {
-//                            $children = $this->generatePageTree($item->getChildren(), $item->getId());
-//                            $tree[$item->getId()]['children'] = $children;
-//                        }
-//                    }
-//                }
-//            }
+//        if ($category) {
+//            $validUrl = $validUrl . '-' . time();
 //        }
 //
-//        return $tree;
+//        return $validUrl;
 //    }
-
-    /**
-     * validate metaUrl for Category Entity and return one we can use
-     *
-     * @param string $url
-     * @param int    $categoryId
-     *
-     * @return string
-     */
-    public function normalizeCategoryUrl($url, $categoryId = null)
-    {
-        $category = $this->em->getRepository($this->model)->findTotalByURL($url, $categoryId);
-        $utility = new UrlUtility();
-        $validUrl = $utility->process($url);
-
-        if ($category) {
-            $validUrl = $validUrl . '-' . time();
-        }
-
-        return $validUrl;
-    }
 
 }

@@ -29,8 +29,8 @@ class CollectionRepository extends EntityRepository
     protected $pageCurrent = 1;
     protected $pageLimit = 1;
     protected $pageSkip = 1;
-    protected $pageOrder = 'id';
-    protected $pageOrderBy = 'DESC';
+    protected $order = 'id';
+    protected $orderBy = 'DESC';
 
     /**
      * Map request variables for later use in SQL
@@ -65,6 +65,11 @@ class CollectionRepository extends EntityRepository
         // Locale
         if (isset($params['locale'])) {
             $this->locale = $params['locale'];
+        }
+
+        // Locale
+        if (isset($params['order'])) {
+            $this->locale = $params['order'];
         }
 
         // Filter
@@ -151,7 +156,7 @@ class CollectionRepository extends EntityRepository
         $collection = $query
             ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
-            ->orderBy('e.' . $this->pageOrder, $this->pageOrderBy)
+            ->orderBy('e.' . $this->order, $this->orderBy)
             ->getQuery()
             ->execute();
 
@@ -218,31 +223,30 @@ class CollectionRepository extends EntityRepository
         return $result;
     }
 
-
-    /**
-     * Returns enabled nodes as list
-     *
-     * @param array $params
-     *
-     * @return array $result
-     */
-    public function getNodesFromRequest($params)
-    {
-        $this->mapRequest($params);
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $query = $qb->select('c')
-            ->from($this->model, 'c')
-            ->where('c.status = 1');
-
-        if ($this->locale) {
-            $query->andWhere('c.locale = :locale')->setParameter('locale', $this->locale);
-        }
-        $query
-            ->addOrderBy('c.title', 'ASC')
-            ->setMaxResults($this->pageLimit)
-            ->setFirstResult($this->pageSkip);
-        $result = $query->getQuery()->execute();
-
-        return $result;
-    }
+//    /**
+//     * Returns enabled nodes as list
+//     *
+//     * @param array $params
+//     *
+//     * @return array $result
+//     */
+//    public function getNodesFromRequest($params)
+//    {
+//        $this->mapRequest($params);
+//        $qb = $this->getEntityManager()->createQueryBuilder();
+//        $query = $qb->select('c')
+//            ->from($this->model, 'c')
+//            ->where('c.status = 1');
+//
+//        if ($this->locale) {
+//            $query->andWhere('c.locale = :locale')->setParameter('locale', $this->locale);
+//        }
+//        $query
+//            ->addOrderBy('c.title', 'ASC')
+//            ->setMaxResults($this->pageLimit)
+//            ->setFirstResult($this->pageSkip);
+//        $result = $query->getQuery()->execute();
+//
+//        return $result;
+//    }
 }

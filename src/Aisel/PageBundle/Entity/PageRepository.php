@@ -39,7 +39,7 @@ class PageRepository extends CollectionRepository
             ->andWhere('p.status = 1')
             ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
-            ->orderBy('p.' . $this->pageOrder, $this->pageOrderBy)
+            ->orderBy('p.' . $this->order, $this->orderBy)
             ->getQuery()
             ->execute();
 
