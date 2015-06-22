@@ -5,7 +5,6 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-# Frontend
 api_aisel_product_get_collection:
     pattern:  /{locale}/product/
     defaults: { _controller: AiselProductBundle:ApiProduct:getCollection, _format: json }
@@ -13,26 +12,26 @@ api_aisel_product_get_collection:
         _method: GET
 
 api_aisel_product_get_by_url:
-    pattern:  /{locale}/product/{urlKey}
-    defaults: { _controller: AiselProductBundle:ApiProduct:productViewByURL, _format: json }
+    pattern:  /{locale}/product/{url}
+    defaults: { _controller: AiselProductBundle:ApiProduct:getByURL, _format: json }
     requirements:
         _method: GET
 
-api_aisel_product_categoryview:
-    pattern:  /{locale}/product/category/{urlKey}
-    defaults: { _controller: AiselProductBundle:ApiNode:categoryView, _format: json }
+api_aisel_product_category_get_by_url:
+    pattern:  /{locale}/product/category/{url}
+    defaults: { _controller: AiselProductBundle:ApiNode:getByURL, _format: json }
     requirements:
         _method: GET
         id: "\d+"
 
 api_aisel_product_category_get:
     pattern:  /{locale}/product/category/
-    defaults: { _controller: AiselProductBundle:ApiNode:categoryList, _format: json }
+    defaults: { _controller: AiselProductBundle:ApiNode:getCollection, _format: json }
     requirements:
         _method: GET
 
 api_aisel_product_category_get_tree:
     pattern:  /{locale}/product/category/tree/
-    defaults: { _controller: AiselProductBundle:ApiNode:getNodeCollectionEnabled, _format: json }
+    defaults: { _controller: AiselProductBundle:ApiNode:getTree, _format: json }
     requirements:
         _method: GET

@@ -6,15 +6,9 @@
 # file that was distributed with this source code.
 
 parameters:
-    aisel_page_manager.class: Aisel\PageBundle\Manager\PageManager
     aisel_page_category_mode_manager.class: Aisel\PageBundle\Manager\NodeManager
 
 services:
-    aisel.page.manager:
-        class: %aisel_page_manager.class%
-        arguments:
-            - @doctrine.orm.entity_manager
-
     aisel.pagecategory.node.manager:
         class: %aisel_page_category_mode_manager.class%
         arguments:

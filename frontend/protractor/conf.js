@@ -15,7 +15,7 @@
 exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: [
-        'modules/auth.js',
+        //'modules/auth.js',
         'modules/cart.js',
         'modules/contact.js',
         'modules/homepage.js',

@@ -15,20 +15,22 @@
 define(['app'], function (app) {
     app.controller('PageCategoryCtrl', ['$location', '$scope', '$stateParams', 'pageCategoryService',
         function ($location, $scope, $stateParams, pageCategoryService) {
+
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
+
             $scope.pageChanged = function (page) {
                 $scope.paginationPage = page;
                 pageCategoryService.getCategories($scope).success(
                     function (data, status) {
-                        $scope.collection = data;
+                        $scope.categories = data;
                     }
                 );
             };
             // Categories
             pageCategoryService.getCategories($scope).success(
                 function (data, status) {
-                    $scope.collection = data;
+                    $scope.categories = data;
                 }
             );
         }]);

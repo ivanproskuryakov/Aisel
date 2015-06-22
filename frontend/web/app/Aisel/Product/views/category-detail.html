@@ -1,11 +1,9 @@
 <div class="">
     <div class="col-xs-12 page-header">
-        <h2>{{categoryDetails.category.title}}</h2>
-
+        <h2>{{category.title}}</h2>
         <p><span class="glyphicon glyphicon-calendar"></span>
-            {{categoryDetails.category.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
-
-        <p ng-bind-html="categoryDetails.category.description"></p>
+            {{category.created_at |date:"MM/dd/yyyy @ h:mma" }}</p>
+        <p ng-bind-html="category.description"></p>
     </div>
     <div class="col-xs-12 col-md-12">
         <div class="related categoryPages" ng-if="productList">
@@ -39,7 +37,7 @@
             </div>
             <div class="col-xs-6 col-md-6">
                 <pagination ng-if="productList.total > 0" on-select-page="pageChanged(page)"
-                            items-per-page="{{pageLimit}}" total-items="productList.total"
+                            categorys-per-page="{{pageLimit}}" total-categorys="productList.total"
                             page="paginationPage"></pagination>
             </div>
             <div class="col-xs-6 col-md-6">

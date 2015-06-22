@@ -9,70 +9,24 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\Controller\Admin;
+namespace Aisel\ResourceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * AbstractNodeController
+ * ApiNodeEditController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class AbstractNodeController extends Controller
+class ApiNodeEditController extends Controller
 {
-
-    /**
-     * @var string
-     */
-    protected $model;
 
     /**
      * @var string
      */
     protected $nodeManager;
 
-    /**
-     * getNodeCollectionAction
-     *
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function getNodeCollectionAction(Request $request)
-    {
-        /**
-         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
-         */
-        $repo = $this
-            ->container->get('doctrine.orm.entity_manager')
-            ->getRepository($this->model);
-        $locale = $request->get('locale');
-        $tree = $repo->getNodesAsTree($locale);
-
-        return $tree;
-    }
-
-    /**
-     * getNodeCollectionAction
-     *
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function getNodeCollectionEnabledAction(Request $request)
-    {
-        /**
-         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
-         */
-        $repo = $this
-            ->container->get('doctrine.orm.entity_manager')
-            ->getRepository($this->model);
-        $locale = $request->get('locale');
-        $tree = $repo->getNodesAsTree($locale, $onlyEnabled = true);
-
-        return $tree;
-    }
 
     /**
      * @param Request $request
@@ -81,7 +35,10 @@ class AbstractNodeController extends Controller
      */
     public function nodeEditAction(Request $request)
     {
-        $nodeManager = $this->container->get($this->nodeManager);
+        /** @var \Aisel\ResourceBundle\Manager\ApiNodeManager $nodeManager */
+        $nodeManager = $this
+            ->container
+            ->get($this->nodeManager);
 
         $params = array(
             'locale' => $request->query->get('locale'),

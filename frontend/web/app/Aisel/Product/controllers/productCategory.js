@@ -18,11 +18,12 @@ define(['app'], function (app) {
             $scope.media = Environment.settings.media;
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
+
             $scope.pageChanged = function (page) {
                 $scope.paginationPage = page;
                 productCategoryService.getCategories($scope).success(
                     function (data, status) {
-                        $scope.collection = data;
+                        $scope.categories = data;
                     }
                 );
             };
@@ -30,7 +31,7 @@ define(['app'], function (app) {
             // Categories
             productCategoryService.getCategories($scope).success(
                 function (data, status) {
-                    $scope.collection = data;
+                    $scope.categories = data;
                 }
             );
         }]);

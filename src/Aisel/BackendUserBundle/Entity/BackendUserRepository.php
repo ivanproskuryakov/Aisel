@@ -11,14 +11,14 @@
 
 namespace Aisel\BackendUserBundle\Entity;
 
-use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
+use Aisel\ResourceBundle\Repository\CollectionRepository;
 
 /**
  * BackendUserRepository
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class BackendUserRepository extends AbstractCollectionRepository
+class BackendUserRepository extends CollectionRepository
 {
     protected $model = 'AiselBackendUserBundle:BackendUser';
 }

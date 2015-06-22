@@ -11,14 +11,14 @@
 
 namespace Aisel\ProductBundle\Controller\Admin;
 
-use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
+use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 
 /**
  * ApiProductController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiProductController extends AbstractCollectionController
+class ApiProductController extends BaseApiController
 {
 
     /**

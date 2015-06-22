@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\Entity;
+namespace Aisel\ResourceBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
 /**
- * AbstractCollectionRepository
+ * CollectionRepository
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class AbstractCollectionRepository extends EntityRepository
+class CollectionRepository extends EntityRepository
 {
 
     protected $model = '';
@@ -29,9 +29,8 @@ class AbstractCollectionRepository extends EntityRepository
     protected $pageCurrent = 1;
     protected $pageLimit = 1;
     protected $pageSkip = 1;
-    protected $userId = null;
-    protected $pageOrder = 'id';
-    protected $pageOrderBy = 'DESC';
+    protected $order = 'id';
+    protected $orderBy = 'DESC';
 
     /**
      * Map request variables for later use in SQL
@@ -63,14 +62,14 @@ class AbstractCollectionRepository extends EntityRepository
             $this->search = $params['query'];
         }
 
-        // User
-        if (isset($params['userid'])) {
-            $this->userId = $params['userid'];
-        }
-
         // Locale
         if (isset($params['locale'])) {
             $this->locale = $params['locale'];
+        }
+
+        // Locale
+        if (isset($params['order'])) {
+            $this->locale = $params['order'];
         }
 
         // Filter
@@ -114,11 +113,6 @@ class AbstractCollectionRepository extends EntityRepository
             $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
         }
 
-        if ($this->userId) {
-            $query->innerJoin('e.frontenduser', 'u')
-                ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
-        }
-
         $total = $query->getQuery()->getSingleScalarResult();
 
         if (!$total) {
@@ -138,11 +132,12 @@ class AbstractCollectionRepository extends EntityRepository
     public function getCollectionFromRequest($params)
     {
         $this->mapRequest($params);
-        $query = $this->getEntityManager()->createQueryBuilder();
+        $query = $this
+            ->getEntityManager()
+            ->createQueryBuilder();
         $query->select('e')
             ->from($this->model, 'e');
 
-        // === Filters ===
         if ($this->filter) {
             foreach ($this->filter as $k => $value) {
                 $query->andWhere('e.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
@@ -153,23 +148,44 @@ class AbstractCollectionRepository extends EntityRepository
             $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
         }
 
-        if ($this->userId) {
-            $query
-                ->innerJoin('e.frontenduser', 'u')
-                ->andWhere('u.id = :userid')->setParameter('userid', $this->userId);
-        }
-
         if ($this->category) {
             $query->innerJoin('e.categories', 'c')
                 ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
         }
-        $collection = $query->setMaxResults($this->pageLimit)
+
+        $collection = $query
+            ->setMaxResults($this->pageLimit)
             ->setFirstResult($this->pageSkip)
-            ->orderBy('e.' . $this->pageOrder, $this->pageOrderBy)
+            ->orderBy('e.' . $this->order, $this->orderBy)
             ->getQuery()
             ->execute();
 
         return $collection;
+    }
+
+    /**
+     * Find pages by URL
+     *
+     * @param string $url
+     * @param int    $entityId
+     *
+     * @return int $found
+     */
+    public function findTotalByURL($url, $entityId = null)
+    {
+        $query = $this
+            ->getEntityManager()
+            ->createQueryBuilder();
+        $query->select('e')
+            ->from($this->model, 'e')
+            ->where('e.metaUrl = :url')->setParameter('url', $url);
+
+        if ($entityId) {
+            $query->andWhere('e.id != :pageId')->setParameter('pageId', $entityId);
+        }
+        $found = $query->getQuery()->getSingleScalarResult();
+
+        return $found;
     }
 
     // ---------------------------------
@@ -205,73 +221,4 @@ class AbstractCollectionRepository extends EntityRepository
         return $result;
     }
 
-    /**
-     * Returns enabled categories
-     *
-     * @param string $urlKey
-     * @param string $locale
-     *
-     * @return array $result
-     */
-    public function getEnabledCategoryByUrl($urlKey, $locale)
-    {
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $result = $qb->select('c')
-            ->from($this->model, 'c')
-            ->where('c.metaUrl = :metaUrl')->setParameter('metaUrl', $urlKey)
-            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
-            ->andWhere('c.status = 1')
-            ->getQuery()
-            ->getSingleResult();
-
-        return $result;
-    }
-
-    /**
-     * Returns enabled categories
-     *
-     * @param int $categoryId
-     *
-     * @return array $result
-     */
-    public function getEnabledCategory($categoryId)
-    {
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $result = $qb->select('c')
-            ->from($this->model, 'c')
-            ->where('c.id = :categoryId')->setParameter('categoryId', $categoryId)
-            ->andWhere('c.status = 1')
-            ->getQuery()
-            ->getSingleResult();
-
-        return $result;
-    }
-
-    /**
-     * Returns enabled categories sorted as tree
-     *
-     * @param array $params
-     * @param array $locale
-     *
-     * @return array $result
-     */
-    public function getCurrentCategoriesFromRequest($params, $locale)
-    {
-        $this->mapRequest($params);
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $query = $qb->select('c')
-            ->from($this->model, 'c')
-            ->where('c.status = 1');
-
-        if ($locale) {
-            $query->andWhere('c.locale = :locale')->setParameter('locale', $locale);
-        }
-        $query
-            ->addOrderBy('c.title', 'ASC')
-            ->setMaxResults($this->pageLimit)
-            ->setFirstResult($this->pageSkip);
-        $result = $query->getQuery()->execute();
-
-        return $result;
-    }
 }

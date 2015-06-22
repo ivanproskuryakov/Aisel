@@ -11,14 +11,14 @@
 
 namespace Aisel\FrontendUserBundle\Entity;
 
-use Aisel\ResourceBundle\Entity\AbstractCollectionRepository;
+use Aisel\ResourceBundle\Repository\CollectionRepository;
 
 /**
  * Frontend user repository
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class FrontendUserRepository extends AbstractCollectionRepository
+class FrontendUserRepository extends CollectionRepository
 {
     protected $model = 'AiselFrontendUserBundle:FrontendUser';
 

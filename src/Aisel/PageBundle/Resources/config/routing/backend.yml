@@ -13,7 +13,7 @@ admin_api_aisel_page_category_get:
 
 admin_api_aisel_page_category_get_tree:
     pattern:   /page/category/
-    defaults:  { _controller: AiselPageBundle:Admin/ApiNodeEdit:getNodeCollection, _format: json }
+    defaults:  { _controller: AiselPageBundle:Admin/ApiNode:getTree, _format: json }
     requirements:
         _method: GET
 

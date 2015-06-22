@@ -13,14 +13,14 @@ namespace Aisel\OrderBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
-use Aisel\ResourceBundle\Controller\Admin\AbstractCollectionController;
+use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 
 /**
  * ApiOrderController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiOrderController extends AbstractCollectionController
+class ApiOrderController extends BaseApiController
 {
 
     /**

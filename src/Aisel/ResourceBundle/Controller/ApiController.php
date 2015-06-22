@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\Controller\Admin;
+namespace Aisel\ResourceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,11 +19,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use JMS\Serializer\SerializationContext;
 
 /**
- * Class AbstractCollectionController
+ * Class ApiController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class AbstractCollectionController extends Controller
+class ApiController extends Controller
 {
     /**
      * @var string
@@ -57,6 +57,21 @@ class AbstractCollectionController extends Controller
             );
 
         return json_decode($entity, true);
+    }
+
+    /**
+     *
+     * getByURLAction
+     *
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function getURLAction(Request $request)
+    {
+        $entity = $this->getEntityFromRequest($request);
+
+        return $this->filterMaxDepth($entity);
     }
 
     /**
@@ -126,6 +141,8 @@ class AbstractCollectionController extends Controller
     }
 
     /**
+     * postAction
+     *
      * @param Request $request
      *
      * @return mixed
@@ -138,11 +155,24 @@ class AbstractCollectionController extends Controller
     }
 
     /**
+     * getAction
+     *
      * @param Request $request
      *
      * @return mixed
      */
     public function getAction(Request $request)
+    {
+        $entity = $this->getEntityFromRequest($request);
+
+        return $this->filterMaxDepth($entity);
+    }
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function getByURLAction(Request $request)
     {
         $entity = $this->getEntityFromRequest($request);
 
@@ -179,7 +209,7 @@ class AbstractCollectionController extends Controller
         );
 
         /**
-         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
+         * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
             ->getEntityManager()
@@ -198,19 +228,16 @@ class AbstractCollectionController extends Controller
      *
      * @return array
      */
-    public function getNodeCollectionAction(Request $request)
+    public function getTreeAction(Request $request)
     {
-        $params = array(
-            'locale' => $request->get('locale'),
-        );
-
+        $locale = $request->get('locale');
         /**
-         * @var $repo \Aisel\ResourceBundle\Entity\AbstractCollectionRepository
+         * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
             ->getEntityManager()
             ->getRepository($this->model);
-        $collection = $repo->getCollectionFromRequest($params);
+        $collection = $repo->getNodesAsTree($locale);
 
         return $collection;
     }

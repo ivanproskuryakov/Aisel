@@ -66,20 +66,23 @@ class ParamConverter extends RequestBodyParamConverter
      */
     public function execute(Request $request, SensioParamConverter $configuration)
     {
+        $id = $request->attributes->get('id');
+        $locale = $request->attributes->get('locale');
+        $url = $request->attributes->get('url');
+
         $name = $configuration->getName();
         $options = $configuration->getOptions();
         $resolvedClass = $configuration->getClass();
-        $id = $request->attributes->get('id');
         $method = $request->getMethod();
         $rawPayload = $request->getContent();
 
         switch (true) {
             case ('GET' === $method):
-                $convertedValue = $this->loadEntity($resolvedClass, $id);
+                $convertedValue = $this->loadEntity($resolvedClass, $id, $locale, $url );
                 break;
 
             case ('DELETE' === $method):
-                $convertedValue = $this->loadEntity($resolvedClass, $id);
+                $convertedValue = $this->loadEntity($resolvedClass, $id, $locale, $url );
                 break;
 
             case ('PUT' === $method):
@@ -101,6 +104,8 @@ class ParamConverter extends RequestBodyParamConverter
     /**
      * @param $resolvedClass
      * @param $id
+     * @param $locale
+     * @param $url
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -110,9 +115,20 @@ class ParamConverter extends RequestBodyParamConverter
      *
      * @return mixed $entity
      */
-    protected function loadEntity($resolvedClass, $id)
+    protected function loadEntity($resolvedClass, $id, $locale, $url)
     {
-        $entity = $this->em->find($resolvedClass, $id);
+        if (isset($locale) && isset($url)) {
+            $entity = $this->em->getRepository($resolvedClass)->findOneBy(
+                array(
+                    'metaUrl' => $url,
+                    'locale' => $locale
+                )
+            );
+        }
+
+        if ($id) {
+            $entity = $this->em->find($resolvedClass, $id);
+        }
 
         if (null === $entity) {
             throw new NotFoundHttpException('Not found');

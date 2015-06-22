@@ -11,7 +11,7 @@
 
 namespace Aisel\PageBundle\Manager;
 
-use Aisel\ResourceBundle\Manager\AbstractNodeManager;
+use Aisel\ResourceBundle\Manager\ApiNodeManager;
 use LogicException;
 
 /**
@@ -19,7 +19,7 @@ use LogicException;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class NodeManager extends AbstractNodeManager
+class NodeManager extends ApiNodeManager
 {
 
     protected $model = 'Aisel\PageBundle\Entity\Category';

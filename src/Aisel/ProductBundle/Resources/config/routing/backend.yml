@@ -14,7 +14,7 @@ admin_api_aisel_product_category_get:
 
 admin_api_aisel_product_category_get_tree:
     pattern:   /product/category/
-    defaults:  { _controller: AiselProductBundle:Admin/ApiNodeEdit:getNodeCollection, _format: json }
+    defaults:  { _controller: AiselProductBundle:Admin/ApiNode:getTree, _format: json }
     requirements:
         _method: GET
 

@@ -4,12 +4,3 @@
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
-
-parameters:
-    aisel_addressing_manager.class: Aisel\AddressingBundle\Manager\AddressingManager
-
-services:
-    aisel.addressing.manager:
-        class: %aisel_addressing_manager.class%
-        arguments:
-            - @doctrine.orm.entity_manager
