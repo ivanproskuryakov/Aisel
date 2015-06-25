@@ -20,6 +20,8 @@ define(['app',
     './controllers/productCategoryDetails',
     './services/product',
     './services/productCategory',
+    './directives/newProducts',
+    './directives/images',
 ], function (app) {
     console.log('Product module loaded ...');
 });

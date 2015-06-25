@@ -13,31 +13,52 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductCtrl', ['$location', '$scope', '$stateParams', 'productService', 'Environment',
-        function ($location, $scope, $stateParams, productService, Environment) {
+    app.controller('ProductCtrl', ['$scope', '$stateParams', 'productService', 'Environment',
+        function ($scope, $stateParams, productService, Environment) {
             $scope.media = Environment.settings.media;
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
             $scope.categoryId = 0;
 
-            var handleSuccess = function (data, status) {
-                $scope.collection = data;
-            };
-
-            // Product
-            productService.getProducts($scope).success(
-                function (data, status) {
-                    console.log(data);
-                    $scope.collection = data;
-                }
-            );
-
-            $scope.pageChanged = function (page) {
-                $scope.paginationPage = page;
-                productService.getProducts($scope).success(
+            /**
+             * Load product collection
+             *
+             * @param limit
+             * @param page
+             * @param categoryId
+             * @param order
+             * @param orderBy
+             */
+            var getProductCollection = function (limit, page, categoryId, order, orderBy) {
+                var params = {
+                    limit: limit,
+                    page: page,
+                    categoryId: categoryId,
+                    order: order,
+                    orderBy: orderBy
+                };
+                productService.getProducts(params).success(
                     function (data, status) {
                         $scope.collection = data;
                     }
+                );
+            };
+
+            getProductCollection(
+                $scope.pageLimit,
+                $scope.paginationPage,
+                $scope.categoryId,
+                'id',
+                'ASC'
+            );
+
+            $scope.pageChanged = function (paginationPage) {
+                getProductCollection(
+                    $scope.pageLimit,
+                    paginationPage,
+                    $scope.categoryId,
+                    'id',
+                    'ASC'
                 );
             };
 

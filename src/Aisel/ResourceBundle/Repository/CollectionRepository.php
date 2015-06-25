@@ -30,7 +30,7 @@ class CollectionRepository extends EntityRepository
     protected $pageLimit = 1;
     protected $pageSkip = 1;
     protected $order = 'id';
-    protected $orderBy = 'DESC';
+    protected $orderBy = '';
 
     /**
      * Map request variables for later use in SQL
@@ -40,19 +40,19 @@ class CollectionRepository extends EntityRepository
     {
         // Pagination
         if (isset($params['current'])) {
-            $this->pageCurrent = $params['current'];
+            $this->pageCurrent =  (int) $params['current'];
         } else {
             $this->pageCurrent = 1;
         }
 
         if (isset($params['limit'])) {
-            $this->pageLimit = $params['limit'];
+            $this->pageLimit =  (int) $params['limit'];
         } else {
             $this->pageLimit = 5;
         }
 
         if (isset($params['category'])) {
-            $this->category = $params['category'];
+            $this->category = (int) $params['category'];
         } else {
             $this->category = 0;
         }
@@ -67,9 +67,25 @@ class CollectionRepository extends EntityRepository
             $this->locale = $params['locale'];
         }
 
-        // Locale
+        // Order
         if (isset($params['order'])) {
-            $this->locale = $params['order'];
+            $this->order = $params['order'];
+        }
+
+        // Order By
+        if (isset($params['orderBy'])) {
+            switch ($params['orderBy']) {
+                case 'ASC':
+                    $this->orderBy = 'ASC';
+                    break;
+
+                case 'DESC':
+                    $this->orderBy = 'DESC';
+                    break;
+
+                default:
+                    $this->orderBy = 'ASC';
+            }
         }
 
         // Filter

@@ -205,6 +205,8 @@ class ApiController extends Controller
             'current' => $request->get('current'),
             'limit' => $request->get('limit'),
             'category' => $request->get('category'),
+            'order' => $request->get('order'),
+            'orderBy' => $request->get('orderBy'),
             'filter' => $request->get('filter')
         );
 

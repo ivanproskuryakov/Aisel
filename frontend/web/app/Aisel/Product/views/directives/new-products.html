@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="new-products">
+        <div class="row">
+            <div class="col-lg-4" ng-repeat="item in newProducts.collection">
+                <aisel-product-images
+                        class="new-product-image"
+                        img-style="img-circle"
+                        img-size="140"
+                        images="item.images"
+                        >
+                </aisel-product-images>
+                <h2>{{item.name}}</h2>
+                <p>{{item.description | limitTo: 200 }}</p>
+                <p>
+                    <a class="btn btn-primary"
+                      ui-sref="productView({locale: locale, productId:item.meta_url})"
+                      role="button">
+                        View Product
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -85,6 +85,17 @@ body .panel-primary {
     border-color: #657496;
 }
 
+.btn-primary {
+    background-color: #657496;
+    border-color: #657496;
+}
+
+.btn-primary:active,
+.btn-primary:hover {
+    background-color: #586583;
+    border-color: #586583;
+}
+
 /***********
     Header
 ***********/
@@ -169,13 +180,6 @@ body .panel-primary {
 /***********
     Categories
 ************/
-.homepage-content {
-    margin-top: 40px;
-}
-
-/*.categoryTree {*/
-    /*margin-top: 30px;*/
-/*}*/
 
 .categoryTree .categories {
     padding-left: 10px;
@@ -289,7 +293,7 @@ footer {
 }
 
 /***********
-    Checkout
+    Cart
 ************/
 .tableHeading{
     font-weight: bold;
@@ -304,4 +308,33 @@ footer {
 ************/
 .checkout .form-group {
     margin-bottom: 0;
+}
+
+/***********
+ Homepage
+************/
+.homepage-content .jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+/***********
+New Products
+************/
+
+.new-products .col-lg-4 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.new-products h2 {
+    font-weight: normal;
+}
+.new-products .col-lg-4 p {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.new-products .item .new-product-image {
+    width: 150px;
+    float: left;
 }

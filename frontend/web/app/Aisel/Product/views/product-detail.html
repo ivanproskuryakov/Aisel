@@ -3,12 +3,12 @@
         <h2>{{product.name}}</h2>
     </div>
     <div class="col-md-4">
-        <div ng-repeat="image in product.images">
-            <img class="img-rounded"
-                 ng-if="image.main_image === true"
-                 src="{{media}}{{image.filename}}"
-                 data-holder-rendered="true" style="width: 100%;">
-        </div>
+        <aisel-product-images
+                class="product-image"
+                img-style="img-rounded"
+                images="product.images"
+                >
+        </aisel-product-images>
     </div>
     <div class="col-md-8">
         <div class="row">
@@ -50,4 +50,3 @@
         <div ng-if="showComments" disqus="product.meta_url"></div>
     </div>
 </div>
-
