@@ -180,13 +180,6 @@ body .panel-primary {
 /***********
     Categories
 ************/
-.homepage-content {
-    margin-top: 40px;
-}
-
-/*.categoryTree {*/
-    /*margin-top: 30px;*/
-/*}*/
 
 .categoryTree .categories {
     padding-left: 10px;
@@ -320,7 +313,7 @@ footer {
 /***********
  Homepage
 ************/
-.jumbotron {
+.homepage-content .jumbotron {
     text-align: center;
     background-color: transparent;
 }
