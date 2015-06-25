@@ -317,13 +317,16 @@ footer {
     margin-bottom: 0;
 }
 
-
 /***********
- Product
+ Homepage
 ************/
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
 
 /***********
-    New Products
+New Products
 ************/
 
 .new-products .col-lg-4 {
