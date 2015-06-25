@@ -14,15 +14,12 @@
                 <li ng-repeat="product in collection.collection">
                     <div class="row">
                         <div class="col-md-3">
-                            <div ng-repeat="image in product.images">
-                                <a ui-sref="productView({locale: locale, productId:product.meta_url})">
-                                    <img class="img-rounded"
-                                         ng-if="image.main_image === true"
-                                         src="{{media}}{{image.filename}}"
-                                         data-holder-rendered="true" style="width: 100%;">
-                                </a>
-                            </div>
-
+                            <aisel-product-images
+                                    class="product-image"
+                                    img-style="img-rounded"
+                                    images="product.images"
+                                    >
+                            </aisel-product-images>
                         </div>
                         <div class="col-md-9">
                             <h2 style="margin-top: -5px">
@@ -33,7 +30,7 @@
                             <h3>
                                 <span class="label label-warning">{{product.price}} {{currency}}</span>
                             </h3>
-                            <p ng-bind-html="product.description"></p>
+                            <p>{{product.description | limitTo: 600 }}</p>
                         </div>
                     </div>
                     <hr/>

@@ -3,7 +3,7 @@
          ng-if="image.main_image === true"
          src="{{media}}{{image.filename}}"
          data-holder-rendered="true"
-         width="{{size}}"
+         width="{{size || '100%' }}"
          height="{{size}}"
     />
 </div>

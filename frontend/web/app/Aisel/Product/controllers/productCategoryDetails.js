@@ -27,20 +27,50 @@ define(['app'], function (app) {
                 }
             );
 
-            // Products
-            productService.getProducts($scope).success(
-                function (data, status) {
-                    $scope.productList = data;
-                }
-            );
 
-            $scope.pageChanged = function (page) {
-                $scope.paginationPage = page;
-                productService.getProducts($scope).success(
+            /**
+             * Load product collection
+             *
+             * @param limit
+             * @param page
+             * @param categoryId
+             * @param order
+             * @param orderBy
+             */
+            var getProductCollection = function (limit, page, categoryId, order, orderBy) {
+                var params = {
+                    limit: limit,
+                    page: page,
+                    categoryId: categoryId,
+                    order: order,
+                    orderBy: orderBy
+                };
+                productService.getProducts(params).success(
                     function (data, status) {
                         $scope.productList = data;
                     }
                 );
             };
+
+            // Products
+            getProductCollection(
+                $scope.pageLimit,
+                $scope.paginationPage,
+                $scope.categoryId,
+                'id',
+                'ASC'
+            );
+
+            $scope.pageChanged = function (paginationPage) {
+                getProductCollection(
+                    $scope.pageLimit,
+                    paginationPage,
+                    $scope.categoryId,
+                    'id',
+                    'ASC'
+                );
+            };
+
+
         }]);
 });

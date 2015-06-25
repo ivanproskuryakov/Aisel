@@ -37,10 +37,8 @@ define(['app'], function (app) {
                     order: order,
                     orderBy: orderBy
                 };
-
                 productService.getProducts(params).success(
                     function (data, status) {
-                        console.log(data);
                         $scope.collection = data;
                     }
                 );
@@ -54,13 +52,13 @@ define(['app'], function (app) {
                 'ASC'
             );
 
-            $scope.pageChanged = function (page) {
-                $scope.paginationPage = page;
-
+            $scope.pageChanged = function (paginationPage) {
                 getProductCollection(
                     $scope.pageLimit,
-                    $scope.paginationPage,
-                    $scope.categoryId
+                    paginationPage,
+                    $scope.categoryId,
+                    'id',
+                    'ASC'
                 );
             };
 

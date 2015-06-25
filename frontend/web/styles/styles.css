@@ -85,6 +85,17 @@ body .panel-primary {
     border-color: #657496;
 }
 
+.btn-primary {
+    background-color: #657496;
+    border-color: #657496;
+}
+
+.btn-primary:active,
+.btn-primary:hover {
+    background-color: #586583;
+    border-color: #586583;
+}
+
 /***********
     Header
 ***********/
@@ -305,6 +316,11 @@ footer {
 .checkout .form-group {
     margin-bottom: 0;
 }
+
+
+/***********
+ Product
+************/
 
 /***********
     New Products

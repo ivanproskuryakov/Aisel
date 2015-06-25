@@ -21,5 +21,6 @@ define(['app'], function (app) {
                     $scope.content = data.settings[locale].content.homepageContent;
                 }
             );
-        }]);
+        }
+    ]);
 });
