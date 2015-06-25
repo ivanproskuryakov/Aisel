@@ -289,7 +289,7 @@ footer {
 }
 
 /***********
-    Checkout
+    Cart
 ************/
 .tableHeading{
     font-weight: bold;
@@ -304,4 +304,25 @@ footer {
 ************/
 .checkout .form-group {
     margin-bottom: 0;
+}
+
+/***********
+    New Products
+************/
+
+.new-products .col-lg-4 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.new-products h2 {
+    font-weight: normal;
+}
+.new-products .col-lg-4 p {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.new-products .item .new-product-image {
+    width: 150px;
+    float: left;
 }
