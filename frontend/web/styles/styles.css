@@ -324,17 +324,23 @@ New Products
 
 .new-products .col-lg-4 {
     margin-bottom: 20px;
-    text-align: center;
 }
 .new-products h2 {
     font-weight: normal;
-}
-.new-products .col-lg-4 p {
-    margin-right: 10px;
-    margin-left: 10px;
 }
 
 .new-products .item .new-product-image {
     width: 150px;
     float: left;
+}
+
+/***********
+New Products
+************/
+
+.new-pages .col-lg-4 {
+    margin-bottom: 20px;
+}
+.new-pages h2 {
+    font-weight: normal;
 }

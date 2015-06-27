@@ -20,26 +20,43 @@ define(['app'], function (app) {
             $scope.paginationPage = 1;
             $scope.categoryId = 0;
 
-            var handleSuccess = function (data, status) {
-                $scope.collection = data;
-            };
+            /**
+             * Load page collection
+             *
+             * @param limit
+             * @param page
+             * @param categoryId
+             * @param order
+             * @param orderBy
+             */
+            var getPageCollection = function (limit, page, categoryId, order, orderBy) {
+                var params = {
+                    limit: limit,
+                    page: page,
+                    categoryId: categoryId,
+                    order: order,
+                    orderBy: orderBy
+                };
 
-            // Pages
-            pageService.getPages($scope).success(
-                function (data, status) {
-                    console.log(data);
-                    $scope.collection = data;
-                }
-            );
-
-            $scope.pageChanged = function (page) {
-                $scope.paginationPage = page;
-                pageService.getPages($scope).success(
+                pageService.getPages(params).success(
                     function (data, status) {
                         $scope.collection = data;
                     }
                 );
             };
+
+            $scope.pageChanged = function (paginationPage) {
+                getPageCollection(
+                    $scope.pageLimit,
+                    paginationPage,
+                    $scope.categoryId,
+                    'id',
+                    'ASC'
+                );
+            };
+
+            $scope.pageChanged($scope.paginationPage);
+
 
         }]);
 });
