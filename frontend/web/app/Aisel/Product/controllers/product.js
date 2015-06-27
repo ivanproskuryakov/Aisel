@@ -44,14 +44,6 @@ define(['app'], function (app) {
                 );
             };
 
-            getProductCollection(
-                $scope.pageLimit,
-                $scope.paginationPage,
-                $scope.categoryId,
-                'id',
-                'ASC'
-            );
-
             $scope.pageChanged = function (paginationPage) {
                 getProductCollection(
                     $scope.pageLimit,
@@ -61,6 +53,8 @@ define(['app'], function (app) {
                     'ASC'
                 );
             };
+
+            $scope.pageChanged($scope.paginationPage);
 
         }]);
 });

@@ -8,33 +8,32 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselProduct
+ * @name            AiselPage
  * @description     ...
  */
 
 define(['app'], function (app) {
-    app.directive('aiselNewProducts', ['$compile', 'productService', function($compile, productService){
+    app.directive('aiselNewPages', ['$compile', 'pageService', function($compile, pageService){
         return {
             restrict: 'EA',
             link: function ($scope, element, attrs) {
-                var productLimit = attrs.limit;
-
+                var pageLimit = attrs.limit;
+                
                 var params = {
-                    limit: productLimit,
+                    limit: pageLimit,
                     order: 'id',
                     orderBy: 'DESC',
                     page: 1
                 };
-
-                productService.getProducts(params).success(
+                pageService.getPages(params).success(
                     function (data, status) {
-                        $scope.newProducts = data;
-                        $scope.newProducts.limit = productLimit;
+                        $scope.newPages = data;
+                        $scope.newPages.limit = pageLimit;
                     }
                 );
 
             },
-            templateUrl: '/app/Aisel/Product/views/directives/new-products.html'
+            templateUrl: '/app/Aisel/Page/views/directives/new-pages.html'
         };
     }]);
 });

@@ -16,9 +16,15 @@ define(['app'], function (app) {
     app.service('pageService', ['$http', 'Environment',
         function ($http, Environment) {
             return {
-                getPages: function ($scope) {
+                getPages: function (params) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/page/?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage + '&category=' + $scope.categoryId;
+                    var url = Environment.settings.api + '/' + locale
+                        + '/page/?limit=' + params.limit
+                        + '&current=' + params.page
+                        + '&order=' + params.order
+                        + '&orderBy=' + params.orderBy
+                        + '&category=' + params.categoryId;
+
                     console.log(url);
                     return $http.get(url);
                 },
