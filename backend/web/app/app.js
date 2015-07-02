@@ -36,6 +36,7 @@ define([
         'angular-loading-bar',
         'angular-touch',
         'ui-grid',
+        'flow'
     ],
     function (angular) {
         'use strict';
@@ -43,7 +44,7 @@ define([
         var app = angular.module('app', [
             'ngCookies', 'ngResource', 'ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.router',
             'ui.utils', 'ui.validate', 'ui.gravatar', 'textAngular', 'ngDisqus', 'cgNotify',
-            'ngAnimate', 'angular-loading-bar', 'ngTouch', 'ui.grid',
+            'ngAnimate', 'angular-loading-bar', 'ngTouch', 'ui.grid', 'flow',
             'environment'
         ])
 

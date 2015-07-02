@@ -39,7 +39,8 @@ require.config({
         'angular-gravatar': '../bower_components/angular-gravatar/build/angular-gravatar',
         'angular-disqus': '../bower_components/angular-disqus/src/angular-disqus',
         'angular-touch': '../bower_components/angular-touch/angular-touch.min',
-        'ui-grid': '../bower_components/angular-ui-grid/ui-grid.min'
+        'ui-grid': '../bower_components/angular-ui-grid/ui-grid.min',
+        'flow': '../bower_components/ng-flow/dist/ng-flow-standalone.min'
     },
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {
@@ -48,6 +49,7 @@ require.config({
         'angular-animate': ['angular'],
         'angular-ui-router': ['angular'],
         'angular-touch': ['angular'],
+        'flow': ['angular'],
         'angular': {'exports': 'angular', deps: ['jQuery']},
         'jQuery': {'exports': 'jQuery'},
         "jQuery-ui": {'exports': 'jQuery-ui', deps: ['jQuery']},
