@@ -12,15 +12,15 @@
  * @description     NavigationDetailCtrl
  */
 
-define(['app'], function (app) {
-    app.controller('NavigationDetailCtrl', function (
+define(['app'], function(app) {
+    app.controller('NavigationDetailCtrl', function(
         $controller,
         $scope,
         resourceService,
         $state,
         $stateParams,
         Environment
-        ) {
+    ) {
 
         $scope.route = {
             name: 'Navigation',
@@ -35,7 +35,7 @@ define(['app'], function (app) {
         }));
 
         // CANCEL
-        $scope.editCancel = function () {
+        $scope.editCancel = function() {
             $state.transitionTo(
                 $scope.route.collection, {
                     locale: Environment.currentLocale(),

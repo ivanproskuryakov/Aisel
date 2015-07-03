@@ -12,13 +12,13 @@
  * @description     Most important data are loaded here
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     console.log('Kernel init service loaded ...');
     angular.module('app')
         .service('initService', ['$http', '$rootScope', 'Environment',
-            function ($http, $rootScope, Environment) {
+            function($http, $rootScope, Environment) {
                 return {
-                    launch: function () {
+                    launch: function() {
                         console.log('----------- Aisel Loaded! -----------');
                         $rootScope.pageTitle = Environment.settings.pageTitle;
                         $rootScope.availableLocales = Environment.settings.locale.available;

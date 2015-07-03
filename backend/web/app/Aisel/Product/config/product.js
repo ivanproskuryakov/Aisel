@@ -12,9 +12,9 @@
  * @description     Module configuration
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app
-        .config(['$stateProvider', function ($stateProvider) {
+        .config(['$stateProvider', function($stateProvider) {
             $stateProvider
                 .state("products", {
                     url: "/:locale/products/",
@@ -42,24 +42,22 @@ define(['app'], function (app) {
                     controller: 'ProductCategoryDetailsCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
-            $rootScope.topMenu.push(
-                {
-                    "ordering": 200,
-                    "title": 'Products',
-                    "children": {
-                        "products": {
-                            "ordering": 100,
-                            "slug": '/products/',
-                            "title": 'Products'
-                        },
-                        "productCategory": {
-                            "ordering": 200,
-                            "slug": '/product/category/' + Environment.currentLocale() + '/',
-                            "title": 'Categories'
-                        }
+        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+            $rootScope.topMenu.push({
+                "ordering": 200,
+                "title": 'Products',
+                "children": {
+                    "products": {
+                        "ordering": 100,
+                        "slug": '/products/',
+                        "title": 'Products'
+                    },
+                    "productCategory": {
+                        "ordering": 200,
+                        "slug": '/product/category/' + Environment.currentLocale() + '/',
+                        "title": 'Categories'
                     }
                 }
-            );
+            });
         }]);
 });

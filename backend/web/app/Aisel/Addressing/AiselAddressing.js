@@ -20,6 +20,6 @@ define(['app',
     './controllers/regionDetails',
     './controllers/city',
     './controllers/cityDetails',
-], function (app) {
+], function(app) {
     console.log('Addressing module loaded ...');
 });

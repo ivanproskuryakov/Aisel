@@ -50,9 +50,17 @@ require.config({
         'angular-ui-router': ['angular'],
         'angular-touch': ['angular'],
         'flow': ['angular'],
-        'angular': {'exports': 'angular', deps: ['jQuery']},
-        'jQuery': {'exports': 'jQuery'},
-        "jQuery-ui": {'exports': 'jQuery-ui', deps: ['jQuery']},
+        'angular': {
+            'exports': 'angular',
+            deps: ['jQuery']
+        },
+        'jQuery': {
+            'exports': 'jQuery'
+        },
+        "jQuery-ui": {
+            'exports': 'jQuery-ui',
+            deps: ['jQuery']
+        },
         "fancytree": ["jQuery-ui"],
         "ui-contextmenu": ["jQuery-ui"],
         "domReady": ["angular"],

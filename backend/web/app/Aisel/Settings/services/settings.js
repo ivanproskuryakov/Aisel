@@ -12,17 +12,17 @@
  * @description     settingsService
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.service('settingsService', ['$http', 'Environment',
-        function ($http, Environment) {
+        function($http, Environment) {
             return {
-                get: function () {
+                get: function() {
                     var url = Environment.settings.api + '/config/';
                     console.log(url);
 
                     return $http.get(url);
                 },
-                save: function (data) {
+                save: function(data) {
                     var url = Environment.settings.api + '/config/';
 
                     return $http({
@@ -32,5 +32,6 @@ define(['app'], function (app) {
                     });
                 }
             };
-        }]);
+        }
+    ]);
 });

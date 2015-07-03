@@ -20,7 +20,6 @@ define(['app',
     './services/collection',
     './services/resource',
     './directives/fancyTree',
-], function (app) {
+], function(app) {
     console.log('----------- Kernel Loaded! -----------');
 });
-

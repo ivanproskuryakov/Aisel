@@ -12,8 +12,8 @@
  * @description     AddressingCityDetailsCtrl
  */
 
-define(['app'], function (app) {
-    app.controller('AddressingCityDetailsCtrl', function ($controller, $scope, resourceService) {
+define(['app'], function(app) {
+    app.controller('AddressingCityDetailsCtrl', function($controller, $scope, resourceService) {
 
         $scope.route = {
             name: 'City',

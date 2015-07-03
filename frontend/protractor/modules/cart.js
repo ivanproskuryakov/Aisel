@@ -8,10 +8,10 @@
  * E2E Cart test
  */
 
-describe("E2E: Cart module tests", function () {
+describe("E2E: Cart module tests", function() {
     console.log('Test loaded: Cart');
 
-    it('Cart in route is working', function () {
+    it('Cart in route is working', function() {
         browser.get('http://aisel.dev/en/cart/');
         expect(browser.getTitle()).toEqual('Aisel - open source project');
     });

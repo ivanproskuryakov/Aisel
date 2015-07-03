@@ -12,8 +12,8 @@
  * @description     AddressingRegionDetailsCtrl
  */
 
-define(['app'], function (app) {
-    app.controller('AddressingRegionDetailsCtrl', function ($controller, $scope, resourceService) {
+define(['app'], function(app) {
+    app.controller('AddressingRegionDetailsCtrl', function($controller, $scope, resourceService) {
 
         $scope.route = {
             name: 'Region',

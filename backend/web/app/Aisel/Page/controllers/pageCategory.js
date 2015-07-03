@@ -12,14 +12,14 @@
  * @description     PageCategoryCtrl
  */
 
-define(['app'], function (app) {
-    app.controller('PageCategoryCtrl', function ($scope, $stateParams, $state, Environment) {
+define(['app'], function(app) {
+    app.controller('PageCategoryCtrl', function($scope, $stateParams, $state, Environment) {
 
         $scope.sectionName = 'Page categories';
         $scope.categoryJson = Environment.settings.api + '/page/category/?locale=' + $stateParams.lang;
         $scope.categoryUpdate = Environment.settings.api + '/page/category/node/?locale=' + $stateParams.lang;
 
-        $scope.editNode = function (id) {
+        $scope.editNode = function(id) {
             $state.transitionTo('pageCategoryEdit', {
                 locale: Environment.currentLocale(),
                 lang: $stateParams.lang,
@@ -27,7 +27,7 @@ define(['app'], function (app) {
             });
         };
 
-        $scope.changeCategoryLocale = function (lang) {
+        $scope.changeCategoryLocale = function(lang) {
             $state.transitionTo('pageCategory', {
                 locale: Environment.currentLocale(),
                 lang: lang

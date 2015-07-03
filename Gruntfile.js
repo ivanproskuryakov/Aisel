@@ -48,6 +48,16 @@ module.exports = function (grunt) {
                 "frontend/web/app/**/**/*.js",
                 "frontend/web/app/**/**/**/*.js",
                 "frontend/web/app/**/**/**/**/*.js",
+                "frontend/protractor/*.js",
+                "frontend/protractor/**/*.js",
+
+                "backend/web/app/*.js",
+                "backend/web/app/**/*.js",
+                "backend/web/app/**/**/*.js",
+                "backend/web/app/**/**/**/*.js",
+                "backend/web/app/**/**/**/**/*.js",
+                "backend/protractor/*.js",
+                "backend/protractor/**/*.js",
             ],
             options: {
                 js: {

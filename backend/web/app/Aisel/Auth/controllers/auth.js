@@ -12,34 +12,39 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('AuthCtrl', ['$scope', '$rootScope', '$state', 'authService', 'notify', 'Environment',
-        function ($scope, $rootScope, $state, authService, notify, Environment) {
+        function($scope, $rootScope, $state, authService, notify, Environment) {
             var locale = Environment.currentLocale();
 
             // User Sign In/Out
-            $scope.signOut = function () {
+            $scope.signOut = function() {
                 authService.signout($scope).success(
-                    function (data, status) {
+                    function(data, status) {
                         notify(data.message);
                         $rootScope.user = undefined;
-                        $state.transitionTo('userLogin', {locale: locale});
+                        $state.transitionTo('userLogin', {
+                            locale: locale
+                        });
                     }
                 );
             }
 
-            $scope.login = function (username, password) {
+            $scope.login = function(username, password) {
                 authService.login(username, password).success(
-                    function (data, status) {
+                    function(data, status) {
                         notify(data.message);
                         if (data.status) {
                             $rootScope.user = data.user;
-                            $state.transitionTo('home', {locale: locale});
+                            $state.transitionTo('home', {
+                                locale: locale
+                            });
                         }
                     }
                 );
             };
 
-        }]);
+        }
+    ]);
 
 });

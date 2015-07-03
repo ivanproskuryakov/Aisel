@@ -12,8 +12,8 @@
  * @description     ProductDetailsCtrl
  */
 
-define(['app'], function (app) {
-    app.controller('ProductDetailsCtrl', function ($controller, $scope, resourceService) {
+define(['app'], function(app) {
+    app.controller('ProductDetailsCtrl', function($controller, $scope, resourceService) {
 
         $scope.route = {
             name: 'Product',
