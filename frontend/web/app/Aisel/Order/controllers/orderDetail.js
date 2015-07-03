@@ -12,15 +12,16 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('OrderDetailCtrl', ['$location', '$scope', 'orderService', '$stateParams', 'Environment',
-        function ($location, $scope, orderService, $stateParams, Environment) {
+        function($location, $scope, orderService, $stateParams, Environment) {
             $scope.media = Environment.settings.media;
             $scope.orderId = $stateParams.orderId;
-            var handleSuccess = function (data, status) {
+            var handleSuccess = function(data, status) {
                 $scope.orderDetails = data[0];
                 console.log($scope.orderDetails);
             };
             orderService.getOrder($scope.orderId).success(handleSuccess);
-        }]);
+        }
+    ]);
 });

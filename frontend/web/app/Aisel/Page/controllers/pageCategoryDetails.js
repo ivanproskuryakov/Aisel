@@ -12,9 +12,9 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('PageCategoryDetailCtrl', ['$location', '$scope', '$stateParams', 'pageService', 'pageCategoryService',
-        function ($location, $scope, $stateParams, pageService, pageCategoryService) {
+        function($location, $scope, $stateParams, pageService, pageCategoryService) {
 
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
@@ -22,25 +22,26 @@ define(['app'], function (app) {
 
             // Category Information
             pageCategoryService.getCategory($scope.categoryId).success(
-                function (data, status) {
+                function(data, status) {
                     $scope.category = data;
                 }
             );
 
             // Pages
             pageService.getPages($scope).success(
-                function (data, status) {
+                function(data, status) {
                     $scope.pageList = data;
                 }
             );
 
-            $scope.pageChanged = function (page) {
+            $scope.pageChanged = function(page) {
                 $scope.paginationPage = page;
                 pageService.getPages($scope).success(
-                    function (data, status) {
+                    function(data, status) {
                         $scope.pageList = data;
                     }
                 );
             };
-        }]);
+        }
+    ]);
 });

@@ -12,9 +12,9 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('SearchCtrl', ['$scope', '$stateParams', 'searchService',
-        function ($scope, $stateParams, searchService) {
+        function($scope, $stateParams, searchService) {
             $scope.queryText = $stateParams.query;
             $scope.search = $stateParams.query;
             $scope.limit = 5;
@@ -22,15 +22,16 @@ define(['app'], function (app) {
             $scope.collection = {};
             $scope.collection.total = 0;
 
-            var handleSuccess = function (data, status) {
+            var handleSuccess = function(data, status) {
                 console.log(data);
                 $scope.collection = data;
             };
             searchService.getSearchResult($scope).success(handleSuccess);
 
-            $scope.pageChanged = function (page) {
+            $scope.pageChanged = function(page) {
                 $scope.paginationPage = page;
                 searchService.getSearchResult($scope).success(handleSuccess);
             };
-        }]);
+        }
+    ]);
 });

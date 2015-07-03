@@ -12,8 +12,8 @@
  * @description     Module configuration
  */
 
-define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
+define(['app'], function(app) {
+    app.config(['$stateProvider', function($stateProvider) {
         $stateProvider
             .state("exception", {
                 url: "/:locale/exception/:code",
@@ -22,11 +22,11 @@ define(['app'], function (app) {
             });
     }]);
 
-    app.config(function ($httpProvider) {
+    app.config(function($httpProvider) {
 
         var exceptionInterceptor = [
-            '$q', '$injector', 'Environment','$rootScope',
-            function ($q, $injector, Environment, $rootScope) {
+            '$q', '$injector', 'Environment', '$rootScope',
+            function($q, $injector, Environment, $rootScope) {
 
                 function success(response) {
                     return response;
@@ -38,8 +38,7 @@ define(['app'], function (app) {
                     var locale = Environment.currentLocale();
 
                     $injector.get('$state').transitionTo(
-                        'exception',
-                        {
+                        'exception', {
                             locale: locale,
                             code: response.data.error.code
                         }
@@ -48,10 +47,11 @@ define(['app'], function (app) {
                     return $q.reject(response);
                 }
 
-                return function (promise) {
+                return function(promise) {
                     return promise.then(success, error);
                 }
-            }];
+            }
+        ];
 
         $httpProvider.responseInterceptors.push(exceptionInterceptor);
     });

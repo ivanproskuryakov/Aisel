@@ -16,6 +16,6 @@ define(['app',
     './config/contact',
     './controllers/contact',
     './services/contact'
-], function (app) {
+], function(app) {
     console.log('Contact module loaded ...');
 });

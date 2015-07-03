@@ -12,8 +12,8 @@
  * @description     Module configuration
  */
 
-define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
+define(['app'], function(app) {
+    app.config(['$stateProvider', function($stateProvider) {
         $stateProvider
             .state("pages", {
                 url: "/:locale/pages/",

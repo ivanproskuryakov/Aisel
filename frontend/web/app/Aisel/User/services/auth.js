@@ -12,14 +12,14 @@
  * @description     Auth service
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     console.log('Kernel Auth service loaded ...');
 
     angular.module('app')
         .service('authService', ['$modal',
-            function ($modal) {
+            function($modal) {
                 return {
-                    authenticateWithModal: function () {
+                    authenticateWithModal: function() {
                         var modalAuthInstance = $modal.open({
                             templateUrl: '/app/Aisel/User/views/modal/login.html',
                             controller: 'ModalAuthCtrl'
@@ -31,22 +31,26 @@ define(['app'], function (app) {
 
     angular.module('app')
         .controller('ModalAuthCtrl', ['$scope', '$rootScope', '$state', 'userService', 'notify', 'Environment',
-            function ($scope, $rootScope, $state, userService, notify, Environment) {
+            function($scope, $rootScope, $state, userService, notify, Environment) {
                 var locale = Environment.currentLocale();
 
-                $scope.passwordForgot = function () {
+                $scope.passwordForgot = function() {
                     $scope.$dismiss('close');
-                    $state.transitionTo('userPasswordForgot', {locale: locale});
+                    $state.transitionTo('userPasswordForgot', {
+                        locale: locale
+                    });
                 }
 
-                $scope.register = function () {
+                $scope.register = function() {
                     $scope.$dismiss('close');
-                    $state.transitionTo('userRegister', {locale: locale});
+                    $state.transitionTo('userRegister', {
+                        locale: locale
+                    });
                 }
 
-                $scope.login = function (username, password) {
+                $scope.login = function(username, password) {
                     userService.login(username, password).success(
-                        function (data, status) {
+                        function(data, status) {
                             notify(data.message);
 
                             if (data.status) {

@@ -12,13 +12,13 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
-    app.directive('aiselNewPages', ['$compile', 'pageService', function($compile, pageService){
+define(['app'], function(app) {
+    app.directive('aiselNewPages', ['$compile', 'pageService', function($compile, pageService) {
         return {
             restrict: 'EA',
-            link: function ($scope, element, attrs) {
+            link: function($scope, element, attrs) {
                 var pageLimit = attrs.limit;
-                
+
                 var params = {
                     limit: pageLimit,
                     order: 'id',
@@ -26,7 +26,7 @@ define(['app'], function (app) {
                     page: 1
                 };
                 pageService.getPages(params).success(
-                    function (data, status) {
+                    function(data, status) {
                         $scope.newPages = data;
                         $scope.newPages.limit = pageLimit;
                     }

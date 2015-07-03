@@ -12,21 +12,23 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$routeParams', 'userService', 'notify', 'Environment',
-        function ($scope, $rootScope, $state, $routeParams, userService, notify, Environment) {
+        function($scope, $rootScope, $state, $routeParams, userService, notify, Environment) {
             var locale = Environment.currentLocale();
 
             // User Registration
-            $scope.submitRegistration = function (form) {
+            $scope.submitRegistration = function(form) {
                 if (form.$valid) {
                     userService.register(form).success(
-                        function (data, status) {
+                        function(data, status) {
                             notify(data.message);
                             if (data.status) {
                                 if (data.user.username) {
                                     $rootScope.user = data.user;
-                                    $state.transitionTo('userInformation', {locale: locale});
+                                    $state.transitionTo('userInformation', {
+                                        locale: locale
+                                    });
                                 }
                             }
                         }
@@ -38,10 +40,10 @@ define(['app'], function (app) {
              * @param form registration form values
              * @description sends data to API layer and update user object
              */
-            $scope.submitEditUserDetails = function (form) {
+            $scope.submitEditUserDetails = function(form) {
                 if (form.$valid) {
                     userService.editDetails(form).success(
-                        function (data, status) {
+                        function(data, status) {
                             notify(data.message);
                         }
                     );
@@ -49,13 +51,15 @@ define(['app'], function (app) {
             };
 
             // User Password Forgot
-            $scope.submitPasswordForgot = function (form) {
+            $scope.submitPasswordForgot = function(form) {
                 if (form.$valid) {
                     userService.passwordforgot(form).success(
-                        function (data, status) {
+                        function(data, status) {
                             notify(data.message);
                             if (data.status) {
-                                $state.transitionTo('userLogin', {locale: locale});
+                                $state.transitionTo('userLogin', {
+                                    locale: locale
+                                });
                             }
                         }
                     );
@@ -63,25 +67,30 @@ define(['app'], function (app) {
             };
 
             // User Sign In/Out
-            $scope.signOut = function () {
+            $scope.signOut = function() {
                 userService.signout($scope).success(
-                    function (data, status) {
+                    function(data, status) {
                         notify(data.message);
                         $rootScope.user = undefined;
-                        $state.transitionTo('homepage', {locale: locale});
+                        $state.transitionTo('homepage', {
+                            locale: locale
+                        });
                     }
                 );
             };
 
-            $scope.login = function (username, password) {
+            $scope.login = function(username, password) {
                 userService.login(username, password).success(
-                    function (data, status) {
+                    function(data, status) {
                         notify(data.message);
                         if (data.status) {
-                            $state.transitionTo('userInformation', {locale: locale});
+                            $state.transitionTo('userInformation', {
+                                locale: locale
+                            });
                         }
                     }
                 );
             };
-        }]);
+        }
+    ]);
 });

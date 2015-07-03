@@ -12,10 +12,10 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
-    app.controller('PageDetailCtrl', function ($scope, $stateParams, pageService, $rootScope) {
+define(['app'], function(app) {
+    app.controller('PageDetailCtrl', function($scope, $stateParams, pageService, $rootScope) {
         var pageURL = $stateParams.pageId;
-        var handleSuccess = function (data, status) {
+        var handleSuccess = function(data, status) {
             $scope.pageDetails = data;
             $rootScope.pageTitle = $scope.pageDetails.title;
 

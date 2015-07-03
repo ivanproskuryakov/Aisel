@@ -12,11 +12,11 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
-    app.directive('aiselNewProducts', ['$compile', 'productService', function($compile, productService){
+define(['app'], function(app) {
+    app.directive('aiselNewProducts', ['$compile', 'productService', function($compile, productService) {
         return {
             restrict: 'EA',
-            link: function ($scope, element, attrs) {
+            link: function($scope, element, attrs) {
                 var productLimit = attrs.limit;
 
                 var params = {
@@ -27,7 +27,7 @@ define(['app'], function (app) {
                 };
 
                 productService.getProducts(params).success(
-                    function (data, status) {
+                    function(data, status) {
                         $scope.newProducts = data;
                         $scope.newProducts.limit = productLimit;
                     }

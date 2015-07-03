@@ -5,6 +5,7 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-fixmyjs');
+    grunt.loadNpmTasks("grunt-jsbeautifier");
 
     // Define the configuration for all the tasks
     grunt.initConfig({
@@ -40,21 +41,35 @@ module.exports = function (grunt) {
                 }
             }
         },
-        fixmyjs: {
+        "jsbeautifier": {
+            files: [
+                "frontend/web/app/*.js",
+                "frontend/web/app/**/*.js",
+                "frontend/web/app/**/**/*.js",
+                "frontend/web/app/**/**/**/*.js",
+                "frontend/web/app/**/**/**/**/*.js",
+            ],
             options: {
-                config: '.jshintrc',
-                indentpref: 'spaces'
-            },
-            your_target: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'frontend/web/app/',
-                        src: ['**/*.js'],
-                        dest: 'frontend/web/app/',
-                        ext: '.js'
-                    }
-                ]
+                js: {
+                    braceStyle: "collapse",
+                    breakChainedMethods: false,
+                    e4x: false,
+                    evalCode: false,
+                    indentChar: " ",
+                    indentLevel: 0,
+                    indentSize: 4,
+                    indentWithTabs: false,
+                    jslintHappy: false,
+                    keepArrayIndentation: false,
+                    keepFunctionIndentation: false,
+                    maxPreserveNewlines: 10,
+                    preserveNewlines: true,
+                    spaceBeforeConditional: true,
+                    spaceInParen: false,
+                    unescapeStrings: false,
+                    wrapLineLength: 0,
+                    endWithNewline: true
+                }
             }
         }
     });

@@ -12,16 +12,17 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.service('searchService', ['$http', 'Environment',
-        function ($http, Environment) {
+        function($http, Environment) {
             return {
-                getSearchResult: function ($scope) {
+                getSearchResult: function($scope) {
                     var locale = Environment.currentLocale();
                     var url = Environment.settings.api + '/' + locale + '/search/?query=' + $scope.queryText + '&current=' + $scope.paginationPage;
                     console.log(url);
                     return $http.get(url);
                 }
             };
-        }]);
+        }
+    ]);
 });

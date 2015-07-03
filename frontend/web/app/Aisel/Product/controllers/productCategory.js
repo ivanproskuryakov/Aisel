@@ -12,17 +12,17 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('ProductCategoryCtrl', ['$location', '$scope', '$stateParams', 'productCategoryService', 'Environment',
-        function ($location, $scope, $stateParams, productCategoryService, Environment) {
+        function($location, $scope, $stateParams, productCategoryService, Environment) {
             $scope.media = Environment.settings.media;
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
 
-            $scope.pageChanged = function (page) {
+            $scope.pageChanged = function(page) {
                 $scope.paginationPage = page;
                 productCategoryService.getCategories($scope).success(
-                    function (data, status) {
+                    function(data, status) {
                         $scope.categories = data;
                     }
                 );
@@ -30,9 +30,10 @@ define(['app'], function (app) {
 
             // Categories
             productCategoryService.getCategories($scope).success(
-                function (data, status) {
+                function(data, status) {
                     $scope.categories = data;
                 }
             );
-        }]);
+        }
+    ]);
 });

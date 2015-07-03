@@ -12,10 +12,10 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
-    app.service('userService', ['$http', 'Environment', function ($http, Environment) {
+define(['app'], function(app) {
+    app.service('userService', ['$http', 'Environment', function($http, Environment) {
         return {
-            register: function (form) {
+            register: function(form) {
                 var username = form.username.$modelValue;
                 var email = form.email.$modelValue;
                 var password = form.password.$modelValue;
@@ -33,7 +33,7 @@ define(['app'], function (app) {
                     data: data
                 });
             },
-            editDetails: function (form) {
+            editDetails: function(form) {
                 var formData = {};
                 formData['about'] = encodeURIComponent(form.about.$modelValue);
                 formData['phone'] = encodeURIComponent(form.phone.$modelValue);
@@ -51,18 +51,18 @@ define(['app'], function (app) {
                 console.log(url);
                 return $http.get(url);
             },
-            passwordforgot: function (form) {
+            passwordforgot: function(form) {
                 var email = form.email.$modelValue;
                 var url = Environment.settings.api + '/user/password/forgot/?email=' + email;
                 console.log(url);
                 return $http.get(url);
             },
-            signout: function () {
+            signout: function() {
                 var url = Environment.settings.api + '/user/logout/';
                 console.log(url);
                 return $http.get(url);
             },
-            login: function (username, password) {
+            login: function(username, password) {
                 var url = Environment.settings.api + '/user/login/';
                 var data = {
                     username: username,
@@ -74,7 +74,7 @@ define(['app'], function (app) {
                     data: data
                 });
             },
-            getUserInformation: function () {
+            getUserInformation: function() {
                 var url = Environment.settings.api + '/user/information/';
                 console.log(url);
                 return $http.get(url);

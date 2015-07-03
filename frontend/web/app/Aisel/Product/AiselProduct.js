@@ -22,6 +22,6 @@ define(['app',
     './services/productCategory',
     './directives/newProducts',
     './directives/images',
-], function (app) {
+], function(app) {
     console.log('Product module loaded ...');
 });

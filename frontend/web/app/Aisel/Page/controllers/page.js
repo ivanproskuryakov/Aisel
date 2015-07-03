@@ -12,9 +12,9 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'pageService',
-        function ($location, $state, $scope, $stateParams, pageService) {
+        function($location, $state, $scope, $stateParams, pageService) {
 
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
@@ -29,7 +29,7 @@ define(['app'], function (app) {
              * @param order
              * @param orderBy
              */
-            var getPageCollection = function (limit, page, categoryId, order, orderBy) {
+            var getPageCollection = function(limit, page, categoryId, order, orderBy) {
                 var params = {
                     limit: limit,
                     page: page,
@@ -39,13 +39,13 @@ define(['app'], function (app) {
                 };
 
                 pageService.getPages(params).success(
-                    function (data, status) {
+                    function(data, status) {
                         $scope.collection = data;
                     }
                 );
             };
 
-            $scope.pageChanged = function (paginationPage) {
+            $scope.pageChanged = function(paginationPage) {
                 getPageCollection(
                     $scope.pageLimit,
                     paginationPage,
@@ -58,5 +58,6 @@ define(['app'], function (app) {
             $scope.pageChanged($scope.paginationPage);
 
 
-        }]);
+        }
+    ]);
 });

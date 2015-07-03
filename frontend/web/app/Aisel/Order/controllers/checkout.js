@@ -12,9 +12,9 @@
  * @description     checkout & order submit controller
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('CheckoutCtrl', ['$location', '$scope', '$state', 'orderService', 'notify', 'cartService', 'checkoutService', 'checkoutSettings', 'Environment',
-        function ($location, $scope, $state, orderService, notify, cartService, checkoutService, checkoutSettings, Environment) {
+        function($location, $scope, $state, orderService, notify, cartService, checkoutService, checkoutSettings, Environment) {
 
             var locale = Environment.currentLocale();
             $scope.checkout = {
@@ -32,58 +32,61 @@ define(['app'], function (app) {
 
             // === Cart Items & Totals ===
             $scope.getCartItems = cartService.getCartItems($scope).success(
-                function (data, status) {
+                function(data, status) {
                     $scope.cartItems = data;
                 }
             )
-            $scope.getTotal = function () {
+            $scope.getTotal = function() {
                 return cartService.getTotalFromCart($scope.cartItems);
             }
 
             // === Billing Address Suggestions ===
-            checkoutService.getCountries().success(function (response) {
+            checkoutService.getCountries().success(function(response) {
                 $scope.countries = response.collection;
             });
-            $scope.onSelectCountry = function ($item, $model, $label) {
+            $scope.onSelectCountry = function($item, $model, $label) {
                 $scope.checkout.address.country = $item;
                 console.log($scope.checkout.address);
 
-                checkoutService.getRegions($scope.checkout.address.country).success(function (response) {
+                checkoutService.getRegions($scope.checkout.address.country).success(function(response) {
                     $scope.regions = response.collection;
                 });
             };
-            $scope.onSelectRegion = function ($item, $model, $label) {
+            $scope.onSelectRegion = function($item, $model, $label) {
                 $scope.checkout.address.region = $item;
                 console.log($scope.checkout.address);
 
-                checkoutService.getCities($scope.checkout.address.region).success(function (response) {
+                checkoutService.getCities($scope.checkout.address.region).success(function(response) {
                     $scope.cities = response.collection;
                 });
             };
-            $scope.onSelectCity = function ($item, $model, $label) {
+            $scope.onSelectCity = function($item, $model, $label) {
                 $scope.checkout.address.city = $item;
                 console.log($scope.checkout.address);
             };
 
             // === Submit Order ===
-            $scope.orderSubmit = function (form) {
+            $scope.orderSubmit = function(form) {
                 if (form.$valid && $scope.cartItems) {
                     $scope.isDisabled = true;
                     checkoutService.orderSubmit(form)
-                        .success(function (data, status) {
+                        .success(function(data, status) {
                             $scope.isDisabled = true;
-                            $state.transitionTo('orders', {locale: locale});
+                            $state.transitionTo('orders', {
+                                locale: locale
+                            });
                             notify(data.message);
                         })
-                        .error(function (data, status) {
+                        .error(function(data, status) {
                             notify(data.message);
                             $scope.isDisabled = false;
                         })
-                        .then(function () {
+                        .then(function() {
                             $scope.isDisabled = false;
                             $scope.getCartItems;
                         });
                 }
             };
-        }]);
+        }
+    ]);
 });

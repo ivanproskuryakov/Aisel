@@ -12,9 +12,9 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('ProductCategoryDetailCtrl', ['$location', '$scope', '$stateParams', 'productService', 'productCategoryService', 'Environment',
-        function ($location, $scope, $stateParams, productService, productCategoryService, Environment) {
+        function($location, $scope, $stateParams, productService, productCategoryService, Environment) {
             $scope.media = Environment.settings.media;
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
@@ -22,7 +22,7 @@ define(['app'], function (app) {
 
             // Category Information
             productCategoryService.getCategory($scope.categoryId).success(
-                function (data, status) {
+                function(data, status) {
                     $scope.category = data;
                 }
             );
@@ -37,7 +37,7 @@ define(['app'], function (app) {
              * @param order
              * @param orderBy
              */
-            var getProductCollection = function (limit, page, categoryId, order, orderBy) {
+            var getProductCollection = function(limit, page, categoryId, order, orderBy) {
                 var params = {
                     limit: limit,
                     page: page,
@@ -46,7 +46,7 @@ define(['app'], function (app) {
                     orderBy: orderBy
                 };
                 productService.getProducts(params).success(
-                    function (data, status) {
+                    function(data, status) {
                         $scope.productList = data;
                     }
                 );
@@ -61,7 +61,7 @@ define(['app'], function (app) {
                 'ASC'
             );
 
-            $scope.pageChanged = function (paginationPage) {
+            $scope.pageChanged = function(paginationPage) {
                 getProductCollection(
                     $scope.pageLimit,
                     paginationPage,
@@ -72,5 +72,6 @@ define(['app'], function (app) {
             };
 
 
-        }]);
+        }
+    ]);
 });
