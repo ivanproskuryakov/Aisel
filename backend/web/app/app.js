@@ -61,5 +61,18 @@ define([
                 $locationProvider.html5Mode(true);
                 document.getElementById("page-is-loading").style.visibility = "hidden";
             }])
+            .config(['flowFactoryProvider', function (flowFactoryProvider) {
+                flowFactoryProvider.defaults = {
+                    withCredentials: true,
+                    testMethod: 'GET',
+                    uploadMethod: 'POST'
+                };
+                // You can also set default events:
+                //flowFactoryProvider.on('catchAll', function (event) {
+                //    ...
+                //});
+                // Can be used with different implementations of Flow.js
+                // flowFactoryProvider.factory = fustyFlowFactory;
+            }]);
         return app;
     });

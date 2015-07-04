@@ -3,9 +3,8 @@ parameters:
     application.version: 0.2.0
     application.media.path: /media
     application.media.product.path: /media/product
-    application.media.product.main.path: /media/product
-    application.media.product.upload_dir: %kernel.root_dir%/../web%application.media.product.main.path%
-    application.media.product.upload_path: %application.media.product.main.path%
+    application.media.product.upload_dir: %kernel.root_dir%/../web%application.media.product.path%
+    application.media.product.upload_path: %application.media.product.path%
     frontend_api: frontend/api
     backend_api: backend/api
 

@@ -4,7 +4,6 @@ module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
     require('time-grunt')(grunt);
     grunt.loadNpmTasks('grunt-jsdoc');
-    grunt.loadNpmTasks('grunt-fixmyjs');
     grunt.loadNpmTasks("grunt-jsbeautifier");
 
     // Define the configuration for all the tasks

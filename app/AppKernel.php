@@ -39,7 +39,6 @@ class AppKernel extends Kernel
             new Aisel\SitemapBundle\AiselSitemapBundle(),
             new Aisel\ResourceBundle\AiselResourceBundle(),
             new Aisel\FixtureBundle\AiselFixtureBundle(),
-
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
