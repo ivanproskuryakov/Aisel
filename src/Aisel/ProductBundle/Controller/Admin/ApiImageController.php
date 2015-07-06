@@ -14,6 +14,9 @@ namespace Aisel\ProductBundle\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Flow\Request as FlowRequest;
+use Flow\Config as FlowConfig;
+use Flow\File as FlowFile;
 
 /**
  * ApiImageController
@@ -38,7 +41,7 @@ class ApiImageController extends Controller
             $this->container->getParameter('application.media.product.upload_dir'),
             $id
         ));
-        $config = new \Flow\Config();
+        $config = new FlowConfig();
         $config->setTempDir($uploadDir);
 
         $uploadedRequest = null;
@@ -63,15 +66,14 @@ class ApiImageController extends Controller
             $uploadedRequest = $request->request->all();
         }
 
-        $flowRequest = new \Flow\Request(
+        $flowRequest = new FlowRequest(
             $uploadedRequest,
             $uploadedFile
         );
-        $file = new \Flow\File($config, $flowRequest);
-
+        $flowFile = new FlowFile($config, $flowRequest);
 
         if ($request->getMethod() === 'GET') {
-            if ($file->checkChunk()) {
+            if ($flowFile->checkChunk()) {
                 new JsonResponse(200);
             } else {
                 new JsonResponse(204);
@@ -79,18 +81,16 @@ class ApiImageController extends Controller
                 return ;
             }
         } else {
-            if ($file->validateChunk()) {
-                rename($uploadedFile['tmp_name'], $file->getChunkPath($flowRequest->getCurrentChunkNumber()));
-//                $file->saveChunk();
+            if ($flowFile->validateChunk()) {
+                rename($uploadedFile['tmp_name'], $flowFile->getChunkPath($flowRequest->getCurrentChunkNumber()));
             } else {
-                // error, invalid chunk upload request, retry
                 new JsonResponse(400);
 
                 return ;
             }
         }
 
-        if ($file->validateFile() && $file->save($uploadDir . '/'. $uploadedFile['name'])) {
+        if ($flowFile->validateFile() && $flowFile->save($uploadDir . '/'. $uploadedFile['name'])) {
             // File upload was completed
         } else {
             // This is not a final chunk, continue to upload

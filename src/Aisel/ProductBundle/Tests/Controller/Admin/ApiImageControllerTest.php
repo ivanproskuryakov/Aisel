@@ -47,6 +47,7 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
                 ->getParameter('kernel.root_dir') . '/../src/Aisel/ProductBundle/Tests/fixtures/';
 
         $this->filenames['basePath'] = $fixturesDir;
+        $this->filenames['files'][] = 'logo_magazento.png';
         $this->filenames['files'][] = 'IMG_0738.jpg';
         $this->filenames['files'][] = 'Rising-1.jpeg';
     }
@@ -83,6 +84,7 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
                     $file,
                     $mimeType
                 );
+
                 $data = array(
                     'flowChunkNumber' => $chunkIndex + 1,
                     'flowChunkSize' => $chunkLength,
@@ -101,6 +103,13 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
                     [],
                     ['CONTENT_TYPE' => 'application/json']
                 );
+
+//                $response = $this->client->getResponse();
+//                $statusCode = $response->getStatusCode();
+//                $content = $response->getContent();
+//                var_dump($statusCode);
+//                var_dump($content);
+
                 $this->client->request(
                     'POST',
                     '/'. $this->api['backend'] . '/product/'.$product->getId().'/image/upload/',
@@ -108,9 +117,20 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
                     ['file' => $fileUpload],
                     ['CONTENT_TYPE' => 'application/json']
                 );
+//                $response = $this->client->getResponse();
+//                $statusCode = $response->getStatusCode();
+//                $content = $response->getContent();
+//                var_dump($statusCode);
+//                var_dump($content);
+
             }
 
-            $this->assertFileExists($uploadDir.'/'.$file);
+            $uploadedFile = $uploadDir.'/'.$file;
+            $uploadedBinary = file_get_contents($uploadedFile);
+            $uploadedBinaryLength = strlen($uploadedBinary);
+
+            $this->assertEquals($uploadedBinaryLength, $binaryLength);
+            $this->assertFileExists($uploadedFile);
             unlink($uploadDir.'/'.$file);
         }
 
