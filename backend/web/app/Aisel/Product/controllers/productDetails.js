@@ -13,7 +13,8 @@
  */
 
 define(['app'], function(app) {
-    app.controller('ProductDetailsCtrl', function($controller, $scope, resourceService, Environment) {
+    app.controller('ProductDetailsCtrl',
+        function($controller, $stateParams, $scope, resourceService, Environment) {
 
         $scope.route = {
             name: 'Product',
@@ -21,7 +22,7 @@ define(['app'], function(app) {
             edit: 'productEdit'
         };
 
-        $scope.uploadPath = Environment.settings.api + '/product/image/upload/';
+        $scope.uploadPath = Environment.settings.api + '/product/' + $stateParams.id + '/image/upload/';
 
         var itemService = new resourceService('product');
         angular.extend(this, $controller('AbstractDetailsCategoryCtrl', {
