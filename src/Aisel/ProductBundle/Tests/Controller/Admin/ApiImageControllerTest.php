@@ -26,6 +26,8 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->getFixtureFiles();
     }
 
     protected function tearDown()
@@ -70,7 +72,6 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
             $this->getContainer()->getParameter('application.media.product.upload_dir'),
             $product->getId()
         ));
-        $this->getFixtureFiles();
 
         foreach ($this->filenames['files'] as $file) {
             $filePath = realpath($this->filenames['basePath'].$file);
@@ -157,10 +158,7 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $product->getId());
-//        var_dump(count($result['images']));
-//        var_dump($this->filenames['files']);
-//        exit();
-//        $this->assertEquals(count($result['images']), count($this->filenames['files']) );
+        $this->assertEquals(count($result['images']), count($this->filenames['files']));
 
         foreach ($result['images'] as $image) {
             $this->client->request(
@@ -179,10 +177,7 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 
-//        $this->assertEquals(0, count($product->getImages()->toArray()) );
-        var_dump($product->getImages()->toArray());
-        exit();
+        $this->assertEquals(0, count($product->getImages()->toArray()) );
     }
-
 
 }
