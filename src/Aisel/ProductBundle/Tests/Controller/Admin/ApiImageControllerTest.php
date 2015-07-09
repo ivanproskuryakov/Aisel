@@ -14,6 +14,7 @@ namespace Aisel\ProductBundle\Tests\Controller\Admin;
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+
 /**
  * ApiImageControllerTest
  *
@@ -58,6 +59,11 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
+
+        foreach ($product->getImages() as $image) {
+            $this->em->remove($image);
+            $this->em->flush();
+        }
 
         $uploadDir = realpath(sprintf(
             "%s/%s",
@@ -104,12 +110,6 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
                     ['CONTENT_TYPE' => 'application/json']
                 );
 
-//                $response = $this->client->getResponse();
-//                $statusCode = $response->getStatusCode();
-//                $content = $response->getContent();
-//                var_dump($statusCode);
-//                var_dump($content);
-
                 $this->client->request(
                     'POST',
                     '/'. $this->api['backend'] . '/product/'.$product->getId().'/image/upload/',
@@ -117,12 +117,6 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
                     ['file' => $fileUpload],
                     ['CONTENT_TYPE' => 'application/json']
                 );
-//                $response = $this->client->getResponse();
-//                $statusCode = $response->getStatusCode();
-//                $content = $response->getContent();
-//                var_dump($statusCode);
-//                var_dump($content);
-
             }
 
             $uploadedFile = $uploadDir.'/'.$file;
@@ -131,9 +125,40 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
 
             $this->assertEquals($uploadedBinaryLength, $binaryLength);
             $this->assertFileExists($uploadedFile);
-            unlink($uploadDir.'/'.$file);
         }
 
+        $product = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['locale' => 'en']);
+
+        $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
     }
+
+    public function testCheckProductImageAction()
+    {
+        $product = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['locale' => 'en']);
+
+        $this->client->request(
+            'GET',
+            '/'. $this->api['backend'] . '/product/' . $product->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $product->getId());
+        $this->assertTrue(is_array($result['images']));
+    }
+
 
 }

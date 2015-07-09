@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Flow\Request as FlowRequest;
 use Flow\Config as FlowConfig;
 use Flow\File as FlowFile;
+use Aisel\ProductBundle\Entity\Image;
 
 /**
  * ApiImageController
@@ -91,7 +92,21 @@ class ApiImageController extends Controller
         }
 
         if ($flowFile->validateFile() && $flowFile->save($uploadDir . '/'. $uploadedFile['name'])) {
-            // File upload was completed
+
+            // Product images
+            $em = $this->get('doctrine.orm.entity_manager');
+            $product = $em
+                ->getRepository('Aisel\ProductBundle\Entity\Product')
+                ->find($id);
+            $fileUrl = '/'. $product->getId() .'/'. $uploadedFile['name'];
+
+            $image = new Image();
+            $image->setFilename($fileUrl);
+            $image->setProduct($product);
+            $image->setMainImage(true);
+            $em->persist($image);
+            $em->flush();
+
         } else {
             // This is not a final chunk, continue to upload
         }
