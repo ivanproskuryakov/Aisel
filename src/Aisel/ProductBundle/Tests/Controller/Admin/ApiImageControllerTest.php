@@ -135,7 +135,7 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
         $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
     }
 
-    public function testCheckProductImageAction()
+    public function testDeleteProductImageAction()
     {
         $product = $this
             ->em
@@ -157,7 +157,31 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $product->getId());
-        $this->assertTrue(is_array($result['images']));
+//        var_dump(count($result['images']));
+//        var_dump($this->filenames['files']);
+//        exit();
+//        $this->assertEquals(count($result['images']), count($this->filenames['files']) );
+
+        foreach ($result['images'] as $image) {
+            $this->client->request(
+                'DELETE',
+                '/'. $this->api['backend'] .
+                '/product/' . $product->getId() .
+                '/image/'. $image['id'],
+                [],
+                [],
+                ['CONTENT_TYPE' => 'application/json']
+            );
+        }
+
+        $product = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['locale' => 'en']);
+
+//        $this->assertEquals(0, count($product->getImages()->toArray()) );
+        var_dump($product->getImages()->toArray());
+        exit();
     }
 
 

@@ -18,14 +18,19 @@ use Flow\Request as FlowRequest;
 use Flow\Config as FlowConfig;
 use Flow\File as FlowFile;
 use Aisel\ProductBundle\Entity\Image;
+use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 
 /**
  * ApiImageController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiImageController extends Controller
+class ApiImageController extends BaseApiController
 {
+    /**
+     * @var string
+     */
+    protected $model = "Aisel\ProductBundle\Entity\Image";
 
     /**
      * uploadAction

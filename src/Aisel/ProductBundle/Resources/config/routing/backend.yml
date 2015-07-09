@@ -75,3 +75,15 @@ admin_api_aisel_product_category_node_edit:
 admin_api_aisel_product_image_upload:
     pattern:   /product/{id}/image/upload/
     defaults:  { _controller: AiselProductBundle:Admin/ApiImage:upload, _format: json }
+
+admin_api_aisel_product_image_put:
+    pattern:   /product/{productId}/image/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiImage:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_product_image_delete:
+    pattern:   /product/{productId}/image/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiImage:delete, _format: json }
+    requirements:
+        _method: DELETE
