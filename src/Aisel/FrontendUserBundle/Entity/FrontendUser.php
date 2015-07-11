@@ -166,7 +166,7 @@ class FrontendUser implements AdvancedUserInterface//, \Serializable
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=15, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
      */
     private $phone;

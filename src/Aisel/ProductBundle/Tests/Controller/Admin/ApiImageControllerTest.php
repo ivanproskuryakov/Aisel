@@ -14,7 +14,6 @@ namespace Aisel\ProductBundle\Tests\Controller\Admin;
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-
 /**
  * ApiImageControllerTest
  *
@@ -38,10 +37,7 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
     /**
      * Filename on hard disk.
      */
-    private $filenames = array(
-        'basePath' => '',
-        'files' => '',
-    );
+    private $filenames;
 
     private function getFixtureFiles()
     {
@@ -49,6 +45,10 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
                 ->getContainer()
                 ->getParameter('kernel.root_dir') . '/../src/Aisel/ProductBundle/Tests/fixtures/';
 
+        array(
+            'basePath' => '',
+            'files' => '',
+        );
         $this->filenames['basePath'] = $fixturesDir;
         $this->filenames['files'][] = 'logo_magazento.png';
         $this->filenames['files'][] = 'IMG_0738.jpg';
@@ -119,13 +119,45 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
                     ['CONTENT_TYPE' => 'application/json']
                 );
             }
-
             $uploadedFile = $uploadDir.'/'.$file;
             $uploadedBinary = file_get_contents($uploadedFile);
             $uploadedBinaryLength = strlen($uploadedBinary);
 
             $this->assertEquals($uploadedBinaryLength, $binaryLength);
             $this->assertFileExists($uploadedFile);
+
+            $response = $this->client->getResponse();
+            $content = $response->getContent();
+
+            // Create Product Image entity
+            if ($response->getStatusCode() === 201) {
+                $filename = json_decode($content, true);
+                $data = [
+                    'filename' => $filename,
+                    'title' => 'title',
+                    'description' => 'description',
+                    'product' => [
+                        'id' => $product->getId()
+                    ]
+                ];
+
+                $this->client->request(
+                    'POST',
+                    '/'. $this->api['backend'] .
+                    '/media/image/',
+                    [],
+                    [],
+                    ['CONTENT_TYPE' => 'application/json'],
+                    json_encode($data)
+                );
+
+                $response = $this->client->getResponse();
+                $content = $response->getContent();
+                $statusCode = $response->getStatusCode();
+                $this->assertEquals($statusCode, 201);
+                $this->assertEquals($content, '');
+            }
+
         }
 
         $product = $this
@@ -136,6 +168,87 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
         $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
     }
 
+    public function testPutProductImageAction()
+    {
+        $product = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['locale' => 'en']);
+
+        $data = [
+            'title' => 'title',
+            'description' => 'description'
+        ];
+
+        $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
+
+        foreach ($product->getImages() as $image) {
+            $this->client->request(
+                'PUT',
+                '/'. $this->api['backend'] .
+                '/media/image/'. $image->getId(),
+                [],
+                [],
+                ['CONTENT_TYPE' => 'application/json'],
+                json_encode($data)
+            );
+
+            $response = $this->client->getResponse();
+            $content = $response->getContent();
+            $statusCode = $response->getStatusCode();
+            $result = json_decode($content, true);
+            $this->assertEquals($statusCode, 204);
+            $this->assertEquals($result, '');
+        }
+
+        $product = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['locale' => 'en']);
+
+        foreach ($product->getImages() as $image) {
+            $this->assertEquals($data['title'], $image->getTitle());
+            $this->assertEquals($data['description'], $image->getDescription());
+        }
+
+    }
+
+    public function testGetProductImageAction()
+    {
+        $product = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->findOneBy(['locale' => 'en']);
+
+        $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
+
+        foreach ($product->getImages() as $image) {
+            $this->client->request(
+                'GET',
+                '/'. $this->api['backend'] .
+                '/media/image/'. $image->getId(),
+                [],
+                [],
+                ['CONTENT_TYPE' => 'application/json']
+            );
+
+            $response = $this->client->getResponse();
+            $content = $response->getContent();
+            $statusCode = $response->getStatusCode();
+            $result = json_decode($content, true);
+
+            $this->assertEquals($statusCode, 200);
+            $this->assertNotNull($result['id'], $product->getId());
+            $this->assertNotNull($result['filename']);
+            $this->assertNotNull($result['title']);
+            $this->assertNotNull($result['description']);
+            $this->assertNotNull($result['description']);
+            $this->assertNotNull($result['main_image']);
+            $this->assertNotNull($result['updated_at']);
+            $this->assertNotNull($result['updated_at']);
+        }
+    }
+
     public function testDeleteProductImageAction()
     {
         $product = $this
@@ -143,29 +256,13 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 
-        $this->client->request(
-            'GET',
-            '/'. $this->api['backend'] . '/product/' . $product->getId(),
-            [],
-            [],
-            ['CONTENT_TYPE' => 'application/json']
-        );
+        $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
 
-        $response = $this->client->getResponse();
-        $content = $response->getContent();
-        $statusCode = $response->getStatusCode();
-        $result = json_decode($content, true);
-
-        $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $product->getId());
-        $this->assertEquals(count($result['images']), count($this->filenames['files']));
-
-        foreach ($result['images'] as $image) {
+        foreach ($product->getImages() as $image) {
             $this->client->request(
                 'DELETE',
                 '/'. $this->api['backend'] .
-                '/product/' . $product->getId() .
-                '/image/'. $image['id'],
+                '/media/image/'. $image->getId(),
                 [],
                 [],
                 ['CONTENT_TYPE' => 'application/json']
