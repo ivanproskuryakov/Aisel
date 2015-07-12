@@ -23,7 +23,7 @@ define(['angular'],
                 return {
                     settings: {
                         api: 'http://' + api_domain + '/backend/api',
-                        media: 'http://' + api_domain + '/media/product',
+                        domain: 'http://' + api_domain,
                         pageTitle: 'Aisel - open source project | Admin',
                         locale: {
                             "primary": 'en',

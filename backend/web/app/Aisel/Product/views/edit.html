@@ -60,7 +60,7 @@
                             <div class="col-md-2">
                                 <strong>Title</strong>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <strong>Decription</strong>
                             </div>
                             <div class="col-md-2">
@@ -68,6 +68,8 @@
                             </div>
                             <div class="col-md-2">
                                 <strong>Updated At</strong>
+                            </div>
+                            <div class="col-md-1">
                             </div>
                         </div>
                         <hr/>
@@ -77,16 +79,20 @@
                                 <div class="col-md-1">
                                     {{image.id}}
                                 </div>
-                                <div class="col-md-1">
-                                    <a href="{{media}}{{image.filename}}" target="_blank">
-                                        <img src="{{media}}{{image.filename}}" width="100%"/>
+                                <div class="col-md-2">
+                                    <a href="{{domain}}{{image.filename}}" target="_blank">
+                                        <img src="{{domain}}{{image.filename}}" width="70" height="70"/>
                                     </a>
                                 </div>
-                                <div class="col-md-3">
-                                    {{image.title}}
+                                <div class="col-md-2">
+                                    <input type="text"
+                                           class="form-control"
+                                           ng-model="image.title">
                                 </div>
-                                <div class="col-md-3">
-                                    {{image.description}}
+                                <div class="col-md-2">
+                                    <input type="text"
+                                           class="form-control"
+                                           ng-model="image.description">
                                 </div>
                                 <div class="col-md-2">
                                     {{image.created_at}}
@@ -94,7 +100,13 @@
                                 <div class="col-md-2">
                                     {{image.updated_at}}
                                 </div>
+                                <div class="col-md-1">
+                                    <span ng-click="fileDelete(image.id)" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </span>
+                                </div>
                             </div>
+                            <br/>
                         </div>
                         <hr/>
 
@@ -115,9 +127,9 @@
                                 <b>OR</b>
                                 Drag And Drop your images here
                             </div>
-
                             <br/>
-                            <div>
+
+                            <div class="uploaded-files">
                                 <div ng-repeat="file in $flow.files" class="gallery-box">
                                     <div class="flow-thumbnail">
                                         <span class="title">{{file.name}}</span>
@@ -139,12 +151,12 @@
                                             </a>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="clear"></div>
                             </div>
                             <br/>
-                            <div class="well">
+
+                            <div class="well flow-toolbar">
                                 <a class="btn btn-small btn-success" ng-click="$flow.resume()">Resume all</a>
                                 <a class="btn btn-small btn-danger" ng-click="$flow.pause()">Pause all</a>
                                 <a class="btn btn-small btn-info" ng-click="$flow.cancel()">Cancel all</a>

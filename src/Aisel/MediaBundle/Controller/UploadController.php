@@ -17,11 +17,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Filesystem\Filesystem;
 
-use Flow\Request as FlowRequest;
-use Flow\Config as FlowConfig;
-use Flow\File as FlowFile;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-
 /**
  * UploadController
  *

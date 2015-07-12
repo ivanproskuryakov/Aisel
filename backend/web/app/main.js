@@ -91,6 +91,7 @@ require.config({
         './Aisel/Order/AiselOrder',
         './Aisel/Navigation/AiselNavigation',
         './Aisel/Settings/AiselSettings',
+        './Aisel/Media/AiselMedia',
         'bootstrap',
     ],
     priority: [

@@ -35,8 +35,6 @@ class Uploader
      * @return string
      */
     static public function uploadFile($uploadDir, $request) {
-
-        $uploadedRequest = null;
         $uploadedFile = null;
 
         if ($request->files->get('file')) {
@@ -51,14 +49,10 @@ class Uploader
             );
         }
 
-        if ($request->request->all()) {
-            $uploadedRequest = $request->request->all();
-        }
-
         $config = new FlowConfig();
         $config->setTempDir($uploadDir);
         $flowRequest = new FlowRequest(
-            $uploadedRequest,
+            $request->request->all(),
             $uploadedFile
         );
         $flowFile = new FlowFile($config, $flowRequest);
@@ -68,7 +62,8 @@ class Uploader
                 header("HTTP/1.1 200 Ok");
             } else {
                 header("HTTP/1.1 204 No Content");
-                return ;
+
+                return false;
             }
         } else {
             if ($flowFile->validateChunk()) {
@@ -82,13 +77,13 @@ class Uploader
             }
         }
 
-
         if ($flowFile->validateFile() && $flowFile->save($uploadDir . '/'. $uploadedFile['name'])) {
             return $uploadedFile['name'];
         } else {
             // This is not a final chunk, continue to upload
         }
 
+        return false;
     }
 
 }

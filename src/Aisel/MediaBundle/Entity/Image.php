@@ -32,7 +32,7 @@ class Image
      * @Assert\Type(type="bool")
      * @ORM\Column(type="boolean")
      * @JMS\Expose
-     * @JMS\Type("string")
+     * @JMS\Type("boolean")
      */
     protected $mainImage = false;
 
