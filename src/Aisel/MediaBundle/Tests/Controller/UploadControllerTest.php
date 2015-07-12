@@ -124,4 +124,11 @@ class UploadControllerTest extends AbstractBackendWebTestCase
         return $uploadedFile;
     }
 
+
+    public function testUploadImageAction()
+    {
+        $filename = $this->upload(1, $this->filenames['files'][0]);
+        $this->assertNotNull($filename);
+    }
+
 }
