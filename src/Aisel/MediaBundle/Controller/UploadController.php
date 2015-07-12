@@ -11,11 +11,16 @@
 
 namespace Aisel\MediaBundle\Controller;
 
+use Aisel\MediaBundle\Service\Uploader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Aisel\MediaBundle\Service\Uploader;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Filesystem\Filesystem;
+
+use Flow\Request as FlowRequest;
+use Flow\Config as FlowConfig;
+use Flow\File as FlowFile;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * UploadController
@@ -43,23 +48,20 @@ class UploadController extends Controller
             $fs->mkdir($uploadDir);
         }
 
-        $result = Uploader::uploadFile($uploadDir, $request);
+        $filename = Uploader::uploadFile($uploadDir, $request);
 
-        if ($result['status'] === false) {
-            return new JsonResponse(200);
-        }
-
-        if ($result['file']) {
+        if ($filename) {
             $path = sprintf(
                 "%s/%s/%s",
                 $this->container->getParameter('application.media.product.upload_path'),
                 $id,
-                $result['file']
+                $filename
             );
 
             return new JsonResponse($path, 201);
         }
 
     }
+
 
 }

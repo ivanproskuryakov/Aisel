@@ -32,13 +32,9 @@ class Uploader
      * @param Request $request
      * @throws HttpException
      *
-     * @return string $filename
+     * @return string
      */
     static public function uploadFile($uploadDir, $request) {
-        $result = [];
-
-        $config = new FlowConfig();
-        $config->setTempDir($uploadDir);
 
         $uploadedRequest = null;
         $uploadedFile = null;
@@ -55,13 +51,12 @@ class Uploader
             );
         }
 
-        if ($request->query->all()) {
-            $uploadedRequest = $request->query->all();
-        }
         if ($request->request->all()) {
             $uploadedRequest = $request->request->all();
         }
 
+        $config = new FlowConfig();
+        $config->setTempDir($uploadDir);
         $flowRequest = new FlowRequest(
             $uploadedRequest,
             $uploadedFile
@@ -69,15 +64,13 @@ class Uploader
         $flowFile = new FlowFile($config, $flowRequest);
 
         if ($request->getMethod() === 'GET') {
-
             if ($flowFile->checkChunk()) {
-                $result['status'] = true;
+                header("HTTP/1.1 200 Ok");
             } else {
-                $result['status'] = false;
+                header("HTTP/1.1 204 No Content");
+                return ;
             }
-
         } else {
-
             if ($flowFile->validateChunk()) {
                 rename(
                     $uploadedFile['tmp_name'],
@@ -89,14 +82,13 @@ class Uploader
             }
         }
 
+
         if ($flowFile->validateFile() && $flowFile->save($uploadDir . '/'. $uploadedFile['name'])) {
-            $result['status'] = true;
-            $result['file'] = $uploadedFile['name'];
+            return $uploadedFile['name'];
         } else {
             // This is not a final chunk, continue to upload
         }
 
-        return $result;
     }
 
 }
