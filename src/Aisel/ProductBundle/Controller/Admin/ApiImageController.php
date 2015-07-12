@@ -33,18 +33,19 @@ class ApiImageController extends BaseApiController
     /**
      * uploadAction
      *
-     * @param int $id
      * @param Request $request
      *
      * @return mixed
      */
-    public function uploadAction($id, Request $request)
+    public function uploadAction(Request $request)
     {
+        $id = $request->query->get('id');
         $dir = realpath(sprintf(
             "%s/%s",
             $this->container->getParameter('application.media.product.upload_dir'),
             $id
         ));
+
         $result = Uploader::uploadFile($dir, $request);
 
         if ($result['status'] === false) {
@@ -53,21 +54,7 @@ class ApiImageController extends BaseApiController
 
         if ($result['file']) {
             return new JsonResponse($result['file'], 201);
-//            // Set product Image Product images
-//            $em = $this->get('doctrine.orm.entity_manager');
-//            $product = $em
-//                ->getRepository('Aisel\ProductBundle\Entity\Product')
-//                ->find($id);
-//            $fileUrl = '/'. $product->getId() .'/'. $result['file'];
-//
-//            $image = new Image();
-//            $image->setFilename($fileUrl);
-//            $image->setProduct($product);
-//            $image->setMainImage(true);
-//            $em->persist($image);
-//            $em->flush();
         }
-
     }
 
 
