@@ -1,6 +1,6 @@
 <?php
 
-namespace Aisel\ProductBundle\Entity;
+namespace Aisel\MediaBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

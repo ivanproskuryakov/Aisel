@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Controller\Admin;
+namespace Aisel\MediaBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Aisel\MediaBundle\Service\Uploader;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -21,13 +21,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiImageController extends BaseApiController
+class ApiImageController extends Controller
 {
-
-    /**
-     * @var string
-     */
-    protected $model = "Aisel\ProductBundle\Entity\Image";
 
     /**
      * uploadAction
@@ -61,6 +56,5 @@ class ApiImageController extends BaseApiController
             return new JsonResponse($path, 201);
         }
     }
-
 
 }

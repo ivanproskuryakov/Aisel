@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\Media;
+namespace Aisel\MediaBundle\Service;
 
 use Symfony\Component\HttpFoundation\Request;
 use Flow\Request as FlowRequest;
@@ -91,7 +91,7 @@ class Uploader
 
         if ($flowFile->validateFile() && $flowFile->save($uploadDir . '/'. $uploadedFile['name'])) {
             $result['status'] = true;
-            $result['file'] = $uploadDir . '/'. $uploadedFile['name'];;
+            $result['file'] = $uploadedFile['name'];
         } else {
             // This is not a final chunk, continue to upload
         }

@@ -55,7 +55,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
      */
     protected static $seed = 2000;
 
-    public static function setUpBeforeClass($httpHost = 'api.aisel.dev')
+    public static function setUpBeforeClass($httpHost = 'http://api.aisel.dev')
     {
         static::$httpHost = $httpHost;
     }

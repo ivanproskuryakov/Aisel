@@ -57,7 +57,6 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
 
     public function upload($id, $file)
     {
-
 //        $uploadDir = realpath(sprintf(
 //            "%s/%s",
 //            $this->getContainer()->getParameter('application.media.product.upload_dir'),
@@ -122,14 +121,13 @@ class ApiImageControllerTest extends AbstractBackendWebTestCase
         $binary = file_get_contents($filePath);
         $binaryLength = strlen($binary);
 
-        $uploadedFile = $result;
+        $uploadedFile = static::$httpHost . $result;
         $uploadedBinary = file_get_contents($uploadedFile);
         $uploadedBinaryLength = strlen($uploadedBinary);
 
         $this->assertEquals($uploadedBinaryLength, $binaryLength);
-        $this->assertFileExists($uploadedFile);
 
-        return $result;
+        return $uploadedFile;
     }
 
 
