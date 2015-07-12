@@ -50,21 +50,68 @@
                         <i class="glyphicon glyphicon glyphicon-picture"></i> &nbsp;Images
                     </tab-heading>
                     <div class="tab-content">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <strong>Id</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <strong>Image</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <strong>Title</strong>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Decription</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <strong>Created At</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <strong>Updated At</strong>
+                            </div>
+                        </div>
+                        <hr/>
 
-                        <h3>
-                            <a name="gallery-example" class="anchor" href="#gallery-example">
-                                <span class="octicon octicon-link"></span></a>Gallery upload
-                        </h3>
+                        <div ng-repeat="image in item.images">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    {{image.id}}
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="{{media}}{{image.filename}}" target="_blank">
+                                        <img src="{{media}}{{image.filename}}" width="100%"/>
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
+                                    {{image.title}}
+                                </div>
+                                <div class="col-md-3">
+                                    {{image.description}}
+                                </div>
+                                <div class="col-md-2">
+                                    {{image.created_at}}
+                                </div>
+                                <div class="col-md-2">
+                                    {{image.updated_at}}
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+
                         <div flow-init="{target: uploadPath}"
                              flow-files-submitted="$flow.upload()"
                              flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
                              flow-drag-enter="style={border:'4px solid green'}"
                              flow-drag-leave="style={}"
-                             flow-file-success="$file.msg = $message">
+                             flow-file-success="fileUploaded($file, $message, $flow)">
 
                             <div class="drop" flow-drop ng-class="dropClass">
-                                <span class="btn btn-default" flow-btn>Upload Image</span>
-                                <span class="btn btn-default" flow-btn flow-directory ng-show="$flow.supportDirectory">Upload Folder of Images</span>
+                                <span class="btn btn-default"
+                                      flow-btn>Upload Image</span>
+                                <span class="btn btn-default"
+                                      flow-btn
+                                      flow-directory
+                                      ng-show="$flow.supportDirectory">Upload Folder of Images</span>
                                 <b>OR</b>
                                 Drag And Drop your images here
                             </div>

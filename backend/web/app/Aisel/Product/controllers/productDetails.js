@@ -21,8 +21,14 @@ define(['app'], function(app) {
             collection: 'products',
             edit: 'productEdit'
         };
+        $scope.media = Environment.settings.media;
+        $scope.uploadPath = Environment.settings.api + '/media/image/upload/?id=' + $stateParams.id;
 
-        $scope.uploadPath = Environment.settings.api + '/product/' + $stateParams.id + '/image/upload/';
+        $scope.fileUploaded = function ( $file, $message, $flow ){
+            console.log($file);
+            console.log($message);
+            console.log($flow);
+        };
 
         var itemService = new resourceService('product');
         angular.extend(this, $controller('AbstractDetailsCategoryCtrl', {

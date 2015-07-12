@@ -13,6 +13,7 @@ namespace Aisel\MediaBundle\Tests\Controller;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * ApiImageControllerTest
@@ -127,7 +128,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
 
     public function testUploadImageAction()
     {
-        $filename = $this->upload(1, $this->filenames['files'][0]);
+        $filename = $this->upload(0, $this->filenames['files'][0]);
         $this->assertNotNull($filename);
     }
 

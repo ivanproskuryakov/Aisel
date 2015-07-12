@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Aisel\MediaBundle\Service\Uploader;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * UploadController
@@ -34,15 +35,18 @@ class UploadController extends Controller
     public function uploadAction(Request $request)
     {
         $id = $request->query->get('id');
-        $dir = realpath(sprintf(
-            "%s/%s",
-            $this->container->getParameter('application.media.product.upload_dir'),
-            $id
-        ));
-        $result = Uploader::uploadFile($dir, $request);
+        $productDir = realpath($this->container->getParameter('application.media.product.upload_dir'));
+        $uploadDir = $productDir . '/' . $id;
+        $fs = new Filesystem();
+
+        if ($fs->exists($uploadDir) === false) {
+            $fs->mkdir($uploadDir);
+        }
+
+        $result = Uploader::uploadFile($uploadDir, $request);
 
         if ($result['status'] === false) {
-            return new JsonResponse(204);
+            return new JsonResponse(200);
         }
 
         if ($result['file']) {
@@ -55,6 +59,7 @@ class UploadController extends Controller
 
             return new JsonResponse($path, 201);
         }
+
     }
 
 }
