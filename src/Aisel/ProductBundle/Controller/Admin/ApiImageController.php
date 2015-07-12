@@ -11,10 +11,7 @@
 
 namespace Aisel\ProductBundle\Controller\Admin;
 
-use Symfony\Component\HttpFoundation\Request;
 use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
-use Aisel\MediaBundle\Service\Uploader;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * ApiImageController
@@ -28,39 +25,5 @@ class ApiImageController extends BaseApiController
      * @var string
      */
     protected $model = "Aisel\ProductBundle\Entity\Image";
-
-    /**
-     * uploadAction
-     *
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function uploadAction(Request $request)
-    {
-        $id = $request->query->get('id');
-        $dir = realpath(sprintf(
-            "%s/%s",
-            $this->container->getParameter('application.media.product.upload_dir'),
-            $id
-        ));
-        $result = Uploader::uploadFile($dir, $request);
-
-        if ($result['status'] === false) {
-            return new JsonResponse(204);
-        }
-
-        if ($result['file']) {
-            $path = sprintf(
-                "%s/%s/%s",
-                $this->container->getParameter('application.media.product.upload_path'),
-                $id,
-                $result['file']
-            );
-
-            return new JsonResponse($path, 201);
-        }
-    }
-
 
 }

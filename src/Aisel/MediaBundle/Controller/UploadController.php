@@ -17,11 +17,11 @@ use Aisel\MediaBundle\Service\Uploader;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * ApiImageController
+ * UploadController
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiImageController extends Controller
+class UploadController extends Controller
 {
 
     /**

@@ -8,4 +8,4 @@
 # Images
 admin_api_aisel_media_image_upload:
     pattern:   /media/image/upload/
-    defaults:  { _controller: AiselMediaBundle:ApiImage:upload, _format: json }
+    defaults:  { _controller: AiselMediaBundle:Upload:upload, _format: json }

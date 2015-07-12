@@ -14,15 +14,13 @@ namespace spec\Aisel\ProductBundle\Controller\Admin;
 use PhpSpec\ObjectBehavior;
 
 /**
- * ApiMediaControllerSpec
- *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
-class ApiMediaControllerSpec extends ObjectBehavior
+class ApiProductControllerSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\Aisel\ProductBundle\Controller\Admin\ApiMediaController');
+        $this->shouldHaveType('\Aisel\ProductBundle\Controller\Admin\ApiProductController');
     }
 
 }
