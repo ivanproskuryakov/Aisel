@@ -59,8 +59,9 @@ class ApiImageControllerTest extends UploadControllerTest
             $response = $this->client->getResponse();
             $content = $response->getContent();
             $statusCode = $response->getStatusCode();
+            $result = json_decode($content, true);
             $this->assertEquals($statusCode, 201);
-            $this->assertEquals($content, '');
+            $this->assertEquals($result, '');
         }
 
         $product = $this
