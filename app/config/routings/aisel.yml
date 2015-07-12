@@ -19,9 +19,9 @@ aisel_product:
     resource: "@AiselProductBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
-#aisel_media:
-#    resource: "@AiselMediaBundle/Resources/config/routing/routing.yml"
-#    prefix:   /
+aisel_media:
+    resource: "@AiselMediaBundle/Resources/config/routing/routing.yml"
+    prefix:   /
 
 aisel_cart:
     resource: "@AiselCartBundle/Resources/config/routing.yml"

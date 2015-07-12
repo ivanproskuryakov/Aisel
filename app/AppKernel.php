@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Aisel\PageBundle\AiselPageBundle(),
             new Aisel\SearchBundle\AiselSearchBundle(),
             new Aisel\ProductBundle\AiselProductBundle(),
+            new Aisel\MediaBundle\AiselMediaBundle(),
             new Aisel\CartBundle\AiselCartBundle(),
             new Aisel\OrderBundle\AiselOrderBundle(),
             new Aisel\NavigationBundle\AiselNavigationBundle(),

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\MediaBundle\Controller\Admin;
+namespace Aisel\MediaBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

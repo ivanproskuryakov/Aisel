@@ -73,9 +73,9 @@ admin_api_aisel_product_category_node_edit:
         _method: GET
 
 # Images
-admin_api_aisel_media_image_upload:
-    pattern:   /media/image/upload/
-    defaults:  { _controller: AiselProductBundle:Admin/ApiImage:upload, _format: json }
+#admin_api_aisel_media_image_upload:
+#    pattern:   /media/image/upload/
+#    defaults:  { _controller: AiselProductBundle:Admin/ApiImage:upload, _format: json }
 
 admin_api_aisel_media_image_post:
     pattern:   /media/image/
