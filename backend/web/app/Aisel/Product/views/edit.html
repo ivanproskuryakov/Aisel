@@ -57,17 +57,14 @@
                             <div class="col-md-2">
                                 <strong>Image</strong>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
+                                <strong>Main Image</strong>
+                            </div>
+                            <div class="col-md-3">
                                 <strong>Title</strong>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <strong>Decription</strong>
-                            </div>
-                            <div class="col-md-2">
-                                <strong>Created At</strong>
-                            </div>
-                            <div class="col-md-2">
-                                <strong>Updated At</strong>
                             </div>
                             <div class="col-md-1">
                             </div>
@@ -81,24 +78,26 @@
                                 </div>
                                 <div class="col-md-2">
                                     <a href="{{domain}}{{image.filename}}" target="_blank">
-                                        <img src="{{domain}}{{image.filename}}" width="70" height="70"/>
+                                        <img src="{{domain}}{{image.filename}}" height="70"/>
                                     </a>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
+                                    <input type="checkbox"
+                                           ng-click = "image.main_image = !image.main_image"
+                                           ng-model = "image.main_image"
+                                           name="mainImage"
+                                           ng-value="image.main_image">
+                                    {{image.main_image}}
+                                </div>
+                                <div class="col-md-3">
                                     <input type="text"
                                            class="form-control"
                                            ng-model="image.title">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <input type="text"
                                            class="form-control"
                                            ng-model="image.description">
-                                </div>
-                                <div class="col-md-2">
-                                    {{image.created_at}}
-                                </div>
-                                <div class="col-md-2">
-                                    {{image.updated_at}}
                                 </div>
                                 <div class="col-md-1">
                                     <span ng-click="fileDelete(image.id)" class="btn btn-danger">
