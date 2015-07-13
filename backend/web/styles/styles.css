@@ -346,12 +346,20 @@ footer {
     Product
 ************/
 .flow-thumbnail {
-    width: 150px;
+    width: 100px;
+    float: left;
+    margin-right: 20px;
 }
 
 .uploaded-files {
     margin-bottom: 20px;
     clear: both;
+}
+.flow-toolbar {
+    clear: both;
+    margin-top: 20px;
+    float: left;
+    width: 100%;
 }
 
 .drop {

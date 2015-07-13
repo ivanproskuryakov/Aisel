@@ -20,10 +20,9 @@ define(['app'], function(app) {
                 id: $stateParams.id,
                 name: $scope.route.name
             };
-
             $scope.item = {};
-            var locale = Environment.currentLocale();
 
+            var locale = Environment.currentLocale();
             var errorNotify = function(data) {
                 notify('Response:' + data.code + ' Message:' + data.message);
                 console.log(data);

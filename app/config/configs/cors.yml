@@ -11,7 +11,8 @@ nelmio_cors:
     paths:
         '^/':
             allow_origin: ['*']
-            allow_headers: ['X-Requested-With','Content-Type','Authorization']
+            allow_headers: ['X-Requested-With','Content-Type','Authorization','Location']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
             allow_credentials: true
+            expose_headers: ['location']
             max_age: 3600

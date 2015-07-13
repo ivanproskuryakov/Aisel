@@ -32,10 +32,17 @@ define(['app'], function(app) {
         $scope.domain = Environment.settings.domain;
         $scope.uploadPath = Environment.settings.api + '/media/image/upload/?id=' + $stateParams.id;
 
-        $scope.fileDelete = function (id){
+        $scope.fileDelete = function (id) {
             mediaService.delete(id).success(
                 function(data, status) {
                     notify('Item removed');
+                    angular.forEach($scope.item.images, function(image, key) {
+                        if (image.id === id) {
+                            $scope.item.images.splice(
+                                $scope.item.images.indexOf(image),1
+                            );
+                        }
+                    });
                 }
             ).error(
                 function(data, status) {
@@ -44,7 +51,6 @@ define(['app'], function(app) {
                             locale: locale
                         });
                         notify('404 Noting found');
-                        console.log(data);
                     } else {
                         notify(data.error.message);
                     }
@@ -52,9 +58,9 @@ define(['app'], function(app) {
             )
         };
 
-        $scope.fileUploaded = function ( $file, $message, $flow ){
+        $scope.fileUploaded = function ($file, $message, $flow) {
             var uploadedImage = JSON.parse($message);
-            var data = {
+            var image = {
                 filename: uploadedImage,
                 title: '',
                 description: '',
@@ -63,10 +69,14 @@ define(['app'], function(app) {
                 }
             };
 
-            mediaService.new(data).success(
-                function(data, status) {
-                    console.log(status);
-                    console.log(data);
+            mediaService.new(image).success(
+                function(data, status, headers, config) {
+                    var fileId = headers("Location").split('/').pop();
+                    image.id = fileId;
+                    image.created_at = new Date();
+                    image.updated_at = new Date();
+
+                    $scope.item.images.push(image);
                 }
             );
         };
