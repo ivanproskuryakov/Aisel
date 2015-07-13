@@ -27,7 +27,7 @@ define(['angular'],
                             "available": ['en', 'es', 'ru']
                         },
                         gremlins: {
-                            time: 1000000,
+                            time: 100000000000000000000,
                             enabled: true,
                         }
                     },

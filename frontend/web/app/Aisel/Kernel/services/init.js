@@ -83,6 +83,8 @@ define(['app'], function(app) {
                                     console.log('State Change ...');
                                     setLocale();
                                     setMetaData();
+
+                                    startGremlins();
                                 });
                             }
                         );
@@ -106,40 +108,17 @@ define(['app'], function(app) {
                             }
                         );
 
-
-                        $timeout(function() {
+                        // Test with Gremlins.js
+                        var startGremlins = function () {
                             console.log('Gremlins...');
-
                             if (Environment.settings.gremlins.enabled) {
                                 gremlins.createHorde()
-                                    .before(function(done) {
-                                        var horde = this;
-                                        setTimeout(function(){
-                                            horde.log('async');
-                                            done();
-                                        }, 500);
-                                    })
-                                    .before(function() {
-                                        this.log('sync');
-                                    })
                                     .gremlin(gremlins.species.clicker().clickTypes(['click']))
-                                    .gremlin(gremlins.species.clicker().clickTypes(['click']))
-                                    .gremlin(gremlins.species.clicker().clickTypes(['click']))
-                                    .gremlin(gremlins.species.formFiller())
-                                    .gremlin(gremlins.species.scroller())
-                                    .gremlin(gremlins.species.scroller())
-                                    .gremlin(function() {
-                                        alert('here');
-                                    })
-                                    .after(function() {
-                                        this.log('finished!');
-                                    })
-                                    .mogwai(gremlins.mogwais.alert())
-                                    .mogwai(gremlins.mogwais.fps())
-                                    .mogwai(gremlins.mogwais.gizmo().maxErrors(2))
-                                    .unleash({ nb: Environment.settings.gremlins.time });
+                                    .unleash({ nb: Environment.settings.gremlins.time});
                             }
-
+                        };
+                        $timeout(function() {
+                            startGremlins();
                         }, 1000);
 
                     }
