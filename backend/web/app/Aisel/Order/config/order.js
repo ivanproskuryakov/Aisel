@@ -12,9 +12,9 @@
  * @description     Module configuration
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app
-        .config(['$stateProvider', function ($stateProvider) {
+        .config(['$stateProvider', function($stateProvider) {
             $stateProvider
                 .state("orders", {
                     url: "/:locale/orders/",
@@ -27,13 +27,11 @@ define(['app'], function (app) {
                     controller: 'OrderDetailsCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
-            $rootScope.topMenu.push(
-                {
-                    "ordering": 400,
-                    "slug": '/orders/',
-                    "title": 'Orders'
-                }
-            );
+        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+            $rootScope.topMenu.push({
+                "ordering": 400,
+                "slug": '/orders/',
+                "title": 'Orders'
+            });
         }]);
 });

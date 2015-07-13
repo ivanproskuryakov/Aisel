@@ -16,6 +16,6 @@ define(['app',
     './config/cart',
     './controllers/cart',
     './services/cart',
-], function (app) {
+], function(app) {
     console.log('Cart module loaded ...');
 });

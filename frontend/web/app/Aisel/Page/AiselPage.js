@@ -21,6 +21,6 @@ define(['app',
     './services/page',
     './services/pageCategory',
     './directives/newPages',
-], function (app) {
+], function(app) {
     console.log('Page module loaded ...');
 });

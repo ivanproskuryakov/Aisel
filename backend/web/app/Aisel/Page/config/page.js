@@ -12,9 +12,9 @@
  * @description     Module configuration
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app
-        .config(['$stateProvider', function ($stateProvider) {
+        .config(['$stateProvider', function($stateProvider) {
             $stateProvider
                 .state("pages", {
                     url: "/:locale/pages/",
@@ -42,24 +42,22 @@ define(['app'], function (app) {
                     controller: 'PageCategoryDetailsCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
-            $rootScope.topMenu.push(
-                {
-                    "ordering": 100,
-                    "title": 'Pages',
-                    "children": {
-                        "pages": {
-                            "ordering": 100,
-                            "slug": '/pages/',
-                            "title": 'Pages'
-                        },
-                        "pageCategory": {
-                            "ordering": 200,
-                            "slug": '/page/category/' + Environment.currentLocale() + '/',
-                            "title": 'Categories'
-                        }
+        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+            $rootScope.topMenu.push({
+                "ordering": 100,
+                "title": 'Pages',
+                "children": {
+                    "pages": {
+                        "ordering": 100,
+                        "slug": '/pages/',
+                        "title": 'Pages'
+                    },
+                    "pageCategory": {
+                        "ordering": 200,
+                        "slug": '/page/category/' + Environment.currentLocale() + '/',
+                        "title": 'Categories'
                     }
                 }
-            );
+            });
         }]);
 });

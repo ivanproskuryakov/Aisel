@@ -12,9 +12,9 @@
  * @description     Module configuration
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app
-        .config(['$stateProvider', function ($stateProvider) {
+        .config(['$stateProvider', function($stateProvider) {
             $stateProvider
                 .state("backendUsers", {
                     url: "/:locale/users/backend/",
@@ -32,13 +32,11 @@ define(['app'], function (app) {
                     controller: 'BackendUserDetailCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
-            $rootScope.topMenu.push(
-                {
-                    "ordering": 300,
-                    "title": 'Admin Users',
-                    "slug": '/users/backend/'
-                }
-            );
+        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+            $rootScope.topMenu.push({
+                "ordering": 300,
+                "title": 'Admin Users',
+                "slug": '/users/backend/'
+            });
         }]);
 });

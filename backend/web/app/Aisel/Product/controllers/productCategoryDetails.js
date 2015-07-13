@@ -12,8 +12,8 @@
  * @description     ProductCategoryDetailsCtrl
  */
 
-define(['app'], function (app) {
-    app.controller('ProductCategoryDetailsCtrl', function ($controller, $stateParams, $state, Environment, $scope, resourceService) {
+define(['app'], function(app) {
+    app.controller('ProductCategoryDetailsCtrl', function($controller, $stateParams, $state, Environment, $scope, resourceService) {
 
         $scope.route = {
             name: 'Product Category',
@@ -28,7 +28,7 @@ define(['app'], function (app) {
         }));
 
         // CANCEL
-        $scope.editCancel = function () {
+        $scope.editCancel = function() {
             $state.transitionTo(
                 $scope.route.collection, {
                     locale: Environment.currentLocale(),

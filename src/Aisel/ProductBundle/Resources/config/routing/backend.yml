@@ -71,3 +71,32 @@ admin_api_aisel_product_category_node_edit:
     defaults:  { _controller: AiselProductBundle:Admin/ApiNodeEdit:nodeEdit, _format: json }
     requirements:
         _method: GET
+
+# Images
+#admin_api_aisel_media_image_upload:
+#    pattern:   /media/image/upload/
+#    defaults:  { _controller: AiselProductBundle:Admin/ApiImage:upload, _format: json }
+
+admin_api_aisel_media_image_post:
+    pattern:   /media/image/
+    defaults:  { _controller: AiselProductBundle:Admin/ApiImage:post, _format: json }
+    requirements:
+        _method: POST
+
+admin_api_aisel_media_image_get:
+    pattern:   /media/image/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiImage:get, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_media_image_put:
+    pattern:   /media/image/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiImage:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_media_image_delete:
+    pattern:   /media/image/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiImage:delete, _format: json }
+    requirements:
+        _method: DELETE

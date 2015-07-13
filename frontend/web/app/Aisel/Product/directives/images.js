@@ -12,23 +12,23 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
-    app.directive('aiselProductImages',
-        ['$compile', 'Environment',
-            function ($compile, Environment) {
-                return {
-                    restrict: 'EA',
-                    scope: {
-                        images: '=',
-                        imgStyle: '=',
-                        imgSize: '='
-                    },
-                    link: function ($scope, element, attrs) {
-                        $scope.media = Environment.settings.media;
-                        $scope.style = attrs.imgStyle;
-                        $scope.size = attrs.imgSize;
-                    },
-                    templateUrl: '/app/Aisel/Product/views/directives/product-images.html'
-                };
-            }]);
+define(['app'], function(app) {
+    app.directive('aiselProductImages', ['$compile', 'Environment',
+        function($compile, Environment) {
+            return {
+                restrict: 'EA',
+                scope: {
+                    images: '=',
+                    imgStyle: '=',
+                    imgSize: '='
+                },
+                link: function($scope, element, attrs) {
+                    $scope.media = Environment.settings.media;
+                    $scope.style = attrs.imgStyle;
+                    $scope.size = attrs.imgSize;
+                },
+                templateUrl: '/app/Aisel/Product/views/directives/product-images.html'
+            };
+        }
+    ]);
 });

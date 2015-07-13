@@ -12,34 +12,31 @@
  * @description     resourceService
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.service('resourceService', ['$http', 'Environment',
-        function ($http, Environment) {
+        function($http, Environment) {
 
             var resourceService = function(name) {
                 this.resource = name;
             };
 
-            resourceService.prototype.getCollection = function ($scope, pageNumber) {
-                var url = Environment.settings.api
-                    + '/'+ this.resource +'/?limit=' + $scope.pageLimit
-                    + '&current=' + pageNumber
-                    + '&filter=' + $scope.filter;
+            resourceService.prototype.getCollection = function($scope, pageNumber) {
+                var url = Environment.settings.api + '/' + this.resource + '/?limit=' + $scope.pageLimit + '&current=' + pageNumber + '&filter=' + $scope.filter;
 
                 console.log(url);
                 return $http.get(url);
             };
-            resourceService.prototype.remove = function ($id) {
+            resourceService.prototype.remove = function($id) {
                 var url = Environment.settings.api + '/' + this.resource + '/' + $id;
                 console.log(url);
                 return $http.delete(url);
             };
-            resourceService.prototype.get = function ($id) {
+            resourceService.prototype.get = function($id) {
                 var url = Environment.settings.api + '/' + this.resource + '/' + $id;
                 console.log(url);
                 return $http.get(url);
             };
-            resourceService.prototype.save = function (data) {
+            resourceService.prototype.save = function(data) {
                 var url = Environment.settings.api + '/' + this.resource + '/' + data.id;
                 console.log(data);
                 return $http({
@@ -48,7 +45,7 @@ define(['app'], function (app) {
                     data: data
                 });
             };
-            resourceService.prototype.create = function (data) {
+            resourceService.prototype.create = function(data) {
                 var url = Environment.settings.api + '/' + this.resource + '/';
                 return $http({
                     method: 'POST',
@@ -57,13 +54,13 @@ define(['app'], function (app) {
                 });
             };
 
-            resourceService.prototype.getCategoryTree = function (locale) {
+            resourceService.prototype.getCategoryTree = function(locale) {
                 var url = Environment.settings.api + '/' + this.resource + '/category/?locale=' + locale;
                 console.log(url);
                 return $http.get(url);
             };
 
-            resourceService.prototype.getCategory = function ($id) {
+            resourceService.prototype.getCategory = function($id) {
                 var url = Environment.settings.api + '/' + this.resource + '/category/' + $id;
                 console.log(url);
                 return $http.get(url);
@@ -71,5 +68,6 @@ define(['app'], function (app) {
 
 
             return resourceService;
-        }]);
+        }
+    ]);
 });

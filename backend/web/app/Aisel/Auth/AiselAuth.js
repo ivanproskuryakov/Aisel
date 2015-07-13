@@ -16,12 +16,12 @@ define(['app',
     './config/auth',
     './controllers/auth',
     './services/auth',
-], function (app) {
+], function(app) {
     console.log('Auth module loaded ...');
 
     app.run(['$http', '$state', '$rootScope', 'authService', 'Environment',
-        function ($http, $state, $rootScope, authService, Environment) {
-            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        function($http, $state, $rootScope, authService, Environment) {
+            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 
                 var locale = Environment.currentLocale();
 
@@ -32,24 +32,27 @@ define(['app',
                     if ($rootScope.user === undefined) {
                         // Load user status
                         authService.getUserInformation().success(
-                            function (data, status) {
+                            function(data, status) {
                                 console.log('----------- User-----------');
                                 if (data.username) {
                                     $rootScope.user = data;
                                 } else {
                                     $rootScope.user = false;
                                     event.preventDefault();
-                                    $state.transitionTo('userLogin', {locale: locale});
+                                    $state.transitionTo('userLogin', {
+                                        locale: locale
+                                    });
                                 }
                             }
                         );
                     } else if ($rootScope.user == false) {
                         event.preventDefault();
-                        $state.transitionTo('userLogin', {locale: locale});
+                        $state.transitionTo('userLogin', {
+                            locale: locale
+                        });
                     }
                 }
             });
         }
     ])
-})
-;
+});

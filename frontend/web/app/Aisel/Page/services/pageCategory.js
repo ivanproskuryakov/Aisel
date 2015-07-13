@@ -12,23 +12,23 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.service('pageCategoryService', ['$http', 'Environment',
-        function ($http, Environment) {
+        function($http, Environment) {
             return {
-                getCategories: function ($scope) {
+                getCategories: function($scope) {
                     var locale = Environment.currentLocale();
                     var url = Environment.settings.api + '/' + locale + '/page/category/?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage;
                     console.log(url);
                     return $http.get(url);
                 },
-                getCategory: function (categoryId) {
+                getCategory: function(categoryId) {
                     var locale = Environment.currentLocale();
                     var url = Environment.settings.api + '/' + locale + '/page/category/view/' + categoryId;
                     console.log(url);
                     return $http.get(url);
                 },
-                getPageCategoryTree: function () {
+                getPageCategoryTree: function() {
                     var locale = Environment.currentLocale();
                     var url = Environment.settings.api + '/' + locale + '/page/category/tree/';
                     console.log(url);
@@ -36,5 +36,6 @@ define(['app'], function (app) {
                 }
 
             };
-        }]);
+        }
+    ]);
 });

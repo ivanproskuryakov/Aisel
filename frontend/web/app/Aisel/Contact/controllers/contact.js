@@ -12,29 +12,30 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('ContactCtrl', ['$location', '$scope', 'contactService', 'settingsService', 'notify', 'Environment',
-        function ($location, $scope, contactService, settingsService, notify, Environment) {
+        function($location, $scope, contactService, settingsService, notify, Environment) {
 
             $scope.config = false;
 
             settingsService.getApplicationConfig().success(
-                function (data, status) {
+                function(data, status) {
                     var locale = Environment.currentLocale();
                     $scope.config = data.settings[locale].contact;
                 }
             );
 
             // Submit Contact
-            $scope.submitContact = function (form) {
+            $scope.submitContact = function(form) {
                 if (form.$valid) {
                     contactService.send(form).success(
-                        function (data, status) {
+                        function(data, status) {
                             notify(data.message);
                         }
                     );
                 }
             };
 
-        }]);
+        }
+    ]);
 });

@@ -12,8 +12,8 @@
  * @description     Product config
  */
 
-define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
+define(['app'], function(app) {
+    app.config(['$stateProvider', function($stateProvider) {
         $stateProvider
             .state("products", {
                 url: "/:locale/products/",

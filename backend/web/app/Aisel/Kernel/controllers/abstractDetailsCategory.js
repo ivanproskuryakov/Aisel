@@ -12,18 +12,18 @@
  * @description     AbstractDetailsCtrl
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('AbstractDetailsCategoryCtrl',
-        function ($controller, $scope, itemService) {
+        function($controller, $scope, itemService) {
 
             angular.extend(this, $controller('AbstractDetailsCtrl', {
                 $scope: $scope,
                 itemService: itemService
             }));
 
-            $scope.$watch("item.locale", function () {
+            $scope.$watch("item.locale", function() {
                 itemService.getCategoryTree($scope.item.locale).success(
-                    function (data, status) {
+                    function(data, status) {
                         $scope.categories = data;
 
                         setItemCategories(
@@ -40,12 +40,12 @@ define(['app'], function (app) {
              * @param {Object} item
              * @param {Object} categories
              */
-            var setItemCategories = function (item, categories) {
+            var setItemCategories = function(item, categories) {
                 var isAnySelected = false;
 
-                var setSelected = function (categories) {
-                    angular.forEach(categories, function (category) {
-                        angular.forEach(item.categories, function (c) {
+                var setSelected = function(categories) {
+                    angular.forEach(categories, function(category) {
+                        angular.forEach(item.categories, function(c) {
                             if (c.id == category.id) {
                                 category.selected = true;
                                 isAnySelected = true;
@@ -72,11 +72,11 @@ define(['app'], function (app) {
              * @param {Object} item
              * @param {Object} categories
              */
-            $scope.updateItemCategories = function (item, categories) {
+            $scope.updateItemCategories = function(item, categories) {
                 item.categories = [];
 
-                var findSelectedCategories = function (categories) {
-                    angular.forEach(categories, function (category) {
+                var findSelectedCategories = function(categories) {
+                    angular.forEach(categories, function(category) {
                         if (category.selected) {
                             item.categories.push(category);
                         }

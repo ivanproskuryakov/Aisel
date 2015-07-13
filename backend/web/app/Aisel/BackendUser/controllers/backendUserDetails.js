@@ -12,8 +12,8 @@
  * @description     BackendUserDetailCtrl
  */
 
-define(['app'], function (app) {
-    app.controller('BackendUserDetailCtrl', function ($controller, $scope, resourceService) {
+define(['app'], function(app) {
+    app.controller('BackendUserDetailCtrl', function($controller, $scope, resourceService) {
 
         $scope.route = {
             name: 'Backend User',

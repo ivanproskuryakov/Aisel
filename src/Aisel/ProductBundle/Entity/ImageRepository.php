@@ -13,24 +13,5 @@ use Doctrine\ORM\EntityRepository;
 class ImageRepository extends EntityRepository
 {
 
-    /**
-     * Get pages based on limit, current pagination and search query
-     *
-     * @param int $productId
-     *
-     * @return boolean $result
-     */
-    public function removeImageForProduct($productId)
-    {
-
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $result = $query
-            ->delete('AiselProductBundle:Image', 'i')
-            ->where('i.product = :id')->setParameter('id', $productId)
-            ->getQuery()
-            ->execute();
-
-        return $result;
-    }
 
 }

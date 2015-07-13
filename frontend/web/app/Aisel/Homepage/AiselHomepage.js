@@ -16,6 +16,6 @@ define([
     'app',
     './config/homepage',
     './controllers/homepage'
-], function (app) {
+], function(app) {
     console.log('Homepage module loaded ...');
 });

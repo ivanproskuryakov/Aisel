@@ -13,11 +13,11 @@
  */
 
 define(['angular'],
-    function (angular) {
+    function(angular) {
         'use strict';
         console.log('Environment loaded ...');
         angular.module('environment', [])
-            .service('Environment', function () {
+            .service('Environment', function() {
                 return {
                     settings: {
                         media: 'http://api.' + document.domain + '/media/product',
@@ -27,7 +27,7 @@ define(['angular'],
                             "available": ['en', 'es', 'ru']
                         }
                     },
-                    currentLocale: function () {
+                    currentLocale: function() {
                         var locale = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
                         if (this.settings.locale.available.indexOf(locale) == -1) {
                             locale = this.settings.locale.primary;
@@ -35,6 +35,5 @@ define(['angular'],
                         return locale;
                     }
                 }
-            }
-        )
+            })
     });

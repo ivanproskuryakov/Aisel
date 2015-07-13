@@ -12,14 +12,14 @@
  * @description     NavigationCtrl
  */
 
-define(['app'], function (app) {
-    app.controller('NavigationCtrl', function ($scope, $stateParams, $state, Environment) {
+define(['app'], function(app) {
+    app.controller('NavigationCtrl', function($scope, $stateParams, $state, Environment) {
 
         $scope.sectionName = 'Navigation';
         $scope.categoryJson = Environment.settings.api + '/navigation/?locale=' + $stateParams.lang;
         $scope.categoryUpdate = Environment.settings.api + '/navigation/node/?locale=' + $stateParams.lang;
 
-        $scope.editNode = function (id) {
+        $scope.editNode = function(id) {
             $state.transitionTo('navigationEdit', {
                 locale: Environment.currentLocale(),
                 lang: $stateParams.lang,
@@ -27,7 +27,7 @@ define(['app'], function (app) {
             });
         };
 
-        $scope.changeCategoryLocale = function (lang) {
+        $scope.changeCategoryLocale = function(lang) {
             $state.transitionTo('navigation', {
                 locale: Environment.currentLocale(),
                 lang: lang

@@ -12,20 +12,20 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
-    app.service('authService', ['$http', 'Environment', function ($http, Environment) {
+define(['app'], function(app) {
+    app.service('authService', ['$http', 'Environment', function($http, Environment) {
         return {
-            signout: function () {
+            signout: function() {
                 var url = Environment.settings.api + '/user/logout/';
                 console.log(url);
                 return $http.get(url);
             },
-            login: function (username, password) {
+            login: function(username, password) {
                 var url = Environment.settings.api + '/user/login/?username=' + username + '&password=' + password;
                 console.log(url);
                 return $http.get(url);
             },
-            getUserInformation: function () {
+            getUserInformation: function() {
                 var url = Environment.settings.api + '/user/information/';
                 // console.log(url);
                 return $http.get(url);

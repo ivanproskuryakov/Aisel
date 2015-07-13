@@ -12,20 +12,21 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.service('orderService', ['$http', 'Environment',
-        function ($http, Environment) {
+        function($http, Environment) {
             return {
-                getOrders: function () {
+                getOrders: function() {
                     var url = Environment.settings.api + '/orders/my';
                     console.log(url);
                     return $http.get(url);
                 },
-                getOrder: function (orderId) {
+                getOrder: function(orderId) {
                     var url = Environment.settings.api + '/order/' + orderId;
                     console.log(url);
                     return $http.get(url);
                 }
             };
-        }]);
+        }
+    ]);
 });

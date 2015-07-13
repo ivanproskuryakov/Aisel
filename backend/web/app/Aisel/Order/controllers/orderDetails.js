@@ -12,8 +12,8 @@
  * @description     OrderDetailsCtrl
  */
 
-define(['app'], function (app) {
-    app.controller('OrderDetailsCtrl', function ($controller, $scope, resourceService) {
+define(['app'], function(app) {
+    app.controller('OrderDetailsCtrl', function($controller, $scope, resourceService) {
 
         $scope.route = {
             name: 'Order',

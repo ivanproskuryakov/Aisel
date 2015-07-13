@@ -16,6 +16,6 @@ define(['app',
     './config/navigation',
     './controllers/navigation',
     './controllers/navigationDetails'
-], function (app) {
+], function(app) {
     console.log('Navigation module loaded ...');
 });

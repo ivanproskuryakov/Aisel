@@ -42,8 +42,13 @@ require.config({
         'angular-loading-bar': ['angular'],
         'angular-animate': ['angular'],
         'angular-ui-router': ['angular'],
-        'angular' : {'exports' : 'angular', deps: ['jQuery']},
-        'jQuery': {'exports' : 'jQuery'},
+        'angular': {
+            'exports': 'angular',
+            deps: ['jQuery']
+        },
+        'jQuery': {
+            'exports': 'jQuery'
+        },
         "domReady": ["angular"],
         "angular-resource": ["angular"],
         "textAngular": ["angular"],

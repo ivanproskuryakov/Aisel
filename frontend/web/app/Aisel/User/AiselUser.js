@@ -17,12 +17,12 @@ define(['app',
     './controllers/user',
     './services/auth',
     './services/user/user',
-], function (app) {
+], function(app) {
     console.log('User module loaded ...');
 
     app.run(['$http', '$rootScope', 'authService', 'userService',
-        function ($http, $rootScope, authService, userService) {
-            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        function($http, $rootScope, authService, userService) {
+            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
                 if (typeof toState.data !== 'undefined') {
                     console.log('Role needed: ' + toState.data.role);
                     var role = toState.data.role;
@@ -30,7 +30,7 @@ define(['app',
                     if (role == 'user') {
                         if ($rootScope.user === undefined) {
                             userService.getUserInformation().success(
-                                function (data, status) {
+                                function(data, status) {
                                     if (data.username) {
                                         $rootScope.user = data;
                                     } else {
@@ -47,5 +47,6 @@ define(['app',
                     }
                 }
             });
-        }])
+        }
+    ])
 });

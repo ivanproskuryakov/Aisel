@@ -12,32 +12,33 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.service('cartService', ['$http', 'Environment',
-        function ($http, Environment) {
+        function($http, Environment) {
             return {
-                getCartItems: function ($scope) {
+                getCartItems: function($scope) {
                     var url = Environment.settings.api + '/cart/';
                     console.log(url);
                     return $http.get(url);
                 },
-                addToCart: function (productId, qty) {
+                addToCart: function(productId, qty) {
                     var url = Environment.settings.api + '/cart/product/' + productId + '/add/' + qty;
                     console.log(url);
                     return $http.put(url);
                 },
-                updateProductQty: function (productId, qty) {
+                updateProductQty: function(productId, qty) {
                     var url = Environment.settings.api + '/cart/product/' + productId + '/qty/' + qty;
                     console.log(url);
                     return $http.put(url);
                 },
-                getTotalFromCart: function (cartItems) {
+                getTotalFromCart: function(cartItems) {
                     var total = -1;
-                    angular.forEach(cartItems, function (item) {
+                    angular.forEach(cartItems, function(item) {
                         total += item.qty * item.product.price;
                     });
                     return total;
                 }
             };
-        }]);
+        }
+    ]);
 });

@@ -12,8 +12,8 @@
  * @description     Module configuration
  */
 
-define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
+define(['app'], function(app) {
+    app.config(['$stateProvider', function($stateProvider) {
         $stateProvider
             .state("contact", {
                 url: "/:locale/contact/",
@@ -21,5 +21,4 @@ define(['app'], function (app) {
                 controller: 'ContactCtrl'
             });
     }]);
-})
-;
+});

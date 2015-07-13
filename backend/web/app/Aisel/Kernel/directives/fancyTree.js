@@ -12,9 +12,9 @@
  * @description     Display tree collections with fancyTree
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     angular.module('app')
-        .directive('aiselFancyTree', ['$timeout', function ($timeout) {
+        .directive('aiselFancyTree', ['$timeout', function($timeout) {
             return {
                 restrict: 'EA',
                 scope: {

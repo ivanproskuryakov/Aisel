@@ -12,10 +12,10 @@
  * @description     Module configuration
  */
 
-define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
+define(['app'], function(app) {
+    app.config(['$stateProvider', function($stateProvider) {
         $stateProvider
-            // Authenticated users actions
+        // Authenticated users actions
             .state("orders", {
                 url: "/:locale/user/orders/",
                 templateUrl: '/app/Aisel/Order/views/order.html',
@@ -32,11 +32,10 @@ define(['app'], function (app) {
                     role: 'user'
                 },
                 resolve: {
-                    checkoutSettings: ['checkoutService', function (checkoutService) {
-                        return checkoutService.init().success(function (result) {
-                                return result;
-                            }
-                        );
+                    checkoutSettings: ['checkoutService', function(checkoutService) {
+                        return checkoutService.init().success(function(result) {
+                            return result;
+                        });
                     }]
                 }
             })

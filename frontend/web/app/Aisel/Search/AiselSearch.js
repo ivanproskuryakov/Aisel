@@ -16,6 +16,7 @@ define(['app',
     './config/search',
     './controllers/search',
     './services/search',
-    './directives/main'], function (app) {
+    './directives/main'
+], function(app) {
     console.log('Search module loaded ...');
 });

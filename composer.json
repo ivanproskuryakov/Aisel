@@ -40,8 +40,8 @@
 
         "phpspec/phpspec": "~2.0",
         "phpunit/phpunit": "4.6.4",
-        "nelmio/cors-bundle": "~1.4"
-
+        "nelmio/cors-bundle": "~1.4",
+        "flowjs/flow-php-server": "^1.0"
     },
     "scripts": {
         "post-install-cmd": [

@@ -12,26 +12,27 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('PageCategoryCtrl', ['$location', '$scope', '$stateParams', 'pageCategoryService',
-        function ($location, $scope, $stateParams, pageCategoryService) {
+        function($location, $scope, $stateParams, pageCategoryService) {
 
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
 
-            $scope.pageChanged = function (page) {
+            $scope.pageChanged = function(page) {
                 $scope.paginationPage = page;
                 pageCategoryService.getCategories($scope).success(
-                    function (data, status) {
+                    function(data, status) {
                         $scope.categories = data;
                     }
                 );
             };
             // Categories
             pageCategoryService.getCategories($scope).success(
-                function (data, status) {
+                function(data, status) {
                     $scope.categories = data;
                 }
             );
-        }]);
+        }
+    ]);
 });

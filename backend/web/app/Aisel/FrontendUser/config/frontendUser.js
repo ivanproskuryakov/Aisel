@@ -12,9 +12,9 @@
  * @description     Module configuration
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app
-        .config(['$stateProvider', function ($stateProvider) {
+        .config(['$stateProvider', function($stateProvider) {
             $stateProvider
                 .state("frontendUsers", {
                     url: "/:locale/users/frontend/",
@@ -32,13 +32,11 @@ define(['app'], function (app) {
                     controller: 'FrontendUserDetailCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
-            $rootScope.topMenu.push(
-                {
-                    "ordering": 300,
-                    "title": 'Users',
-                    "slug": '/users/frontend/'
-                }
-            );
+        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+            $rootScope.topMenu.push({
+                "ordering": 300,
+                "title": 'Users',
+                "slug": '/users/frontend/'
+            });
         }]);
 });

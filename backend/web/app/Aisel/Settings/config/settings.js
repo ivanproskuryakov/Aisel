@@ -12,9 +12,9 @@
  * @description     Module configuration
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app
-        .config(['$stateProvider', function ($stateProvider) {
+        .config(['$stateProvider', function($stateProvider) {
             $stateProvider
                 .state("settings", {
                     url: "/:locale/settings/",
@@ -22,14 +22,12 @@ define(['app'], function (app) {
                     controller: 'SettingsCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
-            $rootScope.topMenu.push(
-                {
-                    "ordering": 900,
-                    "glyphicon": 'glyphicon-cog',
-                    "slug": '/settings/',
-                    "title": 'Settings'
-                }
-            );
+        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+            $rootScope.topMenu.push({
+                "ordering": 900,
+                "glyphicon": 'glyphicon-cog',
+                "slug": '/settings/',
+                "title": 'Settings'
+            });
         }]);
 });

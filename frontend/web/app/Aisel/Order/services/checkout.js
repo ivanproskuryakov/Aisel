@@ -12,17 +12,17 @@
  * @description     Checkout service
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.service('checkoutService', ['$http', 'Environment',
-        function ($http, Environment) {
+        function($http, Environment) {
             return {
-                init: function () {
+                init: function() {
                     var locale = Environment.currentLocale();
                     var url = Environment.settings.api + '/' + locale + '/order/checkout';
                     console.log(url);
                     return $http.get(url);
                 },
-                orderSubmit: function (form) {
+                orderSubmit: function(form) {
                     var formData = {};
                     formData['billing_country'] = encodeURIComponent(form.billing_country.$modelValue);
                     formData['billing_region'] = encodeURIComponent(form.billing_region.$modelValue);
@@ -38,21 +38,22 @@ define(['app'], function (app) {
                     return $http.post(url, formData);
                 },
 
-                getCountries: function () {
+                getCountries: function() {
                     var url = Environment.settings.api + '/addressing/country';
                     console.log(url);
                     return $http.get(url);
                 },
-                getRegions: function () {
+                getRegions: function() {
                     var url = Environment.settings.api + '/addressing/region';
                     console.log(url);
                     return $http.get(url);
                 },
-                getCities: function () {
+                getCities: function() {
                     var url = Environment.settings.api + '/addressing/city';
                     console.log(url);
                     return $http.get(url);
                 }
             };
-        }]);
+        }
+    ]);
 });

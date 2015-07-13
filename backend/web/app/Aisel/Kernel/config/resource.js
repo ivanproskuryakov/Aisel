@@ -12,16 +12,19 @@
  * @description     Module config
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.config(['$provide', '$urlRouterProvider',
-        function ($provide, $urlRouterProvider) {
-            $urlRouterProvider.otherwise(function ($injector, $location) {
+        function($provide, $urlRouterProvider) {
+            $urlRouterProvider.otherwise(function($injector, $location) {
                 var Environment = $injector.get('Environment');
                 var $state = $injector.get('$state');
                 var locale = Environment.settings.locale.primary;
 
                 console.log('Fallback to primary locale');
-                $state.transitionTo('home', {locale: locale});
+                $state.transitionTo('home', {
+                    locale: locale
+                });
             });
-        }]);
+        }
+    ]);
 });

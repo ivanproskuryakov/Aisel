@@ -16,6 +16,6 @@ define([
     'app',
     './config/dashboard',
     './controllers/dashboard'
-], function (app) {
+], function(app) {
     console.log('Dashboard module loaded ...');
 });

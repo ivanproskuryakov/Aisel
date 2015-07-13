@@ -12,9 +12,9 @@
  * @description     Module configuration
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app
-        .config(['$stateProvider', function ($stateProvider) {
+        .config(['$stateProvider', function($stateProvider) {
             $stateProvider
                 .state("navigation", {
                     url: "/:locale/navigation/:lang/",
@@ -28,13 +28,11 @@ define(['app'], function (app) {
                 })
 
         }])
-        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
-            $rootScope.topMenu.push(
-                {
-                    "ordering": 500,
-                    "slug": '/navigation/' + Environment.currentLocale() + '/',
-                    "title": 'Navigation'
-                }
-            );
+        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+            $rootScope.topMenu.push({
+                "ordering": 500,
+                "slug": '/navigation/' + Environment.currentLocale() + '/',
+                "title": 'Navigation'
+            });
         }]);
 });

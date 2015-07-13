@@ -12,22 +12,20 @@
  * @description     ...
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     app.controller('CartCtrl', ['$location', '$scope', 'cartService', 'notify', 'Environment',
-        function ($location, $scope, cartService, notify, Environment) {
+        function($location, $scope, cartService, notify, Environment) {
 
             $scope.media = Environment.settings.media;
 
-            $scope.total = function () {
+            $scope.total = function() {
                 return cartService.getTotalFromCart($scope.cartItems);
             }
 
-            $scope.getCartItems = function () {
-                cartService.getCartItems($scope).success(function (data, status) {
-                        $scope.cartItems = data;
-                    }
-                ).error(function (data, status) {
-                    });
+            $scope.getCartItems = function() {
+                cartService.getCartItems($scope).success(function(data, status) {
+                    $scope.cartItems = data;
+                }).error(function(data, status) {});
             }
             $scope.getCartItems();
 
@@ -37,20 +35,18 @@ define(['app'], function (app) {
              * @param {int} productId
              * @param {int} qty
              */
-            $scope.updateProductQty = function (productId, qty) {
+            $scope.updateProductQty = function(productId, qty) {
                 cartService.updateProductQty(productId, qty).success(
-                    function (data, status) {
+                    function(data, status) {
                         notify(data.message);
                         $scope.isDisabled = false;
                         $scope.getCartItems();
                     }
-                ).error(function (data, status) {
+                ).error(function(data, status) {
                     notify(data.message);
                     $scope.isDisabled = false;
                 });
             }
         }
-    ])
-    ;
-})
-;
+    ]);
+});

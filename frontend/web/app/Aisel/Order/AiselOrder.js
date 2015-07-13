@@ -19,6 +19,6 @@ define(['app',
     './controllers/orderDetail',
     './services/order',
     './services/checkout',
-], function (app) {
+], function(app) {
     console.log('Order module loaded ...');
 });

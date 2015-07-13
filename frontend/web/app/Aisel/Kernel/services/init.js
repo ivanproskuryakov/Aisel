@@ -12,7 +12,7 @@
  * @description     Most important data are loaded here
  */
 
-define(['app'], function (app) {
+define(['app'], function(app) {
     console.log('Kernel init service loaded ...');
     angular.module('app')
         .service('initService', [
@@ -24,7 +24,7 @@ define(['app'], function (app) {
             'pageCategoryService',
             'productCategoryService',
             'Environment',
-            function (
+            function(
                 $http,
                 $rootScope,
                 settingsService,
@@ -33,13 +33,13 @@ define(['app'], function (app) {
                 pageCategoryService,
                 productCategoryService,
                 Environment
-                ) {
+            ) {
                 return {
-                    launch: function () {
+                    launch: function() {
 
                         // Load user status
                         userService.getUserInformation().success(
-                            function (data, status) {
+                            function(data, status) {
                                 console.log(data);
                                 if (data.username) {
                                     $rootScope.user = data;
@@ -51,7 +51,7 @@ define(['app'], function (app) {
 
                         // Load settings data
                         settingsService.getApplicationConfig().success(
-                            function (data, status) {
+                            function(data, status) {
 
                                 var settings = data.settings[Environment.currentLocale()];
 
@@ -62,11 +62,11 @@ define(['app'], function (app) {
                                 $rootScope.paymentMethods = settings.general.paymentMethods;
 
                                 console.log('----------- Aisel Loaded! -----------');
-                                var setLocale = function () {
+                                var setLocale = function() {
                                     $rootScope.availableLocales = Environment.settings.locale.available;
                                     $rootScope.locale = Environment.currentLocale();
                                 }
-                                var setMetaData = function () {
+                                var setMetaData = function() {
                                     $rootScope.pageTitle = settings.meta.defaultMetaTitle;
                                     $rootScope.metaDescription = settings.meta.defaultMetaDescription;
                                     $rootScope.metaKeywords = settings.meta.defaultMetaKeywords;
@@ -77,7 +77,7 @@ define(['app'], function (app) {
                                 setMetaData();
 
                                 // Hook for on route change
-                                $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+                                $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
                                     console.log('State Change ...');
                                     setLocale();
                                     setMetaData();
@@ -87,19 +87,19 @@ define(['app'], function (app) {
 
                         // Load navigation menu
                         settingsService.getMenu().success(
-                            function (data, status) {
+                            function(data, status) {
                                 $rootScope.topMenu = data;
                             }
                         );
                         // Load page categories
                         pageCategoryService.getPageCategoryTree().success(
-                            function (data, status) {
+                            function(data, status) {
                                 $rootScope.pageCategoryTree = data;
                             }
                         );
                         // Load product categories
                         productCategoryService.getProductCategoryTree().success(
-                            function (data, status) {
+                            function(data, status) {
                                 $rootScope.productCategoryTree = data;
                             }
                         );

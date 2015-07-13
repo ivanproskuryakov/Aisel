@@ -16,6 +16,6 @@ define(['app',
     './config/frontendUser',
     './controllers/frontendUser',
     './controllers/frontendUserDetails',
-], function (app) {
+], function(app) {
     console.log('FrontendUser module loaded ...');
 });

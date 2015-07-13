@@ -18,8 +18,9 @@ define([
         'ui-bootstrap-tpls', 'ui-utils', 'angular-gravatar',
         'md5', 'angular-disqus', 'angular-notify', 'twitter-bootstrap',
         'angular-ui-router', 'angular-route', 'angular-animate',
-        'angular-loading-bar'],
-    function (angular) {
+        'angular-loading-bar'
+    ],
+    function(angular) {
         'use strict';
 
         var app = angular.module('app', [
@@ -30,19 +31,19 @@ define([
         ])
 
         app.run(['$http', '$rootScope', 'settingsService', 'initService',
-            function ($http, $rootScope, settingsService, initService) {
-                initService.launch();
-            }])
-            .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
+                function($http, $rootScope, settingsService, initService) {
+                    initService.launch();
+                }
+            ])
+            .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
                 cfpLoadingBarProvider.includeSpinner = false
                 cfpLoadingBarProvider.includeBar = true;
             }])
-            .config(function ($provide, $locationProvider, $httpProvider) {
+            .config(function($provide, $locationProvider, $httpProvider) {
                 $httpProvider.defaults.withCredentials = true;
                 $locationProvider.html5Mode(true);
                 document.getElementById("page-is-loading").style.visibility = "hidden";
             });
 
         return app;
-    })
-;
+    });

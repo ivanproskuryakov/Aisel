@@ -15,6 +15,6 @@
 define(['app',
     './config/exception',
     './controllers/exception',
-], function (app) {
+], function(app) {
     console.log('Exception module loaded ...');
 });

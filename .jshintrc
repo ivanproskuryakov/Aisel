@@ -1,4 +1,5 @@
 {
+  "indent": 4,
   "node": true,
   "browser": true,
   "esnext": true,
