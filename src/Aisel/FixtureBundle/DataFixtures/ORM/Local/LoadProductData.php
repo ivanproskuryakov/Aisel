@@ -75,7 +75,7 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
     private function setProductImage(ObjectManager $manager, $product)
     {
-
+        $uploadPath = $this->container->getParameter('application.media.product.path');
         $uploadDir = $this->container->getParameter('application.media.product.upload_dir');
         $fixtureImage = dirname($this->container->getParameter('kernel.root_dir')) .
             $this->container->getParameter('aisel_fixture.xml.path') .
@@ -90,7 +90,7 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
                 echo "An error occurred while creating your directory at " . $e->getPath();
             }
         }
-        $fileName = '/' . $product->getId() . '/' . $this->productImage;
+        $fileName = $uploadPath . '/' . $product->getId() . '/' . $this->productImage;
 
         if (file_exists($fixtureImage)) {
 
