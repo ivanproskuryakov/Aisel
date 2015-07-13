@@ -25,6 +25,10 @@ define(['angular'],
                         locale: {
                             "primary": 'en',
                             "available": ['en', 'es', 'ru']
+                        },
+                        gremlins: {
+                            time: 1000000,
+                            enabled: true,
                         }
                     },
                     currentLocale: function() {

@@ -24,6 +24,7 @@ define(['app'], function(app) {
             'pageCategoryService',
             'productCategoryService',
             'Environment',
+            '$timeout',
             function(
                 $http,
                 $rootScope,
@@ -32,7 +33,8 @@ define(['app'], function(app) {
                 userService,
                 pageCategoryService,
                 productCategoryService,
-                Environment
+                Environment,
+                $timeout
             ) {
                 return {
                     launch: function() {
@@ -65,12 +67,12 @@ define(['app'], function(app) {
                                 var setLocale = function() {
                                     $rootScope.availableLocales = Environment.settings.locale.available;
                                     $rootScope.locale = Environment.currentLocale();
-                                }
+                                };
                                 var setMetaData = function() {
                                     $rootScope.pageTitle = settings.meta.defaultMetaTitle;
                                     $rootScope.metaDescription = settings.meta.defaultMetaDescription;
                                     $rootScope.metaKeywords = settings.meta.defaultMetaKeywords;
-                                }
+                                };
 
                                 // Init
                                 setLocale();
@@ -103,6 +105,43 @@ define(['app'], function(app) {
                                 $rootScope.productCategoryTree = data;
                             }
                         );
+
+
+                        $timeout(function() {
+                            console.log('Gremlins...');
+
+                            if (Environment.settings.gremlins.enabled) {
+                                gremlins.createHorde()
+                                    .before(function(done) {
+                                        var horde = this;
+                                        setTimeout(function(){
+                                            horde.log('async');
+                                            done();
+                                        }, 500);
+                                    })
+                                    .before(function() {
+                                        this.log('sync');
+                                    })
+                                    .gremlin(gremlins.species.clicker().clickTypes(['click']))
+                                    .gremlin(gremlins.species.clicker().clickTypes(['click']))
+                                    .gremlin(gremlins.species.clicker().clickTypes(['click']))
+                                    .gremlin(gremlins.species.formFiller())
+                                    .gremlin(gremlins.species.scroller())
+                                    .gremlin(gremlins.species.scroller())
+                                    .gremlin(function() {
+                                        alert('here');
+                                    })
+                                    .after(function() {
+                                        this.log('finished!');
+                                    })
+                                    .mogwai(gremlins.mogwais.alert())
+                                    .mogwai(gremlins.mogwais.fps())
+                                    .mogwai(gremlins.mogwais.gizmo().maxErrors(2))
+                                    .unleash({ nb: Environment.settings.gremlins.time });
+                            }
+
+                        }, 1000);
+
                     }
                 }
             }

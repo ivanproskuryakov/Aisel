@@ -33,7 +33,8 @@
     "fancytree": "2.2.0",
     "ui-contextmenu": "1.5.0",
     "holderjs": "^2.4.1",
-    "angular-loading-bar": "^0.6.0"
+    "angular-loading-bar": "^0.6.0",
+    "gremlins.js": "^v0.1.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
