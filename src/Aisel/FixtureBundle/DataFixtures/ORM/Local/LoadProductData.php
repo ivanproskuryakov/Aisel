@@ -18,7 +18,8 @@ use Aisel\ProductBundle\Entity\Product;
 use Aisel\ProductBundle\Entity\Image;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
-
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 /**
  * Product fixtures
  *
@@ -27,7 +28,6 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 {
 
-    protected $productImage = '500x500.jpg';
     protected $fixturesName = array(
         'en/aisel_product.xml',
         'ru/aisel_product.xml',
@@ -39,6 +39,9 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        // Delete all files and directories
+        $this->cleanMediaDir();
+
         foreach ($this->fixtureFiles as $file) {
             if (file_exists($file)) {
                 $contents = file_get_contents($file);
@@ -73,44 +76,91 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
         }
     }
 
-    private function setProductImage(ObjectManager $manager, $product)
-    {
-        $uploadPath = $this->container->getParameter('application.media.product.path');
-        $uploadDir = $this->container->getParameter('application.media.product.upload_dir');
-        $fixtureImage = dirname($this->container->getParameter('kernel.root_dir')) .
-            $this->container->getParameter('aisel_fixture.xml.path') .
-            DIRECTORY_SEPARATOR . 'images/products/' . $this->productImage;
-        $productDir = $uploadDir . DIRECTORY_SEPARATOR . $product->getId();
+    private function cleanMediaDir(){
+        $uploadDir = realpath($this->container->getParameter('application.media.product.upload_dir'));
+        $fs = new Filesystem();
+        $fs->remove($uploadDir);
+        $fs->mkdir($uploadDir);
+    }
+
+    private function createDirIfNotExists($dir){
 
         $fs = new Filesystem();
-        if (!$fs->exists($uploadDir)) {
+        if (!$fs->exists($dir)) {
             try {
-                $fs->mkdir($uploadDir);
+                $fs->mkdir($dir);
             } catch (IOExceptionInterface $e) {
                 echo "An error occurred while creating your directory at " . $e->getPath();
             }
         }
-        $fileName = $uploadPath . '/' . $product->getId() . '/' . $this->productImage;
+    }
 
-        if (file_exists($fixtureImage)) {
+    /**
+     * @return string $dir
+     */
+    private function getRandomProductDirectory(){
+        $productDirectories = [];
+
+        $fixtureDirectory = dirname($this->container->getParameter('kernel.root_dir')) .
+            $this->container->getParameter('aisel_fixture.xml.path') .
+            DIRECTORY_SEPARATOR . 'images/products/';
+
+        $finder = new Finder();
+
+        foreach ($finder->directories()->in($fixtureDirectory) as $dir) {
+            /** @var SplFileInfo $dir */
+            $productDirectories[] = $dir->getPathname();
+        }
+
+        $dir = $productDirectories[array_rand($productDirectories, 1)];
+
+        return $dir;
+    }
+
+    private function setProductImage(ObjectManager $manager, $product)
+    {
+
+        $uploadPath = $this->container->getParameter('application.media.product.path');
+        $uploadDir = $this->container->getParameter('application.media.product.upload_dir');
+        $productDir = $uploadDir . DIRECTORY_SEPARATOR . $product->getId();
+
+        // Create product directory if not exists
+        $this->createDirIfNotExists($uploadDir);
+
+        $finder = new Finder();
+        $productImages = $finder
+            ->files()
+            ->in($this->getRandomProductDirectory());
+
+        // Copy and attach image to product
+        foreach ($productImages as $productImage) {
+            /** @var SplFileInfo $image */
 
             if (file_exists($productDir) === false ) {
                 mkdir($productDir);
             }
-            $newPath = realpath($productDir) . DIRECTORY_SEPARATOR . $this->productImage;
+            $newPath = $productDir . DIRECTORY_SEPARATOR . $productImage->getFilename();
 
             if (file_exists($newPath)) {
                 unlink($newPath);
             }
-            copy($fixtureImage, $newPath);
+            copy($productImage->getPathname(), $newPath);
+
+            $fileName = $uploadPath . '/'.  $product->getId(). '/' . $productImage->getFilename();
 
             $image = new Image();
             $image->setFilename($fileName);
             $image->setProduct($product);
-            $image->setMainImage(true);
+            $image->setMainImage(false);
             $manager->persist($image);
             $manager->flush();
         }
+
+        // Set last image as main
+        $image->setMainImage(true);
+        $manager->persist($image);
+        $manager->flush();
+
     }
 
     /**
