@@ -1,6 +1,6 @@
 parameters:
     application.name: Aisel
-    application.version: 0.2.0
+    application.version: 0.2.1
     application.media.path: /media
     application.media.product.path: /media/product
     application.media.product.upload_dir: %kernel.root_dir%/../web%application.media.product.path%
