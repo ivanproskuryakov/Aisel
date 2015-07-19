@@ -7,6 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
+use Aisel\ResourceBundle\Entity\UrlInterface;
 
 /**
  * Page
@@ -18,7 +19,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Table(name="aisel_page")
  * @JMS\ExclusionPolicy("all")
  */
-class Page
+class Page implements UrlInterface
 {
     /**
      * @var integer

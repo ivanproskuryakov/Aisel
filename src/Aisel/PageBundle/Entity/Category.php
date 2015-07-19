@@ -16,6 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
+use Aisel\ResourceBundle\Entity\UrlInterface;
 
 /**
  * Category
@@ -27,7 +28,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Table(name="aisel_page_category")
  * @Gedmo\Tree(type="nested")
  */
-class Category extends BaseCategory
+class Category extends BaseCategory implements UrlInterface
 {
 
     /**

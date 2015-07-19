@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\EventListener;
+namespace Aisel\BackendUserBundle\EventListener;
 
-use Aisel\ResourceBundle\EventListener\UrlPersistenceListener;
+use Aisel\ResourceBundle\EventListener\UserPersistenceListener as BaseUserPersistenceListener;
 
 /**
- * Class CategoryUrlPersistenceListener.
+ * Class UserPersistenceListener.
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class CategoryUrlPersistenceListener extends UrlPersistenceListener
+class UserPersistenceListener extends BaseUserPersistenceListener
 {
 
 }

@@ -64,7 +64,7 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
         $product2->setName('...');
         $product2->setSku('test-2');
         $product2->setStatus(true);
-        $product1->setMetaUrl($urlText);
+        $product2->setMetaUrl($urlText);
         $product2->setMetaTitle('...');
         $product2->setCommentStatus(true);
 
@@ -72,11 +72,11 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
         $this->em->flush();
 
         // Delete Product 1
-        $product = $this->em
+        $product1 = $this->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['metaUrl' => $urlText]);
 
-        $this->em->remove($product);
+        $this->em->remove($product1);
         $this->em->flush();
     }
 

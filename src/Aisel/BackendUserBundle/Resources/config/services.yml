@@ -12,3 +12,10 @@ services:
           - @doctrine.orm.entity_manager
           - @security.encoder_factory
           - @security.context
+
+    aisel_backend_user_persistence_listener:
+        class: Aisel\BackendUserBundle\EventListener\UserPersistenceListener
+        arguments:
+            - @security.encoder_factory
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }

@@ -15,3 +15,10 @@ services:
           - @mailer
           - @templating
           - %website_email%
+
+    aisel_frontend_user_persistence_listener:
+        class: Aisel\FrontendUserBundle\EventListener\UserPersistenceListener
+        arguments:
+            - @security.encoder_factory
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }

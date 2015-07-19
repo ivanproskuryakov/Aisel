@@ -1,41 +1,24 @@
 <?php
 
+/*
+ * This file is part of the Aisel package.
+ *
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Aisel\ProductBundle\EventListener;
 
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Aisel\ProductBundle\Entity\Product;
-use Doctrine\ORM\EntityManager;
-use Aisel\ResourceBundle\Utility\UrlUtility;
+use Aisel\ResourceBundle\EventListener\UrlPersistenceListener;
 
 /**
  * Class ProductUrlPersistenceListener.
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ProductUrlPersistenceListener
+class ProductUrlPersistenceListener extends UrlPersistenceListener
 {
-
-    /**
-     * @param LifecycleEventArgs $args
-     */
-    public function prePersist(LifeCycleEventArgs $args)
-    {
-        /** @var Product $object */
-        $object = $args->getEntity();
-        /** @var EntityManager $em */
-        $em = $args->getEntityManager();
-
-        if ($object instanceof Product) {
-            $urlUtility = new UrlUtility();
-            $processedUrl = $urlUtility->process($object->getMetaUrl());
-
-            $found = $em->getRepository('Aisel\ProductBundle\Entity\Product')
-                ->findOneBy(['metaUrl' => $processedUrl]);
-
-            if ($found) {
-                throw new \LogicException('Given URL already exists');
-            }
-        }
-    }
 
 }

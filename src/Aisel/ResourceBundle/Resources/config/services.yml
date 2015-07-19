@@ -30,10 +30,3 @@ services:
         arguments:
         tags:
             - { name: "kernel.event_listener", event: "kernel.exception", method: "onKernelException" }
-
-    aisel_user_persistence_listener:
-        class: Aisel\ResourceBundle\EventListener\UserPersistenceListener
-        arguments:
-            - @security.encoder_factory
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
