@@ -9,6 +9,7 @@ parameters:
     aisel_product_media_manager.class: Aisel\ProductBundle\Manager\MediaManager
     aisel_product_node_manager.class: Aisel\ProductBundle\Manager\NodeManager
     aisel_product_url_persistence_listener.class: Aisel\ProductBundle\EventListener\ProductUrlPersistenceListener
+    aisel_product_category_url_persistence_listener.class: Aisel\ProductBundle\EventListener\CategoryUrlPersistenceListener
 
 services:
     aisel.product.media.manager:
@@ -23,5 +24,10 @@ services:
 
     aisel_product_url_persistence_listener:
         class: %aisel_product_url_persistence_listener.class%
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    aisel_product_category_url_persistence_listener:
+        class: %aisel_product_category_url_persistence_listener.class%
         tags:
             - { name: doctrine.event_listener, event: prePersist }

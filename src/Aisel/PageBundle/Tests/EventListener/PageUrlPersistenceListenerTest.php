@@ -34,7 +34,7 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
 
     public function testDuplicatedUrlThrowsError()
     {
-        $urlText = 'test-meta-url';
+        $urlText = 'page-test-meta-url';
         $this->setExpectedException(
             'LogicException', 'Given URL already exists'
         );

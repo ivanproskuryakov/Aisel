@@ -22,8 +22,6 @@ use Aisel\ProductBundle\Entity\Product;
 class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
 {
 
-    protected $urlText = 'test-meta-url';
-
     public function setUp()
     {
         parent::setUp();
@@ -36,6 +34,7 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
 
     public function testDuplicatedUrlThrowsError()
     {
+        $urlText = 'product-test-meta-url';
         $this->setExpectedException(
             'LogicException', 'Given URL already exists'
         );
@@ -49,7 +48,7 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
         $product1->setName('...');
         $product1->setSku('test-1');
         $product1->setStatus(true);
-        $product1->setMetaUrl($this->urlText);
+        $product1->setMetaUrl($urlText);
         $product1->setMetaTitle('...');
         $product1->setCommentStatus(true);
 
@@ -65,7 +64,7 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
         $product2->setName('...');
         $product2->setSku('test-2');
         $product2->setStatus(true);
-        $product1->setMetaUrl($this->urlText);
+        $product1->setMetaUrl($urlText);
         $product2->setMetaTitle('...');
         $product2->setCommentStatus(true);
 
@@ -75,7 +74,7 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
         // Delete Product 1
         $product = $this->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
-            ->findOneBy(['metaUrl' => $this->urlText]);
+            ->findOneBy(['metaUrl' => $urlText]);
 
         $this->em->remove($product);
         $this->em->flush();
