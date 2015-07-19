@@ -7,6 +7,8 @@
 
 parameters:
     aisel_page_category_mode_manager.class: Aisel\PageBundle\Manager\NodeManager
+    aisel_page_url_persistence_listener.class: Aisel\PageBundle\EventListener\PageUrlPersistenceListener
+    aisel_page_category_url_persistence_listener.class: Aisel\PageBundle\EventListener\CategoryUrlPersistenceListener
 
 services:
     aisel.pagecategory.node.manager:
@@ -14,3 +16,13 @@ services:
         arguments:
           - @doctrine.orm.entity_manager
           - "%locales%"
+
+    aisel_page_url_persistence_listener:
+        class: %aisel_page_url_persistence_listener.class%
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    aisel_page_category_url_persistence_listener:
+        class: %aisel_page_category_url_persistence_listener.class%
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }

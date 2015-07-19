@@ -37,7 +37,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $node = new Category();
         $node->setLocale('en');
         $node->setDescription('');
-        $node->setMetaUrl('/');
+        $node->setMetaUrl('/'. rand(111111,999999));
         $node->setTitle($name);
         $this->em->persist($node);
         $this->em->flush();

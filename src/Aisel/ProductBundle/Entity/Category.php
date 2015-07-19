@@ -45,7 +45,7 @@ class Category extends BaseCategory
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, unique=false)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      */

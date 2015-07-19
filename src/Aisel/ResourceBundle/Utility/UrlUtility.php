@@ -24,7 +24,7 @@ class UrlUtility
      *
      * @var array
      */
-    protected $_convertTable = array(
+    protected $convertTable = array(
         '&amp;' => 'and', '@' => 'at', '©' => 'c', '®' => 'r', 'À' => 'a',
         'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'Å' => 'a', 'Æ' => 'ae', 'Ç' => 'c',
         'È' => 'e', 'É' => 'e', 'Ë' => 'e', 'Ì' => 'i', 'Í' => 'i', 'Î' => 'i',
@@ -91,20 +91,21 @@ class UrlUtility
     public function process($str)
     {
         // If we have empty URL string
-        if (!$str) $str = time();
-
+        if (!$str) {
+            $str = time();
+        }
         $normalUrl = '';
-
         $len = mb_strlen($str, 'UTF-8');
         $charArray = array();
+
         for ($i = 0; $i < $len; $i++) {
             $char = mb_substr($str, $i, 1, 'UTF-8');
             array_push($charArray, $char);
         }
 
         foreach ($charArray as $char) {
-            if (isset($this->_convertTable[$char])) {
-                $normalUrl .= $this->_convertTable[$char];
+            if (isset($this->convertTable[$char])) {
+                $normalUrl .= $this->convertTable[$char];
             } else {
                 $normalUrl .= $char;
             }
