@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Aisel package.
+ *
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Aisel\ProductBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -8,6 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
+use Aisel\ResourceBundle\Entity\UrlInterface;
 
 /**
  * Product
@@ -18,7 +28,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Entity(repositoryClass="Aisel\ProductBundle\Entity\ProductRepository")
  * @ORM\Table(name="aisel_product")
  */
-class Product
+class Product implements UrlInterface
 {
     /**
      * @var integer

@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * This file is part of the Aisel package.
+ *
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+
 namespace Aisel\ProductBundle\Entity;
 
 use Aisel\ResourceBundle\Entity\Category as BaseCategory;
@@ -7,6 +17,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
+use Aisel\ResourceBundle\Entity\UrlInterface;
+
 
 /**
  * Category
@@ -18,7 +30,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Table(name="aisel_product_category")
  * @Gedmo\Tree(type="nested")
  */
-class Category extends BaseCategory
+class Category extends BaseCategory implements UrlInterface
 {
 
     /**
