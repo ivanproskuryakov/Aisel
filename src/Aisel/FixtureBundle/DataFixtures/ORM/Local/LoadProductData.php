@@ -76,15 +76,16 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
         }
     }
 
-    private function cleanMediaDir(){
+    private function cleanMediaDir()
+    {
         $uploadDir = realpath($this->container->getParameter('application.media.product.upload_dir'));
         $fs = new Filesystem();
         $fs->remove($uploadDir);
         $fs->mkdir($uploadDir);
     }
 
-    private function createDirIfNotExists($dir){
-
+    private function createDirIfNotExists($dir)
+    {
         $fs = new Filesystem();
         if (!$fs->exists($dir)) {
             try {
@@ -98,7 +99,8 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
     /**
      * @return string $dir
      */
-    private function getRandomProductDirectory(){
+    private function getRandomProductDirectory()
+    {
         $productDirectories = [];
 
         $fixtureDirectory = dirname($this->container->getParameter('kernel.root_dir')) .

@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Aisel\FrontendUserBundle\EventListener;
 
 use Aisel\ResourceBundle\EventListener\UserPersistenceListener as BaseUserPersistenceListener;

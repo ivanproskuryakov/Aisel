@@ -77,8 +77,8 @@ class OrderManager
     /**
      * Get single order by given userId and orderId
      *
-     * @param int          $userId
-     * @param int          $orderId
+     * @param int $userId
+     * @param int $orderId
      *
      * @return Order $orderDetails
      */

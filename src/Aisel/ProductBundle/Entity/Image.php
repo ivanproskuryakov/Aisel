@@ -11,11 +11,8 @@
 
 namespace Aisel\ProductBundle\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Aisel\MediaBundle\Entity\Image as BaseImage;
-use Aisel\ProductBundle\Entity\Product;
 
 /**
  * Image

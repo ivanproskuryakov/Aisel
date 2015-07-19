@@ -28,13 +28,14 @@ class Uploader
     /**
      * uploadAction
      *
-     * @param string $uploadDir
-     * @param Request $request
+     * @param  string        $uploadDir
+     * @param  Request       $request
      * @throws HttpException
      *
      * @return string
      */
-    static public function uploadFile($uploadDir, $request) {
+    public static function uploadFile($uploadDir, $request)
+    {
         $uploadedFile = null;
 
         if ($request->files->get('file')) {

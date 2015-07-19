@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Aisel\ProductBundle\Entity;
 
 use Aisel\ResourceBundle\Entity\Category as BaseCategory;
@@ -18,7 +17,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Entity\UrlInterface;
-
 
 /**
  * Category

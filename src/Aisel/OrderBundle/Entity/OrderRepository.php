@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Aisel package.
+ *
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Aisel\OrderBundle\Entity;
 
 use Aisel\ResourceBundle\Repository\CollectionRepository;
@@ -122,7 +131,7 @@ class OrderRepository extends CollectionRepository
     /**
      * Grab all orders for given $user
      *
-     * @param int   $userId
+     * @param int $userId
      *
      * @return \Aisel\OrderBundle\Entity\Order $order
      */
@@ -142,8 +151,8 @@ class OrderRepository extends CollectionRepository
     /**
      * Grab one order for given $userId
      *
-     * @param integer                                       $userId
-     * @param integer                                       $orderId
+     * @param integer $userId
+     * @param integer $orderId
      *
      * @return \Aisel\OrderBundle\Entity\Order $order
      */

@@ -13,7 +13,6 @@ namespace Aisel\MediaBundle\Tests\Controller;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * ApiImageControllerTest
@@ -124,7 +123,6 @@ class UploadControllerTest extends AbstractBackendWebTestCase
 
         return $uploadedFile;
     }
-
 
     public function testUploadImageAction()
     {

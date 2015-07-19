@@ -67,7 +67,6 @@ class ApiImageControllerTest extends UploadControllerTest
             $this->assertNotNull($id);
         }
 
-
         $product = $this
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')

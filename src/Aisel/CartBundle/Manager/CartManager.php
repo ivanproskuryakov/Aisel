@@ -33,9 +33,10 @@ class CartManager
     /**
      * Constructor
      *
-     * @param EntityManager  $entityManager
+     * @param EntityManager $entityManager
      */
-    public function __construct(EntityManager $entityManager) {
+    public function __construct(EntityManager $entityManager)
+    {
         $this->em = $entityManager;
     }
 
@@ -56,7 +57,6 @@ class CartManager
 
         return $product;
     }
-
 
     /**
      * Get get cart products for given $userId

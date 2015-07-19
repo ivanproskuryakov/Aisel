@@ -27,7 +27,6 @@ class ApiNodeEditController extends Controller
      */
     protected $nodeManager;
 
-
     /**
      * @param Request $request
      *

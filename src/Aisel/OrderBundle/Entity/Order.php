@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Aisel package.
+ *
+ * (c) Ivan Proskuryakov
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Aisel\OrderBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -7,7 +16,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
-use Aisel\ProductBundle\Entity\Product;
 use JMS\Serializer\Annotation as JMS;
 
 /**

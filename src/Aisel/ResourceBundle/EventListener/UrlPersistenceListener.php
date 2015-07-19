@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Aisel\ResourceBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
