@@ -65,3 +65,10 @@ doctrine_mongodb:
     document_managers:
         default:
             auto_mapping: true
+            mappings:
+                gedmo_tree:
+                    type: annotation
+                    prefix: Gedmo\Tree\Document
+                    dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Document"
+                    alias: GedmoTree # this one is optional and will default to the name set for the mapping
+                    is_bundle: false
