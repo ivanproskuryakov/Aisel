@@ -17,7 +17,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
-use Aisel\ResourceBundle\Domain\Meta;
+use Aisel\ResourceBundle\Domain\MetaTrait;
 
 /**
  * Category
@@ -34,7 +34,7 @@ use Aisel\ResourceBundle\Domain\Meta;
 class Category extends BaseCategory implements UrlInterface
 {
 
-    use Meta;
+    use MetaTrait;
 
     /**
      * @var string

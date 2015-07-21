@@ -16,7 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-use Aisel\ResourceBundle\Domain\UpdateCreate;
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
  * BackendUser
@@ -33,7 +33,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreate;
 class BackendUser implements AdvancedUserInterface
 {
 
-    use UpdateCreate;
+    use UpdateCreateTrait;
 
     /**
      * @var string

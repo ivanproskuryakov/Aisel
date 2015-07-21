@@ -17,8 +17,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 
-use Aisel\ResourceBundle\Domain\Locale;
-use Aisel\ResourceBundle\Domain\UpdateCreate;
+use Aisel\ResourceBundle\Domain\LocaleTrait;
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
  * Category
@@ -33,8 +33,8 @@ use Aisel\ResourceBundle\Domain\UpdateCreate;
 abstract class Category
 {
 
-    use UpdateCreate;
-    use Locale;
+    use UpdateCreateTrait;
+    use LocaleTrait;
 
     /**
      * @var string

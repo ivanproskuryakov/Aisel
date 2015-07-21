@@ -15,12 +15,12 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Locale
+ * LocaleTrait
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  *
  */
-trait Locale
+trait LocaleTrait
 {
 
     /**

@@ -15,12 +15,12 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Meta
+ * MetaTrait
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  *
  */
-trait Meta
+trait MetaTrait
 {
 
     /**

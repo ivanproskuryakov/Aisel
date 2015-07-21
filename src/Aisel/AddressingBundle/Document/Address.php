@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\FrontendUserBundle\Document\FrontendUser;
-use Aisel\ResourceBundle\Domain\UpdateCreate;
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
  * Address
@@ -31,7 +31,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreate;
 class Address
 {
 
-    use UpdateCreate;
+    use UpdateCreateTrait;
 
     /**
      * @var string

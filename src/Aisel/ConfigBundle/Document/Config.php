@@ -13,7 +13,8 @@ namespace Aisel\ConfigBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Aisel\ResourceBundle\Domain\UpdateCreate;
+use Aisel\ResourceBundle\Domain\LocaleTrait;
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
  * Config
@@ -29,7 +30,8 @@ use Aisel\ResourceBundle\Domain\UpdateCreate;
 class Config
 {
 
-    use UpdateCreate;
+    use LocaleTrait;
+    use UpdateCreateTrait;
 
     /**
      * @var string
@@ -37,16 +39,6 @@ class Config
      */
     private $id;
 
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\NotNull()
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 2
-     * )
-     */
-    private $locale;
 
     /**
      * @var string
@@ -116,28 +108,5 @@ class Config
     public function getValue()
     {
         return $this->value;
-    }
-
-    /**
-     * Set locale
-     *
-     * @param  string $locale
-     * @return Config
-     */
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
-
-        return $this;
-    }
-
-    /**
-     * Get locale
-     *
-     * @return string
-     */
-    public function getLocale()
-    {
-        return $this->locale;
     }
 }

@@ -14,7 +14,7 @@ namespace Aisel\MediaBundle\Document;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Domain\UpdateCreate;
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
  * Image
@@ -30,7 +30,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreate;
 class Image
 {
 
-    use UpdateCreate;
+    use UpdateCreateTrait;
 
     /**
      * @var string

@@ -16,12 +16,12 @@ use JMS\Serializer\Annotation as JMS;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * UpdateCreate
+ * UpdateCreateTraitTrait
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  *
  */
-trait UpdateCreate
+trait UpdateCreateTrait
 {
 
     /**

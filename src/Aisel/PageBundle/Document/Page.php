@@ -18,9 +18,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\PageBundle\Document\Category;
-use Aisel\ResourceBundle\Domain\UpdateCreate;
-use Aisel\ResourceBundle\Domain\Meta;
-use Aisel\ResourceBundle\Domain\Locale;
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Aisel\ResourceBundle\Domain\MetaTrait;
+use Aisel\ResourceBundle\Domain\LocaleTrait;
 
 /**
  * Page
@@ -36,9 +36,9 @@ use Aisel\ResourceBundle\Domain\Locale;
  */
 class Page implements UrlInterface
 {
-    use UpdateCreate;
-    use Locale;
-    use Meta;
+    use UpdateCreateTrait;
+    use LocaleTrait;
+    use MetaTrait;
 
     /**
      * @var string

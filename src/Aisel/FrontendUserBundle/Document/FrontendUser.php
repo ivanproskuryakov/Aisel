@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Aisel\AddressingBundle\Document\Address;
-use Aisel\ResourceBundle\Domain\UpdateCreate;
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
  * FrontendUser
@@ -38,7 +38,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreate;
 class FrontendUser implements AdvancedUserInterface
 {
 
-    use UpdateCreate;
+    use UpdateCreateTrait;
 
     /**
      * @var string
