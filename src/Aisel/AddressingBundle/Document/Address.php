@@ -16,6 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\FrontendUserBundle\Document\FrontendUser;
+use Aisel\ResourceBundle\Domain\UpdateCreate;
 
 /**
  * Address
@@ -30,6 +31,9 @@ use Aisel\FrontendUserBundle\Document\FrontendUser;
  */
 class Address
 {
+
+    use UpdateCreate;
+
     /**
      * @var string
      * @ODM\Id
@@ -57,20 +61,6 @@ class Address
      * @Assert\Type(type="string")
      */
     private $comment;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="create")
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="update")
-     */
-    private $updatedAt;
 
     /**
      * @var string
@@ -115,26 +105,6 @@ class Address
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

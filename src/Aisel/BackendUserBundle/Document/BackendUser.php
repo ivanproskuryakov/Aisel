@@ -16,6 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Aisel\ResourceBundle\Domain\UpdateCreate;
 
 /**
  * BackendUser
@@ -31,6 +32,8 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  */
 class BackendUser implements AdvancedUserInterface
 {
+
+    use UpdateCreate;
 
     /**
      * @var string
@@ -86,20 +89,6 @@ class BackendUser implements AdvancedUserInterface
      * @Assert\NotNull()
      */
     private $locked = true;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="create")
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="update")
-     */
-    private $updatedAt;
 
     /**
      * @var \DateTime
@@ -352,26 +341,6 @@ class BackendUser implements AdvancedUserInterface
     public function getLocked()
     {
         return $this->locked;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

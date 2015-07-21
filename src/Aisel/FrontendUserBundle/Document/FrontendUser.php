@@ -15,11 +15,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
-
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Aisel\AddressingBundle\Document\Address;
+use Aisel\ResourceBundle\Domain\UpdateCreate;
 
 /**
  * FrontendUser
@@ -37,6 +37,8 @@ use Aisel\AddressingBundle\Document\Address;
  */
 class FrontendUser implements AdvancedUserInterface
 {
+
+    use UpdateCreate;
 
     /**
      * @var string
@@ -95,22 +97,6 @@ class FrontendUser implements AdvancedUserInterface
      * @JMS\Type("boolean")
      */
     private $locked = false;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="create")
-     * @JMS\Type("DateTime")
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="update")
-     * @JMS\Type("DateTime")
-     */
-    private $updatedAt;
 
     /**
      * @var \DateTime
@@ -318,26 +304,6 @@ class FrontendUser implements AdvancedUserInterface
     public function getLocked()
     {
         return $this->locked;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

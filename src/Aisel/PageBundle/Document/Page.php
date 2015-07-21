@@ -18,6 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\PageBundle\Document\Category;
+use Aisel\ResourceBundle\Domain\UpdateCreate;
 
 /**
  * Page
@@ -33,6 +34,8 @@ use Aisel\PageBundle\Document\Category;
  */
 class Page implements UrlInterface
 {
+    use UpdateCreate;
+
     /**
      * @var string
      * @ODM\Id
@@ -135,24 +138,6 @@ class Page implements UrlInterface
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
      */
     private $categories;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="create")
-     * @JMS\Expose
-     * @JMS\Type("DateTime")
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="update")
-     * @JMS\Expose
-     * @JMS\Type("DateTime")
-     */
-    private $updatedAt;
 
     /**
      * Constructor
@@ -377,39 +362,6 @@ class Page implements UrlInterface
     public function getMetaKeywords()
     {
         return $this->metaKeywords;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param  \DateTime $updatedAt
-     * @return Page
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

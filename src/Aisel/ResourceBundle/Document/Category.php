@@ -17,6 +17,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 
+use Aisel\ResourceBundle\Domain\UpdateCreate;
+
 /**
  * Category
  *
@@ -29,6 +31,9 @@ use JMS\Serializer\Annotation as JMS;
  */
 abstract class Category
 {
+
+    use UpdateCreate;
+
     /**
      * @var string
      * @ODM\Id
@@ -106,24 +111,6 @@ abstract class Category
      * @JMS\Type("ArrayCollection<Aisel\ResourceBundle\Entity\Category>")
      */
     protected $children;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="create")
-     * @JMS\Expose
-     * @JMS\Type("DateTime")
-     */
-    protected $createdAt;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="update")
-     * @JMS\Expose
-     * @JMS\Type("DateTime")
-     */
-    protected $updatedAt;
 
     /**
      * Constructor
@@ -233,52 +220,6 @@ abstract class Category
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return Category
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param  \DateTime $updatedAt
-     * @return Category
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**
