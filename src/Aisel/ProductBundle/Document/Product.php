@@ -21,6 +21,7 @@ use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\ProductBundle\Document\Category;
 use Aisel\ResourceBundle\Domain\UpdateCreate;
 use Aisel\ResourceBundle\Domain\Meta;
+use Aisel\ResourceBundle\Domain\Locale;
 
 /**
  * Product
@@ -37,6 +38,7 @@ class Product implements UrlInterface
 {
     use UpdateCreate;
     use Meta;
+    use Locale;
 
     /**
      * @var string
@@ -44,19 +46,6 @@ class Product implements UrlInterface
      * @JMS\Type("string")
      */
     private $id;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\NotNull()
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 2
-     * )
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $locale;
 
     /**
      * @var string
@@ -257,28 +246,6 @@ class Product implements UrlInterface
         return $this->id;
     }
 
-    /**
-     * Set locale
-     *
-     * @param  string  $locale
-     * @return Product
-     */
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
-
-        return $this;
-    }
-
-    /**
-     * Get locale
-     *
-     * @return string
-     */
-    public function getLocale()
-    {
-        return $this->locale;
-    }
 
     /**
      * Set name

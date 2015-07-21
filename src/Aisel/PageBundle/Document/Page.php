@@ -20,6 +20,7 @@ use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\PageBundle\Document\Category;
 use Aisel\ResourceBundle\Domain\UpdateCreate;
 use Aisel\ResourceBundle\Domain\Meta;
+use Aisel\ResourceBundle\Domain\Locale;
 
 /**
  * Page
@@ -36,6 +37,7 @@ use Aisel\ResourceBundle\Domain\Meta;
 class Page implements UrlInterface
 {
     use UpdateCreate;
+    use Locale;
     use Meta;
 
     /**
@@ -44,19 +46,6 @@ class Page implements UrlInterface
      * @JMS\Type("string")
      */
     private $id;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\NotNull()
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 2
-     * )
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $locale;
 
     /**
      * @var string
@@ -120,29 +109,6 @@ class Page implements UrlInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set locale
-     *
-     * @param  string $locale
-     * @return Page
-     */
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
-
-        return $this;
-    }
-
-    /**
-     * Get locale
-     *
-     * @return string
-     */
-    public function getLocale()
-    {
-        return $this->locale;
     }
 
     /**

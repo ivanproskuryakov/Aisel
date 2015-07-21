@@ -12,9 +12,9 @@
 namespace Aisel\AddressingBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
+use Aisel\ResourceBundle\Domain\UpdateCreate;
 
 /**
  * Region
@@ -29,6 +29,9 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Region
 {
+
+    use UpdateCreate;
+
     /**
      * @var string
      * @ODM\Id
@@ -49,20 +52,6 @@ class Region
      * @JMS\Type("Aisel\AddressingBundle\Entity\Country")
      */
     private $country;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="create")
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="update")
-     */
-    private $updatedAt;
 
     /**
      * Get id
@@ -95,26 +84,6 @@ class Region
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

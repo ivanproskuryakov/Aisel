@@ -13,9 +13,10 @@ namespace Aisel\ConfigBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Aisel\ResourceBundle\Domain\UpdateCreate;
 
 /**
- * Config Entity
+ * Config
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  *
@@ -27,6 +28,8 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  */
 class Config
 {
+
+    use UpdateCreate;
 
     /**
      * @var string

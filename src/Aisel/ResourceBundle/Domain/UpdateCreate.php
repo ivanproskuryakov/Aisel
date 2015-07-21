@@ -13,6 +13,7 @@ namespace Aisel\ResourceBundle\Domain;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * UpdateCreate

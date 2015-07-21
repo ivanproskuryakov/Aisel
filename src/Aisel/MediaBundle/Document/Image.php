@@ -13,8 +13,8 @@ namespace Aisel\MediaBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as JMS;
+use Aisel\ResourceBundle\Domain\UpdateCreate;
 
 /**
  * Image
@@ -29,6 +29,8 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Image
 {
+
+    use UpdateCreate;
 
     /**
      * @var string
@@ -73,23 +75,6 @@ class Image
      */
     protected $filename;
 
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="create")
-     * @JMS\Expose
-     * @JMS\Type("DateTime")
-     */
-    protected $createdAt;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="update")
-     * @JMS\Expose
-     * @JMS\Type("DateTime")
-     */
-    protected $updatedAt;
 
     /**
      * Get id
@@ -154,26 +139,6 @@ class Image
     public function getFilename()
     {
         return $this->filename;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

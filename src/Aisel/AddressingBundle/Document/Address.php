@@ -12,7 +12,6 @@
 namespace Aisel\AddressingBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\FrontendUserBundle\Document\FrontendUser;

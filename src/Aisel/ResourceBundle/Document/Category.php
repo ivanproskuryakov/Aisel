@@ -17,6 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 
+use Aisel\ResourceBundle\Domain\Locale;
 use Aisel\ResourceBundle\Domain\UpdateCreate;
 
 /**
@@ -33,6 +34,7 @@ abstract class Category
 {
 
     use UpdateCreate;
+    use Locale;
 
     /**
      * @var string
@@ -42,19 +44,6 @@ abstract class Category
      * @JMS\Expose
      */
     protected $id;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\NotNull()
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 2
-     * )
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    protected $locale;
 
     /**
      * @var boolean
@@ -128,29 +117,6 @@ abstract class Category
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set locale
-     *
-     * @param  string   $locale
-     * @return Category
-     */
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
-
-        return $this;
-    }
-
-    /**
-     * Get locale
-     *
-     * @return string
-     */
-    public function getLocale()
-    {
-        return $this->locale;
     }
 
     /**
