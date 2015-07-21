@@ -19,6 +19,7 @@ use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\PageBundle\Document\Category;
 use Aisel\ResourceBundle\Domain\UpdateCreate;
+use Aisel\ResourceBundle\Domain\Meta;
 
 /**
  * Page
@@ -35,6 +36,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreate;
 class Page implements UrlInterface
 {
     use UpdateCreate;
+    use Meta;
 
     /**
      * @var string
@@ -93,43 +95,6 @@ class Page implements UrlInterface
      * @JMS\Type("boolean")
      */
     private $commentStatus = false;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $metaUrl;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $metaTitle;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $metaDescription;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $metaKeywords;
 
     /**
      * @var ArrayCollection
@@ -270,98 +235,6 @@ class Page implements UrlInterface
     public function getCommentStatus()
     {
         return $this->commentStatus;
-    }
-
-    /**
-     * Set metaUrl
-     *
-     * @param  string $metaUrl
-     * @return Page
-     */
-    public function setMetaUrl($metaUrl)
-    {
-        $this->metaUrl = $metaUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get metaUrl
-     *
-     * @return string
-     */
-    public function getMetaUrl()
-    {
-        return $this->metaUrl;
-    }
-
-    /**
-     * Set metaTitle
-     *
-     * @param  string $metaTitle
-     * @return Page
-     */
-    public function setMetaTitle($metaTitle)
-    {
-        $this->metaTitle = $metaTitle;
-
-        return $this;
-    }
-
-    /**
-     * Get metaTitle
-     *
-     * @return string
-     */
-    public function getMetaTitle()
-    {
-        return $this->metaTitle;
-    }
-
-    /**
-     * Set metaDescription
-     *
-     * @param  string $metaDescription
-     * @return Page
-     */
-    public function setMetaDescription($metaDescription)
-    {
-        $this->metaDescription = $metaDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get metaDescription
-     *
-     * @return string
-     */
-    public function getMetaDescription()
-    {
-        return $this->metaDescription;
-    }
-
-    /**
-     * Set metaKeywords
-     *
-     * @param  string $metaKeywords
-     * @return Page
-     */
-    public function setMetaKeywords($metaKeywords)
-    {
-        $this->metaKeywords = $metaKeywords;
-
-        return $this;
-    }
-
-    /**
-     * Get metaKeywords
-     *
-     * @return string
-     */
-    public function getMetaKeywords()
-    {
-        return $this->metaKeywords;
     }
 
     /**

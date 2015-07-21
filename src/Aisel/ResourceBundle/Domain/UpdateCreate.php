@@ -15,7 +15,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Category
+ * UpdateCreate
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  *
@@ -46,7 +46,7 @@ trait UpdateCreate
      * Set createdAt
      *
      * @param  \DateTime $createdAt
-     * @return Category
+     * @return mixed
      */
     public function setCreatedAt($createdAt)
     {
@@ -69,7 +69,7 @@ trait UpdateCreate
      * Set updatedAt
      *
      * @param  \DateTime $updatedAt
-     * @return Category
+     * @return mixed
      */
     public function setUpdatedAt($updatedAt)
     {

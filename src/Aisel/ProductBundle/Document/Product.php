@@ -19,6 +19,8 @@ use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\ProductBundle\Document\Category;
+use Aisel\ResourceBundle\Domain\UpdateCreate;
+use Aisel\ResourceBundle\Domain\Meta;
 
 /**
  * Product
@@ -33,6 +35,9 @@ use Aisel\ProductBundle\Document\Category;
  */
 class Product implements UrlInterface
 {
+    use UpdateCreate;
+    use Meta;
+
     /**
      * @var string
      * @ODM\Id
@@ -218,43 +223,6 @@ class Product implements UrlInterface
     private $commentStatus = false;
 
     /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $metaUrl;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $metaTitle;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $metaDescription;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $metaKeywords;
-
-    /**
      * @var Collection
      * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Image", cascade={"remove"})
      * @JMS\Expose
@@ -269,24 +237,6 @@ class Product implements UrlInterface
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
      */
     private $categories;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="create")
-     * @JMS\Expose
-     * @JMS\Type("DateTime")
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     * @ODM\Field(type="date")
-     * @Gedmo\Timestampable(on="update")
-     * @JMS\Expose
-     * @JMS\Type("DateTime")
-     */
-    private $updatedAt;
 
     /**
      * Constructor
@@ -719,118 +669,6 @@ class Product implements UrlInterface
     public function getCommentStatus()
     {
         return $this->commentStatus;
-    }
-
-    /**
-     * Set metaUrl
-     *
-     * @param  string  $metaUrl
-     * @return Product
-     */
-    public function setMetaUrl($metaUrl)
-    {
-        $this->metaUrl = $metaUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get metaUrl
-     *
-     * @return string
-     */
-    public function getMetaUrl()
-    {
-        return $this->metaUrl;
-    }
-
-    /**
-     * Set metaTitle
-     *
-     * @param  string  $metaTitle
-     * @return Product
-     */
-    public function setMetaTitle($metaTitle)
-    {
-        $this->metaTitle = $metaTitle;
-
-        return $this;
-    }
-
-    /**
-     * Get metaTitle
-     *
-     * @return string
-     */
-    public function getMetaTitle()
-    {
-        return $this->metaTitle;
-    }
-
-    /**
-     * Set metaDescription
-     *
-     * @param  string  $metaDescription
-     * @return Product
-     */
-    public function setMetaDescription($metaDescription)
-    {
-        $this->metaDescription = $metaDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get metaDescription
-     *
-     * @return string
-     */
-    public function getMetaDescription()
-    {
-        return $this->metaDescription;
-    }
-
-    /**
-     * Set metaKeywords
-     *
-     * @param  string  $metaKeywords
-     * @return Product
-     */
-    public function setMetaKeywords($metaKeywords)
-    {
-        $this->metaKeywords = $metaKeywords;
-
-        return $this;
-    }
-
-    /**
-     * Get metaKeywords
-     *
-     * @return string
-     */
-    public function getMetaKeywords()
-    {
-        return $this->metaKeywords;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**
