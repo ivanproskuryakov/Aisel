@@ -148,19 +148,11 @@ class Page implements UrlInterface
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category", mappedBy="page")*
+     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category")
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
      */
     private $categories;
-
-    /**
-     * @inheritdoc
-     */
-    public function __toString()
-    {
-        return $this->getTitle();
-    }
 
     /**
      * Constructor
@@ -173,7 +165,7 @@ class Page implements UrlInterface
     /**
      * Get id
      *
-     * @return integer
+     * @return string
      */
     public function getId()
     {
@@ -429,8 +421,6 @@ class Page implements UrlInterface
      */
     public function addCategory(Category $category)
     {
-//        var_dump($category->getId());
-//        exit();
         $this->categories->add($category);
 
         return $this;

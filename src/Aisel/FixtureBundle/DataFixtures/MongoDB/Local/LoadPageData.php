@@ -57,6 +57,7 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
 
                     $manager->persist($page);
                     $manager->flush();
+
                     $this->addReference('page_' . $table->column[0], $page);
                 }
             }
