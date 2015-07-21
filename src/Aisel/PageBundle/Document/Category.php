@@ -28,6 +28,7 @@ use Aisel\ResourceBundle\Document\UrlInterface;
  *      collection="aisel_page_category",
  *      repositoryClass="Aisel\PageBundle\Document\CategoryRepository"
  * )
+ * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
  */
 class Category extends BaseCategory implements UrlInterface
 {

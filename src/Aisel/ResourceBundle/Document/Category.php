@@ -92,7 +92,7 @@ abstract class Category
 
     /**
      * @Gedmo\TreeParent
-     * @ODM\ReferenceOne(targetDocument="Category", inversedBy="children")
+     * @ODM\ReferenceOne(targetDocument="Aisel\ResourceBundle\Document\Category", inversedBy="children")
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\ResourceBundle\Document\Category")
@@ -100,7 +100,7 @@ abstract class Category
     protected $parent;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Category", mappedBy="parent")
+     * @ODM\ReferenceMany(targetDocument="Aisel\ResourceBundle\Document\Category", mappedBy="parent")
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\ResourceBundle\Entity\Category>")
