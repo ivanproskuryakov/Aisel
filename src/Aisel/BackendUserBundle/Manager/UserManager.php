@@ -11,11 +11,11 @@
 
 namespace Aisel\BackendUserBundle\Manager;
 
-use Aisel\BackendUserBundle\Entity\BackendUser;
+use Aisel\BackendUserBundle\Document\BackendUser;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\SecurityContext;
 
@@ -37,30 +37,33 @@ class UserManager implements UserProviderInterface
     protected $securityContext;
 
     /**
-     * @var EntityManager
+     * @var DocumentManager
      */
-    protected $em;
+    protected $dm;
 
     /**
      * Constructor
      *
-     * @param EntityManager   $entityManager
+     * @param DocumentManager $documentManager
      * @param EncoderFactory  $encoder
      * @param SecurityContext $securityContext
      */
     public function __construct(
-        EntityManager $entityManager,
+        DocumentManager $documentManager,
         EncoderFactory $encoder,
         SecurityContext $securityContext
     ) {
-        $this->em = $entityManager;
+        $this->dm = $documentManager;
         $this->encoder = $encoder;
         $this->securityContext = $securityContext;
     }
 
     protected function getRepository()
     {
-        return $this->em->getRepository('AiselBackendUserBundle:BackendUser');
+        $repo =  $this->dm
+            ->getRepository('Aisel\BackendUserBundle\Document\BackendUser');
+
+        return $repo;
     }
 
     /**
@@ -68,7 +71,7 @@ class UserManager implements UserProviderInterface
      *
      * @param array $userData
      *
-     * @return \Aisel\BackendUserBundle\Entity\BackendUser $user
+     * @return BackendUser $user
      */
     public function registerFixturesUser(array $userData)
     {
@@ -79,8 +82,8 @@ class UserManager implements UserProviderInterface
         $user->setEnabled(true);
         $user->setLocked(false);
         $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
-        $this->em->persist($user);
-        $this->em->flush();
+        $this->dm->persist($user);
+        $this->dm->flush();
 
         return $user;
     }
@@ -132,11 +135,13 @@ class UserManager implements UserProviderInterface
      *
      * @param array $username
      *
-     * @return \Aisel\BackendUserBundle\Entity\BackendUser $user
+     * @return BackendUser $user
      */
     public function loadUserByUsername($username)
     {
-        $user = $this->getRepository()->findOneBy(array('username' => $username));
+        $user = $this
+            ->getRepository()
+            ->findOneBy(array('username' => $username));
 
         return $user;
     }
@@ -146,7 +151,7 @@ class UserManager implements UserProviderInterface
      *
      * @param array $email
      *
-     * @return \Aisel\BackendUserBundle\Entity\BackendUser $user
+     * @return BackendUser $user
      */
     public function findUserByEmail($email)
     {
@@ -161,11 +166,16 @@ class UserManager implements UserProviderInterface
      * @param array $username
      * @param array $email
      *
-     * @return \Aisel\BackendUserBundle\Entity\BackendUser $user
+     * @return UserInterface
      */
     public function findUser($username, $email)
     {
-        $user = $this->getRepository()->findUser($username, $email);
+        $user =  $this
+            ->getRepository()
+            ->findOneBy(array(
+                'username' => $username,
+                'email' => $email,
+            ));
 
         return $user;
     }

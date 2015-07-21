@@ -9,7 +9,7 @@ services:
     backend.user.manager:
         class: Aisel\BackendUserBundle\Manager\UserManager
         arguments:
-          - @doctrine.orm.entity_manager
+          - @doctrine.odm.mongodb.document_manager
           - @security.encoder_factory
           - @security.context
 

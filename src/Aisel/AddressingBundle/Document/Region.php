@@ -17,17 +17,17 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * City
+ * Region
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  *
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
- *      collection="aisel_addressing_city",
- *      repositoryClass="Aisel\AddressingBundle\Document\CityRepository"
+ *      collection="aisel_addressing_region",
+ *      repositoryClass="Aisel\AddressingBundle\Document\RegionRepository"
  * )
  */
-class City
+class Region
 {
     /**
      * @var string
@@ -40,16 +40,8 @@ class City
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
-     * @JMS\Type("string")
      */
     private $name;
-
-    /**
-     * @var Region
-     * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\Region", nullable=true)
-     * @JMS\Type("Aisel\AddressingBundle\Document\Region")
-     */
-    private $region;
 
     /**
      * @var Country
@@ -62,7 +54,6 @@ class City
      * @var \DateTime
      * @ODM\Field(type="date")
      * @Gedmo\Timestampable(on="create")
-     * @JMS\Type("DateTime")
      */
     private $createdAt;
 
@@ -70,7 +61,6 @@ class City
      * @var \DateTime
      * @ODM\Field(type="date")
      * @Gedmo\Timestampable(on="update")
-     * @JMS\Type("DateTime")
      */
     private $updatedAt;
 
@@ -88,7 +78,7 @@ class City
      * Set name
      *
      * @param  string $name
-     * @return City
+     * @return Region
      */
     public function setName($name)
     {
@@ -105,52 +95,6 @@ class City
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set country
-     *
-     * @param  Country $country
-     * @return City
-     */
-    public function setCountry(Country $country = null)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return Country
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * Set region
-     *
-     * @param  Region $region
-     * @return City
-     */
-    public function setRegion(Region $region = null)
-    {
-        $this->region = $region;
-
-        return $this;
-    }
-
-    /**
-     * Get region
-     *
-     * @return Region
-     */
-    public function getRegion()
-    {
-        return $this->region;
     }
 
     /**
@@ -173,4 +117,26 @@ class City
         return $this->updatedAt;
     }
 
+    /**
+     * Set country
+     *
+     * @param  Country $country
+     * @return Region
+     */
+    public function setCountry(Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
 }
