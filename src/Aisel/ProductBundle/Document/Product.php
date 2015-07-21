@@ -5,88 +5,115 @@
  *
  * (c) Ivan Proskuryakov
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license infODMation, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Entity;
+namespace Aisel\ProductBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
+use Aisel\ProductBundle\Document\Category;
 
 /**
  * Product
  *
  * @author Ivan Proskoryakov <volgodark@gmail.com>
  *
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(repositoryClass="Aisel\ProductBundle\Entity\ProductRepository")
- * @ORM\Table(name="aisel_product")
+ * @ODM\HasLifecycleCallbacks()
+ * @ODM\Document(
+ *      collection="aisel_product",
+ *      repositoryClass="Aisel\ProductBundle\Document\ProductRepository"
+ * )
  */
 class Product implements UrlInterface
 {
     /**
-     * @var integer
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var string
+     * @ODM\Id
+     * @JMS\Type("string")
      */
     private $id;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=2, nullable=false)
+     * @ODM\Field(type="string")
      * @Assert\NotNull()
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 2
+     * )
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $locale;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $name;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ODM\Field(type="string")
+     * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $sku;
 
     /**
-     * @var float
+     * @var string
+     * @ODM\Field(type="string")
+     * @Assert\Type(type="string")
      * @Assert\NotNull()
-     * @ORM\Column(type="float", scale=2, nullable=true)
+     * @JMS\Expose
+     * @JMS\Type("integer")
      */
     private $price;
 
     /**
-     * @var float
-     * @ORM\Column(type="float", scale=2, nullable=true)
+     * @var string
+     * @ODM\Field(type="string")
+     * @Assert\Type(type="string")
+     * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("integer")
      */
     private $priceSpecial;
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ODM\Field(type="date")
+     * @Gedmo\Timestampable(on="update")
+     * @JMS\Expose
+     * @JMS\Type("DateTime")
      */
     private $priceSpecialFrom;
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ODM\Field(type="date")
+     * @Gedmo\Timestampable(on="update")
+     * @JMS\Expose
+     * @JMS\Type("DateTime")
      */
     private $priceSpecialTo;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean")
+     * @ODM\Field(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      */
@@ -94,153 +121,179 @@ class Product implements UrlInterface
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ODM\Field(type="date")
+     * @Gedmo\Timestampable(on="update")
+     * @JMS\Expose
+     * @JMS\Type("DateTime")
      */
     private $newFrom;
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ODM\Field(type="date")
+     * @Gedmo\Timestampable(on="update")
+     * @JMS\Expose
+     * @JMS\Type("DateTime")
      */
     private $newTo;
 
     /**
-     * @var integer
-     * @ORM\Column(type="integer")
+     * @var string
+     * @ODM\Field(type="string")
+     * @Assert\Type(type="string")
+     * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("integer")
      */
     private $qty = 0;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean")
+     * @ODM\Field(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("boolean")
      */
     private $inStock = false;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean")
+     * @ODM\Field(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("boolean")
      */
     private $manageStock = false;
 
     /**
      * @var string
-     * @ORM\Column(type="text")
+     * @ODM\Field(type="string")
+     * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $descriptionShort;
 
     /**
      * @var string
-     * @ORM\Column(type="text")
+     * @ODM\Field(type="string")
+     * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $description;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean")
+     * @ODM\Field(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
-     */
-    private $status = false;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean")
-     * @Assert\Type(type="bool")
-     * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("boolean")
      */
     private $hidden = false;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean")
+     * @ODM\Field(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("boolean")
+     */
+    private $status = false;
+
+    /**
+     * @var boolean
+     * @ODM\Field(type="boolean")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("boolean")
      */
     private $commentStatus = false;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ODM\Field(type="string")
      * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaUrl;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaTitle;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaDescription;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     private $metaKeywords;
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Image", mappedBy="product", cascade={"remove"})
+     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Image", cascade={"remove"})
+     * @JMS\Expose
+     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Image>")
      */
     private $images;
 
     /**
      * @var ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Aisel\ProductBundle\Entity\Category")
-     * @ORM\JoinTable(
-     *     name="aisel_product_product_category",
-     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
-     * )
+     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Category>")
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
      */
     private $categories;
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime")
+     * @ODM\Field(type="date")
      * @Gedmo\Timestampable(on="create")
+     * @JMS\Expose
+     * @JMS\Type("DateTime")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime")
+     * @ODM\Field(type="date")
      * @Gedmo\Timestampable(on="update")
+     * @JMS\Expose
+     * @JMS\Type("DateTime")
      */
     private $updatedAt;
-
-    /**
-     * @inheritdoc
-     */
-    public function __toString()
-    {
-        return $this->getSku();
-    }
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->simage = new ArrayCollection();
+        $this->images = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
 
@@ -826,12 +879,12 @@ class Product implements UrlInterface
     /**
      * Add categories
      *
-     * @param  Category $categories
+     * @param  Category $category
      * @return Product
      */
-    public function addCategory(Category $categories)
+    public function addCategory(Category $category)
     {
-        $this->categories[] = $categories;
+        $this->categories->add($category);
 
         return $this;
     }
@@ -839,11 +892,11 @@ class Product implements UrlInterface
     /**
      * Remove categories
      *
-     * @param Category $categories
+     * @param Category $category
      */
-    public function removeCategory(Category $categories)
+    public function removeCategory(Category $category)
     {
-        $this->categories->removeElement($categories);
+        $this->categories->removeElement($category);
     }
 
     /**

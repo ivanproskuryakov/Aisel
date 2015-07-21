@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Document;
+namespace Aisel\ProductBundle\Document;
 
 use Aisel\ResourceBundle\Document\Category as BaseCategory;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
@@ -25,8 +25,8 @@ use Aisel\ResourceBundle\Document\UrlInterface;
  *
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
- *      collection="aisel_page_category",
- *      repositoryClass="Aisel\PageBundle\Document\CategoryRepository"
+ *      collection="aisel_product_category",
+ *      repositoryClass="Aisel\ProductBundle\Document\CategoryRepository"
  * )
  */
 class Category extends BaseCategory implements UrlInterface

@@ -16,7 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Entity\UrlInterface;
+use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\PageBundle\Document\Category;
 
 /**
@@ -129,6 +129,14 @@ class Page implements UrlInterface
     private $metaKeywords;
 
     /**
+     * @var ArrayCollection
+     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category")
+     * @JMS\Expose
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
+     */
+    private $categories;
+
+    /**
      * @var \DateTime
      * @ODM\Field(type="date")
      * @Gedmo\Timestampable(on="create")
@@ -145,14 +153,6 @@ class Page implements UrlInterface
      * @JMS\Type("DateTime")
      */
     private $updatedAt;
-
-    /**
-     * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category")
-     * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
-     */
-    private $categories;
 
     /**
      * Constructor
