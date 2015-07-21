@@ -17,6 +17,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Entity\UrlInterface;
+use Aisel\PageBundle\Document\Category;
 
 /**
  * Page
@@ -145,18 +146,13 @@ class Page implements UrlInterface
      */
     private $updatedAt;
 
-//    /**
-//     * @var ArrayCollection
-//     * @ORM\ManyToMany(targetEntity="Aisel\PageBundle\Entity\Category")
-//     * @ORM\JoinTable(
-//     *     name="aisel_page_page_category",
-//     *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
-//     *     inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
-//     * )
-//     * @JMS\Expose
-//     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Category>")
-//     */
-//    private $categories;
+    /**
+     * @var ArrayCollection
+     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category", mappedBy="page")*
+     * @JMS\Expose
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
+     */
+    private $categories;
 
     /**
      * @inheritdoc
@@ -425,15 +421,17 @@ class Page implements UrlInterface
     }
 
     /**
-     * Add categories
+     * Add category
      *
-     * @param Category $categories
+     * @param Category $category
      *
      * @return Page
      */
-    public function addCategory(Category $categories)
+    public function addCategory(Category $category)
     {
-        $this->categories[] = $categories;
+//        var_dump($category->getId());
+//        exit();
+        $this->categories->add($category);
 
         return $this;
     }
@@ -441,11 +439,11 @@ class Page implements UrlInterface
     /**
      * Remove categories
      *
-     * @param Category $categories
+     * @param Category $category
      */
-    public function removeCategory(Category $categories)
+    public function removeCategory(Category $category)
     {
-        $this->categories->removeElement($categories);
+        $this->categories->removeElement($category);
     }
 
     /**
