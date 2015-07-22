@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ConfigBundle\Entity;
+namespace Aisel\ConfigBundle\Document;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ODM\MongoDB\DocumentRepository;
 use Symfony\Component\Security\Core\Exception;
 
 /**
@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Exception;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ConfigRepository extends EntityRepository
+class ConfigRepository extends DocumentRepository
 {
 
     /**
@@ -31,12 +31,13 @@ class ConfigRepository extends EntityRepository
      */
     public function getAllSettings($locale)
     {
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $query = $qb->select('c.entity, c.value, c.locale')
-            ->from('AiselConfigBundle:Config', 'c');
+        $query = $this
+            ->getDocumentManager()
+            ->createQueryBuilder('Aisel\ConfigBundle\Document\Config')
+            ->select('entity, value, locale');
 
         if ($locale) {
-            $query->andWhere('c.locale = :locale')->setParameter('locale', $locale);
+            $query = $query->field('locale')->equals($locale);
         }
         $collection = $query->getQuery()->execute();
 
@@ -44,24 +45,25 @@ class ConfigRepository extends EntityRepository
     }
 
     /**
-     * Get config data for current entity & locale
+     * Get config data for current Document & locale
      *
      * @param string $locale
-     * @param string $entityName
+     * @param string $name
      *
-     * @return array $entity
+     * @return array $config
      */
-    public function getConfig($locale, $entityName)
+    public function getConfig($locale, $name)
     {
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $entity = $qb->select('c')
-            ->from('AiselConfigBundle:Config', 'c')
-            ->where('c.locale = :locale')->setParameter('locale', $locale)
-            ->andWhere('c.entity = :entity')->setParameter('entity', $entityName)
-            ->getQuery()
-            ->getOneOrNullResult();
+        $query = $this
+            ->getDocumentManager()
+            ->createQueryBuilder('Aisel\ConfigBundle\Document\Config')
+            ->field('locale')->equals($locale)
+            ->field('entity')->equals($name)
+            ->getQuery();
 
-        return $entity;
+        $config = $query->getSingleResult();
+
+        return $config;
     }
 
     /**
@@ -72,24 +74,24 @@ class ConfigRepository extends EntityRepository
     public function saveConfig($settings)
     {
         foreach ($settings as $locale => $entities) {
-            foreach ($entities as $entity => $value) {
-                $this->setConfig($locale, $entity, $value);
+            foreach ($entities as $Document => $value) {
+                $this->setConfig($locale, $Document, $value);
             }
         }
     }
 
     /**
-     * Set config data for current entity & locale
+     * Set config data for current Document & locale
      *
      * @param string $locale
-     * @param string $entity
+     * @param string $Document
      * @param string $value
      *
      * @throws \RuntimeException
      */
-    public function setConfig($locale, $entity, $value)
+    public function setConfig($locale, $Document, $value)
     {
-        $config = $this->getConfig($locale, $entity);
+        $config = $this->getConfig($locale, $Document);
 
         if (!$config) {
             $config = new Config();
@@ -97,11 +99,11 @@ class ConfigRepository extends EntityRepository
 
         try {
             $config->setlocale($locale);
-            $config->setEntity($entity);
+            $config->setEntity($Document);
             $config->setValue(json_encode($value));
-            $this->_em->persist($config);
-            $this->_em->flush();
-        } catch (Exception $e) {
+            $this->getDocumentManager()->persist($config);
+            $this->getDocumentManager()->flush();
+        } catch (\Exception $e) {
             throw new \RuntimeException($e);
         }
     }

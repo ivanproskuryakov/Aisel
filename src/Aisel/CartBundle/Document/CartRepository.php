@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\CartBundle\Entity;
+namespace Aisel\CartBundle\Document;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use Aisel\CartBundle\Document\Cart;
@@ -93,12 +93,16 @@ class CartRepository extends DocumentRepository
      */
     public function findProduct($user, $product)
     {
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select('c')
-            ->from('AiselCartBundle:Cart', 'c')
-            ->where('c.product = :productId')->setParameter('productId', $product->getId())
-            ->andWhere('c.frontenduser = :userId')->setParameter('userId', $user->getId());
-        $cartItem = $query->getQuery()->getResult();
+        $query = $this
+            ->getDocumentManager()
+            ->createQueryBuilder('Aisel\CartBundle\Document\Cart')
+            ->field('product')->equals($product->getId())
+            ->field('frontenduser')->equals($user->getId());
+
+        $cartItem = $query
+            ->getQuery()
+            ->execute()
+            ->toArray();
 
         if ($cartItem) return $cartItem[0];
         return false;

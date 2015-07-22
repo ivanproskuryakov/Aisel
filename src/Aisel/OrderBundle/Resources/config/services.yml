@@ -20,4 +20,4 @@ services:
     aisel.invoice.manager:
         class: %aisel_invoice_manager.class%
         arguments:
-          - @doctrine.orm.entity_manager
+          - @doctrine.odm.mongodb.document_manager

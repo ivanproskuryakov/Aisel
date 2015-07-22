@@ -11,7 +11,7 @@
 
 namespace Aisel\ConfigBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use LogicException;
 
 /**
@@ -23,9 +23,9 @@ class ConfigManager
 {
 
     /**
-     * @var EntityManager
+     * @var DocumentManager
      */
-    protected $em;
+    protected $dm;
 
     /**
      * @var array
@@ -35,13 +35,13 @@ class ConfigManager
     /**
      * Constructor
      *
-     * @param EntityManager $em
+     * @param DocumentManager $dm
      * @param string        $locale
      * @param string        $locales
      */
-    public function __construct(EntityManager $em, $locale, $locales)
+    public function __construct(DocumentManager $dm, $locale, $locales)
     {
-        $this->em = $em;
+        $this->dm = $dm;
         $this->locale['primary'] = $locale;
         $this->locale['available'] = explode('|', $locales);
     }
@@ -58,7 +58,7 @@ class ConfigManager
     public function getConfig($locale = null)
     {
         $collection = $this
-            ->em
+            ->dm
             ->getRepository('AiselConfigBundle:Config')
             ->getAllSettings($locale);
 
@@ -89,7 +89,7 @@ class ConfigManager
     {
         $settings = json_decode($settingsData, true);
 
-        $this->em->getRepository('AiselConfigBundle:Config')->saveConfig($settings);
+        $this->dm->getRepository('AiselConfigBundle:Config')->saveConfig($settings);
     }
 
     /**
@@ -102,7 +102,7 @@ class ConfigManager
      */
     public function getConfigForEntity($locale = null, $entity)
     {
-        $config = $this->em
+        $config = $this->dm
             ->getRepository('AiselConfigBundle:Config')
             ->getConfig($locale, $entity);
 

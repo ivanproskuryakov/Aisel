@@ -20,6 +20,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Aisel\AddressingBundle\Document\Address;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Aisel\OrderBundle\Document\Order;
+use Aisel\CartBundle\Document\Cart;
 
 /**
  * FrontendUser
@@ -620,10 +622,10 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Add orders
      *
-     * @param  \Aisel\OrderBundle\Document\Order $orders
+     * @param  Order $orders
      * @return FrontendUser
      */
-    public function addOrder(\Aisel\OrderBundle\Document\Order $orders)
+    public function addOrder(Order $orders)
     {
         $this->orders[] = $orders;
 
@@ -633,9 +635,9 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Remove orders
      *
-     * @param \Aisel\OrderBundle\Document\Order $orders
+     * @param Order $orders
      */
-    public function removeOrder(\Aisel\OrderBundle\Document\Order $orders)
+    public function removeOrder(Order $orders)
     {
         $this->orders->removeElement($orders);
     }
@@ -653,10 +655,10 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Add cart
      *
-     * @param  \Aisel\CartBundle\Document\Cart $cart
+     * @param  Cart $cart
      * @return FrontendUser
      */
-    public function addCart(\Aisel\CartBundle\Document\Cart $cart)
+    public function addCart(Cart $cart)
     {
         $this->cart[] = $cart;
 
@@ -666,9 +668,9 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Remove cart
      *
-     * @param \Aisel\CartBundle\Document\Cart $cart
+     * @param Cart $cart
      */
-    public function removeCart(\Aisel\CartBundle\Document\Cart $cart)
+    public function removeCart(Cart $cart)
     {
         $this->cart->removeElement($cart);
     }
