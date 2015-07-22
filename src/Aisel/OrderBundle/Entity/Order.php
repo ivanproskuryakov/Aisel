@@ -21,7 +21,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Order
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\OrderBundle\Entity\OrderRepository")

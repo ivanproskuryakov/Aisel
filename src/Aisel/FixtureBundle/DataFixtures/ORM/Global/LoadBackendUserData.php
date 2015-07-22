@@ -18,7 +18,7 @@ use Aisel\FixtureBundle\Model\XMLFixture;
 /**
  * Backend users fixtures
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class LoadBackendUserData extends XMLFixture implements OrderedFixtureInterface
 {

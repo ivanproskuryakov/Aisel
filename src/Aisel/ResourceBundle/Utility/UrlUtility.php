@@ -14,7 +14,7 @@ namespace Aisel\ResourceBundle\Utility;
 /**
  * Url manipulations, check and return normalized RUL
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class UrlUtility
 {

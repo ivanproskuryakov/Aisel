@@ -25,7 +25,7 @@ use Aisel\ResourceBundle\Exception\ValidationFailedException;
 /**
  * Class ParamConverter
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ParamConverter extends RequestBodyParamConverter
 {

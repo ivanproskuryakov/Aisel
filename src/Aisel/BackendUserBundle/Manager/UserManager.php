@@ -22,7 +22,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 /**
  * Manager for backend users. Register, Load and others ...
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class UserManager implements UserProviderInterface
 {

@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Repository\CollectionRepository;
 /**
  * PageRepository
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class PageRepository extends CollectionRepository
 {

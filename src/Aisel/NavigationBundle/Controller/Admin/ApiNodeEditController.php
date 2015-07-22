@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Controller\ApiNodeEditController as BaseApiNodeEditCont
 /**
  * ApiNodeEditController
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiNodeEditController extends BaseApiNodeEditController
 {

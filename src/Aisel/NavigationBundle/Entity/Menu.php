@@ -19,7 +19,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Menu
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\NavigationBundle\Entity\MenuRepository")

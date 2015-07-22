@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Region
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\AddressingBundle\Entity\RegionRepository")

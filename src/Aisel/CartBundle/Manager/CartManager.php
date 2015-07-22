@@ -20,7 +20,7 @@ use Aisel\CartBundle\Entity\Cart;
 /**
  * Manager for Cart, mostly used in REST API
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class CartManager
 {

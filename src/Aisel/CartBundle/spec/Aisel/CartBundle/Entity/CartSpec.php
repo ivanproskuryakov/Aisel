@@ -14,7 +14,7 @@ namespace spec\Aisel\CartBundle\Entity;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class CartSpec extends ObjectBehavior
 {

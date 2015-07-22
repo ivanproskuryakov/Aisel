@@ -19,7 +19,7 @@ use Aisel\AddressingBundle\Entity\Region;
 /**
  * Region fixtures
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class LoadRegionData extends XMLFixture implements OrderedFixtureInterface
 {

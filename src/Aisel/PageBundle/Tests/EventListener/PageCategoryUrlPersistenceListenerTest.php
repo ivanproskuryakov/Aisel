@@ -17,7 +17,7 @@ use Aisel\PageBundle\Entity\Category;
 /**
  * PageCategoryUrlPersistenceListenerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class PageCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
 {

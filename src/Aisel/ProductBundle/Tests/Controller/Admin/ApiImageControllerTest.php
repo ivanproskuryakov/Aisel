@@ -16,7 +16,7 @@ use Aisel\MediaBundle\Tests\Controller\UploadControllerTest;
 /**
  * ApiImageControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiImageControllerTest extends UploadControllerTest
 {

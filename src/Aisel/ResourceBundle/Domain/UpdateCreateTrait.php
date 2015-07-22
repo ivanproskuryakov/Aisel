@@ -18,7 +18,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * UpdateCreateTraitTrait
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  */
 trait UpdateCreateTrait

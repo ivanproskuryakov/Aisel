@@ -20,7 +20,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Menu
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(

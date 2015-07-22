@@ -19,7 +19,7 @@ use Aisel\FrontendUserBundle\Entity\FrontendUser;
 /**
  * Address
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\AddressingBundle\Entity\AddressRepository")

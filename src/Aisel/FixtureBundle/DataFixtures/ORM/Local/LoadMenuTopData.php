@@ -19,7 +19,7 @@ use Aisel\NavigationBundle\Entity\Menu;
 /**
  * Navigation menu fixtures
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class LoadMenuTopData extends XMLFixture implements OrderedFixtureInterface
 {

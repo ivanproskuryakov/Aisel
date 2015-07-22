@@ -19,7 +19,7 @@ use Aisel\AddressingBundle\Entity\Address;
 /**
  * Addressing fixtures
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class LoadAddressData extends XMLFixture implements OrderedFixtureInterface
 {

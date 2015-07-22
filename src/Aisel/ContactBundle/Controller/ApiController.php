@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * ApiController
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiController extends Controller
 {

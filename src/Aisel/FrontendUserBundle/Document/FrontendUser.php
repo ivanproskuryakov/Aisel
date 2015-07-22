@@ -24,7 +24,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 /**
  * FrontendUser
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @JMS\ExclusionPolicy("none")
  *

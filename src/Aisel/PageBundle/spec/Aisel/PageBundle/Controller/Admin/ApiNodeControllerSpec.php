@@ -14,7 +14,7 @@ namespace spec\Aisel\PageBundle\Controller\Admin;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiNodeControllerSpec extends ObjectBehavior
 {

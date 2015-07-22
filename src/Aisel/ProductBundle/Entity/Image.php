@@ -17,7 +17,7 @@ use Aisel\MediaBundle\Entity\Image as BaseImage;
 /**
  * Image
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\ProductBundle\Entity\ImageRepository")

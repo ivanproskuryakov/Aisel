@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Repository\CollectionRepository;
 /**
  * Repository for Menu entity
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class MenuRepository extends CollectionRepository
 {

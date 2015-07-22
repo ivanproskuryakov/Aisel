@@ -17,7 +17,7 @@ use Aisel\FixtureBundle\Model\XMLFixture;
 
 /**
  * Cart fixtures
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class LoadCartData extends XMLFixture implements OrderedFixtureInterface
 {

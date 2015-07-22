@@ -19,7 +19,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * City
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\AddressingBundle\Entity\CityRepository")

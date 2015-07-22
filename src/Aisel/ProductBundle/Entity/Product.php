@@ -22,7 +22,7 @@ use Aisel\ResourceBundle\Document\UrlInterface;
 /**
  * Product
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\ProductBundle\Entity\ProductRepository")

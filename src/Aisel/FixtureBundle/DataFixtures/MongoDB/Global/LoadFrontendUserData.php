@@ -18,7 +18,7 @@ use Aisel\FixtureBundle\Model\XMLFixture;
 /**
  * LoadFrontendUserData
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class LoadFrontendUserData extends XMLFixture implements OrderedFixtureInterface
 {

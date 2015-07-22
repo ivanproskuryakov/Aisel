@@ -17,7 +17,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * MetaTrait
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  */
 trait MetaTrait

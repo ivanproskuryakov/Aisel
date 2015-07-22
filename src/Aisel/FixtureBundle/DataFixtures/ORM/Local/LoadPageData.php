@@ -19,7 +19,7 @@ use Aisel\PageBundle\Entity\Page;
 /**
  * Page fixtures
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class LoadPageData extends XMLFixture implements OrderedFixtureInterface
 {

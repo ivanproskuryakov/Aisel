@@ -23,7 +23,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 /**
  * Category
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @Gedmo\Tree(type="materializedPath")
  * @ODM\HasLifecycleCallbacks()

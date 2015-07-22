@@ -17,7 +17,7 @@ use Aisel\PageBundle\Entity\Category;
 /**
  * ApiNodeEditControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 {

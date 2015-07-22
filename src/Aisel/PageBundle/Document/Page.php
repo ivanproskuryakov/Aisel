@@ -25,7 +25,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
 /**
  * Page
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(

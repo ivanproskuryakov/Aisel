@@ -19,7 +19,7 @@ use Aisel\OrderBundle\Entity\Order;
 /**
  * InvoiceManager
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class InvoiceManager
 {

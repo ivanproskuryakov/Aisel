@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\Exception;
 /**
  * Config Repository
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ConfigRepository extends EntityRepository
 {

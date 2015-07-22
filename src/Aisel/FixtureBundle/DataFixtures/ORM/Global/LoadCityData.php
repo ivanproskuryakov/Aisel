@@ -19,7 +19,7 @@ use Aisel\AddressingBundle\Entity\City;
 /**
  * City fixtures
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class LoadCityData extends XMLFixture implements OrderedFixtureInterface
 {

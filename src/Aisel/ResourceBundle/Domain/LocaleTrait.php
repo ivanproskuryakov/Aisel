@@ -17,7 +17,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * LocaleTrait
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  */
 trait LocaleTrait

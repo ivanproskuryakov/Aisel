@@ -17,7 +17,7 @@ use Payum\Core\Model\Token;
 /**
  * PaymentToken
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\Entity(repositoryClass="Aisel\OrderBundle\Entity\PaymentTokenRepository")
  * @ORM\Table(name="aisel_order_payment_token")

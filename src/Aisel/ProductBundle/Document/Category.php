@@ -23,7 +23,7 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
 /**
  * Category
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(

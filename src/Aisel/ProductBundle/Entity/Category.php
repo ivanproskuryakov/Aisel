@@ -21,7 +21,7 @@ use Aisel\ResourceBundle\Document\UrlInterface;
 /**
  * Category
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\ProductBundle\Entity\CategoryRepository")

@@ -19,7 +19,7 @@ use Aisel\ProductBundle\Entity\Category;
 /**
  * Product Categories
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class LoadProductCategoryData extends XMLFixture implements OrderedFixtureInterface
 {

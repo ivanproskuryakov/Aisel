@@ -21,7 +21,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 /**
  * BackendUser
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(

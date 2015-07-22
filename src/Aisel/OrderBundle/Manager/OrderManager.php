@@ -21,7 +21,7 @@ use Doctrine\ORM\EntityManager;
 /**
  * OrderManager
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class OrderManager
 {

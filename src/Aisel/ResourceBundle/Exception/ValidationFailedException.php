@@ -16,7 +16,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 /**
  * Class ParamConverter
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ValidationFailedException extends \RuntimeException
 {

@@ -20,7 +20,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Cart
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\CartBundle\Entity\CartRepository")

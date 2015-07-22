@@ -19,7 +19,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 /**
  * Config
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(

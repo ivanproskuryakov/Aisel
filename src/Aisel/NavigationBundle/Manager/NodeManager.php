@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Manager\ApiNodeManager;
 /**
  * Manager for Navigation Menu Nodes
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class NodeManager extends ApiNodeManager
 {

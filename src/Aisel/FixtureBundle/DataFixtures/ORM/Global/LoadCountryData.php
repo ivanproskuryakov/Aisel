@@ -20,7 +20,7 @@ use Aisel\AddressingBundle\Entity\Country;
 /**
  * Country fixtures
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class LoadCountryData extends XMLFixture implements OrderedFixtureInterface
 {

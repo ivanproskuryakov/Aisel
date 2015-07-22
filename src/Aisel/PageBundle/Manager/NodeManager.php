@@ -17,7 +17,7 @@ use LogicException;
 /**
  * Manager for page categories
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class NodeManager extends ApiNodeManager
 {

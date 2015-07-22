@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Repository\CollectionRepository;
 /**
  * Frontend user repository
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class FrontendUserRepository extends CollectionRepository
 {

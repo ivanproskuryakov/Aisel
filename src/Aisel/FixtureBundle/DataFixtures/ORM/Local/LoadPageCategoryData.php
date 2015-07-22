@@ -19,7 +19,7 @@ use Aisel\PageBundle\Entity\Category;
 /**
  * Page Category fixtures
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class LoadPageCategoryData extends XMLFixture implements OrderedFixtureInterface
 {

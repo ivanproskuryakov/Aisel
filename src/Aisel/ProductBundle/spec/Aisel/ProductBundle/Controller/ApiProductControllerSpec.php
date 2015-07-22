@@ -14,7 +14,7 @@ namespace spec\Aisel\ProductBundle\Controller;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiProductControllerSpec extends ObjectBehavior
 {

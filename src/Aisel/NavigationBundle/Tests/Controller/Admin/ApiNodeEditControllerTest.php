@@ -17,7 +17,7 @@ use Aisel\NavigationBundle\Entity\Menu;
 /**
  * ApiNodeEditControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 {

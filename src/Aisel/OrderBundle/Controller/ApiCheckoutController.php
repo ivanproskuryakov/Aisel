@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * ApiCheckoutController
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiCheckoutController extends Controller
 {
