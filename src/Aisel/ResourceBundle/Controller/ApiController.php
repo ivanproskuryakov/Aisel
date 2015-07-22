@@ -13,7 +13,7 @@ namespace Aisel\ResourceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use JMS\Serializer\SerializationContext;
@@ -31,11 +31,11 @@ class ApiController extends Controller
     protected $model;
 
     /**
-     * @return EntityManager
+     * @return DocumentManager
      */
-    protected function getEntityManager()
+    protected function getDocumentManager()
     {
-        return $this->get('doctrine.orm.entity_manager');
+        return $this->get('doctrine.odm.mongodb.document_manager');
     }
 
     /**
@@ -103,8 +103,8 @@ class ApiController extends Controller
             $statusCode = (null === $entity->getId()) ? 201 : 204;
         }
 
-        $this->getEntityManager()->persist($entity);
-        $this->getEntityManager()->flush();
+        $this->getDocumentManager()->persist($entity);
+        $this->getDocumentManager()->flush();
 
         $response = new Response();
         $response->setStatusCode($statusCode);
@@ -188,7 +188,7 @@ class ApiController extends Controller
     {
         $entity = $this->getEntityFromRequest($request);
 
-        $em = $this->getEntityManager();
+        $em = $this->getDocumentManager();
         $em->remove($entity);
         $em->flush();
     }
@@ -214,7 +214,7 @@ class ApiController extends Controller
          * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
-            ->getEntityManager()
+            ->getDocumentManager()
             ->getRepository($this->model);
         $total = $repo->getTotalFromRequest($params);
         $collection = $repo->getCollectionFromRequest($params);
@@ -237,7 +237,7 @@ class ApiController extends Controller
          * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
-            ->getEntityManager()
+            ->getDocumentManager()
             ->getRepository($this->model);
         $collection = $repo->getNodesAsTree($locale);
 

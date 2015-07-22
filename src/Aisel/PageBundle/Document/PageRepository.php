@@ -12,6 +12,7 @@
 namespace Aisel\PageBundle\Document;
 
 use Aisel\ResourceBundle\Repository\CollectionRepository;
+use Aisel\PageBundle\Document\Page;
 
 /**
  * PageRepository
@@ -26,7 +27,7 @@ class PageRepository extends CollectionRepository
     /**
      * Get pages based on limit, current pagination and search query
      * @param  array                         $params
-     * @return \Aisel\PageBundle\Entity\Page
+     * @return Page
      */
     public function searchFromRequest($params)
     {
@@ -48,7 +49,7 @@ class PageRepository extends CollectionRepository
 
     /**
      * Get pages based on limit, current pagination and search query
-     * @return \Aisel\PageBundle\Entity\Page $pages
+     * @return Page $pages
      */
     public function getEnabledPages()
     {

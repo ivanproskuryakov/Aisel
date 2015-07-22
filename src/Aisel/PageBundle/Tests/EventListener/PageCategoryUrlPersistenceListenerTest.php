@@ -12,7 +12,7 @@
 namespace Aisel\PageBundle\Tests\EventListener;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\PageBundle\Entity\Category;
+use Aisel\PageBundle\Document\Category;
 
 /**
  * PageCategoryUrlPersistenceListenerTest
@@ -63,7 +63,7 @@ class PageCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
 
         // Delete Page Category 1
         $category1 = $this->em
-            ->getRepository('Aisel\PageBundle\Entity\Category')
+            ->getRepository('Aisel\PageBundle\Document\Category')
             ->findOneBy(['metaUrl' => $urlText]);
 
         $this->em->remove($category1);

@@ -218,21 +218,21 @@ class CollectionRepository extends DocumentRepository
      */
     public function getNodesAsTree($locale, $onlyEnabled = true)
     {
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $query = $qb->select('c')
-            ->from($this->model, 'c')
-            ->where('c.lvl = :lvl')->setParameter('lvl', 0);
-
-        if ($onlyEnabled) {
-            $query->andWhere('c.status = :enabled')->setParameter('enabled', $onlyEnabled);
-        }
-
-        $result = $query
-            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
-            ->orderBy('c.root', 'ASC')
-            ->addOrderBy('c.lft', 'ASC')
-            ->getQuery()
-            ->execute();
+//        $qb = $this
+//            ->getDocumentManager()
+//            ->createQueryBuilder($this->model)
+//            ->field('lvl')->equals(0)
+//
+//        if ($onlyEnabled) {
+//            $query->andWhere('c.status = :enabled')->setParameter('enabled', $onlyEnabled);
+//        }
+//
+//        $result = $query
+//            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
+//            ->orderBy('c.root', 'ASC')
+//            ->addOrderBy('c.lft', 'ASC')
+//            ->getQuery()
+//            ->execute();
 
         return $result;
     }

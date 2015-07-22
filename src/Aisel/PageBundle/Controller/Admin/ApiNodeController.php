@@ -24,6 +24,6 @@ class ApiNodeController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\PageBundle\Entity\Category";
+    protected $model = "Aisel\PageBundle\Document\Category";
 
 }
