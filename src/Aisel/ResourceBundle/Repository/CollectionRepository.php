@@ -105,31 +105,31 @@ class CollectionRepository extends DocumentRepository
     public function getTotalFromRequest($params)
     {
         $this->mapRequest($params);
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select('COUNT(e.id)')
-            ->from($this->model, 'e');
+        $query = $this
+            ->getDocumentManager()
+            ->createQueryBuilder($this->model);
 
-        // === Filters ===
         if ($this->filter) {
-            foreach ($this->filter as $k => $value) {
-                $query->andWhere('e.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
+            foreach ($this->filter as $field => $value) {
+                $query->field($field)->equals($value);
             }
         }
 
         if ($this->locale) {
-            $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
+            $query->field('locale')->equals($this->locale);
         }
 
         if ($this->category) {
-            $query->innerJoin('e.categories', 'c')
-                ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
+            $query->field('category')->equals($this->category);
         }
 
         if ($this->search != '') {
-            $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
+            $query->expr()->operator('content', array(
+                    '$search' => $this->search,
+                ));
         }
 
-        $total = $query->getQuery()->getSingleScalarResult();
+        $total = $query->count()->getQuery()->execute();
 
         if (!$total) {
             return 0;
@@ -149,30 +149,33 @@ class CollectionRepository extends DocumentRepository
     {
         $this->mapRequest($params);
         $query = $this
-            ->getEntityManager()
-            ->createQueryBuilder();
-        $query->select('e')
-            ->from($this->model, 'e');
+            ->getDocumentManager()
+            ->createQueryBuilder($this->model);
 
         if ($this->filter) {
-            foreach ($this->filter as $k => $value) {
-                $query->andWhere('e.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
+            foreach ($this->filter as $field => $value) {
+                $query->field($field)->equals($value);
             }
         }
 
         if ($this->locale) {
-            $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
+            $query->field('locale')->equals($this->locale);
         }
 
         if ($this->category) {
-            $query->innerJoin('e.categories', 'c')
-                ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
+            $query->field('category')->equals($this->category);
+        }
+
+        if ($this->search != '') {
+            $query->expr()->operator('content', array(
+                '$search' => $this->search,
+            ));
         }
 
         $collection = $query
-            ->setMaxResults($this->pageLimit)
-            ->setFirstResult($this->pageSkip)
-            ->orderBy('e.' . $this->order, $this->orderBy)
+            ->limit($this->pageLimit)
+            ->skip($this->pageSkip)
+            ->sort($this->order, $this->orderBy)
             ->getQuery()
             ->execute();
 
@@ -190,7 +193,7 @@ class CollectionRepository extends DocumentRepository
     public function findTotalByURL($url, $entityId = null)
     {
         $query = $this
-            ->getEntityManager()
+            ->getDocumentManager()
             ->createQueryBuilder();
         $query->select('e')
             ->from($this->model, 'e')

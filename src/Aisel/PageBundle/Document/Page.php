@@ -88,7 +88,6 @@ class Page implements UrlInterface
     /**
      * @var ArrayCollection
      * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category")
-     * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
      */
     private $categories;

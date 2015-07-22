@@ -12,7 +12,7 @@
 namespace Aisel\PageBundle\Tests\EventListener;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\PageBundle\Entity\Page;
+use Aisel\PageBundle\Document\Page;
 
 /**
  * PageUrlPersistenceListenerTest
