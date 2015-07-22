@@ -2,14 +2,12 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: twig.yml }
-
     - { resource: configs/doctrine.yml }
     - { resource: configs/aisel.yml }
     - { resource: configs/payum.yml }
     - { resource: configs/cors.yml }
 
 framework:
-    #esi:             ~
     translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
@@ -28,7 +26,6 @@ framework:
         save_path: %kernel.root_dir%/var/sessions
 #        name: AISELSESSID
 #        cookie_domain: .aisel.dev
-
     fragments:       ~
     http_method_override: true
 
@@ -58,7 +55,7 @@ swiftmailer:
     password:  "%mailer_password%"
 #    spool:     { type: memory }
 
-# Fields serialization
+# JMS
 jms_serializer:
   metadata:
     auto_detection: true

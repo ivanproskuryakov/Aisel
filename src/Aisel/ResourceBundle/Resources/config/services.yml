@@ -11,15 +11,15 @@ parameters:
     aisel_exception_listener.class: Aisel\ResourceBundle\Request\ExceptionListener
 
 services:
-    jms_serializer.object_constructor:
-        alias: jms_serializer.doctrine_object_constructor
-        public: false
+#    jms_serializer.object_constructor:
+#        alias: jms_serializer.doctrine_object_constructor
+#        public: false
 
     api_param_converter:
         class: %aisel_param_converter.class%
         arguments:
             - @jms_serializer
-            - @doctrine.orm.entity_manager
+            - @doctrine.odm.mongodb.document_manager
             - @validator
             - @event_dispatcher
         tags:

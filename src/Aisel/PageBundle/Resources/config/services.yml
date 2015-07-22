@@ -14,7 +14,7 @@ services:
     aisel.pagecategory.node.manager:
         class: %aisel_page_category_mode_manager.class%
         arguments:
-          - @doctrine.orm.entity_manager
+          - @@doctrine.odm.mongodb.document_manager
           - "%locales%"
 
     aisel_page_url_persistence_listener:
