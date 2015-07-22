@@ -13,7 +13,7 @@ services:
     aisel.order.manager:
         class: %aisel_order_manager.class%
         arguments:
-            - @doctrine.orm.entity_manager
+            - @doctrine.odm.mongodb.document_manager
             - @aisel.config.manager
             - @aisel.cart.manager
 

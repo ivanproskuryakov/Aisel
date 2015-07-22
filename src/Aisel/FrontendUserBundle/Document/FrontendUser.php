@@ -5,7 +5,7 @@
  *
  * (c) Ivan Proskuryakov
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license infODMation, please view the LICENSE
  * file that was distributed with this source code.
  */
 
@@ -120,21 +120,21 @@ class FrontendUser implements AdvancedUserInterface
      */
     protected $plainPassword;
 
-//    /**
-//     * @var Collection
-//     * @ORM\OneToMany(targetEntity="Aisel\CartBundle\Entity\Cart", mappedBy="frontenduser")
-//     * @JMS\MaxDepth(1)
-//     * @JMS\Type("ArrayCollection<Aisel\CartBundle\Entity\Cart>")
-//     */
-//    private $cart;
-//
-//    /**
-//     * @var Collection
-//     * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\Order", mappedBy="frontenduser")
-//     * @JMS\MaxDepth(1)
-//     * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Entity\Order>")
-//     */
-//    private $orders;
+    /**
+     * @var Collection
+     * @ODM\referenceMany(targetDocument="Aisel\CartBundle\Document\Cart", mappedBy="frontenduser", cascade={"remove"})
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\CartBundle\Document\Cart>")
+     */
+    private $cart;
+
+    /**
+     * @var Collection
+     * @ODM\referenceMany(targetDocument="Aisel\OrderBundle\Document\Order", mappedBy="frontenduser")
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Document\Order>")
+     */
+    private $orders;
 
     /**
      * @var Collection
@@ -584,102 +584,102 @@ class FrontendUser implements AdvancedUserInterface
         return $this->about;
     }
 
-//    /**
-//     * Add addresses
-//     *
-//     * @param   $addresses
-//     * @return FrontendUser
-//     */
-//    public function addAddress(Address $addresses)
-//    {
-//        $this->addresses[] = $addresses;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Remove addresses
-//     *
-//     * @param Address $addresses
-//     */
-//    public function removeAddress(Address $addresses)
-//    {
-//        $this->addresses->removeElement($addresses);
-//    }
-//
-//    /**
-//     * Get addresses
-//     *
-//     * @return Collection
-//     */
-//    public function getAddresses()
-//    {
-//        return $this->addresses;
-//    }
-//
-//    /**
-//     * Add orders
-//     *
-//     * @param  \Aisel\OrderBundle\Entity\Order $orders
-//     * @return FrontendUser
-//     */
-//    public function addOrder(\Aisel\OrderBundle\Entity\Order $orders)
-//    {
-//        $this->orders[] = $orders;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Remove orders
-//     *
-//     * @param \Aisel\OrderBundle\Entity\Order $orders
-//     */
-//    public function removeOrder(\Aisel\OrderBundle\Entity\Order $orders)
-//    {
-//        $this->orders->removeElement($orders);
-//    }
-//
-//    /**
-//     * Get orders
-//     *
-//     * @return Collection
-//     */
-//    public function getOrders()
-//    {
-//        return $this->orders;
-//    }
-//
-//    /**
-//     * Add cart
-//     *
-//     * @param  \Aisel\CartBundle\Entity\Cart $cart
-//     * @return FrontendUser
-//     */
-//    public function addCart(\Aisel\CartBundle\Entity\Cart $cart)
-//    {
-//        $this->cart[] = $cart;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Remove cart
-//     *
-//     * @param \Aisel\CartBundle\Entity\Cart $cart
-//     */
-//    public function removeCart(\Aisel\CartBundle\Entity\Cart $cart)
-//    {
-//        $this->cart->removeElement($cart);
-//    }
-//
-//    /**
-//     * Get cart
-//     *
-//     * @return Collection
-//     */
-//    public function getCart()
-//    {
-//        return $this->cart;
-//    }
+    /**
+     * Add addresses
+     *
+     * @param   $addresses
+     * @return FrontendUser
+     */
+    public function addAddress(Address $addresses)
+    {
+        $this->addresses[] = $addresses;
+
+        return $this;
+    }
+
+    /**
+     * Remove addresses
+     *
+     * @param Address $addresses
+     */
+    public function removeAddress(Address $addresses)
+    {
+        $this->addresses->removeElement($addresses);
+    }
+
+    /**
+     * Get addresses
+     *
+     * @return Collection
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
+
+    /**
+     * Add orders
+     *
+     * @param  \Aisel\OrderBundle\Document\Order $orders
+     * @return FrontendUser
+     */
+    public function addOrder(\Aisel\OrderBundle\Document\Order $orders)
+    {
+        $this->orders[] = $orders;
+
+        return $this;
+    }
+
+    /**
+     * Remove orders
+     *
+     * @param \Aisel\OrderBundle\Document\Order $orders
+     */
+    public function removeOrder(\Aisel\OrderBundle\Document\Order $orders)
+    {
+        $this->orders->removeElement($orders);
+    }
+
+    /**
+     * Get orders
+     *
+     * @return Collection
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
+
+    /**
+     * Add cart
+     *
+     * @param  \Aisel\CartBundle\Document\Cart $cart
+     * @return FrontendUser
+     */
+    public function addCart(\Aisel\CartBundle\Document\Cart $cart)
+    {
+        $this->cart[] = $cart;
+
+        return $this;
+    }
+
+    /**
+     * Remove cart
+     *
+     * @param \Aisel\CartBundle\Document\Cart $cart
+     */
+    public function removeCart(\Aisel\CartBundle\Document\Cart $cart)
+    {
+        $this->cart->removeElement($cart);
+    }
+
+    /**
+     * Get cart
+     *
+     * @return Collection
+     */
+    public function getCart()
+    {
+        return $this->cart;
+    }
 }

@@ -12,6 +12,8 @@
 namespace Aisel\OrderBundle\Document;
 
 use Aisel\ResourceBundle\Repository\CollectionRepository;
+use Aisel\FrontendUserBundle\Document\FrontendUser;
+use Aisel\OrderBundle\Document\Order;
 
 /**
  * OrderRepository
@@ -22,17 +24,17 @@ use Aisel\ResourceBundle\Repository\CollectionRepository;
 class OrderRepository extends CollectionRepository
 {
 
-    protected $model = 'AiselOrderBundle:Order';
+    protected $model = 'Aisel\OrderBundle\Document\Order';
 
     /**
      * Create from user cart
      *
-     * @param \Aisel\FrontendUserBundle\Document\FrontendUser $user
+     * @param FrontendUser $user
      * @param string                                        $locale
      * @param string                                        $currencyCode
      * @param mixed                                         $orderInfo
      *
-     * @return \Aisel\OrderBundle\Document\Order $order|false
+     * @return Order $order|false
      */
     public function createOrderFromCartForUser($user, $currencyCode, $orderInfo)
     {
@@ -63,13 +65,13 @@ class OrderRepository extends CollectionRepository
     /**
      * Create from array of product
      *
-     * @param \Aisel\FrontendUserBundle\Document\FrontendUser $user
+     * @param FrontendUser $user
      * @param string                                        $locale
      * @param array                                         $products
      * @param string                                        $currencyCode
      * @param mixed                                         $orderInfo
      *
-     * @return \Aisel\OrderBundle\Document\Order $order|false
+     * @return Order $order|false
      */
     public function createOrderFromProductsForUser($user, $products, $currencyCode, $orderInfo)
     {
@@ -100,12 +102,12 @@ class OrderRepository extends CollectionRepository
     /**
      * Create empty order
      *
-     * @param \Aisel\FrontendUserBundle\Document\FrontendUser $user
+     * @param FrontendUser $user
      * @param string                                        $locale
      * @param string                                        $currencyCode
      * @param mixed                                         $orderInfo
      *
-     * @return \Aisel\OrderBundle\Document\Order $order
+     * @return Order $order
      */
     public function createEmptyOrder($user, $currencyCode, $orderInfo)
     {
@@ -133,13 +135,13 @@ class OrderRepository extends CollectionRepository
      *
      * @param int $userId
      *
-     * @return \Aisel\OrderBundle\Document\Order $order
+     * @return Order $order
      */
     public function findAllOrdersForUser($userId)
     {
         $query = $this->getDocumentManager()->createQueryBuilder();
         $orders = $query->select('o')
-            ->from('AiselOrderBundle:Order', 'o')
+            ->from($this->model, 'o')
             ->where('o.frontenduser = :userId')->setParameter('userId', $userId)
             ->orderBy('o.id', 'DESC')
             ->getQuery()
@@ -154,13 +156,13 @@ class OrderRepository extends CollectionRepository
      * @param integer $userId
      * @param integer $orderId
      *
-     * @return \Aisel\OrderBundle\Document\Order $order
+     * @return Order $order
      */
     public function findOrderForUser($userId, $orderId)
     {
         $query = $this->getDocumentManager()->createQueryBuilder();
         $orders = $query->select('o')
-            ->from('AiselOrderBundle:Order', 'o')
+            ->from($this->model, 'o')
             ->where('o.frontenduser = :userId')->setParameter('userId', $userId)
             ->andWhere('o.id = :orderId')->setParameter('orderId', $orderId)
             ->getQuery()
