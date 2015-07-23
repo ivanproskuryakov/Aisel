@@ -21,7 +21,7 @@ use Aisel\ResourceBundle\Manager\ApiNodeManager;
 class NodeManager extends ApiNodeManager
 {
 
-    protected $model = 'Aisel\NavigationBundle\Entity\Menu';
+    protected $model = 'Aisel\NavigationBundle\Document\Menu';
 
     /**
      * {@inheritDoc}
@@ -29,7 +29,7 @@ class NodeManager extends ApiNodeManager
     public function addChild($params)
     {
         /**
-         * @var $node \Aisel\NavigationBundle\Entity\Menu
+         * @var $node \Aisel\NavigationBundle\Document\Menu
          */
         if ($categoryId = $params['parentId']) {
             $nodeParent = $this->em->getRepository($this->model)->find($categoryId);
@@ -57,7 +57,7 @@ class NodeManager extends ApiNodeManager
     public function addSibling($params)
     {
         /**
-         * @var $node \Aisel\NavigationBundle\Entity\Menu
+         * @var $node \Aisel\NavigationBundle\Document\Menu
          */
         $node = new $this->model();
         $node->setTitle($params['name']);

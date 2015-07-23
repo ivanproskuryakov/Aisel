@@ -53,7 +53,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
     {
         $country = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso2' => 'ES']);
         $data = array(
             'name' => 'AAA',
@@ -77,7 +77,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
 
         $region = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
+            ->getRepository('Aisel\AddressingBundle\Document\Region')
             ->find($id);
 
         $this->assertTrue(201 === $statusCode);
@@ -91,7 +91,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
     {
         $region = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
+            ->getRepository('Aisel\AddressingBundle\Document\Region')
             ->findOneBy(['name' => 'AAA']);
         $id = $region->getId();
 
@@ -116,11 +116,11 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
     {
         $country = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso2' => 'RU']);
         $region = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
+            ->getRepository('Aisel\AddressingBundle\Document\Region')
             ->findOneBy(['name' => 'AAA']);
         $id = $region->getId();
         $data = array(
@@ -141,7 +141,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
         $region = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
+            ->getRepository('Aisel\AddressingBundle\Document\Region')
             ->find($id);
 
         $this->assertTrue(204 === $statusCode);
@@ -153,7 +153,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
     {
         $region = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
+            ->getRepository('Aisel\AddressingBundle\Document\Region')
             ->findOneBy(['name' => 'AAA']);
         $id = $region->getId();
 
@@ -170,7 +170,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
         $region = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
+            ->getRepository('Aisel\AddressingBundle\Document\Region')
             ->find($id);
 
         $this->assertTrue(204 === $statusCode);

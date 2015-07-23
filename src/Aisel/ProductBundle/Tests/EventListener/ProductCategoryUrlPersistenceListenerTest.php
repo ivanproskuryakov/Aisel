@@ -12,7 +12,7 @@
 namespace Aisel\ProductBundle\Tests\EventListener;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\ProductBundle\Entity\Category;
+use Aisel\ProductBundle\Document\Category;
 
 /**
  * ProductCategoryUrlPersistenceListenerTest
@@ -63,7 +63,7 @@ class ProductCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
 
         // Delete Product Category 1
         $category1 = $this->em
-            ->getRepository('Aisel\ProductBundle\Entity\Category')
+            ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['metaUrl' => $urlText]);
 
         $this->em->remove($category1);

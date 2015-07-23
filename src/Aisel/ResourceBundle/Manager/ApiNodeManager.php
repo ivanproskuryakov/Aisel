@@ -162,7 +162,7 @@ class ApiNodeManager
     public function updateParent($params)
     {
         /**
-         * @var $node \Aisel\ResourceBundle\Entity\Category
+         * @var $node \Aisel\ResourceBundle\Document\Category
          */
         $repo = $this
             ->em

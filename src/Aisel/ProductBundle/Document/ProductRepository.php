@@ -19,6 +19,6 @@ use Aisel\ResourceBundle\Repository\CollectionRepository;
 class ProductRepository extends CollectionRepository
 {
 
-    protected $model = 'AiselProductBundle:Product';
+    protected $model = "Aisel\ProductBundle\Document\Product";
 
 }

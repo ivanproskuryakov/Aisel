@@ -20,7 +20,7 @@ class OrderSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\OrderBundle\Entity\Order');
+        $this->shouldHaveType('Aisel\OrderBundle\Document\Order');
     }
 
     public function it_should_not_have_id()

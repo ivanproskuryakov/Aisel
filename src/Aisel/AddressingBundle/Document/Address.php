@@ -44,6 +44,7 @@ class Address
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $street;
 
@@ -51,6 +52,7 @@ class Address
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $phone;
 
@@ -58,6 +60,7 @@ class Address
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $comment;
 
@@ -65,13 +68,14 @@ class Address
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $zip;
 
     /**
      * @var City
      * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\City", nullable=true)
-     * @JMS\Type("Aisel\AddressingBundle\Entity\Country")
+     * @JMS\Type("Aisel\AddressingBundle\Document\Country")
      */
     private $city;
 

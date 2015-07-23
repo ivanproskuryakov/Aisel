@@ -97,7 +97,7 @@ abstract class Category
      * @ODM\ReferenceMany(targetDocument="Aisel\ResourceBundle\Document\Category", mappedBy="parent")
      * @JMS\Expose
      * @JMS\MaxDepth(1)
-     * @JMS\Type("ArrayCollection<Aisel\ResourceBundle\Entity\Category>")
+     * @JMS\Type("ArrayCollection<Aisel\ResourceBundle\Document\Category>")
      */
     protected $children;
 

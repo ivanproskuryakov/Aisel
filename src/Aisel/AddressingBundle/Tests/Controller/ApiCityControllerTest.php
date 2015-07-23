@@ -53,7 +53,7 @@ class ApiCityControllerTest extends AbstractWebTestCase
     {
         $city = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\City')
+            ->getRepository('Aisel\AddressingBundle\Document\City')
             ->findOneBy(['name' => 'Madrid']);
 
         $this->client->request(

@@ -33,8 +33,7 @@ class ConfigRepository extends DocumentRepository
     {
         $query = $this
             ->getDocumentManager()
-            ->createQueryBuilder('Aisel\ConfigBundle\Document\Config')
-            ->select('entity, value, locale');
+            ->createQueryBuilder($this->getDocumentName());
 
         if ($locale) {
             $query = $query->field('locale')->equals($locale);
@@ -56,7 +55,7 @@ class ConfigRepository extends DocumentRepository
     {
         $query = $this
             ->getDocumentManager()
-            ->createQueryBuilder('Aisel\ConfigBundle\Document\Config')
+            ->createQueryBuilder($this->getDocumentName())
             ->field('locale')->equals($locale)
             ->field('entity')->equals($name)
             ->getQuery();
@@ -74,8 +73,8 @@ class ConfigRepository extends DocumentRepository
     public function saveConfig($settings)
     {
         foreach ($settings as $locale => $entities) {
-            foreach ($entities as $Document => $value) {
-                $this->setConfig($locale, $Document, $value);
+            foreach ($entities as $document => $value) {
+                $this->setConfig($locale, $document, $value);
             }
         }
     }
@@ -84,14 +83,14 @@ class ConfigRepository extends DocumentRepository
      * Set config data for current Document & locale
      *
      * @param string $locale
-     * @param string $Document
+     * @param string $document
      * @param string $value
      *
      * @throws \RuntimeException
      */
-    public function setConfig($locale, $Document, $value)
+    public function setConfig($locale, $document, $value)
     {
-        $config = $this->getConfig($locale, $Document);
+        $config = $this->getConfig($locale, $document);
 
         if (!$config) {
             $config = new Config();
@@ -99,7 +98,7 @@ class ConfigRepository extends DocumentRepository
 
         try {
             $config->setlocale($locale);
-            $config->setEntity($Document);
+            $config->setEntity($document);
             $config->setValue(json_encode($value));
             $this->getDocumentManager()->persist($config);
             $this->getDocumentManager()->flush();

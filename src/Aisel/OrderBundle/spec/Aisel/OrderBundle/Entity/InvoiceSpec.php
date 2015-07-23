@@ -20,7 +20,7 @@ class InvoiceSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\OrderBundle\Entity\Invoice');
+        $this->shouldHaveType('Aisel\OrderBundle\Document\Invoice');
     }
 
     public function it_should_not_have_id()

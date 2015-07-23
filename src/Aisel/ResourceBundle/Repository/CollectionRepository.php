@@ -177,7 +177,7 @@ class CollectionRepository extends DocumentRepository
             ->skip($this->pageSkip)
             ->sort($this->order, $this->orderBy)
             ->getQuery()
-            ->execute();
+            ->toArray();
 
         return $collection;
     }

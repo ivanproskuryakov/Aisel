@@ -82,7 +82,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
     {
         $product = $this
             ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['name' => 'AAAAA']);
         $id = $product->getId();
         $data['locale'] = 'ru';
@@ -102,7 +102,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
 
         $product = $this
             ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);
@@ -115,7 +115,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
     {
         $product = $this
             ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['name' => 'AAAAA']);
 
         $this->client->request(
@@ -139,7 +139,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
     {
         $product = $this
             ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
         $id = $product->getId();
 
@@ -157,7 +157,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
 
         $product = $this
             ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);

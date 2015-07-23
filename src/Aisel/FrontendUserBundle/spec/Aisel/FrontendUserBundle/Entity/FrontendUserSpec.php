@@ -20,7 +20,7 @@ class FrontendUserSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\FrontendUserBundle\Entity\FrontendUser');
+        $this->shouldHaveType('Aisel\FrontendUserBundle\Document\FrontendUser');
     }
 
     public function it_should_not_have_id()

@@ -24,6 +24,6 @@ class ApiProductController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\ProductBundle\Entity\Product";
+    protected $model = "Aisel\ProductBundle\Document\Product";
 
 }

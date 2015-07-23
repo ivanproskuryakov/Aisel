@@ -11,7 +11,7 @@
 
 namespace Aisel\FrontendUserBundle\Controller;
 
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\FrontendUserBundle\Document\FrontendUser;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -61,7 +61,7 @@ class ApiController extends Controller
      */
     public function loginAction(Request $request)
     {
-        /** @var \Aisel\FrontendUserBundle\Entity\FrontendUserRepository $um */
+        /** @var \Aisel\FrontendUserBundle\Document\FrontendUserRepository $um */
 
         if (!$this->isAuthenticated()) {
             $username = $request->get('username');

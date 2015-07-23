@@ -22,6 +22,12 @@ use LogicException;
 class ConfigManager
 {
 
+
+    /**
+     * @var string
+     */
+    protected $model = 'Aisel\ConfigBundle\Document\Config';
+
     /**
      * @var DocumentManager
      */
@@ -59,7 +65,7 @@ class ConfigManager
     {
         $collection = $this
             ->dm
-            ->getRepository('AiselConfigBundle:Config')
+            ->getRepository($this->model)
             ->getAllSettings($locale);
 
         if (!$collection) {
@@ -67,13 +73,11 @@ class ConfigManager
         }
 
         $config = array();
+
         foreach ($collection as $s) {
-
-            $config['settings'][$s['locale']][$s['entity']] = json_decode($s['value'], true);
+            $config['settings'][$s->getLocale()][$s->getEntity()] = json_decode($s->getValue(), true);
         }
-
         $config['locale'] = $this->locale;
-        $config['time'] = time(); // inject timestamp
 
         return $config;
     }
@@ -89,7 +93,9 @@ class ConfigManager
     {
         $settings = json_decode($settingsData, true);
 
-        $this->dm->getRepository('AiselConfigBundle:Config')->saveConfig($settings);
+        $this->dm
+            ->getRepository($this->model)
+            ->saveConfig($settings);
     }
 
     /**
@@ -103,7 +109,7 @@ class ConfigManager
     public function getConfigForEntity($locale = null, $entity)
     {
         $config = $this->dm
-            ->getRepository('AiselConfigBundle:Config')
+            ->getRepository($this->model)
             ->getConfig($locale, $entity);
 
         $value = (array) json_decode($config->getValue());

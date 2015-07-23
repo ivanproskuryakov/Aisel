@@ -12,7 +12,7 @@
 namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
-use Aisel\ProductBundle\Entity\Category;
+use Aisel\ProductBundle\Document\Category;
 
 /**
  * ApiNodeEditControllerTest
@@ -141,7 +141,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Category')
+            ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['title' => $name]);
 
         $this->assertTrue(200 === $statusCode);

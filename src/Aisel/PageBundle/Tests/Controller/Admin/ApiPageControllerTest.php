@@ -64,7 +64,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
     {
         $page = $this
             ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->getRepository('Aisel\PageBundle\Document\Page')
             ->findOneBy(['title' => 'AAA']);
 
         $this->client->request(
@@ -88,7 +88,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
     {
         $page = $this
             ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->getRepository('Aisel\PageBundle\Document\Page')
             ->findOneBy(['title' => 'AAA']);
         $id = $page->getId();
 
@@ -106,7 +106,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
         $page = $this
             ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->getRepository('Aisel\PageBundle\Document\Page')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);
@@ -118,7 +118,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
     {
         $page = $this
             ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->getRepository('Aisel\PageBundle\Document\Page')
             ->findOneBy(['locale' => 'en']);
         $id = $page->getId();
         $data['locale'] = 'ru';
@@ -138,7 +138,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
         $page = $this
             ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->getRepository('Aisel\PageBundle\Document\Page')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);

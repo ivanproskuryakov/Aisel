@@ -67,7 +67,7 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
 
         // Delete Page 1
         $page1 = $this->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->getRepository('Aisel\PageBundle\Document\Page')
             ->findOneBy(['metaUrl' => $urlText]);
 
         $this->em->remove($page1);

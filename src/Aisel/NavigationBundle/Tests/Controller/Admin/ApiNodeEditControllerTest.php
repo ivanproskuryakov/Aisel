@@ -12,7 +12,7 @@
 namespace Aisel\NavigationBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
-use Aisel\NavigationBundle\Entity\Menu;
+use Aisel\NavigationBundle\Document\Menu;
 
 /**
  * ApiNodeEditControllerTest
@@ -138,7 +138,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->em
-            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
+            ->getRepository('Aisel\NavigationBundle\Document\Menu')
             ->findOneBy(['title' => 'ZZZZ']);
 
         $this->assertTrue(200 === $statusCode);

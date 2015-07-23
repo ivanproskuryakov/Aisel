@@ -39,7 +39,6 @@ class Config
      */
     private $id;
 
-
     /**
      * @var string
      * @ODM\Field(type="string")

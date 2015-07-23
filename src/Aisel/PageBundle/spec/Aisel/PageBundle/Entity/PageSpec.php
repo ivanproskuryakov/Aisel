@@ -20,7 +20,7 @@ class PageSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\PageBundle\Entity\Page');
+        $this->shouldHaveType('Aisel\PageBundle\Document\Page');
     }
 
     public function it_should_not_have_id()

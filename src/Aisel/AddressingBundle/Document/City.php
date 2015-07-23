@@ -57,7 +57,7 @@ class City
     /**
      * @var Country
      * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\Country", nullable=true)
-     * @JMS\Type("Aisel\AddressingBundle\Entity\Country")
+     * @JMS\Type("Aisel\AddressingBundle\Document\Country")
      */
     private $country;
 

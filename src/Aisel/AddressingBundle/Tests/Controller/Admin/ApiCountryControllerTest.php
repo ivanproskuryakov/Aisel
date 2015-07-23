@@ -77,7 +77,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
 
         $country = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->find($id);
 
         $this->assertTrue(201 === $statusCode);
@@ -91,7 +91,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
     {
         $country = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso3' => 'AAA']);
         $id = $country->getId();
 
@@ -116,7 +116,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
     {
         $country = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso2' => 'AA']);
         $id = $country->getId();
         $data = array(
@@ -137,7 +137,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
         $country = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->find($id);
 
         $this->assertTrue(204 === $statusCode);
@@ -149,7 +149,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
     {
         $country = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso3' => 'AAA']);
         $id = $country->getId();
 
@@ -166,7 +166,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
         $country = $this
             ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->find($id);
 
         $this->assertTrue(204 === $statusCode);

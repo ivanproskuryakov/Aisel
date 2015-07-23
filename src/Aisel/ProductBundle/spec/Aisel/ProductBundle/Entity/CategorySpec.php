@@ -20,7 +20,7 @@ class CategorySpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\ProductBundle\Entity\Category');
+        $this->shouldHaveType('Aisel\ProductBundle\Document\Category');
     }
 
     public function it_should_not_have_id()

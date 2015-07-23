@@ -20,7 +20,7 @@ class CartSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\CartBundle\Entity\Cart');
+        $this->shouldHaveType('Aisel\CartBundle\Document\Cart');
     }
 
     public function it_should_not_have_id()
