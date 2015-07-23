@@ -16,6 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
@@ -33,14 +34,8 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 class BackendUser implements AdvancedUserInterface
 {
 
+    use IdTrait;
     use UpdateCreateTrait;
-
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     */
-    private $id;
 
     /**
      * @var string
@@ -109,16 +104,6 @@ class BackendUser implements AdvancedUserInterface
      * @JMS\Type("string")
      */
     protected $plainPassword;
-
-    /**
-     * Get id
-     *
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     public function __toString()
     {

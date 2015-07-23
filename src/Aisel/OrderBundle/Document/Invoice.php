@@ -14,6 +14,7 @@ namespace Aisel\OrderBundle\Document;
 use JMS\Serializer\Annotation as JMS;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
@@ -31,23 +32,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 class Invoice
 {
 
+    use IdTrait;
     use UpdateCreateTrait;
-
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     */
-    private $id;
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
 }

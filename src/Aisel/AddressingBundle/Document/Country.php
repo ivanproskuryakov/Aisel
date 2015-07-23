@@ -14,6 +14,7 @@ namespace Aisel\AddressingBundle\Document;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
+use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
@@ -30,14 +31,8 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 class Country
 {
 
+    use IdTrait;
     use UpdateCreateTrait;
-
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     */
-    private $id;
 
     /**
      * @var string
@@ -100,17 +95,6 @@ class Country
      * @Assert\Type(type="string")
      */
     private $cctld;
-
-
-    /**
-     * Get id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set iso2

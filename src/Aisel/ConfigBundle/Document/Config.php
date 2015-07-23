@@ -13,6 +13,7 @@ namespace Aisel\ConfigBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
@@ -30,14 +31,9 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 class Config
 {
 
+    use IdTrait;
     use LocaleTrait;
     use UpdateCreateTrait;
-
-    /**
-     * @var string
-     * @ODM\Id
-     */
-    private $id;
 
     /**
      * @var string
@@ -52,16 +48,6 @@ class Config
      * @Assert\Type(type="string")
      */
     private $value;
-
-    /**
-     * Get id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set entity

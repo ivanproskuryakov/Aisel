@@ -11,6 +11,7 @@
 
 namespace Aisel\PageBundle\Document;
 
+use Doctrine\ODM\MongoDB\Tests\Functional\IdTest;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
@@ -18,6 +19,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\PageBundle\Document\Category;
+use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
@@ -36,16 +38,10 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
  */
 class Page implements UrlInterface
 {
+    use IdTrait;
     use UpdateCreateTrait;
     use LocaleTrait;
     use MetaTrait;
-
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     */
-    private $id;
 
     /**
      * @var string
@@ -98,16 +94,6 @@ class Page implements UrlInterface
     public function __construct()
     {
         $this->categories = new ArrayCollection();
-    }
-
-    /**
-     * Get id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

@@ -14,6 +14,7 @@ namespace Aisel\OrderBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Payum\Core\Model\Token;
 use JMS\Serializer\Annotation as JMS;
+use Aisel\ResourceBundle\Domain\IdTrait;
 
 /**
  * PaymentToken
@@ -30,20 +31,6 @@ use JMS\Serializer\Annotation as JMS;
 class PaymentToken extends Token
 {
 
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     */
-    private $id;
+    use IdTrait;
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 }

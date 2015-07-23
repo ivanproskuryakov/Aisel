@@ -18,6 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Aisel\FrontendUserBundle\Document\FrontendUser;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 
 /**
@@ -35,15 +36,9 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
  */
 class Order
 {
+    use IdTrait;
     use UpdateCreateTrait;
     use LocaleTrait;
-
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     */
-    private $id;
 
     /**
      * @var string
@@ -151,16 +146,6 @@ class Order
     public function __construct()
     {
         $this->item = new ArrayCollection();
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

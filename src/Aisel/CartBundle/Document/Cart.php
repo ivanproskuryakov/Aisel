@@ -17,6 +17,7 @@ use Aisel\ProductBundle\Document\Product;
 use Aisel\FrontendUserBundle\Document\FrontendUser;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
+use Aisel\ResourceBundle\Domain\IdTrait;
 
 /**
  * Cart
@@ -32,13 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Cart
 {
-
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     */
-    private $id;
+    use IdTrait;
 
     /**
      * @var integer
@@ -63,16 +58,6 @@ class Cart
      * @JMS\MaxDepth(3)
      */
     private $product;
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set qty

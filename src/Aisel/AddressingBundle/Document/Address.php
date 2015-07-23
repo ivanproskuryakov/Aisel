@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\FrontendUserBundle\Document\FrontendUser;
+use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
@@ -31,14 +32,8 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 class Address
 {
 
+    use IdTrait;
     use UpdateCreateTrait;
-
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     */
-    private $id;
 
     /**
      * @var string
@@ -99,16 +94,6 @@ class Address
      * @JMS\Type("Aisel\AddressingBundle\Document\FrontendUser")
      */
     private $frontenduser;
-
-    /**
-     * Get id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set frontenduser

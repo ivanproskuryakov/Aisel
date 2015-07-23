@@ -16,6 +16,8 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Aisel\ProductBundle\Document\Product;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\OrderBundle\Document\Order;
+
+use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -35,14 +37,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class OrderItem
 {
 
+    use IdTrait;
     use UpdateCreateTrait;
-
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     */
-    private $id;
 
     /**
      * @var Order
@@ -86,16 +82,6 @@ class OrderItem
      * @JMS\Type("integer")
      */
     private $qty;
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set order

@@ -22,6 +22,7 @@ use Aisel\AddressingBundle\Document\Address;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\OrderBundle\Document\Order;
 use Aisel\CartBundle\Document\Cart;
+use Aisel\ResourceBundle\Domain\IdTrait;
 
 /**
  * FrontendUser
@@ -40,14 +41,8 @@ use Aisel\CartBundle\Document\Cart;
 class FrontendUser implements AdvancedUserInterface
 {
 
+    use IdTrait;
     use UpdateCreateTrait;
-
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     */
-    private $id;
 
     /**
      * @var string
@@ -377,15 +372,6 @@ class FrontendUser implements AdvancedUserInterface
         return $this->email;
     }
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * @inheritDoc

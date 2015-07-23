@@ -19,6 +19,8 @@ use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\ProductBundle\Document\Category;
+
+use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
@@ -36,16 +38,10 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
  */
 class Product implements UrlInterface
 {
+    use IdTrait;
     use UpdateCreateTrait;
     use MetaTrait;
     use LocaleTrait;
-
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     */
-    private $id;
 
     /**
      * @var string
@@ -233,17 +229,6 @@ class Product implements UrlInterface
         $this->images = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
 
     /**
      * Set name
