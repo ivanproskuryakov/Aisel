@@ -11,7 +11,7 @@
 
 namespace Aisel\ContactBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Swift_Mailer;
 use Symfony\Component\Templating\EngineInterface;
 
@@ -24,9 +24,9 @@ class ContactManager
 {
 
     /**
-     * @var EntityManager
+     * @var DocumentManager
      */
-    protected $em;
+    protected $dm;
 
     /**
      * @var Swift_Mailer
@@ -43,13 +43,19 @@ class ContactManager
      */
     protected $templating;
 
+    /**
+     * @param DocumentManager $dm
+     * @param Swift_Mailer $mailer
+     * @param $templating
+     * @param $appEmail
+     */
     public function __construct(
-        EntityManager $em,
+        DocumentManager $dm,
         Swift_Mailer $mailer,
         $templating,
         $appEmail
     ) {
-        $this->em = $em;
+        $this->dm = $dm;
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->appEmail = $appEmail;

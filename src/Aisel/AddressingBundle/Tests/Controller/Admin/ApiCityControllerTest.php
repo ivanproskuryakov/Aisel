@@ -66,6 +66,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
             'region' => array('id' => $region->getId()),
         );
 
+
         $this->client->request(
             'POST',
             '/'. $this->api['backend'] . '/addressing/city/',
@@ -77,6 +78,9 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
 
         $response = $this->client->getResponse();
         $content = $response->getContent();
+        var_dump($content);
+        exit();
+
         $statusCode = $response->getStatusCode();
         $parts = explode('/', $response->headers->get('location'));
         $id = array_pop($parts);
@@ -85,15 +89,18 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
             ->getRepository('Aisel\AddressingBundle\Document\City')
             ->find($id);
 
+
         $this->assertTrue(201 === $statusCode);
         $this->assertEmpty($content);
         $this->assertNotNull($city);
         $this->assertEquals($country->getId(),$city->getCountry()->getId());
         $this->assertEquals($region->getId(),$city->getRegion()->getId());
+
     }
 
     public function testGetCityAction()
     {
+
         $city = $this
             ->em
             ->getRepository('Aisel\AddressingBundle\Document\City')

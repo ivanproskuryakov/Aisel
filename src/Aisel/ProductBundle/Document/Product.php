@@ -35,6 +35,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
  *      collection="aisel_product",
  *      repositoryClass="Aisel\ProductBundle\Document\ProductRepository"
  * )
+ * @JMS\ExclusionPolicy("all")
  */
 class Product implements UrlInterface
 {
@@ -106,6 +107,8 @@ class Product implements UrlInterface
      * @ODM\Field(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("boolean")
      */
     private $new = false;
 
@@ -216,8 +219,8 @@ class Product implements UrlInterface
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category")
-     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
+     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Category")
+     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Category>")
      */
     private $categories;
 

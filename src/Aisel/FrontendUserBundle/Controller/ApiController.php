@@ -61,7 +61,7 @@ class ApiController extends Controller
      */
     public function loginAction(Request $request)
     {
-        /** @var \Aisel\FrontendUserBundle\Document\FrontendUserRepository $um */
+        /** @var \Aisel\FrontendUserBundle\Manager\UserManager $um */
 
         if (!$this->isAuthenticated()) {
             $username = $request->get('username');

@@ -58,6 +58,7 @@ class FrontendUser implements AdvancedUserInterface
      * @ODM\Field(type="string")
      * @Assert\NotNull()
      * @Assert\Email
+     * @JMS\Type("string")
      */
     private $email;
 

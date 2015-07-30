@@ -42,14 +42,16 @@ class BackendUser implements AdvancedUserInterface
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Type("string")
      */
     private $username;
 
     /**
      * @var string
      * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @Assert\Email
+     * @JMS\Type("string")
      */
     private $email;
 
@@ -58,6 +60,7 @@ class BackendUser implements AdvancedUserInterface
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
      * @JMS\Exclude
+     * @JMS\Type("string")
      */
     private $password;
 
@@ -74,6 +77,7 @@ class BackendUser implements AdvancedUserInterface
      * @ODM\Field(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Type("boolean")
      */
     private $enabled = false;
 
@@ -82,18 +86,21 @@ class BackendUser implements AdvancedUserInterface
      * @ODM\Field(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Type("boolean")
      */
     private $locked = true;
 
     /**
      * @var \DateTime
      * @ODM\Field(type="date")
+     * @JMS\Type("DateTime")
      */
     private $expiresAt;
 
     /**
      * @var \DateTime
      * @ODM\Field(type="date")
+     * @JMS\Type("DateTime")
      */
     private $lastLogin;
 

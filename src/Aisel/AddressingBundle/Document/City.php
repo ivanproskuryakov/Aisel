@@ -44,6 +44,8 @@ class City
 
     /**
      * @var Region
+     * @Assert\NotNull
+     * @Assert\NotBlank
      * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\Region", nullable=true)
      * @JMS\Type("Aisel\AddressingBundle\Document\Region")
      */
@@ -51,20 +53,12 @@ class City
 
     /**
      * @var Country
+     * @Assert\NotNull
+     * @Assert\NotBlank
      * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\Country", nullable=true)
      * @JMS\Type("Aisel\AddressingBundle\Document\Country")
      */
     private $country;
-
-    /**
-     * Get id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set name

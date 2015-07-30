@@ -243,16 +243,11 @@ class UserManager implements UserProviderInterface
 
         if (!$user) {
             $user = new FrontendUser();
-            $encoder = $this->encoder->getEncoder($user);
-            $encodedPassword = $encoder->encodePassword($userData['password'], $user->getSalt());
-
             $user->setEmail($userData['email']);
             $user->setUsername($userData['username']);
-            $user->setPassword($encodedPassword);
+            $user->setPlainPassword($userData['password']);
             $user->setEnabled(true);
             $user->setLocked(false);
-
-            $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
 
             $this->dm->persist($user);
             $this->dm->flush();
@@ -289,14 +284,14 @@ class UserManager implements UserProviderInterface
     /**
      *   Reset and send password by email
      */
-    public function resetPassword($user)
+    public function resetPassword(FrontendUser $user)
     {
         if ($user) {
             $utility = new PasswordUtility();
             $password = $utility->generatePassword();
-            $encoder = $this->encoder->getEncoder($user);
-            $encodedPassword = $encoder->encodePassword($password, $user->getSalt());
-            $user->setPassword($encodedPassword);
+            $user->setPlainPassword($password);
+            $this->dm->persist($user);
+            $this->dm->flush();
 
             // Send password via email
             try {
@@ -317,8 +312,6 @@ class UserManager implements UserProviderInterface
             } catch (\Swift_TransportException $e) {
                 $response = $e->getMessage();
             }
-            $this->dm->persist($user);
-            $this->dm->flush();
 
             return $response;
         } else {
