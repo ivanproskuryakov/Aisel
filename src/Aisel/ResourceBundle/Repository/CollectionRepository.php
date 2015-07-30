@@ -34,10 +34,13 @@ class CollectionRepository extends DocumentRepository
 
     /**
      * Map request variables for later use in SQL
+     *
      * @param array $params
      */
     protected function mapRequest(array $params)
     {
+        $this->model = $this->getDocumentName();
+
         // Pagination
         if (isset($params['current'])) {
             $this->pageCurrent =  (int) $params['current'];

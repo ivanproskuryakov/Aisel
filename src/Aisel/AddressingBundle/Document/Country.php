@@ -39,6 +39,7 @@ class Country
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Type("string")
      */
     private $iso2;
 
@@ -47,6 +48,7 @@ class Country
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Type("string")
      */
     private $iso3;
 
@@ -55,6 +57,7 @@ class Country
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Type("string")
      */
     private $shortName;
 
@@ -63,6 +66,7 @@ class Country
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Type("string")
      */
     private $longName;
 
@@ -71,6 +75,7 @@ class Country
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Type("string")
      */
     private $numcode;
 
@@ -79,6 +84,7 @@ class Country
      * @ODM\Field(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Type("string")
      */
     private $unMember = false;
 
@@ -86,6 +92,7 @@ class Country
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $callingCode;
 
@@ -93,6 +100,7 @@ class Country
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $cctld;
 

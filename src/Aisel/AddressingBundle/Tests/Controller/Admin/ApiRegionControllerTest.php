@@ -75,6 +75,8 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
         $parts = explode('/', $response->headers->get('location'));
         $id = array_pop($parts);
 
+        var_dump($content);
+        exit();
         $region = $this
             ->em
             ->getRepository('Aisel\AddressingBundle\Document\Region')

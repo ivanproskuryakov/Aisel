@@ -38,6 +38,7 @@ class Region
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $name;
 

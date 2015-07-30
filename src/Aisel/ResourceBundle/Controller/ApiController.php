@@ -186,11 +186,11 @@ class ApiController extends Controller
      */
     public function deleteAction(Request $request)
     {
-        $entity = $this->getEntityFromRequest($request);
+        $document = $this->getEntityFromRequest($request);
 
-        $em = $this->getDocumentManager();
-        $em->remove($entity);
-        $em->flush();
+        $dm = $this->getDocumentManager();
+        $dm->remove($document);
+        $dm->flush();
     }
 
     /**

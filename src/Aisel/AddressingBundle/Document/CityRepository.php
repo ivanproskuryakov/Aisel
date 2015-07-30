@@ -22,6 +22,4 @@ use Aisel\ResourceBundle\Repository\CollectionRepository;
 class CityRepository extends CollectionRepository
 {
 
-    protected $model = 'AiselAddressingBundle:City';
-
 }
