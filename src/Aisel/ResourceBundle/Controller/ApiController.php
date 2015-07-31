@@ -35,7 +35,9 @@ class ApiController extends Controller
      */
     protected function getDocumentManager()
     {
-        return $this->get('doctrine.odm.mongodb.document_manager');
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
+        return $dm;
     }
 
     /**
@@ -84,6 +86,7 @@ class ApiController extends Controller
         $configuration = new ParamConverter(array(
             'class' => $this->model
         ));
+
         $entity = $this->get('api_param_converter')->execute($request, $configuration);
 
         return $entity;
@@ -187,10 +190,11 @@ class ApiController extends Controller
     public function deleteAction(Request $request)
     {
         $document = $this->getEntityFromRequest($request);
-
         $dm = $this->getDocumentManager();
+
         $dm->remove($document);
         $dm->flush();
+        $dm->clear();
     }
 
     /**

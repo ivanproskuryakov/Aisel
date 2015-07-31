@@ -50,16 +50,6 @@ class Region
     private $country;
 
     /**
-     * Get id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set name
      *
      * @param  string $name

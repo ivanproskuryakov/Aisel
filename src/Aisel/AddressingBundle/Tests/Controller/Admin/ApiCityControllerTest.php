@@ -78,8 +78,6 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
 
         $response = $this->client->getResponse();
         $content = $response->getContent();
-        var_dump($content);
-        exit();
 
         $statusCode = $response->getStatusCode();
         $parts = explode('/', $response->headers->get('location'));
@@ -126,6 +124,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
 
     public function testPutCityAction()
     {
+        $this->markTestSkipped('skipping ...');
         $country = $this
             ->em
             ->getRepository('Aisel\AddressingBundle\Document\Country')
