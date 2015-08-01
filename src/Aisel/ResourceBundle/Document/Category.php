@@ -68,7 +68,6 @@ abstract class Category
      * @var string
      * @ODM\Field(type="string")
      * @Gedmo\TreePath(separator="|")
-     * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("string")
      */
@@ -80,9 +79,9 @@ abstract class Category
      * @ODM\Field(type="int")
      * @Assert\NotNull()
      * @JMS\Expose
-     * @JMS\Type("int")
+     * @JMS\Type("integer")
      */
-    private $lvl;
+    private $lvl = 1;
 
     /**
      * @Gedmo\TreeParent
@@ -122,7 +121,7 @@ abstract class Category
     /**
      * Set title
      *
-     * @param  string   $title
+     * @param  string $title
      * @return Category
      */
     public function setTitle($title)
@@ -145,7 +144,7 @@ abstract class Category
     /**
      * Set lvl
      *
-     * @param  integer  $lvl
+     * @param  integer $lvl
      * @return Category
      */
     public function setLvl($lvl)
@@ -168,7 +167,7 @@ abstract class Category
     /**
      * Set status
      *
-     * @param  boolean  $status
+     * @param  boolean $status
      * @return Category
      */
     public function setStatus($status)

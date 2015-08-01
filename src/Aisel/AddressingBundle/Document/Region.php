@@ -44,7 +44,7 @@ class Region
 
     /**
      * @var Country
-     * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\Country", nullable=true)
+     * @ODM\ReferenceOne(targetDocument="Aisel\AddressingBundle\Document\Country", nullable=true)
      * @JMS\Type("Aisel\AddressingBundle\Document\Country")
      */
     private $country;

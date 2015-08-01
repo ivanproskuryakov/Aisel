@@ -114,7 +114,6 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
 
     public function testPutCountryAction()
     {
-        $this->markTestSkipped('...');
         $country = $this
             ->em
             ->getRepository('Aisel\AddressingBundle\Document\Country')
@@ -136,6 +135,9 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
+
+        $this->em->clear();
+
         $country = $this
             ->em
             ->getRepository('Aisel\AddressingBundle\Document\Country')
@@ -148,7 +150,6 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
 
     public function testDeleteCountryAction()
     {
-        $this->markTestSkipped('doctine does not delete documents');
         $country = $this
             ->em
             ->getRepository('Aisel\AddressingBundle\Document\Country')
@@ -166,6 +167,8 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
+
+        $this->em->clear();
 
         $country = $this
             ->em

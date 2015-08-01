@@ -21,6 +21,4 @@ use Aisel\ResourceBundle\Repository\CollectionRepository;
 class MenuRepository extends CollectionRepository
 {
 
-    protected $model = 'AiselNavigationBundle:Menu';
-
 }

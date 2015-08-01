@@ -69,29 +69,29 @@ class Address
 
     /**
      * @var City
-     * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\City", nullable=true)
+     * @ODM\ReferenceOne(targetDocument="Aisel\AddressingBundle\Document\City", nullable=true)
      * @JMS\Type("Aisel\AddressingBundle\Document\Country")
      */
     private $city;
 
     /**
      * @var Region
-     * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\Region", nullable=true)
+     * @ODM\ReferenceOne(targetDocument="Aisel\AddressingBundle\Document\Region", nullable=true)
      * @JMS\Type("Aisel\AddressingBundle\Document\Region")
      */
     private $region;
 
     /**
      * @var Country
-     * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\Country", nullable=true)
+     * @ODM\ReferenceOne(targetDocument="Aisel\AddressingBundle\Document\Country", nullable=true)
      * @JMS\Type("Aisel\AddressingBundle\Document\Country")
      */
     private $country;
 
     /**
      * @var FrontendUser
-     * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\FrontendUser", nullable=true)
-     * @JMS\Type("Aisel\AddressingBundle\Document\FrontendUser")
+     * @ODM\ReferenceOne(targetDocument="Aisel\FrontendUserBundle\Document\FrontendUser", nullable=true)
+     * @JMS\Type("Aisel\FrontendUserBundle\Document\FrontendUser")
      */
     private $frontenduser;
 

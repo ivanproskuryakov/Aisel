@@ -117,7 +117,6 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
 
     public function testPutRegionAction()
     {
-        $this->markTestSkipped('skipping ...');
         $country = $this
             ->em
             ->getRepository('Aisel\AddressingBundle\Document\Country')
@@ -143,6 +142,9 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
+
+        $this->em->clear();
+
         $region = $this
             ->em
             ->getRepository('Aisel\AddressingBundle\Document\Region')

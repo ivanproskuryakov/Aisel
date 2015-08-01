@@ -46,7 +46,7 @@ class City
      * @var Region
      * @Assert\NotNull
      * @Assert\NotBlank
-     * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\Region", nullable=true)
+     * @ODM\ReferenceOne(targetDocument="Aisel\AddressingBundle\Document\Region", nullable=true)
      * @JMS\Type("Aisel\AddressingBundle\Document\Region")
      */
     private $region;
@@ -55,7 +55,7 @@ class City
      * @var Country
      * @Assert\NotNull
      * @Assert\NotBlank
-     * @ODM\ReferenceOne("Aisel\AddressingBundle\Document\Country", nullable=true)
+     * @ODM\ReferenceOne(targetDocument="Aisel\AddressingBundle\Document\Country", nullable=true)
      * @JMS\Type("Aisel\AddressingBundle\Document\Country")
      */
     private $country;

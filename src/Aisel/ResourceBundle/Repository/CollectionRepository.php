@@ -198,6 +198,7 @@ class CollectionRepository extends DocumentRepository
         $query = $this
             ->getDocumentManager()
             ->createQueryBuilder();
+
         $query->select('e')
             ->from($this->model, 'e')
             ->where('e.metaUrl = :url')->setParameter('url', $url);
@@ -224,21 +225,23 @@ class CollectionRepository extends DocumentRepository
      */
     public function getNodesAsTree($locale, $onlyEnabled = true)
     {
-//        $qb = $this
-//            ->getDocumentManager()
-//            ->createQueryBuilder($this->model)
-//            ->field('lvl')->equals(0)
-//
-//        if ($onlyEnabled) {
-//            $query->andWhere('c.status = :enabled')->setParameter('enabled', $onlyEnabled);
-//        }
-//
-//        $result = $query
+        $this->model = $this->getDocumentName();
+
+        $query = $this
+            ->getDocumentManager()
+            ->createQueryBuilder($this->model)
+            ->field('lvl')->equals(1);
+
+        if ($onlyEnabled) {
+            $query->field('status')->equals($onlyEnabled);
+        }
+
+        $result = $query
 //            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
 //            ->orderBy('c.root', 'ASC')
 //            ->addOrderBy('c.lft', 'ASC')
-//            ->getQuery()
-//            ->execute();
+            ->getQuery()
+            ->toArray();
 
         return $result;
     }
