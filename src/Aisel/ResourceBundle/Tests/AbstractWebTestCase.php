@@ -5,7 +5,7 @@ namespace Aisel\ResourceBundle\Tests;
 use Buzz\Exception\LogicException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\HttpKernel\Client;
 use Aisel\BackendUserBundle\Manager\UserManager;
 
@@ -21,9 +21,9 @@ abstract class AbstractWebTestCase extends KernelTestCase
     protected $client;
 
     /**
-     * @var EntityManager
+     * @var DocumentManager
      */
-    protected $em;
+    protected $dm;
 
     /**
      * @var UserManager
@@ -89,7 +89,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
         static::$kernel->boot();
 
         $this->client = static::createClient([], ['HTTP_HOST' => static::$httpHost]);
-        $this->em = static::$kernel->getContainer()->get('doctrine.odm.mongodb.document_manager');
+        $this->dm = static::$kernel->getContainer()->get('doctrine.odm.mongodb.document_manager');
         $this->um = static::$kernel->getContainer()->get('backend.user.manager');
         $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
         $this->api = array(

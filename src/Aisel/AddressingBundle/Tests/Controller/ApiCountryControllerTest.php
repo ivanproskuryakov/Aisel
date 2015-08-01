@@ -52,7 +52,7 @@ class ApiCountryControllerTest extends AbstractWebTestCase
     public function testGetCountryAction()
     {
         $country = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso2' => 'ES']);
 

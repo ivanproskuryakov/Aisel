@@ -34,14 +34,14 @@ class APiControllerTest extends AbstractBackendWebTestCase
     public function testPostUserAction()
     {
         $users = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\BackendUserBundle\Document\BackendUser')
             ->findBy(['username' => 'test_backend_user_aisel']);
 
         foreach ($users as $user) {
-            $this->em->remove($user);
+            $this->dm->remove($user);
         }
-        $this->em->flush();
+        $this->dm->flush();
 
         $data = [
             'username' => 'test_backend_user_aisel',
@@ -109,7 +109,7 @@ class APiControllerTest extends AbstractBackendWebTestCase
     public function testGetUserAction()
     {
         $user = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\BackendUserBundle\Document\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
         $id = $user->getId();
@@ -133,9 +133,8 @@ class APiControllerTest extends AbstractBackendWebTestCase
 
     public function testPutUserAction()
     {
-        $this->markTestSkipped('skipping ...');
         $user = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\BackendUserBundle\Document\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
         $id = $user->getId();
@@ -154,21 +153,23 @@ class APiControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
+        $this->dm->clear();
+
         $user = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\BackendUserBundle\Document\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
 
         $this->assertTrue(204 === $statusCode);
-//        $this->assertEmpty($content);
-//        $this->assertNotNull($user);
-//        $this->assertEquals($data['email'], $user->getEmail());
+        $this->assertEmpty($content);
+        $this->assertNotNull($user);
+        $this->assertEquals($data['email'], $user->getEmail());
     }
 
     public function testDeletePageNodeAction()
     {
         $user = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\BackendUserBundle\Document\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
         $id = $user->getId();
@@ -186,7 +187,7 @@ class APiControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $user = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\BackendUserBundle\Document\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
 

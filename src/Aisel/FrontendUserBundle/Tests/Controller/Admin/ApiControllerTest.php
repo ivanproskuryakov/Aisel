@@ -133,7 +133,6 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
     public function testPutUserAction()
     {
-        $this->markTestSkipped('...');
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
@@ -164,6 +163,8 @@ class ApiControllerTest extends AbstractBackendWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
+
+        $this->em->clear();
 
         $user = $this
             ->em

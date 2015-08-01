@@ -52,11 +52,11 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
     public function testPostCityAction()
     {
         $country = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso2' => 'ES']);
         $region = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\Region')
             ->findOneBy(['name' => 'Comunidad de Madrid']);
 
@@ -81,7 +81,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
         $parts = explode('/', $response->headers->get('location'));
         $id = array_pop($parts);
         $city = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\City')
             ->find($id);
 
@@ -95,7 +95,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
     public function testGetCityAction()
     {
         $city = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\City')
             ->findOneBy(['name' => 'Alicante']);
         $id = $city->getId();
@@ -120,11 +120,11 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
     public function testPutCityAction()
     {
         $country = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso2' => 'RU']);
         $city = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\City')
             ->findOneBy(['name' => 'Alicante']);
         $id = $city->getId();
@@ -147,10 +147,10 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->em->clear();
+        $this->dm->clear();
 
         $city = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\City')
             ->find($id);
 
@@ -162,7 +162,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
     public function testDeleteCityAction()
     {
         $city = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\City')
             ->findOneBy(['name' => 'Rivas']);
         $id = $city->getId();
@@ -179,10 +179,10 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->em->clear();
+        $this->dm->clear();
 
         $city = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\City')
             ->find($id);
 

@@ -118,31 +118,31 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $this->assertEquals($result['title'], 'BBB');
     }
 
-    public function testNavigationNodeDeleteAction()
-    {
-        $node = $this->createNode('ZZZZ');
-
-        $this->client->request(
-            'GET',
-            '/'. $this->api['backend'] . '/navigation/node/'.
-            '?locale=en'.
-            '&action=remove'.
-            '&id='. $node->getId(),
-            [],
-            [],
-            ['CONTENT_TYPE' => 'application/json']
-        );
-
-        $response = $this->client->getResponse();
-        $statusCode = $response->getStatusCode();
-
-        $node = $this
-            ->em
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
-            ->findOneBy(['title' => 'ZZZZ']);
-
-        $this->assertTrue(200 === $statusCode);
-        $this->assertNull($node);
-    }
+//    public function testNavigationNodeDeleteAction()
+//    {
+//        $node = $this->createNode('ZZZZ');
+//
+//        $this->client->request(
+//            'GET',
+//            '/'. $this->api['backend'] . '/navigation/node/'.
+//            '?locale=en'.
+//            '&action=remove'.
+//            '&id='. $node->getId(),
+//            [],
+//            [],
+//            ['CONTENT_TYPE' => 'application/json']
+//        );
+//
+//        $response = $this->client->getResponse();
+//        $statusCode = $response->getStatusCode();
+//
+//        $node = $this
+//            ->em
+//            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+//            ->findOneBy(['title' => 'ZZZZ']);
+//
+//        $this->assertTrue(200 === $statusCode);
+//        $this->assertNull($node);
+//    }
 
 }

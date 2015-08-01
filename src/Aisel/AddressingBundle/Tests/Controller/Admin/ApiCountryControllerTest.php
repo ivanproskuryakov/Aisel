@@ -76,7 +76,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         $id = array_pop($parts);
 
         $country = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->find($id);
 
@@ -90,7 +90,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
     public function testGetCountryAction()
     {
         $country = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso3' => 'AAA']);
         $id = $country->getId();
@@ -115,7 +115,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
     public function testPutCountryAction()
     {
         $country = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso2' => 'AA']);
         $id = $country->getId();
@@ -136,10 +136,10 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->em->clear();
+        $this->dm->clear();
 
         $country = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->find($id);
 
@@ -151,7 +151,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
     public function testDeleteCountryAction()
     {
         $country = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso3' => 'AAA']);
         $id = $country->getId();
@@ -168,10 +168,10 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->em->clear();
+        $this->dm->clear();
 
         $country = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->find($id);
 

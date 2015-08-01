@@ -146,6 +146,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var string
      * @Assert\Type(type="string")
      * @ODM\Field(type="string")
+     * @JMS\Type("string")
      */
     private $about;
 
@@ -153,6 +154,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $phone;
 
@@ -160,6 +162,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $website;
 
@@ -167,6 +170,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $facebook;
 
@@ -174,6 +178,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Type("string")
      */
     private $twitter;
 

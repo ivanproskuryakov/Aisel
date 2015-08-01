@@ -12,7 +12,7 @@
 namespace Aisel\ResourceBundle\Manager;
 
 use LogicException;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
 
 /**
@@ -29,9 +29,9 @@ class ApiNodeManager
     protected $model = null;
 
     /**
-     * @var EntityManager
+     * @var DocumentManager
      */
-    protected $em;
+    protected $dm;
 
     /**
      * @var array
@@ -41,13 +41,13 @@ class ApiNodeManager
     /**
      * Constructor
      *
-     * @param EntityManager $entityManager
+     * @param DocumentManager $dm
      * @param string        $locales
      */
-    public function __construct(EntityManager $entityManager, $locales)
+    public function __construct(DocumentManager $dm, $locales)
     {
         $this->locales = explode('|', $locales);
-        $this->em = $entityManager;
+        $this->dm = $dm;
     }
 
     /**
@@ -62,7 +62,7 @@ class ApiNodeManager
     {
         if ($categoryId = $params['id']) {
             $node = $this
-                ->em
+                ->dm
                 ->getRepository($this->model)
                 ->find($categoryId);
 
@@ -74,8 +74,8 @@ class ApiNodeManager
         if ($params['name']) {
             $node->setTitle($params['name']);
         }
-        $this->em->persist($node);
-        $this->em->flush();
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -91,15 +91,15 @@ class ApiNodeManager
     public function remove($params)
     {
         if ($categoryId = $params['id']) {
-            $node = $this->em->getRepository($this->model)->find($categoryId);
+            $node = $this->dm->getRepository($this->model)->find($categoryId);
 
             if (!($node)) {
                 throw new LogicException('Nothing found');
             }
         }
 
-        $this->em->remove($node);
-        $this->em->flush();
+        $this->dm->remove($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -115,7 +115,7 @@ class ApiNodeManager
     public function addChild($params)
     {
         if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->model)->find($categoryId);
+            $nodeParent = $this->dm->getRepository($this->model)->find($categoryId);
 
             if (!($nodeParent)) {
                 throw new LogicException('Nothing found');
@@ -126,8 +126,8 @@ class ApiNodeManager
         $node->setTitle($params['name']);
         $node->setParent($nodeParent);
         $node->setStatus(false);
-        $this->em->persist($node);
-        $this->em->flush();
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -145,8 +145,8 @@ class ApiNodeManager
         $node = new $this->nodeEntity();
         $node->setTitle($params['name']);
         $node->setStatus(false);
-        $this->em->persist($node);
-        $this->em->flush();
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -165,7 +165,7 @@ class ApiNodeManager
          * @var $node \Aisel\ResourceBundle\Document\Category
          */
         $repo = $this
-            ->em
+            ->dm
             ->getRepository($this->model);
 
         if ($categoryParentId = $params['parentId']) {
@@ -185,8 +185,8 @@ class ApiNodeManager
         }
 
         $node->setParent($nodeParent);
-        $this->em->persist($node);
-        $this->em->flush();
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -205,7 +205,7 @@ class ApiNodeManager
 //     */
 //    public function normalizeCategoryUrl($url, $categoryId = null)
 //    {
-//        $category = $this->em->getRepository($this->model)->findTotalByURL($url, $categoryId);
+//        $category = $this->dm->getRepository($this->model)->findTotalByURL($url, $categoryId);
 //        $utility = new UrlUtility();
 //        $validUrl = $utility->process($url);
 //

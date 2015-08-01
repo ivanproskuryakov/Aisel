@@ -32,7 +32,7 @@ class NodeManager extends ApiNodeManager
          * @var $node \Aisel\NavigationBundle\Document\Menu
          */
         if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->model)->find($categoryId);
+            $nodeParent = $this->dm->getRepository($this->model)->find($categoryId);
 
             if (!($nodeParent)) {
                 throw new \LogicException('Nothing found');
@@ -45,8 +45,8 @@ class NodeManager extends ApiNodeManager
         $node->setLocale($params['locale']);
         $node->setMetaUrl('/');
         $node->setStatus(false);
-        $this->em->persist($node);
-        $this->em->flush();
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -64,8 +64,8 @@ class NodeManager extends ApiNodeManager
         $node->setLocale($params['locale']);
         $node->setMetaUrl('/');
         $node->setStatus(false);
-        $this->em->persist($node);
-        $this->em->flush();
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }

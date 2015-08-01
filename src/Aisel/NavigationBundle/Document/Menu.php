@@ -27,7 +27,6 @@ use JMS\Serializer\Annotation as JMS;
  *      collection="aisel_navigation_menu",
  *      repositoryClass="Aisel\NavigationBundle\Document\MenuRepository"
  * )
- * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
  */
 class Menu extends BaseCategory
 {
