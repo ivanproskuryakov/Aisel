@@ -39,8 +39,8 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $node->setDescription('');
         $node->setMetaUrl('/'. rand(111111,999999));
         $node->setTitle($name);
-        $this->em->persist($node);
-        $this->em->flush();
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -140,7 +140,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $node = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['title' => $name]);
 

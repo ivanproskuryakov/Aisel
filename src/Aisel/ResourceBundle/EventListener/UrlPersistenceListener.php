@@ -29,21 +29,26 @@ class UrlPersistenceListener
      */
     public function prePersist(LifeCycleEventArgs $args)
     {
+
         /** @var UrlInterface $object */
-        $object = $args->getEntity();
-        /** @var DocumentManager $dm */
-        $dm = $args->getDocumentManager();
+        $object = $args->getDocument();
 
         if ($object instanceof UrlInterface) {
+
             $urlUtility = new UrlUtility();
             $processedUrl = $urlUtility->process($object->getMetaUrl());
 
-            $found = $dm->getRepository(get_class($object))
+            $found = $args
+                ->getDocumentManager()
+                ->getRepository(get_class($object))
                 ->findOneBy(['metaUrl' => $processedUrl]);
 
             if ($found) {
                 throw new \LogicException('Given URL already exists');
             }
+
+            $object->setMetaUrl($processedUrl);
+
         }
     }
 

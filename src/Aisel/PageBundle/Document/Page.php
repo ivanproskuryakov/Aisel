@@ -35,6 +35,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
  *      repositoryClass="Aisel\PageBundle\Document\PageRepository"
  * )
  * @JMS\ExclusionPolicy("all")
+ * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
  */
 class Page implements UrlInterface
 {

@@ -38,8 +38,8 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $node->setLocale('en');
         $node->setMetaUrl('/');
         $node->setTitle($name);
-        $this->em->persist($node);
-        $this->em->flush();
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -137,7 +137,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 //        $statusCode = $response->getStatusCode();
 //
 //        $node = $this
-//            ->em
+//            ->dm
 //            ->getRepository('Aisel\NavigationBundle\Document\Menu')
 //            ->findOneBy(['title' => 'ZZZZ']);
 //

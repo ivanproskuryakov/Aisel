@@ -79,7 +79,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testGetProductNodeAction()
     {
         $productNode = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
 
@@ -103,7 +103,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testPutProductNodeAction()
     {
         $productNode = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
         $id = $productNode->getId();
@@ -123,7 +123,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $productNode = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
 
@@ -136,7 +136,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testDeleteProductNodeAction()
     {
         $productNode = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
         $id = $productNode->getId();
@@ -154,7 +154,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $productNode = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['id' => $id]);
 

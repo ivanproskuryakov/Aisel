@@ -30,7 +30,7 @@ class NodeManager extends ApiNodeManager
     public function addChild($params)
     {
         if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->model)->find($categoryId);
+            $nodeParent = $this->dm->getRepository($this->model)->find($categoryId);
 
             if (!($nodeParent)) {
                 throw new LogicException('Nothing found');
@@ -43,9 +43,10 @@ class NodeManager extends ApiNodeManager
         $node->setParent($nodeParent);
         $node->setStatus(false);
         $node->setDescription('');
-        $node->setMetaUrl('/');
-        $this->em->persist($node);
-        $this->em->flush();
+        $node->setMetaUrl($params['name']);
+
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -60,9 +61,10 @@ class NodeManager extends ApiNodeManager
         $node->setTitle($params['name']);
         $node->setStatus(false);
         $node->setDescription('');
-        $node->setMetaUrl('/');
-        $this->em->persist($node);
-        $this->em->flush();
+        $node->setMetaUrl($params['name']);
+
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }

@@ -29,6 +29,7 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
  *      collection="aisel_page_category",
  *      repositoryClass="Aisel\PageBundle\Document\CategoryRepository"
  * )
+ * @JMS\ExclusionPolicy("all")
  * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
  */
 class Category extends BaseCategory implements UrlInterface

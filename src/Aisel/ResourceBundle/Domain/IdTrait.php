@@ -26,6 +26,7 @@ trait IdTrait
     /**
      * @var string
      * @ODM\Id
+     * @JMS\Expose
      * @JMS\Type("string")
      */
     private $id;

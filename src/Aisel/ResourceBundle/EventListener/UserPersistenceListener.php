@@ -43,7 +43,7 @@ class UserPersistenceListener
     public function prePersist(LifeCycleEventArgs $args)
     {
         /** @var AdvancedUserInterface $object */
-        $object = $args->getEntity();
+        $object = $args->getDocument();
 
         if ($object instanceof AdvancedUserInterface) {
             $salt = md5(uniqid(null, true));

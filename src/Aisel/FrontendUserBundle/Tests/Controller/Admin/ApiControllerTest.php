@@ -35,14 +35,14 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     {
 
         $users = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findBy(['username' => 'test_frontend_user_aisel']);
 
         foreach ($users as $user) {
-            $this->em->remove($user);
+            $this->dm->remove($user);
         }
-        $this->em->flush();
+        $this->dm->flush();
 
         $data = [
             'username' => 'test_frontend_user_aisel',
@@ -108,7 +108,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     public function testGetUserAction()
     {
         $user = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
         $id = $user->getId();
@@ -134,7 +134,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     public function testPutUserAction()
     {
         $user = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
         $id = $user->getId();
@@ -164,10 +164,10 @@ class ApiControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->em->clear();
+        $this->dm->clear();
 
         $user = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
 
@@ -179,7 +179,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     public function testDeletePageNodeAction()
     {
         $user = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
         $id = $user->getId();
@@ -197,7 +197,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $user = $this
-            ->em
+            ->dm
             ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
 

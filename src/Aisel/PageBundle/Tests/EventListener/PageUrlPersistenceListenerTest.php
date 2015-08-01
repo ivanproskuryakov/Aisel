@@ -49,8 +49,9 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
         $page1->setMetaTitle('...');
         $page1->setCommentStatus(true);
 
-        $this->em->persist($page1);
-        $this->em->flush();
+        $this->dm->persist($page1);
+        $this->dm->flush();
+        $this->dm->clear();
 
         // Create Page 2
         $page2 = new Page();
@@ -62,16 +63,17 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
         $page2->setMetaTitle('...');
         $page2->setCommentStatus(true);
 
-        $this->em->persist($page2);
-        $this->em->flush();
+        $this->dm->persist($page2);
+        $this->dm->flush();
 
         // Delete Page 1
-        $page1 = $this->em
+        $page1 = $this->dm
             ->getRepository('Aisel\PageBundle\Document\Page')
             ->findOneBy(['metaUrl' => $urlText]);
 
-        $this->em->remove($page1);
-        $this->em->flush();
+        $this->dm->remove($page1);
+        $this->dm->flush();
+        $this->dm->clear();
     }
 
 }
