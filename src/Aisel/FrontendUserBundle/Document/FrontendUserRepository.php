@@ -21,6 +21,7 @@ use Aisel\ResourceBundle\Repository\CollectionRepository;
 class FrontendUserRepository extends CollectionRepository
 {
     protected $model = 'AiselFrontendUserBundle:FrontendUser';
+    
 //
 //    /**
 //     * Find user by Username and Email

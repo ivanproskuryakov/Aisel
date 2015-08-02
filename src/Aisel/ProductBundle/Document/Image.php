@@ -29,37 +29,37 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Image extends BaseImage
 {
-
-    /**
-     * @var Product
-     * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Document\Product", inversedBy="images")
-     * @JMS\Expose
-     * @JMS\MaxDepth(1)
-     * @JMS\Type("Aisel\ProductBundle\Document\Product")
-     */
-    protected $product;
-
-    /**
-     * Set product
-     *
-     * @param  Product $product
-     * @return Image
-     */
-    public function setProduct(Product $product = null)
-    {
-        $this->product = $product;
-
-        return $this;
-    }
-
-    /**
-     * Get product
-     *
-     * @return Product
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
+//
+//    /**
+//     * @var Product
+//     * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Document\Product", inversedBy="images")
+//     * @JMS\Expose
+//     * @JMS\MaxDepth(1)
+//     * @JMS\Type("Aisel\ProductBundle\Document\Product")
+//     */
+//    protected $product;
+//
+//    /**
+//     * Set product
+//     *
+//     * @param  Product $product
+//     * @return Image
+//     */
+//    public function setProduct(Product $product = null)
+//    {
+//        $this->product = $product;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get product
+//     *
+//     * @return Product
+//     */
+//    public function getProduct()
+//    {
+//        return $this->product;
+//    }
 
 }

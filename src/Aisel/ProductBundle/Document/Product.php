@@ -39,6 +39,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
  */
 class Product implements UrlInterface
 {
+
     use IdTrait;
     use UpdateCreateTrait;
     use MetaTrait;
@@ -56,18 +57,18 @@ class Product implements UrlInterface
 
     /**
      * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
+     * @ODM\Field(type="int")
+     * @Assert\Type(type="int")
      * @Assert\NotNull()
      * @JMS\Expose
-     * @JMS\Type("string")
+     * @JMS\Type("integer")
      */
     private $sku;
 
     /**
      * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
+     * @ODM\Field(type="int")
+     * @Assert\Type(type="int")
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("integer")
@@ -76,9 +77,8 @@ class Product implements UrlInterface
 
     /**
      * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @Assert\NotNull()
+     * @ODM\Field(type="int")
+     * @Assert\Type(type="int")
      * @JMS\Expose
      * @JMS\Type("integer")
      */
@@ -132,8 +132,8 @@ class Product implements UrlInterface
 
     /**
      * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
+     * @ODM\Field(type="int")
+     * @Assert\Type(type="int")
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("integer")

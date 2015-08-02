@@ -53,7 +53,7 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
                     $product->setLocale($table->column[1]);
                     $product->setName($table->column[2]);
                     $product->setSku($table->column[3]);
-                    $product->setPrice((float) $table->column[4]);
+                    $product->setPrice((int)$table->column[4]);
                     $product->setQty((int) $table->column[11]);
                     $product->setDescriptionShort($table->column[14]);
                     $product->setDescription($table->column[15]);

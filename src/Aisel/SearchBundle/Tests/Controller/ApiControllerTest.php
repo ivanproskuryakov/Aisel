@@ -42,7 +42,8 @@ class ApiControllerTest extends AbstractWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
-        var_dump($result);
+
+        var_dump(count($result['collection']));
         exit();
 
         $this->assertJson($content);

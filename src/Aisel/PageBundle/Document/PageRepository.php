@@ -22,8 +22,6 @@ use Aisel\PageBundle\Document\Page;
 class PageRepository extends CollectionRepository
 {
 
-    protected $model = 'AiselPageBundle:Page';
-
     /**
      * Get pages based on limit, current pagination and search query
      * @param  array                         $params
@@ -32,19 +30,30 @@ class PageRepository extends CollectionRepository
     public function searchFromRequest($params)
     {
         $this->mapRequest($params);
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $pages = $query->select('p')
-            ->from($this->model, 'p')
-            ->where('p.content LIKE :search')->setParameter('search', '%' . $this->search . '%')
-            ->andWhere('p.locale = :locale')->setParameter('locale', $this->locale)
-            ->andWhere('p.status = 1')
-            ->setMaxResults($this->pageLimit)
-            ->setFirstResult($this->pageSkip)
-            ->orderBy('p.' . $this->order, $this->orderBy)
-            ->getQuery()
-            ->execute();
 
-        return $pages;
+        $query = $this
+            ->getDocumentManager()
+            ->createQueryBuilder($this->getDocumentName())
+            ->field('status')->equals(true)
+            ->field('locale')->equals($this->locale);
+//            ->expr()->operator('content', array(
+//                 '$search' => $this->search,
+//             ));
+
+        if ($this->search != '') {
+            $query->expr()->operator('content', array(
+                '$search' => $this->search,
+            ));
+        }
+
+        $collection = $query
+            ->limit($this->pageLimit)
+            ->skip($this->pageSkip)
+            ->sort($this->order, $this->orderBy)
+            ->getQuery()
+            ->toArray();
+
+        return $collection;
     }
 
     /**
@@ -53,7 +62,9 @@ class PageRepository extends CollectionRepository
      */
     public function getEnabledPages()
     {
-        $query = $this->getEntityManager()->createQueryBuilder();
+        $query = $this
+            ->getDocumentManager($this->getDocumentName())
+            ->createQueryBuilder();
         $pages = $query->select('p')
             ->from($this->model, 'p')
             ->andWhere('p.status = 1')

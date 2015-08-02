@@ -100,6 +100,8 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
+        $this->dm->clear();
+
         $product = $this
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Product')
