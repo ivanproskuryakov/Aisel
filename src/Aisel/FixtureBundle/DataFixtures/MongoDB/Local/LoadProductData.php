@@ -153,7 +153,7 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
             $image = new Image();
             $image->setFilename($fileName);
-            $image->setProduct($product);
+//            $image->setProduct($product);
             $image->setMainImage(false);
             $manager->persist($image);
             $manager->flush();
