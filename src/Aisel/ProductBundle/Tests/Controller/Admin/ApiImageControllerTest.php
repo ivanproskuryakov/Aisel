@@ -21,11 +21,9 @@ use Aisel\MediaBundle\Tests\Controller\UploadControllerTest;
 class ApiImageControllerTest extends UploadControllerTest
 {
 
-
     public function testPostImageAction()
     {
-        $this->markTestSkipped('...');
-
+        $images = [];
         $product = $this
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Product')
@@ -68,22 +66,44 @@ class ApiImageControllerTest extends UploadControllerTest
             $this->assertEquals($result, '');
             $this->assertNotNull($id);
 
+            $images[] = $id;
         }
 
+        // Patching product
+        $data = [
+            'id' => $product->getId(),
+            'images' => $images,
+        ];
+
+        $this->client->request(
+            'PUT',
+            '/'. $this->api['backend'] . '/product/' . $product->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->assertEmpty($content);
+        $this->assertTrue(204 === $statusCode);
+
+        $this->dm->flush();
+
+        //Checking
         $product = $this
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
 
         $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
-
-
     }
 
     public function testPutImageAction()
     {
-        $this->markTestSkipped('...');
-
         $product = $this
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Product')
@@ -100,6 +120,9 @@ class ApiImageControllerTest extends UploadControllerTest
         ];
 
         $image = $product->getImages()[0];
+
+        var_dump($image->getId());
+        exit();
 
         $this->client->request(
             'PUT',
@@ -133,8 +156,6 @@ class ApiImageControllerTest extends UploadControllerTest
 
     public function testGetImageAction()
     {
-        $this->markTestSkipped('...');
-
         $product = $this
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Product')
@@ -170,8 +191,6 @@ class ApiImageControllerTest extends UploadControllerTest
 
     public function testDeleteImageAction()
     {
-        $this->markTestSkipped('...');
-
         $product = $this
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Product')

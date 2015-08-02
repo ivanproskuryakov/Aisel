@@ -20,7 +20,7 @@ class ImageSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\ProductBundle\Document\Image');
+        $this->shouldHaveType('Aisel\MediaBundle\Document\Image');
     }
 
     public function it_should_not_have_id()
