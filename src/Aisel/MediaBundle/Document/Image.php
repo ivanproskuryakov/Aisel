@@ -23,7 +23,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
- *      collection="media_image"
+ *      collection="aisel_media_image"
  * )
  * @ODM\MappedSuperclass
  * @JMS\ExclusionPolicy("all")

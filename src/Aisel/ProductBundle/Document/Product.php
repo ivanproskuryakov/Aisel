@@ -19,6 +19,7 @@ use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\ProductBundle\Document\Category;
+use Aisel\MediaBundle\Document\Image;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -212,8 +213,8 @@ class Product implements UrlInterface
 
     /**
      * @var Collection
-     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Image", cascade={"remove"})
-     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Image>")
+     * @ODM\ReferenceMany(targetDocument="Aisel\MediaBundle\Document\Image", cascade={"remove"})
+     * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Document\Image>")
      */
     private $images;
 
@@ -622,6 +623,19 @@ class Product implements UrlInterface
     public function getCommentStatus()
     {
         return $this->commentStatus;
+    }
+
+    /**
+     * Set images
+     *
+     * @param  ArrayCollection   $images
+     * @return Product
+     */
+    public function setImages(ArrayCollection $images)
+    {
+        $this->images = $images;
+
+        return $this;
     }
 
     /**

@@ -11,11 +11,12 @@
 
 namespace Aisel\ResourceBundle\DataFixtures\MongoDB\Local;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
 use Aisel\ProductBundle\Document\Product;
-use Aisel\ProductBundle\Document\Image;
+use Aisel\MediaBundle\Document\Image;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Finder\Finder;
@@ -70,8 +71,13 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
                     $manager->persist($product);
                     $manager->flush();
+
                     $this->addReference('product_' . $table->column[0], $product);
-                    $this->setProductImage($manager, $product);
+                    $images = $this->setProductImage($manager, $product);
+
+                    $product->setImages($images);
+                    $manager->persist($product);
+                    $manager->flush();
                 }
             }
         }
@@ -122,6 +128,7 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
     private function setProductImage(ObjectManager $manager, $product)
     {
+        $images = new ArrayCollection();
 
         $uploadPath = $this->container->getParameter('application.media.product.path');
         $uploadDir = $this->container->getParameter('application.media.product.upload_dir');
@@ -153,17 +160,18 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
             $image = new Image();
             $image->setFilename($fileName);
-//            $image->setProduct($product);
             $image->setMainImage(false);
             $manager->persist($image);
             $manager->flush();
-        }
 
+            $images->add($image);
+        }
         // Set last image as main
         $image->setMainImage(true);
         $manager->persist($image);
         $manager->flush();
 
+        return $images;
     }
 
     /**
