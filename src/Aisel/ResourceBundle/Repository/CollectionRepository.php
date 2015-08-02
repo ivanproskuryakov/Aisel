@@ -132,8 +132,7 @@ class CollectionRepository extends DocumentRepository
                 ));
         }
 
-        $total = $query
-            ->count()
+        $total = $query->count()
             ->getQuery()
             ->execute();
 

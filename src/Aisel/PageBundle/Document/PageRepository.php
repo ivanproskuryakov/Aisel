@@ -36,15 +36,10 @@ class PageRepository extends CollectionRepository
             ->createQueryBuilder($this->getDocumentName())
             ->field('status')->equals(true)
             ->field('locale')->equals($this->locale);
-//            ->expr()->operator('content', array(
-//                 '$search' => $this->search,
-//             ));
 
-        if ($this->search != '') {
-            $query->expr()->operator('content', array(
-                '$search' => $this->search,
-            ));
-        }
+//        $query->expr()->operator('content', array(
+//            '$search' => $this->search,
+//        ));
 
         $collection = $query
             ->limit($this->pageLimit)

@@ -155,10 +155,14 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
+        $this->dm->clear();
+
         $navigationNode = $this
             ->dm
             ->getRepository('Aisel\NavigationBundle\Document\Menu')
             ->findOneBy(['id' => $id]);
+
+        var_dump($content);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
