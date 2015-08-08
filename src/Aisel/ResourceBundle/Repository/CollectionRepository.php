@@ -232,7 +232,8 @@ class CollectionRepository extends DocumentRepository
         $query = $this
             ->getDocumentManager()
             ->createQueryBuilder($this->model)
-            ->field('lvl')->equals(1);
+            ->field('lvl')->equals(1)
+            ->field('locale')->equals($locale);
 
         if ($onlyEnabled) {
             $query->field('status')->equals($onlyEnabled);

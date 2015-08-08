@@ -26,7 +26,7 @@ class ApiImageControllerTest extends UploadControllerTest
         $product = $this
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Product')
-            ->findOneBy(['locale' => 'ru']);
+            ->findOneBy(['locale' => 'en']);
 
         foreach ($product->getImages() as $image) {
             $product->removeImage($image);
@@ -108,7 +108,7 @@ class ApiImageControllerTest extends UploadControllerTest
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
-        
+
         $image = $product->getImages()[0];
         $data = [
             'title' => time(),

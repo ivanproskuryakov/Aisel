@@ -223,8 +223,6 @@ class Product implements UrlInterface
     /**
      * @var ArrayCollection
      * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Category")
-     * @JMS\Expose
-     * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Category>")
      */
     private $categories;
