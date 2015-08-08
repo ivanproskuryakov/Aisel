@@ -70,7 +70,6 @@ class Image
      */
     protected $filename;
 
-
     /**
      * @return string
      */

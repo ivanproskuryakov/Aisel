@@ -213,7 +213,9 @@ class Product implements UrlInterface
 
     /**
      * @var Collection
-     * @ODM\ReferenceMany(targetDocument="Aisel\MediaBundle\Document\Image", cascade={"remove"})
+     * @ODM\ReferenceMany(targetDocument="Aisel\MediaBundle\Document\Image")
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Document\Image>")
      */
     private $images;
@@ -221,6 +223,8 @@ class Product implements UrlInterface
     /**
      * @var ArrayCollection
      * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Category")
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Category>")
      */
     private $categories;

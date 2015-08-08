@@ -120,6 +120,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
             ->dm
             ->getRepository('Aisel\PageBundle\Document\Page')
             ->findOneBy(['locale' => 'en']);
+
         $id = $page->getId();
         $data['locale'] = 'ru';
 

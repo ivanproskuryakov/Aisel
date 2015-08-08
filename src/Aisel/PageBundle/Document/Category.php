@@ -30,8 +30,8 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
  *      repositoryClass="Aisel\PageBundle\Document\CategoryRepository"
  * )
  * @JMS\ExclusionPolicy("all")
- * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
  */
+//* @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
 class Category extends BaseCategory implements UrlInterface
 {
 
@@ -46,6 +46,22 @@ class Category extends BaseCategory implements UrlInterface
      */
     private $description;
 
+    /**
+     * @Gedmo\TreeParent
+     * @ODM\ReferenceOne(targetDocument="Aisel\PageBundle\Document\Category", inversedBy="children")
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("Aisel\PageBundle\Document\Category")
+     */
+    protected $parent;
+
+    /**
+     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category")
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
+     */
+    protected $children;
 
     /**
      * Set description

@@ -107,8 +107,16 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
             ->dm
             ->getRepository('Aisel\PageBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
+
+        $pageNode2 = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->findOneBy(['locale' => 'en']);
+
         $id = $pageNode->getId();
         $data['locale'] = 'ru';
+        $data['description'] = time();
+        $data['children'][] = ['id' => $pageNode2->getId()];
 
         $this->client->request(
             'PUT',
@@ -128,12 +136,13 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $pageNode = $this
             ->dm
             ->getRepository('Aisel\PageBundle\Document\Category')
-            ->findOneBy(['title' => 'AAA']);
+            ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
         $this->assertNotNull($pageNode);
         $this->assertEquals($data['locale'], $pageNode->getLocale());
+        $this->assertEquals(1, count($pageNode->getChildren()));
     }
 
     public function testDeletePageNodeAction()

@@ -84,6 +84,12 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['name' => 'AAAAA']);
+
+        $category = $this
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Category')
+            ->findOneBy(['locale' => 'en']);
+
         $id = $product->getId();
         $data['locale'] = 'ru';
 
