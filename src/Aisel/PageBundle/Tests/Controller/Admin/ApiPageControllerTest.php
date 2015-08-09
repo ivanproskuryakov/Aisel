@@ -33,6 +33,11 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
     public function testPostPageAction()
     {
+        $pageNode = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->findOneBy(['locale' => 'en']);
+
         $data = [
             'locale' => 'en',
             'title' => 'AAA',
@@ -41,11 +46,16 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
             'meta_url' => 'metaUrl_' . time(),
             'meta_title' => 'metaTitle_' . time(),
             'comment_status' => false,
+            'categories' => [
+                [
+                    'id' => $pageNode->getId()
+                ]
+            ]
         ];
 
         $this->client->request(
             'POST',
-            '/'. $this->api['backend'] . '/page/',
+            '/' . $this->api['backend'] . '/page/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -58,6 +68,15 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
         $this->assertEmpty($content);
         $this->assertTrue(201 === $statusCode);
+        $parts = explode('/', $response->headers->get('location'));
+        $id = array_pop($parts);
+
+        $page = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Page')
+            ->find($id);
+
+        $this->assertEquals($page->getCategories()[0]->getId(), $pageNode->getId());
     }
 
     public function testGetPageAction()
@@ -69,7 +88,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/page/' . $page->getId(),
+            '/' . $this->api['backend'] . '/page/' . $page->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -94,7 +113,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'DELETE',
-            '/'. $this->api['backend'] . '/page/' . $id,
+            '/' . $this->api['backend'] . '/page/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -126,7 +145,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'PUT',
-            '/'. $this->api['backend'] . '/page/' . $id,
+            '/' . $this->api['backend'] . '/page/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],

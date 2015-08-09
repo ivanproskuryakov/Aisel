@@ -242,4 +242,19 @@ abstract class Category
     {
         return $this->parent;
     }
+
+    /**
+     * @ODM\postUpdate()
+     */
+    public function postUpdate(){
+
+        /** @var \Aisel\ResourceBundle\Document\Category $parent */
+        $parent = $this->parent;
+
+        if ($parent->getId()) {
+            $parent->removeChild($this);
+            $parent->addChild($this);
+        }
+    }
+
 }

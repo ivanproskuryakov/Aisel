@@ -51,6 +51,11 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
 
     public function testPostProductActionFails()
     {
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Category')
+            ->findOneBy(['locale' => 'en']);
+
         $data = [
             'locale' => 'en',
             'name' => 'AAAAA',
@@ -59,6 +64,11 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
             'description' => time(),
             'description_short' => time(),
             'meta_url' => time(),
+            'categories' => [
+                [
+                    'id' => $node->getId()
+                ]
+            ]
         ];
 
         $this->client->request(
@@ -76,6 +86,15 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
 
         $this->assertEmpty($content);
         $this->assertTrue(201 === $statusCode);
+        $parts = explode('/', $response->headers->get('location'));
+        $id = array_pop($parts);
+
+        $product = $this
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->find($id);
+
+        $this->assertEquals($product->getCategories()[0]->getId(), $node->getId());
     }
 
     public function testPutProductAction()

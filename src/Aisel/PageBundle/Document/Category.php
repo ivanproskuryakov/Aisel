@@ -50,7 +50,6 @@ class Category extends BaseCategory implements UrlInterface
      * @Gedmo\TreeParent
      * @ODM\ReferenceOne(targetDocument="Aisel\PageBundle\Document\Category", inversedBy="children")
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\PageBundle\Document\Category")
      */
     protected $parent;
@@ -58,7 +57,6 @@ class Category extends BaseCategory implements UrlInterface
     /**
      * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category")
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
      */
     protected $children;

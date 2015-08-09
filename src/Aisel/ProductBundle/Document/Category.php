@@ -30,6 +30,7 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
  *      collection="aisel_product_category",
  *      repositoryClass="Aisel\ProductBundle\Document\CategoryRepository"
  * )
+ * @JMS\ExclusionPolicy("all")
  */
 class Category extends BaseCategory implements UrlInterface
 {
@@ -44,6 +45,24 @@ class Category extends BaseCategory implements UrlInterface
      */
     private $description;
 
+    /**
+     * @Gedmo\TreeParent
+     * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Document\Category", inversedBy="children")
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("Aisel\ProductBundle\Document\Category")
+     */
+    protected $parent;
+
+    /**
+     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Category")
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Category>")
+     */
+    protected $children;
+
+    
     /**
      * Set description
      *
