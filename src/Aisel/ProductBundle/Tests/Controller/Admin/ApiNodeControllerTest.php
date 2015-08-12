@@ -145,7 +145,6 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
     public function testDeleteProductNodeAction()
     {
-        $this->markTestSkipped('failed ..');
         $node = $this
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Category')

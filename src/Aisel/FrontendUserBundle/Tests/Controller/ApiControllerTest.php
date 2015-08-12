@@ -35,7 +35,7 @@ class ApiControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['frontend'] . '/user/information/',
+            '/' . $this->api['frontend'] . '/user/information/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -53,14 +53,14 @@ class ApiControllerTest extends AbstractWebTestCase
     public function testRegisterUserAction()
     {
         $data = [
-            'username' => rand(11111111,999999999),
-            'password' => rand(11111111,999999999),
-            'email' => rand(11111111,999999999).'@aisel.co'
+            'username' => rand(11111111, 999999999),
+            'password' => rand(11111111, 999999999),
+            'email' => rand(11111111, 999999999) . '@aisel.co'
         ];
 
         $this->client->request(
             'POST',
-            '/'. $this->api['frontend'] . '/user/register/',
+            '/' . $this->api['frontend'] . '/user/register/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -84,7 +84,7 @@ class ApiControllerTest extends AbstractWebTestCase
         ];
         $this->client->request(
             'POST',
-            '/'. $this->api['frontend'] . '/user/login/',
+            '/' . $this->api['frontend'] . '/user/login/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -109,7 +109,7 @@ class ApiControllerTest extends AbstractWebTestCase
         ];
         $this->client->request(
             'POST',
-            '/'. $this->api['frontend'] . '/user/login/',
+            '/' . $this->api['frontend'] . '/user/login/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -118,7 +118,7 @@ class ApiControllerTest extends AbstractWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['frontend'] . '/user/logout/',
+            '/' . $this->api['frontend'] . '/user/logout/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -138,7 +138,7 @@ class ApiControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['frontend'] . '/user/password/forgot/?email=fontenduser@aisel.co',
+            '/' . $this->api['frontend'] . '/user/password/forgot/?email=fontenduser@aisel.co',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -157,7 +157,7 @@ class ApiControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['frontend'] . '/user/password/forgot/?email=volgodark@gmail.com',
+            '/' . $this->api['frontend'] . '/user/password/forgot/?email=volgodark@gmail.com',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
