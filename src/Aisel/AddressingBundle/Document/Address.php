@@ -26,7 +26,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
  *      collection="aisel_addressing_address",
- *      repositoryClass="Aisel\AddressingBundle\Document\AddressRepository"
+ *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  */
 class Address

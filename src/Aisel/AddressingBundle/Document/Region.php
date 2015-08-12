@@ -25,7 +25,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
  *      collection="aisel_addressing_region",
- *      repositoryClass="Aisel\AddressingBundle\Document\RegionRepository"
+ *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  */
 class Region

@@ -25,7 +25,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
  *      collection="aisel_addressing_country",
- *      repositoryClass="Aisel\AddressingBundle\Document\CountryRepository"
+ *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  */
 class Country

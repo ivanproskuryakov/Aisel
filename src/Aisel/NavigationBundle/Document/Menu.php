@@ -24,7 +24,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
  *      collection="aisel_navigation_menu",
- *      repositoryClass="Aisel\NavigationBundle\Document\MenuRepository"
+ *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  */
 class Menu extends BaseCategory

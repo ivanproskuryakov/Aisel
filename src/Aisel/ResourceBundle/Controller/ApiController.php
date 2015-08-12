@@ -236,7 +236,6 @@ class ApiController extends Controller
     public function getTreeAction(Request $request)
     {
         $locale = $request->get('locale');
-
         /**
          * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */

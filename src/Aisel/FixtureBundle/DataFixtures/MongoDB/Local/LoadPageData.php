@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\DataFixtures\ORM\Local;
+namespace Aisel\ResourceBundle\DataFixtures\Mongo\Local;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -50,6 +50,7 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                     $page->setMetaUrl($table->column[7]);
 
                     $categories = explode(",", $table->column[8]);
+
                     foreach ($categories as $c) {
                         $category = $this->getReference('page_category_' . $c);
                         $page->addCategory($category);

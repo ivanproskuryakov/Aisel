@@ -29,8 +29,8 @@ class CartRepository extends DocumentRepository
      * Add product to cart
      *
      * @param FrontendUser $user
-     * @param Product           $product
-     * @param int                                           $qty
+     * @param Product $product
+     * @param int $qty
      *
      * @return Cart $cartItem
      */
@@ -58,8 +58,8 @@ class CartRepository extends DocumentRepository
      * Update product in cart
      *
      * @param FrontendUser $user
-     * @param Product           $product
-     * @param int                                           $qty
+     * @param Product $product
+     * @param int $qty
      *
      * @return Cart $total
      */
@@ -87,7 +87,7 @@ class CartRepository extends DocumentRepository
      * Find product in cart
      *
      * @param FrontendUser $user
-     * @param Product           $product
+     * @param Product $product
      *
      * @return Cart $cartItem
      */

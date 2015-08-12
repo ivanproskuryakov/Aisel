@@ -232,6 +232,7 @@ class CollectionRepository extends DocumentRepository
         $query = $this
             ->getDocumentManager()
             ->createQueryBuilder($this->model)
+            ->field('parent')->exists(false)
             ->field('locale')->equals($locale);
 
         if ($onlyEnabled) {
@@ -239,9 +240,7 @@ class CollectionRepository extends DocumentRepository
         }
 
         $result = $query
-//            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
-//            ->orderBy('c.root', 'ASC')
-//            ->addOrderBy('c.lft', 'ASC')
+            ->sort($this->order, $this->orderBy)
             ->getQuery()
             ->toArray();
 

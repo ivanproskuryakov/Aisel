@@ -26,7 +26,7 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
  *      collection="aisel_page_category",
- *      repositoryClass="Aisel\PageBundle\Document\CategoryRepository"
+ *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  * @JMS\ExclusionPolicy("all")
  */

@@ -34,7 +34,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
  *      collection="aisel_product",
- *      repositoryClass="Aisel\ProductBundle\Document\ProductRepository"
+ *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  * @JMS\ExclusionPolicy("all")
  */

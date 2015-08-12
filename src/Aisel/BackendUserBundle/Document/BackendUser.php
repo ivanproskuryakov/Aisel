@@ -27,7 +27,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
  *      collection="aisel_user_backend",
- *      repositoryClass="Aisel\BackendUserBundle\Document\BackendUserRepository"
+ *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  * @ODM\UniqueIndex(keys={"username"="asc", "email"="asc"})
  */

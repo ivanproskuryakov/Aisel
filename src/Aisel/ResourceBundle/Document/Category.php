@@ -67,7 +67,7 @@ abstract class Category
      * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\ResourceBundle\Document\Category")
      */
-    protected $parent;
+    protected $parent = null;
 
     /**
      * @ODM\ReferenceMany(targetDocument="Aisel\ResourceBundle\Document\Category", mappedBy="parent")
@@ -75,7 +75,7 @@ abstract class Category
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\ResourceBundle\Document\Category>")
      */
-    protected $children;
+    protected $children = null;
 
     /**
      * Constructor
@@ -184,6 +184,9 @@ abstract class Category
     {
         $this->parent = $parent;
 
+        $parent->removeChild($this);
+        $parent->addChild($this);
+
         return $this;
     }
 
@@ -197,18 +200,18 @@ abstract class Category
         return $this->parent;
     }
 
-    /**
-     * @ODM\postUpdate()
-     */
-    public function postUpdate(){
-
-        /** @var \Aisel\ResourceBundle\Document\Category $parent */
-        $parent = $this->parent;
-
-        if ($parent) {
-            $parent->removeChild($this);
-            $parent->addChild($this);
-        }
-    }
+//    /**
+//     * @ODM\postUpdate()
+//     */
+//    public function postUpdate(){
+//        var_dump($this->getId());
+//        /** @var \Aisel\ResourceBundle\Document\Category $parent */
+//        $parent = $this->parent;
+//
+//        if ($parent) {
+//            $parent->removeChild($this);
+//            $parent->addChild($this);
+//        }
+//    }
 
 }
