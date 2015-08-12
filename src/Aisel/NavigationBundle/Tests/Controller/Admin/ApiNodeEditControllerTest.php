@@ -51,10 +51,10 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/navigation/node/'.
-            '?locale=en&action=dragDrop'.
-            '&id='. $node1->getId().
-            '&parentId='. $node2->getId() . '',
+            '/' . $this->api['backend'] . '/navigation/node/' .
+            '?locale=en&action=dragDrop' .
+            '&id=' . $node1->getId() .
+            '&parentId=' . $node2->getId() . '',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -75,10 +75,10 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/navigation/node/'.
-            '?locale=en&action=addChild'.
-            '&name=New+children'.
-            '&parentId='. $node->getId() . '',
+            '/' . $this->api['backend'] . '/navigation/node/' .
+            '?locale=en&action=addChild' .
+            '&name=New+children' .
+            '&parentId=' . $node->getId() . '',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -99,11 +99,11 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/navigation/node/'.
-            '?locale=en'.
-            '&action=save'.
-            '&name=BBB'.
-            '&id='.$node->getId(),
+            '/' . $this->api['backend'] . '/navigation/node/' .
+            '?locale=en' .
+            '&action=save' .
+            '&name=BBB' .
+            '&id=' . $node->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -113,36 +113,35 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
-
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['title'], 'BBB');
     }
 
-//    public function testNavigationNodeDeleteAction()
-//    {
-//        $node = $this->createNode('ZZZZ');
-//
-//        $this->client->request(
-//            'GET',
-//            '/'. $this->api['backend'] . '/navigation/node/'.
-//            '?locale=en'.
-//            '&action=remove'.
-//            '&id='. $node->getId(),
-//            [],
-//            [],
-//            ['CONTENT_TYPE' => 'application/json']
-//        );
-//
-//        $response = $this->client->getResponse();
-//        $statusCode = $response->getStatusCode();
-//
-//        $node = $this
-//            ->dm
-//            ->getRepository('Aisel\NavigationBundle\Document\Menu')
-//            ->findOneBy(['title' => 'ZZZZ']);
-//
-//        $this->assertTrue(200 === $statusCode);
-//        $this->assertNull($node);
-//    }
+    public function testNavigationNodeDeleteAction()
+    {
+        $node = $this->createNode('ZZZZ');
+
+        $this->client->request(
+            'GET',
+            '/'. $this->api['backend'] . '/navigation/node/'.
+            '?locale=en'.
+            '&action=remove'.
+            '&id='. $node->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $statusCode = $response->getStatusCode();
+
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->findOneBy(['title' => 'ZZZZ']);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertNull($node);
+    }
 
 }

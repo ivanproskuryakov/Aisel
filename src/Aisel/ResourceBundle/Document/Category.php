@@ -12,7 +12,6 @@
 namespace Aisel\ResourceBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
@@ -25,7 +24,6 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
- * @Gedmo\Tree(type="materializedPath")
  * @ODM\HasLifecycleCallbacks()
  * @ODM\MappedSuperclass
  * @JMS\ExclusionPolicy("all")
@@ -39,7 +37,6 @@ abstract class Category
     /**
      * @var string
      * @ODM\Id
-     * @Gedmo\TreePathSource
      * @JMS\Type("string")
      * @JMS\Expose
      */
@@ -65,26 +62,6 @@ abstract class Category
     protected $title;
 
     /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Gedmo\TreePath(separator="|")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    protected $path;
-
-    /**
-     * @var int
-     * @Gedmo\TreeLevel
-     * @ODM\Field(type="int")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("integer")
-     */
-    private $lvl = 1;
-
-    /**
-     * @Gedmo\TreeParent
      * @ODM\ReferenceOne(targetDocument="Aisel\ResourceBundle\Document\Category", inversedBy="children")
      * @JMS\Expose
      * @JMS\MaxDepth(1)
@@ -139,29 +116,6 @@ abstract class Category
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set lvl
-     *
-     * @param  integer $lvl
-     * @return Category
-     */
-    public function setLvl($lvl)
-    {
-        $this->lvl = $lvl;
-
-        return $this;
-    }
-
-    /**
-     * Get lvl
-     *
-     * @return integer
-     */
-    public function getLvl()
-    {
-        return $this->lvl;
     }
 
     /**
@@ -251,7 +205,7 @@ abstract class Category
         /** @var \Aisel\ResourceBundle\Document\Category $parent */
         $parent = $this->parent;
 
-        if ($parent->getId()) {
+        if ($parent) {
             $parent->removeChild($this);
             $parent->addChild($this);
         }

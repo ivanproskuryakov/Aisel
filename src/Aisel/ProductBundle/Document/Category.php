@@ -13,7 +13,6 @@ namespace Aisel\ProductBundle\Document;
 
 use Aisel\ResourceBundle\Document\Category as BaseCategory;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
@@ -46,7 +45,6 @@ class Category extends BaseCategory implements UrlInterface
     private $description;
 
     /**
-     * @Gedmo\TreeParent
      * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Document\Category", inversedBy="children")
      * @JMS\Expose
      * @JMS\MaxDepth(1)

@@ -34,7 +34,6 @@ class ApiNodeEditController extends Controller
      */
     public function nodeEditAction(Request $request)
     {
-
         /** @var \Aisel\ResourceBundle\Manager\ApiNodeManager $nodeManager */
         $nodeManager = $this
             ->container

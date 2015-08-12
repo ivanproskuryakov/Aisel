@@ -12,7 +12,6 @@
 namespace Aisel\NavigationBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Aisel\ResourceBundle\Document\Category as BaseCategory;
 use JMS\Serializer\Annotation as JMS;

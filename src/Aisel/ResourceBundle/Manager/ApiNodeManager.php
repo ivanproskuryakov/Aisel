@@ -74,6 +74,7 @@ class ApiNodeManager
         if ($params['name']) {
             $node->setTitle($params['name']);
         }
+
         $this->dm->persist($node);
         $this->dm->flush();
 
