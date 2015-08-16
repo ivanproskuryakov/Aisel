@@ -29,8 +29,12 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  *      collection="aisel_user_backend",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
- * @ODM\UniqueIndex(keys={"username"="asc", "email"="asc"})
+ * @ODM\UniqueIndex(
+ *      keys={"username"="asc", "email"="asc"}
+ * )
  */
+// todo: Finish with validation messages and Unique indexes
+
 class BackendUser implements AdvancedUserInterface
 {
 
@@ -41,7 +45,7 @@ class BackendUser implements AdvancedUserInterface
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
-     * @Assert\NotNull()
+     * @Assert\NotBlank()
      * @JMS\Type("string")
      */
     private $username;
@@ -49,7 +53,8 @@ class BackendUser implements AdvancedUserInterface
     /**
      * @var string
      * @ODM\Field(type="string")
-     * @Assert\NotNull()
+     * @Assert\Email()
+     * @Assert\NotBlank()
      * @Assert\Email
      * @JMS\Type("string")
      */

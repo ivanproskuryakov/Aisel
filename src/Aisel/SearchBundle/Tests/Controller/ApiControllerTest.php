@@ -33,11 +33,9 @@ class ApiControllerTest extends AbstractWebTestCase
 
     public function testSearchNotFoundAction()
     {
-        $this->markTestSkipped('fulltext search in mongodb');
-
         $this->client->request(
             'GET',
-            '/'. $this->api['frontend'] . '/en/search/?query=00000'
+            '/'. $this->api['frontend'] . '/en/search/?query=nothing'
         );
 
         $response = $this->client->getResponse();
@@ -47,16 +45,14 @@ class ApiControllerTest extends AbstractWebTestCase
 
         $this->assertJson($content);
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals(0, $result['total']);
+        $this->assertEquals(0, count($result['collection']));
     }
 
     public function testSearchFoundAction()
     {
-        $this->markTestSkipped('fulltext search in mongodb');
-
         $this->client->request(
             'GET',
-            '/'. $this->api['frontend'] . '/en/search/?query=lo'
+            '/'. $this->api['frontend'] . '/en/search/?query=Integer'
         );
 
         $response = $this->client->getResponse();
@@ -66,7 +62,7 @@ class ApiControllerTest extends AbstractWebTestCase
 
         $this->assertJson($content);
         $this->assertTrue(200 === $statusCode);
-        $this->assertTrue(count($result['total']) > 0);
+        $this->assertEquals(1, count($result['total']));
     }
 
 }

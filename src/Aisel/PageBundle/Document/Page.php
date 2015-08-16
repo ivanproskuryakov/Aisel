@@ -36,7 +36,11 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
  * )
  * @JMS\ExclusionPolicy("all")
  * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
+ *
  */
+//* @ODM\Indexes({
+// *   @ODM\Index(keys={"content"="text"})
+// * })
 class Page implements UrlInterface
 {
     use IdTrait;

@@ -35,7 +35,8 @@ class PageRepository extends CollectionRepository
             ->getDocumentManager()
             ->createQueryBuilder($this->getDocumentName())
             ->field('status')->equals(true)
-            ->field('locale')->equals($this->locale);
+            ->field('locale')->equals($this->locale)
+            ->field('content')->equals(new \MongoRegex('/.*'.$this->search.'.*/i'));
 
 //        $query->expr()->operator('content', array(
 //            '$search' => $this->search,
@@ -47,6 +48,9 @@ class PageRepository extends CollectionRepository
             ->sort($this->order, $this->orderBy)
             ->getQuery()
             ->toArray();
+
+//        var_dump(count($collection));
+//        exit();
 
         return $collection;
     }

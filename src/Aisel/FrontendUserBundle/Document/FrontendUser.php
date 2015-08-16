@@ -36,7 +36,9 @@ use Aisel\ResourceBundle\Domain\IdTrait;
  *      collection="aisel_user_frontend",
  *      repositoryClass="Aisel\FrontendUserBundle\Document\FrontendUserRepository"
  * )
- * @ODM\UniqueIndex(keys={"username"="asc", "email"="asc"})
+ * @ODM\UniqueIndex(
+ *      keys={"username"="asc", "email"="asc"}
+ * )
  */
 class FrontendUser implements AdvancedUserInterface
 {
