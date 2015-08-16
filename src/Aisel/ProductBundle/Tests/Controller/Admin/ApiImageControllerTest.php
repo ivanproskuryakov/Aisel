@@ -87,9 +87,13 @@ class ApiImageControllerTest extends UploadControllerTest
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
+//        var_dump($product->getId());
+//        var_dump($product->getPrice());
+//        var_dump($content);
+//        exit();
+
         $this->assertEmpty($content);
         $this->assertTrue(204 === $statusCode);
-
         $this->dm->clear();
 
         //Checking

@@ -60,7 +60,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
             'locale' => 'en',
             'name' => 'AAAAA',
             'sku' => time(),
-            'price' => '100',
+            'price' => 100,
             'description' => time(),
             'description_short' => time(),
             'meta_url' => time(),

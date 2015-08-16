@@ -182,7 +182,6 @@ class ExceptionListener
      */
     private function responseMongoDuplicateKeyException(MongoDuplicateKeyException $exception)
     {
-//        var_dump($exception->getMessage());
         $message = 'Duplicate key error';
 
         return $this->createResponse(
