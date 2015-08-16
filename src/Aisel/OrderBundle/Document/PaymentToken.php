@@ -24,7 +24,7 @@ use Aisel\ResourceBundle\Domain\IdTrait;
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
  *      collection="aisel_order_payment_token",
- *      repositoryClass="Aisel\OrderBundle\Document\PaymentTokenRepository"
+ *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  * @ODM\MappedSuperclass
  */

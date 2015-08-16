@@ -29,7 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
  *      collection="aisel_order_item",
- *      repositoryClass="Aisel\PageBundle\Document\OrderItemRepository"
+ *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  * @ODM\MappedSuperclass
  * @JMS\ExclusionPolicy("all")

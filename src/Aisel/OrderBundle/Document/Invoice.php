@@ -25,7 +25,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
  *      collection="aisel_order_invoice",
- *      repositoryClass="Aisel\OrderBundle\Document\InvoiceRepository"
+ *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  * @ODM\MappedSuperclass
  */
