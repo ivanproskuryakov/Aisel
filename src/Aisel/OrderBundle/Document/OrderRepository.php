@@ -139,15 +139,19 @@ class OrderRepository extends CollectionRepository
      */
     public function findAllOrdersForUser($userId)
     {
-        $query = $this->getDocumentManager()->createQueryBuilder();
-        $orders = $query->select('o')
-            ->from($this->model, 'o')
-            ->where('o.frontenduser = :userId')->setParameter('userId', $userId)
-            ->orderBy('o.id', 'DESC')
-            ->getQuery()
-            ->execute();
 
-        return $orders;
+        $query = $this
+            ->getDocumentManager()
+            ->createQueryBuilder($this->model)
+            ->field('frontenduser.id')->equals($userId)
+            ->sort($this->order, $this->orderBy);
+
+        $result = $query
+            ->getQuery()
+            ->toArray();
+
+//        exit();
+        return $result;
     }
 
     /**

@@ -83,6 +83,38 @@ abstract class AbstractWebTestCase extends KernelTestCase
         return $this->um->isAuthenticated();
     }
 
+    public function logInFrontend($username = 'frontenduser', $password = 'frontenduser')
+    {
+        if ($this->um->isAuthenticated() === false) {
+
+            $data = [
+                'username' => $username,
+                'password' => $password,
+            ];
+
+            $this->client->request(
+                'POST',
+                '/'. $this->api['frontend'] . '/user/login/',
+                [],
+                [],
+                ['CONTENT_TYPE' => 'application/json'],
+                json_encode($data)
+            );
+
+
+            $response = $this->client->getResponse();
+            $content = $response->getContent();
+            $result = json_decode($content, true);
+
+            if ($result['status'] !== true) {
+                throw new \LogicException('Authentication failed.');
+            }
+        }
+
+
+        return $this->um->isAuthenticated();
+    }
+
     public function setUp()
     {
         static::$kernel = static::createKernel();

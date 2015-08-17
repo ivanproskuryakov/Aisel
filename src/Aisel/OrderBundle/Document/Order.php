@@ -44,6 +44,7 @@ class Order
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Expose
      */
     private $status = false;
 
@@ -52,6 +53,7 @@ class Order
      * @Assert\NotNull()
      * @ODM\Field(type="string")
      * @JMS\Type("integer")
+     * @JMS\Expose
      */
     private $totalAmount = 0;
 
@@ -60,6 +62,7 @@ class Order
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
      * @JMS\Type("string")
+     * @JMS\Expose
      */
     private $description;
 
@@ -69,6 +72,7 @@ class Order
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
+     * @JMS\Expose
      */
     private $currency;
 
@@ -78,6 +82,7 @@ class Order
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
+     * @JMS\Expose
      */
     private $country;
 
@@ -87,6 +92,7 @@ class Order
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
+     * @JMS\Expose
      */
     private $region;
 
@@ -96,6 +102,7 @@ class Order
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
+     * @JMS\Expose
      */
     private $city;
 
@@ -105,6 +112,7 @@ class Order
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
+     * @JMS\Expose
      */
     private $phone;
 
@@ -114,14 +122,16 @@ class Order
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
+     * @JMS\Expose
      */
     private $paymentMethod;
 
     /**
      * @var FrontendUser
-     * @ODM\ReferenceOne(targetDocument="Aisel\OrderBundle\Document\Order", inversedBy="order")
+     * @ODM\ReferenceOne(targetDocument="Aisel\FrontendUserBundle\Document\FrontendUser", inversedBy="order")
      * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\FrontendUserBundle\Document\FrontendUser")
+     * @JMS\Expose
      */
     private $frontenduser;
 
@@ -130,6 +140,7 @@ class Order
      * @ODM\ReferenceOne(targetDocument="Aisel\OrderBundle\Document\Invoice", inversedBy="order")
      * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\OrderBundle\Document\Invoice")
+     * @JMS\Expose
      */
     private $invoice;
 
@@ -137,6 +148,7 @@ class Order
      * @var OrderItem
      * @ODM\ReferenceMany(targetDocument="Aisel\OrderBundle\Document\OrderItem", mappedBy="order")
      * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Document\OrderItem>")
+     *
      */
     private $item;
 

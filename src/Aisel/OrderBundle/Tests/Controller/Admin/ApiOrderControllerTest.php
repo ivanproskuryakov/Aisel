@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Tests\Controller\Admin;
+namespace Aisel\OrderBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 
@@ -52,14 +52,14 @@ class ApiOrderControllerTest extends AbstractBackendWebTestCase
 
     public function testGetOrderAction()
     {
-        $product = $this
+        $Order = $this
             ->dm
             ->getRepository('Aisel\OrderBundle\Document\Order')
             ->findOneBy(['locale' => 'en']);
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/order/' . $product->getId(),
+            '/'. $this->api['backend'] . '/order/' . $Order->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -71,7 +71,7 @@ class ApiOrderControllerTest extends AbstractBackendWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $product->getId());
+        $this->assertEquals($result['id'], $Order->getId());
     }
 
 }
