@@ -28,6 +28,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  * @ODM\MappedSuperclass
+ * @JMS\ExclusionPolicy("all")
  */
 class Invoice
 {

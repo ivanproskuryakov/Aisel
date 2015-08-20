@@ -221,7 +221,7 @@ class ApiController extends Controller
             ->getDocumentManager()
             ->getRepository($this->model);
         $total = $repo->getTotalFromRequest($params);
-        $collection = $repo->getCollectionFromRequest($params);
+        $collection = array_values($repo->getCollectionFromRequest($params));
         return array(
             'total' => $total,
             'collection' => $collection

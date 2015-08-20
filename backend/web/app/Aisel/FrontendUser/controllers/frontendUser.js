@@ -41,6 +41,8 @@ define(['app'], function(app) {
             }];
             $scope.gridOptions = collectionService.gridOptions($scope);
 
+            console.log($scope.gridOptions);
+
             // === Item Actions ===
             $scope.editDetails = function(id) {
                 $state.transitionTo('frontendUserEdit', {
@@ -52,12 +54,12 @@ define(['app'], function(app) {
                 $state.transitionTo('frontendUserNew', {
                     locale: Environment.currentLocale()
                 });
-            }
+            };
 
             // === Load collection from remote ===
             $scope.loadCollection = function(pageNumber) {
                 collectionService.loadCollection($scope, itemService, pageNumber);
-            }
+            };
             $scope.loadCollection();
 
         }

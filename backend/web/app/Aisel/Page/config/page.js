@@ -42,6 +42,7 @@ define(['app'], function(app) {
                     controller: 'PageCategoryDetailsCtrl'
                 })
         }])
+
         .run(['$rootScope', 'Environment', function($rootScope, Environment) {
             $rootScope.topMenu.push({
                 "ordering": 100,

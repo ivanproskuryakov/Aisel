@@ -29,7 +29,7 @@ use Aisel\ResourceBundle\Domain\IdTrait;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
- * @JMS\ExclusionPolicy("none")
+ * @JMS\ExclusionPolicy("all")
  *
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
@@ -51,6 +51,7 @@ class FrontendUser implements AdvancedUserInterface
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
      * @Assert\NotNull()
+     * @JMS\Expose
      * @JMS\Type("string")
      */
     private $username;
@@ -60,6 +61,7 @@ class FrontendUser implements AdvancedUserInterface
      * @ODM\Field(type="string")
      * @Assert\NotNull()
      * @Assert\Email
+     * @JMS\Expose
      * @JMS\Type("string")
      */
     private $email;
@@ -85,6 +87,7 @@ class FrontendUser implements AdvancedUserInterface
      * @ODM\Field(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Expose
      * @JMS\Type("boolean")
      */
     private $enabled = false;
@@ -94,6 +97,7 @@ class FrontendUser implements AdvancedUserInterface
      * @ODM\Field(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\Expose
      * @JMS\Type("boolean")
      */
     private $locked = false;
@@ -101,6 +105,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * @var \DateTime
      * @ODM\Field(type="date")
+     * @JMS\Expose
      * @JMS\Type("DateTime")
      */
     private $lastLogin;
@@ -108,6 +113,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * @var \DateTime
      * @ODM\Field(type="date")
+     * @JMS\Expose
      * @JMS\Type("DateTime")
      */
     private $expiresAt;
@@ -116,6 +122,7 @@ class FrontendUser implements AdvancedUserInterface
      * Plain password. Used for model validation. Must not be persisted.
      *
      * @var string
+     * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $plainPassword;
@@ -123,6 +130,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * @var Collection
      * @ODM\referenceMany(targetDocument="Aisel\CartBundle\Document\Cart", mappedBy="frontenduser", cascade={"remove"})
+     * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\CartBundle\Document\Cart>")
      */
@@ -131,6 +139,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * @var Collection
      * @ODM\referenceMany(targetDocument="Aisel\OrderBundle\Document\Order", mappedBy="frontenduser")
+     * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Document\Order>")
      */
@@ -139,6 +148,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * @var Collection
      * @ODM\ReferenceMany(targetDocument="Aisel\AddressingBundle\Document\Address", mappedBy="frontenduser", cascade={"remove"})
+     * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Document\Address>")
      */
@@ -148,6 +158,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var string
      * @Assert\Type(type="string")
      * @ODM\Field(type="string")
+     * @JMS\Expose
      * @JMS\Type("string")
      */
     private $about;
@@ -156,6 +167,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Expose
      * @JMS\Type("string")
      */
     private $phone;
@@ -164,6 +176,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Expose
      * @JMS\Type("string")
      */
     private $website;
@@ -172,6 +185,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Expose
      * @JMS\Type("string")
      */
     private $facebook;
@@ -180,6 +194,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var string
      * @ODM\Field(type="string")
      * @Assert\Type(type="string")
+     * @JMS\Expose
      * @JMS\Type("string")
      */
     private $twitter;
