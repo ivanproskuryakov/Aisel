@@ -43,7 +43,9 @@ class Order
     /**
      * @var string
      * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
+     * @JMS\Type("boolean")
      * @JMS\Expose
      */
     private $status = false;

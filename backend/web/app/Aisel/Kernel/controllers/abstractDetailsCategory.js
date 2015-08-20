@@ -22,16 +22,21 @@ define(['app'], function(app) {
             }));
 
             $scope.$watch("item.locale", function() {
-                itemService.getCategoryTree($scope.item.locale).success(
-                    function(data, status) {
-                        $scope.categories = data;
 
-                        setItemCategories(
-                            $scope.item,
-                            $scope.categories
-                        );
-                    }
-                )
+                if (angular.isUndefined($scope.item.locale) === false) {
+
+                    itemService.getCategoryTree($scope.item.locale).success(
+                        function(data, status) {
+                            $scope.categories = data;
+
+                            setItemCategories(
+                                $scope.item,
+                                $scope.categories
+                            );
+                        }
+                    )
+                }
+
             });
 
             /**
@@ -41,23 +46,29 @@ define(['app'], function(app) {
              * @param {Object} categories
              */
             var setItemCategories = function(item, categories) {
-                var isAnySelected = false;
 
+                var isAnySelected = false;
                 var setSelected = function(categories) {
                     angular.forEach(categories, function(category) {
                         angular.forEach(item.categories, function(c) {
+
                             if (c.id == category.id) {
+
                                 category.selected = true;
                                 isAnySelected = true;
                             }
                         });
+
                         if (category.children) {
                             setSelected(category.children)
                         }
                     });
                 };
 
-                if (categories.length) {
+                //console.log(categories);
+                //console.log(item.categories);
+
+                if (categories) {
                     setSelected($scope.categories);
 
                     if (!isAnySelected) {
