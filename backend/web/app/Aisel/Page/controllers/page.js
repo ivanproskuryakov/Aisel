@@ -21,10 +21,11 @@ define(['app'], function(app) {
             $scope.collectionTitle = 'Pages';
             $scope.pageLimit = 20;
             $scope.pageNumber = 1;
+
             $scope.columns = [{
                 name: 'id',
                 enableColumnMenu: false,
-                width: '100'
+                width: '200'
             }, {
                 name: 'locale',
                 enableColumnMenu: false,

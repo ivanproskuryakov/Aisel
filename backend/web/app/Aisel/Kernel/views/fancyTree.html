@@ -86,11 +86,14 @@ $(document).ready(function () {
 
                     var categoryId = data.otherNode.data.id;
                     var categoryParentId = node.data.id;
-
-                    $.get(routeCategoryAjaxUpdate, {
-                        action: 'dragDrop',
-                        id: categoryId,
-                        parentId: categoryParentId,
+                    $.ajax({
+                        url: routeCategoryAjaxUpdate,
+                        dataType: "json",
+                        data : {
+                            action: 'dragDrop',
+                            id: categoryId,
+                            parentId: categoryParentId,
+                        },
                         xhrFields: {
                             withCredentials: true
                         }

@@ -242,7 +242,7 @@ class ApiController extends Controller
         $repo = $this
             ->getDocumentManager()
             ->getRepository($this->model);
-        $collection = $repo->getNodesAsTree($locale);
+        $collection = array_values($repo->getNodesAsTree($locale));
 
         return $collection;
     }

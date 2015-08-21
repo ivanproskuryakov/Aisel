@@ -25,7 +25,7 @@ define(['app'], function(app) {
             $scope.columns = [{
                 name: 'id',
                 enableColumnMenu: false,
-                width: '100'
+                width: '200'
             }, {
                 name: 'status',
                 enableColumnMenu: false
