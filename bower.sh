@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 rm -rf ./web/media/product/*
 rm -rf ./backend/web/bower_components/
 rm -rf ./backend/web/bower_components/

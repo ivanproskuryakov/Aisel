@@ -167,6 +167,11 @@ class CollectionRepository extends DocumentRepository
             $query->field('locale')->equals($this->locale);
         }
 
+        // @todo: finish with status
+//        if ($this->status) {
+//            $query->field('status')->equals($this->status);
+//        }
+
         if ($this->category) {
             $query->field('category')->equals($this->category);
         }
