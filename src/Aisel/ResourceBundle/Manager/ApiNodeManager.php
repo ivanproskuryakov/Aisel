@@ -14,6 +14,7 @@ namespace Aisel\ResourceBundle\Manager;
 use LogicException;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
+use Aisel\ResourceBundle\Document\Category;
 
 /**
  * ApiNodeManager
@@ -42,7 +43,7 @@ class ApiNodeManager
      * Constructor
      *
      * @param DocumentManager $dm
-     * @param string        $locales
+     * @param string $locales
      */
     public function __construct(DocumentManager $dm, $locales)
     {
@@ -53,7 +54,7 @@ class ApiNodeManager
     /**
      * Save name for single node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws LogicException
@@ -84,7 +85,7 @@ class ApiNodeManager
     /**
      * Remove single node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws LogicException
@@ -108,26 +109,34 @@ class ApiNodeManager
     /**
      * Creates child node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws LogicException
      */
     public function addChild($params)
     {
+        /** @var $node Category */
         if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->dm->getRepository($this->model)->find($categoryId);
+            $parent = $this->dm->getRepository($this->model)->find($categoryId);
 
-            if (!($nodeParent)) {
+            if (!($parent)) {
                 throw new LogicException('Nothing found');
             }
         }
 
         $node = new $this->nodeEntity();
+
         $node->setTitle($params['name']);
-        $node->setParent($nodeParent);
+        $node->setParent($parent);
         $node->setStatus(false);
         $this->dm->persist($node);
+        $this->dm->flush();
+
+        // Update Parent
+        $parent->removeChild($node);
+        $parent->addChild($node);
+        $this->dm->persist($parent);
         $this->dm->flush();
 
         return $node;
@@ -136,7 +145,7 @@ class ApiNodeManager
     /**
      * Creates Node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws LogicException
@@ -155,41 +164,47 @@ class ApiNodeManager
     /**
      * Update parent for Node
      *
-     * @param  array  $params
-     * @return object
+     * @param  array $params
+     * @return Category $child
      *
      * @throws LogicException
      */
     public function updateParent($params)
     {
         /**
-         * @var $node \Aisel\ResourceBundle\Document\Category
+         * @var $child Category
+         * @var $parent Category
          */
         $repo = $this
             ->dm
             ->getRepository($this->model);
 
         if ($categoryParentId = $params['parentId']) {
-            $nodeParent = $repo->find($categoryParentId);
+            $parent = $repo->find($categoryParentId);
 
-            if (!($nodeParent)) {
+            if (!$parent) {
                 throw new LogicException('Nothing found');
             }
         }
 
         if ($categoryId = $params['id']) {
-            $node = $repo->find($categoryId);
+            $child = $repo->find($categoryId);
 
-            if (!($node)) {
+            if (!$child) {
                 throw new LogicException('Nothing found');
             }
         }
 
-        $node->setParent($nodeParent);
-        $this->dm->persist($node);
+        $child->setParent($parent);
+        $this->dm->persist($child);
         $this->dm->flush();
 
-        return $node;
+        $parent->removeChild($child);
+        $parent->addChild($child);
+        $this->dm->persist($parent);
+        $this->dm->flush();
+
+        return $child;
     }
 
     //---------------------------

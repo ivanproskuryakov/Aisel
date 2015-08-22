@@ -21,6 +21,7 @@ use JMS\Serializer\Annotation as JMS;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
+ * @JMS\ExclusionPolicy("all")
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
  *      collection="aisel_navigation_menu",
@@ -31,6 +32,20 @@ class Menu extends BaseCategory
 {
 
     /**
+     * @ODM\ReferenceOne(targetDocument="Aisel\NavigationBundle\Document\Menu")
+     * @JMS\Expose
+     * @JMS\Type("Aisel\NavigationBundle\Document\Menu")
+     */
+    protected $parent;
+
+    /**
+     * @ODM\ReferenceMany(targetDocument="Aisel\NavigationBundle\Document\Menu")
+     * @JMS\Expose
+     * @JMS\Type("ArrayCollection<Aisel\NavigationBundle\Document\Menu>")
+     */
+    protected $children;
+
+    /**
      * @var string
      * @ODM\Field(type="string")
      * @Assert\NotNull()
@@ -38,7 +53,6 @@ class Menu extends BaseCategory
      * @JMS\Type("string")
      */
     private $metaUrl;
-
 
     /**
      * Set metaUrl

@@ -222,6 +222,7 @@ class ApiController extends Controller
             ->getRepository($this->model);
         $total = $repo->getTotalFromRequest($params);
         $collection = array_values($repo->getCollectionFromRequest($params));
+
         return array(
             'total' => $total,
             'collection' => $collection

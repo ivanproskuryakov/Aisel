@@ -37,7 +37,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $node = new Category();
         $node->setLocale('en');
         $node->setDescription('');
-        $node->setMetaUrl('/'. rand(111111,999999));
+        $node->setMetaUrl('/' . md5(rand(111111, 999999)));
         $node->setTitle($name);
         $this->dm->persist($node);
         $this->dm->flush();
@@ -47,15 +47,15 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
     public function testPageNodeUpdateParentAction()
     {
-        $node1 = $this->createNode('AAA'. rand(1111, 9999));
-        $node2 = $this->createNode('AAA'. rand(1111, 9999));
+        $parent = $this->createNode('Parent' . rand(1111, 9999));
+        $child = $this->createNode('Child' . rand(1111, 9999));
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/page/category/node/'.
-            '?locale=en&action=dragDrop'.
-            '&id='. $node1->getId().
-            '&parentId='. $node2->getId() . '',
+            '/' . $this->api['backend'] . '/page/category/node/' .
+            '?locale=en&action=dragDrop' .
+            '&id=' . $child->getId() .
+            '&parentId=' . $parent->getId() . '',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -67,20 +67,30 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['parent']['id'], $node2->getId());
+        $this->assertEquals($result['parent']['id'], $parent->getId());
+
+        $this->dm->clear();
+
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->findOneBy(['id' => $result['id']]);
+
+        $this->assertEquals($parent->getId(), $node->getParent()->getId());
+        $this->assertEquals($child->getId(), $node->getParent()->getChildren()[0]->getId());
     }
 
     public function testPageNodeAddChildAction()
     {
-        $node = $this->createNode('AAA'. rand(1111, 9999));
+        $parent = $this->createNode('AAA');
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/page/category/node/'.
-            '?locale=en'.
-            '&action=addChild'.
-            '&name=New+children'.
-            '&parentId='. $node->getId() . '',
+            '/' . $this->api['backend'] . '/page/category/node/' .
+            '?locale=en' .
+            '&action=addChild' .
+            '&name=New+children' .
+            '&parentId=' . $parent->getId() . '',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -91,10 +101,22 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        $this->markTestSkipped('problem with duplicated urls');
-
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['parent']['id'], $node->getId());
+        $this->assertEquals($result['parent']['id'], $parent->getId());
+
+        $this->dm->clear();
+
+        $parent = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->findOneBy(['id' => $parent->getId()]);
+
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->findOneBy(['id' => $result['id']]);
+        $this->assertEquals($node->getParent()->getId(), $parent->getId());
+        $this->assertEquals($node->getId(), $parent->getChildren()[0]->getId());
     }
 
     public function testPageNodeChangeTitleAction()
@@ -104,11 +126,11 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/page/category/node/'.
-            '?locale=en'.
-            '&action=save'.
-            '&name=BBB'.
-            '&id='.$node->getId(),
+            '/' . $this->api['backend'] . '/page/category/node/' .
+            '?locale=en' .
+            '&action=save' .
+            '&name=BBB' .
+            '&id=' . $node->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -125,14 +147,14 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
     public function testPageNodeDeleteAction()
     {
-        $node = $this->createNode('ZZZZ');
+        $node = $this->createNode('DeleteMe');
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/page/category/node/'.
-            '?locale=en'.
-            '&action=remove'.
-            '&id='. $node->getId(),
+            '/' . $this->api['backend'] . '/page/category/node/' .
+            '?locale=en' .
+            '&action=remove' .
+            '&id=' . $node->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

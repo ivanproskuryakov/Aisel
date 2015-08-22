@@ -180,12 +180,9 @@ abstract class Category
      * @param  Category $parent
      * @return Category
      */
-    public function setParent(Category $parent = null)
+    public function setParent($parent = null)
     {
         $this->parent = $parent;
-
-        $parent->removeChild($this);
-        $parent->addChild($this);
 
         return $this;
     }
@@ -201,16 +198,19 @@ abstract class Category
     }
 
 //    /**
-//     * @ODM\postUpdate()
+//     * @ODM\preUpdate()
 //     */
-//    public function postUpdate(){
-//        var_dump($this->getId());
+//    public function preUpdate(){
 //        /** @var \Aisel\ResourceBundle\Document\Category $parent */
-//        $parent = $this->parent;
+//        var_dump($this->getParent()->getId());
+//
+//        $parent = $this->getParent();
 //
 //        if ($parent) {
 //            $parent->removeChild($this);
 //            $parent->addChild($this);
+//
+//            var_dump($this->getParent()->getChildren()->first()->getId());
 //        }
 //    }
 
