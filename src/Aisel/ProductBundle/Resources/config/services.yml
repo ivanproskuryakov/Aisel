@@ -14,12 +14,15 @@ parameters:
 services:
     aisel.product.media.manager:
         class: %aisel_product_media_manager.class%
-        arguments: [@doctrine.orm.entity_manager, %application.media.product.path%, %website_address%]
+        arguments:
+         - @doctrine.odm.mongodb.document_manager
+         - %application.media.product.path%
+         - %website_address%
 
     aisel.productcategory.node.manager:
         class: %aisel_product_node_manager.class%
         arguments:
-          - @doctrine.orm.entity_manager
+          - @doctrine.odm.mongodb.document_manager
           - "%locales%"
 
     aisel_product_url_persistence_listener:

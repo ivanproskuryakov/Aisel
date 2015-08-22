@@ -11,7 +11,7 @@
 
 namespace Aisel\BackendUserBundle\Controller;
 
-use Aisel\BackendUserBundle\Entity\BackendUser;
+use Aisel\BackendUserBundle\Document\BackendUser;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,7 +21,7 @@ use Aisel\BackendUserBundle\Manager\UserManager;
 /**
  * ApiController
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiController extends Controller
 {

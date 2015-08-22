@@ -11,29 +11,29 @@
 
 namespace Aisel\SearchBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 
 /**
  * SearchManager
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class SearchManager
 {
 
     /**
-     * @var EntityManager
+     * @var DocumentManager
      */
-    protected $em;
+    protected $dm;
 
     /**
      * Constructor
      *
-     * @param EntityManager $entityManager
+     * @param DocumentManager $dm
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(DocumentManager $dm)
     {
-        $this->em = $entityManager;
+        $this->dm = $dm;
     }
 
     /**
@@ -45,8 +45,7 @@ class SearchManager
      */
     public function search($params)
     {
-        $pageRepository = $this
-            ->em
+        $pageRepository = $this->dm
             ->getRepository('AiselPageBundle:Page');
 
         $total = $pageRepository->getTotalFromRequest($params);

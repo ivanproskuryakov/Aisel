@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 /**
  * ApiControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiControllerTest extends AbstractWebTestCase
 {
@@ -33,20 +33,31 @@ class ApiControllerTest extends AbstractWebTestCase
 
     public function testGetNavigationAction()
     {
+        $menu = $this
+            ->dm
+            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->findBy(
+                [
+                    'locale' => 'en',
+                    'status' => true
+                ]
+            );
+
         $this->client->request(
             'GET',
-            '/'. $this->api['frontend'] . '/en/navigation/',
+            '/' . $this->api['frontend'] . '/en/navigation/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
         );
 
         $response = $this->client->getResponse();
-        $content = $response->getContent();
+        $content = json_decode($response->getContent(), true);
         $statusCode = $response->getStatusCode();
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertJson($content);
+        $this->assertJson($response->getContent());
+        $this->assertEquals(count($menu), count($content));
     }
 
 }

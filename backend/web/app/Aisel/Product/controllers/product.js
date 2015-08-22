@@ -24,15 +24,15 @@ define(['app'], function(app) {
             $scope.columns = [{
                 name: 'id',
                 enableColumnMenu: false,
-                width: '100'
+                width: '200'
             }, {
                 name: 'locale',
                 enableColumnMenu: false,
-                width: '100'
+                width: '200'
             }, {
                 name: 'price',
                 enableColumnMenu: false,
-                width: '100'
+                width: '200'
             }, {
                 name: 'name',
                 enableColumnMenu: false

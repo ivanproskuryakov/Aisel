@@ -22,7 +22,7 @@ use Symfony\Component\Process\Process;
 /**
  * InstallCommand
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class InstallCommand extends ContainerAwareCommand
 {

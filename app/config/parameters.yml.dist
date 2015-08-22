@@ -1,11 +1,4 @@
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     aisel
-    database_user:     root
-    database_password: ~
-
     mailer_transport:  gmail
     mailer_user:       ~
     mailer_password:   ~
@@ -18,9 +11,3 @@ parameters:
     paypal.express_checkout.password:  EDIT ME
     paypal.express_checkout.signature: EDIT ME
     secret:            SecretTokenAisel
-
-    #   Note:
-    #   Locales & locale parameter only
-    #   2 symbols(ISO2), otherwise you
-    #   will need to change filed length
-    #   in database.

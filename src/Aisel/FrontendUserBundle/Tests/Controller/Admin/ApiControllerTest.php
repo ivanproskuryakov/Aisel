@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 /**
  * ApiControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiControllerTest extends AbstractBackendWebTestCase
 {
@@ -33,15 +33,16 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
     public function testPostUserAction()
     {
+
         $users = $this
-            ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->dm
+            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findBy(['username' => 'test_frontend_user_aisel']);
 
         foreach ($users as $user) {
-            $this->em->remove($user);
+            $this->dm->remove($user);
         }
-        $this->em->flush();
+        $this->dm->flush();
 
         $data = [
             'username' => 'test_frontend_user_aisel',
@@ -76,10 +77,10 @@ class ApiControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        $this->assertEquals($result['errors']['email'], 'This value is already used.');
-        $this->assertEquals($result['errors']['username'], 'This value is already used.');
-        $this->assertTrue(400 === $statusCode);
-
+        // @todo: handle errors
+        $this->assertEquals($result['code'], 500);
+        $this->assertEquals($result['message'], 'Duplicate key error');
+        $this->assertTrue(500 === $statusCode);
     }
 
     public function testGetUsersAction()
@@ -103,10 +104,11 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     public function testGetUserAction()
     {
         $user = $this
-            ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->dm
+            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
         $id = $user->getId();
+
 
         $this->client->request(
             'GET',
@@ -128,8 +130,8 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     public function testPutUserAction()
     {
         $user = $this
-            ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->dm
+            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
         $id = $user->getId();
 
@@ -158,9 +160,11 @@ class ApiControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
+        $this->dm->clear();
+
         $user = $this
-            ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->dm
+            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
 
         $this->assertTrue(204 === $statusCode);
@@ -171,8 +175,8 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     public function testDeletePageNodeAction()
     {
         $user = $this
-            ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->dm
+            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
         $id = $user->getId();
 
@@ -189,8 +193,8 @@ class ApiControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $user = $this
-            ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->dm
+            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
 
         $this->assertTrue(204 === $statusCode);

@@ -17,22 +17,23 @@ use LogicException;
 /**
  * Manager for page categories
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class NodeManager extends ApiNodeManager
 {
 
-    protected $model = 'Aisel\PageBundle\Entity\Category';
+    protected $model = 'Aisel\PageBundle\Document\Category';
 
     /**
      * {@inheritDoc}
      */
     public function addChild($params)
     {
-        if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->model)->find($categoryId);
 
-            if (!($nodeParent)) {
+        if ($categoryId = $params['parentId']) {
+            $parent = $this->dm->getRepository($this->model)->find($categoryId);
+
+            if (!$parent) {
                 throw new LogicException('Nothing found');
             }
         }
@@ -40,12 +41,19 @@ class NodeManager extends ApiNodeManager
         $node = new $this->model();
         $node->setlocale($params['locale']);
         $node->setTitle($params['name']);
-        $node->setParent($nodeParent);
+        $node->setParent($parent);
         $node->setStatus(false);
         $node->setDescription('');
-        $node->setMetaUrl('/');
-        $this->em->persist($node);
-        $this->em->flush();
+        $node->setMetaUrl($params['name'] . '_' . time());
+        $this->dm->persist($node);
+        $this->dm->flush();
+
+        // Update Parent
+        $parent->removeChild($node);
+        $parent->addChild($node);
+        $this->dm->persist($parent);
+        $this->dm->flush();
+
 
         return $node;
     }
@@ -60,9 +68,10 @@ class NodeManager extends ApiNodeManager
         $node->setTitle($params['name']);
         $node->setStatus(false);
         $node->setDescription('');
-        $node->setMetaUrl('/');
-        $this->em->persist($node);
-        $this->em->flush();
+        $node->setMetaUrl($params['name']);
+
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }

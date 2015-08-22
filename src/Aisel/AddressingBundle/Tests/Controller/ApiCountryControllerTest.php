@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 /**
  * ApiCountryControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiCountryControllerTest extends AbstractWebTestCase
 {
@@ -52,8 +52,8 @@ class ApiCountryControllerTest extends AbstractWebTestCase
     public function testGetCountryAction()
     {
         $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->dm
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso2' => 'ES']);
 
         $this->client->request(

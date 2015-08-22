@@ -2,13 +2,12 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: twig.yml }
-
+    - { resource: configs/doctrine.yml }
     - { resource: configs/aisel.yml }
     - { resource: configs/payum.yml }
     - { resource: configs/cors.yml }
 
 framework:
-    #esi:             ~
     translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
@@ -27,7 +26,6 @@ framework:
         save_path: %kernel.root_dir%/var/sessions
 #        name: AISELSESSID
 #        cookie_domain: .aisel.dev
-
     fragments:       ~
     http_method_override: true
 
@@ -50,60 +48,6 @@ sensio_framework_extra:
     view:
         annotations: false
 
-# Doctrine Configuration
-doctrine:
-    dbal:
-        driver:   "%database_driver%"
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
-        charset:  UTF8
-    orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
-        entity_managers:
-            default:
-                auto_mapping: true
-                mappings:
-                    AiselPageBundle:
-                        type: annotation
-                    AiselAddressingBundle:
-                        type: annotation
-                    AiselFrontendUserBundle:
-                        type: annotation
-                    AiselBackendUserBundle:
-                        type: annotation
-                    AiselConfigBundle:
-                        type: annotation
-                    AiselCartBundle:
-                        type: annotation
-                    AiselProductBundle:
-                        type: annotation
-                    AiselNavigationBundle:
-                        type: annotation
-                    AiselOrderBundle:
-                        type: annotation
-
-                    gedmo_tree:
-                        type: annotation
-                        prefix: Gedmo\Tree\Entity
-                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
-                        alias: GedmoTree # this one is optional and will default to the name set for the mapping
-                        is_bundle: false
-                    payum:
-                        is_bundle: false
-                        type: xml
-                        dir: %kernel.root_dir%/../vendor/payum/payum/src/Payum/Core/Bridge/Doctrine/Resources/mapping
-                        prefix: Payum\Core\Model
-
-stof_doctrine_extensions:
-    default_locale: en_US
-    orm:
-        default:
-            tree: true
-            timestampable: true
-
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -111,10 +55,20 @@ swiftmailer:
     password:  "%mailer_password%"
 #    spool:     { type: memory }
 
-# Fields serialization
+# JMS
 jms_serializer:
   metadata:
     auto_detection: true
+
+services:
+    jms_serializer.doctrine_object_constructor:
+        class:        %jms_serializer.doctrine_object_constructor.class%
+        public:       false
+        arguments:    ["@doctrine_mongodb", "@jms_serializer.unserialize_object_constructor"]
+
+    jms_serializer.object_constructor:
+        alias: jms_serializer.doctrine_object_constructor
+        public: false
 
 # REST
 fos_rest:

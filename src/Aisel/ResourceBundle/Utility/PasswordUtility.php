@@ -14,7 +14,7 @@ namespace Aisel\ResourceBundle\Utility;
 /**
  * Password generator
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class PasswordUtility
 {

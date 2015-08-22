@@ -11,4 +11,5 @@ parameters:
 services:
     aisel.search.manager:
         class: %aisel_search_manager.class%
-        arguments: [@doctrine.orm.entity_manager]
+        arguments:
+            - @doctrine.odm.mongodb.document_manager

@@ -11,10 +11,10 @@
 
 namespace Aisel\ResourceBundle\EventListener;
 
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
-use Aisel\ResourceBundle\Entity\UrlInterface;
+use Aisel\ResourceBundle\Document\UrlInterface;
 
 /**
  * Class UrlPersistenceListener.
@@ -29,21 +29,26 @@ class UrlPersistenceListener
      */
     public function prePersist(LifeCycleEventArgs $args)
     {
+
         /** @var UrlInterface $object */
-        $object = $args->getEntity();
-        /** @var EntityManager $em */
-        $em = $args->getEntityManager();
+        $object = $args->getDocument();
 
         if ($object instanceof UrlInterface) {
+
             $urlUtility = new UrlUtility();
             $processedUrl = $urlUtility->process($object->getMetaUrl());
 
-            $found = $em->getRepository(get_class($object))
+            $found = $args
+                ->getDocumentManager()
+                ->getRepository(get_class($object))
                 ->findOneBy(['metaUrl' => $processedUrl]);
 
             if ($found) {
                 throw new \LogicException('Given URL already exists');
             }
+
+            $object->setMetaUrl($processedUrl);
+
         }
     }
 

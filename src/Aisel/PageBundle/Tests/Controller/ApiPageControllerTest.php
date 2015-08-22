@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 /**
  * ApiPageControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiPageControllerTest extends AbstractWebTestCase
 {

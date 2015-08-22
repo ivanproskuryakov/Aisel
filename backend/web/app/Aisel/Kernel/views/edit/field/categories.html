@@ -1,4 +1,5 @@
 <div class="categoryTree">
+
     <script type="text/ng-template" id="field_renderer.html">
         <input type="checkbox"
                ng-model="category.selected"
@@ -9,6 +10,7 @@
                 ng-include="'field_renderer.html'"></li>
         </ul>
     </script>
+
     <ul>
         <li ng-repeat="category in categories" ng-include="'field_renderer.html'"></li>
     </ul>

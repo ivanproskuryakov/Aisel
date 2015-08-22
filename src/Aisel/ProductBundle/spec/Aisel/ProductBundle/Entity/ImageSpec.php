@@ -14,13 +14,13 @@ namespace spec\Aisel\ProductBundle\Entity;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ImageSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\ProductBundle\Entity\Image');
+        $this->shouldHaveType('Aisel\MediaBundle\Document\Image');
     }
 
     public function it_should_not_have_id()

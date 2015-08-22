@@ -14,10 +14,10 @@ namespace Aisel\FrontendUserBundle\Manager;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\FrontendUserBundle\Document\FrontendUser;
 use Aisel\ResourceBundle\Utility\PasswordUtility;
 use LogicException;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Templating\EngineInterface;
@@ -26,7 +26,7 @@ use Swift_Mailer;
 /**
  * Manager for frontend users.
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class UserManager implements UserProviderInterface
 {
@@ -42,9 +42,9 @@ class UserManager implements UserProviderInterface
     protected $securityContext;
 
     /**
-     * @var EntityManager
+     * @var DocumentManager
      */
-    protected $em;
+    protected $dm;
 
     /**
      * @var EngineInterface
@@ -64,7 +64,7 @@ class UserManager implements UserProviderInterface
     /**
      * Constructor
      *
-     * @param EntityManager   $entityManager
+     * @param DocumentManager $documentManager
      * @param EncoderFactory  $encoder
      * @param SecurityContext $securityContext
      * @param Swift_Mailer    $mailer
@@ -72,7 +72,7 @@ class UserManager implements UserProviderInterface
      * @param string          $websiteEmail
      */
     public function __construct(
-        EntityManager $em,
+        DocumentManager $documentManager,
         EncoderFactory $encoder,
         SecurityContext $securityContext,
         Swift_Mailer $mailer,
@@ -82,7 +82,7 @@ class UserManager implements UserProviderInterface
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->encoder = $encoder;
-        $this->em = $em;
+        $this->dm = $documentManager;
         $this->websiteEmail = $websiteEmail;
         $this->securityContext = $securityContext;
     }
@@ -92,7 +92,10 @@ class UserManager implements UserProviderInterface
      */
     protected function getRepository()
     {
-        return $this->em->getRepository('AiselFrontendUserBundle:FrontendUser');
+        $repo =  $this->dm
+            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser');
+
+        return $repo;
     }
 
     /**
@@ -100,7 +103,7 @@ class UserManager implements UserProviderInterface
      *
      * @param int $userId
      *
-     * @return \Aisel\FrontendUserBundle\Entity\FrontendUser $currentUser
+     * @return FrontendUser $currentUser
      */
     public function getUser($userId = null)
     {
@@ -196,8 +199,8 @@ class UserManager implements UserProviderInterface
         $user->setTwitter($userData['twitter']);
         $user->setAbout($userData['about']);
 
-        $this->em->persist($user);
-        $this->em->flush();
+        $this->dm->persist($user);
+        $this->dm->flush();
 
         return $user;
     }
@@ -221,8 +224,8 @@ class UserManager implements UserProviderInterface
             if ($userData['facebook']) $user->setFacebook($userData['facebook']);
             if ($userData['twitter']) $user->setTwitter($userData['twitter']);
 
-            $this->em->persist($user);
-            $this->em->flush();
+            $this->dm->persist($user);
+            $this->dm->flush();
             $message = 'Information successfully updated!';
         } catch (\Swift_TransportException $e) {
             $message = $e->getMessage();
@@ -232,7 +235,7 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     *   Register user and send userinfo by email
+     * Register user and send userinfo by email
      */
     public function registerUser(array $userData)
     {
@@ -240,19 +243,14 @@ class UserManager implements UserProviderInterface
 
         if (!$user) {
             $user = new FrontendUser();
-            $encoder = $this->encoder->getEncoder($user);
-            $encodedPassword = $encoder->encodePassword($userData['password'], $user->getSalt());
-
             $user->setEmail($userData['email']);
             $user->setUsername($userData['username']);
-            $user->setPassword($encodedPassword);
+            $user->setPlainPassword($userData['password']);
             $user->setEnabled(true);
             $user->setLocked(false);
 
-            $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
-
-            $this->em->persist($user);
-            $this->em->flush();
+            $this->dm->persist($user);
+            $this->dm->flush();
 
             // Send user info via email
             try {
@@ -286,14 +284,14 @@ class UserManager implements UserProviderInterface
     /**
      *   Reset and send password by email
      */
-    public function resetPassword($user)
+    public function resetPassword(FrontendUser $user)
     {
         if ($user) {
             $utility = new PasswordUtility();
             $password = $utility->generatePassword();
-            $encoder = $this->encoder->getEncoder($user);
-            $encodedPassword = $encoder->encodePassword($password, $user->getSalt());
-            $user->setPassword($encodedPassword);
+            $user->setPlainPassword($password);
+            $this->dm->persist($user);
+            $this->dm->flush();
 
             // Send password via email
             try {
@@ -314,8 +312,6 @@ class UserManager implements UserProviderInterface
             } catch (\Swift_TransportException $e) {
                 $response = $e->getMessage();
             }
-            $this->em->persist($user);
-            $this->em->flush();
 
             return $response;
         } else {
@@ -360,7 +356,14 @@ class UserManager implements UserProviderInterface
      */
     public function findUser($username, $email)
     {
-        return $this->em->getRepository('AiselFrontendUserBundle:FrontendUser')->findUser($username, $email);
+        $user =  $this
+            ->getRepository()
+            ->findOneBy(array(
+                'username' => $username,
+                'email' => $email,
+            ));
+
+        return $user;
     }
 
     /**
@@ -387,7 +390,7 @@ class UserManager implements UserProviderInterface
      */
     public function supportsClass($class)
     {
-        $name = 'Aisel\FrontendUserBundle\Entity\FrontendUser';
+        $name = 'Aisel\FrontendUserBundle\Document\FrontendUser';
 
         return $name === $class || is_subclass_of($class, $name);
     }

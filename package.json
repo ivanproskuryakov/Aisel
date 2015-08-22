@@ -1,7 +1,7 @@
 {
     "name": "Aisel",
-    "version": "0.2.1",
-    "description": "Aisel - Open source CMS based on AngularJS and Symfony2",
+    "version": "0.3.0",
+    "description": "Aisel - FullStack based on AngularJS, PHP(Symfony2), MongoDB",
     "authors": [
         {
             "name": "Ivan Proskuryakov",

@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 /**
  * ApiCityControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiCityControllerTest extends AbstractWebTestCase
 {
@@ -52,8 +52,8 @@ class ApiCityControllerTest extends AbstractWebTestCase
     public function testGetCityAction()
     {
         $city = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\City')
+            ->dm
+            ->getRepository('Aisel\AddressingBundle\Document\City')
             ->findOneBy(['name' => 'Madrid']);
 
         $this->client->request(

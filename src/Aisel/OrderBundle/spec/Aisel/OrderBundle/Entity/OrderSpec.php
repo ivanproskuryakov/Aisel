@@ -14,13 +14,13 @@ namespace spec\Aisel\OrderBundle\Entity;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class OrderSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\OrderBundle\Entity\Order');
+        $this->shouldHaveType('Aisel\OrderBundle\Document\Order');
     }
 
     public function it_should_not_have_id()

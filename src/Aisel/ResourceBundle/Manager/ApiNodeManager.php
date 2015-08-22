@@ -12,13 +12,14 @@
 namespace Aisel\ResourceBundle\Manager;
 
 use LogicException;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
+use Aisel\ResourceBundle\Document\Category;
 
 /**
  * ApiNodeManager
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiNodeManager
 {
@@ -29,9 +30,9 @@ class ApiNodeManager
     protected $model = null;
 
     /**
-     * @var EntityManager
+     * @var DocumentManager
      */
-    protected $em;
+    protected $dm;
 
     /**
      * @var array
@@ -41,19 +42,19 @@ class ApiNodeManager
     /**
      * Constructor
      *
-     * @param EntityManager $entityManager
-     * @param string        $locales
+     * @param DocumentManager $dm
+     * @param string $locales
      */
-    public function __construct(EntityManager $entityManager, $locales)
+    public function __construct(DocumentManager $dm, $locales)
     {
         $this->locales = explode('|', $locales);
-        $this->em = $entityManager;
+        $this->dm = $dm;
     }
 
     /**
      * Save name for single node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws LogicException
@@ -62,7 +63,7 @@ class ApiNodeManager
     {
         if ($categoryId = $params['id']) {
             $node = $this
-                ->em
+                ->dm
                 ->getRepository($this->model)
                 ->find($categoryId);
 
@@ -74,8 +75,9 @@ class ApiNodeManager
         if ($params['name']) {
             $node->setTitle($params['name']);
         }
-        $this->em->persist($node);
-        $this->em->flush();
+
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -83,7 +85,7 @@ class ApiNodeManager
     /**
      * Remove single node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws LogicException
@@ -91,15 +93,15 @@ class ApiNodeManager
     public function remove($params)
     {
         if ($categoryId = $params['id']) {
-            $node = $this->em->getRepository($this->model)->find($categoryId);
+            $node = $this->dm->getRepository($this->model)->find($categoryId);
 
             if (!($node)) {
                 throw new LogicException('Nothing found');
             }
         }
 
-        $this->em->remove($node);
-        $this->em->flush();
+        $this->dm->remove($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -107,27 +109,35 @@ class ApiNodeManager
     /**
      * Creates child node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws LogicException
      */
     public function addChild($params)
     {
+        /** @var $node Category */
         if ($categoryId = $params['parentId']) {
-            $nodeParent = $this->em->getRepository($this->model)->find($categoryId);
+            $parent = $this->dm->getRepository($this->model)->find($categoryId);
 
-            if (!($nodeParent)) {
+            if (!($parent)) {
                 throw new LogicException('Nothing found');
             }
         }
 
         $node = new $this->nodeEntity();
+
         $node->setTitle($params['name']);
-        $node->setParent($nodeParent);
+        $node->setParent($parent);
         $node->setStatus(false);
-        $this->em->persist($node);
-        $this->em->flush();
+        $this->dm->persist($node);
+        $this->dm->flush();
+
+        // Update Parent
+        $parent->removeChild($node);
+        $parent->addChild($node);
+        $this->dm->persist($parent);
+        $this->dm->flush();
 
         return $node;
     }
@@ -135,7 +145,7 @@ class ApiNodeManager
     /**
      * Creates Node
      *
-     * @param  array  $params
+     * @param  array $params
      * @return object
      *
      * @throws LogicException
@@ -145,8 +155,8 @@ class ApiNodeManager
         $node = new $this->nodeEntity();
         $node->setTitle($params['name']);
         $node->setStatus(false);
-        $this->em->persist($node);
-        $this->em->flush();
+        $this->dm->persist($node);
+        $this->dm->flush();
 
         return $node;
     }
@@ -154,41 +164,47 @@ class ApiNodeManager
     /**
      * Update parent for Node
      *
-     * @param  array  $params
-     * @return object
+     * @param  array $params
+     * @return Category $child
      *
      * @throws LogicException
      */
     public function updateParent($params)
     {
         /**
-         * @var $node \Aisel\ResourceBundle\Entity\Category
+         * @var $child Category
+         * @var $parent Category
          */
         $repo = $this
-            ->em
+            ->dm
             ->getRepository($this->model);
 
         if ($categoryParentId = $params['parentId']) {
-            $nodeParent = $repo->find($categoryParentId);
+            $parent = $repo->find($categoryParentId);
 
-            if (!($nodeParent)) {
+            if (!$parent) {
                 throw new LogicException('Nothing found');
             }
         }
 
         if ($categoryId = $params['id']) {
-            $node = $repo->find($categoryId);
+            $child = $repo->find($categoryId);
 
-            if (!($node)) {
+            if (!$child) {
                 throw new LogicException('Nothing found');
             }
         }
 
-        $node->setParent($nodeParent);
-        $this->em->persist($node);
-        $this->em->flush();
+        $child->setParent($parent);
+        $this->dm->persist($child);
+        $this->dm->flush();
 
-        return $node;
+        $parent->removeChild($child);
+        $parent->addChild($child);
+        $this->dm->persist($parent);
+        $this->dm->flush();
+
+        return $child;
     }
 
     //---------------------------
@@ -205,7 +221,7 @@ class ApiNodeManager
 //     */
 //    public function normalizeCategoryUrl($url, $categoryId = null)
 //    {
-//        $category = $this->em->getRepository($this->model)->findTotalByURL($url, $categoryId);
+//        $category = $this->dm->getRepository($this->model)->findTotalByURL($url, $categoryId);
 //        $utility = new UrlUtility();
 //        $validUrl = $utility->process($url);
 //

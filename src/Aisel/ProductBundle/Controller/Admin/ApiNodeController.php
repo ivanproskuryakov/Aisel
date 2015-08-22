@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 /**
  * NodeController
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiNodeController extends BaseApiController
 {
@@ -24,6 +24,6 @@ class ApiNodeController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\ProductBundle\Entity\Category";
+    protected $model = "Aisel\ProductBundle\Document\Category";
 
 }

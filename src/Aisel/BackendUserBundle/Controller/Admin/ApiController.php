@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 /**
  * ApiController
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiController extends BaseApiController
 {
@@ -24,6 +24,6 @@ class ApiController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\BackendUserBundle\Entity\BackendUser";
+    protected $model = "Aisel\BackendUserBundle\Document\BackendUser";
 
 }

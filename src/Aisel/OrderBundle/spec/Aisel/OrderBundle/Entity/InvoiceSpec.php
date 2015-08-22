@@ -14,13 +14,13 @@ namespace spec\Aisel\OrderBundle\Entity;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class InvoiceSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\OrderBundle\Entity\Invoice');
+        $this->shouldHaveType('Aisel\OrderBundle\Document\Invoice');
     }
 
     public function it_should_not_have_id()

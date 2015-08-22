@@ -16,7 +16,7 @@ use Aisel\MediaBundle\Tests\Controller\UploadControllerTest;
 /**
  * ApiImageControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiImageControllerTest extends UploadControllerTest
 {
@@ -24,14 +24,15 @@ class ApiImageControllerTest extends UploadControllerTest
     public function testPostImageAction()
     {
         $product = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
 
         foreach ($product->getImages() as $image) {
-            $this->em->remove($image);
-            $this->em->flush();
+            $product->removeImage($image);
         }
+
+        $this->assertEquals(0, count($product->getImages()));
 
         foreach ($this->filenames['files'] as $file) {
             $filename = $this->upload($product->getId(), $file);
@@ -41,9 +42,6 @@ class ApiImageControllerTest extends UploadControllerTest
                 'filename' => $filename,
                 'title' => 'title',
                 'description' => 'description',
-                'product' => [
-                    'id' => $product->getId()
-                ]
             ];
 
             $this->client->request(
@@ -58,19 +56,52 @@ class ApiImageControllerTest extends UploadControllerTest
 
             $response = $this->client->getResponse();
             $content = $response->getContent();
+
             $statusCode = $response->getStatusCode();
             $result = json_decode($content, true);
+
             $parts = explode('/', $response->headers->get('location'));
             $id = array_pop($parts);
             $this->assertEquals($statusCode, 201);
             $this->assertEquals($result, '');
             $this->assertNotNull($id);
+
+            $images[] = ['id' => $id];
         }
 
+        // Patching product
+        $data = [
+            'images' => $images,
+        ];
+
+        $this->client->request(
+            'PUT',
+            '/' . $this->api['backend'] . '/product/' . $product->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+//        var_dump($product->getId());
+//        var_dump($product->getPrice());
+//        var_dump($content);
+//        exit();
+
+        $this->assertEmpty($content);
+        $this->assertTrue(204 === $statusCode);
+        $this->dm->clear();
+
+        //Checking
         $product = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
-            ->findOneBy(['locale' => 'en']);
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->find($product->getId());
+
 
         $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
     }
@@ -78,21 +109,15 @@ class ApiImageControllerTest extends UploadControllerTest
     public function testPutImageAction()
     {
         $product = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
 
-        $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
-
-        $filename = $this->upload($product->getId(), $this->filenames['files'][0]);
-
-        $data = [
-            'title' => 'title',
-            'description' => 'description',
-            'filename' => $filename
-        ];
-
         $image = $product->getImages()[0];
+        $data = [
+            'title' => time(),
+            'description' => time(),
+        ];
 
         $this->client->request(
             'PUT',
@@ -112,23 +137,23 @@ class ApiImageControllerTest extends UploadControllerTest
         $this->assertEquals($statusCode, 204);
         $this->assertEquals($result, '');
 
+        $this->dm->clear();
+
         $product = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
+        $image = $product->getImages()[0];
 
-        foreach ($product->getImages() as $image) {
-            $this->assertEquals($data['title'], $image->getTitle());
-            $this->assertEquals($data['description'], $image->getDescription());
-        }
-
+        $this->assertEquals($image->getTitle(), $data['title']);
+        $this->assertEquals($image->getDescription(), $data['description']);
     }
 
     public function testGetImageAction()
     {
         $product = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
 
         $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
@@ -149,10 +174,7 @@ class ApiImageControllerTest extends UploadControllerTest
             $result = json_decode($content, true);
 
             $this->assertEquals($statusCode, 200);
-            $this->assertNotNull($result['id'], $product->getId());
             $this->assertNotNull($result['filename']);
-            $this->assertNotNull($result['title']);
-            $this->assertNotNull($result['description']);
             $this->assertNotNull($result['main_image']);
             $this->assertNotNull($result['updated_at']);
             $this->assertNotNull($result['updated_at']);
@@ -162,8 +184,8 @@ class ApiImageControllerTest extends UploadControllerTest
     public function testDeleteImageAction()
     {
         $product = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
 
         $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
@@ -177,11 +199,34 @@ class ApiImageControllerTest extends UploadControllerTest
                 [],
                 ['CONTENT_TYPE' => 'application/json']
             );
+
+            $response = $this->client->getResponse();
+            $content = $response->getContent();
+            $statusCode = $response->getStatusCode();
+
+            $this->assertEquals($statusCode, 204);
+            $this->assertEmpty($content);
         }
 
+        $data['images'] = [];
+        $this->client->request(
+            'PUT',
+            '/'. $this->api['backend'] . '/product/' . $product->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->dm->clear();
+
         $product = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
 
         $this->assertEquals(0, count($product->getImages()->toArray()));

@@ -12,12 +12,12 @@
 namespace Aisel\ProductBundle\Tests\EventListener;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\ProductBundle\Entity\Category;
+use Aisel\ProductBundle\Document\Category;
 
 /**
  * ProductCategoryUrlPersistenceListenerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ProductCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
 {
@@ -47,8 +47,8 @@ class ProductCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
         $category1->setStatus(true);
         $category1->setMetaUrl($urlText);
 
-        $this->em->persist($category1);
-        $this->em->flush();
+        $this->dm->persist($category1);
+        $this->dm->flush();
 
         // Create Product Category 2
         $category2 = new Category();
@@ -58,16 +58,16 @@ class ProductCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
         $category2->setStatus(true);
         $category2->setMetaUrl($urlText);
 
-        $this->em->persist($category2);
-        $this->em->flush();
+        $this->dm->persist($category2);
+        $this->dm->flush();
 
         // Delete Product Category 1
-        $category1 = $this->em
-            ->getRepository('Aisel\ProductBundle\Entity\Category')
+        $category1 = $this->dm
+            ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['metaUrl' => $urlText]);
 
-        $this->em->remove($category1);
-        $this->em->flush();
+        $this->dm->remove($category1);
+        $this->dm->flush();
     }
 
 }

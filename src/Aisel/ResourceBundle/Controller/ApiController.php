@@ -13,7 +13,7 @@ namespace Aisel\ResourceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use JMS\Serializer\SerializationContext;
@@ -21,7 +21,7 @@ use JMS\Serializer\SerializationContext;
 /**
  * Class ApiController
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiController extends Controller
 {
@@ -31,11 +31,13 @@ class ApiController extends Controller
     protected $model;
 
     /**
-     * @return EntityManager
+     * @return DocumentManager
      */
-    protected function getEntityManager()
+    protected function getDocumentManager()
     {
-        return $this->get('doctrine.orm.entity_manager');
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
+        return $dm;
     }
 
     /**
@@ -84,6 +86,7 @@ class ApiController extends Controller
         $configuration = new ParamConverter(array(
             'class' => $this->model
         ));
+
         $entity = $this->get('api_param_converter')->execute($request, $configuration);
 
         return $entity;
@@ -103,8 +106,8 @@ class ApiController extends Controller
             $statusCode = (null === $entity->getId()) ? 201 : 204;
         }
 
-        $this->getEntityManager()->persist($entity);
-        $this->getEntityManager()->flush();
+        $this->getDocumentManager()->persist($entity);
+        $this->getDocumentManager()->flush();
 
         $response = new Response();
         $response->setStatusCode($statusCode);
@@ -186,11 +189,12 @@ class ApiController extends Controller
      */
     public function deleteAction(Request $request)
     {
-        $entity = $this->getEntityFromRequest($request);
+        $document = $this->getEntityFromRequest($request);
+        $dm = $this->getDocumentManager();
 
-        $em = $this->getEntityManager();
-        $em->remove($entity);
-        $em->flush();
+        $dm->remove($document);
+        $dm->flush();
+        $dm->clear();
     }
 
     /**
@@ -214,10 +218,10 @@ class ApiController extends Controller
          * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
-            ->getEntityManager()
+            ->getDocumentManager()
             ->getRepository($this->model);
         $total = $repo->getTotalFromRequest($params);
-        $collection = $repo->getCollectionFromRequest($params);
+        $collection = array_values($repo->getCollectionFromRequest($params));
 
         return array(
             'total' => $total,
@@ -237,9 +241,9 @@ class ApiController extends Controller
          * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
-            ->getEntityManager()
+            ->getDocumentManager()
             ->getRepository($this->model);
-        $collection = $repo->getNodesAsTree($locale);
+        $collection = array_values($repo->getNodesAsTree($locale));
 
         return $collection;
     }

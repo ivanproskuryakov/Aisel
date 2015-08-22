@@ -11,14 +11,14 @@
 
 namespace Aisel\ResourceBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ODM\MongoDB\DocumentRepository;
 
 /**
  * CollectionRepository
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class CollectionRepository extends EntityRepository
+class CollectionRepository extends DocumentRepository
 {
 
     protected $model = '';
@@ -34,10 +34,13 @@ class CollectionRepository extends EntityRepository
 
     /**
      * Map request variables for later use in SQL
+     *
      * @param array $params
      */
     protected function mapRequest(array $params)
     {
+        $this->model = $this->getDocumentName();
+
         // Pagination
         if (isset($params['current'])) {
             $this->pageCurrent =  (int) $params['current'];
@@ -105,31 +108,33 @@ class CollectionRepository extends EntityRepository
     public function getTotalFromRequest($params)
     {
         $this->mapRequest($params);
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select('COUNT(e.id)')
-            ->from($this->model, 'e');
+        $query = $this
+            ->getDocumentManager()
+            ->createQueryBuilder($this->model);
 
-        // === Filters ===
         if ($this->filter) {
-            foreach ($this->filter as $k => $value) {
-                $query->andWhere('e.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
+            foreach ($this->filter as $field => $value) {
+                $query->field($field)->equals($value);
             }
         }
 
         if ($this->locale) {
-            $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
+            $query->field('locale')->equals($this->locale);
         }
 
         if ($this->category) {
-            $query->innerJoin('e.categories', 'c')
-                ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
+            $query->field('category')->equals($this->category);
         }
 
         if ($this->search != '') {
-            $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
+            $query->expr()->operator('content', array(
+                    '$search' => $this->search,
+                ));
         }
 
-        $total = $query->getQuery()->getSingleScalarResult();
+        $total = $query->count()
+            ->getQuery()
+            ->execute();
 
         if (!$total) {
             return 0;
@@ -149,32 +154,40 @@ class CollectionRepository extends EntityRepository
     {
         $this->mapRequest($params);
         $query = $this
-            ->getEntityManager()
-            ->createQueryBuilder();
-        $query->select('e')
-            ->from($this->model, 'e');
+            ->getDocumentManager()
+            ->createQueryBuilder($this->model);
 
         if ($this->filter) {
-            foreach ($this->filter as $k => $value) {
-                $query->andWhere('e.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
+            foreach ($this->filter as $field => $value) {
+                $query->field($field)->equals($value);
             }
         }
 
         if ($this->locale) {
-            $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
+            $query->field('locale')->equals($this->locale);
         }
 
+        // @todo: finish with status
+//        if ($this->status) {
+//            $query->field('status')->equals($this->status);
+//        }
+
         if ($this->category) {
-            $query->innerJoin('e.categories', 'c')
-                ->andWhere('c.metaUrl = :category')->setParameter('category', $this->category);
+            $query->field('category')->equals($this->category);
+        }
+
+        if ($this->search != '') {
+            $query->expr()->operator('content', array(
+                '$search' => $this->search,
+            ));
         }
 
         $collection = $query
-            ->setMaxResults($this->pageLimit)
-            ->setFirstResult($this->pageSkip)
-            ->orderBy('e.' . $this->order, $this->orderBy)
+            ->limit($this->pageLimit)
+            ->skip($this->pageSkip)
+            ->sort($this->order, $this->orderBy)
             ->getQuery()
-            ->execute();
+            ->toArray();
 
         return $collection;
     }
@@ -190,8 +203,9 @@ class CollectionRepository extends EntityRepository
     public function findTotalByURL($url, $entityId = null)
     {
         $query = $this
-            ->getEntityManager()
+            ->getDocumentManager()
             ->createQueryBuilder();
+
         $query->select('e')
             ->from($this->model, 'e')
             ->where('e.metaUrl = :url')->setParameter('url', $url);
@@ -218,21 +232,22 @@ class CollectionRepository extends EntityRepository
      */
     public function getNodesAsTree($locale, $onlyEnabled = true)
     {
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $query = $qb->select('c')
-            ->from($this->model, 'c')
-            ->where('c.lvl = :lvl')->setParameter('lvl', 0);
+        $this->model = $this->getDocumentName();
+
+        $query = $this
+            ->getDocumentManager()
+            ->createQueryBuilder($this->model)
+            ->field('parent')->exists(false)
+            ->field('locale')->equals($locale);
 
         if ($onlyEnabled) {
-            $query->andWhere('c.status = :enabled')->setParameter('enabled', $onlyEnabled);
+            $query->field('status')->equals($onlyEnabled);
         }
 
         $result = $query
-            ->andWhere('c.locale = :locale')->setParameter('locale', $locale)
-            ->orderBy('c.root', 'ASC')
-            ->addOrderBy('c.lft', 'ASC')
+            ->sort($this->order, $this->orderBy)
             ->getQuery()
-            ->execute();
+            ->toArray();
 
         return $result;
     }

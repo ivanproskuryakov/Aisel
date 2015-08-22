@@ -86,11 +86,14 @@ $(document).ready(function () {
 
                     var categoryId = data.otherNode.data.id;
                     var categoryParentId = node.data.id;
-
-                    $.get(routeCategoryAjaxUpdate, {
-                        action: 'dragDrop',
-                        id: categoryId,
-                        parentId: categoryParentId,
+                    $.ajax({
+                        url: routeCategoryAjaxUpdate,
+                        dataType: "json",
+                        data : {
+                            action: 'dragDrop',
+                            id: categoryId,
+                            parentId: categoryParentId,
+                        },
                         xhrFields: {
                             withCredentials: true
                         }
@@ -156,7 +159,7 @@ $(document).ready(function () {
                 $tdList.eq(3).html("<input type='input' disabled class='form-control' value='" + node.data.meta_url + "'>");
                 $tdList.eq(4).html('<button ' +
                 'class="btn btn-link"' +
-                'onclick="editNode(' + node.data.id + ')">' +
+                'onclick="editNode(\'' + node.data.id + '\')">' +
                 '<span class="glyphicon glyphicon-edit"></span> edit</button>');
             }
         }).on("nodeCommand", function (event, data) {

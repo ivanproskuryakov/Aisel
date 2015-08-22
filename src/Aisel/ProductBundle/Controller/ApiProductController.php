@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 /**
  * Frontend Product REST API controller
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiProductController extends BaseApiController
 {
@@ -24,6 +24,6 @@ class ApiProductController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\ProductBundle\Entity\Product";
+    protected $model = "Aisel\ProductBundle\Document\Product";
 
 }

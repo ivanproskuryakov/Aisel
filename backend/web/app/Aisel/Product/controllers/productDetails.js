@@ -23,6 +23,7 @@ define(['app'], function(app) {
         };
 
         var itemService = new resourceService('product');
+
         angular.extend(this, $controller('AbstractDetailsCategoryCtrl', {
             $scope: $scope,
             itemService: itemService

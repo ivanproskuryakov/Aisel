@@ -14,13 +14,13 @@ namespace spec\Aisel\NavigationBundle\Entity;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class MenuSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\NavigationBundle\Entity\Menu');
+        $this->shouldHaveType('Aisel\NavigationBundle\Document\Menu');
     }
 
     public function it_should_not_have_id()

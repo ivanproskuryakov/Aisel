@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 /**
  * ApiImageController
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiImageController extends BaseApiController
 {
@@ -24,6 +24,6 @@ class ApiImageController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\ProductBundle\Entity\Image";
+    protected $model = "Aisel\MediaBundle\Document\Image";
 
 }

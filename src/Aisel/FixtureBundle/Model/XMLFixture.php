@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Abstract fixtures class for XML fixtures
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 abstract class XMLFixture extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {

@@ -14,7 +14,7 @@ namespace spec\Aisel\ProductBundle\Controller\Admin;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiImageControllerSpec extends ObjectBehavior
 {

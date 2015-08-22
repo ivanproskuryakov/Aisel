@@ -11,21 +11,27 @@
 
 namespace Aisel\ConfigBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use LogicException;
 
 /**
  * ConfigManager
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ConfigManager
 {
 
+
     /**
-     * @var EntityManager
+     * @var string
      */
-    protected $em;
+    protected $model = 'Aisel\ConfigBundle\Document\Config';
+
+    /**
+     * @var DocumentManager
+     */
+    protected $dm;
 
     /**
      * @var array
@@ -35,13 +41,13 @@ class ConfigManager
     /**
      * Constructor
      *
-     * @param EntityManager $em
+     * @param DocumentManager $dm
      * @param string        $locale
      * @param string        $locales
      */
-    public function __construct(EntityManager $em, $locale, $locales)
+    public function __construct(DocumentManager $dm, $locale, $locales)
     {
-        $this->em = $em;
+        $this->dm = $dm;
         $this->locale['primary'] = $locale;
         $this->locale['available'] = explode('|', $locales);
     }
@@ -58,8 +64,8 @@ class ConfigManager
     public function getConfig($locale = null)
     {
         $collection = $this
-            ->em
-            ->getRepository('AiselConfigBundle:Config')
+            ->dm
+            ->getRepository($this->model)
             ->getAllSettings($locale);
 
         if (!$collection) {
@@ -67,13 +73,11 @@ class ConfigManager
         }
 
         $config = array();
+
         foreach ($collection as $s) {
-
-            $config['settings'][$s['locale']][$s['entity']] = json_decode($s['value'], true);
+            $config['settings'][$s->getLocale()][$s->getEntity()] = json_decode($s->getValue(), true);
         }
-
         $config['locale'] = $this->locale;
-        $config['time'] = time(); // inject timestamp
 
         return $config;
     }
@@ -89,7 +93,9 @@ class ConfigManager
     {
         $settings = json_decode($settingsData, true);
 
-        $this->em->getRepository('AiselConfigBundle:Config')->saveConfig($settings);
+        $this->dm
+            ->getRepository($this->model)
+            ->saveConfig($settings);
     }
 
     /**
@@ -102,8 +108,8 @@ class ConfigManager
      */
     public function getConfigForEntity($locale = null, $entity)
     {
-        $config = $this->em
-            ->getRepository('AiselConfigBundle:Config')
+        $config = $this->dm
+            ->getRepository($this->model)
             ->getConfig($locale, $entity);
 
         $value = (array) json_decode($config->getValue());

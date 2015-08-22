@@ -16,7 +16,7 @@ use PhpSpec\ObjectBehavior;
 /**
  * ApiOrderControllerSpec
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiOrderControllerSpec extends ObjectBehavior
 {

@@ -5,7 +5,7 @@ namespace Aisel\ResourceBundle\Tests;
 use Buzz\Exception\LogicException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\HttpKernel\Client;
 use Aisel\BackendUserBundle\Manager\UserManager;
 
@@ -21,9 +21,9 @@ abstract class AbstractWebTestCase extends KernelTestCase
     protected $client;
 
     /**
-     * @var EntityManager
+     * @var DocumentManager
      */
-    protected $em;
+    protected $dm;
 
     /**
      * @var UserManager
@@ -83,13 +83,45 @@ abstract class AbstractWebTestCase extends KernelTestCase
         return $this->um->isAuthenticated();
     }
 
+    public function logInFrontend($username = 'frontenduser', $password = 'frontenduser')
+    {
+        if ($this->um->isAuthenticated() === false) {
+
+            $data = [
+                'username' => $username,
+                'password' => $password,
+            ];
+
+            $this->client->request(
+                'POST',
+                '/'. $this->api['frontend'] . '/user/login/',
+                [],
+                [],
+                ['CONTENT_TYPE' => 'application/json'],
+                json_encode($data)
+            );
+
+
+            $response = $this->client->getResponse();
+            $content = $response->getContent();
+            $result = json_decode($content, true);
+
+            if ($result['status'] !== true) {
+                throw new \LogicException('Authentication failed.');
+            }
+        }
+
+
+        return $this->um->isAuthenticated();
+    }
+
     public function setUp()
     {
         static::$kernel = static::createKernel();
         static::$kernel->boot();
 
         $this->client = static::createClient([], ['HTTP_HOST' => static::$httpHost]);
-        $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $this->dm = static::$kernel->getContainer()->get('doctrine.odm.mongodb.document_manager');
         $this->um = static::$kernel->getContainer()->get('backend.user.manager');
         $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
         $this->api = array(

@@ -14,13 +14,13 @@ namespace spec\Aisel\AddressingBundle\Entity;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class AddressSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\AddressingBundle\Entity\Address');
+        $this->shouldHaveType('Aisel\AddressingBundle\Document\Address');
     }
 
     public function it_should_not_have_id()

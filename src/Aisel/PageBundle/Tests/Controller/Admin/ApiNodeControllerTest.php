@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 /**
  * ApiNodeControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiNodeControllerTest extends AbstractBackendWebTestCase
 {
@@ -79,14 +79,14 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
     public function testGetPageNodeAction()
     {
-        $pageNode = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Category')
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/page/category/' . $pageNode->getId(),
+            '/'. $this->api['backend'] . '/page/category/' . $node->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -98,17 +98,25 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $pageNode->getId());
+        $this->assertEquals($result['id'], $node->getId());
     }
 
     public function testPutPageNodeAction()
     {
-        $pageNode = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Category')
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
-        $id = $pageNode->getId();
+
+        $node2 = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->findOneBy(['locale' => 'en']);
+
+        $id = $node->getId();
         $data['locale'] = 'ru';
+        $data['description'] = time();
+        $data['children'][] = ['id' => $node2->getId()];
 
         $this->client->request(
             'PUT',
@@ -123,24 +131,27 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $pageNode = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Category')
-            ->findOneBy(['title' => 'AAA']);
+        $this->dm->clear();
+
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
-        $this->assertNotNull($pageNode);
-        $this->assertEquals($data['locale'], $pageNode->getLocale());
+        $this->assertNotNull($node);
+        $this->assertEquals($data['locale'], $node->getLocale());
+        $this->assertEquals(1, count($node->getChildren()));
     }
 
     public function testDeletePageNodeAction()
     {
-        $pageNode = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Category')
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
-        $id = $pageNode->getId();
+        $id = $node->getId();
 
         $this->client->request(
             'DELETE',
@@ -154,14 +165,14 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $pageNode = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Category')
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
-        $this->assertNull($pageNode);
+        $this->assertNull($node);
     }
 
 }

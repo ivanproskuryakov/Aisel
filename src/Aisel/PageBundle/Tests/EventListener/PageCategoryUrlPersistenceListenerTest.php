@@ -12,12 +12,12 @@
 namespace Aisel\PageBundle\Tests\EventListener;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\PageBundle\Entity\Category;
+use Aisel\PageBundle\Document\Category;
 
 /**
  * PageCategoryUrlPersistenceListenerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class PageCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
 {
@@ -47,8 +47,9 @@ class PageCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
         $category1->setStatus(true);
         $category1->setMetaUrl($urlText);
 
-        $this->em->persist($category1);
-        $this->em->flush();
+        $this->dm->persist($category1);
+        $this->dm->flush();
+        $this->dm->clear();
 
         // Create Page Category 2
         $category2 = new Category();
@@ -58,16 +59,17 @@ class PageCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
         $category2->setStatus(true);
         $category2->setMetaUrl($urlText);
 
-        $this->em->persist($category2);
-        $this->em->flush();
+        $this->dm->persist($category2);
+        $this->dm->flush();
 
         // Delete Page Category 1
-        $category1 = $this->em
-            ->getRepository('Aisel\PageBundle\Entity\Category')
+        $category1 = $this->dm
+            ->getRepository('Aisel\PageBundle\Document\Category')
             ->findOneBy(['metaUrl' => $urlText]);
 
-        $this->em->remove($category1);
-        $this->em->flush();
+        $this->dm->remove($category1);
+        $this->dm->flush();
+        $this->dm->clear();
     }
 
 }

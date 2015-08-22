@@ -14,13 +14,13 @@ namespace spec\Aisel\BackendUserBundle\Entity;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class BackendUserSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\BackendUserBundle\Entity\BackendUser');
+        $this->shouldHaveType('Aisel\BackendUserBundle\Document\BackendUser');
     }
 
     public function it_should_not_have_id()

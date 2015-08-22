@@ -14,13 +14,13 @@ namespace spec\Aisel\PageBundle\Entity;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class CategorySpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\PageBundle\Entity\Category');
+        $this->shouldHaveType('Aisel\PageBundle\Document\Category');
     }
 
     public function it_should_not_have_id()

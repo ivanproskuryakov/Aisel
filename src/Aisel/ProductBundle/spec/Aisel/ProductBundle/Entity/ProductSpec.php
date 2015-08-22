@@ -14,13 +14,13 @@ namespace spec\Aisel\ProductBundle\Entity;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ProductSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\ProductBundle\Entity\Product');
+        $this->shouldHaveType('Aisel\ProductBundle\Document\Product');
     }
 
     public function it_should_not_have_id()

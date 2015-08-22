@@ -12,44 +12,44 @@
 namespace Aisel\OrderBundle\Manager;
 
 use LogicException;
-use Aisel\OrderBundle\Entity\Invoice;
-use Doctrine\ORM\EntityManager;
-use Aisel\OrderBundle\Entity\Order;
+use Aisel\OrderBundle\Document\Invoice;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use Aisel\OrderBundle\Document\Order;
 
 /**
  * InvoiceManager
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class InvoiceManager
 {
 
     /**
-     * @var EntityManager
+     * @var DocumentManager
      */
-    protected $em;
+    protected $dm;
 
     /**
      * Constructor
      *
-     * @param EntityManager $entityManager
+     * @param DocumentManager $documentManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(DocumentManager $documentManager)
     {
-        $this->em = $entityManager;
+        $this->dm = $documentManager;
     }
     /**
      * Get single invoice by Id
      *
      * @param int $id
      *
-     * @return \Aisel\OrderBundle\Entity\Order $orderDetails
+     * @return Invoice $invoice
      *
      * @throws LogicException
      */
     public function getInvoice($id)
     {
-        $invoice = $this->em->getRepository('AiselOrderBundle:Invoice')->find($id);
+        $invoice = $this->dm->getRepository('Aisel\OrderBundle\Document\Invoice')->find($id);
 
         if (!($invoice)) {
             throw new LogicException('Nothing found');
@@ -72,12 +72,12 @@ class InvoiceManager
 
             if (!$order->getInvoice()) {
                 $invoice = new Invoice();
-                $this->em->persist($invoice);
-                $this->em->flush();
+                $this->dm->persist($invoice);
+                $this->dm->flush();
                 // Update order data
                 $order->setInvoice($invoice);
-                $this->em->persist($order);
-                $this->em->flush();
+                $this->dm->persist($order);
+                $this->dm->flush();
 
                 return $invoice;
             }

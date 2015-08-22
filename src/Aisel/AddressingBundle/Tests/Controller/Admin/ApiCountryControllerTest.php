@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 /**
  * ApiCountryControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiCountryControllerTest extends AbstractBackendWebTestCase
 {
@@ -76,8 +76,8 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         $id = array_pop($parts);
 
         $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->dm
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->find($id);
 
         $this->assertTrue(201 === $statusCode);
@@ -90,8 +90,8 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
     public function testGetCountryAction()
     {
         $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->dm
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso3' => 'AAA']);
         $id = $country->getId();
 
@@ -115,8 +115,8 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
     public function testPutCountryAction()
     {
         $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->dm
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso2' => 'AA']);
         $id = $country->getId();
         $data = array(
@@ -135,9 +135,12 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
+
+        $this->dm->clear();
+
         $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->dm
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->find($id);
 
         $this->assertTrue(204 === $statusCode);
@@ -148,8 +151,8 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
     public function testDeleteCountryAction()
     {
         $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->dm
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->findOneBy(['iso3' => 'AAA']);
         $id = $country->getId();
 
@@ -164,9 +167,12 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
+
+        $this->dm->clear();
+
         $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
+            ->dm
+            ->getRepository('Aisel\AddressingBundle\Document\Country')
             ->find($id);
 
         $this->assertTrue(204 === $statusCode);

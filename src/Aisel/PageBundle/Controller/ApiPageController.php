@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 /**
  * ApiPageController
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiPageController extends BaseApiController
 {
@@ -24,6 +24,6 @@ class ApiPageController extends BaseApiController
     /**
      * @var string
      */
-    protected $model =  "Aisel\PageBundle\Entity\Page";
+    protected $model =  "Aisel\PageBundle\Document\Page";
 
 }

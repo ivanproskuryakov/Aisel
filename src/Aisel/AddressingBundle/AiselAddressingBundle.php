@@ -14,9 +14,9 @@ namespace Aisel\AddressingBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Aisel addressing management bundle. REST API, Entities, etc ..
+ * AiselAddressingBundle
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class AiselAddressingBundle extends Bundle
 {

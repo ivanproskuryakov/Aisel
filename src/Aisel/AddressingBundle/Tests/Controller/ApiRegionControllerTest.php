@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 /**
  * ApiRegionControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiRegionControllerTest extends AbstractWebTestCase
 {
@@ -52,8 +52,8 @@ class ApiRegionControllerTest extends AbstractWebTestCase
     public function testGetRegionAction()
     {
         $region = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
+            ->dm
+            ->getRepository('Aisel\AddressingBundle\Document\Region')
             ->findOneBy(['name' => 'Comunidad de Madrid']);
 
         $this->client->request(

@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 /**
  * ApiNodeControllerTest
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiNodeControllerTest extends AbstractBackendWebTestCase
 {
@@ -78,14 +78,14 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
     public function testGetProductNodeAction()
     {
-        $productNode = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Category')
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/product/category/' . $productNode->getId(),
+            '/'. $this->api['backend'] . '/product/category/' . $node->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -97,17 +97,24 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['id'], $productNode->getId());
+        $this->assertEquals($result['id'], $node->getId());
     }
 
     public function testPutProductNodeAction()
     {
-        $productNode = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Category')
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
-        $id = $productNode->getId();
+
+        $node2 = $this
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Category')
+            ->findOneBy(['locale' => 'ru']);
+
+        $id = $node->getId();
         $data['locale'] = 'ru';
+        $data['children'][] = ['id' => $node2->getId()];
 
         $this->client->request(
             'PUT',
@@ -122,24 +129,27 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $productNode = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Category')
+        $this->dm->clear();
+
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
-        $this->assertNotNull($productNode);
-        $this->assertEquals($data['locale'], $productNode->getLocale());
+        $this->assertNotNull($node);
+        $this->assertEquals($data['locale'], $node->getLocale());
+        $this->assertEquals(1, count($node->getChildren()));
     }
 
     public function testDeleteProductNodeAction()
     {
-        $productNode = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Category')
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['title' => 'AAA']);
-        $id = $productNode->getId();
+        $id = $node->getId();
 
         $this->client->request(
             'DELETE',
@@ -153,13 +163,15 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $productNode = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Category')
+        $this->dm->clear();
+
+        $node = $this
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Category')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
-        $this->assertNull($productNode);
+        $this->assertNull($node);
     }
 }

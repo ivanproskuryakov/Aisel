@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 /**
  * ApiCityController
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiCityController extends BaseApiController
 {
@@ -24,6 +24,6 @@ class ApiCityController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\AddressingBundle\Entity\City";
+    protected $model = "Aisel\AddressingBundle\Document\City";
 
 }

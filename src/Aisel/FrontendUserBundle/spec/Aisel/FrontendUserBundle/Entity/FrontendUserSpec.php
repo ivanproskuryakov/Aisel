@@ -14,13 +14,13 @@ namespace spec\Aisel\FrontendUserBundle\Entity;
 use PhpSpec\ObjectBehavior;
 
 /**
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class FrontendUserSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\FrontendUserBundle\Entity\FrontendUser');
+        $this->shouldHaveType('Aisel\FrontendUserBundle\Document\FrontendUser');
     }
 
     public function it_should_not_have_id()

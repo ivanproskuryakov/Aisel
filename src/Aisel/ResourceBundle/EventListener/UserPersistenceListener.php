@@ -11,7 +11,7 @@
 
 namespace Aisel\ResourceBundle\EventListener;
 
-use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
@@ -43,7 +43,7 @@ class UserPersistenceListener
     public function prePersist(LifeCycleEventArgs $args)
     {
         /** @var AdvancedUserInterface $object */
-        $object = $args->getEntity();
+        $object = $args->getDocument();
 
         if ($object instanceof AdvancedUserInterface) {
             $salt = md5(uniqid(null, true));

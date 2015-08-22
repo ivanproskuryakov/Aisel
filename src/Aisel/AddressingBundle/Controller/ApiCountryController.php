@@ -16,7 +16,7 @@ use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 /**
  * ApiCountryController
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class ApiCountryController extends BaseApiController
 {
@@ -24,6 +24,6 @@ class ApiCountryController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\AddressingBundle\Entity\Country";
+    protected $model = "Aisel\AddressingBundle\Document\Country";
 
 }

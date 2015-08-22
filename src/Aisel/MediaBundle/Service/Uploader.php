@@ -20,7 +20,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 /**
  * Uploader
  *
- * @author Ivan Proskoryakov <volgodark@gmail.com>
+ * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class Uploader
 {
