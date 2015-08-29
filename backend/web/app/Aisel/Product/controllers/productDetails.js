@@ -33,10 +33,13 @@ define(['app'], function (app) {
             $scope.domain = Environment.settings.domain;
             $scope.uploadPath = Environment.settings.api + '/media/image/upload/?id=' + $stateParams.id;
 
-            $scope.fileDelete = function (id) {
+            // Delete file
+
+            var deleteFile = function (id) {
                 mediaService.delete(id).success(
                     function (data, status) {
-                        notify('Item removed');
+                        notify('Attached image was removed');
+
                         angular.forEach($scope.item.images, function (image, key) {
                             if (image.id === id) {
                                 $scope.item.images.splice(
@@ -56,7 +59,12 @@ define(['app'], function (app) {
                             notify(data.error.message);
                         }
                     }
-                )
+                );
+
+            };
+            $scope.fileDelete = function (id) {
+                $scope.item.images.splice(id, 1);
+                $scope.editSave(deleteFile(id));
             };
 
             $scope.fileUploaded = function ($file, $message, $flow) {

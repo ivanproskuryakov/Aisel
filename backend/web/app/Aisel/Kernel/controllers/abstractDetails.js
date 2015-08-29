@@ -23,10 +23,13 @@ define(['app'], function (app) {
             $scope.item = {};
 
             var locale = Environment.currentLocale();
-            var errorNotify = function (data) {
-                console.log(data);
 
+            var errorNotify = function (data) {
                 // If basic message
+                if (angular.isUndefined(data.error.message) === false) {
+                    notify('Response:' + data.error.code + ' Message:' + data.error.message);
+                }
+
                 if (angular.isUndefined(data.message) === false) {
                     notify('Response:' + data.code + ' Message:' + data.message);
                 }
@@ -40,7 +43,6 @@ define(['app'], function (app) {
                         );
                     });
                 }
-
             };
 
             /**
@@ -68,7 +70,7 @@ define(['app'], function (app) {
             /**
              * SAVE
              */
-            $scope.editSave = function () {
+            $scope.editSave = function (callback) {
                 // Existent item
                 if ($scope.details.id !== undefined) {
                     itemService.save($scope.item).success(
@@ -96,6 +98,8 @@ define(['app'], function (app) {
                             errorNotify(data);
                         });
                 }
+
+                if (callback) callback();
             };
 
             /**
