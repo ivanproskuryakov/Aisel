@@ -12,9 +12,9 @@
  * @description     AbstractDetailsCtrl
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app.controller('AbstractDetailsCtrl',
-        function($controller, $scope, $stateParams, itemService, $state, Environment, notify) {
+        function ($controller, $scope, $stateParams, itemService, $state, Environment, notify) {
 
             $scope.details = {
                 id: $stateParams.id,
@@ -23,9 +23,24 @@ define(['app'], function(app) {
             $scope.item = {};
 
             var locale = Environment.currentLocale();
-            var errorNotify = function(data) {
-                notify('Response:' + data.code + ' Message:' + data.message);
+            var errorNotify = function (data) {
                 console.log(data);
+
+                // If basic message
+                if (angular.isUndefined(data.message) === false) {
+                    notify('Response:' + data.code + ' Message:' + data.message);
+                }
+
+                // If multiple errors
+                if (angular.isUndefined(data.errors) === false) {
+                    angular.forEach(data.errors, function (errorMessage, key) {
+                        notify(
+                            'Response: ' + data.code + ' ' +
+                            '"' + key + '": ' + errorMessage
+                        );
+                    });
+                }
+
             };
 
             /**
@@ -33,41 +48,42 @@ define(['app'], function(app) {
              */
             if ($scope.details.id !== undefined) {
                 itemService.get($scope.details.id).success(
-                    function(data, status) {
+                    function (data, status) {
                         $scope.item = data;
                     }
-                ).error(function(data, status) {
-                    if (data.error.code == 404) {
-                        $state.transitionTo('home', {
-                            locale: locale
-                        });
-                        notify('404 Noting found');
-                        console.log(data);
-                    } else {
-                        errorNotify(data);
-                    }
-                });
-            };
+                ).error(function (data, status) {
+                        if (data.error.code == 404) {
+                            $state.transitionTo('home', {
+                                locale: locale
+                            });
+                            notify('404 Noting found');
+                            console.log(data);
+                        } else {
+                            errorNotify(data);
+                        }
+                    });
+            }
+            ;
 
             /**
              * SAVE
              */
-            $scope.editSave = function() {
+            $scope.editSave = function () {
                 // Existent item
                 if ($scope.details.id !== undefined) {
                     itemService.save($scope.item).success(
-                        function(data, status) {
+                        function (data, status) {
                             notify($scope.route.name + ' has been saved');
                             console.log(data);
                         }
-                    ).error(function(data, status) {
-                        errorNotify(data);
-                    });
+                    ).error(function (data, status) {
+                            errorNotify(data);
+                        });
                 }
                 // New item
                 if ($scope.details.id === undefined) {
                     itemService.create($scope.item).success(
-                        function(data, status) {
+                        function (data, status) {
                             notify($scope.route.name + ' was added');
                             $state.transitionTo(
                                 $scope.route.edit, {
@@ -76,18 +92,18 @@ define(['app'], function(app) {
                                 }
                             );
                         }
-                    ).error(function(data, status) {
-                        errorNotify(data);
-                    });
+                    ).error(function (data, status) {
+                            errorNotify(data);
+                        });
                 }
             };
 
             /**
              * SAVE & EXIT
              */
-            $scope.editSaveAndExit = function() {
+            $scope.editSaveAndExit = function () {
                 itemService.save($scope.item).success(
-                    function(data, status) {
+                    function (data, status) {
                         notify($scope.route.name + ' has been saved');
                         $state.transitionTo(
                             $scope.route.collection, {
@@ -95,15 +111,15 @@ define(['app'], function(app) {
                             }
                         );
                     }
-                ).error(function(data, status) {
-                    errorNotify(data);
-                });
+                ).error(function (data, status) {
+                        errorNotify(data);
+                    });
             };
 
             /**
              * CANCEL
              */
-            $scope.editCancel = function() {
+            $scope.editCancel = function () {
                 $state.transitionTo(
                     $scope.route.collection, {
                         locale: Environment.currentLocale()
@@ -114,9 +130,9 @@ define(['app'], function(app) {
             /**
              * DELETE
              */
-            $scope.editDelete = function() {
+            $scope.editDelete = function () {
                 itemService.remove($scope.details.id).success(
-                    function(data, status) {
+                    function (data, status) {
                         notify($scope.route.name + ' has been deleted');
                         $state.transitionTo(
                             $scope.route.collection, {
@@ -124,9 +140,9 @@ define(['app'], function(app) {
                             }
                         );
                     }
-                ).error(function(data, status) {
-                    errorNotify(data);
-                });
+                ).error(function (data, status) {
+                        errorNotify(data);
+                    });
             };
 
         });

@@ -51,11 +51,10 @@ class NodeManager extends ApiNodeManager
         $this->dm->persist($node);
         $this->dm->flush();
 
-
-        // new Parent
-        $parent->addChild($node);
-        $this->dm->persist($parent);
-        $this->dm->flush();
+//        // new Parent
+//        $parent->addChild($node);
+//        $this->dm->persist($parent);
+//        $this->dm->flush();
 
         return $node;
     }

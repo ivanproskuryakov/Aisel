@@ -47,7 +47,6 @@ class Category extends BaseCategory implements UrlInterface
     /**
      * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Document\Category", inversedBy="children")
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\ProductBundle\Document\Category")
      */
     protected $parent;
@@ -55,7 +54,6 @@ class Category extends BaseCategory implements UrlInterface
     /**
      * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Category")
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Category>")
      */
     protected $children;

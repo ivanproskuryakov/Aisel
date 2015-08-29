@@ -18,6 +18,7 @@ use JMS\Serializer\Annotation as JMS;
 
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Aisel\ResourceBundle\Document\NodeInterface;
 
 /**
  * Category
@@ -28,7 +29,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @ODM\MappedSuperclass
  * @JMS\ExclusionPolicy("all")
  */
-abstract class Category
+abstract class Category implements NodeInterface
 {
 
     use UpdateCreateTrait;
@@ -147,7 +148,7 @@ abstract class Category
      * @param  Category $children
      * @return Category
      */
-    public function addChild(Category $children)
+    public function addChild($children)
     {
         $this->children[] = $children;
 
@@ -159,7 +160,7 @@ abstract class Category
      *
      * @param Category $children
      */
-    public function removeChild(Category $children)
+    public function removeChild($children)
     {
         $this->children->removeElement($children);
     }
@@ -196,22 +197,5 @@ abstract class Category
     {
         return $this->parent;
     }
-
-//    /**
-//     * @ODM\preUpdate()
-//     */
-//    public function preUpdate(){
-//        /** @var \Aisel\ResourceBundle\Document\Category $parent */
-//        var_dump($this->getParent()->getId());
-//
-//        $parent = $this->getParent();
-//
-//        if ($parent) {
-//            $parent->removeChild($this);
-//            $parent->addChild($this);
-//
-//            var_dump($this->getParent()->getChildren()->first()->getId());
-//        }
-//    }
 
 }

@@ -58,11 +58,11 @@ class Product implements UrlInterface
 
     /**
      * @var string
-     * @ODM\Field(type="int")
-     * @Assert\Type(type="int")
+     * @ODM\Field(type="string")
+     * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Expose
-     * @JMS\Type("integer")
+     * @JMS\Type("string")
      */
     private $sku;
 

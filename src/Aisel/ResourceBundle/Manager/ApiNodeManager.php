@@ -133,11 +133,11 @@ class ApiNodeManager
         $this->dm->persist($node);
         $this->dm->flush();
 
-        // Update Parent
-        $parent->removeChild($node);
-        $parent->addChild($node);
-        $this->dm->persist($parent);
-        $this->dm->flush();
+//        // Update Parent
+//        $parent->removeChild($node);
+//        $parent->addChild($node);
+//        $this->dm->persist($parent);
+//        $this->dm->flush();
 
         return $node;
     }
@@ -194,15 +194,15 @@ class ApiNodeManager
                 throw new LogicException('Nothing found');
             }
         }
-
         $child->setParent($parent);
         $this->dm->persist($child);
         $this->dm->flush();
 
-        $parent->removeChild($child);
-        $parent->addChild($child);
-        $this->dm->persist($parent);
-        $this->dm->flush();
+//        // Update Parent
+//        $parent->removeChild($child);
+//        $parent->addChild($child);
+//        $this->dm->persist($parent);
+//        $this->dm->flush();
 
         return $child;
     }
