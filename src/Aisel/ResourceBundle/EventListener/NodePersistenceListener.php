@@ -27,7 +27,23 @@ class NodePersistenceListener
     /**
      * @param LifecycleEventArgs $args
      */
+    public function postUpdate(LifeCycleEventArgs $args)
+    {
+        $this->updateChildren($args);
+    }
+
+    /**
+     * @param LifecycleEventArgs $args
+     */
     public function postPersist(LifeCycleEventArgs $args)
+    {
+        $this->updateChildren($args);
+    }
+
+    /**
+     * @param LifecycleEventArgs $args
+     */
+    private function updateChildren(LifeCycleEventArgs $args)
     {
         $dm = $args->getDocumentManager();
 
@@ -35,12 +51,13 @@ class NodePersistenceListener
         /** @var Category $parent */
         /** @var Category $child */
         $object = $args->getDocument();
-
         if ($object instanceof NodeInterface) {
+//            var_dump($object->getParent());
 
             if ($parent = $object->getParent()) {
 
                 foreach ($parent->getChildren() as $child) {
+
                     if ($child->getId() == $object->getId()) {
                         $parent->removeChild($child);
                     }
@@ -51,5 +68,4 @@ class NodePersistenceListener
             }
         }
     }
-
 }

@@ -41,10 +41,10 @@ class LoadPageCategoryData extends XMLFixture implements OrderedFixtureInterface
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
-                    $rootCategory = null;
+                    $parent = null;
 
                     if ($table->column[2] != 'NULL') {
-                        $rootCategory = $this->getReference('page_category_' . $table->column[2]);
+                        $parent = $this->getReference('page_category_' . $table->column[2]);
                     }
                     $category = new Category();
                     $category->setLocale($table->column[1]);
@@ -53,8 +53,8 @@ class LoadPageCategoryData extends XMLFixture implements OrderedFixtureInterface
                     $category->setStatus($table->column[9]);
                     $category->setMetaUrl($table->column[10]);
 
-                    if ($rootCategory) {
-                        $category->setParent($rootCategory);
+                    if ($parent) {
+                        $category->setParent($parent);
                     }
                     $manager->persist($category);
                     $manager->flush();

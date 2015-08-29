@@ -1,12 +1,12 @@
 <div class="row">
-    <div class="col-md-1">
+    <div class="col-md-2">
         <strong>Id</strong>
     </div>
     <div class="col-md-2">
         <strong>Image</strong>
     </div>
     <div class="col-md-1">
-        <strong>Main Image</strong>
+        <strong>Main</strong>
     </div>
     <div class="col-md-3">
         <strong>Title</strong>
@@ -21,7 +21,7 @@
 
 <div ng-repeat="image in item.images">
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-md-2">
             {{image.id}}
         </div>
         <div class="col-md-2">
@@ -35,22 +35,21 @@
                    ng-model="image.main_image"
                    name="mainImage"
                    ng-value="image.main_image">
-            {{image.main_image}}
         </div>
         <div class="col-md-3">
             <input type="text"
                    class="form-control"
                    ng-model="image.title">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <input type="text"
                    class="form-control"
                    ng-model="image.description">
         </div>
         <div class="col-md-1">
-            <span ng-click="fileDelete(image.id)" class="btn btn-danger">
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            </span>
+                            <span ng-click="fileDelete(image.id)" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </span>
         </div>
     </div>
     <br/>

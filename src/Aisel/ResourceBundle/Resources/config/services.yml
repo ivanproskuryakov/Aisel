@@ -31,4 +31,5 @@ services:
     aisel_node_persistence_listener:
         class: %aisel_node_listener.class%
         tags:
-            - { name: doctrine_mongodb.odm.event_listener, event: postPersist }
+            - { name: doctrine_mongodb.odm.event_listener, event: postPersist, method: postPersist }
+            - { name: doctrine_mongodb.odm.event_listener, event: postUpdate, method: postUpdate }
