@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-1">
+    <div class="col-md-2">
         <strong>Id</strong>
     </div>
     <div class="col-md-2">
@@ -21,7 +21,7 @@
 
 <div ng-repeat="image in item.images">
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-md-2">
             {{image.id}}
         </div>
         <div class="col-md-2">
@@ -42,15 +42,15 @@
                    class="form-control"
                    ng-model="image.title">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <input type="text"
                    class="form-control"
                    ng-model="image.description">
         </div>
         <div class="col-md-1">
-            <span ng-click="fileDelete(image.id)" class="btn btn-danger">
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            </span>
+                            <span ng-click="fileDelete(image.id)" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </span>
         </div>
     </div>
     <br/>
