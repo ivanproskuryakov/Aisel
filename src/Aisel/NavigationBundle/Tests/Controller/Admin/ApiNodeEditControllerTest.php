@@ -78,6 +78,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
             ->findOneBy(['id' => $result['id']]);
 
         $this->assertEquals($parent->getId(), $node->getParent()->getId());
+        $this->assertEquals($result['id'], $child->getId());
         $this->assertEquals($child->getId(), $node->getParent()->getChildren()[0]->getId());
     }
 

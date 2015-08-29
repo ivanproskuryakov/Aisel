@@ -61,11 +61,11 @@ class ApiNodeManager
      */
     public function save($params)
     {
-        if ($categoryId = $params['id']) {
+        if ($childId = $params['id']) {
             $node = $this
                 ->dm
                 ->getRepository($this->model)
-                ->find($categoryId);
+                ->find($childId);
 
             if (!($node)) {
                 throw new LogicException('Nothing was found');
@@ -92,8 +92,8 @@ class ApiNodeManager
      */
     public function remove($params)
     {
-        if ($categoryId = $params['id']) {
-            $node = $this->dm->getRepository($this->model)->find($categoryId);
+        if ($childId = $params['id']) {
+            $node = $this->dm->getRepository($this->model)->find($childId);
 
             if (!($node)) {
                 throw new LogicException('Nothing found');
@@ -117,8 +117,8 @@ class ApiNodeManager
     public function addChild($params)
     {
         /** @var $node Category */
-        if ($categoryId = $params['parentId']) {
-            $parent = $this->dm->getRepository($this->model)->find($categoryId);
+        if ($childId = $params['parentId']) {
+            $parent = $this->dm->getRepository($this->model)->find($childId);
 
             if (!($parent)) {
                 throw new LogicException('Nothing found');
@@ -132,12 +132,6 @@ class ApiNodeManager
         $node->setStatus(false);
         $this->dm->persist($node);
         $this->dm->flush();
-
-//        // Update Parent
-//        $parent->removeChild($node);
-//        $parent->addChild($node);
-//        $this->dm->persist($parent);
-//        $this->dm->flush();
 
         return $node;
     }
@@ -179,30 +173,25 @@ class ApiNodeManager
             ->dm
             ->getRepository($this->model);
 
-        if ($categoryParentId = $params['parentId']) {
-            $parent = $repo->find($categoryParentId);
+        if ($parentId = $params['parentId']) {
+            $parent = $repo->find($parentId);
 
             if (!$parent) {
                 throw new LogicException('Nothing found');
             }
         }
 
-        if ($categoryId = $params['id']) {
-            $child = $repo->find($categoryId);
+        if ($childId = $params['id']) {
+            $child = $repo->find($childId);
 
             if (!$child) {
                 throw new LogicException('Nothing found');
             }
         }
+
         $child->setParent($parent);
         $this->dm->persist($child);
         $this->dm->flush();
-
-//        // Update Parent
-//        $parent->removeChild($child);
-//        $parent->addChild($child);
-//        $this->dm->persist($parent);
-//        $this->dm->flush();
 
         return $child;
     }
@@ -215,13 +204,13 @@ class ApiNodeManager
 //     * validate metaUrl for Category Entity and return one we can use
 //     *
 //     * @param string $url
-//     * @param int    $categoryId
+//     * @param int    $childId
 //     *
 //     * @return string
 //     */
-//    public function normalizeCategoryUrl($url, $categoryId = null)
+//    public function normalizeCategoryUrl($url, $childId = null)
 //    {
-//        $category = $this->dm->getRepository($this->model)->findTotalByURL($url, $categoryId);
+//        $category = $this->dm->getRepository($this->model)->findTotalByURL($url, $childId);
 //        $utility = new UrlUtility();
 //        $validUrl = $utility->process($url);
 //

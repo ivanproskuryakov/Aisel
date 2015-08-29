@@ -49,8 +49,8 @@ class LoadProductCategoryData extends XMLFixture implements OrderedFixtureInterf
                     $category->setMetaUrl($table->column[10]);
 
                     if ($table->column[2] != 'NULL') {
-                        $rootCategory = $this->getReference('product_category_' . $table->column[2]);
-                        $category->setParent($rootCategory);
+                        $parent = $this->getReference('product_category_' . $table->column[2]);
+                        $category->setParent($parent);
                     }
                     $manager->persist($category);
                     $manager->flush();
