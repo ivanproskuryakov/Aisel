@@ -18,7 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
-use Aisel\ProductBundle\Document\Category;
+use Aisel\ProductBundle\Document\Node;
 use Aisel\MediaBundle\Document\Image;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
@@ -221,9 +221,9 @@ class Product implements UrlInterface
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Category")
+     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Node")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Category>")
+     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Node>")
      */
     private $categories;
 
@@ -686,12 +686,12 @@ class Product implements UrlInterface
     /**
      * Add categories
      *
-     * @param  Category $category
+     * @param  Node $node
      * @return Product
      */
-    public function addCategory(Category $category)
+    public function addNode(Node $node)
     {
-        $this->categories->add($category);
+        $this->categories->add($node);
 
         return $this;
     }
@@ -699,11 +699,11 @@ class Product implements UrlInterface
     /**
      * Remove categories
      *
-     * @param Category $category
+     * @param Node $node
      */
-    public function removeCategory(Category $category)
+    public function removeNode(Node $node)
     {
-        $this->categories->removeElement($category);
+        $this->categories->removeElement($node);
     }
 
     /**

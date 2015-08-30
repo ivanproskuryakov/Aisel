@@ -12,14 +12,14 @@
 namespace Aisel\PageBundle\Tests\EventListener;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\PageBundle\Document\Category;
+use Aisel\PageBundle\Document\Node;
 
 /**
- * PageCategoryUrlPersistenceListenerTest
+ * PageNodeUrlPersistenceListenerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class PageCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
+class PageNodeUrlPersistenceListenerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -34,40 +34,40 @@ class PageCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
 
     public function testDuplicatedUrlThrowsError()
     {
-        $urlText = 'page-category-test-meta-url';
+        $urlText = 'page-node-test-meta-url';
         $this->setExpectedException(
             'LogicException', 'Given URL already exists'
         );
 
-        // Create Page Category 1
-        $category1 = new Category();
-        $category1->setLocale('en');
-        $category1->setTitle('...');
-        $category1->setDescription('...');
-        $category1->setStatus(true);
-        $category1->setMetaUrl($urlText);
+        // Create Page Node 1
+        $node1 = new Node();
+        $node1->setLocale('en');
+        $node1->setTitle('...');
+        $node1->setDescription('...');
+        $node1->setStatus(true);
+        $node1->setMetaUrl($urlText);
 
-        $this->dm->persist($category1);
+        $this->dm->persist($node1);
         $this->dm->flush();
         $this->dm->clear();
 
-        // Create Page Category 2
-        $category2 = new Category();
-        $category2->setLocale('en');
-        $category2->setTitle('...');
-        $category2->setDescription('...');
-        $category2->setStatus(true);
-        $category2->setMetaUrl($urlText);
+        // Create Page Node 2
+        $node2 = new Node();
+        $node2->setLocale('en');
+        $node2->setTitle('...');
+        $node2->setDescription('...');
+        $node2->setStatus(true);
+        $node2->setMetaUrl($urlText);
 
-        $this->dm->persist($category2);
+        $this->dm->persist($node2);
         $this->dm->flush();
 
-        // Delete Page Category 1
-        $category1 = $this->dm
-            ->getRepository('Aisel\PageBundle\Document\Category')
+        // Delete Page Node 1
+        $node1 = $this->dm
+            ->getRepository('Aisel\PageBundle\Document\Node')
             ->findOneBy(['metaUrl' => $urlText]);
 
-        $this->dm->remove($category1);
+        $this->dm->remove($node1);
         $this->dm->flush();
         $this->dm->clear();
     }

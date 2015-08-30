@@ -35,7 +35,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
     {
         $pageNode = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->getRepository('Aisel\PageBundle\Document\Node')
             ->findOneBy(['locale' => 'en']);
 
         $data = [

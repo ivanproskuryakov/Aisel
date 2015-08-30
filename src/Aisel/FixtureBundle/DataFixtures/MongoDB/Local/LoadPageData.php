@@ -52,8 +52,8 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                     $categories = explode(",", $table->column[8]);
 
                     foreach ($categories as $c) {
-                        $category = $this->getReference('page_category_' . $c);
-                        $page->addCategory($category);
+                        $node = $this->getReference('page_node_' . $c);
+                        $page->addNode($node);
                     }
 
                     $manager->persist($page);

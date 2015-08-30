@@ -53,7 +53,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
     {
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Category')
+            ->getRepository('Aisel\ProductBundle\Document\Node')
             ->findOneBy(['locale' => 'en']);
 
         $data = [
@@ -107,7 +107,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Category')
+            ->getRepository('Aisel\ProductBundle\Document\Node')
             ->findOneBy(['locale' => 'ru']);
 
         $id = $product->getId();

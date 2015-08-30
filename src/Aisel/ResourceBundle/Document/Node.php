@@ -21,7 +21,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Document\NodeInterface;
 
 /**
- * Category
+ * Node
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
@@ -29,7 +29,7 @@ use Aisel\ResourceBundle\Document\NodeInterface;
  * @ODM\MappedSuperclass
  * @JMS\ExclusionPolicy("all")
  */
-abstract class Category implements NodeInterface
+abstract class Node implements NodeInterface
 {
 
     use UpdateCreateTrait;
@@ -63,18 +63,18 @@ abstract class Category implements NodeInterface
     protected $title;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Aisel\ResourceBundle\Document\Category", inversedBy="children")
+     * @ODM\ReferenceOne(targetDocument="Aisel\ResourceBundle\Document\Node", inversedBy="children")
      * @JMS\Expose
      * @JMS\MaxDepth(1)
-     * @JMS\Type("Aisel\ResourceBundle\Document\Category")
+     * @JMS\Type("Aisel\ResourceBundle\Document\Node")
      */
     protected $parent = null;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Aisel\ResourceBundle\Document\Category", mappedBy="parent")
+     * @ODM\ReferenceMany(targetDocument="Aisel\ResourceBundle\Document\Node", mappedBy="parent")
      * @JMS\Expose
      * @JMS\MaxDepth(1)
-     * @JMS\Type("ArrayCollection<Aisel\ResourceBundle\Document\Category>")
+     * @JMS\Type("ArrayCollection<Aisel\ResourceBundle\Document\Node>")
      */
     protected $children = null;
 
@@ -100,7 +100,7 @@ abstract class Category implements NodeInterface
      * Set title
      *
      * @param  string $title
-     * @return Category
+     * @return Node
      */
     public function setTitle($title)
     {
@@ -123,7 +123,7 @@ abstract class Category implements NodeInterface
      * Set status
      *
      * @param  boolean $status
-     * @return Category
+     * @return Node
      */
     public function setStatus($status)
     {
@@ -145,8 +145,8 @@ abstract class Category implements NodeInterface
     /**
      * Add children
      *
-     * @param  Category $children
-     * @return Category
+     * @param  Node $children
+     * @return Node
      */
     public function addChild($children)
     {
@@ -158,7 +158,7 @@ abstract class Category implements NodeInterface
     /**
      * Remove children
      *
-     * @param Category $children
+     * @param Node $children
      */
     public function removeChild($children)
     {
@@ -178,8 +178,8 @@ abstract class Category implements NodeInterface
     /**
      * Set parent
      *
-     * @param  Category $parent
-     * @return Category
+     * @param  Node $parent
+     * @return Node
      */
     public function setParent($parent = null)
     {
@@ -191,7 +191,7 @@ abstract class Category implements NodeInterface
     /**
      * Get parent
      *
-     * @return Category
+     * @return Node
      */
     public function getParent()
     {

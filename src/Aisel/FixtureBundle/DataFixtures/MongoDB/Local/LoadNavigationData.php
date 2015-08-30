@@ -21,7 +21,7 @@ use Aisel\NavigationBundle\Document\Menu;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class LoadMenuTopData extends XMLFixture implements OrderedFixtureInterface
+class LoadNavigationData extends XMLFixture implements OrderedFixtureInterface
 {
 
     protected $fixturesName = array(
@@ -42,9 +42,9 @@ class LoadMenuTopData extends XMLFixture implements OrderedFixtureInterface
 
                 foreach ($XML->database->table as $table) {
 
-                    $rootCategory = null;
+                    $rootNode = null;
                     if ($table->column[2] != 'NULL') {
-                        $rootCategory = $this->getReference('menu_top_' . $table->column[2]);
+                        $rootNode = $this->getReference('menu_top_' . $table->column[2]);
                     }
                     $menu = new Menu();
                     $menu->setLocale($table->column[1]);
@@ -52,8 +52,8 @@ class LoadMenuTopData extends XMLFixture implements OrderedFixtureInterface
                     $menu->setMetaUrl($table->column[8]);
                     $menu->setStatus((int)$table->column[9]);
 
-                    if ($rootCategory) {
-                        $menu->setParent($rootCategory);
+                    if ($rootNode) {
+                        $menu->setParent($rootNode);
                     }
                     $manager->persist($menu);
                     $manager->flush();

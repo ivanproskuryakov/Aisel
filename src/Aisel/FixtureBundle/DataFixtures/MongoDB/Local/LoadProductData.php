@@ -65,8 +65,8 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
                     $categories = explode(",", $table->column[20]);
                     foreach ($categories as $c) {
-                        $category = $this->getReference('product_category_' . $c);
-                        $product->addCategory($category);
+                        $node = $this->getReference('product_node_' . $c);
+                        $product->addNode($node);
                     }
 
                     $manager->persist($product);

@@ -44,7 +44,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/'. $this->api['backend'] . '/page/category/',
+            '/'. $this->api['backend'] . '/page/node/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -63,7 +63,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/page/category/?locale=en'
+            '/'. $this->api['backend'] . '/page/node/?locale=en'
         );
 
         $response = $this->client->getResponse();
@@ -81,12 +81,12 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     {
         $node = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->getRepository('Aisel\PageBundle\Document\Node')
             ->findOneBy(['title' => 'AAA']);
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/page/category/' . $node->getId(),
+            '/'. $this->api['backend'] . '/page/node/' . $node->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -105,12 +105,12 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     {
         $node = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->getRepository('Aisel\PageBundle\Document\Node')
             ->findOneBy(['title' => 'AAA']);
 
         $node2 = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->getRepository('Aisel\PageBundle\Document\Node')
             ->findOneBy(['locale' => 'en']);
 
         $id = $node->getId();
@@ -120,7 +120,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'PUT',
-            '/'. $this->api['backend'] . '/page/category/' . $id,
+            '/'. $this->api['backend'] . '/page/node/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -135,7 +135,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->getRepository('Aisel\PageBundle\Document\Node')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);
@@ -149,13 +149,13 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     {
         $node = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->getRepository('Aisel\PageBundle\Document\Node')
             ->findOneBy(['title' => 'AAA']);
         $id = $node->getId();
 
         $this->client->request(
             'DELETE',
-            '/'. $this->api['backend'] . '/page/category/' . $id,
+            '/'. $this->api['backend'] . '/page/node/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -167,7 +167,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->getRepository('Aisel\PageBundle\Document\Node')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);

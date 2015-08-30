@@ -22,15 +22,15 @@ use LogicException;
 class NodeManager extends ApiNodeManager
 {
 
-    protected $model = 'Aisel\ProductBundle\Document\Category';
+    protected $model = 'Aisel\ProductBundle\Document\Node';
 
     /**
      * {@inheritDoc}
      */
     public function addChild($params)
     {
-        if ($categoryId = $params['parentId']) {
-            $parent = $this->dm->getRepository($this->model)->find($categoryId);
+        if ($nodeId = $params['parentId']) {
+            $parent = $this->dm->getRepository($this->model)->find($nodeId);
 
             if (!($parent)) {
                 throw new LogicException('Nothing found');

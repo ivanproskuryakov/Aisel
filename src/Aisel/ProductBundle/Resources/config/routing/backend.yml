@@ -6,32 +6,32 @@
 # file that was distributed with this source code.
 
 
-admin_api_aisel_product_category_get:
-    pattern:   /product/category/{id}
+admin_api_aisel_product_node_get:
+    pattern:   /product/node/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:get, _format: json }
     requirements:
         _method: GET
 
-admin_api_aisel_product_category_get_tree:
-    pattern:   /product/category/
+admin_api_aisel_product_node_get_tree:
+    pattern:   /product/node/
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:getTree, _format: json }
     requirements:
         _method: GET
 
-admin_api_aisel_product_category_put:
-    pattern:   /product/category/{id}
+admin_api_aisel_product_node_put:
+    pattern:   /product/node/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:put, _format: json }
     requirements:
         _method: PUT
 
-admin_api_aisel_product_category_post:
-    pattern:   /product/category/
+admin_api_aisel_product_node_post:
+    pattern:   /product/node/
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:post, _format: json }
     requirements:
         _method: POST
 
-admin_api_aisel_product_category_delete:
-    pattern:   /product/category/{id}
+admin_api_aisel_product_node_delete:
+    pattern:   /product/node/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:delete, _format: json }
     requirements:
         _method: DELETE
@@ -66,8 +66,8 @@ admin_api_aisel_product_post:
     requirements:
         _method: POST
 
-admin_api_aisel_product_category_node_edit:
-    pattern:   /product/category/node/
+admin_api_aisel_product_node_node_edit:
+    pattern:   /product/node/node/
     defaults:  { _controller: AiselProductBundle:Admin/ApiNodeEdit:nodeEdit, _format: json }
     requirements:
         _method: GET

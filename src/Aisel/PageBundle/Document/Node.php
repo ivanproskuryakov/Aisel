@@ -9,30 +9,31 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Document;
+namespace Aisel\PageBundle\Document;
 
-use Aisel\ResourceBundle\Document\Category as BaseCategory;
+use Aisel\ResourceBundle\Document\Node as BaseNode;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
-use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 
 /**
- * Category
+ * Node
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
- *      collection="aisel_product_category",
+ *      collection="aisel_page_node",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  * @JMS\ExclusionPolicy("all")
  */
-class Category extends BaseCategory implements UrlInterface
+//* @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
+class Node extends BaseNode implements UrlInterface
 {
+
     use MetaTrait;
 
     /**
@@ -45,25 +46,24 @@ class Category extends BaseCategory implements UrlInterface
     private $description;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Document\Category", inversedBy="children")
+     * @ODM\ReferenceOne(targetDocument="Aisel\PageBundle\Document\Node", inversedBy="children")
      * @JMS\Expose
-     * @JMS\Type("Aisel\ProductBundle\Document\Category")
+     * @JMS\Type("Aisel\PageBundle\Document\Node")
      */
     protected $parent;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Category")
+     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Node")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Category>")
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Node>")
      */
     protected $children;
 
-    
     /**
      * Set description
      *
      * @param  string   $description
-     * @return Category
+     * @return Node
      */
     public function setDescription($description)
     {

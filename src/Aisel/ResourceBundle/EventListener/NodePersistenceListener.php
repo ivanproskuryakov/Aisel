@@ -14,7 +14,7 @@ namespace Aisel\ResourceBundle\EventListener;
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Aisel\ResourceBundle\Document\NodeInterface;
-use Aisel\ResourceBundle\Document\Category;
+use Aisel\ResourceBundle\Document\Node;
 
 /**
  * Class NodePersistenceListener.
@@ -48,11 +48,10 @@ class NodePersistenceListener
         $dm = $args->getDocumentManager();
 
         /** @var NodeInterface $object */
-        /** @var Category $parent */
-        /** @var Category $child */
+        /** @var Node $parent */
+        /** @var Node $child */
         $object = $args->getDocument();
         if ($object instanceof NodeInterface) {
-//            var_dump($object->getParent());
 
             if ($parent = $object->getParent()) {
 

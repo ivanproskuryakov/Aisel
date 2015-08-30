@@ -12,14 +12,14 @@
 namespace Aisel\ProductBundle\Tests\EventListener;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\ProductBundle\Document\Category;
+use Aisel\ProductBundle\Document\Node;
 
 /**
- * ProductCategoryUrlPersistenceListenerTest
+ * ProductNodeUrlPersistenceListenerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ProductCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
+class ProductNodeUrlPersistenceListenerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -34,39 +34,39 @@ class ProductCategoryUrlPersistenceListenerTest extends AbstractWebTestCase
 
     public function testDuplicatedUrlThrowsError()
     {
-        $urlText = 'product-category-test-meta-url';
+        $urlText = 'product-node-test-meta-url';
         $this->setExpectedException(
             'LogicException', 'Given URL already exists'
         );
 
-        // Create Product Category 1
-        $category1 = new Category();
-        $category1->setLocale('en');
-        $category1->setTitle('...');
-        $category1->setDescription('...');
-        $category1->setStatus(true);
-        $category1->setMetaUrl($urlText);
+        // Create Product Node 1
+        $node1 = new Node();
+        $node1->setLocale('en');
+        $node1->setTitle('...');
+        $node1->setDescription('...');
+        $node1->setStatus(true);
+        $node1->setMetaUrl($urlText);
 
-        $this->dm->persist($category1);
+        $this->dm->persist($node1);
         $this->dm->flush();
 
-        // Create Product Category 2
-        $category2 = new Category();
-        $category2->setLocale('en');
-        $category2->setTitle('...');
-        $category2->setDescription('...');
-        $category2->setStatus(true);
-        $category2->setMetaUrl($urlText);
+        // Create Product Node 2
+        $node2 = new Node();
+        $node2->setLocale('en');
+        $node2->setTitle('...');
+        $node2->setDescription('...');
+        $node2->setStatus(true);
+        $node2->setMetaUrl($urlText);
 
-        $this->dm->persist($category2);
+        $this->dm->persist($node2);
         $this->dm->flush();
 
-        // Delete Product Category 1
-        $category1 = $this->dm
-            ->getRepository('Aisel\ProductBundle\Document\Category')
+        // Delete Product Node 1
+        $node1 = $this->dm
+            ->getRepository('Aisel\ProductBundle\Document\Node')
             ->findOneBy(['metaUrl' => $urlText]);
 
-        $this->dm->remove($category1);
+        $this->dm->remove($node1);
         $this->dm->flush();
     }
 

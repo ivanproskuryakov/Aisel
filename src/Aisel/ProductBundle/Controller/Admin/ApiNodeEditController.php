@@ -24,6 +24,6 @@ class ApiNodeEditController extends BaseApiNodeEditController
     /**
      * @var string
      */
-    protected $nodeManager = "aisel.productcategory.node.manager";
+    protected $nodeManager = "aisel.productnode.node.manager";
 
 }

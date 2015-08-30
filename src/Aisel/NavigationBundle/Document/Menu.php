@@ -13,7 +13,7 @@ namespace Aisel\NavigationBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Aisel\ResourceBundle\Document\Category as BaseCategory;
+use Aisel\ResourceBundle\Document\Node as BaseNode;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -28,7 +28,7 @@ use JMS\Serializer\Annotation as JMS;
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  */
-class Menu extends BaseCategory
+class Menu extends BaseNode
 {
 
     /**

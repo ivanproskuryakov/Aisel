@@ -14,20 +14,20 @@ namespace Aisel\ResourceBundle\DataFixtures\MongoDB\Local;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\ProductBundle\Document\Category;
+use Aisel\PageBundle\Document\Node;
 
 /**
- * Product Categories
+ * Page Node fixtures
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class LoadProductCategoryData extends XMLFixture implements OrderedFixtureInterface
+class LoadPageNodeData extends XMLFixture implements OrderedFixtureInterface
 {
 
     protected $fixturesName = array(
-        'en/aisel_product_category.xml',
-        'ru/aisel_product_category.xml',
-        'es/aisel_product_category.xml',
+        'en/aisel_page_node.xml',
+        'ru/aisel_page_node.xml',
+        'es/aisel_page_node.xml',
     );
 
     /**
@@ -41,20 +41,24 @@ class LoadProductCategoryData extends XMLFixture implements OrderedFixtureInterf
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
-                    $category = new Category();
-                    $category->setLocale($table->column[1]);
-                    $category->setTitle($table->column[3]);
-                    $category->setDescription($table->column[8]);
-                    $category->setStatus((int)$table->column[9]);
-                    $category->setMetaUrl($table->column[10]);
+                    $parent = null;
 
                     if ($table->column[2] != 'NULL') {
-                        $parent = $this->getReference('product_category_' . $table->column[2]);
-                        $category->setParent($parent);
+                        $parent = $this->getReference('page_node_' . $table->column[2]);
                     }
-                    $manager->persist($category);
+                    $node = new Node();
+                    $node->setLocale($table->column[1]);
+                    $node->setTitle($table->column[3]);
+                    $node->setDescription($table->column[8]);
+                    $node->setStatus((int)$table->column[9]);
+                    $node->setMetaUrl($table->column[10]);
+
+                    if ($parent) {
+                        $node->setParent($parent);
+                    }
+                    $manager->persist($node);
                     $manager->flush();
-                    $this->addReference('product_category_' . $table->column[0], $category);
+                    $this->addReference('page_node_' . $table->column[0], $node);
                 }
             }
         }
@@ -65,6 +69,6 @@ class LoadProductCategoryData extends XMLFixture implements OrderedFixtureInterf
      */
     public function getOrder()
     {
-        return 300;
+        return 200;
     }
 }

@@ -18,7 +18,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
-use Aisel\PageBundle\Document\Category;
+use Aisel\PageBundle\Document\Node;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
@@ -88,9 +88,9 @@ class Page implements UrlInterface
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category")
+     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Node")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Node>")
      */
     private $categories;
 
@@ -195,15 +195,15 @@ class Page implements UrlInterface
     }
 
     /**
-     * Add category
+     * Add node
      *
-     * @param Category $category
+     * @param Node $node
      *
      * @return Page
      */
-    public function addCategory(Category $category)
+    public function addNode(Node $node)
     {
-        $this->categories->add($category);
+        $this->categories->add($node);
 
         return $this;
     }
@@ -211,11 +211,11 @@ class Page implements UrlInterface
     /**
      * Remove categories
      *
-     * @param Category $category
+     * @param Node $node
      */
-    public function removeCategory(Category $category)
+    public function removeNode(Node $node)
     {
-        $this->categories->removeElement($category);
+        $this->categories->removeElement($node);
     }
 
     /**
@@ -231,7 +231,7 @@ class Page implements UrlInterface
     /**
      * Get categories
      *
-     * @param Category $categories
+     * @param Node $categories
      *
      * @return Page
      */
