@@ -16,8 +16,8 @@ define(['app'], function(app) {
     app.controller('ProductCategoryCtrl', function($scope, $stateParams, $state, Environment) {
 
         $scope.sectionName = 'Product categories';
-        $scope.categoryJson = Environment.settings.api + '/product/category/?locale=' + $stateParams.lang;
-        $scope.categoryUpdate = Environment.settings.api + '/product/category/node/?locale=' + $stateParams.lang;
+        $scope.categoryJson = Environment.settings.api + '/product/node/?locale=' + $stateParams.lang;
+        $scope.categoryUpdate = Environment.settings.api + '/product/node/node/?locale=' + $stateParams.lang;
 
         $scope.editNode = function(id) {
             $state.transitionTo('productCategoryEdit', {

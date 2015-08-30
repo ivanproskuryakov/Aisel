@@ -16,8 +16,8 @@ define(['app'], function(app) {
     app.controller('PageCategoryCtrl', function($scope, $stateParams, $state, Environment) {
 
         $scope.sectionName = 'Page categories';
-        $scope.categoryJson = Environment.settings.api + '/page/category/?locale=' + $stateParams.lang;
-        $scope.categoryUpdate = Environment.settings.api + '/page/category/node/?locale=' + $stateParams.lang;
+        $scope.categoryJson = Environment.settings.api + '/page/node/?locale=' + $stateParams.lang;
+        $scope.categoryUpdate = Environment.settings.api + '/page/node/node/?locale=' + $stateParams.lang;
 
         $scope.editNode = function(id) {
             $state.transitionTo('pageCategoryEdit', {

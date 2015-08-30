@@ -32,12 +32,12 @@ define(['app'], function(app) {
                     controller: 'PageDetailsCtrl'
                 })
                 .state("pageCategory", {
-                    url: "/:locale/page/category/:lang/",
+                    url: "/:locale/page/node/:lang/",
                     templateUrl: '/app/Aisel/Kernel/views/category.html',
                     controller: 'PageCategoryCtrl'
                 })
                 .state("pageCategoryEdit", {
-                    url: "/:locale/page/category/edit/:lang/:id/",
+                    url: "/:locale/page/node/edit/:lang/:id/",
                     templateUrl: '/app/Aisel/Page/views/edit-category.html',
                     controller: 'PageCategoryDetailsCtrl'
                 })
@@ -55,7 +55,7 @@ define(['app'], function(app) {
                     },
                     "pageCategory": {
                         "ordering": 200,
-                        "slug": '/page/category/' + Environment.currentLocale() + '/',
+                        "slug": '/page/node/' + Environment.currentLocale() + '/',
                         "title": 'Categories'
                     }
                 }

@@ -32,12 +32,12 @@ define(['app'], function(app) {
                     controller: 'ProductDetailsCtrl'
                 })
                 .state("productCategory", {
-                    url: "/:locale/product/category/:lang/",
+                    url: "/:locale/product/node/:lang/",
                     templateUrl: '/app/Aisel/Kernel/views/category.html',
                     controller: 'ProductCategoryCtrl'
                 })
                 .state("productCategoryEdit", {
-                    url: "/:locale/product/category/edit/:lang/:id/",
+                    url: "/:locale/product/node/edit/:lang/:id/",
                     templateUrl: '/app/Aisel/Product/views/edit-category.html',
                     controller: 'ProductCategoryDetailsCtrl'
                 })
@@ -54,7 +54,7 @@ define(['app'], function(app) {
                     },
                     "productCategory": {
                         "ordering": 200,
-                        "slug": '/product/category/' + Environment.currentLocale() + '/',
+                        "slug": '/product/node/' + Environment.currentLocale() + '/',
                         "title": 'Categories'
                     }
                 }
