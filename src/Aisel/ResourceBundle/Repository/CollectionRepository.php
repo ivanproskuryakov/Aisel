@@ -43,19 +43,19 @@ class CollectionRepository extends DocumentRepository
 
         // Pagination
         if (isset($params['current'])) {
-            $this->pageCurrent =  (int) $params['current'];
+            $this->pageCurrent = (int)$params['current'];
         } else {
             $this->pageCurrent = 1;
         }
 
         if (isset($params['limit'])) {
-            $this->pageLimit =  (int) $params['limit'];
+            $this->pageLimit = (int)$params['limit'];
         } else {
             $this->pageLimit = 5;
         }
 
         if (isset($params['category'])) {
-            $this->category = (int) $params['category'];
+            $this->category = (int)$params['category'];
         } else {
             $this->category = 0;
         }
@@ -93,7 +93,7 @@ class CollectionRepository extends DocumentRepository
 
         // Filter
         if (isset($params['filter'])) {
-            $this->filter = (array) json_decode($params['filter']);
+            $this->filter = (array)json_decode($params['filter']);
         }
         $this->pageSkip = ($this->pageCurrent - 1) * $this->pageLimit;
     }
@@ -128,8 +128,12 @@ class CollectionRepository extends DocumentRepository
 
         if ($this->search != '') {
             $query->expr()->operator('content', array(
-                    '$search' => $this->search,
-                ));
+                '$search' => $this->search,
+            ));
+        }
+
+        if ($params['scope'] == 'frontend') {
+            $query->field('status')->equals(true);
         }
 
         $total = $query->count()
@@ -167,13 +171,12 @@ class CollectionRepository extends DocumentRepository
             $query->field('locale')->equals($this->locale);
         }
 
-        // @todo: finish with status
-//        if ($this->status) {
-//            $query->field('status')->equals($this->status);
-//        }
-
         if ($this->category) {
             $query->field('category')->equals($this->category);
+        }
+
+        if ($params['scope'] == 'frontend') {
+            $query->field('status')->equals(true);
         }
 
         if ($this->search != '') {
@@ -196,7 +199,7 @@ class CollectionRepository extends DocumentRepository
      * Find pages by URL
      *
      * @param string $url
-     * @param int    $entityId
+     * @param int $entityId
      *
      * @return int $found
      */
@@ -218,19 +221,14 @@ class CollectionRepository extends DocumentRepository
         return $found;
     }
 
-    // ---------------------------------
-    // ---------- CATEGORIES -----------
-    // ---------------------------------
-
     /**
-     * Returns enabled categories sorted as tree
+     * Returns enabled nodes
      *
-     * @param string  $locale
-     * @param boolean $onlyEnabled
+     * @param string $params
      *
      * @return array $result
      */
-    public function getNodesAsTree($locale, $onlyEnabled = true)
+    public function getNodesAsTree($params)
     {
         $this->model = $this->getDocumentName();
 
@@ -238,10 +236,10 @@ class CollectionRepository extends DocumentRepository
             ->getDocumentManager()
             ->createQueryBuilder($this->model)
             ->field('parent')->exists(false)
-            ->field('locale')->equals($locale);
+            ->field('locale')->equals($params['locale']);
 
-        if ($onlyEnabled) {
-            $query->field('status')->equals($onlyEnabled);
+        if ($params['scope'] == 'frontend') {
+            $query->field('status')->equals(true);
         }
 
         $result = $query

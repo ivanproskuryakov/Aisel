@@ -50,7 +50,7 @@ class LoadMenuTopData extends XMLFixture implements OrderedFixtureInterface
                     $menu->setLocale($table->column[1]);
                     $menu->setTitle($table->column[7]);
                     $menu->setMetaUrl($table->column[8]);
-                    $menu->setStatus($table->column[9]);
+                    $menu->setStatus((int)$table->column[9]);
 
                     if ($rootCategory) {
                         $menu->setParent($rootCategory);

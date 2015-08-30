@@ -50,7 +50,7 @@ class LoadPageCategoryData extends XMLFixture implements OrderedFixtureInterface
                     $category->setLocale($table->column[1]);
                     $category->setTitle($table->column[3]);
                     $category->setDescription($table->column[8]);
-                    $category->setStatus($table->column[9]);
+                    $category->setStatus((int)$table->column[9]);
                     $category->setMetaUrl($table->column[10]);
 
                     if ($parent) {

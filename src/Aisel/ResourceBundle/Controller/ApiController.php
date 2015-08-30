@@ -170,6 +170,7 @@ class ApiController extends Controller
 
         return $this->filterMaxDepth($entity);
     }
+
     /**
      * @param Request $request
      *
@@ -211,7 +212,8 @@ class ApiController extends Controller
             'category' => $request->get('category'),
             'order' => $request->get('order'),
             'orderBy' => $request->get('orderBy'),
-            'filter' => $request->get('filter')
+            'filter' => $request->get('filter'),
+            'scope' => $this->getRequestScope($request)
         );
 
         /**
@@ -236,16 +238,41 @@ class ApiController extends Controller
      */
     public function getTreeAction(Request $request)
     {
-        $locale = $request->get('locale');
+        $params = array(
+            'locale' => $request->get('locale'),
+            'scope' => $this->getRequestScope($request)
+        );
+
         /**
          * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
             ->getDocumentManager()
             ->getRepository($this->model);
-        $collection = array_values($repo->getNodesAsTree($locale));
+        $collection = array_values($repo->getNodesAsTree($params));
 
         return $collection;
+    }
+
+    /**
+     * Get request scope
+     *
+     * @param Request $request
+     * @return string $status
+     */
+    protected function getRequestScope(Request $request)
+    {
+        $scope = 'backend';
+
+        $urlFrontend = $this
+            ->container
+            ->getParameter('frontend_api');
+
+        if (strpos($request->getUri(), $urlFrontend)) {
+            $scope = 'frontend';
+        }
+
+        return $scope;
     }
 
 }
