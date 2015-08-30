@@ -43,9 +43,9 @@ describe("E2E: Page module tests", function() {
         });
     });
 
-    // == Page category route ==
-    it('Page categories route is working', function() {
-        browser.get('http://admin.aisel.dev/en/page/category/en/');
+    // == Page node route ==
+    it('Page nodes route is working', function() {
+        browser.get('http://admin.aisel.dev/en/page/node/en/');
 
         element(by.css('.glyphicon-edit')).click().then(function() {
             browser.getCurrentUrl().then(function(url) {

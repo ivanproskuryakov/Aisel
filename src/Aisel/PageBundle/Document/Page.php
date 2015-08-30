@@ -92,14 +92,14 @@ class Page implements UrlInterface
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Node>")
      */
-    private $categories;
+    private $nodes;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
+        $this->nodes = new ArrayCollection();
     }
 
     /**
@@ -203,40 +203,40 @@ class Page implements UrlInterface
      */
     public function addNode(Node $node)
     {
-        $this->categories->add($node);
+        $this->nodes->add($node);
 
         return $this;
     }
 
     /**
-     * Remove categories
+     * Remove nodes
      *
      * @param Node $node
      */
     public function removeNode(Node $node)
     {
-        $this->categories->removeElement($node);
+        $this->nodes->removeElement($node);
     }
 
     /**
-     * Get categories
+     * Get nodes
      *
      * @return ArrayCollection
      */
-    public function getCategories()
+    public function getNodes()
     {
-        return $this->categories;
+        return $this->nodes;
     }
 
     /**
-     * Get categories
+     * Get nodes
      *
-     * @param Node $categories
+     * @param Node $nodes
      *
      * @return Page
      */
-    public function setCategories($categories)
+    public function setNodes($nodes)
     {
-        $this->categories = $categories;
+        $this->nodes = $nodes;
     }
 }

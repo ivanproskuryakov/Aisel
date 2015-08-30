@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  *
  * @name            AiselPage
- * @description     PageCategoryDetailsCtrl
+ * @description     PageNodeDetailsCtrl
  */
 
 define(['app'], function(app) {
-    app.controller('PageCategoryDetailsCtrl', function($controller, $stateParams, $state, Environment, $scope, resourceService) {
+    app.controller('PageNodeDetailsCtrl', function($controller, $stateParams, $state, Environment, $scope, resourceService) {
 
         $scope.route = {
-            name: 'Page Category',
-            collection: 'pageCategory',
-            edit: 'pageCategoryEdit'
+            name: 'Page Node',
+            collection: 'pageNode',
+            edit: 'pageNodeEdit'
         };
 
-        var itemService = new resourceService('page/category');
+        var itemService = new resourceService('page/node');
         angular.extend(this, $controller('AbstractDetailsCtrl', {
             $scope: $scope,
             itemService: itemService

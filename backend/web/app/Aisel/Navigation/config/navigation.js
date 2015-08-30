@@ -18,12 +18,12 @@ define(['app'], function(app) {
             $stateProvider
                 .state("navigation", {
                     url: "/:locale/navigation/:lang/",
-                    templateUrl: '/app/Aisel/Kernel/views/category.html',
+                    templateUrl: '/app/Aisel/Kernel/views/node.html',
                     controller: 'NavigationCtrl'
                 })
                 .state("navigationEdit", {
                     url: "/:locale/navigation/edit/:lang/:id/",
-                    templateUrl: '/app/Aisel/Navigation/views/edit-category.html',
+                    templateUrl: '/app/Aisel/Navigation/views/edit-node.html',
                     controller: 'NavigationDetailCtrl'
                 })
 

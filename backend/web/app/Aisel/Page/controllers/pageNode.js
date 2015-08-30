@@ -9,26 +9,26 @@
  * file that was distributed with this source code.
  *
  * @name            AiselPage
- * @description     PageCategoryCtrl
+ * @description     PageNodeCtrl
  */
 
 define(['app'], function(app) {
-    app.controller('PageCategoryCtrl', function($scope, $stateParams, $state, Environment) {
+    app.controller('PageNodeCtrl', function($scope, $stateParams, $state, Environment) {
 
-        $scope.sectionName = 'Page categories';
-        $scope.categoryJson = Environment.settings.api + '/page/node/?locale=' + $stateParams.lang;
-        $scope.categoryUpdate = Environment.settings.api + '/page/node/node/?locale=' + $stateParams.lang;
+        $scope.sectionName = 'Page nodes';
+        $scope.nodeJson = Environment.settings.api + '/page/node/?locale=' + $stateParams.lang;
+        $scope.nodeUpdate = Environment.settings.api + '/page/node/node/?locale=' + $stateParams.lang;
 
         $scope.editNode = function(id) {
-            $state.transitionTo('pageCategoryEdit', {
+            $state.transitionTo('pageNodeEdit', {
                 locale: Environment.currentLocale(),
                 lang: $stateParams.lang,
                 id: id
             });
         };
 
-        $scope.changeCategoryLocale = function(lang) {
-            $state.transitionTo('pageCategory', {
+        $scope.changeNodeLocale = function(lang) {
+            $state.transitionTo('pageNode', {
                 locale: Environment.currentLocale(),
                 lang: lang
             });

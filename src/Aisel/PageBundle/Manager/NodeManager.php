@@ -15,7 +15,7 @@ use Aisel\ResourceBundle\Manager\ApiNodeManager;
 use LogicException;
 
 /**
- * Manager for page categories
+ * Manager for page nodes
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */

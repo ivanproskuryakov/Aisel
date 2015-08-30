@@ -49,9 +49,9 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                     $page->setCommentStatus($table->column[6]);
                     $page->setMetaUrl($table->column[7]);
 
-                    $categories = explode(",", $table->column[8]);
+                    $nodes = explode(",", $table->column[8]);
 
-                    foreach ($categories as $c) {
+                    foreach ($nodes as $c) {
                         $node = $this->getReference('page_node_' . $c);
                         $page->addNode($node);
                     }

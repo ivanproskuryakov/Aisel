@@ -1,0 +1,17 @@
+<div class="nodeTree">
+
+    <script type="text/ng-template" id="field_renderer.html">
+        <input type="checkbox"
+               ng-model="node.selected"
+               ng-change="updateItemNodes(item, nodes)">
+        {{ node.title}}
+        <ul>
+            <li ng-repeat="node in node.children"
+                ng-include="'field_renderer.html'"></li>
+        </ul>
+    </script>
+
+    <ul>
+        <li ng-repeat="node in nodes" ng-include="'field_renderer.html'"></li>
+    </ul>
+</div>

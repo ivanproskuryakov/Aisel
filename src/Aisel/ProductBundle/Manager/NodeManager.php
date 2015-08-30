@@ -15,7 +15,7 @@ use Aisel\ResourceBundle\Manager\ApiNodeManager;
 use LogicException;
 
 /**
- * Manager for product categories
+ * Manager for product nodes
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */

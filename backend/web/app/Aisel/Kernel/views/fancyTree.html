@@ -27,8 +27,8 @@ var editNode = function (id) {
 $(document).ready(function () {
     setTimeout(function () {
 
-        var routeCategoryAjaxUpdate = angular.element(document.getElementById('dynamic-content')).scope().categoryUpdate;
-        var categoryJson = angular.element(document.getElementById('dynamic-content')).scope().categoryJson;
+        var routeNodeAjaxUpdate = angular.element(document.getElementById('dynamic-content')).scope().nodeUpdate;
+        var nodeJson = angular.element(document.getElementById('dynamic-content')).scope().nodeJson;
 
         $("#adminNodeTree").fancytree({
             extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter", "childcounter"],
@@ -40,7 +40,7 @@ $(document).ready(function () {
             checkbox: false,
             titlesTabbable: true,     // Add all node titles to TAB chain
             source: $.ajax({
-                url: categoryJson,
+                url: nodeJson,
                 dataType: "json",
                 xhrFields: {
                     withCredentials: true
@@ -84,15 +84,15 @@ $(document).ready(function () {
                 dragDrop: function (node, data) {
                     data.otherNode.moveTo(node, data.hitMode);
 
-                    var categoryId = data.otherNode.data.id;
-                    var categoryParentId = node.data.id;
+                    var nodeId = data.otherNode.data.id;
+                    var nodeParentId = node.data.id;
                     $.ajax({
-                        url: routeCategoryAjaxUpdate,
+                        url: routeNodeAjaxUpdate,
                         dataType: "json",
                         data : {
                             action: 'dragDrop',
-                            id: categoryId,
-                            parentId: categoryParentId,
+                            id: nodeId,
+                            parentId: nodeParentId,
                         },
                         xhrFields: {
                             withCredentials: true
@@ -113,17 +113,16 @@ $(document).ready(function () {
                     // Return false to prevent edit mode
                 },
                 close: function (event, data) {
-//                    var categoryUrl = data.node.data.url;
-                    var categoryId = data.node.data.id;
-                    var categoryTitle = data.node.title;
+                    var nodeId = data.node.data.id;
+                    var nodeTitle = data.node.title;
 
                     $.ajax({
-                        url: routeCategoryAjaxUpdate,
+                        url: routeNodeAjaxUpdate,
                         dataType: "json",
                         data : {
                             action: 'save',
-                            name: categoryTitle,
-                            id: categoryId
+                            name: nodeTitle,
+                            id: nodeId
                         },
                         xhrFields: {
                             withCredentials: true
@@ -151,7 +150,7 @@ $(document).ready(function () {
 
             renderColumns: function (event, data) {
                 var node = data.node;
-                var $select = $("<select data-id='" + node.key + "' id='category-" + node.key + "' class='category-action form-control' />");
+                var $select = $("<select data-id='" + node.key + "' id='node-" + node.key + "' class='node-action form-control' />");
                 var $tdList = $(node.tr).find(">td");
 
                 $tdList.eq(0).text(node.data.id).addClass("alignRight");
@@ -190,13 +189,13 @@ $(document).ready(function () {
                     node.editStart();
                     break;
                 case "remove":
-                    var categoryId = node.data.id;
+                    var nodeId = node.data.id;
                     $.ajax({
-                        url: routeCategoryAjaxUpdate,
+                        url: routeNodeAjaxUpdate,
                         dataType: "json",
                         data : {
                             action: 'remove',
-                            id: categoryId
+                            id: nodeId
                         },
                         xhrFields: {
                             withCredentials: true
@@ -217,15 +216,15 @@ $(document).ready(function () {
                     node.setExpanded();
                     refNode.editStart();
 
-                    var categoryId = node.data.id;
-                    var categoryTitle = refNode.title;
+                    var nodeId = node.data.id;
+                    var nodeTitle = refNode.title;
                     $.ajax({
-                        url: routeCategoryAjaxUpdate,
+                        url: routeNodeAjaxUpdate,
                         dataType: "json",
                         data : {
                             action: 'addChild',
-                            name: categoryTitle,
-                            parentId: categoryId
+                            name: nodeTitle,
+                            parentId: nodeId
                         },
                         xhrFields: {
                             withCredentials: true
@@ -243,13 +242,13 @@ $(document).ready(function () {
                         isNew: true
                     }, node.getNextSibling());
 
-                    var categoryTitle = refNode.title;
+                    var nodeTitle = refNode.title;
                     $.ajax({
-                        url: routeCategoryAjaxUpdate,
+                        url: routeNodeAjaxUpdate,
                         dataType: "json",
                         data : {
                             action: 'addSibling',
-                            name: categoryTitle
+                            name: nodeTitle
                         },
                         xhrFields: {
                             withCredentials: true

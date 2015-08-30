@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  *
  * @name            AiselProduct
- * @description     ProductCategoryDetailsCtrl
+ * @description     ProductNodeDetailsCtrl
  */
 
 define(['app'], function(app) {
-    app.controller('ProductCategoryDetailsCtrl', function($controller, $stateParams, $state, Environment, $scope, resourceService) {
+    app.controller('ProductNodeDetailsCtrl', function($controller, $stateParams, $state, Environment, $scope, resourceService) {
 
         $scope.route = {
-            name: 'Product Category',
-            collection: 'productCategory',
-            edit: 'productCategoryEdit'
+            name: 'Product Node',
+            collection: 'productNode',
+            edit: 'productNodeEdit'
         };
 
-        var itemService = new resourceService('product/category');
+        var itemService = new resourceService('product/node');
         angular.extend(this, $controller('AbstractDetailsCtrl', {
             $scope: $scope,
             itemService: itemService

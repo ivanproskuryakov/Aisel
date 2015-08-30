@@ -31,15 +31,15 @@ define(['app'], function(app) {
                     templateUrl: '/app/Aisel/Product/views/edit.html',
                     controller: 'ProductDetailsCtrl'
                 })
-                .state("productCategory", {
+                .state("productNode", {
                     url: "/:locale/product/node/:lang/",
-                    templateUrl: '/app/Aisel/Kernel/views/category.html',
-                    controller: 'ProductCategoryCtrl'
+                    templateUrl: '/app/Aisel/Kernel/views/node.html',
+                    controller: 'ProductNodeCtrl'
                 })
-                .state("productCategoryEdit", {
+                .state("productNodeEdit", {
                     url: "/:locale/product/node/edit/:lang/:id/",
-                    templateUrl: '/app/Aisel/Product/views/edit-category.html',
-                    controller: 'ProductCategoryDetailsCtrl'
+                    templateUrl: '/app/Aisel/Product/views/edit-node.html',
+                    controller: 'ProductNodeDetailsCtrl'
                 })
         }])
         .run(['$rootScope', 'Environment', function($rootScope, Environment) {
@@ -52,10 +52,10 @@ define(['app'], function(app) {
                         "slug": '/products/',
                         "title": 'Products'
                     },
-                    "productCategory": {
+                    "productNode": {
                         "ordering": 200,
                         "slug": '/product/node/' + Environment.currentLocale() + '/',
-                        "title": 'Categories'
+                        "title": 'Nodes'
                     }
                 }
             });

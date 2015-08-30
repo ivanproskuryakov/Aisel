@@ -31,15 +31,15 @@ define(['app'], function(app) {
                     templateUrl: '/app/Aisel/Page/views/edit.html',
                     controller: 'PageDetailsCtrl'
                 })
-                .state("pageCategory", {
+                .state("pageNode", {
                     url: "/:locale/page/node/:lang/",
-                    templateUrl: '/app/Aisel/Kernel/views/category.html',
-                    controller: 'PageCategoryCtrl'
+                    templateUrl: '/app/Aisel/Kernel/views/node.html',
+                    controller: 'PageNodeCtrl'
                 })
-                .state("pageCategoryEdit", {
+                .state("pageNodeEdit", {
                     url: "/:locale/page/node/edit/:lang/:id/",
-                    templateUrl: '/app/Aisel/Page/views/edit-category.html',
-                    controller: 'PageCategoryDetailsCtrl'
+                    templateUrl: '/app/Aisel/Page/views/edit-node.html',
+                    controller: 'PageNodeDetailsCtrl'
                 })
         }])
 
@@ -53,10 +53,10 @@ define(['app'], function(app) {
                         "slug": '/pages/',
                         "title": 'Pages'
                     },
-                    "pageCategory": {
+                    "pageNode": {
                         "ordering": 200,
                         "slug": '/page/node/' + Environment.currentLocale() + '/',
-                        "title": 'Categories'
+                        "title": 'Nodes'
                     }
                 }
             });

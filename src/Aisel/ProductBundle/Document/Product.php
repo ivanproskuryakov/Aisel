@@ -225,7 +225,7 @@ class Product implements UrlInterface
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Node>")
      */
-    private $categories;
+    private $nodes;
 
     /**
      * Constructor
@@ -233,7 +233,7 @@ class Product implements UrlInterface
     public function __construct()
     {
         $this->images = new ArrayCollection();
-        $this->categories = new ArrayCollection();
+        $this->nodes = new ArrayCollection();
     }
 
     /**
@@ -684,35 +684,35 @@ class Product implements UrlInterface
     }
 
     /**
-     * Add categories
+     * Add nodes
      *
      * @param  Node $node
      * @return Product
      */
     public function addNode(Node $node)
     {
-        $this->categories->add($node);
+        $this->nodes->add($node);
 
         return $this;
     }
 
     /**
-     * Remove categories
+     * Remove nodes
      *
      * @param Node $node
      */
     public function removeNode(Node $node)
     {
-        $this->categories->removeElement($node);
+        $this->nodes->removeElement($node);
     }
 
     /**
-     * Get categories
+     * Get nodes
      *
      * @return Collection
      */
-    public function getCategories()
+    public function getNodes()
     {
-        return $this->categories;
+        return $this->nodes;
     }
 }

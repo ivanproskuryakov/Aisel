@@ -54,13 +54,13 @@ define(['app'], function(app) {
                 });
             };
 
-            resourceService.prototype.getCategoryTree = function(locale) {
+            resourceService.prototype.getNodeTree = function(locale) {
                 var url = Environment.settings.api + '/' + this.resource + '/node/?locale=' + locale;
                 console.log(url);
                 return $http.get(url);
             };
 
-            resourceService.prototype.getCategory = function($id) {
+            resourceService.prototype.getNode = function($id) {
                 var url = Environment.settings.api + '/' + this.resource + '/node/' + $id;
                 console.log(url);
                 return $http.get(url);

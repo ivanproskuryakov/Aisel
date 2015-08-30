@@ -17,7 +17,7 @@ use Aisel\FixtureBundle\Model\XMLFixture;
 use Aisel\ProductBundle\Document\Node;
 
 /**
- * Product Categories
+ * Product Nodes
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */

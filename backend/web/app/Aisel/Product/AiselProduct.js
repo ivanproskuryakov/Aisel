@@ -16,8 +16,8 @@ define(['app',
     './config/product',
     './controllers/product',
     './controllers/productDetails',
-    './controllers/productCategory',
-    './controllers/productCategoryDetails',
+    './controllers/productNode',
+    './controllers/productNodeDetails',
 ], function(app) {
     console.log('Product module loaded ...');
 });
