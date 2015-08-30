@@ -73,5 +73,19 @@
             <column name="created_at">2014-09-02 17:52:08</column>
             <column name="updated_at">2014-09-02 17:52:08</column>
         </table>
+        <table name="aisel_menu_top">
+            <column name="id">4121</column>
+            <column name="locale">en</column>
+            <column name="parent_id">NULL</column>
+            <column name="lft">1</column>
+            <column name="rgt">2</column>
+            <column name="root">212</column>
+            <column name="lvl">0</column>
+            <column name="title">Disabled</column>
+            <column name="metaUrl">/en/page/view/disabled-menu-en/</column>
+            <column name="status">0</column>
+            <column name="created_at">2014-09-02 17:52:08</column>
+            <column name="updated_at">2014-09-02 17:52:08</column>
+        </table>
     </database>
 </pma_xml_export>

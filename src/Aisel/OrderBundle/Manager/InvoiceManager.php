@@ -38,6 +38,7 @@ class InvoiceManager
     {
         $this->dm = $documentManager;
     }
+
     /**
      * Get single invoice by Id
      *
