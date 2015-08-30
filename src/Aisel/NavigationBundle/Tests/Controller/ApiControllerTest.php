@@ -39,7 +39,8 @@ class ApiControllerTest extends AbstractWebTestCase
             ->findBy(
                 [
                     'locale' => 'en',
-                    'status' => true
+                    'status' => true,
+                    "parent" => ['$exists' => false]
                 ]
             );
 
