@@ -13,15 +13,15 @@ namespace Aisel\PageBundle\Tests\Document;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
-use Aisel\PageBundle\Document\Page;
-use Aisel\PageBundle\Document\Node;
+use Aisel\ProductBundle\Document\Product;
+use Aisel\ProductBundle\Document\Node;
 
 /**
- * DuplicatedNodeTest
+ * ProductTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class AssignNodeTwiceTest extends AbstractWebTestCase
+class ProductTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -34,7 +34,7 @@ class AssignNodeTwiceTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testPageCreate()
+    public function testDuplicateNodes()
     {
         $faker = Faker\Factory::create();
 
@@ -49,10 +49,11 @@ class AssignNodeTwiceTest extends AbstractWebTestCase
 
         $this->assertNotNull($node->getId());
 
-        $page = new Page();
+        $page = new Product();
         $page->setLocale('en');
-        $page->setTitle($faker->sentence(1));
-        $page->setContent($faker->sentence(10));
+        $page->setName($faker->sentence(1));
+        $page->setDescriptionShort($faker->sentence(10));
+        $page->setDescription($faker->sentence(10));
         $page->setStatus(true);
         $page->setCommentStatus(true);
         $page->setMetaUrl('url_' . time());

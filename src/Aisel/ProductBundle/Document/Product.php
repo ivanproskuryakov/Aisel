@@ -20,6 +20,7 @@ use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\ProductBundle\Document\Node;
 use Aisel\MediaBundle\Document\Image;
+use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -224,6 +225,7 @@ class Product implements UrlInterface
      * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Node")
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Node>")
+     * @AiselAnnotation\CleanDuplicates()
      */
     private $nodes;
 

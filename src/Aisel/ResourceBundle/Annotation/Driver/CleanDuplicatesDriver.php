@@ -39,7 +39,6 @@ class CleanDuplicatesDriver
         $object = $args->getDocument();
         $reflectionProperties = new \ReflectionClass($object);
         $properties = $reflectionProperties->getProperties();
-        $annotation = false;
         $property = false;
 
         foreach ($properties as $prop) {
@@ -54,8 +53,8 @@ class CleanDuplicatesDriver
         }
 
         if (!empty($property)) {
-            $getMethod = 'get' . ucFirst($property);
-            $removeMethod = substr('remove' . ucFirst($property), 0, -1);
+            $getMethod = 'get' . ucFirst($property); // ex: getNode
+            $removeMethod = substr('remove' . ucFirst($property), 0, -1); // ex: getNodes
 
             if (method_exists($object, $getMethod)) {
                 $assignedDocuments = $object->{$getMethod}();
