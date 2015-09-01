@@ -7,11 +7,11 @@ use Doctrine\Common\Annotations\Reader;
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 
 /**
- * DuplicateDriver
+ * CleanDuplicatesDriver
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class DuplicateDriver
+class CleanDuplicatesDriver
 {
 
     /**
@@ -21,6 +21,7 @@ class DuplicateDriver
 
     /**
      * Constructor
+     *
      * @param Reader $reader
      */
     public function __construct(Reader $reader)
@@ -44,7 +45,7 @@ class DuplicateDriver
         foreach ($properties as $prop) {
             $annotation = $this->reader->getPropertyAnnotation(
                 $prop,
-                'Aisel\ResourceBundle\Annotation\Duplicate'
+                'Aisel\ResourceBundle\Annotation\CleanDuplicates'
             );
 
             if (!empty($annotation)) {
@@ -54,12 +55,28 @@ class DuplicateDriver
 
         if (!empty($property)) {
             $getMethod = 'get' . ucFirst($property);
+            $removeMethod = substr('remove' . ucFirst($property), 0, -1);
 
             if (method_exists($object, $getMethod)) {
-                $relatedData = $object->{$getMethod}();
+                $assignedDocuments = $object->{$getMethod}();
 
-                if (count($relatedData) > 1) {
-                    var_dump(count($relatedData));
+                if (count($assignedDocuments) > 1) {
+                    $ids = array();
+
+                    foreach ($assignedDocuments as $assigned) {
+                        $isFound = false;
+
+                        foreach ($ids as $id) {
+                            if ($id == $assigned->getId()) {
+                                $isFound = true;
+                                $object->{$removeMethod}($assigned);
+                            }
+                        }
+
+                        if ($isFound == false) {
+                            $ids[] = $assigned->getId();
+                        }
+                    }
                 }
             }
         }

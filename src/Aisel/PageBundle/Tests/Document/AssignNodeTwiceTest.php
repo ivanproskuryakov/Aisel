@@ -63,8 +63,12 @@ class AssignNodeTwiceTest extends AbstractWebTestCase
         $this->dm->flush();
 
         $this->assertNotNull($page->getId());
-        exit();
         $this->assertEquals(count($page->getNodes()), 1);
+
+        $this->dm->remove($node);
+        $this->dm->flush();
+        $this->dm->remove($page);
+        $this->dm->flush();
     }
 
 }

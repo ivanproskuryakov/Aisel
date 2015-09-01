@@ -92,7 +92,7 @@ class Page implements UrlInterface
      * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Node")
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Node>")
      * @JMS\Expose
-     * @AiselAnnotation\Duplicate()
+     * @AiselAnnotation\CleanDuplicates()
      */
     private $nodes;
 
