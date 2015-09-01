@@ -28,7 +28,7 @@ define(['app'], function(app) {
                 })
                 .state("frontendUserNew", {
                     url: "/:locale/users/frontend/new/",
-                    templateUrl: '/app/Aisel/Product/views/edit.html',
+                    templateUrl: '/app/Aisel/FrontendUser/views/edit.html',
                     controller: 'FrontendUserDetailCtrl'
                 })
         }])

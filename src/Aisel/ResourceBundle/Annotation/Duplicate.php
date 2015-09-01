@@ -9,15 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle;
+namespace Aisel\ResourceBundle\Annotation;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Doctrine\Common\Annotations\Annotation;
 
 /**
- * AiselResourceBundle
+ * Duplicate
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
+ *
+ * @Annotation
  */
-class AiselResourceBundle extends Bundle
+class Duplicate extends Annotation
 {
+
 }

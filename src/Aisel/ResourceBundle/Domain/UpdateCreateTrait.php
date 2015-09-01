@@ -42,20 +42,6 @@ trait UpdateCreateTrait
      */
     protected $updatedAt;
 
-
-    /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return mixed
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     /**
      * Get createdAt
      *
@@ -64,19 +50,6 @@ trait UpdateCreateTrait
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param  \DateTime $updatedAt
-     * @return mixed
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**

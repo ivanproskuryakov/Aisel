@@ -28,7 +28,7 @@ define(['app'], function(app) {
                 })
                 .state("backendUserNew", {
                     url: "/:locale/users/backend/new/",
-                    templateUrl: '/app/Aisel/Product/views/edit.html',
+                    templateUrl: '/app/Aisel/BackendUser/views/edit.html',
                     controller: 'BackendUserDetailCtrl'
                 })
         }])

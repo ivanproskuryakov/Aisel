@@ -23,6 +23,7 @@ use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
+use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 /**
  * Page
@@ -89,8 +90,9 @@ class Page implements UrlInterface
     /**
      * @var ArrayCollection
      * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Node")
-     * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Node>")
+     * @JMS\Expose
+     * @AiselAnnotation\Duplicate()
      */
     private $nodes;
 

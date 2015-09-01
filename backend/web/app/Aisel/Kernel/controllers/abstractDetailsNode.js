@@ -12,27 +12,24 @@
  * @description     AbstractDetailsCtrl
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app.controller('AbstractDetailsNodeCtrl',
-        function($controller, $scope, itemService) {
+        function ($controller, $scope, itemService) {
 
             angular.extend(this, $controller('AbstractDetailsCtrl', {
                 $scope: $scope,
                 itemService: itemService
             }));
 
-            $scope.$watch("item.locale", function() {
+            $scope.$watch("item.locale", function () {
 
                 if (angular.isUndefined($scope.item.locale) === false) {
 
                     itemService.getNodeTree($scope.item.locale).success(
-                        function(data, status) {
+                        function (data, status) {
                             $scope.nodes = data;
 
-                            setItemNodes(
-                                $scope.item,
-                                $scope.nodes
-                            );
+                            setItemNodes($scope.item, $scope.nodes);
                         }
                     )
                 }
@@ -45,17 +42,14 @@ define(['app'], function(app) {
              * @param {Object} item
              * @param {Object} nodes
              */
-            var setItemNodes = function(item, nodes) {
+            var setItemNodes = function (item, nodes) {
 
-                var isAnySelected = false;
-                var setSelected = function(nodes) {
-                    angular.forEach(nodes, function(node) {
-                        angular.forEach(item.nodes, function(c) {
+                var setSelected = function (nodes) {
+                    angular.forEach(nodes, function (node) {
+                        angular.forEach(item.nodes, function (c) {
 
                             if (c.id == node.id) {
-
                                 node.selected = true;
-                                isAnySelected = true;
                             }
                         });
 
@@ -65,15 +59,8 @@ define(['app'], function(app) {
                     });
                 };
 
-                //console.log(nodes);
-                //console.log(item.nodes);
-
                 if (nodes) {
                     setSelected($scope.nodes);
-
-                    if (!isAnySelected) {
-                        item.nodes = [];
-                    }
                 }
             };
 
@@ -83,18 +70,22 @@ define(['app'], function(app) {
              * @param {Object} item
              * @param {Object} nodes
              */
-            $scope.updateItemNodes = function(item, nodes) {
+            $scope.updateItemNodes = function (item, nodes) {
                 item.nodes = [];
 
-                var findSelectedNodes = function(nodes) {
-                    angular.forEach(nodes, function(node) {
+                var findSelectedNodes = function (nodes) {
+                    angular.forEach(nodes, function (node) {
                         if (node.selected) {
-                            item.nodes.push(node);
+                            item.nodes.push(
+                                {
+                                    id: node.id
+                                }
+                            );
                         }
                         if (node.children) {
                             findSelectedNodes(node.children)
                         }
-                    })
+                    });
                 };
 
                 findSelectedNodes(nodes);

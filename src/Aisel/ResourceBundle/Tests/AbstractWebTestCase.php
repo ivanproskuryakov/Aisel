@@ -8,6 +8,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\HttpKernel\Client;
 use Aisel\BackendUserBundle\Manager\UserManager;
+use Symfony\Component\Validator\Validator;
 
 /**
  * Class AbstractWebTestCase.
@@ -39,6 +40,11 @@ abstract class AbstractWebTestCase extends KernelTestCase
      * @var array $api
      */
     protected $api;
+
+    /**
+     * @var Validator
+     */
+    protected $validator;
 
     /**
      * @var KernelInterface
@@ -128,6 +134,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
             'frontend' => static::$kernel->getContainer()->getParameter('frontend_api'),
             'backend' => static::$kernel->getContainer()->getParameter('backend_api')
         );
+        $this->validator = static::$kernel->getContainer()->get('validator');
 
         parent::setUp();
     }
