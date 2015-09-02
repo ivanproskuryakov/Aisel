@@ -38,42 +38,45 @@ class CleanDuplicatesDriver
     {
         $object = $args->getDocument();
         $reflectionProperties = new \ReflectionClass($object);
-        $properties = $reflectionProperties->getProperties();
-        $property = false;
+        $objectProperties = $reflectionProperties->getProperties();
+        $properties = [];
 
-        foreach ($properties as $prop) {
+        foreach ($objectProperties as $prop) {
             $annotation = $this->reader->getPropertyAnnotation(
                 $prop,
                 'Aisel\ResourceBundle\Annotation\CleanDuplicates'
             );
 
             if (!empty($annotation)) {
-                $property = $prop->getName();
+                $properties[] = $prop->getName();
             }
         }
 
-        if (!empty($property)) {
-            $getMethod = 'get' . ucFirst($property); // ex: getNode
-            $removeMethod = substr('remove' . ucFirst($property), 0, -1); // ex: getNodes
+        if (!empty($properties)) {
 
-            if (method_exists($object, $getMethod)) {
-                $assignedDocuments = $object->{$getMethod}();
+            foreach ($properties as $property) {
+                $getMethod = 'get' . ucFirst($property); // ex: getNode
+                $removeMethod = substr('remove' . ucFirst($property), 0, -1); // ex: getNodes
 
-                if (count($assignedDocuments) > 1) {
-                    $ids = array();
+                if (method_exists($object, $getMethod)) {
+                    $assignedDocuments = $object->{$getMethod}();
 
-                    foreach ($assignedDocuments as $assigned) {
-                        $isFound = false;
+                    if (count($assignedDocuments) > 1) {
+                        $ids = array();
 
-                        foreach ($ids as $id) {
-                            if ($id == $assigned->getId()) {
-                                $isFound = true;
-                                $object->{$removeMethod}($assigned);
+                        foreach ($assignedDocuments as $assigned) {
+                            $isFound = false;
+
+                            foreach ($ids as $id) {
+                                if ($id == $assigned->getId()) {
+                                    $isFound = true;
+                                    $object->{$removeMethod}($assigned);
+                                }
                             }
-                        }
 
-                        if ($isFound == false) {
-                            $ids[] = $assigned->getId();
+                            if ($isFound == false) {
+                                $ids[] = $assigned->getId();
+                            }
                         }
                     }
                 }

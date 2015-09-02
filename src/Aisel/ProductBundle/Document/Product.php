@@ -202,16 +202,6 @@ class Product implements UrlInterface
      * @JMS\Expose
      * @JMS\Type("boolean")
      */
-    private $status = false;
-
-    /**
-     * @var boolean
-     * @ODM\Field(type="boolean")
-     * @Assert\Type(type="bool")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("boolean")
-     */
     private $commentStatus = false;
 
     /**
@@ -219,6 +209,7 @@ class Product implements UrlInterface
      * @ODM\ReferenceMany(targetDocument="Aisel\MediaBundle\Document\Image")
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Document\Image>")
+     * @AiselAnnotation\CleanDuplicates(name="image")
      */
     private $images;
 
@@ -227,7 +218,7 @@ class Product implements UrlInterface
      * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Node")
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Node>")
-     * @AiselAnnotation\CleanDuplicates()
+     * @AiselAnnotation\CleanDuplicates(name="node")
      */
     private $nodes;
 

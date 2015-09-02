@@ -9,12 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Tests\Document;
+namespace Aisel\ProductBundle\Tests\Document;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
 use Aisel\ProductBundle\Document\Product;
 use Aisel\ProductBundle\Document\Node;
+use Aisel\MediaBundle\Document\Image;
 
 /**
  * ProductTest
@@ -47,26 +48,60 @@ class ProductTest extends AbstractWebTestCase
 
         $this->assertNotNull($node->getId());
 
-        $page = new Product();
-        $page->setLocale('en');
-        $page->setName($this->faker->sentence(1));
-        $page->setDescriptionShort($this->faker->sentence(10));
-        $page->setDescription($this->faker->sentence(10));
-        $page->setStatus(true);
-        $page->setCommentStatus(true);
-        $page->setMetaUrl('url_' . time());
-        $page->addNode($node);
-        $page->addNode($node);
+        $product = new Product();
+        $product->setLocale('en');
+        $product->setName($this->faker->sentence(1));
+        $product->setDescriptionShort($this->faker->sentence(10));
+        $product->setDescription($this->faker->sentence(10));
+        $product->setStatus(true);
+        $product->setCommentStatus(true);
+        $product->setMetaUrl('url_' . time());
+        $product->addNode($node);
+        $product->addNode($node);
 
-        $this->dm->persist($page);
+        $this->dm->persist($product);
         $this->dm->flush();
 
-        $this->assertNotNull($page->getId());
-        $this->assertEquals(count($page->getNodes()), 1);
+        $this->assertNotNull($product->getId());
+        $this->assertEquals(count($product->getNodes()), 1);
 
         $this->dm->remove($node);
         $this->dm->flush();
-        $this->dm->remove($page);
+        $this->dm->remove($product);
+        $this->dm->flush();
+    }
+
+    public function testDuplicateImages()
+    {
+        $image = new Image();
+        $image->setFilename($this->faker->numberBetween(0, 10000));
+        $image->setMainImage(false);
+        
+        $this->dm->persist($image);
+        $this->dm->flush();
+
+        $this->assertNotNull($image->getId());
+
+        $product = new Product();
+        $product->setLocale('en');
+        $product->setName($this->faker->sentence(1));
+        $product->setDescriptionShort($this->faker->sentence(10));
+        $product->setDescription($this->faker->sentence(10));
+        $product->setStatus(true);
+        $product->setCommentStatus(true);
+        $product->setMetaUrl('url_' . time());
+        $product->addImage($image);
+        $product->addImage($image);
+
+        $this->dm->persist($product);
+        $this->dm->flush();
+
+        $this->assertNotNull($product->getId());
+        $this->assertEquals(count($product->getImages()), 1);
+
+        $this->dm->remove($image);
+        $this->dm->flush();
+        $this->dm->remove($product);
         $this->dm->flush();
     }
 

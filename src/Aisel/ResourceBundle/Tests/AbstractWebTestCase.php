@@ -9,8 +9,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\HttpKernel\Client;
 use Aisel\BackendUserBundle\Manager\UserManager;
 use Symfony\Component\Validator\Validator;
-use Faker\Factory as Faker;
-
+use Faker;
 /**
  * Class AbstractWebTestCase.
  *
@@ -18,7 +17,7 @@ use Faker\Factory as Faker;
 abstract class AbstractWebTestCase extends KernelTestCase
 {
     /**
-     * @var Faker
+     * @var \Faker\Generator
      */
     protected $faker;
 
@@ -141,7 +140,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
             'backend' => static::$kernel->getContainer()->getParameter('backend_api')
         );
         $this->validator = static::$kernel->getContainer()->get('validator');
-        $this->faker = Faker::create();
+        $this->faker = Faker\Factory::create();
 
         parent::setUp();
     }

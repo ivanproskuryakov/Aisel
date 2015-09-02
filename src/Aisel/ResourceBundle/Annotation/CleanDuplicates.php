@@ -23,4 +23,6 @@ use Doctrine\Common\Annotations\Annotation;
 class CleanDuplicates extends Annotation
 {
 
+    public $name;
+
 }
