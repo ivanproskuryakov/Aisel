@@ -12,7 +12,6 @@
 namespace Aisel\PageBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
-use Faker;
 
 /**
  * DuplicatedNodeTest
@@ -34,7 +33,7 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
 
     public function testPostAction()
     {
-        $faker = Faker\Factory::create();
+
         $pageNode = $this
             ->dm
             ->getRepository('Aisel\PageBundle\Document\Node')
@@ -42,11 +41,11 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
 
         $data = [
             'locale' => 'en',
-            'title' => $faker->sentence(1),
-            'content' => $faker->paragraph(10),
+            'title' => $this->faker->sentence(1),
+            'content' => $this->faker->paragraph(10),
             'status' => true,
-            'meta_url' => 'metaUrl_' . $faker->numberBetween(100000, 900000),
-            'meta_title' => 'metaTitle_' . $faker->numberBetween(100000, 900000),
+            'meta_url' => 'metaUrl_' . $this->faker->numberBetween(100000, 900000),
+            'meta_title' => 'metaTitle_' . $this->faker->numberBetween(100000, 900000),
             'comment_status' => false,
             'nodes' => [
                 ['id' => $pageNode->getId()],

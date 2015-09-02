@@ -36,11 +36,9 @@ class ProductTest extends AbstractWebTestCase
 
     public function testDuplicateNodes()
     {
-        $faker = Faker\Factory::create();
-
         $node = new Node();
         $node->setStatus(true);
-        $node->setDescription($faker->sentence(10));
+        $node->setDescription($this->faker->sentence(10));
         $node->setMetaUrl('url_' . time());
         $node->setLocale('en');
 
@@ -51,9 +49,9 @@ class ProductTest extends AbstractWebTestCase
 
         $page = new Product();
         $page->setLocale('en');
-        $page->setName($faker->sentence(1));
-        $page->setDescriptionShort($faker->sentence(10));
-        $page->setDescription($faker->sentence(10));
+        $page->setName($this->faker->sentence(1));
+        $page->setDescriptionShort($this->faker->sentence(10));
+        $page->setDescription($this->faker->sentence(10));
         $page->setStatus(true);
         $page->setCommentStatus(true);
         $page->setMetaUrl('url_' . time());

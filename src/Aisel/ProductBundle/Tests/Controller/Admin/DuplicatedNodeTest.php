@@ -12,7 +12,6 @@
 namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
-use Faker;
 
 /**
  * DuplicatedNodeTest
@@ -34,7 +33,6 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
 
     public function testPostAction()
     {
-        $faker = Faker\Factory::create();
         $productNode = $this
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Node')
@@ -42,15 +40,15 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
 
         $data = [
             'locale' => 'en',
-            'name' => $faker->sentence(1),
-            'sku' => $faker->numberBetween(100000, 900000),
-            'price' => $faker->numberBetween(1, 100),
-            'content' => $faker->paragraph(10),
-            'description_short' => $faker->paragraph(10),
-            'description' => $faker->paragraph(10),
+            'name' => $this->faker->sentence(1),
+            'sku' => $this->faker->numberBetween(100000, 900000),
+            'price' => $this->faker->numberBetween(1, 100),
+            'content' => $this->faker->paragraph(10),
+            'description_short' => $this->faker->paragraph(10),
+            'description' => $this->faker->paragraph(10),
             'status' => true,
-            'meta_url' => 'metaUrl_' . $faker->numberBetween(100000, 900000),
-            'meta_title' => 'metaTitle_' . $faker->numberBetween(100000, 900000),
+            'meta_url' => 'metaUrl_' . $this->faker->numberBetween(100000, 900000),
+            'meta_title' => 'metaTitle_' . $this->faker->numberBetween(100000, 900000),
             'comment_status' => false,
             'nodes' => [
                 ['id' => $productNode->getId()],

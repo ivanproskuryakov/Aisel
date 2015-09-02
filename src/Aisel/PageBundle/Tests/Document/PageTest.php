@@ -36,11 +36,9 @@ class PageTests extends AbstractWebTestCase
 
     public function testDuplicateNodes()
     {
-        $faker = Faker\Factory::create();
-
         $node = new Node();
         $node->setStatus(true);
-        $node->setDescription($faker->sentence(10));
+        $node->setDescription($this->faker->sentence(10));
         $node->setMetaUrl('url_' . time());
         $node->setLocale('en');
 
@@ -51,8 +49,8 @@ class PageTests extends AbstractWebTestCase
 
         $page = new Page();
         $page->setLocale('en');
-        $page->setTitle($faker->sentence(1));
-        $page->setContent($faker->sentence(10));
+        $page->setTitle($this->faker->sentence(1));
+        $page->setContent($this->faker->sentence(10));
         $page->setStatus(true);
         $page->setCommentStatus(true);
         $page->setMetaUrl('url_' . time());
