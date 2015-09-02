@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\ResourceBundle\Domain\MetaTrait;
+use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 /**
  * Node
@@ -56,6 +57,7 @@ class Node extends BaseNode implements UrlInterface
      * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Node")
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Node>")
+     * @AiselAnnotation\CleanDuplicates()
      */
     protected $children;
 

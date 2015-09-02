@@ -3,7 +3,7 @@
         <input type="checkbox"
                ng-model="node.selected"
                ng-change="updateItemNodes(item, nodes)">
-        <span>{{ node.title}}</span>
+        <span>{{ node.title}} {{ node.id}}</span>
         <ul>
             <li ng-repeat="node in node.children"
                 ng-include="'node_field.html'">

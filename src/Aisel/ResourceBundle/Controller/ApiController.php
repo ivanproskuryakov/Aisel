@@ -250,6 +250,10 @@ class ApiController extends Controller
             ->getDocumentManager()
             ->getRepository($this->model);
         $collection = array_values($repo->getNodesAsTree($params));
+//        foreach ($collection as $c) {
+//            var_dump($c->getId());
+//        }
+//        exit();
 
         return $collection;
     }

@@ -45,26 +45,26 @@ class NodePersistenceListener
      */
     private function updateChildren(LifeCycleEventArgs $args)
     {
-        $dm = $args->getDocumentManager();
-
-        /** @var NodeInterface $object */
-        /** @var Node $parent */
-        /** @var Node $child */
-        $object = $args->getDocument();
-        if ($object instanceof NodeInterface) {
-
-            if ($parent = $object->getParent()) {
-
-                foreach ($parent->getChildren() as $child) {
-
-                    if ($child->getId() == $object->getId()) {
-                        $parent->removeChild($child);
-                    }
-                }
-                $parent->addChild($object);
-                $dm->persist($parent);
-                $dm->flush();
-            }
-        }
+//        $dm = $args->getDocumentManager();
+//
+//        /** @var NodeInterface $object */
+//        /** @var Node $parent */
+//        /** @var Node $child */
+//        $object = $args->getDocument();
+//        if ($object instanceof NodeInterface) {
+//
+//            if ($parent = $object->getParent()) {
+//
+//                foreach ($parent->getChildren() as $child) {
+//
+//                    if ($child->getId() == $object->getId()) {
+//                        $parent->removeChild($child);
+//                    }
+//                }
+//                $parent->addChild($object);
+//                $dm->persist($parent);
+//                $dm->flush();
+//            }
+//        }
     }
 }

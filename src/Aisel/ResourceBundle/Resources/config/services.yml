@@ -41,4 +41,5 @@ services:
             - @annotations.reader
         tags:
           - { name: doctrine_mongodb.odm.event_listener, event: prePersist, event: prePersist}
+          - { name: doctrine_mongodb.odm.event_listener, event: preUpdate, event: preUpdate}
 

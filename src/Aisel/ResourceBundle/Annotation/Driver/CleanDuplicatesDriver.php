@@ -36,6 +36,26 @@ class CleanDuplicatesDriver
      */
     public function prePersist(LifecycleEventArgs $args)
     {
+        $this->findAndRemoveDuplicates($args);
+    }
+
+    /**
+     * preUpdate
+     *
+     * @param LifecycleEventArgs $args
+     */
+    public function preUpdate(LifecycleEventArgs $args)
+    {
+        $this->findAndRemoveDuplicates($args);
+    }
+
+    /**
+     * findAndRemoveDuplicates
+     *
+     * @param LifecycleEventArgs $args
+     */
+    public function findAndRemoveDuplicates(LifecycleEventArgs $args)
+    {
         $object = $args->getDocument();
         $reflectionProperties = new \ReflectionClass($object);
         $objectProperties = $reflectionProperties->getProperties();
