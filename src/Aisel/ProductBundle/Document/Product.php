@@ -26,6 +26,7 @@ use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
+use Aisel\ResourceBundle\Domain\StatusTrait;
 
 /**
  * Product
@@ -45,6 +46,7 @@ class Product implements UrlInterface
     use IdTrait;
     use UpdateCreateTrait;
     use MetaTrait;
+    use StatusTrait;
     use LocaleTrait;
 
     /**
@@ -558,29 +560,6 @@ class Product implements UrlInterface
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set status
-     *
-     * @param  boolean $status
-     * @return Product
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return boolean
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**

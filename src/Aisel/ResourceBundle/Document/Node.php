@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 
 use Aisel\ResourceBundle\Domain\LocaleTrait;
+use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Document\NodeInterface;
 
@@ -34,6 +35,7 @@ abstract class Node implements NodeInterface
 
     use UpdateCreateTrait;
     use LocaleTrait;
+    use StatusTrait;
 
     /**
      * @var string
@@ -42,16 +44,6 @@ abstract class Node implements NodeInterface
      * @JMS\Expose
      */
     protected $id;
-
-    /**
-     * @var boolean
-     * @ODM\Field(type="boolean")
-     * @Assert\Type(type="bool")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("boolean")
-     */
-    protected $status = false;
 
     /**
      * @var string
@@ -117,29 +109,6 @@ abstract class Node implements NodeInterface
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set status
-     *
-     * @param  boolean $status
-     * @return Node
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return boolean
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**

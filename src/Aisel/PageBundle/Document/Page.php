@@ -19,10 +19,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\PageBundle\Document\Node;
+
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
+use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 /**
@@ -47,6 +49,7 @@ class Page implements UrlInterface
     use IdTrait;
     use UpdateCreateTrait;
     use LocaleTrait;
+    use StatusTrait;
     use MetaTrait;
 
     /**
@@ -66,16 +69,6 @@ class Page implements UrlInterface
      * @JMS\Type("string")
      */
     private $content;
-
-    /**
-     * @var boolean
-     * @ODM\Field(type="boolean")
-     * @Assert\Type(type="bool")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("boolean")
-     */
-    private $status = false;
 
     /**
      * @var boolean
@@ -148,29 +141,6 @@ class Page implements UrlInterface
     public function getContent()
     {
         return $this->content;
-    }
-
-    /**
-     * Set status
-     *
-     * @param  boolean $status
-     * @return Page
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return boolean
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**
