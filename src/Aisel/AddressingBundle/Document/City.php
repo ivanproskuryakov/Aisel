@@ -16,6 +16,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Aisel\ResourceBundle\Domain\NameTrait;
 
 /**
  * City
@@ -32,15 +33,8 @@ class City
 {
 
     use IdTrait;
+    use NameTrait;
     use UpdateCreateTrait;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Type("string")
-     */
-    private $name;
 
     /**
      * @var Region
@@ -59,29 +53,6 @@ class City
      * @JMS\Type("Aisel\AddressingBundle\Document\Country")
      */
     private $country;
-
-    /**
-     * Set name
-     *
-     * @param  string $name
-     * @return City
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 
     /**
      * Set country

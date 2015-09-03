@@ -27,6 +27,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
+use Aisel\ResourceBundle\Domain\NameTrait;
 
 /**
  * Product
@@ -47,17 +48,8 @@ class Product implements UrlInterface
     use UpdateCreateTrait;
     use MetaTrait;
     use StatusTrait;
+    use NameTrait;
     use LocaleTrait;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $name;
 
     /**
      * @var string
@@ -229,29 +221,6 @@ class Product implements UrlInterface
     {
         $this->images = new ArrayCollection();
         $this->nodes = new ArrayCollection();
-    }
-
-    /**
-     * Set name
-     *
-     * @param  string  $name
-     * @return Product
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**

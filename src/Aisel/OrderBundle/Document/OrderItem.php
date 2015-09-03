@@ -19,6 +19,7 @@ use Aisel\OrderBundle\Document\Order;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Aisel\ResourceBundle\Domain\NameTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -38,6 +39,7 @@ class OrderItem
 {
 
     use IdTrait;
+    use NameTrait;
     use UpdateCreateTrait;
 
     /**
@@ -196,32 +198,5 @@ class OrderItem
     public function getQty()
     {
         return $this->qty;
-    }
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * Set name
-     *
-     * @param  string    $name
-     * @return OrderItem
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 }
