@@ -17,7 +17,7 @@ use Aisel\ResourceBundle\Document\NodeInterface;
 use Aisel\ResourceBundle\Document\Node;
 
 /**
- * Class NodePersistenceListener.
+ * Class NodePersistenceListener
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
@@ -25,46 +25,57 @@ class NodePersistenceListener
 {
 
     /**
+     * postUpdate
+     *
      * @param LifecycleEventArgs $args
      */
     public function postUpdate(LifeCycleEventArgs $args)
     {
-        $this->updateChildren($args);
+        /** @var Node $object */
+        /** @var Node $parent */
+        /** @var Node $child */
+
+        $dm = $args->getDocumentManager();
+        $object = $args->getDocument();
+
+        if ($object instanceof NodeInterface) {
+
+            if ($parent = $object->getParent()) {
+                foreach ($parent->getChildren() as $child) {
+
+                    if ($child->getId() == $object->getId()) {
+                        $parent->removeChild($child);
+                    }
+                }
+                $parent->addChild($object);
+
+                $dm->persist($parent);
+                $dm->flush();
+            }
+        }
     }
 
     /**
+     * postPersist
+     *
      * @param LifecycleEventArgs $args
      */
     public function postPersist(LifeCycleEventArgs $args)
     {
-        $this->updateChildren($args);
+        /** @var Node $parent */
+        /** @var Node $object */
+
+        $dm = $args->getDocumentManager();
+        $object = $args->getDocument();
+
+        if ($object instanceof NodeInterface) {
+
+            if ($parent = $object->getParent()) {
+                $parent->addChild($object);
+                $dm->persist($parent);
+                $dm->flush();
+            }
+        }
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
-    private function updateChildren(LifeCycleEventArgs $args)
-    {
-//        $dm = $args->getDocumentManager();
-//
-//        /** @var NodeInterface $object */
-//        /** @var Node $parent */
-//        /** @var Node $child */
-//        $object = $args->getDocument();
-//        if ($object instanceof NodeInterface) {
-//
-//            if ($parent = $object->getParent()) {
-//
-//                foreach ($parent->getChildren() as $child) {
-//
-//                    if ($child->getId() == $object->getId()) {
-//                        $parent->removeChild($child);
-//                    }
-//                }
-//                $parent->addChild($object);
-//                $dm->persist($parent);
-//                $dm->flush();
-//            }
-//        }
-    }
 }

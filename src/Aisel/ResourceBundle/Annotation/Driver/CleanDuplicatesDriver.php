@@ -2,7 +2,7 @@
 
 namespace Aisel\ResourceBundle\Annotation\Driver;
 
-use Aisel\ResourceBundle\Annotation\Duplicate;
+use Aisel\ResourceBundle\Annotation\CleanDuplicates;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 

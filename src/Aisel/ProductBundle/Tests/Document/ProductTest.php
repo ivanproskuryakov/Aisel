@@ -76,7 +76,7 @@ class ProductTest extends AbstractWebTestCase
         $image = new Image();
         $image->setFilename($this->faker->numberBetween(0, 10000));
         $image->setMainImage(false);
-        
+
         $this->dm->persist($image);
         $this->dm->flush();
 
