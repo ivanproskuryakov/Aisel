@@ -25,7 +25,7 @@ class CollectionRepository extends DocumentRepository
     protected $search = '';
     protected $locale = null;
     protected $filter = null;
-    protected $category = 0;
+    protected $node = 0;
     protected $pageCurrent = 1;
     protected $pageLimit = 1;
     protected $pageSkip = 1;
@@ -54,10 +54,10 @@ class CollectionRepository extends DocumentRepository
             $this->pageLimit = 5;
         }
 
-        if (isset($params['category'])) {
-            $this->category = (int)$params['category'];
+        if (isset($params['node'])) {
+            $this->node = (int)$params['node'];
         } else {
-            $this->category = 0;
+            $this->node = 0;
         }
 
         // Search
@@ -122,8 +122,8 @@ class CollectionRepository extends DocumentRepository
             $query->field('locale')->equals($this->locale);
         }
 
-        if ($this->category) {
-            $query->field('category')->equals($this->category);
+        if ($this->node) {
+            $query->field('node')->equals($this->node);
         }
 
         if ($this->search != '') {
@@ -171,8 +171,8 @@ class CollectionRepository extends DocumentRepository
             $query->field('locale')->equals($this->locale);
         }
 
-        if ($this->category) {
-            $query->field('category')->equals($this->category);
+        if ($this->node) {
+            $query->field('node')->equals($this->node);
         }
 
         if ($params['scope'] == 'frontend') {

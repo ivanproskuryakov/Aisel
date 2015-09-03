@@ -17,22 +17,22 @@ api_aisel_page_get_by_url:
     requirements:
         _method: GET
 
-api_aisel_page_category_get:
-    pattern:  /{locale}/page/category/
+api_aisel_page_node_get:
+    pattern:  /{locale}/page/node/
     defaults: { _controller: AiselPageBundle:ApiNode:getCollection, _format: json }
 
     requirements:
         _method: GET
 
-api_aisel_page_category_get_by_url:
-    pattern:  /{locale}/page/category/view/{url}
+api_aisel_page_node_get_by_url:
+    pattern:  /{locale}/page/node/view/{url}
     defaults: { _controller: AiselPageBundle:ApiNode:getByURL, _format: json }
     requirements:
         _method: GET
         id: "\d+"
 
-api_aisel_page_category_get_tree:
-    pattern:  /{locale}/page/category/tree/
+api_aisel_page_node_get_tree:
+    pattern:  /{locale}/page/node/tree/
     defaults: { _controller: AiselPageBundle:ApiNode:getTree, _format: json }
     requirements:
         _method: GET

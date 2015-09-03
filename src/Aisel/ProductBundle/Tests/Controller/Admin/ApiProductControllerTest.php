@@ -53,7 +53,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
     {
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Category')
+            ->getRepository('Aisel\ProductBundle\Document\Node')
             ->findOneBy(['locale' => 'en']);
 
         $data = [
@@ -64,7 +64,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
             'description' => time(),
             'description_short' => time(),
             'meta_url' => time(),
-            'categories' => [
+            'nodes' => [
                 [
                     'id' => $node->getId()
                 ]
@@ -95,7 +95,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
             ->find($id);
 
         $this->assertEquals($data['locale'], $product->getLocale());
-        $this->assertEquals($product->getCategories()[0]->getId(), $node->getId());
+        $this->assertEquals($product->getNodes()[0]->getId(), $node->getId());
     }
 
     public function testPutProductAction()
@@ -107,13 +107,13 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Category')
+            ->getRepository('Aisel\ProductBundle\Document\Node')
             ->findOneBy(['locale' => 'ru']);
 
         $id = $product->getId();
         $data = [
             'locale' => 'ru',
-            'categories' => [
+            'nodes' => [
                 [
                     'id' => $node->getId()
                 ]
@@ -144,7 +144,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
         $this->assertEmpty($content);
         $this->assertNotNull($product);
         $this->assertEquals($data['locale'], $product->getLocale());
-        $this->assertEquals($data['categories'][0]['id'], $product->getCategories()->first()->getId());
+        $this->assertEquals($data['nodes'][0]['id'], $product->getNodes()->first()->getId());
     }
 
     public function testGetProductAction()

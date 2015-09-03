@@ -6,20 +6,12 @@
 # file that was distributed with this source code.
 
 parameters:
-    aisel_product_media_manager.class: Aisel\ProductBundle\Manager\MediaManager
     aisel_product_node_manager.class: Aisel\ProductBundle\Manager\NodeManager
     aisel_product_url_persistence_listener.class: Aisel\ProductBundle\EventListener\ProductUrlPersistenceListener
-    aisel_product_category_url_persistence_listener.class: Aisel\ProductBundle\EventListener\CategoryUrlPersistenceListener
+    aisel_product_node_url_persistence_listener.class: Aisel\ProductBundle\EventListener\NodeUrlPersistenceListener
 
 services:
-    aisel.product.media.manager:
-        class: %aisel_product_media_manager.class%
-        arguments:
-         - @doctrine.odm.mongodb.document_manager
-         - %application.media.product.path%
-         - %website_address%
-
-    aisel.productcategory.node.manager:
+    aisel.productnode.node.manager:
         class: %aisel_product_node_manager.class%
         arguments:
           - @doctrine.odm.mongodb.document_manager
@@ -30,7 +22,7 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
-    aisel_product_category_url_persistence_listener:
-        class: %aisel_product_category_url_persistence_listener.class%
+    aisel_product_node_url_persistence_listener:
+        class: %aisel_product_node_url_persistence_listener.class%
         tags:
             - { name: doctrine.event_listener, event: prePersist }

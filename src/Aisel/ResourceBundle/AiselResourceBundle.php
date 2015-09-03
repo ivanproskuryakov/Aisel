@@ -14,7 +14,7 @@ namespace Aisel\ResourceBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * General bundle for libraries, bstract classes and templates
+ * AiselResourceBundle
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */

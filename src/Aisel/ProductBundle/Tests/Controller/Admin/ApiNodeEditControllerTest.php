@@ -12,7 +12,7 @@
 namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
-use Aisel\ProductBundle\Document\Category;
+use Aisel\ProductBundle\Document\Node;
 
 /**
  * ApiNodeEditControllerTest
@@ -34,7 +34,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
     public function createNode($name)
     {
-        $node = new Category();
+        $node = new Node();
         $node->setLocale('en');
         $node->setDescription('');
         $node->setMetaUrl('/'. rand(111111,999999));
@@ -52,7 +52,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/product/category/node/'.
+            '/'. $this->api['backend'] . '/product/node/node/'.
             '?locale=en&action=dragDrop'.
             '&id=' . $child->getId() .
             '&parentId=' . $parent->getId() . '',
@@ -73,7 +73,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Category')
+            ->getRepository('Aisel\ProductBundle\Document\Node')
             ->findOneBy(['id' => $result['id']]);
 
         $this->assertEquals($parent->getId(), $node->getParent()->getId());
@@ -86,7 +86,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/product/category/node/'.
+            '/'. $this->api['backend'] . '/product/node/node/'.
             '?locale=en'.
             '&action=addChild'.
             '&name=New+children'.
@@ -108,12 +108,12 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $parent = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Category')
+            ->getRepository('Aisel\ProductBundle\Document\Node')
             ->findOneBy(['id' => $parent->getId()]);
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Category')
+            ->getRepository('Aisel\ProductBundle\Document\Node')
             ->findOneBy(['id' => $result['id']]);
         $this->assertEquals($node->getParent()->getId(), $parent->getId());
         $this->assertEquals($node->getId(), $parent->getChildren()[0]->getId());
@@ -125,7 +125,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/product/category/node/'.
+            '/'. $this->api['backend'] . '/product/node/node/'.
             '?locale=en'.
             '&action=save'.
             '&name=BBB'.
@@ -151,7 +151,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/product/category/node/'.
+            '/'. $this->api['backend'] . '/product/node/node/'.
             '?locale=en'.
             '&action=remove'.
             '&id='. $node->getId(),
@@ -165,7 +165,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Category')
+            ->getRepository('Aisel\ProductBundle\Document\Node')
             ->findOneBy(['title' => $name]);
 
         $this->assertTrue(200 === $statusCode);

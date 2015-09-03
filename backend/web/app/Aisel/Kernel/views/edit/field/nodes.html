@@ -1,0 +1,16 @@
+<div class="nodeTree">
+    <script type="text/ng-template" id="node_field.html">
+        <input type="checkbox"
+               ng-model="node.selected"
+               ng-change="updateItemNodes(item, nodes)">
+        <span>{{ node.title}}  / {{ node.id}}</span>
+        <ul>
+            <li ng-repeat="node in node.children"
+                ng-include="'node_field.html'">
+            </li>
+        </ul>
+    </script>
+    <ul>
+        <li ng-repeat="node in nodes" ng-include="'node_field.html'"></li>
+    </ul>
+</div>

@@ -17,9 +17,11 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Aisel\FrontendUserBundle\Document\FrontendUser;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+
 use Aisel\ResourceBundle\Domain\IdTrait;
+use Aisel\ResourceBundle\Domain\DescriptionTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
  * Order
@@ -37,8 +39,9 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
 class Order
 {
     use IdTrait;
-    use UpdateCreateTrait;
+    use DescriptionTrait;
     use LocaleTrait;
+    use UpdateCreateTrait;
 
     /**
      * @var string
@@ -58,15 +61,6 @@ class Order
      * @JMS\Expose
      */
     private $totalAmount = 0;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Type("string")
-     * @JMS\Expose
-     */
-    private $description;
 
     /**
      * @var string
@@ -309,29 +303,6 @@ class Order
     public function getTotalAmount()
     {
         return $this->totalAmount;
-    }
-
-    /**
-     * Set description
-     *
-     * @param  string $description
-     * @return Order
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**

@@ -14,7 +14,10 @@ namespace Aisel\MediaBundle\Document;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
+
 use Aisel\ResourceBundle\Domain\IdTrait;
+use Aisel\ResourceBundle\Domain\TitleTrait;
+use Aisel\ResourceBundle\Domain\DescriptionTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
@@ -32,6 +35,8 @@ class Image
 {
 
     use IdTrait;
+    use DescriptionTrait;
+    use TitleTrait;
     use UpdateCreateTrait;
 
     /**
@@ -50,57 +55,8 @@ class Image
      * @JMS\Expose
      * @JMS\Type("string")
      */
-    protected $title;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    protected $description;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
     protected $filename;
 
-    /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param string $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
 
     /**
      * Set filename

@@ -10,6 +10,7 @@ parameters:
     aisel_param_converter.class: Aisel\ResourceBundle\Request\ParamConverter
     aisel_exception_listener.class: Aisel\ResourceBundle\Request\ExceptionListener
     aisel_node_listener.class: Aisel\ResourceBundle\EventListener\NodePersistenceListener
+    aisel_annotation_no_duplicates.class: Aisel\ResourceBundle\Annotation\Driver\NoDuplicatesDriver
 
 services:
     api_param_converter:
@@ -33,3 +34,12 @@ services:
         tags:
             - { name: doctrine_mongodb.odm.event_listener, event: postPersist, method: postPersist }
             - { name: doctrine_mongodb.odm.event_listener, event: postUpdate, method: postUpdate }
+
+    aisel_annotation_no_duplicates:
+        class: %aisel_annotation_no_duplicates.class%
+        arguments:
+            - @annotations.reader
+        tags:
+          - { name: doctrine_mongodb.odm.event_listener, event: prePersist, event: prePersist}
+          - { name: doctrine_mongodb.odm.event_listener, event: preUpdate, event: preUpdate}
+

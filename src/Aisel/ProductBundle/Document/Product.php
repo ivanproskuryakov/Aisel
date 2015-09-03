@@ -18,13 +18,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
-use Aisel\ProductBundle\Document\Category;
+use Aisel\ProductBundle\Document\Node;
 use Aisel\MediaBundle\Document\Image;
+use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
+use Aisel\ResourceBundle\Domain\StatusTrait;
+use Aisel\ResourceBundle\Domain\NameTrait;
 
 /**
  * Product
@@ -44,17 +47,9 @@ class Product implements UrlInterface
     use IdTrait;
     use UpdateCreateTrait;
     use MetaTrait;
+    use StatusTrait;
+    use NameTrait;
     use LocaleTrait;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $name;
 
     /**
      * @var string
@@ -199,16 +194,6 @@ class Product implements UrlInterface
      * @JMS\Expose
      * @JMS\Type("boolean")
      */
-    private $status = false;
-
-    /**
-     * @var boolean
-     * @ODM\Field(type="boolean")
-     * @Assert\Type(type="bool")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("boolean")
-     */
     private $commentStatus = false;
 
     /**
@@ -216,16 +201,18 @@ class Product implements UrlInterface
      * @ODM\ReferenceMany(targetDocument="Aisel\MediaBundle\Document\Image")
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Document\Image>")
+     * @AiselAnnotation\NoDuplicates()
      */
     private $images;
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Category")
+     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Node")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Category>")
+     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Node>")
+     * @AiselAnnotation\NoDuplicates()
      */
-    private $categories;
+    private $nodes;
 
     /**
      * Constructor
@@ -233,30 +220,7 @@ class Product implements UrlInterface
     public function __construct()
     {
         $this->images = new ArrayCollection();
-        $this->categories = new ArrayCollection();
-    }
-
-    /**
-     * Set name
-     *
-     * @param  string  $name
-     * @return Product
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
+        $this->nodes = new ArrayCollection();
     }
 
     /**
@@ -559,29 +523,6 @@ class Product implements UrlInterface
     }
 
     /**
-     * Set status
-     *
-     * @param  boolean $status
-     * @return Product
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return boolean
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
      * Set hidden
      *
      * @param  boolean $hidden
@@ -684,35 +625,35 @@ class Product implements UrlInterface
     }
 
     /**
-     * Add categories
+     * Add nodes
      *
-     * @param  Category $category
+     * @param  Node $node
      * @return Product
      */
-    public function addCategory(Category $category)
+    public function addNode(Node $node)
     {
-        $this->categories->add($category);
+        $this->nodes->add($node);
 
         return $this;
     }
 
     /**
-     * Remove categories
+     * Remove nodes
      *
-     * @param Category $category
+     * @param Node $node
      */
-    public function removeCategory(Category $category)
+    public function removeNode(Node $node)
     {
-        $this->categories->removeElement($category);
+        $this->nodes->removeElement($node);
     }
 
     /**
-     * Get categories
+     * Get nodes
      *
      * @return Collection
      */
-    public function getCategories()
+    public function getNodes()
     {
-        return $this->categories;
+        return $this->nodes;
     }
 }

@@ -14,7 +14,7 @@ namespace Aisel\ResourceBundle\Manager;
 use LogicException;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
-use Aisel\ResourceBundle\Document\Category;
+use Aisel\ResourceBundle\Document\Node;
 
 /**
  * ApiNodeManager
@@ -116,7 +116,8 @@ class ApiNodeManager
      */
     public function addChild($params)
     {
-        /** @var $node Category */
+        /** @var $node Node */
+
         if ($childId = $params['parentId']) {
             $parent = $this->dm->getRepository($this->model)->find($childId);
 
@@ -124,7 +125,6 @@ class ApiNodeManager
                 throw new LogicException('Nothing found');
             }
         }
-
         $node = new $this->nodeEntity();
 
         $node->setTitle($params['name']);
@@ -159,15 +159,15 @@ class ApiNodeManager
      * Update parent for Node
      *
      * @param  array $params
-     * @return Category $child
+     * @return Node $child
      *
      * @throws LogicException
      */
     public function updateParent($params)
     {
         /**
-         * @var $child Category
-         * @var $parent Category
+         * @var $child Node
+         * @var $parent Node
          */
         $repo = $this
             ->dm
@@ -196,25 +196,22 @@ class ApiNodeManager
         return $child;
     }
 
-    //---------------------------
-    //--------- FRONTEND --------
-    //---------------------------
-
+//    @todo: do something with Node URL
 //    /**
-//     * validate metaUrl for Category Entity and return one we can use
+//     * validate metaUrl for Node Entity and return one we can use
 //     *
 //     * @param string $url
 //     * @param int    $childId
 //     *
 //     * @return string
 //     */
-//    public function normalizeCategoryUrl($url, $childId = null)
+//    public function normalizeNodeUrl($url, $childId = null)
 //    {
-//        $category = $this->dm->getRepository($this->model)->findTotalByURL($url, $childId);
+//        $node = $this->dm->getRepository($this->model)->findTotalByURL($url, $childId);
 //        $utility = new UrlUtility();
 //        $validUrl = $utility->process($url);
 //
-//        if ($category) {
+//        if ($node) {
 //            $validUrl = $validUrl . '-' . time();
 //        }
 //

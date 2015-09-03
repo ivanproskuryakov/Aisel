@@ -9,26 +9,26 @@
  * file that was distributed with this source code.
  *
  * @name            AiselProduct
- * @description     ProductCategoryCtrl
+ * @description     ProductNodeCtrl
  */
 
 define(['app'], function(app) {
-    app.controller('ProductCategoryCtrl', function($scope, $stateParams, $state, Environment) {
+    app.controller('ProductNodeCtrl', function($scope, $stateParams, $state, Environment) {
 
-        $scope.sectionName = 'Product categories';
-        $scope.categoryJson = Environment.settings.api + '/product/category/?locale=' + $stateParams.lang;
-        $scope.categoryUpdate = Environment.settings.api + '/product/category/node/?locale=' + $stateParams.lang;
+        $scope.sectionName = 'Product nodes';
+        $scope.nodeJson = Environment.settings.api + '/product/node/?locale=' + $stateParams.lang;
+        $scope.nodeUpdate = Environment.settings.api + '/product/node/node/?locale=' + $stateParams.lang;
 
         $scope.editNode = function(id) {
-            $state.transitionTo('productCategoryEdit', {
+            $state.transitionTo('productNodeEdit', {
                 locale: Environment.currentLocale(),
                 lang: $stateParams.lang,
                 id: id
             });
         };
 
-        $scope.changeCategoryLocale = function(lang) {
-            $state.transitionTo('productCategory', {
+        $scope.changeNodeLocale = function(lang) {
+            $state.transitionTo('productNode', {
                 locale: Environment.currentLocale(),
                 lang: lang
             });

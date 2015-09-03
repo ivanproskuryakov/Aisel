@@ -35,7 +35,7 @@ class ApiPageControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['frontend'] . '/en/page/category/tree/',
+            '/'. $this->api['frontend'] . '/en/page/node/tree/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

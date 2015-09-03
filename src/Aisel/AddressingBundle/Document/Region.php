@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\IdTrait;
+use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
@@ -32,15 +33,9 @@ class Region
 {
 
     use IdTrait;
+    use NameTrait;
     use UpdateCreateTrait;
 
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Type("string")
-     */
-    private $name;
 
     /**
      * @var Country
@@ -48,29 +43,6 @@ class Region
      * @JMS\Type("Aisel\AddressingBundle\Document\Country")
      */
     private $country;
-
-    /**
-     * Set name
-     *
-     * @param  string $name
-     * @return Region
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 
     /**
      * Set country

@@ -8,13 +8,19 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\HttpKernel\Client;
 use Aisel\BackendUserBundle\Manager\UserManager;
-
+use Symfony\Component\Validator\Validator;
+use Faker;
 /**
  * Class AbstractWebTestCase.
  *
  */
 abstract class AbstractWebTestCase extends KernelTestCase
 {
+    /**
+     * @var \Faker\Generator
+     */
+    protected $faker;
+
     /**
      * @var Client
      */
@@ -39,6 +45,11 @@ abstract class AbstractWebTestCase extends KernelTestCase
      * @var array $api
      */
     protected $api;
+
+    /**
+     * @var Validator
+     */
+    protected $validator;
 
     /**
      * @var KernelInterface
@@ -66,7 +77,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
 
             $this->client->request(
                 'GET',
-                '/'. $this->api['backend'] . '/user/login/?username='. $username . '&password='. $password,
+                '/' . $this->api['backend'] . '/user/login/?username=' . $username . '&password=' . $password,
                 [],
                 [],
                 ['CONTENT_TYPE' => 'application/json']
@@ -94,7 +105,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
 
             $this->client->request(
                 'POST',
-                '/'. $this->api['frontend'] . '/user/login/',
+                '/' . $this->api['frontend'] . '/user/login/',
                 [],
                 [],
                 ['CONTENT_TYPE' => 'application/json'],
@@ -128,6 +139,8 @@ abstract class AbstractWebTestCase extends KernelTestCase
             'frontend' => static::$kernel->getContainer()->getParameter('frontend_api'),
             'backend' => static::$kernel->getContainer()->getParameter('backend_api')
         );
+        $this->validator = static::$kernel->getContainer()->get('validator');
+        $this->faker = Faker\Factory::create();
 
         parent::setUp();
     }

@@ -209,7 +209,7 @@ class ApiController extends Controller
             'locale' => $request->get('locale'),
             'current' => $request->get('current'),
             'limit' => $request->get('limit'),
-            'category' => $request->get('category'),
+            'node' => $request->get('node'),
             'order' => $request->get('order'),
             'orderBy' => $request->get('orderBy'),
             'filter' => $request->get('filter'),

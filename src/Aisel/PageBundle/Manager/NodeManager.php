@@ -15,14 +15,14 @@ use Aisel\ResourceBundle\Manager\ApiNodeManager;
 use LogicException;
 
 /**
- * Manager for page categories
+ * Manager for page nodes
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
 class NodeManager extends ApiNodeManager
 {
 
-    protected $model = 'Aisel\PageBundle\Document\Category';
+    protected $model = 'Aisel\PageBundle\Document\Node';
 
     /**
      * {@inheritDoc}
@@ -30,8 +30,8 @@ class NodeManager extends ApiNodeManager
     public function addChild($params)
     {
 
-        if ($categoryId = $params['parentId']) {
-            $parent = $this->dm->getRepository($this->model)->find($categoryId);
+        if ($nodeId = $params['parentId']) {
+            $parent = $this->dm->getRepository($this->model)->find($nodeId);
 
             if (!$parent) {
                 throw new LogicException('Nothing found');

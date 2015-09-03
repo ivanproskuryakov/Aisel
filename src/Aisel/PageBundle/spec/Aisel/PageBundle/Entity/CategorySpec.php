@@ -16,11 +16,11 @@ use PhpSpec\ObjectBehavior;
 /**
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class CategorySpec extends ObjectBehavior
+class NodeSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\PageBundle\Document\Category');
+        $this->shouldHaveType('Aisel\PageBundle\Document\Node');
     }
 
     public function it_should_not_have_id()

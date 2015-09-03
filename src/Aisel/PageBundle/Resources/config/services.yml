@@ -6,13 +6,13 @@
 # file that was distributed with this source code.
 
 parameters:
-    aisel_page_category_mode_manager.class: Aisel\PageBundle\Manager\NodeManager
+    aisel_page_node_mode_manager.class: Aisel\PageBundle\Manager\NodeManager
     aisel_page_url_persistence_listener.class: Aisel\PageBundle\EventListener\PageUrlPersistenceListener
-    aisel_page_category_url_persistence_listener.class: Aisel\PageBundle\EventListener\CategoryUrlPersistenceListener
+    aisel_page_node_url_persistence_listener.class: Aisel\PageBundle\EventListener\NodeUrlPersistenceListener
 
 services:
-    aisel.pagecategory.node.manager:
-        class: %aisel_page_category_mode_manager.class%
+    aisel.pagenode.node.manager:
+        class: %aisel_page_node_mode_manager.class%
         arguments:
           - @doctrine.odm.mongodb.document_manager
           - "%locales%"
@@ -22,7 +22,7 @@ services:
         tags:
             - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
 
-    aisel_page_category_url_persistence_listener:
-        class: %aisel_page_category_url_persistence_listener.class%
+    aisel_page_node_url_persistence_listener:
+        class: %aisel_page_node_url_persistence_listener.class%
         tags:
             - { name: doctrine_mongodb.odm.event_listener, event: prePersist }

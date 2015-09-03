@@ -14,10 +14,10 @@ namespace Aisel\ResourceBundle\EventListener;
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Aisel\ResourceBundle\Document\NodeInterface;
-use Aisel\ResourceBundle\Document\Category;
+use Aisel\ResourceBundle\Document\Node;
 
 /**
- * Class NodePersistenceListener.
+ * Class NodePersistenceListener
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
@@ -25,37 +25,22 @@ class NodePersistenceListener
 {
 
     /**
+     * postUpdate
+     *
      * @param LifecycleEventArgs $args
      */
     public function postUpdate(LifeCycleEventArgs $args)
     {
-        $this->updateChildren($args);
-    }
+        /** @var Node $object */
+        /** @var Node $parent */
+        /** @var Node $child */
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
-    public function postPersist(LifeCycleEventArgs $args)
-    {
-        $this->updateChildren($args);
-    }
-
-    /**
-     * @param LifecycleEventArgs $args
-     */
-    private function updateChildren(LifeCycleEventArgs $args)
-    {
         $dm = $args->getDocumentManager();
-
-        /** @var NodeInterface $object */
-        /** @var Category $parent */
-        /** @var Category $child */
         $object = $args->getDocument();
+
         if ($object instanceof NodeInterface) {
-//            var_dump($object->getParent());
 
             if ($parent = $object->getParent()) {
-
                 foreach ($parent->getChildren() as $child) {
 
                     if ($child->getId() == $object->getId()) {
@@ -63,9 +48,34 @@ class NodePersistenceListener
                     }
                 }
                 $parent->addChild($object);
+
                 $dm->persist($parent);
                 $dm->flush();
             }
         }
     }
+
+    /**
+     * postPersist
+     *
+     * @param LifecycleEventArgs $args
+     */
+    public function postPersist(LifeCycleEventArgs $args)
+    {
+        /** @var Node $parent */
+        /** @var Node $object */
+
+        $dm = $args->getDocumentManager();
+        $object = $args->getDocument();
+
+        if ($object instanceof NodeInterface) {
+
+            if ($parent = $object->getParent()) {
+                $parent->addChild($object);
+                $dm->persist($parent);
+                $dm->flush();
+            }
+        }
+    }
+
 }

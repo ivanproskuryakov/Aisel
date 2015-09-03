@@ -35,7 +35,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
     {
         $pageNode = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Category')
+            ->getRepository('Aisel\PageBundle\Document\Node')
             ->findOneBy(['locale' => 'en']);
 
         $data = [
@@ -46,7 +46,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
             'meta_url' => 'metaUrl_' . time(),
             'meta_title' => 'metaTitle_' . time(),
             'comment_status' => false,
-            'categories' => [
+            'nodes' => [
                 [
                     'id' => $pageNode->getId()
                 ]
@@ -76,7 +76,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
             ->getRepository('Aisel\PageBundle\Document\Page')
             ->find($id);
 
-        $this->assertEquals($page->getCategories()[0]->getId(), $pageNode->getId());
+        $this->assertEquals($page->getNodes()[0]->getId(), $pageNode->getId());
     }
 
     public function testGetPageAction()

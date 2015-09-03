@@ -18,11 +18,15 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
-use Aisel\PageBundle\Document\Category;
+use Aisel\PageBundle\Document\Node;
+
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
+use Aisel\ResourceBundle\Domain\StatusTrait;
+use Aisel\ResourceBundle\Domain\TitleTrait;
+use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 /**
  * Page
@@ -44,18 +48,11 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
 class Page implements UrlInterface
 {
     use IdTrait;
+    use TitleTrait;
     use UpdateCreateTrait;
     use LocaleTrait;
+    use StatusTrait;
     use MetaTrait;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $title;
 
     /**
      * @var string
@@ -74,55 +71,23 @@ class Page implements UrlInterface
      * @JMS\Expose
      * @JMS\Type("boolean")
      */
-    private $status = false;
-
-    /**
-     * @var boolean
-     * @ODM\Field(type="boolean")
-     * @Assert\Type(type="bool")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("boolean")
-     */
     private $commentStatus = false;
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Category")
+     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Node")
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Node>")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Category>")
+     * @AiselAnnotation\NoDuplicates()
      */
-    private $categories;
+    private $nodes;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
-    }
-
-    /**
-     * Set title
-     *
-     * @param  string $title
-     * @return Page
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
+        $this->nodes = new ArrayCollection();
     }
 
     /**
@@ -149,29 +114,6 @@ class Page implements UrlInterface
     }
 
     /**
-     * Set status
-     *
-     * @param  boolean $status
-     * @return Page
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return boolean
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
      * Set commentStatus
      *
      * @param  boolean $commentStatus
@@ -195,48 +137,48 @@ class Page implements UrlInterface
     }
 
     /**
-     * Add category
+     * Add node
      *
-     * @param Category $category
+     * @param Node $node
      *
      * @return Page
      */
-    public function addCategory(Category $category)
+    public function addNode(Node $node)
     {
-        $this->categories->add($category);
+        $this->nodes->add($node);
 
         return $this;
     }
 
     /**
-     * Remove categories
+     * Remove nodes
      *
-     * @param Category $category
+     * @param Node $node
      */
-    public function removeCategory(Category $category)
+    public function removeNode(Node $node)
     {
-        $this->categories->removeElement($category);
+        $this->nodes->removeElement($node);
     }
 
     /**
-     * Get categories
+     * Get nodes
      *
      * @return ArrayCollection
      */
-    public function getCategories()
+    public function getNodes()
     {
-        return $this->categories;
+        return $this->nodes;
     }
 
     /**
-     * Get categories
+     * Get nodes
      *
-     * @param Category $categories
+     * @param Node $nodes
      *
      * @return Page
      */
-    public function setCategories($categories)
+    public function setNodes($nodes)
     {
-        $this->categories = $categories;
+        $this->nodes = $nodes;
     }
 }
