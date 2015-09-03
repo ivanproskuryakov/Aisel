@@ -20,6 +20,7 @@ use Aisel\OrderBundle\Document\Order;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
+use Aisel\ResourceBundle\Domain\QtyTrait;
 use Aisel\ResourceBundle\Domain\TitleTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -40,6 +41,7 @@ class OrderItem
 {
 
     use IdTrait;
+    use QtyTrait;
     use NameTrait;
     use TitleTrait;
     use UpdateCreateTrait;
@@ -68,15 +70,6 @@ class OrderItem
      * @JMS\Type("integer")
      */
     private $price;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="integer")
-     * @Assert\NotNull()
-     * @JMS\Type("integer")
-     */
-    private $qty;
 
     /**
      * Set order
@@ -147,26 +140,4 @@ class OrderItem
         return $this->price;
     }
 
-    /**
-     * Set qty
-     *
-     * @param  integer   $qty
-     * @return OrderItem
-     */
-    public function setQty($qty)
-    {
-        $this->qty = $qty;
-
-        return $this;
-    }
-
-    /**
-     * Get qty
-     *
-     * @return integer
-     */
-    public function getQty()
-    {
-        return $this->qty;
-    }
 }

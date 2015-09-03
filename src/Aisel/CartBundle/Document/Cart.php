@@ -18,6 +18,7 @@ use Aisel\FrontendUserBundle\Document\FrontendUser;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
 use Aisel\ResourceBundle\Domain\IdTrait;
+use Aisel\ResourceBundle\Domain\QtyTrait;
 
 /**
  * Cart
@@ -34,14 +35,7 @@ use Aisel\ResourceBundle\Domain\IdTrait;
 class Cart
 {
     use IdTrait;
-
-    /**
-     * @var integer
-     * @Assert\NotNull()
-     * @ODM\Field(type="string")
-     * @JMS\Type("integer")
-     */
-    private $qty = 0;
+    use QtyTrait;
 
     /**
      * @var FrontendUser
@@ -58,29 +52,6 @@ class Cart
      * @JMS\MaxDepth(3)
      */
     private $product;
-
-    /**
-     * Set qty
-     *
-     * @param  integer $qty
-     * @return Cart
-     */
-    public function setQty($qty)
-    {
-        $this->qty = $qty;
-
-        return $this;
-    }
-
-    /**
-     * Get qty
-     *
-     * @return integer
-     */
-    public function getQty()
-    {
-        return $this->qty;
-    }
 
     /**
      * Set frontenduser
