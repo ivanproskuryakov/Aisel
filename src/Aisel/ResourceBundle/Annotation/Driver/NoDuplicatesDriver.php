@@ -2,16 +2,16 @@
 
 namespace Aisel\ResourceBundle\Annotation\Driver;
 
-use Aisel\ResourceBundle\Annotation\CleanDuplicates;
+use Aisel\ResourceBundle\Annotation\Duplicates;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 
 /**
- * CleanDuplicatesDriver
+ * NoDuplicatesDriver
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class CleanDuplicatesDriver
+class NoDuplicatesDriver
 {
 
     /**
@@ -64,7 +64,7 @@ class CleanDuplicatesDriver
         foreach ($objectProperties as $prop) {
             $annotation = $this->reader->getPropertyAnnotation(
                 $prop,
-                'Aisel\ResourceBundle\Annotation\CleanDuplicates'
+                'Aisel\ResourceBundle\Annotation\NoDuplicates'
             );
 
             if (!empty($annotation)) {

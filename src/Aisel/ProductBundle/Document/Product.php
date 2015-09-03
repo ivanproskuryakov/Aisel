@@ -201,7 +201,7 @@ class Product implements UrlInterface
      * @ODM\ReferenceMany(targetDocument="Aisel\MediaBundle\Document\Image")
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Document\Image>")
-     * @AiselAnnotation\CleanDuplicates()
+     * @AiselAnnotation\NoDuplicates()
      */
     private $images;
 
@@ -210,7 +210,7 @@ class Product implements UrlInterface
      * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Node")
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Node>")
-     * @AiselAnnotation\CleanDuplicates()
+     * @AiselAnnotation\NoDuplicates()
      */
     private $nodes;
 

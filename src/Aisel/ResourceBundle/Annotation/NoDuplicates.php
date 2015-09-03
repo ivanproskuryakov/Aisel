@@ -14,13 +14,13 @@ namespace Aisel\ResourceBundle\Annotation;
 use Doctrine\Common\Annotations\Annotation;
 
 /**
- * CleanDuplicates
+ * NoDuplicates
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @Annotation
  */
-class CleanDuplicates extends Annotation
+class NoDuplicates extends Annotation
 {
 
 }
