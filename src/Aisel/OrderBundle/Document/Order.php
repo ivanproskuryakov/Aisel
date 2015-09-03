@@ -19,7 +19,6 @@ use Aisel\FrontendUserBundle\Document\FrontendUser;
 use JMS\Serializer\Annotation as JMS;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
-use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\DescriptionTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -40,10 +39,19 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 class Order
 {
     use IdTrait;
-    use StatusTrait;
     use DescriptionTrait;
     use LocaleTrait;
     use UpdateCreateTrait;
+
+    /**
+     * @var string
+     * @ODM\Field(type="string")
+     * @Assert\Type(type="bool")
+     * @Assert\NotNull()
+     * @JMS\Type("boolean")
+     * @JMS\Expose
+     */
+    private $status = false;
 
     /**
      * @var integer
@@ -170,6 +178,30 @@ class Order
     {
         return $this->locale;
     }
+
+    /**
+     * Set status
+     *
+     * @param  string $status
+     * @return Order
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
 
     /**
      * Set frontenduser

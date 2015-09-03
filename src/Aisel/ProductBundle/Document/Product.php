@@ -28,7 +28,6 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
-use Aisel\ResourceBundle\Domain\QtyTrait;
 
 /**
  * Product
@@ -46,12 +45,11 @@ class Product implements UrlInterface
 {
 
     use IdTrait;
-    use LocaleTrait;
     use UpdateCreateTrait;
     use MetaTrait;
     use StatusTrait;
     use NameTrait;
-    use QtyTrait;
+    use LocaleTrait;
 
     /**
      * @var string
@@ -127,6 +125,16 @@ class Product implements UrlInterface
      * @JMS\Type("DateTime")
      */
     private $newTo;
+
+    /**
+     * @var string
+     * @ODM\Field(type="int")
+     * @Assert\Type(type="int")
+     * @Assert\NotNull()
+     * @JMS\Expose
+     * @JMS\Type("integer")
+     */
+    private $qty = 0;
 
     /**
      * @var boolean
@@ -397,6 +405,29 @@ class Product implements UrlInterface
     public function getNewTo()
     {
         return $this->newTo;
+    }
+
+    /**
+     * Set qty
+     *
+     * @param  integer $qty
+     * @return Product
+     */
+    public function setQty($qty)
+    {
+        $this->qty = $qty;
+
+        return $this;
+    }
+
+    /**
+     * Get qty
+     *
+     * @return integer
+     */
+    public function getQty()
+    {
+        return $this->qty;
     }
 
     /**
