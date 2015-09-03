@@ -19,6 +19,8 @@ use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
+use Aisel\ResourceBundle\Domain\DescriptionTrait;
+
 /**
  * Node
  *
@@ -36,15 +38,7 @@ class Node extends BaseNode implements UrlInterface
 {
 
     use MetaTrait;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $description;
+    use DescriptionTrait;
 
     /**
      * @ODM\ReferenceOne(targetDocument="Aisel\PageBundle\Document\Node", inversedBy="children")
@@ -61,27 +55,5 @@ class Node extends BaseNode implements UrlInterface
      */
     protected $children;
 
-    /**
-     * Set description
-     *
-     * @param  string   $description
-     * @return Node
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 
 }

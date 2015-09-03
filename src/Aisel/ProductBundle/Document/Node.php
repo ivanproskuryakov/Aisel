@@ -16,7 +16,8 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
-use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+
+use Aisel\ResourceBundle\Domain\DescriptionTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 
 /**
@@ -33,16 +34,8 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
  */
 class Node extends BaseNode implements UrlInterface
 {
+    use DescriptionTrait;
     use MetaTrait;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $description;
 
     /**
      * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Document\Node", inversedBy="children")
@@ -57,29 +50,5 @@ class Node extends BaseNode implements UrlInterface
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Node>")
      */
     protected $children;
-
-    
-    /**
-     * Set description
-     *
-     * @param  string   $description
-     * @return Node
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 
 }

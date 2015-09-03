@@ -16,6 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 
+use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\TitleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
@@ -34,18 +35,11 @@ use Aisel\ResourceBundle\Document\NodeInterface;
 abstract class Node implements NodeInterface
 {
 
+    use IdTrait;
     use UpdateCreateTrait;
     use LocaleTrait;
     use TitleTrait;
     use StatusTrait;
-
-    /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Type("string")
-     * @JMS\Expose
-     */
-    protected $id;
 
     /**
      * @ODM\ReferenceOne(targetDocument="Aisel\ResourceBundle\Document\Node", inversedBy="children")
@@ -69,16 +63,6 @@ abstract class Node implements NodeInterface
     public function __construct()
     {
         $this->children = new ArrayCollection();
-    }
-
-    /**
-     * Get id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
