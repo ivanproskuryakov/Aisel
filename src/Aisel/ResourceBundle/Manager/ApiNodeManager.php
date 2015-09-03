@@ -117,6 +117,7 @@ class ApiNodeManager
     public function addChild($params)
     {
         /** @var $node Node */
+
         if ($childId = $params['parentId']) {
             $parent = $this->dm->getRepository($this->model)->find($childId);
 
@@ -124,7 +125,6 @@ class ApiNodeManager
                 throw new LogicException('Nothing found');
             }
         }
-
         $node = new $this->nodeEntity();
 
         $node->setTitle($params['name']);
@@ -196,10 +196,7 @@ class ApiNodeManager
         return $child;
     }
 
-    //---------------------------
-    //--------- FRONTEND --------
-    //---------------------------
-
+//    @todo: do something with Node URL
 //    /**
 //     * validate metaUrl for Node Entity and return one we can use
 //     *
