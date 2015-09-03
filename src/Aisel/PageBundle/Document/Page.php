@@ -25,6 +25,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
+use Aisel\ResourceBundle\Domain\TitleTrait;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 /**
@@ -47,19 +48,11 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 class Page implements UrlInterface
 {
     use IdTrait;
+    use TitleTrait;
     use UpdateCreateTrait;
     use LocaleTrait;
     use StatusTrait;
     use MetaTrait;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $title;
 
     /**
      * @var string
@@ -95,29 +88,6 @@ class Page implements UrlInterface
     public function __construct()
     {
         $this->nodes = new ArrayCollection();
-    }
-
-    /**
-     * Set title
-     *
-     * @param  string $title
-     * @return Page
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**

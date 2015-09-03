@@ -20,6 +20,7 @@ use Aisel\OrderBundle\Document\Order;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
+use Aisel\ResourceBundle\Domain\TitleTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -40,6 +41,7 @@ class OrderItem
 
     use IdTrait;
     use NameTrait;
+    use TitleTrait;
     use UpdateCreateTrait;
 
     /**
@@ -57,15 +59,6 @@ class OrderItem
      * @JMS\Type("Aisel\ProductBundle\Document\Product")
      */
     private $product;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @Assert\NotNull()
-     * @JMS\Type("string")
-     */
-    private $title;
 
     /**
      * @var string
@@ -129,29 +122,6 @@ class OrderItem
     public function getProduct()
     {
         return $this->product;
-    }
-
-    /**
-     * Set title
-     *
-     * @param  string    $title
-     * @return OrderItem
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**

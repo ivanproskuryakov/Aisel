@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 
 use Aisel\ResourceBundle\Domain\LocaleTrait;
+use Aisel\ResourceBundle\Domain\TitleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Document\NodeInterface;
@@ -35,6 +36,7 @@ abstract class Node implements NodeInterface
 
     use UpdateCreateTrait;
     use LocaleTrait;
+    use TitleTrait;
     use StatusTrait;
 
     /**
@@ -44,15 +46,6 @@ abstract class Node implements NodeInterface
      * @JMS\Expose
      */
     protected $id;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    protected $title;
 
     /**
      * @ODM\ReferenceOne(targetDocument="Aisel\ResourceBundle\Document\Node", inversedBy="children")
@@ -86,29 +79,6 @@ abstract class Node implements NodeInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param  string $title
-     * @return Node
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**

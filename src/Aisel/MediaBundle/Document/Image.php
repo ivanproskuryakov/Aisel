@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\IdTrait;
+use Aisel\ResourceBundle\Domain\TitleTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
@@ -32,6 +33,7 @@ class Image
 {
 
     use IdTrait;
+    use TitleTrait;
     use UpdateCreateTrait;
 
     /**
@@ -42,15 +44,6 @@ class Image
      * @JMS\Type("boolean")
      */
     protected $mainImage = false;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\Type(type="string")
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    protected $title;
 
     /**
      * @var string
@@ -86,21 +79,6 @@ class Image
         $this->description = $description;
     }
 
-    /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
 
     /**
      * Set filename
