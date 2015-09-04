@@ -31,15 +31,24 @@ class ApiOrderControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testLoginUserAction()
+    public function testMyOrdersAction()
     {
+        $this->logInFrontend();
 
-        $this->markTestSkipped('... not finished');
-        $loginStatus = $this->logInFrontend();
+        $this->client->request(
+            'GET',
+            '/'. $this->api['frontend'] . '/orders/my',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
 
-        var_dump($loginStatus);
-        exit();
-
+        $this->assertTrue(200 === $statusCode);
+        $this->assertJson($content);
     }
 
 }
