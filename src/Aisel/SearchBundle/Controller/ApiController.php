@@ -37,7 +37,8 @@ class ApiController extends Controller
             'query' => $request->get('query'),
             'order' => $request->get('order'),
             'orderby' => $request->get('orderby'),
-            'locale' => $request->get('locale')
+            'locale' => $request->get('locale'),
+            'scope' => 'frontend',
         );
 
         if (!$params['query']) {

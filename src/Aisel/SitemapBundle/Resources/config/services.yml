@@ -4,3 +4,13 @@
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
+
+parameters:
+    aisel_sitemap_manager.class: Aisel\SitemapBundle\Manager\SitemapManager
+
+services:
+    aisel.sitemap.manager:
+        class: %aisel_sitemap_manager.class%
+        arguments:
+          - @doctrine.odm.mongodb.document_manager
+          - @templating

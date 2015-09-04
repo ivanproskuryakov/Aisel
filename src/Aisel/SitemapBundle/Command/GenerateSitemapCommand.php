@@ -43,30 +43,21 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln(sprintf('Sitemap generator started ...'));
-        $urls = array();
-//
-//        // Pages
-//        $pages = $this->getContainer()->get('aisel.page.manager')->getEnabledPages();
-//        foreach ($pages as $p) {
-//            $urls[] = '/' . $p->getLocale() . '/page/view/' . $p->getMetaUrl() . '/';
-//        }
-//        // Products
-//        $pages = $this->getContainer()->get('aisel.product.manager')->getEnabledProducts();
-//        foreach ($pages as $p) {
-//            $urls[] = '/' . $p->getLocale() . '/product/view/' . $p->getMetaUrl() . '/';
-//        }
-//
-        $contents = $this
-            ->getContainer()
-            ->get('templating')
-            ->render(
-            'AiselSitemapBundle:Default:sitemap.txt.twig',
-            array('urls' => $urls)
+
+        $directory = realpath(
+            $this
+                ->getContainer()
+                ->get('kernel')
+                ->getRootDir() . '/../frontend/web/'
         );
-        $webFolder = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../frontend/web/');
-        $sitemapFile = $webFolder . '/sitemap.xml';
-        file_put_contents($sitemapFile, $contents);
-        $output->writeln(sprintf('URL total: %s', count($urls)));
+        $file = $directory . '/sitemap.xml';
+
+        $total = $this
+            ->getContainer()
+            ->get('aisel.sitemap.manager')
+            ->buildSitemap($file);
+
+        $output->writeln(sprintf('URL total: %s', $total));
         $output->writeln(sprintf('File sitemap.xml generated!'));
     }
 
