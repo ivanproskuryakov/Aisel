@@ -46,13 +46,13 @@ class ContactManager
     /**
      * @param DocumentManager $dm
      * @param Swift_Mailer $mailer
-     * @param $templating
+     * @param EngineInterface $templating
      * @param $appEmail
      */
     public function __construct(
         DocumentManager $dm,
         Swift_Mailer $mailer,
-        $templating,
+        EngineInterface $templating,
         $appEmail
     ) {
         $this->dm = $dm;

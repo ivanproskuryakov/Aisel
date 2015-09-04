@@ -24,7 +24,8 @@ class PageRepository extends CollectionRepository
 
     /**
      * Get pages based on limit, current pagination and search query
-     * @param  array                         $params
+     *
+     * @param  array $params
      * @return Page
      */
     public function searchFromRequest($params)
@@ -36,7 +37,7 @@ class PageRepository extends CollectionRepository
             ->createQueryBuilder($this->getDocumentName())
             ->field('status')->equals(true)
             ->field('locale')->equals($this->locale)
-            ->field('content')->equals(new \MongoRegex('/.*'.$this->search.'.*/i'));
+            ->field('content')->equals(new \MongoRegex('/.*' . $this->search . '.*/i'));
 
 //        $query->expr()->operator('content', array(
 //            '$search' => $this->search,
@@ -55,22 +56,5 @@ class PageRepository extends CollectionRepository
         return $collection;
     }
 
-    /**
-     * Get pages based on limit, current pagination and search query
-     * @return Page $pages
-     */
-    public function getEnabledPages()
-    {
-        $query = $this
-            ->getDocumentManager($this->getDocumentName())
-            ->createQueryBuilder();
-        $pages = $query->select('p')
-            ->from($this->model, 'p')
-            ->andWhere('p.status = 1')
-            ->getQuery()
-            ->execute();
-
-        return $pages;
-    }
 
 }

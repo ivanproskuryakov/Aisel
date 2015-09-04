@@ -11,4 +11,8 @@ parameters:
 services:
     aisel.contact.manager:
         class: %aisel_contact_manager.class%
-        arguments: [@doctrine.odm.mongodb.document_manager, @mailer, @templating,  %website_email% ]
+        arguments:
+            - @doctrine.odm.mongodb.document_manager
+            - @mailer
+            - @templating
+            - %website_email%

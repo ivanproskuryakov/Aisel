@@ -12,6 +12,7 @@
 namespace Aisel\SitemapBundle\Tests\Controller;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Symfony\Component\Process\Process;
 
 /**
  * ApiControllerTest
@@ -21,9 +22,22 @@ use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 class ApiControllerTest extends AbstractWebTestCase
 {
 
+    /**
+     * @var string
+     */
+    private $file;
+
     public function setUp()
     {
         parent::setUp();
+
+        $directory = realpath(
+            $this
+                ->getContainer()
+                ->get('kernel')
+                ->getRootDir() . '/../frontend/web/'
+        );
+        $this->file = $directory . '/sitemap.xml';
     }
 
     protected function tearDown()
@@ -33,7 +47,33 @@ class ApiControllerTest extends AbstractWebTestCase
 
     public function testSitemapAction()
     {
-        $this->markTestSkipped('Not implemented yet');
+        if (file_exists($this->file)) {
+            unlink($this->file);
+        }
+
+        $products = $this
+            ->dm
+            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->findBy([
+                'status' => true,
+            ]);
+        $pages = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Page')
+            ->findBy([
+                'status' => true,
+            ]);
+        $totalText = sprintf('URL total: %d', count($products) + count($pages));
+        $command = 'php app/console aisel:sitemap:generate';
+        $process = new Process($command, null, null, null, 3600);
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new \RuntimeException($process->getErrorOutput());
+        }
+
+        $this->assertNotNull(strpos($process->getOutput(), $totalText));
+        $this->assertFileExists($this->file);
     }
 
 }
