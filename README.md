@@ -15,6 +15,9 @@ Backend demo: `http://admin.ecommerce.aisel.co/` [backenduser/backenduser]<br/>
 
 Installation
 -----------------------------------
+Apache virtual hosts<br/>
+https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/><br/>
+
 Install with:
 ```
 1. git clone git@github.com:ivanproskuryakov/Aisel.git
@@ -31,12 +34,24 @@ app/logs/
 web/media/
 ```
 
+Sitemap: 
+```
+php app/console aisel:sitemap:generate  
+```
 
-Screencast: http://www.youtube.com/watch?v=Z1FDuhCtc38<br/>
+Video:
+<iframe width="420" height="315" src="https://www.youtube.com/embed/Z1FDuhCtc38" frameborder="0" allowfullscreen></iframe>
 
-Apache virtual hosts<br/>
-https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
-Aisel uses Bower as for managing dependencies, make sure that you have it.
+Requirements
+-----------------------------------
+Aisel depends on following:
+```
+Node.js and NPM
+Bower
+Grunt
+```
+ 
+
 
 
 Running Tests
