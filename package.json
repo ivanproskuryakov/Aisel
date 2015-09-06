@@ -48,7 +48,7 @@
         "load-grunt-tasks": "^0.4.0",
         "time-grunt": "^0.3.1",
         "js-yaml": "^3.2.3",
-        "grunt-jsbeautifier": "~0.4.1"
+        "grunt-jsbeautifier": "~0.2.10"
     },
     "engines": {
         "node": ">=0.10.0"

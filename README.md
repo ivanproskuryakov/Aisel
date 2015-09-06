@@ -15,12 +15,23 @@ Backend demo: `http://admin.ecommerce.aisel.co/` [backenduser/backenduser]<br/>
 
 Installation
 -----------------------------------
+Install with:
 ```
 1. git clone git@github.com:ivanproskuryakov/Aisel.git
 2. cd Aisel
 3. composer install
 4. php app/console aisel:install
 ```
+
+Give permissions to: 
+```
+app/cache/
+app/var/
+app/logs/
+web/media/
+```
+
+
 Screencast: http://www.youtube.com/watch?v=Z1FDuhCtc38<br/>
 
 Apache virtual hosts<br/>
