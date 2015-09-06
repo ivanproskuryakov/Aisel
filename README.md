@@ -13,12 +13,18 @@ Backend demo: `http://admin.ecommerce.aisel.co/` [backenduser/backenduser]<br/>
 
 <img width="400" src="http://aisel.co/images/frontend_product_view.png"/>
 
+Requirements:<br/>
+```
+Node.js and NPM
+Bower
+Grunt
+```
+
 Installation
 -----------------------------------
 Apache virtual hosts<br/>
 https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
 
-Install
 ```
 1. git clone git@github.com:ivanproskuryakov/Aisel.git
 2. cd Aisel
@@ -39,14 +45,6 @@ Screencast:
 Sitemap 
 ```
 php app/console aisel:sitemap:generate  
-```
-Requirements
------------------------------------
-Aisel depends on following:
-```
-Node.js and NPM
-Bower
-Grunt
 ```
  
 Running Tests
