@@ -16,32 +16,30 @@ Backend demo: `http://admin.ecommerce.aisel.co/` [backenduser/backenduser]<br/>
 Installation
 -----------------------------------
 Apache virtual hosts<br/>
-https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/><br/>
+https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
 
-Install with:
+Install
 ```
 1. git clone git@github.com:ivanproskuryakov/Aisel.git
 2. cd Aisel
 3. composer install
 4. php app/console aisel:install
+5. Give permissions to following directories: 
+ - app/cache/
+ - app/var/
+ - app/logs/
+ - web/media/
 ```
 
-Give permissions to: 
-```
-app/cache/
-app/var/
-app/logs/
-web/media/
-```
+Screencast:
+<iframe width="420" height="315" src="https://www.youtube.com/embed/Z1FDuhCtc38" frameborder="0" allowfullscreen></iframe>
+[![ScreenShot](http://img.youtube.com/vi/Z1FDuhCtc38/0.jpg)](https://www.youtube.com/watch?v=Z1FDuhCtc38)
 
-Sitemap: 
+
+Sitemap 
 ```
 php app/console aisel:sitemap:generate  
 ```
-
-Video:
-<iframe width="420" height="315" src="https://www.youtube.com/embed/Z1FDuhCtc38" frameborder="0" allowfullscreen></iframe>
-
 Requirements
 -----------------------------------
 Aisel depends on following:
@@ -51,9 +49,6 @@ Bower
 Grunt
 ```
  
-
-
-
 Running Tests
 -----------------------------------
 [Protractor](http://angular.github.io/protractor/#/) <br/>
