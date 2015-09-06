@@ -129,7 +129,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var Collection
-     * @ODM\referenceMany(targetDocument="Aisel\CartBundle\Document\Cart", mappedBy="frontenduser", cascade={"remove"})
+     * @ODM\ReferenceMany(targetDocument="Aisel\CartBundle\Document\Cart", mappedBy="frontenduser", cascade={"remove"})
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\CartBundle\Document\Cart>")
@@ -138,7 +138,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var Collection
-     * @ODM\referenceMany(targetDocument="Aisel\OrderBundle\Document\Order", mappedBy="frontenduser")
+     * @ODM\ReferenceMany(targetDocument="Aisel\OrderBundle\Document\Order", mappedBy="frontenduser")
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Document\Order>")
