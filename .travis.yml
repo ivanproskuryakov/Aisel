@@ -1,5 +1,7 @@
 language: php
 
+services: mongodb
+
 php:
     - 5.4
 
@@ -30,6 +32,7 @@ before_install:
     - sudo apt-get update -qq
     # Install the browsers
     - sudo apt-get install -y chromium-browser opera firefox google-chrome-stable
+    - echo "extension = mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 #    - export CHROME_BIN=chromium-browser
     - "export DISPLAY=:99.0"
