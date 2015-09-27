@@ -19,6 +19,8 @@ define(['app'], function(app) {
             orderService.getOrders().success(
                 function(data, status) {
                     $scope.orders = data;
+                    console.log($scope.orders);
+
                 }
             );
         }

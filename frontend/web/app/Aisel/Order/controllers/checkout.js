@@ -35,10 +35,10 @@ define(['app'], function(app) {
                 function(data, status) {
                     $scope.cartItems = data;
                 }
-            )
+            );
             $scope.getTotal = function() {
                 return cartService.getTotalFromCart($scope.cartItems);
-            }
+            };
 
             // === Billing Address Suggestions ===
             checkoutService.getCountries().success(function(response) {

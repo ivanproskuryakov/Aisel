@@ -53,7 +53,7 @@ class ApiOrderController extends BaseApiController
             ->getOrderManager()
             ->getUserOrders($user->getId());
 
-        return $this->filterMaxDepth($orders);
+        return array_values($this->filterMaxDepth($orders));
     }
 
     /**

@@ -104,11 +104,11 @@ body .panel-primary {
 }
 .navbar .navbar-brand:hover, .navbar .navbar-brand {
     color: #999999;
-    background: #657496;
+    background: #657496 !important;
     height: 50px;
     padding: 7px 10px;
     margin-right: 10px;
-    margin-left: 0px !important;
+    margin-left: 0 !important;
 }
 
 .header-logo {

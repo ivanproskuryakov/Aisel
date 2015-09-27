@@ -30,9 +30,9 @@ class OrderRepository extends CollectionRepository
      * Create from user cart
      *
      * @param FrontendUser $user
-     * @param string                                        $locale
-     * @param string                                        $currencyCode
-     * @param mixed                                         $orderInfo
+     * @param string $locale
+     * @param string $currencyCode
+     * @param mixed $orderInfo
      *
      * @return Order $order|false
      */
@@ -66,10 +66,10 @@ class OrderRepository extends CollectionRepository
      * Create from array of product
      *
      * @param FrontendUser $user
-     * @param string                                        $locale
-     * @param array                                         $products
-     * @param string                                        $currencyCode
-     * @param mixed                                         $orderInfo
+     * @param string $locale
+     * @param array $products
+     * @param string $currencyCode
+     * @param mixed $orderInfo
      *
      * @return Order $order|false
      */
@@ -103,9 +103,8 @@ class OrderRepository extends CollectionRepository
      * Create empty order
      *
      * @param FrontendUser $user
-     * @param string                                        $locale
-     * @param string                                        $currencyCode
-     * @param mixed                                         $orderInfo
+     * @param string $currencyCode
+     * @param mixed $orderInfo
      *
      * @return Order $order
      */
@@ -139,18 +138,14 @@ class OrderRepository extends CollectionRepository
      */
     public function findAllOrdersForUser($userId)
     {
-
-        $query = $this
+        $result = $this
             ->getDocumentManager()
             ->createQueryBuilder($this->model)
             ->field('frontenduser.id')->equals($userId)
-            ->sort($this->order, $this->orderBy);
-
-        $result = $query
+            ->sort($this->order, $this->orderBy)
             ->getQuery()
             ->toArray();
 
-//        exit();
         return $result;
     }
 
@@ -164,15 +159,15 @@ class OrderRepository extends CollectionRepository
      */
     public function findOrderForUser($userId, $orderId)
     {
-        $query = $this->getDocumentManager()->createQueryBuilder();
-        $orders = $query->select('o')
-            ->from($this->model, 'o')
-            ->where('o.frontenduser = :userId')->setParameter('userId', $userId)
-            ->andWhere('o.id = :orderId')->setParameter('orderId', $orderId)
+        $result = $this
+            ->getDocumentManager()
+            ->createQueryBuilder($this->model)
+            ->field('frontenduser.id')->equals($userId)
+            ->field('id')->equals($orderId)
             ->getQuery()
-            ->execute();
+            ->toArray();
 
-        return $orders;
+        return $result;
     }
 
 }

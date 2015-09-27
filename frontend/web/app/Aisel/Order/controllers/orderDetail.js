@@ -18,7 +18,7 @@ define(['app'], function(app) {
             $scope.media = Environment.settings.media;
             $scope.orderId = $stateParams.orderId;
             var handleSuccess = function(data, status) {
-                $scope.orderDetails = data[0];
+                $scope.orderDetails = data[$scope.orderId];
                 console.log($scope.orderDetails);
             };
             orderService.getOrder($scope.orderId).success(handleSuccess);
