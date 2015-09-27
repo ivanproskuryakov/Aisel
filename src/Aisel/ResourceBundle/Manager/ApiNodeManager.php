@@ -13,7 +13,6 @@ namespace Aisel\ResourceBundle\Manager;
 
 use LogicException;
 use Doctrine\ODM\MongoDB\DocumentManager;
-use Aisel\ResourceBundle\Utility\UrlUtility;
 use Aisel\ResourceBundle\Document\Node;
 
 /**
@@ -195,27 +194,5 @@ class ApiNodeManager
 
         return $child;
     }
-
-//    @todo: do something with Node URL
-//    /**
-//     * validate metaUrl for Node Entity and return one we can use
-//     *
-//     * @param string $url
-//     * @param int    $childId
-//     *
-//     * @return string
-//     */
-//    public function normalizeNodeUrl($url, $childId = null)
-//    {
-//        $node = $this->dm->getRepository($this->model)->findTotalByURL($url, $childId);
-//        $utility = new UrlUtility();
-//        $validUrl = $utility->process($url);
-//
-//        if ($node) {
-//            $validUrl = $validUrl . '-' . time();
-//        }
-//
-//        return $validUrl;
-//    }
 
 }

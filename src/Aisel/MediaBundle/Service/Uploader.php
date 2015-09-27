@@ -28,13 +28,13 @@ class Uploader
     /**
      * uploadAction
      *
-     * @param  string        $uploadDir
-     * @param  Request       $request
+     * @param  string $uploadDir
+     * @param  Request $request
      * @throws HttpException
      *
      * @return string
      */
-    public static function uploadFile($uploadDir, $request)
+    public static function uploadFile($uploadDir, Request $request)
     {
         $uploadedFile = null;
 
@@ -78,7 +78,7 @@ class Uploader
             }
         }
 
-        if ($flowFile->validateFile() && $flowFile->save($uploadDir . '/'. $uploadedFile['name'])) {
+        if ($flowFile->validateFile() && $flowFile->save($uploadDir . '/' . $uploadedFile['name'])) {
             return $uploadedFile['name'];
         } else {
             // This is not a final chunk, continue to upload

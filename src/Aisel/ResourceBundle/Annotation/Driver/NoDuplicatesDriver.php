@@ -94,7 +94,7 @@ class NoDuplicatesDriver
                                 }
                             }
 
-                            if ($isFound == false) {
+                            if ($isFound === false) {
                                 $ids[] = $assigned->getId();
                             }
                         }

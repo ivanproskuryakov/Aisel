@@ -21,30 +21,5 @@ use Aisel\ResourceBundle\Repository\CollectionRepository;
 class FrontendUserRepository extends CollectionRepository
 {
     protected $model = 'AiselFrontendUserBundle:FrontendUser';
-    
-//
-//    /**
-//     * Find user by Username and Email
-//     *
-//     * @param string $username
-//     * @param string $email
-//     *
-//     * @return int value
-//     */
-//    public function findUser($username, $email)
-//    {
-//        $qb = $this->getEntityManager()->createQueryBuilder();
-//
-//        $qb->select('COUNT(u.id)')
-//            ->from($this->model, 'u')
-//            ->where('u.username = :username')
-//            ->orWhere('u.email = :email')
-//            ->setParameter('username', $username)
-//            ->setParameter('email', $email);
-//
-//        $r = $qb->getQuery()->getSingleScalarResult();
-//
-//        return $r;
-//    }
 
 }
