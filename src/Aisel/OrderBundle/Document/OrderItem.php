@@ -55,9 +55,9 @@ class OrderItem
 
     /**
      * @var Product
-     * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Document\Product", inversedBy="orderItem")
+     * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Document\Product")
      * @JMS\Expose
-     * @JMS\MaxDepth(2)
+     * @JMS\MaxDepth(5)
      * @JMS\Type("Aisel\ProductBundle\Document\Product")
      */
     private $product;

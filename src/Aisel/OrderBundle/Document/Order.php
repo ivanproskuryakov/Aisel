@@ -125,8 +125,8 @@ class Order
     /**
      * @var FrontendUser
      * @ODM\ReferenceOne(targetDocument="Aisel\FrontendUserBundle\Document\FrontendUser", inversedBy="order")
-     * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\FrontendUserBundle\Document\FrontendUser")
+     * @JMS\MaxDepth(1)
      * @JMS\Expose
      */
     private $frontenduser;
@@ -144,7 +144,7 @@ class Order
      * @var OrderItem
      * @ODM\ReferenceMany(targetDocument="Aisel\OrderBundle\Document\OrderItem", mappedBy="order")
      * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Document\OrderItem>")
-     *
+     * @JMS\Expose
      */
     private $item;
 
