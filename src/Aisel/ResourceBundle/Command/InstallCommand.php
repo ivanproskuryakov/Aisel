@@ -24,7 +24,7 @@ use Symfony\Component\Process\Process;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class InstallCommand extends ContainerAwareCommand
+class InstallCommand extends SetupFilesCommand
 {
 
     /**
@@ -45,9 +45,9 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('<info>**************************************</info>');
-        $output->writeln('<info>********** Installing Aisel **********</info>');
-        $output->writeln('<info>**************************************</info>');
+        $output->writeln('<info>*****************************************</info>');
+        $output->writeln('<info>********** Aisel: Installation **********</info>');
+        $output->writeln('<info>*****************************************</info>');
         $output->writeln('');
 
         $this->checkDependencies();
@@ -67,7 +67,7 @@ EOT
             $this->installDependencies($output);
         }
 
-        if ($dialog->askConfirmation($output, '<question>Update demo files (Y/N)?</question>', false)) {
+        if ($dialog->askConfirmation($output, '<question>Create(Update) media directories, .htacess, robots.txt, etc.. ? (Y/N)?</question>', false)) {
             $this->setupFiles($output);
         }
 
@@ -89,7 +89,7 @@ EOT
     }
 
     /**
-     * setupFiles
+     * installDependencies
      */
     protected function installDependencies(OutputInterface $output)
     {
@@ -108,28 +108,6 @@ EOT
             }
             echo $process->getOutput();
         }
-    }
-
-    /**
-     * setupFiles
-     */
-    protected function setupFiles(OutputInterface $output)
-    {
-        $fs = new Filesystem();
-        $apiDir = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../web');
-        $frontendDir = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../frontend/web');
-        $backendDir = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../backend/web');
-
-        // Frontend
-        $fs->copy($frontendDir . '/robots.txt.dist', $frontendDir . '/robots.txt');
-        $fs->copy($frontendDir . '/images/logo.png.dist', $frontendDir . '/images/logo.png');
-        $fs->copy($frontendDir . '/.htaccess.dist', $frontendDir . '/.htaccess');
-
-        // Backend
-        $fs->copy($backendDir . '/.htaccess.dist', $backendDir . '/.htaccess');
-
-        // Api
-        $fs->copy($apiDir . '/.htaccess.dist', $apiDir . '/.htaccess');
     }
 
     protected function runCommand($command, InputInterface $input, OutputInterface $output)

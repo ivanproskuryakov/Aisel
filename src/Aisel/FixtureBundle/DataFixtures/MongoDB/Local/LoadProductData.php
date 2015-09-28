@@ -91,6 +91,9 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
         $fs->mkdir($uploadDir);
     }
 
+    /**
+     * @param string $dir
+     */
     private function createDirIfNotExists($dir)
     {
         $fs = new Filesystem();
