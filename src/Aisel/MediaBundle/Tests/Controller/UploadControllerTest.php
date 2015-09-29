@@ -115,7 +115,11 @@ class UploadControllerTest extends AbstractBackendWebTestCase
         $binary = file_get_contents($filePath);
         $binaryLength = strlen($binary);
 
-        $uploadedFile = static::$httpHost . $result;
+        $uploadedFile = realpath(
+            static::$kernel->getContainer()->getParameter('kernel.root_dir') .
+            '/../web' .
+            $result
+        );
         $uploadedBinary = file_get_contents($uploadedFile);
         $uploadedBinaryLength = strlen($uploadedBinary);
 
