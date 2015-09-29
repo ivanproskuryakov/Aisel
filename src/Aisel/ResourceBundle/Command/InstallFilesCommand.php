@@ -43,13 +43,9 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-//        $dialog = $this->getHelperSet()->get('dialog');
         $output->writeln('');
-
-//        if ($dialog->askConfirmation($output, '<question>Create(Update) media directories, .htacess, robots.txt, etc.. ? (Y/N)?</question>', false)) {
         $output->writeln('<info>Installing directories & files ...</info>');
-//            $this->setupFiles($output);
-//        }
+        $this->setupFiles($output);
         $output->writeln('<info>Done, without any issues ...</info>');
     }
 
