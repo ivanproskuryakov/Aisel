@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\ProductBundle\Entity;
+namespace spec\Aisel\CartBundle\Document;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ImageSpec extends ObjectBehavior
+class CartSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\MediaBundle\Document\Image');
+        $this->shouldHaveType('Aisel\CartBundle\Document\Cart');
     }
 
     public function it_should_not_have_id()

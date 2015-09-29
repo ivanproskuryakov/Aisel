@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\OrderBundle\Entity;
+namespace spec\Aisel\OrderBundle\Document;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class OrderItemSpec extends ObjectBehavior
+class InvoiceSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\OrderBundle\Document\OrderItem');
+        $this->shouldHaveType('Aisel\OrderBundle\Document\Invoice');
     }
 
     public function it_should_not_have_id()

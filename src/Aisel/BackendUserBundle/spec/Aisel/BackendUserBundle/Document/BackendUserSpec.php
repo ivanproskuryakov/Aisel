@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\AddressingBundle\Entity;
+namespace spec\Aisel\BackendUserBundle\Document;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class AddressSpec extends ObjectBehavior
+class BackendUserSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\AddressingBundle\Document\Address');
+        $this->shouldHaveType('Aisel\BackendUserBundle\Document\BackendUser');
     }
 
     public function it_should_not_have_id()

@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\FrontendUserBundle\Entity;
+namespace spec\Aisel\ProductBundle\Document;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class FrontendUserSpec extends ObjectBehavior
+class ProductSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\FrontendUserBundle\Document\FrontendUser');
+        $this->shouldHaveType('Aisel\ProductBundle\Document\Product');
     }
 
     public function it_should_not_have_id()

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\PageBundle\Entity;
+namespace spec\Aisel\ProductBundle\Document;
 
 use PhpSpec\ObjectBehavior;
 
@@ -20,7 +20,7 @@ class NodeSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\PageBundle\Document\Node');
+        $this->shouldHaveType('Aisel\ProductBundle\Document\Node');
     }
 
     public function it_should_not_have_id()

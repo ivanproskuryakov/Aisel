@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\PageBundle\Entity;
+namespace spec\Aisel\NavigationBundle\Document;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class PageSpec extends ObjectBehavior
+class MenuSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\PageBundle\Document\Page');
+        $this->shouldHaveType('Aisel\NavigationBundle\Document\Menu');
     }
 
     public function it_should_not_have_id()

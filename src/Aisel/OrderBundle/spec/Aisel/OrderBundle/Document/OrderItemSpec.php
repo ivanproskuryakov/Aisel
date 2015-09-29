@@ -9,33 +9,23 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\ConfigBundle\Entity;
+namespace spec\Aisel\OrderBundle\Document;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ConfigSpec extends ObjectBehavior
+class OrderItemSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\ConfigBundle\Document\Config');
+        $this->shouldHaveType('Aisel\OrderBundle\Document\OrderItem');
     }
 
     public function it_should_not_have_id()
     {
         $this->getId()->shouldReturn(null);
-    }
-
-    public function it_should_not_have_locale()
-    {
-        $this->getLocale()->shouldReturn(null);
-    }
-
-    public function it_should_not_have_value()
-    {
-        $this->getValue()->shouldReturn(null);
     }
 
 }
