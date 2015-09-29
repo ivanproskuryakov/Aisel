@@ -24,7 +24,7 @@ use Symfony\Component\Process\Process;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class InstallCommand extends SetupFilesCommand
+class InstallCommand extends ContainerAwareCommand
 {
 
     /**
@@ -60,15 +60,10 @@ EOT
      */
     protected function launchSetup(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('<info>Database settings.</info>');
         $dialog = $this->getHelperSet()->get('dialog');
 
         if ($dialog->askConfirmation($output, '<question>Install frontend dependencies (Y/N)?</question>', false)) {
             $this->installDependencies($output);
-        }
-
-        if ($dialog->askConfirmation($output, '<question>Create(Update) media directories, .htacess, robots.txt, etc.. ? (Y/N)?</question>', false)) {
-            $this->setupFiles($output);
         }
 
         if ($dialog->askConfirmation($output, '<question>Create database and load fixtures (Y/N)?</question>', false)) {

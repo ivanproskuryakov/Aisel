@@ -18,11 +18,11 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\ArrayInput;
 
 /**
- * SetupFilesCommand
+ * InstallFilesCommand
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class SetupFilesCommand extends ContainerAwareCommand
+class InstallFilesCommand extends ContainerAwareCommand
 {
 
     /**
@@ -43,15 +43,20 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+//        $dialog = $this->getHelperSet()->get('dialog');
         $output->writeln('');
+
+//        if ($dialog->askConfirmation($output, '<question>Create(Update) media directories, .htacess, robots.txt, etc.. ? (Y/N)?</question>', false)) {
         $output->writeln('<info>Installing directories & files ...</info>');
-        $this->setupFiles($output);
+//            $this->setupFiles($output);
+//        }
         $output->writeln('<info>Done, without any issues ...</info>');
     }
 
-
     /**
      * installDependencies
+     *
+     * @param OutputInterface $output
      */
     protected function setupFiles(OutputInterface $output)
     {
