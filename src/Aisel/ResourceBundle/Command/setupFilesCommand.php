@@ -43,12 +43,10 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('<info>***********************************************************</info>');
-        $output->writeln('<info>********** Aisel: Installing Directories & Files **********</info>');
-        $output->writeln('<info>***********************************************************</info>');
         $output->writeln('');
+        $output->writeln('<info>Installing directories & files ...</info>');
         $this->setupFiles($output);
-        $output->writeln('<info>Done, without any issues...</info>');
+        $output->writeln('<info>Done, without any issues ...</info>');
     }
 
 
