@@ -35,7 +35,10 @@ class ApiImageControllerTest extends UploadControllerTest
         $this->assertEquals(0, count($product->getImages()));
 
         foreach ($this->filenames['files'] as $file) {
-            $filename = $this->upload($file);
+            $filename = $this->upload(
+                $file
+//                , 'title', 'description'
+            );
 
             // Create Product Image entity
             $data = [
@@ -206,7 +209,7 @@ class ApiImageControllerTest extends UploadControllerTest
         $data['images'] = [];
         $this->client->request(
             'PUT',
-            '/'. $this->api['backend'] . '/product/' . $product->getId(),
+            '/' . $this->api['backend'] . '/product/' . $product->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
