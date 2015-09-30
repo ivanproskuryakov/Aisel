@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Filesystem\Filesystem;
+use Aisel\MediaBundle\Document\Image;
 
 /**
  * UploadController
@@ -49,7 +50,13 @@ class UploadController extends Controller
                 $filename
             );
 
-            return new JsonResponse($path, 201);
+            $image = new Image();
+            $image->setMainImage(true);
+            $image->setFilename($path);
+            $this->get('doctrine.odm.mongodb.document_manager')->persist($image);
+            $this->get('doctrine.odm.mongodb.document_manager')->flush();
+
+            return new JsonResponse($image->getId(), 201);
         }
     }
 }

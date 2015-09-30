@@ -25,8 +25,9 @@
 
 #Symfony API
 /web/.htaccess
-/web/media/product/*/*
-/web/web/media/product/.htaccess
+/web/media/*
+/web/media/*/*
+/web/media/*/*/*
 /web/css/*
 /web/bundles/*
 /app/bootstrap.php.cache

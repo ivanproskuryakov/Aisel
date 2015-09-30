@@ -111,13 +111,18 @@ class UploadControllerTest extends AbstractBackendWebTestCase
         $this->assertEquals($statusCode, 201);
         $this->assertNotNull($result);
 
+        $image = $this
+            ->dm
+            ->getRepository('Aisel\MediaBundle\Document\Image')
+            ->findOneBy(['id' => $result]);
+
         $filePath = realpath($this->filenames['basePath'] . $file);
         $binary = file_get_contents($filePath);
         $binaryLength = strlen($binary);
 
         $uploadedFile = realpath(
             static::$kernel->getContainer()->getParameter('assetic.write_to') .
-            $result
+            $image->getFilename()
         );
         $uploadedBinary = file_get_contents($uploadedFile);
         $uploadedBinaryLength = strlen($uploadedBinary);
