@@ -35,7 +35,7 @@ class ApiImageControllerTest extends UploadControllerTest
         $this->assertEquals(0, count($product->getImages()));
 
         foreach ($this->filenames['files'] as $file) {
-            $filename = $this->upload($product->getId(), $file);
+            $filename = $this->upload($file);
 
             // Create Product Image entity
             $data = [

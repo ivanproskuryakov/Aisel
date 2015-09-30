@@ -34,28 +34,22 @@ class UploadController extends Controller
      */
     public function uploadAction(Request $request)
     {
-        $id = $request->query->get('id');
-        $productDir = realpath($this->container->getParameter('application.media.product.upload_dir'));
-        $uploadDir = $productDir . '/' . $id;
         $fs = new Filesystem();
+        $uploadPath = realpath($this->container->getParameter('application.media.upload_path'));
 
-        if ($fs->exists($uploadDir) === false) {
-            $fs->mkdir($uploadDir);
+        if ($fs->exists($uploadPath) === false) {
+            $fs->mkdir($uploadPath);
         }
 
-        $filename = Uploader::uploadFile($uploadDir, $request);
+        $filename = Uploader::uploadFile($uploadPath, $request);
 
         if ($filename) {
-            $path = sprintf(
-                "%s/%s/%s",
-                $this->container->getParameter('application.media.product.upload_path'),
-                $id,
+            $path = sprintf("%s/%s",
+                $this->container->getParameter('application.media.path'),
                 $filename
             );
 
             return new JsonResponse($path, 201);
         }
-
     }
-
 }

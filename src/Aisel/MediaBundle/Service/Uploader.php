@@ -26,7 +26,7 @@ class Uploader
 {
 
     /**
-     * uploadAction
+     * uploadFile
      *
      * @param  string $uploadDir
      * @param  Request $request

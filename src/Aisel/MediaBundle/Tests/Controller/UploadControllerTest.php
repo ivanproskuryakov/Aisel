@@ -55,7 +55,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
         $this->filenames['files'][] = 'Rising-1.jpeg';
     }
 
-    public function upload($id, $file)
+    public function upload($file)
     {
         $filePath = realpath($this->filenames['basePath'] . $file);
         $binary = file_get_contents($filePath);
@@ -88,7 +88,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
 
             $this->client->request(
                 'GET',
-                '/' . $this->api['backend'] . '/media/image/upload/?id=' . $id,
+                '/' . $this->api['backend'] . '/media/image/upload/',
                 $data,
                 [],
                 ['CONTENT_TYPE' => 'application/json']
@@ -96,7 +96,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
 
             $this->client->request(
                 'POST',
-                '/' . $this->api['backend'] . '/media/image/upload/?id=' . $id,
+                '/' . $this->api['backend'] . '/media/image/upload/',
                 $data,
                 ['file' => $fileUpload],
                 ['CONTENT_TYPE' => 'application/json']
@@ -116,8 +116,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
         $binaryLength = strlen($binary);
 
         $uploadedFile = realpath(
-            static::$kernel->getContainer()->getParameter('kernel.root_dir') .
-            '/../web' .
+            static::$kernel->getContainer()->getParameter('assetic.write_to') .
             $result
         );
         $uploadedBinary = file_get_contents($uploadedFile);
@@ -125,12 +124,12 @@ class UploadControllerTest extends AbstractBackendWebTestCase
 
         $this->assertEquals($uploadedBinaryLength, $binaryLength);
 
-        return $uploadedFile;
+        return $result;
     }
 
     public function testUploadImageAction()
     {
-        $filename = $this->upload(0, $this->filenames['files'][0]);
+        $filename = $this->upload($this->filenames['files'][0]);
         $this->assertNotNull($filename);
     }
 

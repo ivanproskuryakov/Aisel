@@ -85,7 +85,7 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
     private function cleanMediaDir()
     {
-        $uploadDir = realpath($this->container->getParameter('application.media.product.upload_dir'));
+        $uploadDir = realpath($this->container->getParameter('application.media.upload_path'));
         $fs = new Filesystem();
         $fs->remove($uploadDir);
         $fs->mkdir($uploadDir);
@@ -133,8 +133,8 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
     {
         $images = new ArrayCollection();
 
-        $uploadPath = $this->container->getParameter('application.media.product.path');
-        $uploadDir = $this->container->getParameter('application.media.product.upload_dir');
+        $uploadPath = $this->container->getParameter('application.media.path');
+        $uploadDir = $this->container->getParameter('application.media.upload_path');
         $productDir = $uploadDir . DIRECTORY_SEPARATOR . $product->getId();
 
         // Create product directory if not exists
