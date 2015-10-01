@@ -114,7 +114,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
         $image = $this
             ->dm
             ->getRepository('Aisel\MediaBundle\Document\Image')
-            ->findOneBy(['id' => $result]);
+            ->findOneBy(['id' => $result['id']]);
 
         $filePath = realpath($this->filenames['basePath'] . $file);
         $binary = file_get_contents($filePath);

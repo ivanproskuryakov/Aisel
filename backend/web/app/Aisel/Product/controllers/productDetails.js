@@ -60,26 +60,17 @@ define(['app'], function (app) {
                         }
                     }
                 );
-
             };
+
             $scope.fileDelete = function (id) {
                 $scope.item.images.splice(id, 1);
                 $scope.editSave(deleteFile(id));
             };
 
             $scope.fileUploaded = function ($file, $message, $flow) {
-                var uploadedImage = JSON.parse($message);
-
-                var image = {
-                    id: uploadedImage.id,
-                    filename: uploadedImage.image,
-                    title: '',
-                    description: ''
-                };
-
+                var image = JSON.parse($message);
                 $scope.item.images.push(image);
                 $scope.editSave();
             };
-
         });
 });

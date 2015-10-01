@@ -58,7 +58,7 @@ class UploadController extends Controller
 
             $image = [
                 'id' => $image->getId(),
-                'image' => $image->getFilename(),
+                'filename' => $image->getFilename(),
             ];
 
             return new JsonResponse($image, 201);

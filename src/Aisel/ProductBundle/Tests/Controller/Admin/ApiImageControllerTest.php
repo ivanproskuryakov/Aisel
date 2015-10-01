@@ -35,9 +35,9 @@ class ApiImageControllerTest extends UploadControllerTest
         $this->assertEquals(0, count($product->getImages()));
 
         foreach ($this->filenames['files'] as $file) {
-            $id = $this->upload($file);
-            $this->assertNotNull($id);
-            $images[] = ['id' => $id];
+            $image = $this->upload($file);
+            $this->assertNotNull($image['id']);
+            $images[] = ['id' => $image['id']];
         }
 
         // Patching product
