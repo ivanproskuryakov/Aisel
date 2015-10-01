@@ -35,40 +35,8 @@ class ApiImageControllerTest extends UploadControllerTest
         $this->assertEquals(0, count($product->getImages()));
 
         foreach ($this->filenames['files'] as $file) {
-            $filename = $this->upload(
-                $file
-//                , 'title', 'description'
-            );
-
-            // Create Product Image entity
-            $data = [
-                'filename' => $filename,
-                'title' => 'title',
-                'description' => 'description',
-            ];
-
-            $this->client->request(
-                'POST',
-                '/' . $this->api['backend'] .
-                '/media/image/',
-                [],
-                [],
-                ['CONTENT_TYPE' => 'application/json'],
-                json_encode($data)
-            );
-
-            $response = $this->client->getResponse();
-            $content = $response->getContent();
-
-            $statusCode = $response->getStatusCode();
-            $result = json_decode($content, true);
-
-            $parts = explode('/', $response->headers->get('location'));
-            $id = array_pop($parts);
-            $this->assertEquals($statusCode, 201);
-            $this->assertEquals($result, '');
+            $id = $this->upload($file);
             $this->assertNotNull($id);
-
             $images[] = ['id' => $id];
         }
 

@@ -56,7 +56,12 @@ class UploadController extends Controller
             $this->get('doctrine.odm.mongodb.document_manager')->persist($image);
             $this->get('doctrine.odm.mongodb.document_manager')->flush();
 
-            return new JsonResponse($image->getId(), 201);
+            $image = [
+                'id' => $image->getId(),
+                'image' => $image->getFilename(),
+            ];
+
+            return new JsonResponse($image, 201);
         }
     }
 }

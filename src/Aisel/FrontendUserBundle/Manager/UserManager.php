@@ -65,11 +65,11 @@ class UserManager implements UserProviderInterface
      * Constructor
      *
      * @param DocumentManager $documentManager
-     * @param EncoderFactory  $encoder
+     * @param EncoderFactory $encoder
      * @param SecurityContext $securityContext
-     * @param Swift_Mailer    $mailer
+     * @param Swift_Mailer $mailer
      * @param EngineInterface $templating
-     * @param string          $websiteEmail
+     * @param string $websiteEmail
      */
     public function __construct(
         DocumentManager $documentManager,
@@ -78,7 +78,8 @@ class UserManager implements UserProviderInterface
         Swift_Mailer $mailer,
         EngineInterface $templating,
         $websiteEmail
-    ) {
+    )
+    {
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->encoder = $encoder;
@@ -92,7 +93,7 @@ class UserManager implements UserProviderInterface
      */
     protected function getRepository()
     {
-        $repo =  $this->dm
+        $repo = $this->dm
             ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser');
 
         return $repo;
@@ -161,7 +162,7 @@ class UserManager implements UserProviderInterface
      * Is user password correct
      *
      * @param FrontendUser $user
-     * @param string       $password
+     * @param string $password
      *
      * @return boolean $isValid
      */
@@ -330,7 +331,7 @@ class UserManager implements UserProviderInterface
     {
         $user = $this->getRepository()->findOneBy(array('id' => $id));
 
-        if (!($user)) {
+        if (!$user) {
             throw new LogicException('User not found');
         }
 
@@ -341,7 +342,7 @@ class UserManager implements UserProviderInterface
     {
         $user = $this->getRepository()->findOneBy(array('email' => $email));
 
-        if (!($user)) {
+        if (!$user) {
             throw new LogicException('User not found');
         }
 
@@ -356,7 +357,7 @@ class UserManager implements UserProviderInterface
      */
     public function findUser($username, $email)
     {
-        $user =  $this
+        $user = $this
             ->getRepository()
             ->findOneBy(array(
                 'username' => $username,

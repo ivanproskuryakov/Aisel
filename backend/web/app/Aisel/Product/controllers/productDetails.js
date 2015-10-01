@@ -69,22 +69,16 @@ define(['app'], function (app) {
 
             $scope.fileUploaded = function ($file, $message, $flow) {
                 var uploadedImage = JSON.parse($message);
+
                 var image = {
-                    filename: uploadedImage,
+                    id: uploadedImage.id,
+                    filename: uploadedImage.image,
                     title: '',
-                    description: '',
-                    product: {
-                        id: $stateParams.id
-                    }
+                    description: ''
                 };
 
-                mediaService.new(image).success(
-                    function (data, status, headers, config) {
-                        image.id = headers("Location").split('/').pop();
-                        $scope.item.images.push(image);
-                        $scope.editSave();
-                    }
-                );
+                $scope.item.images.push(image);
+                $scope.editSave();
             };
 
         });
