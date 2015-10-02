@@ -18,7 +18,7 @@ define(['app'], function(app) {
 
             return {
                 new: function (data) {
-                    var url = Environment.settings.api + '/media/image/';
+                    var url = Environment.settings.api + '/media/';
 
                     return $http({
                         method: 'POST',
@@ -27,7 +27,7 @@ define(['app'], function(app) {
                     });
                 },
                 delete: function (id) {
-                    var url = Environment.settings.api + '/media/image/' + id;
+                    var url = Environment.settings.api + '/media/' + id;
 
                     return $http({
                         method: 'DELETE',

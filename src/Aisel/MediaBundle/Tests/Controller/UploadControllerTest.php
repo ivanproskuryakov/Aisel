@@ -88,7 +88,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
 
             $this->client->request(
                 'GET',
-                '/' . $this->api['backend'] . '/media/image/upload/',
+                '/' . $this->api['backend'] . '/media/upload/',
                 $data,
                 [],
                 ['CONTENT_TYPE' => 'application/json']
@@ -96,7 +96,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
 
             $this->client->request(
                 'POST',
-                '/' . $this->api['backend'] . '/media/image/upload/',
+                '/' . $this->api['backend'] . '/media/upload/',
                 $data,
                 ['file' => $fileUpload],
                 ['CONTENT_TYPE' => 'application/json']

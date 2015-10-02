@@ -88,7 +88,7 @@ class ApiImageControllerTest extends UploadControllerTest
         $this->client->request(
             'PUT',
             '/' . $this->api['backend'] .
-            '/media/image/' . $image->getId(),
+            '/media/' . $image->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -128,7 +128,7 @@ class ApiImageControllerTest extends UploadControllerTest
             $this->client->request(
                 'GET',
                 '/' . $this->api['backend'] .
-                '/media/image/' . $image->getId(),
+                '/media/' . $image->getId(),
                 [],
                 [],
                 ['CONTENT_TYPE' => 'application/json']
@@ -160,7 +160,7 @@ class ApiImageControllerTest extends UploadControllerTest
             $this->client->request(
                 'DELETE',
                 '/' . $this->api['backend'] .
-                '/media/image/' . $image->getId(),
+                '/media/' . $image->getId(),
                 [],
                 [],
                 ['CONTENT_TYPE' => 'application/json']

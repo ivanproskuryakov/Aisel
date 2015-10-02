@@ -5,31 +5,30 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-# Images
-admin_api_aisel_media_image_upload:
-    pattern:   /media/image/upload/
+api_aisel_media_upload:
+    pattern:   /media/upload/
     defaults:  { _controller: AiselMediaBundle:Upload:upload, _format: json }
 
-admin_api_aisel_media_image_post:
-    pattern:   /media/image/
+admin_api_aisel_media_post:
+    pattern:   /media/
     defaults:  { _controller: AiselMediaBundle:Admin/ApiImage:post, _format: json }
     requirements:
         _method: POST
 
-admin_api_aisel_media_image_get:
-    pattern:   /media/image/{id}
+admin_api_aisel_media_get:
+    pattern:   /media/{id}
     defaults:  { _controller: AiselMediaBundle:Admin/ApiImage:get, _format: json }
     requirements:
         _method: GET
 
-admin_api_aisel_media_image_put:
-    pattern:   /media/image/{id}
+admin_api_aisel_media_put:
+    pattern:   /media/{id}
     defaults:  { _controller: AiselMediaBundle:Admin/ApiImage:put, _format: json }
     requirements:
         _method: PUT
 
-admin_api_aisel_media_image_delete:
-    pattern:   /media/image/{id}
+admin_api_aisel_media_delete:
+    pattern:   /media/{id}
     defaults:  { _controller: AiselMediaBundle:Admin/ApiImage:delete, _format: json }
     requirements:
         _method: DELETE
