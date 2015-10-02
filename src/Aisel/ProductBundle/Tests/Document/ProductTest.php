@@ -15,7 +15,7 @@ use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
 use Aisel\ProductBundle\Document\Product;
 use Aisel\ProductBundle\Document\Node;
-use Aisel\MediaBundle\Document\Image;
+use Aisel\MediaBundle\Document\Media;
 
 /**
  * ProductTest
@@ -73,7 +73,7 @@ class ProductTest extends AbstractWebTestCase
 
     public function testDuplicateImages()
     {
-        $image = new Image();
+        $image = new Media();
         $image->setFilename($this->faker->numberBetween(0, 10000));
         $image->setMainImage(false);
 
@@ -90,14 +90,14 @@ class ProductTest extends AbstractWebTestCase
         $product->setStatus(true);
         $product->setCommentStatus(true);
         $product->setMetaUrl('url_' . time());
-        $product->addImage($image);
-        $product->addImage($image);
+        $product->addMedia($image);
+        $product->addMedia($image);
 
         $this->dm->persist($product);
         $this->dm->flush();
 
         $this->assertNotNull($product->getId());
-        $this->assertEquals(count($product->getImages()), 1);
+        $this->assertEquals(count($product->getMedias()), 1);
 
         $this->dm->remove($image);
         $this->dm->flush();
