@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Filesystem\Filesystem;
-use Aisel\MediaBundle\Document\Image;
+use Aisel\MediaBundle\Document\Media;
 
 /**
  * UploadController
@@ -25,6 +25,34 @@ use Aisel\MediaBundle\Document\Image;
  */
 class UploadController extends Controller
 {
+
+    /**
+     * createMedia
+     *
+     * @param string $filename
+     *
+     * @return Media $media
+     */
+    protected function newFile($filename)
+    {
+        $path = sprintf("%s/%s",
+            $this->container->getParameter('application.media.path'),
+            $filename
+        );
+
+        $file = new Media();
+        $file->setMainImage(true);
+        $file->setFilename($path);
+        $this->get('doctrine.odm.mongodb.document_manager')->persist($file);
+        $this->get('doctrine.odm.mongodb.document_manager')->flush();
+
+        $media = [
+            'id' => $file->getId(),
+            'filename' => $file->getFilename(),
+        ];
+
+        return $media;
+    }
 
     /**
      * uploadAction
@@ -45,23 +73,9 @@ class UploadController extends Controller
         $filename = Uploader::uploadFile($uploadPath, $request);
 
         if ($filename) {
-            $path = sprintf("%s/%s",
-                $this->container->getParameter('application.media.path'),
-                $filename
-            );
+            $file = $this->newFile($filename);
 
-            $image = new Image();
-            $image->setMainImage(true);
-            $image->setFilename($path);
-            $this->get('doctrine.odm.mongodb.document_manager')->persist($image);
-            $this->get('doctrine.odm.mongodb.document_manager')->flush();
-
-            $image = [
-                'id' => $image->getId(),
-                'filename' => $image->getFilename(),
-            ];
-
-            return new JsonResponse($image, 201);
+            return new JsonResponse($file, 201);
         }
     }
 }

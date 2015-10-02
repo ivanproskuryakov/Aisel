@@ -28,11 +28,11 @@ class ApiImageControllerTest extends UploadControllerTest
             ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
 
-        foreach ($product->getImages() as $image) {
-            $product->removeImage($image);
+        foreach ($product->getMedias() as $image) {
+            $product->removeMedia($image);
         }
 
-        $this->assertEquals(0, count($product->getImages()));
+        $this->assertEquals(0, count($product->getMedias()));
 
         foreach ($this->filenames['files'] as $file) {
             $image = $this->upload($file);
@@ -69,7 +69,7 @@ class ApiImageControllerTest extends UploadControllerTest
             ->find($product->getId());
 
 
-        $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
+        $this->assertEquals(count($this->filenames['files']), count($product->getMedias()));
     }
 
     public function testPutImageAction()
@@ -79,7 +79,7 @@ class ApiImageControllerTest extends UploadControllerTest
             ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
 
-        $image = $product->getImages()[0];
+        $image = $product->getMedias()[0];
         $data = [
             'title' => time(),
             'description' => time(),
@@ -109,7 +109,7 @@ class ApiImageControllerTest extends UploadControllerTest
             ->dm
             ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
-        $image = $product->getImages()[0];
+        $image = $product->getMedias()[0];
 
         $this->assertEquals($image->getTitle(), $data['title']);
         $this->assertEquals($image->getDescription(), $data['description']);
@@ -122,9 +122,9 @@ class ApiImageControllerTest extends UploadControllerTest
             ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
 
-        $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
+        $this->assertEquals(count($this->filenames['files']), count($product->getMedias()));
 
-        foreach ($product->getImages() as $image) {
+        foreach ($product->getMedias() as $image) {
             $this->client->request(
                 'GET',
                 '/' . $this->api['backend'] .
@@ -154,9 +154,9 @@ class ApiImageControllerTest extends UploadControllerTest
             ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
 
-        $this->assertEquals(count($this->filenames['files']), count($product->getImages()));
+        $this->assertEquals(count($this->filenames['files']), count($product->getMedias()));
 
-        foreach ($product->getImages() as $image) {
+        foreach ($product->getMedias() as $image) {
             $this->client->request(
                 'DELETE',
                 '/' . $this->api['backend'] .
@@ -174,7 +174,7 @@ class ApiImageControllerTest extends UploadControllerTest
             $this->assertEmpty($content);
         }
 
-        $data['images'] = [];
+        $data['medias'] = [];
         $this->client->request(
             'PUT',
             '/' . $this->api['backend'] . '/product/' . $product->getId(),
@@ -195,7 +195,7 @@ class ApiImageControllerTest extends UploadControllerTest
             ->getRepository('Aisel\ProductBundle\Document\Product')
             ->findOneBy(['locale' => 'en']);
 
-        $this->assertEquals(0, count($product->getImages()->toArray()));
+        $this->assertEquals(0, count($product->getMedias()->toArray()));
     }
 
 }

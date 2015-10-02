@@ -24,6 +24,6 @@ class ApiImageController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\MediaBundle\Document\Image";
+    protected $model = "Aisel\MediaBundle\Document\Media";
 
 }

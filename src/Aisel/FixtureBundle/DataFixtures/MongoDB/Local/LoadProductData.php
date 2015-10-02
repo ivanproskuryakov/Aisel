@@ -16,11 +16,12 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
 use Aisel\ProductBundle\Document\Product;
-use Aisel\MediaBundle\Document\Image;
+use Aisel\MediaBundle\Document\Media;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+
 /**
  * Product fixtures
  *
@@ -55,12 +56,12 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
                     $product->setName($table->column[2]);
                     $product->setSku($table->column[3]);
                     $product->setPrice((int)$table->column[4]);
-                    $product->setQty((int) $table->column[11]);
+                    $product->setQty((int)$table->column[11]);
                     $product->setDescriptionShort($table->column[14]);
                     $product->setDescription($table->column[15]);
-                    $product->setStatus((int) $table->column[16]);
-                    $product->setHidden((int) $table->column[17]);
-                    $product->setCommentStatus((int) $table->column[18]);
+                    $product->setStatus((int)$table->column[16]);
+                    $product->setHidden((int)$table->column[17]);
+                    $product->setCommentStatus((int)$table->column[18]);
                     $product->setMetaUrl($table->column[19]);
 
                     $nodes = explode(",", $table->column[20]);
@@ -75,7 +76,7 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
                     $this->addReference('product_' . $table->column[0], $product);
                     $images = $this->setProductImage($manager, $product);
 
-                    $product->setImages($images);
+                    $product->setMedias($images);
                     $manager->persist($product);
                     $manager->flush();
                 }
@@ -147,9 +148,7 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
         // Copy and attach image to product
         foreach ($productImages as $productImage) {
-            /** @var SplFileInfo $image */
-
-            if (file_exists($productDir) === false ) {
+            if (file_exists($productDir) === false) {
                 mkdir($productDir);
             }
             $newPath = $productDir . DIRECTORY_SEPARATOR . $productImage->getFilename();
@@ -159,9 +158,9 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
             }
             copy($productImage->getPathname(), $newPath);
 
-            $fileName = $uploadPath . '/'.  $product->getId(). '/' . $productImage->getFilename();
+            $fileName = $uploadPath . '/' . $product->getId() . '/' . $productImage->getFilename();
 
-            $image = new Image();
+            $image = new Media();
             $image->setFilename($fileName);
             $image->setMainImage(false);
             $manager->persist($image);

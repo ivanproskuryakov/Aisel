@@ -19,7 +19,7 @@ use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\ProductBundle\Document\Node;
-use Aisel\MediaBundle\Document\Image;
+use Aisel\MediaBundle\Document\Media;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
@@ -190,12 +190,12 @@ class Product implements UrlInterface
 
     /**
      * @var Collection
-     * @ODM\ReferenceMany(targetDocument="Aisel\MediaBundle\Document\Image")
+     * @ODM\ReferenceMany(targetDocument="Aisel\MediaBundle\Document\Media")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Document\Image>")
+     * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Document\Media>")
      * @AiselAnnotation\NoDuplicates()
      */
-    private $images;
+    private $medias;
 
     /**
      * @var ArrayCollection
@@ -211,7 +211,7 @@ class Product implements UrlInterface
      */
     public function __construct()
     {
-        $this->images = new ArrayCollection();
+        $this->medias = new ArrayCollection();
         $this->nodes = new ArrayCollection();
     }
 
@@ -538,63 +538,63 @@ class Product implements UrlInterface
     }
 
     /**
-     * Set images
+     * Set medias
      *
-     * @param  ArrayCollection   $images
+     * @param  ArrayCollection   $medias
      * @return Product
      */
-    public function setImages(ArrayCollection $images)
+    public function setMedias(ArrayCollection $medias)
     {
-        $this->images = $images;
+        $this->medias = $medias;
 
         return $this;
     }
 
     /**
-     * Add image
+     * Add media
      *
-     * @param  Image   $image
+     * @param  Media   $media
      * @return Product
      */
-    public function addImage(Image $image)
+    public function addMedia(Media $media)
     {
-        $this->images[] = $image;
+        $this->medias[] = $media;
 
         return $this;
     }
 
     /**
-     * Remove image
+     * Remove media
      *
-     * @param Image $image
+     * @param Media $media
      */
-    public function removeImage(Image $image)
+    public function removeMedia(Media $media)
     {
-        $this->images->removeElement($image);
+        $this->medias->removeElement($media);
     }
 
     /**
-     * Get images
-     *
-     * @return Collection
-     */
-    public function getImages()
-    {
-        return $this->images;
-    }
-
-    /**
-     * Get images
+     * Get medias
      *
      * @return Collection
      */
-    public function getMainImage()
+    public function getMedias()
     {
-        return $this->images;
+        return $this->medias;
     }
 
     /**
-     * Add nodes
+     * Get medias
+     *
+     * @return Collection
+     */
+    public function getMainMedia()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * Add nodes$
      *
      * @param  Node $node
      * @return Product

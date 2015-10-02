@@ -21,7 +21,7 @@ use Aisel\ResourceBundle\Domain\DescriptionTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
 /**
- * Image
+ * Media
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  * @ODM\HasLifecycleCallbacks()
@@ -31,7 +31,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @ODM\MappedSuperclass
  * @JMS\ExclusionPolicy("all")
  */
-class Image
+class Media
 {
 
     use IdTrait;
@@ -62,7 +62,7 @@ class Image
      * Set filename
      *
      * @param  string $filename
-     * @return Image
+     * @return Media
      */
     public function setFilename($filename)
     {
