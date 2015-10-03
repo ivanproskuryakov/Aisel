@@ -76,9 +76,10 @@ class Uploader
                 throw new HttpException(400);
             }
         }
+        $filename = $mediaDir . '/' . $uploadedFile['name'];
 
-        if ($flowFile->validateFile() && $flowFile->save($mediaDir . '/' . $uploadedFile['name'])) {
-            return $uploadedFile['name'];
+        if ($flowFile->validateFile() && $flowFile->save($filename)) {
+            return $filename;
         } else {
             // This is not a final chunk, continue to upload
         }

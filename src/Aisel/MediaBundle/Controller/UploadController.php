@@ -15,8 +15,6 @@ use Aisel\MediaBundle\Service\Uploader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Filesystem\Filesystem;
-use Aisel\MediaBundle\Document\Media;
 
 /**
  * UploadController
@@ -25,36 +23,6 @@ use Aisel\MediaBundle\Document\Media;
  */
 class UploadController extends Controller
 {
-
-    /**
-     * createMedia
-     *
-     * @param string $filename
-     * @param string $type
-     *
-     * @return Media $media
-     */
-    protected function newFile($filename, $type)
-    {
-        $path = sprintf("%s/%s",
-            $this->container->getParameter('application.media.path'),
-            $filename
-        );
-
-        $file = new Media();
-        $file->setType($type);
-        $file->setMainImage(true);
-        $file->setFilename($path);
-        $this->get('doctrine.odm.mongodb.document_manager')->persist($file);
-        $this->get('doctrine.odm.mongodb.document_manager')->flush();
-
-        $media = [
-            'id' => $file->getId(),
-            'filename' => $file->getFilename(),
-        ];
-
-        return $media;
-    }
 
     /**
      * uploadAction
@@ -66,17 +34,21 @@ class UploadController extends Controller
      */
     public function uploadAction(Request $request, $type)
     {
-        $fs = new Filesystem();
-        $uploadPath = realpath($this->container->getParameter('application.media.upload_path'));
+        $path = Uploader::uploadFile(
+            realpath($this->container->getParameter('application.media.upload_path')),
+            $request
+        );
 
-        if ($fs->exists($uploadPath) === false) {
-            $fs->mkdir($uploadPath);
-        }
+        if ($path) {
+            $media = $this
+                ->container
+                ->get('aisel.media.manager')
+                ->createMediaFromFile($path, $type);
 
-        $filename = Uploader::uploadFile($uploadPath, $request);
-
-        if ($filename) {
-            $file = $this->newFile($filename, $type);
+            $file = [
+                'id' => $media->getId(),
+                'filename' => $media->getFilename(),
+            ];
 
             return new JsonResponse($file, 201);
         }

@@ -4,3 +4,14 @@
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
+
+parameters:
+    aisel_media_manager.class: Aisel\MediaBundle\Manager\MediaManager
+
+services:
+    aisel.media.manager:
+        class: %aisel_media_manager.class%
+        arguments:
+          - @doctrine.odm.mongodb.document_manager
+          - %application.media.upload_path%
+          - %application.media.path%

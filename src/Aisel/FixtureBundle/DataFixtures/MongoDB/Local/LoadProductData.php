@@ -134,45 +134,23 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
     {
         $images = new ArrayCollection();
 
-        $uploadPath = $this->container->getParameter('application.media.path');
-        $uploadDir = $this->container->getParameter('application.media.upload_path');
-        $productDir = $uploadDir . DIRECTORY_SEPARATOR . $product->getId();
-
-        // Create product directory if not exists
-        $this->createDirIfNotExists($uploadDir);
-
         $finder = new Finder();
         $productImages = $finder
             ->files()
             ->in($this->getRandomProductDirectory());
 
-        // Copy and attach image to product
         foreach ($productImages as $productImage) {
-            if (file_exists($productDir) === false) {
-                mkdir($productDir);
-            }
-            $newPath = $productDir . DIRECTORY_SEPARATOR . $productImage->getFilename();
-
-            if (file_exists($newPath)) {
-                unlink($newPath);
-            }
-            copy($productImage->getPathname(), $newPath);
-
-            $fileName = $uploadPath . '/' . $product->getId() . '/' . $productImage->getFilename();
-
-            $image = new Media();
-            $image->setFilename($fileName);
-            $image->setType('image');
-            $image->setMainImage(false);
-            $manager->persist($image);
-            $manager->flush();
+            $image = $this->container
+                ->get('aisel.media.manager')
+                ->createMediaFromFile($productImage->getPathname(), 'image');
 
             $images->add($image);
         }
-        // Set last image as main
-        $image->setMainImage(true);
-        $manager->persist($image);
-        $manager->flush();
+//        exit();
+//         Set last image as main
+//        $image->setMainImage(true);
+//        $manager->persist($image);
+//        $manager->flush();
 
         return $images;
     }
