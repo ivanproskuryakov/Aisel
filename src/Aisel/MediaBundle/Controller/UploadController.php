@@ -30,10 +30,11 @@ class UploadController extends Controller
      * createMedia
      *
      * @param string $filename
+     * @param string $type
      *
      * @return Media $media
      */
-    protected function newFile($filename)
+    protected function newFile($filename, $type)
     {
         $path = sprintf("%s/%s",
             $this->container->getParameter('application.media.path'),
@@ -41,6 +42,7 @@ class UploadController extends Controller
         );
 
         $file = new Media();
+        $file->setType($type);
         $file->setMainImage(true);
         $file->setFilename($path);
         $this->get('doctrine.odm.mongodb.document_manager')->persist($file);
@@ -58,10 +60,11 @@ class UploadController extends Controller
      * uploadAction
      *
      * @param Request $request
+     * @param string $type
      *
      * @return mixed
      */
-    public function uploadAction(Request $request)
+    public function uploadAction(Request $request, $type)
     {
         $fs = new Filesystem();
         $uploadPath = realpath($this->container->getParameter('application.media.upload_path'));
@@ -73,7 +76,7 @@ class UploadController extends Controller
         $filename = Uploader::uploadFile($uploadPath, $request);
 
         if ($filename) {
-            $file = $this->newFile($filename);
+            $file = $this->newFile($filename, $type);
 
             return new JsonResponse($file, 201);
         }

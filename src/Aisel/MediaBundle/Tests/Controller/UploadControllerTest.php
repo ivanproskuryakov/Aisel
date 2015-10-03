@@ -88,7 +88,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
 
             $this->client->request(
                 'GET',
-                '/' . $this->api['backend'] . '/media/upload/',
+                '/' . $this->api['backend'] . '/media/upload/image/',
                 $data,
                 [],
                 ['CONTENT_TYPE' => 'application/json']
@@ -96,7 +96,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
 
             $this->client->request(
                 'POST',
-                '/' . $this->api['backend'] . '/media/upload/',
+                '/' . $this->api['backend'] . '/media/upload/image/',
                 $data,
                 ['file' => $fileUpload],
                 ['CONTENT_TYPE' => 'application/json']
@@ -127,6 +127,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
         $uploadedBinary = file_get_contents($uploadedFile);
         $uploadedBinaryLength = strlen($uploadedBinary);
 
+        $this->assertEquals($image->getType(), 'image');
         $this->assertEquals($uploadedBinaryLength, $binaryLength);
 
         return $result;

@@ -31,19 +31,19 @@ define(['app'], function (app) {
 
             // Product Images
             $scope.domain = Environment.settings.domain;
-            $scope.uploadPath = Environment.settings.api + '/media/image/upload/?id=' + $stateParams.id;
+            $scope.uploadPath = Environment.settings.api + '/media/upload/';
 
             // Delete file
 
             var deleteFile = function (id) {
                 mediaService.delete(id).success(
                     function (data, status) {
-                        notify('Attached image was removed');
+                        notify('Attached media was removed');
 
-                        angular.forEach($scope.item.images, function (image, key) {
+                        angular.forEach($scope.item.medias, function (image, key) {
                             if (image.id === id) {
-                                $scope.item.images.splice(
-                                    $scope.item.images.indexOf(image), 1
+                                $scope.item.medias.splice(
+                                    $scope.item.medias.indexOf(image), 1
                                 );
                             }
                         });
@@ -63,13 +63,13 @@ define(['app'], function (app) {
             };
 
             $scope.fileDelete = function (id) {
-                $scope.item.images.splice(id, 1);
+                $scope.item.medias.splice(id, 1);
                 $scope.editSave(deleteFile(id));
             };
 
             $scope.fileUploaded = function ($file, $message, $flow) {
                 var image = JSON.parse($message);
-                $scope.item.images.push(image);
+                $scope.item.medias.push(image);
                 $scope.editSave();
             };
         });

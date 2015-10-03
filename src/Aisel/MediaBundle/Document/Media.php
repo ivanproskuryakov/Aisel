@@ -57,6 +57,14 @@ class Media
      */
     protected $filename;
 
+    /**
+     * @var string
+     * @ODM\Field(type="string")
+     * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
+     */
+    protected $type;
 
     /**
      * Set filename
@@ -96,5 +104,29 @@ class Media
     {
         $this->mainImage = $mainImage;
     }
+
+    /**
+     * Gets Type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Sets Type
+     *
+     * @param string $type
+     *
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
+    }
+
 
 }

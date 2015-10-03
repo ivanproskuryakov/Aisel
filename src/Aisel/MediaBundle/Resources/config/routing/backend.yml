@@ -6,7 +6,7 @@
 # file that was distributed with this source code.
 
 api_aisel_media_upload:
-    pattern:   /media/upload/
+    pattern:   /media/upload/{type}/
     defaults:  { _controller: AiselMediaBundle:Upload:upload, _format: json }
 
 admin_api_aisel_media_post:
