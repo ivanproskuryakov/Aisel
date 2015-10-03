@@ -14,11 +14,11 @@ namespace Aisel\MediaBundle\Controller\Admin;
 use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 
 /**
- * ApiImageController
+ * ApiMediaController
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiImageController extends BaseApiController
+class ApiMediaController extends BaseApiController
 {
 
     /**

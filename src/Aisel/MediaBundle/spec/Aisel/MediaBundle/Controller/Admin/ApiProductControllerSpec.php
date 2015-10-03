@@ -16,12 +16,11 @@ use PhpSpec\ObjectBehavior;
 /**
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiImageControllerSpec extends ObjectBehavior
+class ApiProductControllerSpec extends ObjectBehavior
 {
-
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\Aisel\ProductBundle\Controller\Admin\ApiImageController');
+        $this->shouldHaveType('\Aisel\ProductBundle\Controller\Admin\ApiProductController');
     }
 
 }

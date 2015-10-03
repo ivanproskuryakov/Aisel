@@ -11,24 +11,24 @@ api_aisel_media_upload:
 
 admin_api_aisel_media_post:
     pattern:   /media/
-    defaults:  { _controller: AiselMediaBundle:Admin/ApiImage:post, _format: json }
+    defaults:  { _controller: AiselMediaBundle:Admin/ApiMedia:post, _format: json }
     requirements:
         _method: POST
 
 admin_api_aisel_media_get:
     pattern:   /media/{id}
-    defaults:  { _controller: AiselMediaBundle:Admin/ApiImage:get, _format: json }
+    defaults:  { _controller: AiselMediaBundle:Admin/ApiMedia:get, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_media_put:
     pattern:   /media/{id}
-    defaults:  { _controller: AiselMediaBundle:Admin/ApiImage:put, _format: json }
+    defaults:  { _controller: AiselMediaBundle:Admin/ApiMedia:put, _format: json }
     requirements:
         _method: PUT
 
 admin_api_aisel_media_delete:
     pattern:   /media/{id}
-    defaults:  { _controller: AiselMediaBundle:Admin/ApiImage:delete, _format: json }
+    defaults:  { _controller: AiselMediaBundle:Admin/ApiMedia:delete, _format: json }
     requirements:
         _method: DELETE
