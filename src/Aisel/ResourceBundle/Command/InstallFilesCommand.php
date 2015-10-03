@@ -61,7 +61,6 @@ EOT
         $frontendDir = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../frontend/web');
         $backendDir = realpath($this->getContainer()->get('kernel')->getRootDir() . '/../backend/web');
         $mediaDir = $apiDir . $this->getContainer()->getParameter('application.media.path');
-        $mediaProductDir = $apiDir . $this->getContainer()->getParameter('application.media.product.path');
 
         // Frontend
         $fs->copy($frontendDir . '/robots.txt.dist', $frontendDir . '/robots.txt');
@@ -77,9 +76,6 @@ EOT
         // Media
         if ($fs->exists($mediaDir) === false) {
             $fs->mkdir($mediaDir);
-        }
-        if ($fs->exists($mediaProductDir) === false) {
-            $fs->mkdir($mediaProductDir);
         }
 
     }

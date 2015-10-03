@@ -24,17 +24,16 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class Uploader
 {
-
     /**
      * uploadFile
      *
-     * @param  string $uploadDir
+     * @param  string $mediaDir
      * @param  Request $request
      * @throws HttpException
      *
      * @return string
      */
-    public static function uploadFile($uploadDir, Request $request)
+    public static function uploadFile($mediaDir, Request $request)
     {
         $uploadedFile = null;
 
@@ -51,7 +50,7 @@ class Uploader
         }
 
         $config = new FlowConfig();
-        $config->setTempDir($uploadDir);
+        $config->setTempDir($mediaDir);
         $flowRequest = new FlowRequest(
             $request->request->all(),
             $uploadedFile
@@ -78,7 +77,7 @@ class Uploader
             }
         }
 
-        if ($flowFile->validateFile() && $flowFile->save($uploadDir . '/' . $uploadedFile['name'])) {
+        if ($flowFile->validateFile() && $flowFile->save($mediaDir . '/' . $uploadedFile['name'])) {
             return $uploadedFile['name'];
         } else {
             // This is not a final chunk, continue to upload
