@@ -57,10 +57,11 @@ class MediaManager
      *
      * @param string $pathOld
      * @param string $type
+     * @param boolean $move
      *
      * @return Media $media
      */
-    public function createMediaFromFile($pathOld, $type)
+    public function createMediaFromFile($pathOld, $type, $move = true)
     {
         $media = new Media();
         $media->setType($type);
@@ -83,7 +84,12 @@ class MediaManager
 
         $fs = new Filesystem();
         $fs->mkdir($fileDir);
-        $fs->rename($pathOld, $pathNew);
+
+        if ($move) {
+            $fs->rename($pathOld, $pathNew);
+        } else {
+            $fs->copy($pathOld, $pathNew);
+        }
 
         //Update document
         $media->setFilename($pathWeb);

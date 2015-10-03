@@ -140,17 +140,18 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
             ->in($this->getRandomProductDirectory());
 
         foreach ($productImages as $productImage) {
-            $image = $this->container
+            $image = $this
+                ->container
                 ->get('aisel.media.manager')
-                ->createMediaFromFile($productImage->getPathname(), 'image');
+                ->createMediaFromFile($productImage->getPathname(), 'image', false);
 
             $images->add($image);
         }
-//        exit();
-//         Set last image as main
-//        $image->setMainImage(true);
-//        $manager->persist($image);
-//        $manager->flush();
+
+        // Set last image as main
+        $image->setMainImage(true);
+        $manager->persist($image);
+        $manager->flush();
 
         return $images;
     }
