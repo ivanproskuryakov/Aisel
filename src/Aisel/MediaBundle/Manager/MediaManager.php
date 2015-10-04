@@ -16,7 +16,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Uploader
+ * MediaManager
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
@@ -65,7 +65,7 @@ class MediaManager
     {
         $media = new Media();
         $media->setType($type);
-        $media->setMainImage(true);
+        $media->setMainImage(false);
         $this->dm->persist($media);
         $this->dm->flush();
 
