@@ -22,8 +22,8 @@ Grunt
 
 Installation
 -----------------------------------
-Installling framework: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-Aisel<br/>
-Installling environment: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-LAMP<br/>
+Framework: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-Aisel<br/>
+Environment: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-LAMP<br/>
 
 Quick installation:<br/>
 https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
