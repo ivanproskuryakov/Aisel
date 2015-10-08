@@ -22,6 +22,9 @@ Grunt
 
 Installation
 -----------------------------------
+https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-Aisel
+https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-LAMP
+
 Apache virtual hosts<br/>
 https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
 
