@@ -13,13 +13,6 @@ Backend demo: `http://admin.ecommerce.aisel.co/` [backenduser/backenduser]<br/>
 
 <img width="400" src="http://aisel.co/images/frontend_product_view.png"/>
 
-Requirements:<br/>
-```
-Node.js and NPM
-Bower
-Grunt
-```
-
 Installation
 -----------------------------------
 Framework: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-Aisel<br/>
@@ -39,6 +32,13 @@ https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.hos
  - app/var/
  - app/logs/
  - web/media/
+```
+
+Requirements:<br/>
+```
+Node.js and NPM
+Bower
+Grunt
 ```
 
  
