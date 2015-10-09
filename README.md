@@ -24,6 +24,7 @@ Installation
 -----------------------------------
 Framework: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-Aisel<br/>
 Environment: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-LAMP<br/>
+Commands: https://github.com/ivanproskuryakov/Aisel/wiki/Development:-Aisel-commands<br/>
 
 Quick installation:<br/>
 https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
@@ -40,10 +41,6 @@ https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.hos
  - web/media/
 ```
 
-Sitemap 
-```
-php app/console aisel:sitemap:generate  
-```
  
 Running Tests
 -----------------------------------
