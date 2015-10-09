@@ -40,11 +40,6 @@ https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.hos
  - web/media/
 ```
 
-Screencast:
-<iframe width="420" height="315" src="https://www.youtube.com/embed/Z1FDuhCtc38" frameborder="0" allowfullscreen></iframe>
-[![ScreenShot](http://img.youtube.com/vi/Z1FDuhCtc38/0.jpg)](https://www.youtube.com/watch?v=Z1FDuhCtc38)
-
-
 Sitemap 
 ```
 php app/console aisel:sitemap:generate  
