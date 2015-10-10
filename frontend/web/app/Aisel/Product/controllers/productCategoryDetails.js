@@ -21,7 +21,7 @@ define(['app'], function(app) {
             $scope.categoryId = $stateParams.categoryId;
 
             // Category Information
-            productCategoryService.getCategory($scope.categoryId).success(
+            productCategoryService.getItem($scope.categoryId).success(
                 function(data, status) {
                     $scope.category = data;
                 }
@@ -47,7 +47,7 @@ define(['app'], function(app) {
                 };
                 productService.getCollection(params).success(
                     function(data, status) {
-                        $scope.productList = data;
+                        $scope.collection = data;
                     }
                 );
             };

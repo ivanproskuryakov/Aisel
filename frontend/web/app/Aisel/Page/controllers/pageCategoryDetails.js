@@ -21,7 +21,7 @@ define(['app'], function(app) {
             $scope.categoryId = $stateParams.categoryId;
 
             // Category Information
-            pageCategoryService.getCategory($scope.categoryId).success(
+            pageCategoryService.getItem($scope.categoryId).success(
                 function(data, status) {
                     $scope.category = data;
                 }

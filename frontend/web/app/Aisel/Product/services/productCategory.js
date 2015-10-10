@@ -27,7 +27,7 @@ define(['app'], function(app) {
                     console.log(url);
                     return $http.get(url);
                 },
-                getCategory: function(categoryId) {
+                getItem: function(categoryId) {
                     var locale = Environment.currentLocale();
                     var url = Environment.settings.api + '/' + locale + '/product/node/' + categoryId;
                     console.log(url);

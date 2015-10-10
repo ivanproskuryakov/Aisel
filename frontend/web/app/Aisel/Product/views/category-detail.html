@@ -8,10 +8,10 @@
         <p ng-bind-html="category.description"></p>
     </div>
     <div class="col-xs-12 col-md-12">
-        <div class="related categoryPages" ng-if="productList">
+        <div class="related categoryPages" ng-if="collection">
             <div class="">
                 <ul class="pageList">
-                    <li ng-repeat="product in productList.collection">
+                    <li ng-repeat="product in collection.collection">
                         <h2>
                             <a ui-sref="productView({locale: locale, productId:product.meta_url})"
                             class="thumb">
@@ -24,8 +24,7 @@
                                 <aisel-product-images
                                         class="product-image"
                                         img-style="img-rounded"
-                                        images="product.images"
-                                        >
+                                        images="product.medias">
                                 </aisel-product-images>
                             </div>
                             <div class="col-md-9">
@@ -37,16 +36,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-6">
-                <pagination ng-if="productList.total > 0" on-select-page="pageChanged(page)"
-                            categorys-per-page="{{pageLimit}}" total-categorys="productList.total"
-                            page="paginationPage"></pagination>
-            </div>
-            <div class="col-md-6">
-                <p class="pull-right"><strong>Total: {{productList.total}} Current: {{paginationPage}}</strong>
-                </p>
-            </div>
         </div>
     </div>
+    <div ng-include="'/app/Aisel/Kernel/views/pagination.html'"></div>
 </div>
 
