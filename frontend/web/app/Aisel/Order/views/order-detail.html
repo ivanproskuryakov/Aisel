@@ -36,7 +36,13 @@
                         <div class="col-md-12">
                             <div ng-if="orderDetails.item.length > 0">
                                 <div class="cartItem row" ng-repeat="item in orderDetails.item">
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
+                                        <aisel-product-images class="product-image"
+                                                              img-style="img-rounded"
+                                                              images="item.product.medias">
+                                        </aisel-product-images>
+                                    </div>
+                                    <div class="col-md-4">
                                         <strong>{{item.product.name}}</strong>
                                     </div>
                                     <div class="col-md-4">

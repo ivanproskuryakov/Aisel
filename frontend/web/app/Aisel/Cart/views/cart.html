@@ -28,7 +28,12 @@
             </div>
             <div class="cartItem" ng-repeat="item in cartItems">
                 <div class="col-md-1">
-                    <div ng-repeat="image in item.product.images">
+                    <aisel-product-images class="product-image"
+                                          img-style="img-rounded"
+                                          images="item.product.medias">
+                    </aisel-product-images>
+
+                    <div ng-repeat="image in item.product.medias">
                         <img class="img-rounded"
                              ng-if="image.main_image === true"
                              src="{{media}}{{image.filename}}"

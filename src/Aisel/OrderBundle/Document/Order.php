@@ -46,12 +46,12 @@ class Order
     /**
      * @var string
      * @ODM\Field(type="string")
-     * @Assert\Type(type="bool")
+     * @Assert\Type(type="string")
      * @Assert\NotNull()
-     * @JMS\Type("boolean")
+     * @JMS\Type("string")
      * @JMS\Expose
      */
-    private $status = false;
+    private $status = 'new';
 
     /**
      * @var integer

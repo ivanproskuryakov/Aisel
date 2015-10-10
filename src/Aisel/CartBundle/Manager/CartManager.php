@@ -70,7 +70,7 @@ class CartManager
         $cartItems = $this
             ->dm
             ->getRepository('Aisel\CartBundle\Document\Cart')
-            ->findBy(array('frontenduser' => $user));
+            ->findBy(array('frontenduser.id' => $user->getId()));
 
         return $cartItems;
     }
