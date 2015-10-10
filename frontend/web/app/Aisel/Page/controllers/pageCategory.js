@@ -27,6 +27,7 @@ define(['app'], function(app) {
                     }
                 );
             };
+
             // Categories
             pageCategoryService.getCategories($scope).success(
                 function(data, status) {

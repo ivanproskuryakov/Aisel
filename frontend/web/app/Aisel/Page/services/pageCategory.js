@@ -18,7 +18,11 @@ define(['app'], function(app) {
             return {
                 getCategories: function($scope) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/page/node/?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage;
+                    var url = Environment.settings.api +
+                        '/' + locale +
+                        '/page/node/?limit=' + $scope.pageLimit +
+                        '&current=' + $scope.paginationPage;
+
                     console.log(url);
                     return $http.get(url);
                 },

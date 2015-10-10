@@ -45,7 +45,7 @@ define(['app'], function(app) {
                     order: order,
                     orderBy: orderBy
                 };
-                productService.getProducts(params).success(
+                productService.getCollection(params).success(
                     function(data, status) {
                         $scope.productList = data;
                     }

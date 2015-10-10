@@ -66,7 +66,6 @@ define(['app'], function (app) {
                         }
                     });
             }
-            ;
 
             /**
              * SAVE

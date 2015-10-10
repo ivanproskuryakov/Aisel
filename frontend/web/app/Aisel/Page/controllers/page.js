@@ -12,52 +12,14 @@
  * @description     ...
  */
 
-define(['app'], function(app) {
-    app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'pageService',
-        function($location, $state, $scope, $stateParams, pageService) {
+define(['app'], function (app) {
+    app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'pageService', '$controller',
+        function ($location, $state, $scope, $stateParams, pageService, $controller) {
 
-            $scope.pageLimit = 5;
-            $scope.paginationPage = 1;
-            $scope.categoryId = 0;
-
-            /**
-             * Load page collection
-             *
-             * @param limit
-             * @param page
-             * @param categoryId
-             * @param order
-             * @param orderBy
-             */
-            var getPageCollection = function(limit, page, categoryId, order, orderBy) {
-                var params = {
-                    limit: limit,
-                    page: page,
-                    categoryId: categoryId,
-                    order: order,
-                    orderBy: orderBy
-                };
-
-                pageService.getPages(params).success(
-                    function(data, status) {
-                        $scope.collection = data;
-                    }
-                );
-            };
-
-            $scope.pageChanged = function(paginationPage) {
-                getPageCollection(
-                    $scope.pageLimit,
-                    paginationPage,
-                    $scope.categoryId,
-                    'id',
-                    'ASC'
-                );
-            };
-
-            $scope.pageChanged($scope.paginationPage);
-
-
+            angular.extend(this, $controller('AbstractCollectionCtrl', {
+                $scope: $scope,
+                itemService: pageService
+            }));
         }
     ]);
 });

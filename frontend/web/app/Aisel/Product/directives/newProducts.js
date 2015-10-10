@@ -26,7 +26,7 @@ define(['app'], function(app) {
                     page: 1
                 };
 
-                productService.getProducts(params).success(
+                productService.getCollection(params).success(
                     function(data, status) {
                         $scope.newProducts = data;
                         $scope.newProducts.limit = productLimit;

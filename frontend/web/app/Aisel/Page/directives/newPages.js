@@ -25,7 +25,7 @@ define(['app'], function(app) {
                     orderBy: 'DESC',
                     page: 1
                 };
-                pageService.getPages(params).success(
+                pageService.getCollection(params).success(
                     function(data, status) {
                         $scope.newPages = data;
                         $scope.newPages.limit = pageLimit;

@@ -28,7 +28,7 @@ define(['app'], function(app) {
             );
 
             // Pages
-            pageService.getPages($scope).success(
+            pageService.getCollection($scope).success(
                 function(data, status) {
                     $scope.pageList = data;
                 }
@@ -36,7 +36,7 @@ define(['app'], function(app) {
 
             $scope.pageChanged = function(page) {
                 $scope.paginationPage = page;
-                pageService.getPages($scope).success(
+                pageService.getCollection($scope).success(
                     function(data, status) {
                         $scope.pageList = data;
                     }

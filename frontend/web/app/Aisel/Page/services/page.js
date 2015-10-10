@@ -12,20 +12,28 @@
  * @description     ...
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app.service('pageService', ['$http', 'Environment',
-        function($http, Environment) {
+        function ($http, Environment) {
             return {
-                getPages: function(params) {
+                getCollection: function (params) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/page/?limit=' + params.limit + '&current=' + params.page + '&order=' + params.order + '&orderBy=' + params.orderBy + '&category=' + params.categoryId;
+                    var url = Environment.settings.api +
+                        '/' + locale +
+                        '/page/?limit=' + params.limit +
+                        '&current=' + params.page +
+                        '&order=' + params.order +
+                        '&orderBy=' + params.orderBy +
+                        '&category=' + params.categoryId;
 
                     console.log(url);
                     return $http.get(url);
                 },
-                getPageByURL: function($url) {
+                getPageByURL: function ($url) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/page/' + $url;
+                    var url = Environment.settings.api +
+                        '/' + locale +
+                        '/page/' + $url;
                     console.log(url);
                     return $http.get(url);
                 }
