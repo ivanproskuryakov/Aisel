@@ -46,6 +46,8 @@ define(['app'], function (app) {
             };
 
             $scope.pageChanged = function (paginationPage) {
+                $scope.paginationPage = paginationPage;
+
                 loadCollection(
                     $scope.pageLimit,
                     paginationPage,

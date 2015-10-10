@@ -12,28 +12,15 @@
  * @description     ...
  */
 
-define(['app'], function(app) {
-    app.controller('ProductCategoryCtrl', ['$location', '$scope', '$stateParams', 'productCategoryService', 'Environment',
-        function($location, $scope, $stateParams, productCategoryService, Environment) {
+define(['app'], function (app) {
+    app.controller('ProductCategoryCtrl', ['$location', '$scope', '$stateParams', 'productCategoryService', 'Environment', '$controller',
+        function ($location, $scope, $stateParams, productCategoryService, Environment, $controller) {
             $scope.media = Environment.settings.media;
-            $scope.pageLimit = 5;
-            $scope.paginationPage = 1;
 
-            $scope.pageChanged = function(page) {
-                $scope.paginationPage = page;
-                productCategoryService.getCategories($scope).success(
-                    function(data, status) {
-                        $scope.categories = data;
-                    }
-                );
-            };
-
-            // Categories
-            productCategoryService.getCategories($scope).success(
-                function(data, status) {
-                    $scope.categories = data;
-                }
-            );
+            angular.extend(this, $controller('AbstractCollectionCtrl', {
+                $scope: $scope,
+                itemService: productCategoryService
+            }));
         }
     ]);
 });

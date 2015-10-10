@@ -16,9 +16,14 @@ define(['app'], function(app) {
     app.service('productCategoryService', ['$http', 'Environment',
         function($http, Environment) {
             return {
-                getCategories: function($scope) {
+                getCollection: function(params) {
                     var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/product/node/?limit=' + $scope.pageLimit + '&current=' + $scope.paginationPage;
+                    var url = Environment.settings.api + '/' +
+                        locale + '/product/node/?limit=' + params.limit +
+                        '&current=' + params.page +
+                        '&order=' + params.order +
+                        '&orderBy=' + params.orderBy;
+
                     console.log(url);
                     return $http.get(url);
                 },

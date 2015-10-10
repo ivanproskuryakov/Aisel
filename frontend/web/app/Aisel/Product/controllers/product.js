@@ -21,7 +21,6 @@ define(['app'], function (app) {
                 $scope: $scope,
                 itemService: productService
             }));
-
         }
     ]);
 });
