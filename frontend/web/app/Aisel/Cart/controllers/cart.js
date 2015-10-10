@@ -20,13 +20,13 @@ define(['app'], function(app) {
 
             $scope.total = function() {
                 return cartService.getTotalFromCart($scope.cartItems);
-            }
+            };
 
             $scope.getCartItems = function() {
                 cartService.getCartItems($scope).success(function(data, status) {
                     $scope.cartItems = data;
                 }).error(function(data, status) {});
-            }
+            };
             $scope.getCartItems();
 
             /**
