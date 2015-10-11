@@ -69,6 +69,7 @@ define(['app'], function(app) {
                     'id',
                     'ASC'
                 );
+                $scope.paginationPage = paginationPage;
             };
 
 
