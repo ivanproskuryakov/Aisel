@@ -63,24 +63,25 @@ class CartManager
      *
      * @param FrontendUser $user
      *
-     * @return Cart $cartItems
+     * @return Cart|false
      */
     public function getUserCart($user)
     {
-        $cartItems = $this
-            ->dm
-            ->getRepository('Aisel\CartBundle\Document\Cart')
-            ->findBy(array('frontenduser.id' => $user->getId()));
+        if ($user) {
+            return $this->dm
+                ->getRepository('Aisel\CartBundle\Document\Cart')
+                ->findBy(array('frontenduser.id' => $user->getId()));
+        }
 
-        return $cartItems;
+        return [];
     }
 
     /**
      * Adds product to cart by given $id and $qty
      *
      * @param FrontendUser $user
-     * @param int          $productId
-     * @param int          $qty
+     * @param int $productId
+     * @param int $qty
      *
      * @return Cart $cartItem
      *
@@ -105,8 +106,8 @@ class CartManager
      * Updates product item inside cart by given $id and $qty
      *
      * @param FrontendUser $user
-     * @param int          $productId
-     * @param int          $qty
+     * @param int $productId
+     * @param int $qty
      *
      * @return Cart $cartItem
      *

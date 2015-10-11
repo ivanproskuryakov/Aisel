@@ -31,7 +31,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
         parent::tearDown();
     }
 
-    public function testConfigAction()
+    public function testCartAction()
     {
         $this->client->request(
             'GET',

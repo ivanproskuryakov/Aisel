@@ -12,67 +12,28 @@
  * @description     ...
  */
 
-define(['app'], function(app) {
-    app.controller('ProductCategoryDetailCtrl', ['$location', '$scope', '$stateParams', 'productService', 'productCategoryService', 'Environment',
-        function($location, $scope, $stateParams, productService, productCategoryService, Environment) {
-            $scope.media = Environment.settings.media;
-            $scope.pageLimit = 5;
-            $scope.paginationPage = 1;
-            $scope.categoryId = $stateParams.categoryId;
+define(['app'], function (app) {
+    app.controller('ProductCategoryDetailCtrl',
+        ['$location', '$scope', '$stateParams', 'productService', 'productCategoryService', 'Environment', '$controller',
+            function ($location, $scope, $stateParams, productService, productCategoryService, Environment, $controller) {
+                $scope.media = Environment.settings.media;
+                $scope.pageLimit = 5;
+                $scope.paginationPage = 1;
+                $scope.categoryId = $stateParams.categoryId;
 
-            // Category Information
-            productCategoryService.getItem($scope.categoryId).success(
-                function(data, status) {
-                    $scope.category = data;
-                }
-            );
-
-
-            /**
-             * Load product collection
-             *
-             * @param limit
-             * @param page
-             * @param categoryId
-             * @param order
-             * @param orderBy
-             */
-            var getProductCollection = function(limit, page, categoryId, order, orderBy) {
-                var params = {
-                    limit: limit,
-                    page: page,
-                    categoryId: categoryId,
-                    order: order,
-                    orderBy: orderBy
-                };
-                productService.getCollection(params).success(
-                    function(data, status) {
-                        $scope.collection = data;
+                // Category Information
+                productCategoryService.getItem($scope.categoryId).success(
+                    function (data, status) {
+                        $scope.category = data;
                     }
                 );
-            };
 
-            // Products
-            getProductCollection(
-                $scope.pageLimit,
-                $scope.paginationPage,
-                $scope.categoryId,
-                'id',
-                'ASC'
-            );
-
-            $scope.pageChanged = function(paginationPage) {
-                getProductCollection(
-                    $scope.pageLimit,
-                    paginationPage,
-                    $scope.categoryId,
-                    'id',
-                    'ASC'
-                );
-                $scope.paginationPage = paginationPage;
-            };
+                angular.extend(this, $controller('AbstractCollectionCtrl', {
+                    $scope: $scope,
+                    itemService: productService
+                }));
 
 
-        }
-    ]);
+            }
+        ]);
 });
