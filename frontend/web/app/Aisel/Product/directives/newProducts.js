@@ -12,29 +12,32 @@
  * @description     ...
  */
 
-define(['app'], function(app) {
-    app.directive('aiselNewProducts', ['$compile', 'productService', function($compile, productService) {
-        return {
-            restrict: 'EA',
-            link: function($scope, element, attrs) {
-                var productLimit = attrs.limit;
+define(['app'], function (app) {
+    app.directive(
+        'aiselNewProducts', ['$compile', 'resourceService',
+            function ($compile, resourceService) {
+                return {
+                    restrict: 'EA',
+                    link: function ($scope, element, attrs) {
+                        var productLimit = attrs.limit;
+                        var params = {
+                            limit: productLimit,
+                            order: 'id',
+                            orderBy: 'DESC',
+                            page: 1
+                        };
+                        var productService = new resourceService('page');
 
-                var params = {
-                    limit: productLimit,
-                    order: 'id',
-                    orderBy: 'DESC',
-                    page: 1
+                        productService.getCollection(params).success(
+                            function (data, status) {
+                                $scope.newProducts = data;
+                                $scope.newProducts.limit = productLimit;
+                            }
+                        );
+
+                    },
+                    templateUrl: '/app/Aisel/Product/views/directives/new-products.html'
                 };
-
-                productService.getCollection(params).success(
-                    function(data, status) {
-                        $scope.newProducts = data;
-                        $scope.newProducts.limit = productLimit;
-                    }
-                );
-
-            },
-            templateUrl: '/app/Aisel/Product/views/directives/new-products.html'
-        };
-    }]);
+            }
+        ]);
 });

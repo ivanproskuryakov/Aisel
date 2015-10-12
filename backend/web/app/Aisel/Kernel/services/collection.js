@@ -29,7 +29,7 @@ define(['app'], function(app) {
                     });
                     var filter = JSON.stringify(filters);
                     return filter;
-                }
+                };
 
                 return {
                     loadCollection: function($scope, service, pageNumber) {

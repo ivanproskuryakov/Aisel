@@ -13,18 +13,19 @@
  */
 
 define(['app'], function(app) {
-    app.directive('aiselNewPages', ['$compile', 'pageService', function($compile, pageService) {
+    app.directive('aiselNewPages', ['$compile', 'resourceService', function($compile, resourceService) {
         return {
             restrict: 'EA',
             link: function($scope, element, attrs) {
                 var pageLimit = attrs.limit;
-
                 var params = {
                     limit: pageLimit,
                     order: 'id',
                     orderBy: 'DESC',
                     page: 1
                 };
+                var pageService = new resourceService('page');
+
                 pageService.getCollection(params).success(
                     function(data, status) {
                         $scope.newPages = data;

@@ -13,8 +13,10 @@
  */
 
 define(['app'], function(app) {
-    app.controller('PageDetailCtrl', function($scope, $stateParams, pageService, $rootScope) {
+    app.controller('PageDetailCtrl', function($scope, $stateParams, resourceService, $rootScope) {
         var pageURL = $stateParams.pageId;
+        var pageService = new resourceService('page');
+
         var handleSuccess = function(data, status) {
             $scope.pageDetails = data;
             $rootScope.pageTitle = $scope.pageDetails.title;
@@ -23,6 +25,8 @@ define(['app'], function(app) {
             window.disqus_shortname = $rootScope.disqusShortname;
             $scope.showComments = $rootScope.disqusStatus;
         };
-        pageService.getPageByURL(pageURL).success(handleSuccess);
+
+        pageService.getItemByURL(pageURL).success(handleSuccess);
+
     });
 });

@@ -15,7 +15,7 @@
 define([
     'require',
     'angular',
-    'app',
+    'app'
 ], function(require, angular) {
     'use strict';
     require(['domReady!'], function(document) {

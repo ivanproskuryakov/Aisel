@@ -17,6 +17,7 @@ define(['app',
     './controllers/abstractCollection',
     './services/settings',
     './services/init',
+    './services/resource',
     './filters/main'
 ], function(app) {
     console.log('----------- Kernel Loaded! -----------');

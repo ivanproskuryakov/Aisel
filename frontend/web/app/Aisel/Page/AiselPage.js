@@ -18,7 +18,6 @@ define(['app',
     './controllers/pageDetails',
     './controllers/pageCategory',
     './controllers/pageCategoryDetails',
-    './services/page',
     './services/pageCategory',
     './directives/newPages',
 ], function(app) {

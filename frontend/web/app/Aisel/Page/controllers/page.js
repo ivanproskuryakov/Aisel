@@ -13,8 +13,10 @@
  */
 
 define(['app'], function (app) {
-    app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'pageService', '$controller',
-        function ($location, $state, $scope, $stateParams, pageService, $controller) {
+    app.controller('PageCtrl', ['$location', '$state', '$scope', '$stateParams', 'resourceService', '$controller',
+        function ($location, $state, $scope, $stateParams, resourceService, $controller) {
+
+            var pageService = new resourceService('page');
 
             angular.extend(this, $controller('AbstractCollectionCtrl', {
                 $scope: $scope,

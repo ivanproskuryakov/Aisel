@@ -32,13 +32,6 @@
                                           img-style="img-rounded"
                                           images="item.product.medias">
                     </aisel-product-images>
-
-                    <div ng-repeat="image in item.product.medias">
-                        <img class="img-rounded"
-                             ng-if="image.main_image === true"
-                             src="{{media}}{{image.filename}}"
-                             data-holder-rendered="true" style="width: 100%;">
-                    </div>
                 </div>
                 <div class="col-md-5">
                     <h4>{{item.product.name}}</h4>

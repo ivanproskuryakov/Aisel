@@ -13,16 +13,17 @@
  */
 
 define(['app'], function(app) {
-    app.controller('ProductDetailCtrl', ['$scope', '$location', '$stateParams', 'productService', '$rootScope',
+    app.controller('ProductDetailCtrl', ['$scope', '$location', '$stateParams', 'resourceService', '$rootScope',
         'cartService', 'notify', 'Environment', 'authService',
-        function($scope, $location, $stateParams, productService, $rootScope,
+        function($scope, $location, $stateParams, resourceService, $rootScope,
             cartService, notify, Environment, authService) {
 
             $scope.media = Environment.settings.media;
             $scope.isDisabled = true;
-
+            var productService = new resourceService('product');
             var productURL = $stateParams.productId;
-            productService.getProductByURL(productURL).success(
+
+            productService.getItemByURL(productURL).success(
                 function(data, status) {
                     $scope.product = data;
                     $rootScope.productTitle = $scope.title;

@@ -13,9 +13,11 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductCtrl', ['$scope', '$stateParams', 'productService', 'Environment', '$controller',
-        function ($scope, $stateParams, productService, Environment, $controller) {
+    app.controller('ProductCtrl', ['$scope', '$stateParams', 'resourceService', 'Environment', '$controller',
+        function ($scope, $stateParams, resourceService, Environment, $controller) {
             $scope.media = Environment.settings.media;
+
+            var productService = new resourceService('product');
 
             angular.extend(this, $controller('AbstractCollectionCtrl', {
                 $scope: $scope,
