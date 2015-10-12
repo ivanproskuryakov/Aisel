@@ -14,15 +14,18 @@
 
 define(['app'], function (app) {
     app.controller('ProductCategoryDetailCtrl',
-        ['$location', '$scope', '$stateParams', 'productService', 'productCategoryService', 'Environment', '$controller',
-            function ($location, $scope, $stateParams, productService, productCategoryService, Environment, $controller) {
+        ['$location', '$scope', '$stateParams', 'resourceService', 'Environment', '$controller',
+            function ($location, $scope, $stateParams, resourceService, Environment, $controller) {
                 $scope.media = Environment.settings.media;
                 $scope.pageLimit = 5;
                 $scope.paginationPage = 1;
                 $scope.categoryId = $stateParams.categoryId;
 
+                var productCategoryService = new resourceService('product/node');
+                var productService = new resourceService('product');
+
                 // Category Information
-                productCategoryService.getItem($scope.categoryId).success(
+                productCategoryService.getItemByURL($scope.categoryId).success(
                     function (data, status) {
                         $scope.category = data;
                     }
@@ -32,8 +35,6 @@ define(['app'], function (app) {
                     $scope: $scope,
                     itemService: productService
                 }));
-
-
             }
         ]);
 });

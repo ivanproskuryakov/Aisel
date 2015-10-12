@@ -13,15 +13,18 @@
  */
 
 define(['app'], function(app) {
-    app.controller('PageCategoryDetailCtrl', ['$location', '$scope', '$stateParams', 'pageService', 'pageCategoryService',
-        function($location, $scope, $stateParams, pageService, pageCategoryService) {
+    app.controller('PageCategoryDetailCtrl', ['$location', '$scope', '$stateParams', 'resourceService',
+        function($location, $scope, $stateParams, resourceService) {
 
             $scope.pageLimit = 5;
             $scope.paginationPage = 1;
             $scope.categoryId = $stateParams.categoryId;
 
+            var pageCategoryService = new resourceService('page/node');
+            var pageService = new resourceService('page');
+
             // Category Information
-            pageCategoryService.getItem($scope.categoryId).success(
+            pageCategoryService.getItemByURL($scope.categoryId).success(
                 function(data, status) {
                     $scope.category = data;
                 }
@@ -33,7 +36,6 @@ define(['app'], function(app) {
                     $scope.pageList = data;
                 }
             );
-
             $scope.pageChanged = function(page) {
                 $scope.paginationPage = page;
                 pageService.getCollection($scope).success(

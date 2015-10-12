@@ -27,12 +27,6 @@ define(['app'], function(app) {
                     console.log(url);
                     return $http.get(url);
                 },
-                getItem: function(categoryId) {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/product/node/' + categoryId;
-                    console.log(url);
-                    return $http.get(url);
-                },
                 getProductCategoryTree: function() {
                     var locale = Environment.currentLocale();
                     var url = Environment.settings.api + '/' + locale + '/product/node/tree/';

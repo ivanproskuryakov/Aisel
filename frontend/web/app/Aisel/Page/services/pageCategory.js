@@ -28,15 +28,6 @@ define(['app'], function(app) {
                     console.log(url);
                     return $http.get(url);
                 },
-                getItem: function(categoryId) {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api +
-                        '/' + locale +
-                        '/page/node/view/' + categoryId;
-                    console.log(url);
-
-                    return $http.get(url);
-                },
                 getPageCategoryTree: function() {
                     var locale = Environment.currentLocale();
                     var url = Environment.settings.api + '/' + locale + '/page/node/tree/';
@@ -44,7 +35,6 @@ define(['app'], function(app) {
 
                     return $http.get(url);
                 }
-
             };
         }
     ]);
