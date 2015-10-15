@@ -14,7 +14,7 @@
 
 define(['app',
     './services/media',
-    './config/media',
-], function(app) {
+    './config/media'
+], function (app) {
     console.log('Media module loaded ...');
 });

@@ -1,0 +1,9 @@
+<div ng-repeat="image in images">
+    <img class="product-image"
+         ng-if="image.main_image === true"
+         src="{{domain}}{{image.filename}}"
+         data-holder-rendered="true"
+         width="{{size || '100%' }}"
+         height="{{size}}"
+            />
+</div>

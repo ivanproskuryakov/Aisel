@@ -12,15 +12,18 @@
  * @description     ProductCtrl
  */
 
-define(['app'], function(app) {
-    app.controller('ProductCtrl', ['$scope', '$state', 'resourceService', 'collectionService', 'Environment',
-        function($scope, $state, resourceService, collectionService, Environment) {
+define(['app'], function (app) {
+    app.controller('ProductCtrl', ['$scope', '$rootScope', '$state', 'resourceService', 'collectionService', 'Environment',
+        function ($scope, $rootScope, $state, resourceService, collectionService, Environment) {
 
             var itemService = new resourceService('product');
+
+            console.log(">>>", $rootScope.domain);
 
             $scope.collectionTitle = 'Products';
             $scope.pageLimit = 20;
             $scope.pageNumber = 1;
+            $scope.rowHeight = 75;
             $scope.columns = [{
                 name: 'id',
                 enableColumnMenu: false,
@@ -28,11 +31,18 @@ define(['app'], function(app) {
             }, {
                 name: 'locale',
                 enableColumnMenu: false,
-                width: '200'
+                width: '75'
+            }, {
+                name: 'image',
+                enableSorting: false,
+                enableFiltering: false,
+                enableColumnMenu: false,
+                width: '75',
+                cellTemplate: '<aisel-product-images images="row.entity.medias"></aisel-product-images>'
             }, {
                 name: 'price',
                 enableColumnMenu: false,
-                width: '200'
+                width: '100'
             }, {
                 name: 'name',
                 enableColumnMenu: false
@@ -59,22 +69,22 @@ define(['app'], function(app) {
             $scope.gridOptions = collectionService.gridOptions($scope);
 
             // === Item Action ===
-            $scope.editDetails = function(id) {
+            $scope.editDetails = function (id) {
                 $state.transitionTo('productEdit', {
                     locale: Environment.currentLocale(),
                     id: id
                 });
             };
-            $scope.newItem = function() {
+            $scope.newItem = function () {
                 $state.transitionTo('productNew', {
                     locale: Environment.currentLocale()
                 });
-            }
+            };
 
             // === Load collection from remote ===
-            $scope.loadCollection = function(pageNumber) {
+            $scope.loadCollection = function (pageNumber) {
                 collectionService.loadCollection($scope, itemService, pageNumber);
-            }
+            };
             $scope.loadCollection();
         }
     ]);

@@ -12,29 +12,10 @@
  * @description     mediaService
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app.service('mediaService', ['$http', 'Environment',
-        function($http, Environment) {
-
-            return {
-                new: function (data) {
-                    var url = Environment.settings.api + '/media/';
-
-                    return $http({
-                        method: 'POST',
-                        url: url,
-                        data: data
-                    });
-                },
-                delete: function (id) {
-                    var url = Environment.settings.api + '/media/' + id;
-
-                    return $http({
-                        method: 'DELETE',
-                        url: url
-                    });
-                }
-            };
+        function ($http, Environment) {
+            
         }
     ]);
 });
