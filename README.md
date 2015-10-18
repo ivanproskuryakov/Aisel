@@ -9,7 +9,7 @@ About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=mast
 FullStack based on AngularJS, PHP(Symfony2), MongoDB - http://aisel.co/
 
 Frontend demo: http://ecommerce.aisel.co/en/ [frontenduser/frontenduser]<br/>
-Backend demo: http://ecommerce.aisel.co/en/ [backenduser/backenduser]<br/>
+Backend demo: http://admin.ecommerce.aisel.co/en/ [backenduser/backenduser]<br/>
 
 <img width="400" src="http://aisel.co/images/frontend_product_view.png"/>
 
