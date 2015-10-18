@@ -41,6 +41,10 @@ Bower
 Grunt
 ```
 
+Contacts
+-----------------------------------
+For support and consulting inquiries: https://github.com/ivanproskuryakov/Aisel/wiki/Contact-&-Support
+
  
 Running Tests
 -----------------------------------
@@ -53,11 +57,6 @@ Running Tests
 
 [PHPSpec](http://phpspec.net/) <br/>
 `bin/phpspec run`<br/>
-
-XML Sitemap & Google indexing
------------------------------------
-http://ecommerce.aisel.co/sitemap.xml<br/>
-https://www.google.com/search?q=site%3Aecommerce.aisel.co
 
 Speed
 -----------------------------------
@@ -80,11 +79,3 @@ Authors
 -----------------------------------
 Part of Aisel package, was originally created by [Ivan Proskuryakov](https://github.com/ivanproskuryakov) https://twitter.com/iproskuryakov<br/>
 List of [contributors](https://github.com/ivanproskuryakov/AiselConfigBundle/graphs/contributors).
-
-BTC Donations
------------------------------------
-To support ongoing development you may send BitCoin to 1DmBssUeNGXC8VC3BFm3VB3Qc9wmSB7DrK
-
-Consulting
------------------------------------
-If you're need consulting, contact with me by e-mail volgodark@gmail.com
