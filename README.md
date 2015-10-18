@@ -8,8 +8,8 @@ About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=mast
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
 FullStack based on AngularJS, PHP(Symfony2), MongoDB - http://aisel.co/
 
-Frontend demo: `http://ecommerce.aisel.co/en/` [frontenduser/frontenduser]<br/>
-Backend demo: `http://admin.ecommerce.aisel.co/` [backenduser/backenduser]<br/>
+Frontend demo: http://ecommerce.aisel.co/en/ [frontenduser/frontenduser]<br/>
+Backend demo: http://ecommerce.aisel.co/en/ [backenduser/backenduser]<br/>
 
 <img width="400" src="http://aisel.co/images/frontend_product_view.png"/>
 
