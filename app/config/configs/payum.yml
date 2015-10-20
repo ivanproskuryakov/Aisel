@@ -6,7 +6,7 @@ payum:
     storages:
         Aisel\OrderBundle\Document\Order: { doctrine: mongodb }
 
-    contexts:
+    gateways:
         offline:
             offline: ~
 

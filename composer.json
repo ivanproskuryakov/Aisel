@@ -19,7 +19,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.6.*",
+        "symfony/symfony": "2.7.*",
         "doctrine/orm": "=v2.4.2",
         "doctrine/doctrine-bundle": "~1.3",
         "stof/doctrine-extensions-bundle": "1.2.*@dev",
@@ -39,8 +39,9 @@
         "friendsofsymfony/rest-bundle": "1.4.*@dev",
 
         "jms/serializer-bundle": "0.13.*@dev",
-        "payum/payum-bundle": "0.13.*@dev",
-        "payum/payum": "0.13.*@dev",
+        "payum/payum-bundle": "0.15.*@dev",
+        "payum/offline": "0.15.*",
+        "payum/paypal-express-checkout-nvp": "0.15.*",
 
         "phpspec/phpspec": "~2.0",
         "phpunit/phpunit": "4.6.4",
