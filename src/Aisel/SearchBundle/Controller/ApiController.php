@@ -44,11 +44,13 @@ class ApiController extends Controller
         if (!$params['query']) {
             return false;
         };
-        $searchManager = $this
-            ->container
-            ->get("aisel.search.manager");
 
-        return $searchManager->search($params);
+        $results = $this
+            ->container
+            ->get("aisel.search.manager")
+            ->search($params);
+
+        return $results;
     }
 
 }
