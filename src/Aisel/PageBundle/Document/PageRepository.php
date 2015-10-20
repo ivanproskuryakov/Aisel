@@ -39,10 +39,6 @@ class PageRepository extends CollectionRepository
             ->field('locale')->equals($this->locale)
             ->field('content')->equals(new \MongoRegex('/.*' . $this->search . '.*/i'));
 
-//        $query->expr()->operator('content', array(
-//            '$search' => $this->search,
-//        ));
-
         $collection = $query
             ->limit($this->pageLimit)
             ->skip($this->pageSkip)
@@ -50,11 +46,41 @@ class PageRepository extends CollectionRepository
             ->getQuery()
             ->toArray();
 
-//        var_dump(count($collection));
-//        exit();
-
         return $collection;
     }
 
+    /**
+     * Get page total
+     *
+     * @param array $params
+     *
+     * @return int $total
+     */
+    public function getTotalFromRequest($params)
+    {
+        $this->mapRequest($params);
+        $query = $this
+            ->getDocumentManager()
+            ->createQueryBuilder($this->model);
+
+        if ($this->locale) {
+            $query->field('locale')->equals($this->locale);
+        }
+
+        if ($this->search != '') {
+            $query->field('content')->equals(new \MongoRegex('/.*' . $this->search . '.*/i'));
+        }
+
+        $query->field('status')->equals(true);
+        $total = $query->count()
+            ->getQuery()
+            ->execute();
+
+        if (!$total) {
+            return 0;
+        }
+
+        return $total;
+    }
 
 }

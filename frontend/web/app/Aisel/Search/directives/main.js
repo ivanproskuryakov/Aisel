@@ -12,16 +12,23 @@
  * @description     ...
  */
 
-define(['app'], function(app) {
-    app.directive('ngSearchRedirect', ['$location',
-        function($location) {
+define(['app'], function (app) {
+    app.directive('ngSearchRedirect', ['$state', 'Environment',
+        function ($state, Environment) {
             return {
                 restrict: 'A',
                 link: function postLink(scope, element, attrs) {
-                    element.bind('keyup', function(e) {
+                    element.bind('keyup', function (e) {
                         if (e.keyCode === 13) {
-                            if (attrs.ngSearchRedirect.length > 1) {
-                                window.location.assign('/en/search/' + attrs.ngSearchRedirect);
+                            var query = attrs.ngSearchRedirect;
+
+                            if (query.length > 1) {
+                                var locale = Environment.currentLocale();
+
+                                $state.transitionTo('search', {
+                                    locale: locale,
+                                    query: query
+                                });
                             }
                         }
                     });

@@ -15,6 +15,7 @@
 define(['app'], function(app) {
     app.controller('SearchCtrl', ['$scope', '$stateParams', 'searchService',
         function($scope, $stateParams, searchService) {
+
             $scope.queryText = $stateParams.query;
             $scope.search = $stateParams.query;
             $scope.limit = 5;

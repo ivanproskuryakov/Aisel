@@ -126,12 +126,6 @@ class CollectionRepository extends DocumentRepository
             $query->field('node')->equals($this->node);
         }
 
-        if ($this->search != '') {
-            $query->expr()->operator('content', array(
-                '$search' => $this->search,
-            ));
-        }
-
         if ($params['scope'] == 'frontend') {
             $query->field('status')->equals(true);
         }

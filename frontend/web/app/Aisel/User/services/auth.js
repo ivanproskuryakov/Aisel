@@ -39,14 +39,14 @@ define(['app'], function(app) {
                     $state.transitionTo('userPasswordForgot', {
                         locale: locale
                     });
-                }
+                };
 
                 $scope.register = function() {
                     $scope.$dismiss('close');
                     $state.transitionTo('userRegister', {
                         locale: locale
                     });
-                }
+                };
 
                 $scope.login = function(username, password) {
                     userService.login(username, password).success(
