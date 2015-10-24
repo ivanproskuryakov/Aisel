@@ -61,11 +61,11 @@ class CartManager
     /**
      * Get get cart products for given $userId
      *
-     * @param FrontendUser $user
+     * @param $user
      *
      * @return Cart|false
      */
-    public function getUserCart(FrontendUser $user)
+    public function getUserCart($user)
     {
         if ($user) {
             return $this->dm

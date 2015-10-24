@@ -33,7 +33,6 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
     public function testPostUserAction()
     {
-
         $users = $this
             ->dm
             ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
