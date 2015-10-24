@@ -123,10 +123,6 @@ class ExceptionListener
                 $response = $this->responseHttpException($exception);
                 break;
 
-            case $exception instanceof MongoDuplicateKeyException:
-                $response = $this->responseMongoDuplicateKeyException($exception);
-                break;
-
             case $exception instanceof Exception:
                 $response = $this->responseException($exception);
                 break;
@@ -171,23 +167,6 @@ class ExceptionListener
         }
 
         return $this->createErrorsResponse($errors);
-    }
-
-    /**
-     * Response for MongoDuplicateKeyException.
-     *
-     * @param MongoDuplicateKeyException $exception
-     *
-     * @return JsonResponse
-     */
-    private function responseMongoDuplicateKeyException(MongoDuplicateKeyException $exception)
-    {
-        $message = 'Duplicate key error';
-
-        return $this->createResponse(
-            500,
-            $message
-        );
     }
 
     /**
