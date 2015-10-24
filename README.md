@@ -45,19 +45,6 @@ Contacts
 -----------------------------------
 For support and consulting inquiries: https://github.com/ivanproskuryakov/Aisel/wiki/Contact-&-Support
 
- 
-Running Tests
------------------------------------
-[Protractor](http://angular.github.io/protractor/#/) <br/>
-`protractor frontend/protractor/conf.js`<br/>
-`protractor backend/protractor/conf.js`<br/>
-
-[PHPUnit](https://phpunit.de/) <br/>
-`bin/phpunit -c app src/`<br/>
-
-[PHPSpec](http://phpspec.net/) <br/>
-`bin/phpspec run`<br/>
-
 Speed
 -----------------------------------
 Check with http://tools.pingdom.com/
