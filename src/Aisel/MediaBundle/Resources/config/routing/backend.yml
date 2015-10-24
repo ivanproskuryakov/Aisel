@@ -8,6 +8,8 @@
 api_aisel_media_upload:
     pattern:   /media/upload/{type}/
     defaults:  { _controller: AiselMediaBundle:Upload:upload, _format: json }
+    requirements:
+        _method: GET|POST
 
 admin_api_aisel_media_post:
     pattern:   /media/
