@@ -65,7 +65,7 @@ class CartManager
      *
      * @return Cart|false
      */
-    public function getUserCart($user)
+    public function getUserCart(FrontendUser $user)
     {
         if ($user) {
             return $this->dm

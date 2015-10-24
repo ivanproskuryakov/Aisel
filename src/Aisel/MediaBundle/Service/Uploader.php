@@ -16,6 +16,7 @@ use Flow\Request as FlowRequest;
 use Flow\Config as FlowConfig;
 use Flow\File as FlowFile;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Uploader
@@ -58,11 +59,14 @@ class Uploader
         $flowFile = new FlowFile($config, $flowRequest);
 
         if ($request->getMethod() === 'GET') {
-            if ($flowFile->checkChunk()) {
-                header("HTTP/1.1 200 Ok");
-            } else {
-                header("HTTP/1.1 204 No Content");
+            $response = new Response();
 
+            if ($flowFile->checkChunk()) {
+                $response->setStatusCode(Response::HTTP_OK);
+                $response->send();
+            } else {
+                $response->setStatusCode(Response::HTTP_NO_CONTENT);
+                $response->send();
                 return false;
             }
         } else {
