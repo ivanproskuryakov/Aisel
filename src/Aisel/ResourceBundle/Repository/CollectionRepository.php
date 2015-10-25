@@ -105,7 +105,7 @@ class CollectionRepository extends DocumentRepository
      *
      * @return int $total
      */
-    public function getTotalFromRequest($params)
+    public function getTotalFromRequest(array $params)
     {
         $this->mapRequest($params);
         $query = $this
@@ -148,7 +148,7 @@ class CollectionRepository extends DocumentRepository
      *
      * @return mixed $collection
      */
-    public function getCollectionFromRequest($params)
+    public function getCollectionFromRequest(array $params)
     {
         $this->mapRequest($params);
         $query = $this
@@ -218,11 +218,11 @@ class CollectionRepository extends DocumentRepository
     /**
      * Returns enabled nodes
      *
-     * @param string $params
+     * @param array $params
      *
      * @return array $result
      */
-    public function getNodesAsTree($params)
+    public function getNodesAsTree(array $params)
     {
         $this->model = $this->getDocumentName();
 

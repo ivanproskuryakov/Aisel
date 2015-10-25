@@ -56,7 +56,7 @@ class PageRepository extends CollectionRepository
      *
      * @return int $total
      */
-    public function getTotalFromRequest($params)
+    public function getTotalFromRequest(array $params)
     {
         $this->mapRequest($params);
         $query = $this
