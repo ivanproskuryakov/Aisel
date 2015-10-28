@@ -14,7 +14,7 @@ Backend demo: http://admin.ecommerce.aisel.co/en/ [backenduser/backenduser]<br/>
 <img width="400" src="http://aisel.co/images/frontend_product_view.png"/>
 
 
-Ask us anything -- or issue, question, bug , or feedback.
+Ask us anything -- or issue, question, or feedback.
 https://github.com/ivanproskuryakov/Aisel/issues/new
 
 
