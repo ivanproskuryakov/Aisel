@@ -47,7 +47,7 @@ define(['app'], function(app) {
                 formData['googleplus'] = encodeURIComponent(form.googleplus.$modelValue);
 
                 var userData = JSON.stringify(formData);
-                var url = Environment.settings.api + '/user/editdetails.json?userdata=' + userData;
+                var url = Environment.settings.api + '/user/information/?userdata=' + userData;
                 console.log(url);
                 return $http.get(url);
             },
