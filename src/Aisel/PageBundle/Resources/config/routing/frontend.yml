@@ -20,12 +20,11 @@ api_aisel_page_get_by_url:
 api_aisel_page_node_get:
     pattern:  /{locale}/page/node/
     defaults: { _controller: AiselPageBundle:ApiNode:getCollection, _format: json }
-
     requirements:
         _method: GET
 
 api_aisel_page_node_get_by_url:
-    pattern:  /{locale}/page/node/view/{url}
+    pattern:  /{locale}/page/node/{url}
     defaults: { _controller: AiselPageBundle:ApiNode:getByURL, _format: json }
     requirements:
         _method: GET
