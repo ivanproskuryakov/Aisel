@@ -1,0 +1,72 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+admin_api_aisel_review_node_get:
+    pattern:   /review/node/{id}
+    defaults:  { _controller: AiselReviewBundle:Admin/ApiNode:get, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_review_node_get_tree:
+    pattern:   /review/node/
+    defaults:  { _controller: AiselReviewBundle:Admin/ApiNode:getTree, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_review_node_put:
+    pattern:   /review/node/{id}
+    defaults:  { _controller: AiselReviewBundle:Admin/ApiNode:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_review_node_post:
+    pattern:   /review/node/
+    defaults:  { _controller: AiselReviewBundle:Admin/ApiNode:post, _format: json }
+    requirements:
+        _method: POST
+
+admin_api_aisel_review_node_delete:
+    pattern:   /review/node/{id}
+    defaults:  { _controller: AiselReviewBundle:Admin/ApiNode:delete, _format: json }
+    requirements:
+        _method: DELETE
+
+admin_api_aisel_review_get_collection:
+    pattern:   /review/
+    defaults:  { _controller: AiselReviewBundle:Admin/ApiReview:getCollection, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_review_get:
+    pattern:   /review/{id}
+    defaults:  { _controller: AiselReviewBundle:Admin/ApiReview:get, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_review_delete:
+    pattern:   /review/{id}
+    defaults:  { _controller: AiselReviewBundle:Admin/ApiReview:delete, _format: json }
+    requirements:
+        _method: DELETE
+
+admin_api_aisel_review_put:
+    pattern:   /review/{id}
+    defaults:  { _controller: AiselReviewBundle:Admin/ApiReview:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_review_post:
+    pattern:   /review/
+    defaults:  { _controller: AiselReviewBundle:Admin/ApiReview:post, _format: json }
+    requirements:
+        _method: POST
+
+admin_api_aisel_review_node_node_edit:
+    pattern:   /review/node/node/
+    defaults:  { _controller: AiselReviewBundle:Admin/ApiNodeEdit:nodeEdit, _format: json }
+    requirements:
+        _method: GET

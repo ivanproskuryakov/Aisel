@@ -1,0 +1,28 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+parameters:
+    aisel_review_node_mode_manager.class: Aisel\ReviewBundle\Manager\NodeManager
+    aisel_review_url_persistence_listener.class: Aisel\ReviewBundle\EventListener\ReviewUrlPersistenceListener
+    aisel_review_node_url_persistence_listener.class: Aisel\ReviewBundle\EventListener\NodeUrlPersistenceListener
+
+services:
+    aisel.reviewnode.node.manager:
+        class: %aisel_review_node_mode_manager.class%
+        arguments:
+          - @doctrine.odm.mongodb.document_manager
+          - "%locales%"
+
+    aisel_review_url_persistence_listener:
+        class: %aisel_review_url_persistence_listener.class%
+        tags:
+            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
+
+    aisel_review_node_url_persistence_listener:
+        class: %aisel_review_node_url_persistence_listener.class%
+        tags:
+            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }

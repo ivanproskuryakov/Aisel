@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Document;
+namespace Aisel\ReviewBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -17,7 +17,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Document\UrlInterface;
-use Aisel\PageBundle\Document\Node;
+use Aisel\ReviewBundle\Document\Node;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -28,14 +28,14 @@ use Aisel\ResourceBundle\Domain\TitleTrait;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 /**
- * Page
+ * Review
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ODM\HasLifecycleCallbacks()
  * @ODM\Document(
- *      collection="aisel_page",
- *      repositoryClass="Aisel\PageBundle\Document\PageRepository"
+ *      collection="aisel_review",
+ *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  * @JMS\ExclusionPolicy("all")
  * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
@@ -44,7 +44,7 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 //* @ODM\Indexes({
 // *   @ODM\Index(keys={"content"="text"})
 // * })
-class Page implements UrlInterface
+class Review implements UrlInterface
 {
     use IdTrait;
     use TitleTrait;
@@ -74,8 +74,8 @@ class Page implements UrlInterface
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Node")
-     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Node>")
+     * @ODM\ReferenceMany(targetDocument="Aisel\ReviewBundle\Document\Node")
+     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Document\Node>")
      * @JMS\Expose
      * @AiselAnnotation\NoDuplicates()
      */
@@ -93,7 +93,7 @@ class Page implements UrlInterface
      * Set content
      *
      * @param  string $content
-     * @return Page
+     * @return Review
      */
     public function setContent($content)
     {
@@ -116,7 +116,7 @@ class Page implements UrlInterface
      * Set commentStatus
      *
      * @param  boolean $commentStatus
-     * @return Page
+     * @return Review
      */
     public function setCommentStatus($commentStatus)
     {
@@ -140,7 +140,7 @@ class Page implements UrlInterface
      *
      * @param Node $node
      *
-     * @return Page
+     * @return Review
      */
     public function addNode(Node $node)
     {
@@ -174,7 +174,7 @@ class Page implements UrlInterface
      *
      * @param Node $nodes
      *
-     * @return Page
+     * @return Review
      */
     public function setNodes($nodes)
     {
