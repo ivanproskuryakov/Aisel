@@ -71,6 +71,20 @@ abstract class AbstractWebTestCase extends KernelTestCase
         static::$httpHost = $httpHost;
     }
 
+
+    public function removeDocument($document)
+    {
+        $this->dm->remove($document);
+        $this->dm->flush();
+
+        $isFound = $this
+            ->dm
+            ->getRepository('Aisel\ReviewBundle\Document\Node')
+            ->findOneBy(['id' => $document->getId()]);
+
+        $this->assertNull($isFound);
+    }
+
     public function logInBackend($username = 'backenduser', $password = 'backenduser')
     {
         if ($this->um->isAuthenticated() === false) {

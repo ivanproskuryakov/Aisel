@@ -12,8 +12,6 @@
 namespace Aisel\ReviewBundle\Tests\Controller;
 
 use Aisel\ReviewBundle\Tests\ReviewWebTestCase;
-use Aisel\ReviewBundle\Document\Review;
-use Aisel\ReviewBundle\Document\Node;
 
 /**
  * ApiReviewControllerTest
@@ -52,15 +50,7 @@ class ApiReviewControllerTest extends ReviewWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertJson($content);
 
-        $this->dm->remove($node);
-        $this->dm->flush();
-
-        $node = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
-            ->findOneBy(['id' => $node->getId()]);
-
-        $this->assertNull($node);
+        $this->removeDocument($node);
     }
 
 }

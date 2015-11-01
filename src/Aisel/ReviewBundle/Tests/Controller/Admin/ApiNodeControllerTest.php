@@ -12,18 +12,20 @@
 namespace Aisel\ReviewBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\ReviewBundle\Tests\ReviewWebTestCase;
 
 /**
  * ApiNodeControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiNodeControllerTest extends AbstractBackendWebTestCase
+class ApiNodeControllerTest extends ReviewWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -79,10 +81,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
     public function testGetReviewNodeAction()
     {
-        $node = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
-            ->findOneBy(['title' => 'AAA']);
+        $node = $this->newReviewNode();
 
         $this->client->request(
             'GET',
@@ -99,19 +98,14 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $node->getId());
+
+        $this->removeDocument($node);
     }
 
     public function testPutReviewNodeAction()
     {
-        $node = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
-            ->findOneBy(['title' => 'AAA']);
-
-        $node2 = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
-            ->findOneBy(['locale' => 'en']);
+        $node = $this->newReviewNode();
+        $node2 = $this->newReviewNode();
 
         $id = $node->getId();
         $data['locale'] = 'ru';
@@ -143,19 +137,17 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $this->assertNotNull($node);
         $this->assertEquals($data['locale'], $node->getLocale());
         $this->assertEquals(1, count($node->getChildren()));
+
+        $this->removeDocument($node);
     }
 
     public function testDeleteReviewNodeAction()
     {
-        $node = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
-            ->findOneBy(['title' => 'AAA']);
-        $id = $node->getId();
+        $node = $this->newReviewNode();
 
         $this->client->request(
             'DELETE',
-            '/'. $this->api['backend'] . '/review/node/' . $id,
+            '/'. $this->api['backend'] . '/review/node/' . $node->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -168,7 +160,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $node = $this
             ->dm
             ->getRepository('Aisel\ReviewBundle\Document\Node')
-            ->findOneBy(['id' => $id]);
+            ->findOneBy(['id' => $node->getId()]);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);

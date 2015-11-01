@@ -13,18 +13,20 @@ namespace Aisel\ReviewBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 use Aisel\ReviewBundle\Document\Node;
+use Aisel\ReviewBundle\Tests\ReviewWebTestCase;
 
 /**
  * ApiNodeEditControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
+class ApiNodeEditControllerTest extends ReviewWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -63,6 +65,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $response = $this->client->getResponse();
         $content = $response->getContent();
+
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 

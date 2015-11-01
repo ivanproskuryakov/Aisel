@@ -12,18 +12,20 @@
 namespace Aisel\ReviewBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\ReviewBundle\Tests\ReviewWebTestCase;
 
 /**
  * DuplicatedNodeTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class DuplicatedNodeTest extends AbstractBackendWebTestCase
+class DuplicatedNodeTest extends ReviewWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -33,7 +35,6 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
 
     public function testPostAction()
     {
-        exit();
         $reviewNode = $this
             ->dm
             ->getRepository('Aisel\ReviewBundle\Document\Node')
