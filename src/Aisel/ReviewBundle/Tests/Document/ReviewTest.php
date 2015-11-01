@@ -48,10 +48,20 @@ class ReviewTests extends ReviewWebTestCase
         $this->assertNotNull($review->getId());
         $this->assertEquals(count($review->getNodes()), 1);
 
-        $this->dm->remove($node);
+        $this->removeDocument($review);
+        $this->removeDocument($node);
+    }
+
+    public function testChildParentNodes()
+    {
+        $parent = $this->newReviewNode();
+        $child = $this->newReviewNode();
+        $child->setParent($parent);
+
+        $this->dm->persist($child);
         $this->dm->flush();
-        $this->dm->remove($review);
-        $this->dm->flush();
+
+        $this->removeDocument($parent);
     }
 
 }

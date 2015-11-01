@@ -35,10 +35,7 @@ class DuplicatedNodeTest extends ReviewWebTestCase
 
     public function testPostAction()
     {
-        $reviewNode = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
-            ->findOneBy(['locale' => 'en']);
+        $reviewNode = $this->newReviewNode();
 
         $data = [
             'locale' => 'en',
@@ -79,6 +76,9 @@ class DuplicatedNodeTest extends ReviewWebTestCase
 
         $this->assertEquals($review->getNodes()[0]->getId(), $reviewNode->getId());
         $this->assertEquals(count($review->getNodes()), 1);
+
+        $this->removeDocument($reviewNode);
+        $this->removeDocument($review);
     }
 
 }

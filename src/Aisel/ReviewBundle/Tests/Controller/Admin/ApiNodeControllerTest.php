@@ -59,6 +59,15 @@ class ApiNodeControllerTest extends ReviewWebTestCase
 
         $this->assertEmpty($content);
         $this->assertTrue(201 === $statusCode);
+
+        $parts = explode('/', $response->headers->get('location'));
+        $id = array_pop($parts);
+        $reviewNode = $this
+            ->dm
+            ->getRepository('Aisel\ReviewBundle\Document\Node')
+            ->find($id);
+
+        $this->removeDocument($reviewNode);
     }
 
     public function testGetReviewNodesAction()

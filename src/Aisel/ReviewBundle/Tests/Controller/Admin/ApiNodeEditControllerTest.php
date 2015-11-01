@@ -11,7 +11,6 @@
 
 namespace Aisel\ReviewBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 use Aisel\ReviewBundle\Document\Node;
 use Aisel\ReviewBundle\Tests\ReviewWebTestCase;
 
@@ -34,23 +33,10 @@ class ApiNodeEditControllerTest extends ReviewWebTestCase
         parent::tearDown();
     }
 
-    public function createNode($name)
-    {
-        $node = new Node();
-        $node->setLocale('en');
-        $node->setDescription('');
-        $node->setMetaUrl('/' . md5(rand(111111, 999999)));
-        $node->setTitle($name);
-        $this->dm->persist($node);
-        $this->dm->flush();
-
-        return $node;
-    }
-
     public function testReviewNodeUpdateParentAction()
     {
-        $parent = $this->createNode('Parent' . rand(1111, 9999));
-        $child = $this->createNode('Child' . rand(1111, 9999));
+        $parent = $this->newReviewNode();
+        $child = $this->newReviewNode();
 
         $this->client->request(
             'GET',
@@ -81,11 +67,18 @@ class ApiNodeEditControllerTest extends ReviewWebTestCase
 
         $this->assertEquals($parent->getId(), $node->getParent()->getId());
         $this->assertEquals($child->getId(), $node->getParent()->getChildren()[0]->getId());
+
+        $parent = $this
+            ->dm
+            ->getRepository('Aisel\ReviewBundle\Document\Node')
+            ->findOneBy(['id' => $result['parent']['id']]);
+
+        $this->removeDocument($parent);
     }
 
     public function testReviewNodeAddChildAction()
     {
-        $parent = $this->createNode('AAA');
+        $parent = $this->newReviewNode();
 
         $this->client->request(
             'GET',
@@ -120,12 +113,13 @@ class ApiNodeEditControllerTest extends ReviewWebTestCase
             ->findOneBy(['id' => $result['id']]);
         $this->assertEquals($node->getParent()->getId(), $parent->getId());
         $this->assertEquals($node->getId(), $parent->getChildren()[0]->getId());
+
+        $this->removeDocument($parent);
     }
 
     public function testReviewNodeChangeTitleAction()
     {
-
-        $node = $this->createNode('AAA');
+        $node = $this->newReviewNode();
 
         $this->client->request(
             'GET',
@@ -146,11 +140,13 @@ class ApiNodeEditControllerTest extends ReviewWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['title'], 'BBB');
+
+        $this->removeDocument($node);
     }
 
     public function testReviewNodeDeleteAction()
     {
-        $node = $this->createNode('DeleteMe');
+        $node = $this->newReviewNode();
 
         $this->client->request(
             'GET',

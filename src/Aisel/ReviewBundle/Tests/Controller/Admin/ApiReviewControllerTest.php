@@ -34,10 +34,7 @@ class ApiReviewControllerTest extends ReviewWebTestCase
 
     public function testPostReviewAction()
     {
-        $reviewNode = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
-            ->findOneBy(['locale' => 'en']);
+        $reviewNode = $this->newReviewNode();
 
         $data = [
             'locale' => 'en',
@@ -78,6 +75,9 @@ class ApiReviewControllerTest extends ReviewWebTestCase
             ->find($id);
 
         $this->assertEquals($review->getNodes()[0]->getId(), $reviewNode->getId());
+
+        $this->removeDocument($review);
+        $this->removeDocument($reviewNode);
     }
 
     public function testGetReviewAction()
@@ -99,6 +99,8 @@ class ApiReviewControllerTest extends ReviewWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $review->getId());
+
+        $this->removeDocument($review);
     }
 
     public function testDeleteReviewAction()

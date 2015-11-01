@@ -48,7 +48,7 @@ class Node extends BaseNode implements UrlInterface
     protected $parent;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Aisel\ReviewBundle\Document\Node")
+     * @ODM\ReferenceMany(cascade="remove", targetDocument="Aisel\ReviewBundle\Document\Node")
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Document\Node>")
      * @AiselAnnotation\NoDuplicates()
