@@ -15,8 +15,6 @@ use Aisel\ResourceBundle\Document\Node as BaseNode;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Document\UrlInterface;
-use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 use Aisel\ResourceBundle\Domain\DescriptionTrait;
@@ -31,13 +29,11 @@ use Aisel\ResourceBundle\Domain\DescriptionTrait;
  *      collection="aisel_review_node",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
+ * @ODM\UniqueIndex(keys={"locale"="asc"})
  * @JMS\ExclusionPolicy("all")
  */
-//* @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
-class Node extends BaseNode implements UrlInterface
+class Node extends BaseNode
 {
-
-    use MetaTrait;
     use DescriptionTrait;
 
     /**

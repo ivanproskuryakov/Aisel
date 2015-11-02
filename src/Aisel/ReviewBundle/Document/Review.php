@@ -38,20 +38,16 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  * @JMS\ExclusionPolicy("all")
- * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
+ * @ODM\UniqueIndex(keys={"locale"="asc"})
  *
  */
-//* @ODM\Indexes({
-// *   @ODM\Index(keys={"content"="text"})
-// * })
-class Review implements UrlInterface
+class Review
 {
     use IdTrait;
     use TitleTrait;
     use UpdateCreateTrait;
     use LocaleTrait;
     use StatusTrait;
-    use MetaTrait;
 
     /**
      * @var string

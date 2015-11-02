@@ -44,7 +44,6 @@ class ReviewWebTestCase extends AbstractWebTestCase
         $node = new Node();
         $node->setStatus(true);
         $node->setDescription($this->faker->sentence(10));
-        $node->setMetaUrl('url_' . time() + rand(11111, 99999));
         $node->setLocale('en');
 
         $this->dm->persist($node);
@@ -68,7 +67,6 @@ class ReviewWebTestCase extends AbstractWebTestCase
         $review->setContent($this->faker->sentence(10));
         $review->setStatus(true);
         $review->setCommentStatus(true);
-        $review->setMetaUrl('url_' . time() . rand(11111, 99999));
         if ($node) {
             $review->addNode($node);
         }

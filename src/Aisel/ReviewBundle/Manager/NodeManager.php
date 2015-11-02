@@ -44,7 +44,6 @@ class NodeManager extends ApiNodeManager
         $node->setParent($parent);
         $node->setStatus(false);
         $node->setDescription('');
-        $node->setMetaUrl($params['name'] . '_' . time());
         $this->dm->persist($node);
         $this->dm->flush();
 
@@ -61,7 +60,6 @@ class NodeManager extends ApiNodeManager
         $node->setTitle($params['name']);
         $node->setStatus(false);
         $node->setDescription('');
-        $node->setMetaUrl($params['name']);
 
         $this->dm->persist($node);
         $this->dm->flush();
