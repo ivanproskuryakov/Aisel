@@ -25,6 +25,7 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\TitleTrait;
+use Aisel\ReviewBundle\Domain\ReviewTrait;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 /**
@@ -41,9 +42,6 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
  * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
  *
  */
-//* @ODM\Indexes({
-// *   @ODM\Index(keys={"content"="text"})
-// * })
 class Page implements UrlInterface
 {
     use IdTrait;
@@ -52,6 +50,7 @@ class Page implements UrlInterface
     use LocaleTrait;
     use StatusTrait;
     use MetaTrait;
+    use ReviewTrait;
 
     /**
      * @var string
@@ -87,6 +86,7 @@ class Page implements UrlInterface
     public function __construct()
     {
         $this->nodes = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     /**

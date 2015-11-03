@@ -29,7 +29,6 @@ use Aisel\ResourceBundle\Domain\DescriptionTrait;
  *      collection="aisel_review_node",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
- * @ODM\UniqueIndex(keys={"locale"="asc"})
  * @JMS\ExclusionPolicy("all")
  */
 class Node extends BaseNode

@@ -38,6 +38,9 @@ class NodeManager extends ApiNodeManager
             }
         }
 
+        /** @var \Aisel\ReviewBundle\Document\Node $node */
+        /** @var \Aisel\ReviewBundle\Document\Node $parent */
+
         $node = new $this->model();
         $node->setlocale($params['locale']);
         $node->setTitle($params['name']);
@@ -55,6 +58,8 @@ class NodeManager extends ApiNodeManager
      */
     public function addSibling($params)
     {
+        /** @var \Aisel\ReviewBundle\Document\Node $node */
+
         $node = new $this->model();
         $node->setlocale($params['locale']);
         $node->setTitle($params['name']);

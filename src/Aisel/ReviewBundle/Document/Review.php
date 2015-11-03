@@ -21,7 +21,6 @@ use Aisel\ReviewBundle\Document\Node;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
-use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\TitleTrait;
@@ -38,8 +37,6 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
  * @JMS\ExclusionPolicy("all")
- * @ODM\UniqueIndex(keys={"locale"="asc"})
- *
  */
 class Review
 {
