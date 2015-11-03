@@ -29,6 +29,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\QtyTrait;
+use Aisel\ReviewBundle\Domain\ReviewTrait;
 
 /**
  * Product
@@ -52,6 +53,7 @@ class Product implements UrlInterface
     use NameTrait;
     use LocaleTrait;
     use QtyTrait;
+    use ReviewTrait;
 
     /**
      * @var string
@@ -213,6 +215,7 @@ class Product implements UrlInterface
     {
         $this->medias = new ArrayCollection();
         $this->nodes = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     /**

@@ -9,20 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Tests\Document;
+namespace Aisel\ProductBundle\Tests\Document;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
-use Aisel\PageBundle\Document\Page;
+use Aisel\ProductBundle\Document\Product;
+use Aisel\MediaBundle\Document\Media;
 use Aisel\ReviewBundle\Document\Review;
 use Aisel\ReviewBundle\Document\Node as ReviewNode;
 
 /**
- * PageReviewTest
+ * ProductTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class PageReviewTest extends AbstractWebTestCase
+class ProductReviewTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -35,7 +36,7 @@ class PageReviewTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testPageReview()
+    public function testProductReview()
     {
         $node = new ReviewNode();
         $node->setStatus(true);
@@ -52,20 +53,21 @@ class PageReviewTest extends AbstractWebTestCase
         $this->dm->persist($review);
         $this->dm->flush();
 
-        $page = new Page();
-        $page->setLocale('en');
-        $page->setTitle($this->faker->sentence(1));
-        $page->setContent($this->faker->sentence(10));
-        $page->setStatus(true);
-        $page->setCommentStatus(true);
-        $page->setMetaUrl('url_' . time());
-        $page->addReview($review);
+        $product = new Product();
+        $product->setLocale('en');
+        $product->setName($this->faker->sentence(1));
+        $product->setDescriptionShort($this->faker->sentence(10));
+        $product->setDescription($this->faker->sentence(10));
+        $product->setStatus(true);
+        $product->setCommentStatus(true);
+        $product->setMetaUrl('url_' . time());
+        $product->addReview($review);
 
-        $this->dm->persist($page);
+        $this->dm->persist($product);
         $this->dm->flush();
 
-        $this->assertNotNull($page->getId());
-        $this->removeDocument($page);
+        $this->assertNotNull($product->getId());
+        $this->removeDocument($product);
 
         $review = $this
             ->dm
