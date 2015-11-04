@@ -5,31 +5,6 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-api_aisel_review_get:
-    pattern:  /{locale}/review/
-    defaults: { _controller: AiselReviewBundle:ApiReview:getCollection, _format: json }
-    requirements:
-        _method: GET
-
-api_aisel_review_get_by_url:
-    pattern:  /{locale}/review/{url}
-    defaults: { _controller: AiselReviewBundle:ApiReview:getByURL, _format: json }
-    requirements:
-        _method: GET
-
-api_aisel_review_node_get:
-    pattern:  /{locale}/review/node/
-    defaults: { _controller: AiselReviewBundle:ApiNode:getCollection, _format: json }
-    requirements:
-        _method: GET
-
-api_aisel_review_node_get_by_url:
-    pattern:  /{locale}/review/node/{url}
-    defaults: { _controller: AiselReviewBundle:ApiNode:getByURL, _format: json }
-    requirements:
-        _method: GET
-        id: "\d+"
-
 api_aisel_review_node_get_tree:
     pattern:  /{locale}/review/node/tree/
     defaults: { _controller: AiselReviewBundle:ApiNode:getTree, _format: json }

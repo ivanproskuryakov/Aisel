@@ -24,6 +24,6 @@ class ApiReviewController extends BaseApiController
     /**
      * @var string
      */
-    protected $model =  "Aisel\ReviewBundle\Document\Review";
+    protected $model = "Aisel\ReviewBundle\Document\Review";
 
 }

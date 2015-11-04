@@ -26,8 +26,8 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
 
     protected $fixturesName = array(
         'en/aisel_page.xml',
-        'ru/aisel_page.xml',
-        'es/aisel_page.xml',
+//        'ru/aisel_page.xml',
+//        'es/aisel_page.xml',
     );
 
     /**
@@ -56,6 +56,13 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                         $page->addNode($node);
                     }
 
+                    $review = explode(",", $table->column[9]);
+
+                    foreach ($review as $r) {
+                        $review = $this->getReference('page_review_' . $r);
+                        $page->addReview($review);
+                    }
+
                     $manager->persist($page);
                     $manager->flush();
 
@@ -70,6 +77,6 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 210;
+        return 250;
     }
 }

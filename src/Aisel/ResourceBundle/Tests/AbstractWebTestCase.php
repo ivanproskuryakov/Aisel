@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Client;
 use Aisel\BackendUserBundle\Manager\UserManager;
 use Symfony\Component\Validator\Validator;
 use Faker;
+
 /**
  * Class AbstractWebTestCase.
  *
@@ -72,14 +73,14 @@ abstract class AbstractWebTestCase extends KernelTestCase
     }
 
 
-    public function removeDocument($document)
+    public function removeDocument($document, $model = 'Aisel\ReviewBundle\Document\Node')
     {
         $this->dm->remove($document);
         $this->dm->flush();
 
         $isFound = $this
             ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
+            ->getRepository($model)
             ->findOneBy(['id' => $document->getId()]);
 
         $this->assertNull($isFound);

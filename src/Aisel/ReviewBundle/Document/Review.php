@@ -56,16 +56,6 @@ class Review
     private $content;
 
     /**
-     * @var boolean
-     * @ODM\Field(type="boolean")
-     * @Assert\Type(type="bool")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("boolean")
-     */
-    private $commentStatus = false;
-
-    /**
      * @var ArrayCollection
      * @ODM\ReferenceMany(targetDocument="Aisel\ReviewBundle\Document\Node")
      * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Document\Node>")
@@ -103,29 +93,6 @@ class Review
     public function getContent()
     {
         return $this->content;
-    }
-
-    /**
-     * Set commentStatus
-     *
-     * @param  boolean $commentStatus
-     * @return Review
-     */
-    public function setCommentStatus($commentStatus)
-    {
-        $this->commentStatus = $commentStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get commentStatus
-     *
-     * @return boolean
-     */
-    public function getCommentStatus()
-    {
-        return $this->commentStatus;
     }
 
     /**

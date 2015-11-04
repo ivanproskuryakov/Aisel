@@ -66,7 +66,6 @@ class ReviewWebTestCase extends AbstractWebTestCase
         $review->setTitle($this->faker->sentence(1));
         $review->setContent($this->faker->sentence(10));
         $review->setStatus(true);
-        $review->setCommentStatus(true);
         if ($node) {
             $review->addNode($node);
         }
