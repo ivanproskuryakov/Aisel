@@ -16,7 +16,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Document\UrlInterface;
 use Aisel\ReviewBundle\Document\Node;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
@@ -24,6 +23,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\TitleTrait;
+use Aisel\ResourceBundle\Domain\ContentTrait;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 /**
@@ -45,15 +45,7 @@ class Review
     use UpdateCreateTrait;
     use LocaleTrait;
     use StatusTrait;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $content;
+    use ContentTrait;
 
     /**
      * @var ArrayCollection
@@ -70,29 +62,6 @@ class Review
     public function __construct()
     {
         $this->nodes = new ArrayCollection();
-    }
-
-    /**
-     * Set content
-     *
-     * @param  string $content
-     * @return Review
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Get content
-     *
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
     }
 
     /**

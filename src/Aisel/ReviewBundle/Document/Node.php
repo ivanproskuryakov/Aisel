@@ -50,5 +50,4 @@ class Node extends BaseNode
      */
     protected $children;
 
-
 }

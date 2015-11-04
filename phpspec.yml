@@ -33,6 +33,9 @@ suites:
     AiselPageBundle:
         namespace: Aisel
         spec_path: src/Aisel/PageBundle/
+    AiselReviewBundle:
+        namespace: Aisel
+        spec_path: src/Aisel/ReviewBundle/
     AiselProductBundle:
         namespace: Aisel
         spec_path: src/Aisel/ProductBundle/
