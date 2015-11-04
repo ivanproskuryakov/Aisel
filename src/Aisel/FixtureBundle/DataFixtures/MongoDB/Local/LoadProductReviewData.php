@@ -14,20 +14,18 @@ namespace Aisel\ResourceBundle\DataFixtures\MongoDB\Local;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\ProductBundle\Document\Node;
+use Aisel\ReviewBundle\Document\Review;
 
 /**
- * Product Nodes
+ * Page fixtures
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class LoadProductNodeData extends XMLFixture implements OrderedFixtureInterface
+class LoadProductReviewData extends XMLFixture implements OrderedFixtureInterface
 {
 
     protected $fixturesName = array(
-        'en/aisel_product_node.xml',
-        'ru/aisel_product_node.xml',
-        'es/aisel_product_node.xml',
+        'en/aisel_product_review.xml',
     );
 
     /**
@@ -41,20 +39,23 @@ class LoadProductNodeData extends XMLFixture implements OrderedFixtureInterface
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
-                    $node = new Node();
-                    $node->setLocale($table->column[1]);
-                    $node->setTitle($table->column[3]);
-                    $node->setDescription($table->column[8]);
-                    $node->setStatus((int)$table->column[9]);
-                    $node->setMetaUrl($table->column[10]);
+                    $review = new Review();
+                    $review->setLocale($table->column[1]);
+                    $review->setTitle($table->column[2]);
+                    $review->setContent($table->column[3]);
+                    $review->setStatus($table->column[4]);
 
-                    if ($table->column[2] != 'NULL') {
-                        $parent = $this->getReference('product_node_' . $table->column[2]);
-                        $node->setParent($parent);
+                    $nodes = explode(",", $table->column[5]);
+
+                    foreach ($nodes as $c) {
+                        $node = $this->getReference('product_review_node_' . $c);
+                        $review->addNode($node);
                     }
-                    $manager->persist($node);
+
+                    $manager->persist($review);
                     $manager->flush();
-                    $this->addReference('product_node_' . $table->column[0], $node);
+
+                    $this->addReference('product_review_' . $table->column[0], $review);
                 }
             }
         }
@@ -65,6 +66,6 @@ class LoadProductNodeData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 330;
+        return 320;
     }
 }

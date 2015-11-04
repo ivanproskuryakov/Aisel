@@ -32,8 +32,6 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
     protected $fixturesName = array(
         'en/aisel_product.xml',
-        'ru/aisel_product.xml',
-        'es/aisel_product.xml',
     );
 
     /**
@@ -65,9 +63,17 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
                     $product->setMetaUrl($table->column[19]);
 
                     $nodes = explode(",", $table->column[20]);
+
                     foreach ($nodes as $c) {
                         $node = $this->getReference('product_node_' . $c);
                         $product->addNode($node);
+                    }
+
+                    $review = explode(",", $table->column[21]);
+
+                    foreach ($review as $r) {
+                        $review = $this->getReference('product_review_' . $r);
+                        $product->addReview($review);
                     }
 
                     $manager->persist($product);
@@ -160,6 +166,6 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 310;
+        return 340;
     }
 }

@@ -47,7 +47,6 @@ class LoadPageReviewData extends XMLFixture implements OrderedFixtureInterface
 
                     $nodes = explode(",", $table->column[5]);
 
-
                     foreach ($nodes as $c) {
                         $node = $this->getReference('page_review_node_' . $c);
                         $review->addNode($node);

@@ -14,20 +14,18 @@ namespace Aisel\ResourceBundle\DataFixtures\MongoDB\Local;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\ProductBundle\Document\Node;
+use Aisel\ReviewBundle\Document\Node;
 
 /**
- * Product Nodes
+ * Page Node fixtures
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class LoadProductNodeData extends XMLFixture implements OrderedFixtureInterface
+class LoadProductReviewNodeData extends XMLFixture implements OrderedFixtureInterface
 {
 
     protected $fixturesName = array(
-        'en/aisel_product_node.xml',
-        'ru/aisel_product_node.xml',
-        'es/aisel_product_node.xml',
+        'en/aisel_product_review_node.xml',
     );
 
     /**
@@ -46,15 +44,17 @@ class LoadProductNodeData extends XMLFixture implements OrderedFixtureInterface
                     $node->setTitle($table->column[3]);
                     $node->setDescription($table->column[8]);
                     $node->setStatus((int)$table->column[9]);
-                    $node->setMetaUrl($table->column[10]);
+
+                    $parent = null;
 
                     if ($table->column[2] != 'NULL') {
-                        $parent = $this->getReference('product_node_' . $table->column[2]);
+                        $parent = $this->getReference('product_review_node_' . $table->column[2]);
                         $node->setParent($parent);
                     }
+
                     $manager->persist($node);
                     $manager->flush();
-                    $this->addReference('product_node_' . $table->column[0], $node);
+                    $this->addReference('product_review_node_' . $table->column[0], $node);
                 }
             }
         }
@@ -65,6 +65,6 @@ class LoadProductNodeData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 330;
+        return 310;
     }
 }
