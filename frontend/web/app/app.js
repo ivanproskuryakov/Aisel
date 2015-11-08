@@ -13,22 +13,42 @@
  */
 
 define([
-        'angular', 'jQuery', 'underscore', 'angular-resource',
-        'angular-cookies', 'angular-sanitize', 'textAngular',
-        'ui-bootstrap-tpls', 'ui-utils', 'angular-gravatar',
-        'md5', 'angular-disqus', 'angular-notify', 'twitter-bootstrap',
-        'angular-ui-router', 'angular-route', 'angular-animate',
+        'angular',
+        'jQuery',
+        'underscore',
+        'angular-resource',
+        'angular-cookies',
+        'angular-sanitize',
+        'textAngular',
+        'ui-bootstrap-tpls',
+        'ui-validate',
+        'angular-gravatar',
+        'md5',
+        'angular-disqus',
+        'angular-notify',
+        'twitter-bootstrap',
+        'angular-ui-router',
+        'angular-animate',
         'angular-loading-bar'
     ],
     function(angular) {
         'use strict';
 
         var app = angular.module('app', [
-            'ngCookies', 'ngResource', 'ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.router',
-            'ui.utils', 'ui.validate', 'ui.gravatar', 'textAngular', 'ngDisqus', 'cgNotify',
-            'ngAnimate', 'angular-loading-bar',
+            'ngCookies',
+            'ngResource',
+            'ngSanitize',
+            'ui.bootstrap',
+            'ui.router',
+            'ui.validate',
+            'ui.gravatar',
+            'textAngular',
+            'ngDisqus',
+            'cgNotify',
+            'ngAnimate',
+            'angular-loading-bar',
             'environment'
-        ])
+        ]);
 
         app.run(['$http', '$rootScope', 'settingsService', 'initService',
                 function($http, $rootScope, settingsService, initService) {

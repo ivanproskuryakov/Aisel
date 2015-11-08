@@ -25,11 +25,10 @@ require.config({
         'textAngular': '../bower_components/textAngular/dist/textAngular.min',
         'angular-cookies': '../bower_components/angular-cookies/angular-cookies.min',
         'angular-sanitize': '../bower_components/angular-sanitize/angular-sanitize',
-        'angular-route': '../bower_components/angular-route/angular-route',
         'angular-animate': '../bower_components/angular-animate/angular-animate',
         'angular-loading-bar': '../bower_components/angular-loading-bar/build/loading-bar.min',
         'ui-bootstrap-tpls': '../bower_components/angular-bootstrap/ui-bootstrap-tpls',
-        'ui-utils': '../bower_components/angular-ui-utils/ui-utils',
+        'ui-validate': '../bower_components/angular-ui-validate/dist/validate.min',
         'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
         'angular-notify': '../bower_components/angular-notify/dist/angular-notify.min',
         'md5': '../bower_components/angular-gravatar/build/md5',
@@ -38,7 +37,6 @@ require.config({
     },
     // Add angular modules that does not support AMD out of the box, put it in a shim
     shim: {
-        'angular-route': ['angular'],
         'angular-loading-bar': ['angular'],
         'angular-animate': ['angular'],
         'angular-ui-router': ['angular'],
@@ -59,7 +57,7 @@ require.config({
         "angular-gravatar": ["angular"],
         "angular-sanitize": ["angular"],
         "twitter-bootstrap": ["angular"],
-        "ui-utils": ["angular"],
+        "ui-validate": ["angular"],
         "md5": ["angular"]
     },
     // Kick start application

@@ -13,8 +13,8 @@
  */
 
 define(['app'], function(app) {
-    app.controller('HomepageCtrl', ['$location', '$scope', '$routeParams', '$rootScope', 'settingsService', 'Environment',
-        function($location, $scope, $routeParams, $rootScope, settingsService, Environment) {
+    app.controller('HomepageCtrl', ['$location', '$scope', '$rootScope', 'settingsService', 'Environment',
+        function($location, $scope, $rootScope, settingsService, Environment) {
             settingsService.getApplicationConfig().success(
                 function(data, status) {
                     var locale = Environment.currentLocale();
