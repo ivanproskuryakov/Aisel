@@ -18,8 +18,8 @@ define(['app'], function(app) {
         var pageService = new resourceService('page');
 
         var handleSuccess = function(data, status) {
-            $scope.pageDetails = data;
-            $rootScope.pageTitle = $scope.pageDetails.title;
+            $scope.page = data;
+            $rootScope.pageTitle = data.title;
 
             // Disqus comments
             window.disqus_shortname = $rootScope.disqusShortname;

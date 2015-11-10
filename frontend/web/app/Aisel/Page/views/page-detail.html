@@ -1,22 +1,43 @@
-<div class="">
-        <div class="col-xs-12 page-header">
-            <h2>{{pageDetails.title}}</h2>
-        </div>
-        <div class="col-xs-12 col-md-12">
-            <p><span class="glyphicon glyphicon-calendar"></span> {{pageDetails.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
-            <p ng-bind-html="pageDetails.content"></p>
-            <div class="related-categories" ng-if="pageDetails.nodes">
-                <hr/>
-                <p><strong>Page categories: </strong></p>
-                <ul class="categoryList">
-                    <li ng-repeat="category in pageDetails.nodes">
-                        <span class="label label-primary">
-                            <a ui-sref="pageCategoryView({locale: locale, categoryId:category.meta_url})">{{ category.title }}</a>
-                        </span>&nbsp;
-                    </li>
-                </ul>
-            </div>
-            <div ng-if="showComments" disqus="pageDetails.meta_url"></div>
-        </div>
+<div class="col-xs-12 page-header">
+    <h2>{{page.title}}</h2>
+</div>
+<div class="col-xs-12 col-md-12">
+    <p><span class="glyphicon glyphicon-calendar"></span> {{page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
+
+    <p ng-bind-html="page.content"></p>
 </div>
 
+
+<!-- Categories -->
+<div class="col-xs-12 page-header">
+    <h3>Categories</h3>
+</div>
+<div class="col-xs-12">
+    <div class="related-categories" ng-if="page.nodes">
+        <ul class="categoryList">
+            <li ng-repeat="node in page.nodes">
+                <span class="label label-primary">
+                    <a ui-sref="pageCategoryView({locale: locale, categoryId:node.meta_url})">
+                        {{node.title }}</a>
+                </span>&nbsp;
+            </li>
+        </ul>
+    </div>
+</div>
+<div ng-if="showComments" disqus="page.meta_url"></div>
+
+
+<!-- Reviews -->
+<div class="related-reviews">
+    <div class="col-xs-12 page-header">
+        <h3>Reviews</h3>
+    </div>
+</div>
+<div class="col-md-7">
+    <aisel-review-collection reviews="page.reviews">
+    </aisel-review-collection>
+</div>
+<div class="col-md-5">
+    <aisel-review-add model="page">
+    </aisel-review-add>
+</div>

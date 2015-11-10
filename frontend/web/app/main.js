@@ -67,11 +67,12 @@ require.config({
         './Aisel/Search/AiselSearch',
         './Aisel/Page/AiselPage',
         './Aisel/Product/AiselProduct',
+        './Aisel/Review/AiselReview',
         './Aisel/User/AiselUser',
         './Aisel/Cart/AiselCart',
         './Aisel/Order/AiselOrder',
         './Aisel/Exception/AiselException',
-        'bootstrap',
+        'bootstrap'
     ],
     priority: [
         "angular"
