@@ -26,7 +26,6 @@ define([
         'md5',
         'angular-disqus',
         'angular-notify',
-        'twitter-bootstrap',
         'angular-ui-router',
         'angular-animate',
         'angular-loading-bar'

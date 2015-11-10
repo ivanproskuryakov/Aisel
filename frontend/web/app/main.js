@@ -19,7 +19,6 @@ require.config({
         'underscore': '../bower_components/underscore/underscore-min',
         'domReady': '../bower_components/domReady/domReady',
         'angular': '../bower_components/angular/angular',
-        'twitter-bootstrap': '../bower_components/sass-bootstrap/dist/js/bootstrap',
         'angular-resource': '../bower_components/angular-resource/angular-resource',
         'textAngular-sanitize': '../bower_components/textAngular/dist/textAngular-sanitize.min',
         'textAngular': '../bower_components/textAngular/dist/textAngular.min',
@@ -56,7 +55,6 @@ require.config({
         "angular-notify": ["angular"],
         "angular-gravatar": ["angular"],
         "angular-sanitize": ["angular"],
-        "twitter-bootstrap": ["angular"],
         "ui-validate": ["angular"],
         "md5": ["angular"]
     },

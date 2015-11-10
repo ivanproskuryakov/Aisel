@@ -1,9 +1,17 @@
-<div ng-repeat="image in images">
+<div ng-if="slider == false" ng-repeat="image in images">
     <img class="{{style}} product-image"
          ng-if="image.main_image === true"
          src="{{media}}{{image.filename}}"
          data-holder-rendered="true"
-         width="{{size || '100%' }}"
-         height="{{size}}"
+         style="width: {{width}}; height: {{height}}"
     />
 </div>
+<carousel ng-if="slider" interval="interval" style="width: {{width}}; height: {{height}}">
+    <slide ng-repeat="image in images" active="image.main_image">
+        <img class="{{style}} product-image"
+             style="width: {{width}}; height: {{height}}"
+             ng-src="{{media}}{{image.filename}}"
+             data-holder-rendered="true"
+        />
+    </slide>
+</carousel>
