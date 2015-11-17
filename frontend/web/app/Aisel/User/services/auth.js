@@ -16,11 +16,11 @@ define(['app'], function(app) {
     console.log('Kernel Auth service loaded ...');
 
     angular.module('app')
-        .service('authService', ['$modal',
-            function($modal) {
+        .service('authService', ['$uibModal',
+            function($uibModal) {
                 return {
                     authenticateWithModal: function() {
-                        var modalAuthInstance = $modal.open({
+                        var modalAuthInstance = $uibModal.open({
                             templateUrl: '/app/Aisel/User/views/modal/login.html',
                             controller: 'ModalAuthCtrl'
                         });

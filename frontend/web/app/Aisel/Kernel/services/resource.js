@@ -42,6 +42,9 @@ define(['app'], function (app) {
                 console.log(url);
                 return $http.get(url);
             };
+            resourceService.prototype.addReview = function (params) {
+                console.log("addReview", params);
+            };
 
             return resourceService;
         }

@@ -1,10 +1,11 @@
-<h4>Leave a review for: {{model.title}}</h4>
-
-<form name="contanctForm" role="form">
-
+<form name="addReviewForm" role="form" ng-submit="addReview(title, content)">
     <div class="form-group">
         <label for="title">Title</label>
-        <input type="email" class="form-control" id="title">
+        <input type="text"
+               ng-required="true"
+               ng-model="title"
+               class="form-control"
+               id="title">
     </div>
 
     <h3>Content</h3>
@@ -17,6 +18,9 @@
     <br class="divider">
 
     <div class="input-group pull-left">
-        <button type="submit" class="btn btn-default">Submit Review</button>
+        <button type="submit"
+                class="btn btn-primary">
+            Submit Review
+        </button>
     </div>
 </form>

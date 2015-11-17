@@ -6,12 +6,12 @@
          style="width: {{width}}; height: {{height}}"
     />
 </div>
-<carousel ng-if="slider" interval="interval" style="width: {{width}}; height: {{height}}">
-    <slide ng-repeat="image in images" active="image.main_image">
+<uib-carousel ng-if="slider" interval="interval" style="width: {{width}}; height: {{height}}">
+    <uib-slide ng-repeat="image in images" active="image.main_image" no-wrap="false">
         <img class="{{style}} product-image"
              style="width: {{width}}; height: {{height}}"
              ng-src="{{media}}{{image.filename}}"
              data-holder-rendered="true"
         />
-    </slide>
-</carousel>
+    </uib-slide>
+</uib-carousel>

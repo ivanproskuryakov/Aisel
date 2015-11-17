@@ -13,14 +13,25 @@
  */
 
 define(['app'], function (app) {
-    app.directive('aiselReviewAdd', ['$compile', 'Environment',
-        function ($compile, Environment) {
+    app.directive('aiselReviewAdd', ['$compile', 'Environment', 'resourceService',
+        function ($compile, Environment, resourceService) {
             return {
                 restrict: 'EA',
                 scope: {
-                    model: '='
+                    model: '=',
+                    resource: '='
                 },
                 link: function ($scope, element, attrs) {
+
+                    var resource = new resourceService($scope.resource);
+
+                    $scope.addReview = function (title, content) {
+                        var params = {
+                            title: title,
+                            content: content
+                        };
+                        resource.addReview(params);
+                    };
                 },
                 templateUrl: '/app/Aisel/Review/views/directives/review-add.html'
             };

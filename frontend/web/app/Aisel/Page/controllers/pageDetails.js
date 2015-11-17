@@ -12,21 +12,19 @@
  * @description     ...
  */
 
-define(['app'], function(app) {
-    app.controller('PageDetailCtrl', function($scope, $stateParams, resourceService, $rootScope) {
+define(['app'], function (app) {
+    app.controller('PageDetailCtrl', function ($scope, $stateParams, resourceService, $rootScope) {
         var pageURL = $stateParams.pageId;
         var pageService = new resourceService('page');
 
-        var handleSuccess = function(data, status) {
+        var handleSuccess = function (data, status) {
             $scope.page = data;
             $rootScope.pageTitle = data.title;
 
-            // Disqus comments
             window.disqus_shortname = $rootScope.disqusShortname;
             $scope.showComments = $rootScope.disqusStatus;
         };
 
         pageService.getItemByURL(pageURL).success(handleSuccess);
-
     });
 });
