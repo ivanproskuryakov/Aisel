@@ -2,7 +2,11 @@
     <div class="new-pages">
         <div class="row">
             <div class="col-lg-4" ng-repeat="item in newPages.collection">
-                <h2>{{item.title}}</h2>
+                <h2>
+                    <a ui-sref="pageView({locale: locale, pageId:item.meta_url})">
+                        {{item.title}}
+                    </a>
+                </h2>
                 <p>{{item.content | limitTo: 200 }}</p>
                 <p>
                     <a class="btn btn-primary"

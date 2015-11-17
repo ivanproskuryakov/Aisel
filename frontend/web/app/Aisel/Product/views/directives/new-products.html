@@ -10,7 +10,11 @@
                         slider="false"
                         images="item.medias">
                 </aisel-product-images>
-                <h2>{{item.name}}</h2>
+                <h2>
+                    <a ui-sref="productView({locale: locale, productId:item.meta_url})">
+                       {{item.name}}
+                    </a>
+                </h2>
                 <p>{{item.description | limitTo: 200 }}</p>
                 <p>
                     <a class="btn btn-primary"

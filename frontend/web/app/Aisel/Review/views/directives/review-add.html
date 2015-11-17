@@ -1,1 +1,22 @@
-<h4>Leave a review</h4> for {{model.id}}
+<h4>Leave a review for: {{model.title}}</h4>
+
+<form name="contanctForm" role="form">
+
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="email" class="form-control" id="title">
+    </div>
+
+    <h3>Content</h3>
+    <textarea class="form-control"
+              rows="8"
+              ng-required="true"
+              name="content"
+              ng-model="content">
+    </textarea>
+    <br class="divider">
+
+    <div class="input-group pull-left">
+        <button type="submit" class="btn btn-default">Submit Review</button>
+    </div>
+</form>
