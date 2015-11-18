@@ -53,4 +53,50 @@ class ApiReviewControllerTest extends ReviewWebTestCase
         $this->removeDocument($node);
     }
 
+    public function testPostReviewAction()
+    {
+        $reviewNode = $this->newReviewNode();
+
+        $data = [
+            'locale' => 'en',
+            'title' => $this->faker->title,
+            'content' => $this->faker->sentence(10),
+            'status' => true,
+            'comment_status' => false,
+            'nodes' => [
+                [
+                    'id' => $reviewNode->getId()
+                ]
+            ]
+        ];
+
+        $this->client->request(
+            'POST',
+            '/'. $this->api['frontend'] .'/en/review/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->assertEmpty($content);
+        $this->assertTrue(201 === $statusCode);
+        $parts = explode('/', $response->headers->get('location'));
+        $id = array_pop($parts);
+
+        $review = $this
+            ->dm
+            ->getRepository('Aisel\ReviewBundle\Document\Review')
+            ->find($id);
+
+        $this->assertEquals($review->getNodes()[0]->getId(), $reviewNode->getId());
+
+        $this->removeDocument($review);
+        $this->removeDocument($reviewNode);
+    }
+
 }

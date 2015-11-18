@@ -25,6 +25,10 @@ use JMS\Serializer\SerializationContext;
  */
 class ApiController extends Controller
 {
+
+    CONST SCOPE_FRONTEND = 'frontend';
+    CONST SCOPE_BACKEND = 'backend';
+
     /**
      * @var string
      */
@@ -119,14 +123,29 @@ class ApiController extends Controller
                 '_get',
                 $this->container->get('request')->get('_route')
             );
-            $response->headers->set(
-                'Location',
-                $this->generateUrl(
+
+            if ($this->getScope() == self::SCOPE_BACKEND) {
+                $url = $this->generateUrl(
                     $route,
                     array('id' => $entity->getId()),
                     true // absolute
-                )
-            );
+                );
+            }
+
+            if ($this->getScope() == self::SCOPE_FRONTEND) {
+                $url = $this->generateUrl(
+                    $route,
+                    array(
+                        'id' => $entity->getId(),
+                        'locale' => $entity->getLocale()
+                    ),
+                    true // absolute
+                );
+            }
+
+            $response
+                ->headers
+                ->set('Location', $url);
         }
 
         return $response;
@@ -213,7 +232,7 @@ class ApiController extends Controller
             'order' => $request->get('order'),
             'orderBy' => $request->get('orderBy'),
             'filter' => $request->get('filter'),
-            'scope' => $this->getRequestScope($request)
+            'scope' => $this->getScope($request)
         );
 
         /**
@@ -240,7 +259,7 @@ class ApiController extends Controller
     {
         $params = array(
             'locale' => $request->get('locale'),
-            'scope' => $this->getRequestScope($request)
+            'scope' => $this->getScope($request)
         );
 
         /**
@@ -257,19 +276,19 @@ class ApiController extends Controller
     /**
      * Get request scope
      *
-     * @param Request $request
      * @return string $status
      */
-    protected function getRequestScope(Request $request)
+    protected function getScope()
     {
-        $scope = 'backend';
+        $uri = $this->get('request')->getUri();
+        $scope = self::SCOPE_BACKEND;
 
         $urlFrontend = $this
             ->container
             ->getParameter('frontend_api');
 
-        if (strpos($request->getUri(), $urlFrontend)) {
-            $scope = 'frontend';
+        if (strpos($uri, $urlFrontend)) {
+            $scope = self::SCOPE_FRONTEND;
         }
 
         return $scope;
