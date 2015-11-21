@@ -11,7 +11,7 @@
 
 namespace Aisel\ConfigBundle\Entity;
 
-use Doctrine\ODM\MongoDB\DocumentRepository;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\Exception;
 
 /**
@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Exception;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ConfigRepository extends DocumentRepository
+class ConfigRepository extends EntityRepository
 {
 
     /**

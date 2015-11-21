@@ -15,44 +15,47 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * DescriptionTrait
+ * ContentTrait
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  */
-trait DescriptionTrait
+trait CommentStatusTrait
 {
 
     /**
-     * @var string
-     * @ORM\Column(type="text")
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(type="bool")
      * @Assert\NotNull()
      * @JMS\Expose
-     * @JMS\Type("string")
+     * @JMS\Type("boolean")
      */
-    private $description;
+    private $commentStatus = false;
+
 
     /**
-     * Set description
+     * Set commentStatus
      *
-     * @param  string $description
+     * @param  boolean $commentStatus
      * @return mixed
      */
-    public function setDescription($description)
+    public function setCommentStatus($commentStatus)
     {
-        $this->description = $description;
+        $this->commentStatus = $commentStatus;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get commentStatus
      *
-     * @return string
+     * @return boolean
      */
-    public function getDescription()
+    public function getCommentStatus()
     {
-        return $this->description;
+        return $this->commentStatus;
     }
+
 
 }

@@ -22,7 +22,7 @@ use Aisel\ResourceBundle\Domain\IdTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_order_payment_token",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )

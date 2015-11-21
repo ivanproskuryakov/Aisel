@@ -24,7 +24,7 @@ use Aisel\ResourceBundle\Domain\NameTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_addressing_city",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )

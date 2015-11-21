@@ -32,7 +32,7 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_review",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
@@ -49,7 +49,12 @@ class Review
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\ReviewBundle\Entity\Node")
+     * @ORM\ManyToMany(targetEntity="Aisel\ReviewBundle\Entity\Node")
+     * @ORM\JoinTable(
+     *     name="aisel_review_review_node",
+     *     joinColumns={@ORM\JoinColumn(name="review_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="node_id", referencedColumnName="id")}
+     * )
      * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Node>")
      * @JMS\Expose
      * @AiselAnnotation\NoDuplicates()

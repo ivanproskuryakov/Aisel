@@ -37,7 +37,7 @@ use Aisel\ResourceBundle\Domain\QtyTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_product",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
@@ -56,7 +56,7 @@ class Product implements UrlInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Expose
@@ -66,26 +66,26 @@ class Product implements UrlInterface
 
     /**
      * @var string
-     * @ORM\Column(type="int")
-     * @Assert\Type(type="int")
+     * @ORM\Column(type="float")
+     * @Assert\Type(type="float")
      * @Assert\NotNull()
      * @JMS\Expose
-     * @JMS\Type("integer")
+     * @JMS\Type("float")
      */
     private $price;
 
     /**
      * @var string
-     * @ORM\Column(type="int")
-     * @Assert\Type(type="int")
+     * @ORM\Column(type="float")
+     * @Assert\Type(type="float")
      * @JMS\Expose
-     * @JMS\Type("integer")
+     * @JMS\Type("float")
      */
     private $priceSpecial;
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
      * @JMS\Expose
      * @JMS\Type("DateTime")
@@ -94,7 +94,7 @@ class Product implements UrlInterface
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
      * @JMS\Expose
      * @JMS\Type("DateTime")
@@ -113,7 +113,7 @@ class Product implements UrlInterface
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
      * @JMS\Expose
      * @JMS\Type("DateTime")
@@ -122,7 +122,7 @@ class Product implements UrlInterface
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
      * @JMS\Expose
      * @JMS\Type("DateTime")
@@ -151,7 +151,7 @@ class Product implements UrlInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Expose
@@ -161,7 +161,7 @@ class Product implements UrlInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Expose
@@ -191,7 +191,7 @@ class Product implements UrlInterface
 
     /**
      * @var Collection
-     * @ODM\ReferenceMany(targetDocument="Aisel\MediaBundle\Entity\Media")
+     * @ORM\OneToMany(targetEntity="Aisel\MediaBundle\Entity\Media", mappedBy="product", cascade={"remove"})
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Entity\Media>")
      * @AiselAnnotation\NoDuplicates()
@@ -200,7 +200,12 @@ class Product implements UrlInterface
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Entity\Node")
+     * @ORM\ManyToMany(targetEntity="Aisel\ProductBundle\Entity\Node")
+     * @ORM\JoinTable(
+     *     name="aisel_product_product_node",
+     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="node_id", referencedColumnName="id")}
+     * )
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Node>")
      * @AiselAnnotation\NoDuplicates()

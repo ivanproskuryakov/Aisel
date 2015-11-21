@@ -31,7 +31,7 @@ use Aisel\ResourceBundle\Domain\IdTrait;
  *
  * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_user_frontend",
  *      repositoryClass="Aisel\FrontendUserBundle\Entity\FrontendUserRepository"
  * )

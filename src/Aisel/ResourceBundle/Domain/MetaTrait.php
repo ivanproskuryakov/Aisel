@@ -25,7 +25,7 @@ trait MetaTrait
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Expose
@@ -35,7 +35,7 @@ trait MetaTrait
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
@@ -44,7 +44,7 @@ trait MetaTrait
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
@@ -53,7 +53,7 @@ trait MetaTrait
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")

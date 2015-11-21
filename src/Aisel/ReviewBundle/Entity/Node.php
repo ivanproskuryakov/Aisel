@@ -25,7 +25,7 @@ use Aisel\ResourceBundle\Domain\DescriptionTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_review_node",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )

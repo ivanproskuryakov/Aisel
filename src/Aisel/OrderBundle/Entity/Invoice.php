@@ -23,7 +23,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_order_invoice",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )

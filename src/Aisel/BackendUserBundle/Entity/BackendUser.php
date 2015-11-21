@@ -25,7 +25,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_user_backend",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )

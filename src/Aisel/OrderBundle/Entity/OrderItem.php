@@ -30,7 +30,7 @@ use Aisel\ResourceBundle\Domain\QtyTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_order_item",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )

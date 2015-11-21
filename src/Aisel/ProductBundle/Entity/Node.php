@@ -26,7 +26,7 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_product_node",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )

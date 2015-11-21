@@ -27,7 +27,7 @@ use Aisel\ResourceBundle\Domain\DescriptionTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_page_node",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
@@ -41,14 +41,16 @@ class Node extends BaseNode implements UrlInterface
     use DescriptionTrait;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Aisel\PageBundle\Entity\Node", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="Aisel\PageBundle\Entity\Node", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      * @JMS\Expose
      * @JMS\Type("Aisel\PageBundle\Entity\Node")
      */
     protected $parent;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Entity\Node")
+     * @ORM\OneToMany(targetEntity="Aisel\PageBundle\Entity\Node", mappedBy="parent")
+     * @ORM\OrderBy({"title" = "ASC"})
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Node>")
      * @AiselAnnotation\NoDuplicates()

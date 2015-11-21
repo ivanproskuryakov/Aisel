@@ -36,10 +36,10 @@ abstract class Node implements NodeInterface
 {
 
     use IdTrait;
-    use UpdateCreateTrait;
-    use LocaleTrait;
     use TitleTrait;
+    use LocaleTrait;
     use StatusTrait;
+    use UpdateCreateTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="Aisel\ResourceBundle\Entity\Node", inversedBy="children")

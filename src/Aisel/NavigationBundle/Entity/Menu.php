@@ -23,7 +23,7 @@ use JMS\Serializer\Annotation as JMS;
  *
  * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_navigation_menu",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )

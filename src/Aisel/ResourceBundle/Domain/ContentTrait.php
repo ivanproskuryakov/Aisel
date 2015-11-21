@@ -25,7 +25,7 @@ trait ContentTrait
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("string")
@@ -54,4 +54,5 @@ trait ContentTrait
     {
         return $this->content;
     }
+
 }

@@ -11,14 +11,14 @@
 
 namespace Aisel\ResourceBundle\Repository;
 
-use Doctrine\ODM\MongoDB\DocumentRepository;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * CollectionRepository
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class CollectionRepository extends DocumentRepository
+class CollectionRepository extends EntityRepository
 {
 
     protected $model = '';

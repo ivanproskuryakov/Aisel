@@ -25,6 +25,8 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\TitleTrait;
+use Aisel\ResourceBundle\Domain\ContentTrait;
+use Aisel\ResourceBundle\Domain\CommentStatusTrait;
 use Aisel\ReviewBundle\Domain\ReviewTrait;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
@@ -34,7 +36,7 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\Entity(
+ * @ORM\Entity(
  *      table="aisel_page",
  *      repositoryClass="Aisel\PageBundle\Entity\PageRepository"
  * )
@@ -46,33 +48,21 @@ class Page implements UrlInterface
 {
     use IdTrait;
     use TitleTrait;
-    use UpdateCreateTrait;
+    use ContentTrait;
     use LocaleTrait;
     use StatusTrait;
+    use CommentStatusTrait;
     use MetaTrait;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $content;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean")
-     * @Assert\Type(type="bool")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("boolean")
-     */
-    private $commentStatus = false;
+    use UpdateCreateTrait;
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Entity\Node")
+     * @ORM\ManyToMany(targetEntity="Aisel\PageBundle\Entity\Node")
+     * @ORM\JoinTable(
+     *     name="aisel_page_page_node",
+     *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="node_id", referencedColumnName="id")}
+     * )
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Node>")
      * @JMS\Expose
      * @AiselAnnotation\NoDuplicates()
@@ -85,52 +75,6 @@ class Page implements UrlInterface
     public function __construct()
     {
         $this->nodes = new ArrayCollection();
-    }
-
-    /**
-     * Set content
-     *
-     * @param  string $content
-     * @return Page
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Get content
-     *
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * Set commentStatus
-     *
-     * @param  boolean $commentStatus
-     * @return Page
-     */
-    public function setCommentStatus($commentStatus)
-    {
-        $this->commentStatus = $commentStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get commentStatus
-     *
-     * @return boolean
-     */
-    public function getCommentStatus()
-    {
-        return $this->commentStatus;
     }
 
     /**
