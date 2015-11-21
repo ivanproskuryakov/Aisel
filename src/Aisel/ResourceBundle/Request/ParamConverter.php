@@ -18,7 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter as SensioPar
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Aisel\ResourceBundle\Exception\ValidationFailedException;
 
@@ -30,7 +30,7 @@ use Aisel\ResourceBundle\Exception\ValidationFailedException;
 class ParamConverter extends RequestBodyParamConverter
 {
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $em;
 
@@ -41,18 +41,18 @@ class ParamConverter extends RequestBodyParamConverter
 
     /**
      * @param Serializer               $serializer
-     * @param DocumentManager          $documentManager
+     * @param EntityManager          $EntityManager
      * @param ValidatorInterface       $validator
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
         Serializer $serializer,
-        DocumentManager $documentManager,
+        EntityManager $EntityManager,
         ValidatorInterface $validator,
         EventDispatcherInterface $dispatcher
     ) {
         parent::__construct($serializer, null, null, $validator, 'error');
-        $this->dm = $documentManager;
+        $this->dm = $EntityManager;
         $this->dispatcher = $dispatcher;
     }
 

@@ -11,7 +11,7 @@
 
 namespace Aisel\SearchBundle\Manager;
 
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 
 /**
  * SearchManager
@@ -22,16 +22,16 @@ class SearchManager
 {
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
     /**
      * Constructor
      *
-     * @param DocumentManager $dm
+     * @param EntityManager $dm
      */
-    public function __construct(DocumentManager $dm)
+    public function __construct(EntityManager $dm)
     {
         $this->dm = $dm;
     }

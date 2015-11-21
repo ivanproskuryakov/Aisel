@@ -11,7 +11,7 @@
 
 namespace Aisel\ResourceBundle\Domain;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -25,7 +25,7 @@ trait StatusTrait
 
     /**
      * @var boolean
-     * @ODM\Field(type="boolean")
+     * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      * @JMS\Expose

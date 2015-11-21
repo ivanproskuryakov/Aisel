@@ -11,7 +11,7 @@
 
 namespace Aisel\ConfigBundle\Manager;
 
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use LogicException;
 
 /**
@@ -29,7 +29,7 @@ class ConfigManager
     protected $model = 'Aisel\ConfigBundle\Document\Config';
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
@@ -41,11 +41,11 @@ class ConfigManager
     /**
      * Constructor
      *
-     * @param DocumentManager $dm
+     * @param EntityManager $dm
      * @param string        $locale
      * @param string        $locales
      */
-    public function __construct(DocumentManager $dm, $locale, $locales)
+    public function __construct(EntityManager $dm, $locale, $locales)
     {
         $this->dm = $dm;
         $this->locale['primary'] = $locale;

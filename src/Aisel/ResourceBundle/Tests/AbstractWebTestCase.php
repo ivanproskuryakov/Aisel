@@ -5,7 +5,7 @@ namespace Aisel\ResourceBundle\Tests;
 use Buzz\Exception\LogicException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpKernel\Client;
 use Aisel\BackendUserBundle\Manager\UserManager;
 use Symfony\Component\Validator\Validator;
@@ -28,7 +28,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
     protected $client;
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 

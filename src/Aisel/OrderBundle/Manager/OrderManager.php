@@ -16,7 +16,7 @@ use Aisel\FrontendUserBundle\Document\FrontendUser;
 use Aisel\OrderBundle\Document\Order;
 use Aisel\CartBundle\Manager\CartManager;
 use Aisel\ConfigBundle\Manager\ConfigManager;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 
 /**
  * OrderManager
@@ -27,7 +27,7 @@ class OrderManager
 {
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
@@ -44,16 +44,16 @@ class OrderManager
     /**
      * Constructor
      *
-     * @param DocumentManager $documentManager
+     * @param EntityManager $EntityManager
      * @param ConfigManager $configManager
      * @param CartManager   $cartManager
      */
     public function __construct(
-        DocumentManager $documentManager,
+        EntityManager $EntityManager,
         ConfigManager $configManager,
         CartManager $cartManager
     ) {
-        $this->dm = $documentManager;
+        $this->dm = $EntityManager;
         $this->settingsManager = $configManager;
         $this->cartManager = $cartManager;
     }

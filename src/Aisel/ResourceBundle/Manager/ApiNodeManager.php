@@ -12,7 +12,7 @@
 namespace Aisel\ResourceBundle\Manager;
 
 use LogicException;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Aisel\ResourceBundle\Document\Node;
 
 /**
@@ -29,7 +29,7 @@ class ApiNodeManager
     protected $model = null;
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
@@ -41,10 +41,10 @@ class ApiNodeManager
     /**
      * Constructor
      *
-     * @param DocumentManager $dm
+     * @param EntityManager $dm
      * @param string $locales
      */
-    public function __construct(DocumentManager $dm, $locales)
+    public function __construct(EntityManager $dm, $locales)
     {
         $this->locales = explode('|', $locales);
         $this->dm = $dm;

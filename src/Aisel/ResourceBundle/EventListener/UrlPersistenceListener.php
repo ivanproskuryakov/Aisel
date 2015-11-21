@@ -12,7 +12,7 @@
 namespace Aisel\ResourceBundle\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
 use Aisel\ResourceBundle\Document\UrlInterface;
 
@@ -39,7 +39,7 @@ class UrlPersistenceListener
             $processedUrl = $urlUtility->process($object->getMetaUrl());
 
             $found = $args
-                ->getDocumentManager()
+                ->getEntityManager()
                 ->getRepository(get_class($object))
                 ->findOneBy(['metaUrl' => $processedUrl]);
 

@@ -13,7 +13,7 @@ namespace Aisel\OrderBundle\Manager;
 
 use LogicException;
 use Aisel\OrderBundle\Document\Invoice;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Aisel\OrderBundle\Document\Order;
 
 /**
@@ -25,18 +25,18 @@ class InvoiceManager
 {
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
     /**
      * Constructor
      *
-     * @param DocumentManager $documentManager
+     * @param EntityManager $EntityManager
      */
-    public function __construct(DocumentManager $documentManager)
+    public function __construct(EntityManager $EntityManager)
     {
-        $this->dm = $documentManager;
+        $this->dm = $EntityManager;
     }
 
     /**

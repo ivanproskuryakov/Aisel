@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Aisel\FrontendUserBundle\Document\FrontendUser;
 use Aisel\ResourceBundle\Utility\PasswordUtility;
 use LogicException;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Templating\EngineInterface;
@@ -42,7 +42,7 @@ class UserManager implements UserProviderInterface
     protected $securityContext;
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
@@ -64,7 +64,7 @@ class UserManager implements UserProviderInterface
     /**
      * Constructor
      *
-     * @param DocumentManager $documentManager
+     * @param EntityManager $EntityManager
      * @param EncoderFactory $encoder
      * @param SecurityContext $securityContext
      * @param Swift_Mailer $mailer
@@ -72,7 +72,7 @@ class UserManager implements UserProviderInterface
      * @param string $websiteEmail
      */
     public function __construct(
-        DocumentManager $documentManager,
+        EntityManager $EntityManager,
         EncoderFactory $encoder,
         SecurityContext $securityContext,
         Swift_Mailer $mailer,
@@ -83,7 +83,7 @@ class UserManager implements UserProviderInterface
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->encoder = $encoder;
-        $this->dm = $documentManager;
+        $this->dm = $EntityManager;
         $this->websiteEmail = $websiteEmail;
         $this->securityContext = $securityContext;
     }

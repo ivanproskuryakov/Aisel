@@ -109,7 +109,7 @@ class CollectionRepository extends DocumentRepository
     {
         $this->mapRequest($params);
         $query = $this
-            ->getDocumentManager()
+            ->getEntityManager()
             ->createQueryBuilder($this->model);
 
         if ($this->filter) {
@@ -152,7 +152,7 @@ class CollectionRepository extends DocumentRepository
     {
         $this->mapRequest($params);
         $query = $this
-            ->getDocumentManager()
+            ->getEntityManager()
             ->createQueryBuilder($this->model);
 
         if ($this->filter) {
@@ -200,7 +200,7 @@ class CollectionRepository extends DocumentRepository
     public function findTotalByURL($url, $entityId = null)
     {
         $query = $this
-            ->getDocumentManager()
+            ->getEntityManager()
             ->createQueryBuilder();
 
         $query->select('e')
@@ -227,7 +227,7 @@ class CollectionRepository extends DocumentRepository
         $this->model = $this->getDocumentName();
 
         $query = $this
-            ->getDocumentManager()
+            ->getEntityManager()
             ->createQueryBuilder($this->model)
             ->field('parent')->exists(false)
             ->field('locale')->equals($params['locale']);

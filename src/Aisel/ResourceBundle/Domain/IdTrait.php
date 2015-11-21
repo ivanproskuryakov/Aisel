@@ -11,7 +11,7 @@
 
 namespace Aisel\ResourceBundle\Domain;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 /**

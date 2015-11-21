@@ -12,7 +12,7 @@
 namespace Aisel\CartBundle\Manager;
 
 use LogicException;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Aisel\ProductBundle\Document\Product;
 use Aisel\FrontendUserBundle\Document\FrontendUser;
 use Aisel\CartBundle\Document\Cart;
@@ -26,18 +26,18 @@ class CartManager
 {
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
     /**
      * Constructor
      *
-     * @param DocumentManager $DocumentManager
+     * @param EntityManager $EntityManager
      */
-    public function __construct(DocumentManager $DocumentManager)
+    public function __construct(EntityManager $EntityManager)
     {
-        $this->dm = $DocumentManager;
+        $this->dm = $EntityManager;
     }
 
     /**

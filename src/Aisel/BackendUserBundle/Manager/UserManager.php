@@ -15,7 +15,7 @@ use Aisel\BackendUserBundle\Document\BackendUser;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\SecurityContext;
 
@@ -37,23 +37,23 @@ class UserManager implements UserProviderInterface
     protected $securityContext;
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
     /**
      * Constructor
      *
-     * @param DocumentManager $documentManager
+     * @param EntityManager $EntityManager
      * @param EncoderFactory  $encoder
-     * @param SecurityContext $securityContext
+     * @param SecurityContext $securiwtyContext
      */
     public function __construct(
-        DocumentManager $documentManager,
+        EntityManager $EntityManager,
         EncoderFactory $encoder,
         SecurityContext $securityContext
     ) {
-        $this->dm = $documentManager;
+        $this->dm = $EntityManager;
         $this->encoder = $encoder;
         $this->securityContext = $securityContext;
     }
