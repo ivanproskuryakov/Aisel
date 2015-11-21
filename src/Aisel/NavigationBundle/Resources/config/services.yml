@@ -12,5 +12,5 @@ services:
     aisel.navigation.node.manager:
         class: %aisel_navigation_node_manager.class%
         arguments:
-          - @doctrine.odm.mongodb.document_manager
+          - @doctrine.orm.entity_manager
           - "%locales%"

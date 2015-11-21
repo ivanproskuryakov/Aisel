@@ -17,7 +17,7 @@ services:
         class: %aisel_param_converter.class%
         arguments:
             - @jms_serializer
-            - @doctrine.odm.mongodb.document_manager
+            - @doctrine.orm.entity_manager
             - @validator
             - @event_dispatcher
         tags:

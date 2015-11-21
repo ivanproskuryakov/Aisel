@@ -39,7 +39,7 @@ class ApiController extends Controller
      */
     protected function getDocumentManager()
     {
-        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+        $dm = $this->get('doctrine.orm.entity_manager');
 
         return $dm;
     }

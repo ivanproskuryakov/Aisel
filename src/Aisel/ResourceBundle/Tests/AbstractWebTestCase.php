@@ -147,7 +147,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
         static::$kernel->boot();
 
         $this->client = static::createClient([], ['HTTP_HOST' => static::$httpHost]);
-        $this->dm = static::$kernel->getContainer()->get('doctrine.odm.mongodb.document_manager');
+        $this->dm = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
         $this->um = static::$kernel->getContainer()->get('backend.user.manager');
         $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
         $this->api = array(

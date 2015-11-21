@@ -12,7 +12,7 @@ services:
     aisel.contact.manager:
         class: %aisel_contact_manager.class%
         arguments:
-            - @doctrine.odm.mongodb.document_manager
+            - @doctrine.orm.entity_manager
             - @mailer
             - @templating
             - %website_email%
