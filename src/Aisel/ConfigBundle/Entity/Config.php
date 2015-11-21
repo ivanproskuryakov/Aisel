@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ConfigBundle\Document;
+namespace Aisel\ConfigBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,7 +25,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @ORM\HasLifecycleCallbacks()
  * @ODM\Entity(
  *      table="aisel_config",
- *      repositoryClass="Aisel\ConfigBundle\Document\ConfigRepository"
+ *      repositoryClass="Aisel\ConfigBundle\Entity\ConfigRepository"
  * )
  */
 class Config

@@ -14,7 +14,7 @@ namespace Aisel\ResourceBundle\DataFixtures\MongoDB;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\AddressingBundle\Document\Country;
+use Aisel\AddressingBundle\Entity\Country;
 
 /**
  * Country fixtures

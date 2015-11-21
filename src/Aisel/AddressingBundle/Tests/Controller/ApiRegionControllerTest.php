@@ -53,7 +53,7 @@ class ApiRegionControllerTest extends AbstractWebTestCase
     {
         $region = $this
             ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Region')
+            ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->findOneBy(['name' => 'Comunidad de Madrid']);
 
         $this->client->request(

@@ -24,10 +24,11 @@ trait IdTrait
 {
 
     /**
-     * @var string
-     * @ODM\Id
-     * @JMS\Expose
-     * @JMS\Type("string")
+     * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Type("integer")
      */
     private $id;
 

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\BackendUserBundle\Document;
+namespace Aisel\BackendUserBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -29,9 +29,8 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  *      table="aisel_user_backend",
  *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
  * )
- * @ODM\UniqueIndex(
- *      keys={"username"="asc", "email"="asc"}
- * )
+ * @UniqueEntity("username")
+ * @UniqueEntity("email")
  */
 // todo: Finish with validation messages and Unique indexes
 
@@ -43,7 +42,7 @@ class BackendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotBlank()
      * @JMS\Type("string")
@@ -52,7 +51,7 @@ class BackendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Email()
      * @Assert\NotBlank()
      * @Assert\Email
@@ -62,7 +61,7 @@ class BackendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Exclude
      * @JMS\Type("string")
@@ -71,7 +70,7 @@ class BackendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Exclude
      */
@@ -97,14 +96,14 @@ class BackendUser implements AdvancedUserInterface
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @JMS\Type("DateTime")
      */
     private $expiresAt;
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @JMS\Type("DateTime")
      */
     private $lastLogin;

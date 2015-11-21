@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\NavigationBundle\Document;
+namespace spec\Aisel\NavigationBundle\Entity;
 
 use PhpSpec\ObjectBehavior;
 
@@ -20,7 +20,7 @@ class MenuSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\NavigationBundle\Document\Menu');
+        $this->shouldHaveType('Aisel\NavigationBundle\Entity\Menu');
     }
 
     public function it_should_not_have_id()

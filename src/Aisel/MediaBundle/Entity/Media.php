@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\MediaBundle\Document;
+namespace Aisel\MediaBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -50,7 +50,7 @@ class Media
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
@@ -59,7 +59,7 @@ class Media
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")

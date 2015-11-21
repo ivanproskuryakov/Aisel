@@ -73,7 +73,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
     }
 
 
-    public function removeDocument($document, $model = 'Aisel\ReviewBundle\Document\Node')
+    public function removeDocument($document, $model = 'Aisel\ReviewBundle\Entity\Node')
     {
         $this->dm->remove($document);
         $this->dm->flush();

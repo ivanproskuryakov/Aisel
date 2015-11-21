@@ -12,7 +12,7 @@
 namespace Aisel\NavigationBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
-use Aisel\NavigationBundle\Document\Menu;
+use Aisel\NavigationBundle\Entity\Menu;
 
 /**
  * ApiNodeEditControllerTest
@@ -74,7 +74,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['id' => $result['id']]);
 
         $this->assertEquals($parent->getId(), $node->getParent()->getId());
@@ -110,12 +110,12 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $parent = $this
             ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['id' => $parent->getId()]);
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['id' => $result['id']]);
 
         $this->assertEquals($node->getParent()->getId(), $parent->getId());
@@ -166,7 +166,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['title' => 'ZZZZ']);
 
         $this->assertTrue(200 === $statusCode);

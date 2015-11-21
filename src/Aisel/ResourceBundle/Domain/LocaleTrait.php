@@ -25,7 +25,7 @@ trait LocaleTrait
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=2, nullable=false)
      * @Assert\NotNull()
      * @Assert\Length(
      *      min = 2,

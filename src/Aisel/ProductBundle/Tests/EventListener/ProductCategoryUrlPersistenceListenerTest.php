@@ -12,7 +12,7 @@
 namespace Aisel\ProductBundle\Tests\EventListener;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\ProductBundle\Document\Node;
+use Aisel\ProductBundle\Entity\Node;
 
 /**
  * ProductNodeUrlPersistenceListenerTest
@@ -63,7 +63,7 @@ class ProductNodeUrlPersistenceListenerTest extends AbstractWebTestCase
 
         // Delete Product Node 1
         $node1 = $this->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['metaUrl' => $urlText]);
 
         $this->dm->remove($node1);

@@ -36,7 +36,7 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
 
         $pageNode = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Node')
+            ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['locale' => 'en']);
 
         $data = [
@@ -73,7 +73,7 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
 
         $page = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Page')
+            ->getRepository('Aisel\PageBundle\Entity\Page')
             ->find($id);
 
         $this->assertEquals($page->getNodes()[0]->getId(), $pageNode->getId());

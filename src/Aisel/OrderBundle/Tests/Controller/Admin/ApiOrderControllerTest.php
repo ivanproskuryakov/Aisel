@@ -54,7 +54,7 @@ class ApiOrderControllerTest extends AbstractBackendWebTestCase
     {
         $Order = $this
             ->dm
-            ->getRepository('Aisel\OrderBundle\Document\Order')
+            ->getRepository('Aisel\OrderBundle\Entity\Order')
             ->findOneBy(['locale' => 'en']);
 
         $this->client->request(

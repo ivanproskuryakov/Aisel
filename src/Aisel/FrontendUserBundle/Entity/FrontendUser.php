@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\FrontendUserBundle\Document;
+namespace Aisel\FrontendUserBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -18,10 +18,10 @@ use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Aisel\AddressingBundle\Document\Address;
+use Aisel\AddressingBundle\Entity\Address;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
-use Aisel\OrderBundle\Document\Order;
-use Aisel\CartBundle\Document\Cart;
+use Aisel\OrderBundle\Entity\Order;
+use Aisel\CartBundle\Entity\Cart;
 use Aisel\ResourceBundle\Domain\IdTrait;
 
 /**
@@ -30,15 +30,13 @@ use Aisel\ResourceBundle\Domain\IdTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @JMS\ExclusionPolicy("all")
- *
  * @ORM\HasLifecycleCallbacks()
  * @ODM\Entity(
  *      table="aisel_user_frontend",
- *      repositoryClass="Aisel\FrontendUserBundle\Document\FrontendUserRepository"
+ *      repositoryClass="Aisel\FrontendUserBundle\Entity\FrontendUserRepository"
  * )
- * @ODM\UniqueIndex(
- *      keys={"username"="asc", "email"="asc"}
- * )
+ * @UniqueEntity("username")
+ * @UniqueEntity("email")
  */
 class FrontendUser implements AdvancedUserInterface
 {
@@ -48,7 +46,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Expose
@@ -58,7 +56,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotNull()
      * @Assert\Email
      * @JMS\Expose
@@ -68,7 +66,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Exclude
      */
@@ -76,7 +74,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Exclude
      */
@@ -104,7 +102,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @JMS\Expose
      * @JMS\Type("DateTime")
      */
@@ -112,7 +110,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @JMS\Expose
      * @JMS\Type("DateTime")
      */
@@ -129,35 +127,35 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var Collection
-     * @ODM\ReferenceMany(targetDocument="Aisel\CartBundle\Document\Cart", mappedBy="frontenduser", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Aisel\CartBundle\Entity\Cart", mappedBy="frontenduser")
      * @JMS\Expose
      * @JMS\MaxDepth(1)
-     * @JMS\Type("ArrayCollection<Aisel\CartBundle\Document\Cart>")
+     * @JMS\Type("ArrayCollection<Aisel\CartBundle\Entity\Cart>")
      */
     private $cart;
 
     /**
      * @var Collection
-     * @ODM\ReferenceMany(targetDocument="Aisel\OrderBundle\Document\Order", mappedBy="frontenduser")
+     * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\Order", mappedBy="frontenduser")
      * @JMS\Expose
      * @JMS\MaxDepth(1)
-     * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Document\Order>")
+     * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Entity\Order>")
      */
     private $orders;
 
     /**
      * @var Collection
-     * @ODM\ReferenceMany(targetDocument="Aisel\AddressingBundle\Document\Address", mappedBy="frontenduser", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\Address", mappedBy="frontenduser", cascade={"remove"})
      * @JMS\Expose
      * @JMS\MaxDepth(1)
-     * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Document\Address>")
+     * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Entity\Address>")
      */
     private $addresses;
 
     /**
      * @var string
      * @Assert\Type(type="string")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @JMS\Expose
      * @JMS\Type("string")
      */
@@ -165,7 +163,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
@@ -174,7 +172,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
@@ -183,7 +181,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
@@ -192,7 +190,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")

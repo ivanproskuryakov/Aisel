@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ReviewBundle\Document;
+namespace Aisel\ReviewBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ReviewBundle\Document\Node;
+use Aisel\ReviewBundle\Entity\Node;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -49,8 +49,8 @@ class Review
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\ReviewBundle\Document\Node")
-     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Document\Node>")
+     * @ODM\ReferenceMany(targetDocument="Aisel\ReviewBundle\Entity\Node")
+     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Node>")
      * @JMS\Expose
      * @AiselAnnotation\NoDuplicates()
      */

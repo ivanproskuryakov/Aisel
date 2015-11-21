@@ -11,7 +11,7 @@
 
 namespace Aisel\BackendUserBundle\Manager;
 
-use Aisel\BackendUserBundle\Document\BackendUser;
+use Aisel\BackendUserBundle\Entity\BackendUser;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -61,7 +61,7 @@ class UserManager implements UserProviderInterface
     protected function getRepository()
     {
         $repo =  $this->dm
-            ->getRepository('Aisel\BackendUserBundle\Document\BackendUser');
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser');
 
         return $repo;
     }

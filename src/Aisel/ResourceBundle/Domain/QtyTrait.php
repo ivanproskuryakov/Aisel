@@ -26,7 +26,7 @@ trait QtyTrait
     /**
      * @var integer
      * @Assert\NotNull()
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      * @JMS\Type("integer")
      */
     private $qty = 0;

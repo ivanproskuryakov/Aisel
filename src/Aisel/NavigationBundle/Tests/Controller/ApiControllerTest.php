@@ -35,7 +35,7 @@ class ApiControllerTest extends AbstractWebTestCase
     {
         $menu = $this
             ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findBy(
                 [
                     'locale' => 'en',

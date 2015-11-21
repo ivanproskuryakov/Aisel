@@ -14,7 +14,7 @@ namespace Aisel\ResourceBundle\DataFixtures\MongoDB\Local;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\NavigationBundle\Document\Menu;
+use Aisel\NavigationBundle\Entity\Menu;
 
 /**
  * Navigation menu fixtures

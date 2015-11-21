@@ -25,7 +25,7 @@ trait TitleTrait
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\FrontendUserBundle\Document;
+namespace spec\Aisel\FrontendUserBundle\Entity;
 
 use PhpSpec\ObjectBehavior;
 
@@ -20,7 +20,7 @@ class FrontendUserSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\FrontendUserBundle\Document\FrontendUser');
+        $this->shouldHaveType('Aisel\FrontendUserBundle\Entity\FrontendUser');
     }
 
     public function it_should_not_have_id()

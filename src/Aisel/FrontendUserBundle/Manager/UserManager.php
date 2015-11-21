@@ -14,7 +14,7 @@ namespace Aisel\FrontendUserBundle\Manager;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Aisel\FrontendUserBundle\Document\FrontendUser;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Aisel\ResourceBundle\Utility\PasswordUtility;
 use LogicException;
 use Doctrine\ORM\EntityManager;
@@ -94,7 +94,7 @@ class UserManager implements UserProviderInterface
     protected function getRepository()
     {
         $repo = $this->dm
-            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser');
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser');
 
         return $repo;
     }
@@ -391,7 +391,7 @@ class UserManager implements UserProviderInterface
      */
     public function supportsClass($class)
     {
-        $name = 'Aisel\FrontendUserBundle\Document\FrontendUser';
+        $name = 'Aisel\FrontendUserBundle\Entity\FrontendUser';
 
         return $name === $class || is_subclass_of($class, $name);
     }

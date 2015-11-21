@@ -12,7 +12,7 @@
 namespace Aisel\ProductBundle\Tests\EventListener;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\ProductBundle\Document\Product;
+use Aisel\ProductBundle\Entity\Product;
 
 /**
  * ProductUrlPersistenceListenerTest
@@ -73,7 +73,7 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
 
         // Delete Product 1
         $product1 = $this->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['metaUrl' => $urlText]);
 
         $this->dm->remove($product1);

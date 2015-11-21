@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\OrderBundle\Document;
+namespace Aisel\OrderBundle\Entity;
 
 use Aisel\ResourceBundle\Repository\CollectionRepository;
-use Aisel\FrontendUserBundle\Document\FrontendUser;
-use Aisel\OrderBundle\Document\Order;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\OrderBundle\Entity\Order;
 
 /**
  * OrderRepository
@@ -24,7 +24,7 @@ use Aisel\OrderBundle\Document\Order;
 class OrderRepository extends CollectionRepository
 {
 
-    protected $model = 'Aisel\OrderBundle\Document\Order';
+    protected $model = 'Aisel\OrderBundle\Entity\Order';
 
     /**
      * Create from user cart

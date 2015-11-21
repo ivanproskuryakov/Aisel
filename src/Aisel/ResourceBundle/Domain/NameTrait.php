@@ -25,7 +25,7 @@ trait NameTrait
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Expose

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ConfigBundle\Document;
+namespace Aisel\ConfigBundle\Entity;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use Symfony\Component\Security\Core\Exception;

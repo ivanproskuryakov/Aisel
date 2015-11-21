@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AddressingBundle\Document;
+namespace Aisel\AddressingBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -36,11 +36,10 @@ class Region
     use NameTrait;
     use UpdateCreateTrait;
 
-
     /**
      * @var Country
-     * @ODM\ReferenceOne(targetDocument="Aisel\AddressingBundle\Document\Country", nullable=true)
-     * @JMS\Type("Aisel\AddressingBundle\Document\Country")
+     * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
 

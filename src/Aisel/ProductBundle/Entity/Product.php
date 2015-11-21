@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Document;
+namespace Aisel\ProductBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -17,9 +17,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Document\UrlInterface;
-use Aisel\ProductBundle\Document\Node;
-use Aisel\MediaBundle\Document\Media;
+use Aisel\ResourceBundle\Entity\UrlInterface;
+use Aisel\ProductBundle\Entity\Node;
+use Aisel\MediaBundle\Entity\Media;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
@@ -191,18 +191,18 @@ class Product implements UrlInterface
 
     /**
      * @var Collection
-     * @ODM\ReferenceMany(targetDocument="Aisel\MediaBundle\Document\Media")
+     * @ODM\ReferenceMany(targetDocument="Aisel\MediaBundle\Entity\Media")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Document\Media>")
+     * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Entity\Media>")
      * @AiselAnnotation\NoDuplicates()
      */
     private $medias;
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Document\Node")
+     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Entity\Node")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Document\Node>")
+     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Node>")
      * @AiselAnnotation\NoDuplicates()
      */
     private $nodes;

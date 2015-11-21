@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Tests\Document;
+namespace Aisel\PageBundle\Tests\Entity;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
-use Aisel\PageBundle\Document\Page;
-use Aisel\PageBundle\Document\Node;
+use Aisel\PageBundle\Entity\Page;
+use Aisel\PageBundle\Entity\Node;
 
 /**
  * PageTests

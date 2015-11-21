@@ -13,7 +13,7 @@ namespace Aisel\ResourceBundle\Manager;
 
 use LogicException;
 use Doctrine\ORM\EntityManager;
-use Aisel\ResourceBundle\Document\Node;
+use Aisel\ResourceBundle\Entity\Node;
 
 /**
  * ApiNodeManager

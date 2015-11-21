@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\OrderBundle\Document;
+namespace Aisel\OrderBundle\Entity;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 

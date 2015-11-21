@@ -22,7 +22,7 @@ use LogicException;
 class NodeManager extends ApiNodeManager
 {
 
-    protected $model = 'Aisel\ReviewBundle\Document\Node';
+    protected $model = 'Aisel\ReviewBundle\Entity\Node';
 
     /**
      * {@inheritDoc}
@@ -38,8 +38,8 @@ class NodeManager extends ApiNodeManager
             }
         }
 
-        /** @var \Aisel\ReviewBundle\Document\Node $node */
-        /** @var \Aisel\ReviewBundle\Document\Node $parent */
+        /** @var \Aisel\ReviewBundle\Entity\Node $node */
+        /** @var \Aisel\ReviewBundle\Entity\Node $parent */
 
         $node = new $this->model();
         $node->setlocale($params['locale']);
@@ -58,7 +58,7 @@ class NodeManager extends ApiNodeManager
      */
     public function addSibling($params)
     {
-        /** @var \Aisel\ReviewBundle\Document\Node $node */
+        /** @var \Aisel\ReviewBundle\Entity\Node $node */
 
         $node = new $this->model();
         $node->setlocale($params['locale']);

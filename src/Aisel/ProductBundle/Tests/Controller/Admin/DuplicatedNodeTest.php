@@ -35,7 +35,7 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
     {
         $productNode = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['locale' => 'en']);
 
         $data = [
@@ -76,7 +76,7 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
 
         $product = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->find($id);
 
         $this->assertEquals($product->getNodes()[0]->getId(), $productNode->getId());

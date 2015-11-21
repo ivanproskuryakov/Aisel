@@ -13,8 +13,8 @@ namespace Aisel\ResourceBundle\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\ORM\EntityManager;
-use Aisel\ResourceBundle\Document\NodeInterface;
-use Aisel\ResourceBundle\Document\Node;
+use Aisel\ResourceBundle\Entity\NodeInterface;
+use Aisel\ResourceBundle\Entity\Node;
 
 /**
  * Class NodePersistenceListener

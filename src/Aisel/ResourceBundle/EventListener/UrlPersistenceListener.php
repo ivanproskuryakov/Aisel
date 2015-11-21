@@ -14,7 +14,7 @@ namespace Aisel\ResourceBundle\EventListener;
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\ORM\EntityManager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
-use Aisel\ResourceBundle\Document\UrlInterface;
+use Aisel\ResourceBundle\Entity\UrlInterface;
 
 /**
  * Class UrlPersistenceListener.

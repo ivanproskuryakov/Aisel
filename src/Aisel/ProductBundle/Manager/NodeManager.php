@@ -22,7 +22,7 @@ use LogicException;
 class NodeManager extends ApiNodeManager
 {
 
-    protected $model = 'Aisel\ProductBundle\Document\Node';
+    protected $model = 'Aisel\ProductBundle\Entity\Node';
 
     /**
      * {@inheritDoc}

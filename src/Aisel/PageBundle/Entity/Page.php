@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Document;
+namespace Aisel\PageBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Document\UrlInterface;
-use Aisel\PageBundle\Document\Node;
+use Aisel\ResourceBundle\Entity\UrlInterface;
+use Aisel\PageBundle\Entity\Node;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -36,7 +36,7 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
  * @ORM\HasLifecycleCallbacks()
  * @ODM\Entity(
  *      table="aisel_page",
- *      repositoryClass="Aisel\PageBundle\Document\PageRepository"
+ *      repositoryClass="Aisel\PageBundle\Entity\PageRepository"
  * )
  * @JMS\ExclusionPolicy("all")
  * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
@@ -72,8 +72,8 @@ class Page implements UrlInterface
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Node")
-     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Node>")
+     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Entity\Node")
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Node>")
      * @JMS\Expose
      * @AiselAnnotation\NoDuplicates()
      */

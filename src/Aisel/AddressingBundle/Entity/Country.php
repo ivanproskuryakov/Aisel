@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AddressingBundle\Document;
+namespace Aisel\AddressingBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -36,7 +36,7 @@ class Country
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -45,7 +45,7 @@ class Country
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -54,7 +54,7 @@ class Country
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -63,7 +63,7 @@ class Country
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -72,7 +72,7 @@ class Country
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -84,13 +84,13 @@ class Country
      * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
-     * @JMS\Type("string")
+     * @JMS\Type("boolean")
      */
     private $unMember = false;
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
      */
@@ -98,7 +98,7 @@ class Country
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
      */

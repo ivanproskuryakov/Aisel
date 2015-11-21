@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AddressingBundle\Document;
+namespace Aisel\AddressingBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -38,19 +38,17 @@ class City
 
     /**
      * @var Region
-     * @Assert\NotNull
-     * @Assert\NotBlank
-     * @ODM\ReferenceOne(targetDocument="Aisel\AddressingBundle\Document\Region", nullable=true)
-     * @JMS\Type("Aisel\AddressingBundle\Document\Region")
+     * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Region")
+     * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     * @JMS\Type("Aisel\AddressingBundle\Entity\Region")
      */
     private $region;
 
     /**
      * @var Country
-     * @Assert\NotNull
-     * @Assert\NotBlank
-     * @ODM\ReferenceOne(targetDocument="Aisel\AddressingBundle\Document\Country", nullable=true)
-     * @JMS\Type("Aisel\AddressingBundle\Document\Country")
+     * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * @JMS\Type("Aisel\AddressingBundle\Entity\Country")
      */
     private $country;
 

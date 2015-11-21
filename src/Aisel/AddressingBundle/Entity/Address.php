@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\AddressingBundle\Document;
+namespace Aisel\AddressingBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\FrontendUserBundle\Document\FrontendUser;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
@@ -37,7 +37,7 @@ class Address
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
      */
@@ -45,7 +45,7 @@ class Address
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
      */
@@ -53,7 +53,7 @@ class Address
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
      */
@@ -61,7 +61,7 @@ class Address
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
      */

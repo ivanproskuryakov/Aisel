@@ -12,7 +12,7 @@
 namespace Aisel\ReviewBundle\Domain;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Aisel\ReviewBundle\Document\Review;
+use Aisel\ReviewBundle\Entity\Review;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
@@ -27,8 +27,8 @@ trait ReviewTrait
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(targetDocument="Aisel\ReviewBundle\Document\Review", cascade={"all"})
-     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Document\Review>")
+     * @ODM\ReferenceMany(targetDocument="Aisel\ReviewBundle\Entity\Review", cascade={"all"})
+     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
      * @JMS\Expose
      * @AiselAnnotation\NoDuplicates()
      */

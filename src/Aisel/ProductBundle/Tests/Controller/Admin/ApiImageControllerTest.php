@@ -25,7 +25,7 @@ class ApiImageControllerTest extends UploadControllerTest
     {
         $product = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 
         foreach ($product->getMedias() as $image) {
@@ -65,7 +65,7 @@ class ApiImageControllerTest extends UploadControllerTest
         //Checking
         $product = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->find($product->getId());
 
 
@@ -76,7 +76,7 @@ class ApiImageControllerTest extends UploadControllerTest
     {
         $product = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 
         $image = $product->getMedias()[0];
@@ -107,7 +107,7 @@ class ApiImageControllerTest extends UploadControllerTest
 
         $product = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
         $image = $product->getMedias()[0];
 
@@ -119,7 +119,7 @@ class ApiImageControllerTest extends UploadControllerTest
     {
         $product = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 
         $this->assertEquals(count($this->filenames['files']), count($product->getMedias()));
@@ -151,7 +151,7 @@ class ApiImageControllerTest extends UploadControllerTest
     {
         $product = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 
         $this->assertEquals(count($this->filenames['files']), count($product->getMedias()));
@@ -192,7 +192,7 @@ class ApiImageControllerTest extends UploadControllerTest
 
         $product = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 
         $this->assertEquals(0, count($product->getMedias()->toArray()));

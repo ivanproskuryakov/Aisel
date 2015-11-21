@@ -11,7 +11,7 @@
 
 namespace Aisel\MediaBundle\Manager;
 
-use Aisel\MediaBundle\Document\Media;
+use Aisel\MediaBundle\Entity\Media;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Filesystem\Filesystem;
 

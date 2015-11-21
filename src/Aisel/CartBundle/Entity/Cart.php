@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\CartBundle\Document;
+namespace Aisel\CartBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
-use Aisel\ProductBundle\Document\Product;
-use Aisel\FrontendUserBundle\Document\FrontendUser;
+use Aisel\ProductBundle\Entity\Product;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
 use Aisel\ResourceBundle\Domain\IdTrait;
@@ -28,7 +28,7 @@ use Aisel\ResourceBundle\Domain\QtyTrait;
  * @ORM\HasLifecycleCallbacks()
  * @ODM\Entity(
  *      table="aisel_cart",
- *      repositoryClass="Aisel\CartBundle\Document\CartRepository"
+ *      repositoryClass="Aisel\CartBundle\Entity\CartRepository"
  * )
  * @JMS\ExclusionPolicy("none")
  */
@@ -40,16 +40,16 @@ class Cart
 
     /**
      * @var FrontendUser
-     * @ODM\ReferenceOne(targetDocument="Aisel\FrontendUserBundle\Document\FrontendUser", inversedBy="cart")
+     * @ODM\ReferenceOne(targetDocument="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="cart")
      * @JMS\Exclude
-     * @JMS\Type("Aisel\FrontendUserBundle\Document\FrontendUser")
+     * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
      */
     private $frontenduser;
 
     /**
      * @var Product
-     * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Document\Product", inversedBy="cart")
-     * @JMS\Type("Aisel\ProductBundle\Document\Product")
+     * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Entity\Product", inversedBy="cart")
+     * @JMS\Type("Aisel\ProductBundle\Entity\Product")
      * @JMS\MaxDepth(3)
      */
     private $product;

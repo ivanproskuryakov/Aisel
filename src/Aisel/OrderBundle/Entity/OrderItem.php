@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\OrderBundle\Document;
+namespace Aisel\OrderBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
-use Aisel\ProductBundle\Document\Product;
+use Aisel\ProductBundle\Entity\Product;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\OrderBundle\Document\Order;
+use Aisel\OrderBundle\Entity\Order;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -48,26 +48,28 @@ class OrderItem
 
     /**
      * @var Order
-     * @ODM\ReferenceOne(targetDocument="Aisel\OrderBundle\Document\Order", inversedBy="orderItem")
+     * @ORM\ManyToOne(targetEntity="Aisel\OrderBundle\Entity\Order", inversedBy="orderItem")
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      * @JMS\Expose
      */
     private $order;
 
     /**
      * @var Product
-     * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Document\Product")
+     * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="orderItem")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      * @JMS\Expose
      * @JMS\MaxDepth(5)
-     * @JMS\Type("Aisel\ProductBundle\Document\Product")
+     * @JMS\Type("Aisel\ProductBundle\Entity\Product")
      */
     private $product;
 
     /**
      * @var string
-     * @ORM\Column(type="string")
-     * @Assert\Type(type="integer")
+     * @ORM\Column(type="float")
+     * @Assert\Type(type="float")
      * @Assert\NotNull()
-     * @JMS\Type("integer")
+     * @JMS\Type("float")
      */
     private $price;
 

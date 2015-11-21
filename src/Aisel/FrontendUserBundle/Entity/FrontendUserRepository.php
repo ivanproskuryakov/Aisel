@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\FrontendUserBundle\Document;
+namespace Aisel\FrontendUserBundle\Entity;
 
 use Aisel\ResourceBundle\Repository\CollectionRepository;
 

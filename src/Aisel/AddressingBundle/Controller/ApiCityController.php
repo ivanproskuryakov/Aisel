@@ -24,6 +24,6 @@ class ApiCityController extends BaseApiController
     /**
      * @var string
      */
-    protected $model =  "Aisel\AddressingBundle\Document\City";
+    protected $model =  "Aisel\AddressingBundle\Entity\City";
 
 }

@@ -12,7 +12,7 @@
 namespace Aisel\PageBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
-use Aisel\PageBundle\Document\Node;
+use Aisel\PageBundle\Entity\Node;
 
 /**
  * ApiNodeEditControllerTest
@@ -73,7 +73,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Node')
+            ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['id' => $result['id']]);
 
         $this->assertEquals($parent->getId(), $node->getParent()->getId());
@@ -108,12 +108,12 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $parent = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Node')
+            ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['id' => $parent->getId()]);
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Node')
+            ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['id' => $result['id']]);
         $this->assertEquals($node->getParent()->getId(), $parent->getId());
         $this->assertEquals($node->getId(), $parent->getChildren()[0]->getId());
@@ -165,7 +165,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Node')
+            ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['title' => 'ZZZZ']);
 
         $this->assertTrue(200 === $statusCode);

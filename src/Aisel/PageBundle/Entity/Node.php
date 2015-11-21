@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Document;
+namespace Aisel\PageBundle\Entity;
 
-use Aisel\ResourceBundle\Document\Node as BaseNode;
+use Aisel\ResourceBundle\Entity\Node as BaseNode;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Document\UrlInterface;
+use Aisel\ResourceBundle\Entity\UrlInterface;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
@@ -41,16 +41,16 @@ class Node extends BaseNode implements UrlInterface
     use DescriptionTrait;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Aisel\PageBundle\Document\Node", inversedBy="children")
+     * @ODM\ReferenceOne(targetDocument="Aisel\PageBundle\Entity\Node", inversedBy="children")
      * @JMS\Expose
-     * @JMS\Type("Aisel\PageBundle\Document\Node")
+     * @JMS\Type("Aisel\PageBundle\Entity\Node")
      */
     protected $parent;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Document\Node")
+     * @ODM\ReferenceMany(targetDocument="Aisel\PageBundle\Entity\Node")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Document\Node>")
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Node>")
      * @AiselAnnotation\NoDuplicates()
      */
     protected $children;

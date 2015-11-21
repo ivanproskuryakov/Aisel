@@ -35,7 +35,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     {
         $users = $this
             ->dm
-            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
             ->findBy(['username' => 'test_frontend_user_aisel']);
 
         foreach ($users as $user) {
@@ -104,7 +104,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     {
         $user = $this
             ->dm
-            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
         $id = $user->getId();
 
@@ -130,7 +130,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     {
         $user = $this
             ->dm
-            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
         $id = $user->getId();
 
@@ -163,7 +163,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
         $user = $this
             ->dm
-            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
 
         $this->assertTrue(204 === $statusCode);
@@ -175,7 +175,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     {
         $user = $this
             ->dm
-            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
         $id = $user->getId();
 
@@ -193,7 +193,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
         $user = $this
             ->dm
-            ->getRepository('Aisel\FrontendUserBundle\Document\FrontendUser')
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
 
         $this->assertTrue(204 === $statusCode);

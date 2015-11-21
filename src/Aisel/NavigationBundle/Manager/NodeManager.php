@@ -22,7 +22,7 @@ use Aisel\ResourceBundle\Manager\ApiNodeManager;
 class NodeManager extends ApiNodeManager
 {
 
-    protected $model = 'Aisel\NavigationBundle\Document\Menu';
+    protected $model = 'Aisel\NavigationBundle\Entity\Menu';
 
     /**
      * {@inheritDoc}
@@ -60,7 +60,7 @@ class NodeManager extends ApiNodeManager
     public function addSibling($params)
     {
         /**
-         * @var $node \Aisel\NavigationBundle\Document\Menu
+         * @var $node \Aisel\NavigationBundle\Entity\Menu
          */
         $node = new $this->model();
         $node->setTitle($params['name']);

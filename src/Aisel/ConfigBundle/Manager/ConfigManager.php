@@ -26,7 +26,7 @@ class ConfigManager
     /**
      * @var string
      */
-    protected $model = 'Aisel\ConfigBundle\Document\Config';
+    protected $model = 'Aisel\ConfigBundle\Entity\Config';
 
     /**
      * @var EntityManager

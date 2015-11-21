@@ -53,7 +53,7 @@ class ApiPageControllerTest extends AbstractWebTestCase
     {
         $page = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Page')
+            ->getRepository('Aisel\PageBundle\Entity\Page')
             ->findOneBy(['locale' => 'en']);
 
         $this->client->request(

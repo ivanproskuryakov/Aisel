@@ -12,7 +12,7 @@
 namespace Aisel\PageBundle\Tests\EventListener;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\PageBundle\Document\Page;
+use Aisel\PageBundle\Entity\Page;
 
 /**
  * PageUrlPersistenceListenerTest
@@ -68,7 +68,7 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
 
         // Delete Page 1
         $page1 = $this->dm
-            ->getRepository('Aisel\PageBundle\Document\Page')
+            ->getRepository('Aisel\PageBundle\Entity\Page')
             ->findOneBy(['metaUrl' => $urlText]);
 
         $this->dm->remove($page1);

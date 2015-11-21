@@ -26,7 +26,7 @@ trait UpdateCreateTrait
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
      * @JMS\Expose
      * @JMS\Type("DateTime")
@@ -35,7 +35,7 @@ trait UpdateCreateTrait
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
      * @JMS\Expose
      * @JMS\Type("DateTime")

@@ -80,7 +80,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     {
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['title' => 'AAA']);
 
         $this->client->request(
@@ -104,12 +104,12 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     {
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['title' => 'AAA']);
 
         $node2 = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['locale' => 'ru']);
 
         $id = $node->getId();
@@ -133,7 +133,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['title' => 'AAA']);
 
         $this->assertTrue(204 === $statusCode);
@@ -147,7 +147,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     {
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['title' => 'AAA']);
         $id = $node->getId();
 
@@ -167,7 +167,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $node = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);

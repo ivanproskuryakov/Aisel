@@ -56,7 +56,7 @@ class SitemapManager
         // Products
         $products = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findBy([
                 'status' => true,
             ]);
@@ -68,7 +68,7 @@ class SitemapManager
         // Pages
         $pages = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Page')
+            ->getRepository('Aisel\PageBundle\Entity\Page')
             ->findBy([
                 'status' => true,
             ]);

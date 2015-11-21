@@ -12,8 +12,8 @@
 namespace Aisel\OrderBundle\Manager;
 
 use LogicException;
-use Aisel\FrontendUserBundle\Document\FrontendUser;
-use Aisel\OrderBundle\Document\Order;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\OrderBundle\Entity\Order;
 use Aisel\CartBundle\Manager\CartManager;
 use Aisel\ConfigBundle\Manager\ConfigManager;
 use Doctrine\ORM\EntityManager;

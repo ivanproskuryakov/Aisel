@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Document;
+namespace Aisel\PageBundle\Entity;
 
 use Aisel\ResourceBundle\Repository\CollectionRepository;
-use Aisel\PageBundle\Document\Page;
+use Aisel\PageBundle\Entity\Page;
 
 /**
  * PageRepository

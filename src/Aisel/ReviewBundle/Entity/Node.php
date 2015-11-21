@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ReviewBundle\Document;
+namespace Aisel\ReviewBundle\Entity;
 
-use Aisel\ResourceBundle\Document\Node as BaseNode;
+use Aisel\ResourceBundle\Entity\Node as BaseNode;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
@@ -36,16 +36,16 @@ class Node extends BaseNode
     use DescriptionTrait;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Aisel\ReviewBundle\Document\Node", inversedBy="children")
+     * @ODM\ReferenceOne(targetDocument="Aisel\ReviewBundle\Entity\Node", inversedBy="children")
      * @JMS\Expose
-     * @JMS\Type("Aisel\ReviewBundle\Document\Node")
+     * @JMS\Type("Aisel\ReviewBundle\Entity\Node")
      */
     protected $parent;
 
     /**
-     * @ODM\ReferenceMany(cascade="remove", targetDocument="Aisel\ReviewBundle\Document\Node")
+     * @ODM\ReferenceMany(cascade="remove", targetDocument="Aisel\ReviewBundle\Entity\Node")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Document\Node>")
+     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Node>")
      * @AiselAnnotation\NoDuplicates()
      */
     protected $children;

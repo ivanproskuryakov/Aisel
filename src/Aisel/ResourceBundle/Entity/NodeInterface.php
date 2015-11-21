@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\Document;
+namespace Aisel\ResourceBundle\Entity;
 
 /**
  * NodeInterface

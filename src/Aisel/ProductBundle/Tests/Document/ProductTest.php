@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Tests\Document;
+namespace Aisel\ProductBundle\Tests\Entity;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
-use Aisel\ProductBundle\Document\Product;
-use Aisel\ProductBundle\Document\Node;
-use Aisel\MediaBundle\Document\Media;
+use Aisel\ProductBundle\Entity\Product;
+use Aisel\ProductBundle\Entity\Node;
+use Aisel\MediaBundle\Entity\Media;
 
 /**
  * ProductTest

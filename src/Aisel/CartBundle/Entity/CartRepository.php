@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\CartBundle\Document;
+namespace Aisel\CartBundle\Entity;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
-use Aisel\CartBundle\Document\Cart;
-use Aisel\ProductBundle\Document\Product;
-use Aisel\FrontendUserBundle\Document\FrontendUser;
+use Aisel\CartBundle\Entity\Cart;
+use Aisel\ProductBundle\Entity\Product;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 
 /**
  * CartRepository
@@ -95,7 +95,7 @@ class CartRepository extends DocumentRepository
     {
         $query = $this
             ->getEntityManager()
-            ->createQueryBuilder('Aisel\CartBundle\Document\Cart')
+            ->createQueryBuilder('Aisel\CartBundle\Entity\Cart')
             ->field('product')->equals($product->getId())
             ->field('frontenduser')->equals($user->getId());
 

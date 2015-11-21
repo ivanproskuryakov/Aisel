@@ -24,6 +24,6 @@ class ApiController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\BackendUserBundle\Document\BackendUser";
+    protected $model = "Aisel\BackendUserBundle\Entity\BackendUser";
 
 }

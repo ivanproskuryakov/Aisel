@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\OrderBundle\Document;
+namespace Aisel\OrderBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Aisel\FrontendUserBundle\Document\FrontendUser;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use JMS\Serializer\Annotation as JMS;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
@@ -31,7 +31,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @ORM\HasLifecycleCallbacks()
  * @ODM\Entity(
  *      table="aisel_order",
- *      repositoryClass="Aisel\OrderBundle\Document\OrderRepository"
+ *      repositoryClass="Aisel\OrderBundle\Entity\OrderRepository"
  * )
  * @ODM\MappedSuperclass
  * @JMS\ExclusionPolicy("all")
@@ -45,7 +45,7 @@ class Order
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -56,15 +56,15 @@ class Order
     /**
      * @var integer
      * @Assert\NotNull()
-     * @ORM\Column(type="string")
-     * @JMS\Type("integer")
+     * @ORM\Column(type="float", scale=2, nullable=false)
+     * @JMS\Type("float")
      * @JMS\Expose
      */
     private $totalAmount = 0;
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=3)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -74,7 +74,7 @@ class Order
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -84,7 +84,7 @@ class Order
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -94,7 +94,7 @@ class Order
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -104,7 +104,7 @@ class Order
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -114,7 +114,7 @@ class Order
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
@@ -124,8 +124,11 @@ class Order
 
     /**
      * @var FrontendUser
-     * @ODM\ReferenceOne(targetDocument="Aisel\FrontendUserBundle\Document\FrontendUser", inversedBy="order")
-     * @JMS\Type("Aisel\FrontendUserBundle\Document\FrontendUser")
+     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="order")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
      * @JMS\MaxDepth(1)
      * @JMS\Expose
      */
@@ -133,17 +136,18 @@ class Order
 
     /**
      * @var Invoice
-     * @ODM\ReferenceOne(targetDocument="Aisel\OrderBundle\Document\Invoice", inversedBy="order")
+     * @ORM\ManyToOne(targetEntity="Aisel\OrderBundle\Entity\Invoice", inversedBy="order")
+     * @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
      * @JMS\MaxDepth(1)
-     * @JMS\Type("Aisel\OrderBundle\Document\Invoice")
+     * @JMS\Type("Aisel\OrderBundle\Entity\Invoice")
      * @JMS\Expose
      */
     private $invoice;
 
     /**
      * @var OrderItem
-     * @ODM\ReferenceMany(targetDocument="Aisel\OrderBundle\Document\OrderItem", mappedBy="order")
-     * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Document\OrderItem>")
+     * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\OrderItem", mappedBy="order")
+     * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Entity\OrderItem>")
      * @JMS\Expose
      */
     private $item;

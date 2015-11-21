@@ -53,11 +53,11 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
     {
         $country = $this
             ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Country')
+            ->getRepository('Aisel\AddressingBundle\Entity\Country')
             ->findOneBy(['iso2' => 'ES']);
         $region = $this
             ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Region')
+            ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->findOneBy(['name' => 'Comunidad de Madrid']);
 
         $data = array(
@@ -82,7 +82,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
         $id = array_pop($parts);
         $city = $this
             ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\City')
+            ->getRepository('Aisel\AddressingBundle\Entity\City')
             ->find($id);
 
         $this->assertTrue(201 === $statusCode);
@@ -96,7 +96,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
     {
         $city = $this
             ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\City')
+            ->getRepository('Aisel\AddressingBundle\Entity\City')
             ->findOneBy(['name' => 'Alicante']);
         $id = $city->getId();
 
@@ -121,11 +121,11 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
     {
         $country = $this
             ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Country')
+            ->getRepository('Aisel\AddressingBundle\Entity\Country')
             ->findOneBy(['iso2' => 'RU']);
         $city = $this
             ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\City')
+            ->getRepository('Aisel\AddressingBundle\Entity\City')
             ->findOneBy(['name' => 'Alicante']);
         $id = $city->getId();
 
@@ -151,7 +151,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
 
         $city = $this
             ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\City')
+            ->getRepository('Aisel\AddressingBundle\Entity\City')
             ->find($id);
 
         $this->assertTrue(204 === $statusCode);
@@ -163,7 +163,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
     {
         $city = $this
             ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\City')
+            ->getRepository('Aisel\AddressingBundle\Entity\City')
             ->findOneBy(['name' => 'Rivas']);
         $id = $city->getId();
 
@@ -183,7 +183,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
 
         $city = $this
             ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\City')
+            ->getRepository('Aisel\AddressingBundle\Entity\City')
             ->find($id);
 
 

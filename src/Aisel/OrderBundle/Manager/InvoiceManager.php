@@ -12,9 +12,9 @@
 namespace Aisel\OrderBundle\Manager;
 
 use LogicException;
-use Aisel\OrderBundle\Document\Invoice;
+use Aisel\OrderBundle\Entity\Invoice;
 use Doctrine\ORM\EntityManager;
-use Aisel\OrderBundle\Document\Order;
+use Aisel\OrderBundle\Entity\Order;
 
 /**
  * InvoiceManager
@@ -50,7 +50,7 @@ class InvoiceManager
      */
     public function getInvoice($id)
     {
-        $invoice = $this->dm->getRepository('Aisel\OrderBundle\Document\Invoice')->find($id);
+        $invoice = $this->dm->getRepository('Aisel\OrderBundle\Entity\Invoice')->find($id);
 
         if (!($invoice)) {
             throw new LogicException('Nothing found');

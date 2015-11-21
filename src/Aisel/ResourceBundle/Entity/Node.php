@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\Document;
+namespace Aisel\ResourceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -21,7 +21,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\TitleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
-use Aisel\ResourceBundle\Document\NodeInterface;
+use Aisel\ResourceBundle\Entity\NodeInterface;
 
 /**
  * Node
@@ -42,18 +42,20 @@ abstract class Node implements NodeInterface
     use StatusTrait;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Aisel\ResourceBundle\Document\Node", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="Aisel\ResourceBundle\Entity\Node", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      * @JMS\Expose
      * @JMS\MaxDepth(1)
-     * @JMS\Type("Aisel\ResourceBundle\Document\Node")
+     * @JMS\Type("Aisel\ResourceBundle\Entity\Node")
      */
     protected $parent = null;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Aisel\ResourceBundle\Document\Node", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Aisel\ResourceBundle\Entity\Node", mappedBy="parent")
+     * @ORM\OrderBy({"title" = "ASC"})
      * @JMS\Expose
      * @JMS\MaxDepth(1)
-     * @JMS\Type("ArrayCollection<Aisel\ResourceBundle\Document\Node>")
+     * @JMS\Type("ArrayCollection<Aisel\ResourceBundle\Entity\Node>")
      */
     protected $children = null;
 

@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Tests\Document;
+namespace Aisel\PageBundle\Tests\Entity;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
-use Aisel\PageBundle\Document\Page;
-use Aisel\ReviewBundle\Document\Review;
-use Aisel\ReviewBundle\Document\Node as ReviewNode;
+use Aisel\PageBundle\Entity\Page;
+use Aisel\ReviewBundle\Entity\Review;
+use Aisel\ReviewBundle\Entity\Node as ReviewNode;
 
 /**
  * PageReviewTest
@@ -70,7 +70,7 @@ class PageReviewTest extends AbstractWebTestCase
 
         $review = $this
             ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Review')
+            ->getRepository('Aisel\ReviewBundle\Entity\Review')
             ->findOneBy(['id' => $review->getId()]);
         $this->assertNull($review);
     }

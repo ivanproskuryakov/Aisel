@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\NavigationBundle\Document;
+namespace Aisel\NavigationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Aisel\ResourceBundle\Document\Node as BaseNode;
+use Aisel\ResourceBundle\Entity\Node as BaseNode;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -32,16 +32,16 @@ class Menu extends BaseNode
 {
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Aisel\NavigationBundle\Document\Menu")
+     * @ODM\ReferenceOne(targetDocument="Aisel\NavigationBundle\Entity\Menu")
      * @JMS\Expose
-     * @JMS\Type("Aisel\NavigationBundle\Document\Menu")
+     * @JMS\Type("Aisel\NavigationBundle\Entity\Menu")
      */
     protected $parent;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Aisel\NavigationBundle\Document\Menu")
+     * @ODM\ReferenceMany(targetDocument="Aisel\NavigationBundle\Entity\Menu")
      * @JMS\Expose
-     * @JMS\Type("ArrayCollection<Aisel\NavigationBundle\Document\Menu>")
+     * @JMS\Type("ArrayCollection<Aisel\NavigationBundle\Entity\Menu>")
      */
     protected $children;
 
