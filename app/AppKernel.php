@@ -16,12 +16,12 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
-            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            new Payum\Bundle\PayumBundle\PayumBundle(),
+//            new Payum\Bundle\PayumBundle\PayumBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
 
             // Aisel bundles

@@ -7,9 +7,9 @@ security:
 
     providers:
         user_frontend:
-            mongodb: { class: Aisel\FrontendUserBundle\Document\FrontendUser, property: username }
+            entity: { class: Aisel\FrontendUserBundle\Document\FrontendUser, property: username }
         user_backend:
-            mongodb: { class: Aisel\BackendUserBundle\Document\BackendUser, property: username }
+            entity: { class: Aisel\BackendUserBundle\Document\BackendUser, property: username }
 
     firewalls:
         # Disabling the security for the web debug toolbar, the profiler and Assetic.
