@@ -50,7 +50,6 @@ class Page implements UrlInterface
     use LocaleTrait;
     use StatusTrait;
     use MetaTrait;
-    use ReviewTrait;
 
     /**
      * @var string
@@ -86,7 +85,6 @@ class Page implements UrlInterface
     public function __construct()
     {
         $this->nodes = new ArrayCollection();
-        $this->reviews = new ArrayCollection();
     }
 
     /**

@@ -38,6 +38,7 @@ class ProductReviewTest extends AbstractWebTestCase
 
     public function testProductReview()
     {
+        $this->markTestSkipped('skipping ...');
         $node = new ReviewNode();
         $node->setStatus(true);
         $node->setTitle($this->faker->sentence(1));

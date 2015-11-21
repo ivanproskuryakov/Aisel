@@ -56,12 +56,12 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                         $page->addNode($node);
                     }
 
-                    $review = explode(",", $table->column[9]);
-
-                    foreach ($review as $r) {
-                        $review = $this->getReference('page_review_' . $r);
-                        $page->addReview($review);
-                    }
+//                    $review = explode(",", $table->column[9]);
+//
+//                    foreach ($review as $r) {
+//                        $review = $this->getReference('page_review_' . $r);
+//                        $page->addReview($review);
+//                    }
 
                     $manager->persist($page);
                     $manager->flush();
