@@ -26,7 +26,7 @@ define(['app'], function (app) {
                             orderBy: 'DESC',
                             page: 1
                         };
-                        var productService = new resourceService('page');
+                        var productService = new resourceService('product');
 
                         productService.getCollection(params).success(
                             function (data, status) {

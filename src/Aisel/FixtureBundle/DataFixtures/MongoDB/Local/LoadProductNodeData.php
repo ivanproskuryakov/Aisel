@@ -65,6 +65,6 @@ class LoadProductNodeData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 300;
+        return 330;
     }
 }

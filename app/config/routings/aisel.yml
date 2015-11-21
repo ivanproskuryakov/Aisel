@@ -11,6 +11,10 @@ aisel_page:
     resource: "@AiselPageBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
+aisel_review:
+    resource: "@AiselReviewBundle/Resources/config/routing/routing.yml"
+    prefix:   /
+
 aisel_search:
     resource: "@AiselSearchBundle/Resources/config/routing.yml"
     prefix:   /

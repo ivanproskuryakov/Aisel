@@ -35,7 +35,7 @@ class ApiPageControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['frontend'] . '/en/page/node/tree/',
+            '/' . $this->api['frontend'] . '/en/page/node/tree/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -47,6 +47,30 @@ class ApiPageControllerTest extends AbstractWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertJson($content);
+    }
+
+    public function testGetPageAction()
+    {
+        $page = $this
+            ->dm
+            ->getRepository('Aisel\PageBundle\Document\Page')
+            ->findOneBy(['locale' => 'en']);
+
+        $this->client->request(
+            'GET',
+            '/' . $this->api['frontend'] . '/en/page/' . $page->getMetaUrl(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $page->getId());
     }
 
 }

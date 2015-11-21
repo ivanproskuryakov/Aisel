@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Client;
 use Aisel\BackendUserBundle\Manager\UserManager;
 use Symfony\Component\Validator\Validator;
 use Faker;
+
 /**
  * Class AbstractWebTestCase.
  *
@@ -69,6 +70,20 @@ abstract class AbstractWebTestCase extends KernelTestCase
     public static function setUpBeforeClass($httpHost = 'http://api.aisel.dev')
     {
         static::$httpHost = $httpHost;
+    }
+
+
+    public function removeDocument($document, $model = 'Aisel\ReviewBundle\Document\Node')
+    {
+        $this->dm->remove($document);
+        $this->dm->flush();
+
+        $isFound = $this
+            ->dm
+            ->getRepository($model)
+            ->findOneBy(['id' => $document->getId()]);
+
+        $this->assertNull($isFound);
     }
 
     public function logInBackend($username = 'backenduser', $password = 'backenduser')

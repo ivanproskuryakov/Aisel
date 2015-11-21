@@ -5,7 +5,7 @@
  *
  * (c) Ivan Proskuryakov
  *
- * For the full copyright and license infODMation, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
@@ -29,6 +29,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\QtyTrait;
+//use Aisel\ReviewBundle\Domain\ReviewTrait;
 
 /**
  * Product

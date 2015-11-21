@@ -102,6 +102,7 @@ body .panel-primary {
 .navbar {
     border-radius: 0;
 }
+
 .navbar .navbar-brand:hover, .navbar .navbar-brand {
     color: #999999;
     background: #657496 !important;
@@ -175,6 +176,17 @@ body .panel-primary {
     float: left;
     margin-right: 5px;
     font-size: 0.9em;
+}
+
+/***********
+    Reviews
+************/
+.categoryList .heading {
+    font-weight: bold;
+}
+
+.categoryList .content {
+    text-align: justify;
 }
 
 /***********
@@ -295,11 +307,11 @@ footer {
 /***********
     Cart
 ************/
-.tableHeading{
+.tableHeading {
     font-weight: bold;
 }
 
-.cartItem{
+.cartItem {
     text-align: left;
 }
 
@@ -325,6 +337,7 @@ New Products
 .new-products .col-lg-4 {
     margin-bottom: 20px;
 }
+
 .new-products h2 {
     font-weight: normal;
 }
@@ -341,6 +354,7 @@ New Products
 .new-pages .col-lg-4 {
     margin-bottom: 20px;
 }
+
 .new-pages h2 {
     font-weight: normal;
 }

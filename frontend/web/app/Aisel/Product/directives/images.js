@@ -12,18 +12,22 @@
  * @description     ...
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app.directive('aiselProductImages', ['$compile', 'Environment',
-        function($compile, Environment) {
+        function ($compile, Environment) {
             return {
                 restrict: 'EA',
                 scope: {
                     images: '=',
-                    imgSize: '='
+                    imgWidth: '=',
+                    imgHeight: '=',
+                    slider: '='
                 },
-                link: function($scope, element, attrs) {
+                link: function ($scope, element, attrs) {
                     $scope.media = Environment.settings.media;
-                    $scope.size = attrs.imgSize;
+                    $scope.width = attrs.imgWidth ? attrs.imgWidth +'px' : '100%';
+                    $scope.height = attrs.imgHeight ? attrs.imgHeight + 'px' : 'auto';
+                    $scope.interval = 0;
                 },
                 templateUrl: '/app/Aisel/Product/views/directives/product-images.html'
             };

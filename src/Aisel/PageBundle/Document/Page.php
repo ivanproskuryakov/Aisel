@@ -11,7 +11,6 @@
 
 namespace Aisel\PageBundle\Document;
 
-use Doctrine\ODM\MongoDB\Tests\Functional\IdTest;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
@@ -26,6 +25,7 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\TitleTrait;
+use Aisel\ReviewBundle\Domain\ReviewTrait;
 use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 /**
@@ -42,9 +42,6 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
  * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
  *
  */
-//* @ODM\Indexes({
-// *   @ODM\Index(keys={"content"="text"})
-// * })
 class Page implements UrlInterface
 {
     use IdTrait;

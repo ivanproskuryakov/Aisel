@@ -12,8 +12,8 @@
  * @description     Module configuration
  */
 
-define(['app'], function(app) {
-    app.config(['$stateProvider', function($stateProvider) {
+define(['app'], function (app) {
+    app.config(['$stateProvider', function ($stateProvider) {
         $stateProvider
             .state("exception", {
                 url: "/:locale/exception/:code",
@@ -22,37 +22,35 @@ define(['app'], function(app) {
             });
     }]);
 
-    app.config(function($httpProvider) {
+    app.factory('errorInterceptor',
+        ['$rootScope', '$q', '$injector', '$location', 'Environment',
+            function ($rootScope, $q, $injector, $location, Environment) {
+                return {
+                    request: function (config) {
+                        return config;
+                    },
+                    responseError: function (response) {
+                        console.log(response);
+                        $rootScope.exception = response;
+                        var locale = Environment.currentLocale();
 
-        var exceptionInterceptor = [
-            '$q', '$injector', 'Environment', '$rootScope',
-            function($q, $injector, Environment, $rootScope) {
+                        $injector.get('$state').transitionTo(
+                            'exception', {
+                                locale: locale,
+                                code: response.data.error.code
+                            }
+                        );
 
-                function success(response) {
-                    return response;
-                }
-
-                function error(response) {
-                    console.log(response);
-                    $rootScope.exception = response;
-                    var locale = Environment.currentLocale();
-
-                    $injector.get('$state').transitionTo(
-                        'exception', {
-                            locale: locale,
-                            code: response.data.error.code
-                        }
-                    );
-
-                    return $q.reject(response);
-                }
-
-                return function(promise) {
-                    return promise.then(success, error);
-                }
+                        return $q.reject(response);
+                    }
+                };
             }
-        ];
+        ]
+    );
 
-        $httpProvider.responseInterceptors.push(exceptionInterceptor);
-    });
+
+    app.config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.interceptors.push('errorInterceptor');
+    }]);
+
 });
