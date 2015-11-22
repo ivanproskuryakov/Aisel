@@ -11,7 +11,7 @@
 
 namespace Aisel\ResourceBundle\EventListener;
 
-use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\EntityManager;
 use Aisel\ResourceBundle\Utility\UrlUtility;
 use Aisel\ResourceBundle\Entity\UrlInterface;
@@ -31,7 +31,7 @@ class UrlPersistenceListener
     {
 
         /** @var UrlInterface $object */
-        $object = $args->getDocument();
+        $object = $args->getEntity();
 
         if ($object instanceof UrlInterface) {
 

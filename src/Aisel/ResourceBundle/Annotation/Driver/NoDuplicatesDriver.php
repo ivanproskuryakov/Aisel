@@ -3,7 +3,7 @@
 namespace Aisel\ResourceBundle\Annotation\Driver;
 
 use Doctrine\Common\Annotations\Reader;
-use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 
 /**
  * NoDuplicatesDriver
@@ -55,7 +55,7 @@ class NoDuplicatesDriver
      */
     public function findAndRemoveDuplicates(LifecycleEventArgs $args)
     {
-        $object = $args->getDocument();
+        $object = $args->getEntity();
         $reflectionProperties = new \ReflectionClass($object);
         $objectProperties = $reflectionProperties->getProperties();
         $properties = [];

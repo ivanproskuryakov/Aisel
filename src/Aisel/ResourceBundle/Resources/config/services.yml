@@ -32,14 +32,14 @@ services:
     aisel_node_persistence_listener:
         class: %aisel_node_listener.class%
         tags:
-            - { name: doctrine_mongodb.odm.event_listener, event: postPersist, method: postPersist }
-            - { name: doctrine_mongodb.odm.event_listener, event: postUpdate, method: postUpdate }
+            - { name: doctrine.event_listener, event: postPersist, method: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
 
     aisel_annotation_no_duplicates:
         class: %aisel_annotation_no_duplicates.class%
         arguments:
             - @annotations.reader
         tags:
-          - { name: doctrine_mongodb.odm.event_listener, event: prePersist, event: prePersist}
-          - { name: doctrine_mongodb.odm.event_listener, event: preUpdate, event: preUpdate}
+          - { name: doctrine.event_listener, event: prePersist, event: prePersist}
+          - { name: doctrine.event_listener, event: preUpdate, event: preUpdate}
 

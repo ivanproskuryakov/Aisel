@@ -21,4 +21,4 @@ services:
         arguments:
             - @security.encoder_factory
         tags:
-            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: prePersist }

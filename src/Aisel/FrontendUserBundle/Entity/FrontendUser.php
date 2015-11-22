@@ -66,6 +66,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull()
      * @Assert\Type(type="string")
      * @JMS\Exclude
      */

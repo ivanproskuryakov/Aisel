@@ -187,6 +187,7 @@ class UserManager implements UserProviderInterface
      */
     public function registerFixturesUser(array $userData)
     {
+        var_dump($userData);
         $user = new FrontendUser();
         $user->setEmail($userData['email']);
         $user->setUsername($userData['username']);

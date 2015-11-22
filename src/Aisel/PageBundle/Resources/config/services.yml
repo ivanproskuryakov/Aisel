@@ -20,9 +20,9 @@ services:
     aisel_page_url_persistence_listener:
         class: %aisel_page_url_persistence_listener.class%
         tags:
-            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: prePersist }
 
     aisel_page_node_url_persistence_listener:
         class: %aisel_page_node_url_persistence_listener.class%
         tags:
-            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: prePersist }
