@@ -23,10 +23,8 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_config",
- *      repositoryClass="Aisel\ConfigBundle\Entity\ConfigRepository"
- * )
+ * @ORM\Table(name="aisel_config")
+ * @ORM\Entity(repositoryClass="Aisel\CartBundle\Entity\ConfigRepository")
  */
 class Config
 {

@@ -25,10 +25,8 @@ use Aisel\ResourceBundle\Domain\DescriptionTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_review_node",
- *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
- * )
+ * @ORM\Table(name="aisel_review_node")
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @JMS\ExclusionPolicy("all")
  */
 class Node extends BaseNode
@@ -36,14 +34,16 @@ class Node extends BaseNode
     use DescriptionTrait;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Aisel\ReviewBundle\Entity\Node", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="Aisel\ReviewBundle\Entity\Node", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      * @JMS\Expose
      * @JMS\Type("Aisel\ReviewBundle\Entity\Node")
      */
     protected $parent;
 
     /**
-     * @ODM\ReferenceMany(cascade="remove", targetDocument="Aisel\ReviewBundle\Entity\Node")
+     * @ORM\OneToMany(targetEntity="Aisel\ReviewBundle\Entity\Node", mappedBy="parent")
+     * @ORM\OrderBy({"title" = "ASC"})
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Node>")
      * @AiselAnnotation\NoDuplicates()

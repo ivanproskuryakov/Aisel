@@ -26,10 +26,8 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_product_node",
- *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
- * )
+ * @ORM\Table(name="aisel_product_node")
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @JMS\ExclusionPolicy("all")
  */
 class Node extends BaseNode implements UrlInterface
@@ -37,15 +35,18 @@ class Node extends BaseNode implements UrlInterface
     use DescriptionTrait;
     use MetaTrait;
 
+
     /**
-     * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Entity\Node", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Node", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      * @JMS\Expose
      * @JMS\Type("Aisel\ProductBundle\Entity\Node")
      */
     protected $parent;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Aisel\ProductBundle\Entity\Node")
+     * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Node", mappedBy="parent")
+     * @ORM\OrderBy({"title" = "ASC"})
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Node>")
      */

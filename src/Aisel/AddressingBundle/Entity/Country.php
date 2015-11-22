@@ -23,10 +23,8 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_addressing_country",
- *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
- * )
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
+ * @ORM\Table(name="aisel_addressing_country")
  */
 class Country
 {

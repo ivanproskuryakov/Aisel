@@ -28,12 +28,10 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
+ * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_order",
- *      repositoryClass="Aisel\OrderBundle\Entity\OrderRepository"
- * )
- * @ODM\MappedSuperclass
+ * @ORM\Table(name="aisel_order")
+ * @ORM\Entity(repositoryClass="Aisel\OrderBundle\Entity\OrderRepository")
  * @JMS\ExclusionPolicy("all")
  */
 class Order

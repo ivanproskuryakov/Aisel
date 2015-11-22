@@ -23,11 +23,9 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_order_invoice",
- *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
- * )
- * @ODM\MappedSuperclass
+ * @ORM\MappedSuperclass
+ * @ORM\Table(name="aisel_order_invoice")
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @JMS\ExclusionPolicy("all")
  */
 class Invoice

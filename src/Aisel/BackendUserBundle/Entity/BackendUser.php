@@ -18,6 +18,7 @@ use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * BackendUser
@@ -25,10 +26,8 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_user_backend",
- *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
- * )
+ * @ORM\Table(name="aisel_user_backend")
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @UniqueEntity("username")
  * @UniqueEntity("email")
  */

@@ -21,12 +21,11 @@ use Aisel\ResourceBundle\Domain\IdTrait;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
+ * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_order_payment_token",
- *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
- * )
- * @ODM\MappedSuperclass
+ * @ORM\Table(name="aisel_order_payment_token")
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
+ * @JMS\ExclusionPolicy("all")
  */
 class PaymentToken extends Token
 {

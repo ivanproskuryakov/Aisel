@@ -26,10 +26,8 @@ use Aisel\ResourceBundle\Domain\QtyTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_cart",
- *      repositoryClass="Aisel\CartBundle\Entity\CartRepository"
- * )
+ * @ORM\Table(name="aisel_cart")
+ * @ORM\Entity(repositoryClass="Aisel\CartBundle\Entity\CartRepository")
  * @JMS\ExclusionPolicy("none")
  */
 class Cart
@@ -40,7 +38,7 @@ class Cart
 
     /**
      * @var FrontendUser
-     * @ODM\ReferenceOne(targetDocument="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="cart")
+     * @ORM\OneToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="cart")
      * @JMS\Exclude
      * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
      */
@@ -48,7 +46,7 @@ class Cart
 
     /**
      * @var Product
-     * @ODM\ReferenceOne(targetDocument="Aisel\ProductBundle\Entity\Product", inversedBy="cart")
+     * @ORM\OneToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="cart")
      * @JMS\Type("Aisel\ProductBundle\Entity\Product")
      * @JMS\MaxDepth(3)
      */

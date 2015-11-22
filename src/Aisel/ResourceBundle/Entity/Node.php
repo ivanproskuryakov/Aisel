@@ -29,7 +29,7 @@ use Aisel\ResourceBundle\Entity\NodeInterface;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ODM\MappedSuperclass
+ * @ORM\MappedSuperclass
  * @JMS\ExclusionPolicy("all")
  */
 abstract class Node implements NodeInterface

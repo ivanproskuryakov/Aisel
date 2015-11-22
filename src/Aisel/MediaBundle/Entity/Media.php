@@ -25,10 +25,8 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_media"
- * )
- * @ODM\MappedSuperclass
+ * @ORM\MappedSuperclass
+ * @ORM\Table(name="aisel_media")
  * @JMS\ExclusionPolicy("all")
  */
 class Media

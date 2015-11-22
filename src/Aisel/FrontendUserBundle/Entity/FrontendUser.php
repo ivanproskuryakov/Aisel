@@ -23,6 +23,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\OrderBundle\Entity\Order;
 use Aisel\CartBundle\Entity\Cart;
 use Aisel\ResourceBundle\Domain\IdTrait;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * FrontendUser
@@ -31,10 +32,8 @@ use Aisel\ResourceBundle\Domain\IdTrait;
  *
  * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_user_frontend",
- *      repositoryClass="Aisel\FrontendUserBundle\Entity\FrontendUserRepository"
- * )
+ * @ORM\Entity(repositoryClass="Aisel\FrontendUserBundle\Entity\FrontendUserRepository")
+ * @ORM\Table(name="aisel_user_frontend")
  * @UniqueEntity("username")
  * @UniqueEntity("email")
  */

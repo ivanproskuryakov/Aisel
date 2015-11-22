@@ -37,10 +37,8 @@ use Aisel\ResourceBundle\Domain\QtyTrait;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_product",
- *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
- * )
+ * @ORM\Table(name="aisel_product")
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @JMS\ExclusionPolicy("all")
  */
 class Product implements UrlInterface

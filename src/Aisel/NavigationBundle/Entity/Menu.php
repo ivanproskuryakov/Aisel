@@ -23,27 +23,29 @@ use JMS\Serializer\Annotation as JMS;
  *
  * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_navigation_menu",
- *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
- * )
+ * @ORM\Table(name="aisel_navigation_menu")
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  */
 class Menu extends BaseNode
 {
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Aisel\NavigationBundle\Entity\Menu")
+     * @ORM\ManyToOne(targetEntity="Aisel\NavigationBundle\Entity\Menu", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      * @JMS\Expose
+     * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\NavigationBundle\Entity\Menu")
      */
-    protected $parent;
+    protected $parent = null;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Aisel\NavigationBundle\Entity\Menu")
+     * @ORM\OneToMany(targetEntity="Aisel\NavigationBundle\Entity\Menu", mappedBy="parent")
+     * @ORM\OrderBy({"title" = "ASC"})
      * @JMS\Expose
+     * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\NavigationBundle\Entity\Menu>")
      */
-    protected $children;
+    protected $children = null;
 
     /**
      * @var string

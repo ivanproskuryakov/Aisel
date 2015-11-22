@@ -36,14 +36,12 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_page",
- *      repositoryClass="Aisel\PageBundle\Entity\PageRepository"
- * )
+ * @ORM\Table(name="aisel_page")
+ * @ORM\Entity(repositoryClass="Aisel\PageBundle\Entity\PageRepository")
  * @JMS\ExclusionPolicy("all")
- * @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
- *
  */
+//* @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
+
 class Page implements UrlInterface
 {
     use IdTrait;

@@ -29,12 +29,10 @@ use Aisel\ResourceBundle\Domain\QtyTrait;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  *
+ * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(
- *      table="aisel_order_item",
- *      repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository"
- * )
- * @ODM\MappedSuperclass
+ * @ORM\Table(name="aisel_order_item")
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @JMS\ExclusionPolicy("all")
  */
 class OrderItem
