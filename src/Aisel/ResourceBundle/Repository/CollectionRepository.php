@@ -114,8 +114,8 @@ class CollectionRepository extends EntityRepository
         }
 
         if ($this->node) {
-            $query->innerJoin('e.nodes', 'c')
-                ->andWhere('c.metaUrl = :node')->setParameter('node', $this->node);
+            $query->innerJoin('e.nodes', 'n')
+                ->andWhere('n.metaUrl = :node')->setParameter('node', $this->node);
         }
 
         if ($params['scope'] == 'frontend') {
@@ -221,15 +221,15 @@ class CollectionRepository extends EntityRepository
         $query = $this
             ->getEntityManager()
             ->createQueryBuilder()
-            ->select('c')
-            ->from($this->model, 'c')
-            ->where('c.parent = :parent')->setParameter('parent', null);
+            ->select('n')
+            ->from($this->model, 'n')
+            ->where('n.parent = :parent')->setParameter('parent', null);
 
         if ($params['scope'] == 'frontend') {
-            $query->andWhere('e.status = :status')->setParameter('status', true);
+            $query->andWhere('n.status = :status')->setParameter('status', true);
         }
         $result = $query
-            ->orderBy('e.' . $this->order, $this->orderBy)
+            ->orderBy('n.' . $this->order, $this->orderBy)
             ->getQuery()
             ->execute();
 

@@ -42,8 +42,8 @@ class ConfigManager
      * Constructor
      *
      * @param EntityManager $dm
-     * @param string        $locale
-     * @param string        $locales
+     * @param string $locale
+     * @param string $locales
      */
     public function __construct(EntityManager $dm, $locale, $locales)
     {
@@ -75,7 +75,7 @@ class ConfigManager
         $config = array();
 
         foreach ($collection as $s) {
-            $config['settings'][$s->getLocale()][$s->getEntity()] = json_decode($s->getValue(), true);
+            $config['settings'][$s['locale']][$s['entity']] = json_decode($s['value'], true);
         }
         $config['locale'] = $this->locale;
 
@@ -112,7 +112,7 @@ class ConfigManager
             ->getRepository($this->model)
             ->getConfig($locale, $entity);
 
-        $value = (array) json_decode($config->getValue());
+        $value = (array)json_decode($config->getValue());
 
         return $value;
     }
@@ -129,7 +129,7 @@ class ConfigManager
         $decoded = array();
 
         if ($config && $config) {
-            $decoded = (array) json_decode($config->getValue());
+            $decoded = (array)json_decode($config->getValue());
         }
 
         return $decoded;

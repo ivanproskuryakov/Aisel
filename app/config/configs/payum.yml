@@ -1,18 +1,18 @@
-#payum:
-#    security:
-#        token_storage:
-#            Aisel\OrderBundle\Document\PaymentToken: { doctrine: orm }
-#
-#    storages:
-#        Aisel\OrderBundle\Document\Order: { doctrine: orm }
-#
-#    gateways:
-#        offline:
-#            offline: ~
-#
-#        paypal_express_checkout_nvp:
-#            paypal_express_checkout_nvp:
-#                username:  %paypal.express_checkout.username%
-#                password:  %paypal.express_checkout.password%
-#                signature: %paypal.express_checkout.signature%
-#                sandbox: true
+payum:
+    security:
+        token_storage:
+            Aisel\OrderBundle\Entity\PaymentToken: { doctrine: orm }
+
+    storages:
+        Aisel\OrderBundle\Entity\Order: { doctrine: orm }
+
+    gateways:
+        offline:
+            offline: ~
+
+        paypal_express_checkout_nvp:
+            paypal_express_checkout_nvp:
+                username:  %paypal.express_checkout.username%
+                password:  %paypal.express_checkout.password%
+                signature: %paypal.express_checkout.signature%
+                sandbox: true
