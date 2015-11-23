@@ -30,13 +30,12 @@ class OrderRepository extends CollectionRepository
      * Create from user cart
      *
      * @param FrontendUser $user
-     * @param string $locale
      * @param string $currencyCode
      * @param mixed $orderInfo
      *
      * @return Order $order|false
      */
-    public function createOrderFromCartForUser($user, $currencyCode, $orderInfo)
+    public function createOrderFromCartForUser(FrontendUser $user, $currencyCode, $orderInfo)
     {
         $order = $this->createEmptyOrder($user, $currencyCode, $orderInfo);
         $em = $this->getEntityManager();
@@ -66,14 +65,13 @@ class OrderRepository extends CollectionRepository
      * Create from array of product
      *
      * @param FrontendUser $user
-     * @param string $locale
      * @param array $products
      * @param string $currencyCode
      * @param mixed $orderInfo
      *
      * @return Order $order|false
      */
-    public function createOrderFromProductsForUser($user, $products, $currencyCode, $orderInfo)
+    public function createOrderFromProductsForUser(FrontendUser $user, $products, $currencyCode, $orderInfo)
     {
         $order = $this->createEmptyOrder($user, $currencyCode, $orderInfo);
         $em = $this->getEntityManager();
@@ -108,9 +106,10 @@ class OrderRepository extends CollectionRepository
      *
      * @return Order $order
      */
-    public function createEmptyOrder($user, $currencyCode, $orderInfo)
+    public function createEmptyOrder(FrontendUser $user, $currencyCode, $orderInfo)
     {
         $em = $this->getEntityManager();
+
         $order = new Order();
         $order->setTotalAmount(0);
         $order->setLocale($orderInfo['locale']);
@@ -138,15 +137,15 @@ class OrderRepository extends CollectionRepository
      */
     public function findAllOrdersForUser($userId)
     {
-        $result = $this
-            ->getEntityManager()
-            ->createQueryBuilder($this->model)
-            ->field('frontenduser.id')->equals($userId)
-            ->sort($this->order, $this->orderBy)
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $orders = $query->select('o')
+            ->from('AiselOrderBundle:Order', 'o')
+            ->where('o.frontenduser = :userId')->setParameter('userId', $userId)
+            ->orderBy('o.id', 'DESC')
             ->getQuery()
-            ->toArray();
+            ->execute();
 
-        return $result;
+        return $orders;
     }
 
     /**
@@ -159,15 +158,16 @@ class OrderRepository extends CollectionRepository
      */
     public function findOrderForUser($userId, $orderId)
     {
-        $result = $this
-            ->getEntityManager()
-            ->createQueryBuilder($this->model)
-            ->field('frontenduser.id')->equals($userId)
-            ->field('id')->equals($orderId)
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $orders = $query->select('o')
+            ->from('AiselOrderBundle:Order', 'o')
+            ->where('o.frontenduser = :userId')->setParameter('userId', $userId)
+            ->andWhere('o.id = :orderId')->setParameter('orderId', $orderId)
             ->getQuery()
-            ->toArray();
+            ->execute();
 
-        return $result;
+        return $orders;
     }
+
 
 }

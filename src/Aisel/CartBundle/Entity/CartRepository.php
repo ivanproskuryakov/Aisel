@@ -34,6 +34,7 @@ class CartRepository extends EntityRepository
     public function addProduct($user, $product, $qty)
     {
         $em = $this->getEntityManager();
+
         if ($cartItem = $this->findProduct($user, $product)) {
             $originalQty = $cartItem->getQty();
             $newQty = $originalQty + $qty;
@@ -46,6 +47,7 @@ class CartRepository extends EntityRepository
         }
         $em->persist($cartItem);
         $em->flush();
+
         return $cartItem;
     }
 
@@ -62,6 +64,7 @@ class CartRepository extends EntityRepository
     {
         $em = $this->getEntityManager();
         $cartItem = $this->findProduct($user, $product);
+
         // if cart item exists
         if ($cartItem) {
             if ($qty) {
@@ -73,6 +76,7 @@ class CartRepository extends EntityRepository
                 $em->flush();
             }
         }
+
         return $cartItem;
     }
 
@@ -92,7 +96,11 @@ class CartRepository extends EntityRepository
             ->where('c.product = :productId')->setParameter('productId', $product->getId())
             ->andWhere('c.frontenduser = :userId')->setParameter('userId', $user->getId());
         $cartItem = $query->getQuery()->getResult();
-        if ($cartItem) return $cartItem[0];
+
+        if ($cartItem) {
+            return $cartItem[0];
+        }
+
         return false;
     }
 

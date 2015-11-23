@@ -36,7 +36,6 @@ class LoadAddressData extends XMLFixture implements OrderedFixtureInterface
                 $contents = file_get_contents($file);
                 $XML = simplexml_load_string($contents);
                 $address = null;
-
                 foreach ($XML->database->table as $table) {
                     $country = $this->getReference('country_' . $table->column[1]); // Spain
                     $region = $this->getReference('region_' . $table->column[2]); // City of Madrid
@@ -48,7 +47,7 @@ class LoadAddressData extends XMLFixture implements OrderedFixtureInterface
                     $address->setStreet($table->column[6]);
                     $address->setZip($table->column[7]);
                     $address->setComment($table->column[8]);
-//                    $address->setFrontenduser($frontendUser);
+                    $address->setFrontenduser($frontendUser);
                     $address->setCountry($country);
                     $address->setRegion($region);
                     $address->setCity($city);

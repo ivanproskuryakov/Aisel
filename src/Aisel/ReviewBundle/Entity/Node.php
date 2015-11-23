@@ -31,6 +31,7 @@ use Aisel\ResourceBundle\Domain\DescriptionTrait;
  */
 class Node extends BaseNode
 {
+
     use DescriptionTrait;
 
     /**

@@ -38,6 +38,7 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
  */
 class Review
 {
+
     use IdTrait;
     use TitleTrait;
     use UpdateCreateTrait;

@@ -20,6 +20,7 @@ use Aisel\ResourceBundle\Repository\CollectionRepository;
  */
 class FrontendUserRepository extends CollectionRepository
 {
+
     protected $model = 'AiselFrontendUserBundle:FrontendUser';
 
 }

@@ -25,50 +25,50 @@ use JMS\Serializer\Annotation as JMS;
 trait ReviewTrait
 {
 
-//    /**
-//     * @var ArrayCollection
-//     * @ODM\ReferenceMany(targetDocument="Aisel\ReviewBundle\Entity\Review", cascade={"all"})
-//     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
-//     * @JMS\Expose
-//     * @AiselAnnotation\NoDuplicates()
-//     */
-//    private $reviews;
-//
-//    /**
-//     * Gets Reviews
-//     *
-//     * @return Review[]
-//     */
-//    public function getReviews()
-//    {
-//        return $this->reviews;
-//    }
-//
-//    /**
-//     * Sets Reviews
-//     *
-//     * @param Review[] $reviews
-//     *
-//     * @return $this
-//     */
-//    public function setReviews($reviews)
-//    {
-//        $this->reviews = $reviews;
-//        return $this;
-//    }
-//
-//    /**
-//     * Add Review
-//     *
-//     * @param Review $review
-//     *
-//     * @return Review
-//     */
-//    public function addReview(Review $review)
-//    {
-//        $this->reviews->add($review);
-//        return $this;
-//    }
+    /**
+     * @var ArrayCollection
+     * @ODM\ReferenceMany(targetDocument="Aisel\ReviewBundle\Entity\Review", cascade={"all"})
+     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
+     * @JMS\Expose
+     * @AiselAnnotation\NoDuplicates()
+     */
+    private $reviews;
+
+    /**
+     * Gets Reviews
+     *
+     * @return Review[]
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * Sets Reviews
+     *
+     * @param Review[] $reviews
+     *
+     * @return $this
+     */
+    public function setReviews($reviews)
+    {
+        $this->reviews = $reviews;
+        return $this;
+    }
+
+    /**
+     * Add Review
+     *
+     * @param Review $review
+     *
+     * @return Review
+     */
+    public function addReview(Review $review)
+    {
+        $this->reviews->add($review);
+        return $this;
+    }
 
     /**
      * Remove Reviews
