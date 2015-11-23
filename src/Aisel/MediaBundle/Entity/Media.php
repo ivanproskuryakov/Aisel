@@ -16,7 +16,6 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
-use Aisel\ResourceBundle\Domain\TitleTrait;
 use Aisel\ResourceBundle\Domain\DescriptionTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
@@ -35,8 +34,16 @@ class Media
 
     use IdTrait;
     use DescriptionTrait;
-    use TitleTrait;
     use UpdateCreateTrait;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type(type="string")
+     * @JMS\Expose
+     * @JMS\Type("string")
+     */
+    protected $title;
 
     /**
      * @var boolean
@@ -64,6 +71,23 @@ class Media
      * @JMS\Type("string")
      */
     protected $type;
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
 
     /**
      * Set filename

@@ -20,7 +20,6 @@ use Aisel\OrderBundle\Entity\Order;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
-use Aisel\ResourceBundle\Domain\TitleTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 use Aisel\ResourceBundle\Domain\QtyTrait;
 
@@ -41,7 +40,6 @@ class OrderItem
     use IdTrait;
     use QtyTrait;
     use NameTrait;
-    use TitleTrait;
     use UpdateCreateTrait;
 
     /**

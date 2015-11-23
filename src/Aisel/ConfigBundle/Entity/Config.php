@@ -24,7 +24,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="aisel_config")
- * @ORM\Entity(repositoryClass="Aisel\CartBundle\Entity\ConfigRepository")
+ * @ORM\Entity(repositoryClass="Aisel\ConfigBundle\Entity\ConfigRepository")
  */
 class Config
 {

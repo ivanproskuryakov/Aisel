@@ -38,7 +38,10 @@ class Cart
 
     /**
      * @var FrontendUser
-     * @ORM\OneToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="cart")
+     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="cart")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
      * @JMS\Exclude
      * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
      */
@@ -46,7 +49,8 @@ class Cart
 
     /**
      * @var Product
-     * @ORM\OneToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="cart")
+     * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="cart")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      * @JMS\Type("Aisel\ProductBundle\Entity\Product")
      * @JMS\MaxDepth(3)
      */

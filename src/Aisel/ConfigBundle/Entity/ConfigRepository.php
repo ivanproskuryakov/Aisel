@@ -31,38 +31,42 @@ class ConfigRepository extends EntityRepository
      */
     public function getAllSettings($locale)
     {
-        $query = $this
+        $qb = $this
             ->getEntityManager()
-            ->createQueryBuilder($this->getDocumentName());
+            ->createQueryBuilder();
+        $query = $qb
+            ->select('c.entity, c.value, c.locale')
+            ->from('AiselConfigBundle:Config', 'c');
 
         if ($locale) {
-            $query = $query->field('locale')->equals($locale);
+            $query->andWhere('c.locale = :locale')->setParameter('locale', $locale);
         }
-        $collection = $query->getQuery()->execute();
+
+        $collection = $query
+            ->getQuery()
+            ->execute();
 
         return $collection;
     }
 
     /**
-     * Get config data for current Document & locale
+     * Get config data for current entity & locale
      *
      * @param string $locale
-     * @param string $name
+     * @param string $entityName
      *
-     * @return array $config
+     * @return array $entity
      */
-    public function getConfig($locale, $name)
+    public function getConfig($locale, $entityName)
     {
-        $query = $this
-            ->getEntityManager()
-            ->createQueryBuilder($this->getDocumentName())
-            ->field('locale')->equals($locale)
-            ->field('entity')->equals($name)
-            ->getQuery();
-
-        $config = $query->getSingleResult();
-
-        return $config;
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $entity = $qb->select('c')
+            ->from('AiselConfigBundle:Config', 'c')
+            ->where('c.locale = :locale')->setParameter('locale', $locale)
+            ->andWhere('c.entity = :entity')->setParameter('entity', $entityName)
+            ->getQuery()
+            ->getOneOrNullResult();
+        return $entity;
     }
 
     /**
@@ -73,36 +77,34 @@ class ConfigRepository extends EntityRepository
     public function saveConfig($settings)
     {
         foreach ($settings as $locale => $entities) {
-            foreach ($entities as $document => $value) {
-                $this->setConfig($locale, $document, $value);
+            foreach ($entities as $entity => $value) {
+                $this->setConfig($locale, $entity, $value);
             }
         }
     }
 
     /**
-     * Set config data for current Document & locale
+     * Set config data for current entity & locale
      *
      * @param string $locale
-     * @param string $document
+     * @param string $entity
      * @param string $value
      *
      * @throws \RuntimeException
      */
-    public function setConfig($locale, $document, $value)
+    public function setConfig($locale, $entity, $value)
     {
-        $config = $this->getConfig($locale, $document);
-
+        $config = $this->getConfig($locale, $entity);
         if (!$config) {
             $config = new Config();
         }
-
         try {
             $config->setlocale($locale);
-            $config->setEntity($document);
+            $config->setEntity($entity);
             $config->setValue(json_encode($value));
-            $this->getEntityManager()->persist($config);
-            $this->getEntityManager()->flush();
-        } catch (\Exception $e) {
+            $this->_em->persist($config);
+            $this->_em->flush();
+        } catch (Exception $e) {
             throw new \RuntimeException($e);
         }
     }

@@ -26,11 +26,13 @@ trait DescriptionTrait
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("string")
      */
     private $description;
+
 
     /**
      * Set description
@@ -54,5 +56,4 @@ trait DescriptionTrait
     {
         return $this->description;
     }
-
 }

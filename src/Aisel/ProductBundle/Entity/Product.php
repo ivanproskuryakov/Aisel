@@ -29,6 +29,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\QtyTrait;
+use Aisel\ResourceBundle\Domain\DescriptionTrait;
 //use Aisel\ReviewBundle\Domain\ReviewTrait;
 
 /**
@@ -51,6 +52,7 @@ class Product implements UrlInterface
     use NameTrait;
     use LocaleTrait;
     use QtyTrait;
+    use DescriptionTrait;
 
     /**
      * @var string
@@ -156,16 +158,6 @@ class Product implements UrlInterface
      * @JMS\Type("string")
      */
     private $descriptionShort;
-
-    /**
-     * @var string
-     * @ORM\Column(type="text", nullable=true)
-     * @Assert\Type(type="string")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $description;
 
     /**
      * @var boolean
@@ -470,29 +462,6 @@ class Product implements UrlInterface
     public function getDescriptionShort()
     {
         return $this->descriptionShort;
-    }
-
-    /**
-     * Set description
-     *
-     * @param  string  $description
-     * @return Product
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
