@@ -95,7 +95,7 @@ class BackendUser implements AdvancedUserInterface
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @JMS\Type("DateTime")
      */
     private $expiresAt;

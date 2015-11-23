@@ -23,7 +23,7 @@
 
         "doctrine/doctrine-bundle": "1.5.2",
         "doctrine/orm": "=v2.4.2",
-        "stof/doctrine-extensions-bundle": "1.2.*@dev",
+        "stof/doctrine-extensions-bundle": "1.2.1",
         "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
 
         "symfony/assetic-bundle": "~2.3",

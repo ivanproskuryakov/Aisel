@@ -64,7 +64,7 @@ class Product implements UrlInterface
 
     /**
      * @var string
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", scale=2, nullable=true)
      * @Assert\Type(type="float")
      * @Assert\NotNull()
      * @JMS\Expose
@@ -74,7 +74,7 @@ class Product implements UrlInterface
 
     /**
      * @var string
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", scale=2, nullable=true)
      * @Assert\Type(type="float")
      * @JMS\Expose
      * @JMS\Type("float")
@@ -159,7 +159,7 @@ class Product implements UrlInterface
 
     /**
      * @var string
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Expose

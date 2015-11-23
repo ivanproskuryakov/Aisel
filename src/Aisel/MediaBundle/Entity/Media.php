@@ -27,6 +27,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\MappedSuperclass
  * @ORM\Table(name="aisel_media")
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @JMS\ExclusionPolicy("all")
  */
 class Media
@@ -48,7 +49,7 @@ class Media
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")

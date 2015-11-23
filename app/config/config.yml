@@ -60,7 +60,7 @@ jms_serializer:
   metadata:
     auto_detection: true
 
-#
+
 #services:
 #    jms_serializer.doctrine_object_constructor:
 #        class:        %jms_serializer.doctrine_object_constructor.class%
