@@ -16,6 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Country
@@ -101,6 +102,15 @@ class Country
      * @JMS\Type("string")
      */
     private $cctld;
+
+    /**
+     * @var ArrayCollection<Aisel\AddressingBundle\Entity\Region>
+     * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\Region", mappedBy="countries")
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Entity\Region>")
+     */
+    private $regions;
 
     public function __toString()
     {
@@ -290,5 +300,22 @@ class Country
     {
         return $this->cctld;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getRegions()
+    {
+        return $this->regions;
+    }
+
+    /**
+     * @param ArrayCollection $regions
+     */
+    public function setRegions($regions)
+    {
+        $this->regions = $regions;
+    }
+
 
 }

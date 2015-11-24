@@ -56,7 +56,6 @@ class Review
      * )
      * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Node>")
      * @JMS\Expose
-     * @AiselAnnotation\NoDuplicates()
      */
     private $nodes;
 

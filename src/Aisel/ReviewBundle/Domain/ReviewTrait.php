@@ -30,7 +30,6 @@ trait ReviewTrait
      * @ODM\ReferenceMany(targetDocument="Aisel\ReviewBundle\Entity\Review", cascade={"all"})
      * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
      * @JMS\Expose
-     * @AiselAnnotation\NoDuplicates()
      */
     private $reviews;
 

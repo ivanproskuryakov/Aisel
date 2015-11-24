@@ -51,7 +51,6 @@ class Node extends BaseNode implements UrlInterface
      * @ORM\OrderBy({"title" = "ASC"})
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Node>")
-     * @AiselAnnotation\NoDuplicates()
      */
     protected $children;
 

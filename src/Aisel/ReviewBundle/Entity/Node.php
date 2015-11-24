@@ -47,7 +47,6 @@ class Node extends BaseNode
      * @ORM\OrderBy({"title" = "ASC"})
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Node>")
-     * @AiselAnnotation\NoDuplicates()
      */
     protected $children;
 

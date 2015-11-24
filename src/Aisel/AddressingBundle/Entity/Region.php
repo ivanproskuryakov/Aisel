@@ -17,6 +17,7 @@ use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Region
@@ -36,10 +37,22 @@ class Region
 
     /**
      * @var Country
-     * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Country", inversedBy="regions")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * })
+     * @JMS\Type("Aisel\AddressingBundle\Entity\Country")
      */
     private $country;
+
+    /**
+     * @var ArrayCollection<Aisel\AddressingBundle\Entity\City>
+     * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\City", mappedBy="regions")
+     * @JMS\Expose
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Entity\City>")
+     */
+    private $cities;
 
     /**
      * Set country
@@ -63,4 +76,22 @@ class Region
     {
         return $this->country;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCities()
+    {
+        return $this->cities;
+    }
+
+    /**
+     * @param ArrayCollection $cities
+     */
+    public function setCities($cities)
+    {
+        $this->cities = $cities;
+    }
+
+
 }

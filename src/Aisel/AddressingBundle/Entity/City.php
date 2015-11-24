@@ -36,8 +36,10 @@ class City
 
     /**
      * @var Region
-     * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Region")
-     * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Region", inversedBy="cities")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     * })
      * @JMS\Type("Aisel\AddressingBundle\Entity\Region")
      */
     private $region;
@@ -45,7 +47,9 @@ class City
     /**
      * @var Country
      * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * })
      * @JMS\Type("Aisel\AddressingBundle\Entity\Country")
      */
     private $country;

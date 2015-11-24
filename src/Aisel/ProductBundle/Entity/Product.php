@@ -197,7 +197,6 @@ class Product implements UrlInterface
      * )
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Node>")
-     * @AiselAnnotation\NoDuplicates()
      */
     private $nodes;
 

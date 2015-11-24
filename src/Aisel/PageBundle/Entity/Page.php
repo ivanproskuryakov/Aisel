@@ -63,7 +63,6 @@ class Page implements UrlInterface
      * )
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Node>")
      * @JMS\Expose
-     * @AiselAnnotation\NoDuplicates()
      */
     private $nodes;
 
