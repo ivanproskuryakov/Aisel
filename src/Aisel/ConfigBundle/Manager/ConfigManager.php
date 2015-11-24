@@ -71,11 +71,10 @@ class ConfigManager
         if (!$collection) {
             throw new LogicException('Nothing found');
         }
-
         $config = array();
 
         foreach ($collection as $s) {
-            $config['settings'][$s['locale']][$s['entity']] = json_decode($s['value'], true);
+            $config['settings'][$s['locale']][$s['entity']] = $s['value'];
         }
         $config['locale'] = $this->locale;
 

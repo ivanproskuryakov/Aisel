@@ -45,13 +45,8 @@ class ApiCountryControllerTest extends AbstractWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        var_dump($content);
-        exit();
-
         $this->assertTrue(200 === $statusCode);
         $this->assertJson($content);
-
-
     }
 
     public function testGetCountryAction()

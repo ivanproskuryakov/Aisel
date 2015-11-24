@@ -34,11 +34,6 @@ class Region
     use NameTrait;
     use UpdateCreateTrait;
 
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
     /**
      * @var Country
      * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
