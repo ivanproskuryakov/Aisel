@@ -228,11 +228,13 @@ class CollectionRepository extends EntityRepository
             ->createQueryBuilder()
             ->select('n')
             ->from($this->model, 'n')
-            ->where('n.parent = :parent')->setParameter('parent', null);
+            ->where('n.parent IS NULL')
+            ->andWhere('n.locale = :locale')->setParameter('locale', $params['locale']);
 
         if ($params['scope'] == 'frontend') {
             $query->andWhere('n.status = :status')->setParameter('status', true);
         }
+
         $result = $query
             ->orderBy('n.' . $this->order, $this->orderBy)
             ->getQuery()

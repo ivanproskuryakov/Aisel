@@ -268,7 +268,7 @@ class ApiController extends Controller
         $repo = $this
             ->getEntityManager()
             ->getRepository($this->model);
-        $collection = array_values($repo->getNodesAsTree($params));
+        $collection = $repo->getNodesAsTree($params);
 
         return $collection;
     }
