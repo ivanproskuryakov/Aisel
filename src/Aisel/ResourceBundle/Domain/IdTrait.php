@@ -28,6 +28,7 @@ trait IdTrait
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Expose
      * @JMS\Type("integer")
      */
     private $id;

@@ -49,8 +49,7 @@ class Menu extends BaseNode
 
     /**
      * @var string
-     * @ORM\Column(type="string")
-     * @Assert\NotNull()
+     * @ORM\Column(type="string", nullable=true)
      * @JMS\Expose
      * @JMS\Type("string")
      */

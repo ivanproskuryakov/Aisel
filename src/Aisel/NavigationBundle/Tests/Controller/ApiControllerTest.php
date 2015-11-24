@@ -40,7 +40,7 @@ class ApiControllerTest extends AbstractWebTestCase
                 [
                     'locale' => 'en',
                     'status' => true,
-                    "parent" => ['$exists' => false]
+                    "parent" => NULL
                 ]
             );
 

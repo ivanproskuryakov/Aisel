@@ -155,7 +155,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * @var string
      * @Assert\Type(type="string")
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Expose
      * @JMS\Type("string")
      */
@@ -163,7 +163,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
@@ -172,7 +172,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
@@ -181,7 +181,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
@@ -190,7 +190,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
