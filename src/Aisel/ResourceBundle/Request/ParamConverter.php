@@ -164,6 +164,8 @@ class ParamConverter extends RequestBodyParamConverter
             $resolvedClass,
             'json'
         );
+        var_dump($convertedValue);
+        exit();
         $violations = $this->validator->validate($convertedValue);
 
         if ($violations->count()) {

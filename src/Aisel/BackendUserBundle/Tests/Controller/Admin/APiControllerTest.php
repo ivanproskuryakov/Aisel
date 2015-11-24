@@ -79,10 +79,10 @@ class APiControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        // @todo: handle errors
-        $this->assertEquals($result['code'], 500);
-        $this->assertEquals($result['message'], 'Duplicate key error');
-        $this->assertTrue(500 === $statusCode);
+        $this->assertEquals($result['code'], 400);
+        $this->assertEquals($result['errors']['username'], 'This value is already used.');
+        $this->assertEquals($result['errors']['email'], 'This value is already used.');
+        $this->assertTrue(400 === $statusCode);
     }
 
     public function testGetUsersAction()
@@ -157,6 +157,7 @@ class APiControllerTest extends AbstractBackendWebTestCase
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
 
+        var_dump($content);
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
         $this->assertNotNull($user);

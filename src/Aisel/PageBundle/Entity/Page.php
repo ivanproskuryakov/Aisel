@@ -75,6 +75,14 @@ class Page implements UrlInterface
     }
 
     /**
+     * @inheritdoc
+     */
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
+    /**
      * Add node
      *
      * @param Node $node

@@ -28,8 +28,8 @@ services:
         tags:
             - { name: "kernel.event_listener", event: "kernel.exception", method: "onKernelException" }
 
-    aisel_node_persistence_listener:
-        class: %aisel_node_listener.class%
-        tags:
-            - { name: doctrine.event_listener, event: postPersist, method: postPersist }
-            - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
+#    aisel_node_persistence_listener:
+#        class: %aisel_node_listener.class%
+#        tags:
+#            - { name: doctrine.event_listener, event: postPersist, method: postPersist }
+#            - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }

@@ -66,6 +66,9 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
+
+        var_dump($content);
+        exit();
         $this->assertEmpty($content);
         $this->assertTrue(201 === $statusCode);
         $parts = explode('/', $response->headers->get('location'));
