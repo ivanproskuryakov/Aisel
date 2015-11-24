@@ -50,6 +50,11 @@ class City
      */
     private $country;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     /**
      * Set country
      *

@@ -39,6 +39,8 @@ class CollectionRepository extends EntityRepository
      */
     protected function mapRequest(array $params)
     {
+        $this->model = $this->getEntityName();
+
         // Pagination
         if (isset($params['current'])) {
             $this->pageCurrent = (int)$params['current'];
@@ -98,46 +100,42 @@ class CollectionRepository extends EntityRepository
     {
         $this->mapRequest($params);
 
-        var_dump($params);
-        var_dump($this->model);
-        exit();
-
         $query = $this
             ->getEntityManager()
             ->createQueryBuilder();
 
         $query->select('COUNT(e.id)')
             ->from($this->model, 'e');
-//
-//        if ($this->filter) {
-//            foreach ($this->filter as $k => $value) {
-//                $query->andWhere('e.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
-//            }
-//        }
-//
-//        if ($this->locale) {
-//            $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
-//        }
-//
-//        if ($this->node) {
-//            $query->innerJoin('e.nodes', 'n')
-//                ->andWhere('n.metaUrl = :node')->setParameter('node', $this->node);
-//        }
-//
+
+        if ($this->filter) {
+            foreach ($this->filter as $k => $value) {
+                $query->andWhere('e.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
+            }
+        }
+
+        if ($this->locale) {
+            $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
+        }
+
+        if ($this->node) {
+            $query->innerJoin('e.nodes', 'n')
+                ->andWhere('n.metaUrl = :node')->setParameter('node', $this->node);
+        }
+
 //        if ($params['scope'] == 'frontend') {
 //            $query->andWhere('e.status = :status')->setParameter('status', true);
 //        }
-//
-//        if ($this->search != '') {
-//            $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
-//        }
+
+        if ($this->search != '') {
+            $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
+        }
 
         $total = $query->getQuery()->getSingleScalarResult();
 
         if (!$total) {
             return 0;
         }
-        exit();
+
         return $total;
     }
 
@@ -172,9 +170,9 @@ class CollectionRepository extends EntityRepository
                 ->andWhere('c.metaUrl = :node')->setParameter('node', $this->node);
         }
 
-        if ($params['scope'] == 'frontend') {
-            $query->andWhere('e.status = :status')->setParameter('status', true);
-        }
+//        if ($params['scope'] == 'frontend') {
+//            $query->andWhere('e.status = :status')->setParameter('status', true);
+//        }
 
         if ($this->search != '') {
             $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');

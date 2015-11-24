@@ -184,7 +184,6 @@ class Product implements UrlInterface
      * @ORM\OneToMany(targetEntity="Aisel\MediaBundle\Entity\Media", mappedBy="product", cascade={"remove"})
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Entity\Media>")
-     * @AiselAnnotation\NoDuplicates()
      */
     private $medias;
 

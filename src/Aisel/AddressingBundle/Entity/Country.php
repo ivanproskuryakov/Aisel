@@ -102,6 +102,11 @@ class Country
      */
     private $cctld;
 
+    public function __toString()
+    {
+        return $this->getLongName();
+    }
+
     /**
      * Set iso2
      *

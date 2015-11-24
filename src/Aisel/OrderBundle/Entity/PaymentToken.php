@@ -30,6 +30,4 @@ use Aisel\ResourceBundle\Domain\IdTrait;
 class PaymentToken extends Token
 {
 
-    use IdTrait;
-
 }

@@ -31,7 +31,7 @@ class ApiCountryControllerTest extends AbstractWebTestCase
         parent::tearDown();
     }
 
-    public function testGetCitiesAction()
+    public function testGetCountriesAction()
     {
         $this->client->request(
             'GET',
@@ -45,8 +45,13 @@ class ApiCountryControllerTest extends AbstractWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
+        var_dump($content);
+        exit();
+
         $this->assertTrue(200 === $statusCode);
         $this->assertJson($content);
+
+
     }
 
     public function testGetCountryAction()

@@ -77,6 +77,7 @@ class ApiCityControllerTest extends AbstractBackendWebTestCase
 
         $response = $this->client->getResponse();
         $content = $response->getContent();
+
         $statusCode = $response->getStatusCode();
         $parts = explode('/', $response->headers->get('location'));
         $id = array_pop($parts);
