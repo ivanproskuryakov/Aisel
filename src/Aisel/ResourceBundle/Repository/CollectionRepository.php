@@ -97,40 +97,47 @@ class CollectionRepository extends EntityRepository
     public function getTotalFromRequest(array $params)
     {
         $this->mapRequest($params);
+
+        var_dump($params);
+        var_dump($this->model);
+        exit();
+
         $query = $this
             ->getEntityManager()
-            ->createQueryBuilder()
-            ->select('e')
+            ->createQueryBuilder();
+
+        $query->select('COUNT(e.id)')
             ->from($this->model, 'e');
-
-        if ($this->filter) {
-            foreach ($this->filter as $k => $value) {
-                $query->andWhere('e.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
-            }
-        }
-
-        if ($this->locale) {
-            $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
-        }
-
-        if ($this->node) {
-            $query->innerJoin('e.nodes', 'n')
-                ->andWhere('n.metaUrl = :node')->setParameter('node', $this->node);
-        }
-
-        if ($params['scope'] == 'frontend') {
-            $query->andWhere('e.status = :status')->setParameter('status', true);
-        }
-
-        if ($this->search != '') {
-            $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
-        }
+//
+//        if ($this->filter) {
+//            foreach ($this->filter as $k => $value) {
+//                $query->andWhere('e.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
+//            }
+//        }
+//
+//        if ($this->locale) {
+//            $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
+//        }
+//
+//        if ($this->node) {
+//            $query->innerJoin('e.nodes', 'n')
+//                ->andWhere('n.metaUrl = :node')->setParameter('node', $this->node);
+//        }
+//
+//        if ($params['scope'] == 'frontend') {
+//            $query->andWhere('e.status = :status')->setParameter('status', true);
+//        }
+//
+//        if ($this->search != '') {
+//            $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
+//        }
 
         $total = $query->getQuery()->getSingleScalarResult();
 
         if (!$total) {
             return 0;
         }
+        exit();
         return $total;
     }
 
