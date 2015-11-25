@@ -35,7 +35,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/rest-bundle": "1.4.*@dev",
 
-        "jms/serializer-bundle": "0.13.*@dev",
+        "jms/serializer-bundle": "1.1.0",
         "payum/payum-bundle": "0.15.*@dev",
         "payum/offline": "0.15.*",
         "payum/paypal-express-checkout-nvp": "0.15.*",

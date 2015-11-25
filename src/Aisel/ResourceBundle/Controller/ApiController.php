@@ -90,7 +90,6 @@ class ApiController extends Controller
         $configuration = new ParamConverter(array(
             'class' => $this->model
         ));
-
         $entity = $this->get('api_param_converter')->execute($request, $configuration);
 
         return $entity;

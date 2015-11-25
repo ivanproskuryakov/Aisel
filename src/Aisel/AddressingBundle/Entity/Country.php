@@ -104,20 +104,6 @@ class Country
     private $cctld;
 
     /**
-     * @var ArrayCollection<Aisel\AddressingBundle\Entity\Region>
-     * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\Region", mappedBy="countries")
-     * @JMS\Expose
-     * @JMS\MaxDepth(1)
-     * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Entity\Region>")
-     */
-    private $regions;
-
-    public function __toString()
-    {
-        return $this->getLongName();
-    }
-
-    /**
      * Set iso2
      *
      * @param  string  $iso2
@@ -299,22 +285,6 @@ class Country
     public function getCctld()
     {
         return $this->cctld;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getRegions()
-    {
-        return $this->regions;
-    }
-
-    /**
-     * @param ArrayCollection $regions
-     */
-    public function setRegions($regions)
-    {
-        $this->regions = $regions;
     }
 
 

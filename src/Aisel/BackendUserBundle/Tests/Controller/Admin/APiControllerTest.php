@@ -158,6 +158,8 @@ class APiControllerTest extends AbstractBackendWebTestCase
             ->findOneBy(['username' => 'test_backend_user_aisel']);
 
         var_dump($content);
+        exit();
+
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
         $this->assertNotNull($user);

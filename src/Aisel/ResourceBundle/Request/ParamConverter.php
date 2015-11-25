@@ -156,16 +156,20 @@ class ParamConverter extends RequestBodyParamConverter
 
         if ($serializerGroups) {
             $deserializationContext
-                ->setGroups($serializerGroups)
-            ;
+                ->setGroups($serializerGroups);
         }
+
         $convertedValue = $this->serializer->deserialize(
             $rawPayload,
             $resolvedClass,
             'json'
         );
+
+        var_dump($rawPayload);
+        var_dump($resolvedClass);
         var_dump($convertedValue);
         exit();
+
         $violations = $this->validator->validate($convertedValue);
 
         if ($violations->count()) {
