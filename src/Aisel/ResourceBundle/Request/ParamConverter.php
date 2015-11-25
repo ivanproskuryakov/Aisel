@@ -41,18 +41,18 @@ class ParamConverter extends RequestBodyParamConverter
 
     /**
      * @param Serializer               $serializer
-     * @param EntityManager          $EntityManager
+     * @param EntityManager          $entityManager
      * @param ValidatorInterface       $validator
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
         Serializer $serializer,
-        EntityManager $EntityManager,
+        EntityManager $entityManager,
         ValidatorInterface $validator,
         EventDispatcherInterface $dispatcher
     ) {
         parent::__construct($serializer, null, null, $validator, 'error');
-        $this->dm = $EntityManager;
+        $this->em = $entityManager;
         $this->dispatcher = $dispatcher;
     }
 
@@ -118,7 +118,7 @@ class ParamConverter extends RequestBodyParamConverter
     protected function loadEntity($resolvedClass, $id, $locale, $url)
     {
         if (isset($locale) && isset($url)) {
-            $entity = $this->dm->getRepository($resolvedClass)->findOneBy(
+            $entity = $this->em->getRepository($resolvedClass)->findOneBy(
                 array(
                     'metaUrl' => $url,
                     'locale' => $locale
@@ -127,7 +127,7 @@ class ParamConverter extends RequestBodyParamConverter
         }
 
         if ($id) {
-            $entity = $this->dm->find($resolvedClass, $id);
+            $entity = $this->em->find($resolvedClass, $id);
         }
 
         if (null === $entity) {
@@ -158,7 +158,6 @@ class ParamConverter extends RequestBodyParamConverter
             $deserializationContext
                 ->setGroups($serializerGroups);
         }
-
         $convertedValue = $this->serializer->deserialize(
             $rawPayload,
             $resolvedClass,

@@ -32,11 +32,11 @@ class InvoiceManager
     /**
      * Constructor
      *
-     * @param EntityManager $EntityManager
+     * @param EntityManager $entityManager
      */
-    public function __construct(EntityManager $EntityManager)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->dm = $EntityManager;
+        $this->dm = $entityManager;
     }
 
     /**

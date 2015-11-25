@@ -44,16 +44,16 @@ class OrderManager
     /**
      * Constructor
      *
-     * @param EntityManager $EntityManager
+     * @param EntityManager $entityManager
      * @param ConfigManager $configManager
      * @param CartManager   $cartManager
      */
     public function __construct(
-        EntityManager $EntityManager,
+        EntityManager $entityManager,
         ConfigManager $configManager,
         CartManager $cartManager
     ) {
-        $this->dm = $EntityManager;
+        $this->dm = $entityManager;
         $this->settingsManager = $configManager;
         $this->cartManager = $cartManager;
     }

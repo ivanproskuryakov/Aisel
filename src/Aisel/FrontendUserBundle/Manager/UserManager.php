@@ -64,7 +64,7 @@ class UserManager implements UserProviderInterface
     /**
      * Constructor
      *
-     * @param EntityManager $EntityManager
+     * @param EntityManager $entityManager
      * @param EncoderFactory $encoder
      * @param SecurityContext $securityContext
      * @param Swift_Mailer $mailer
@@ -72,7 +72,7 @@ class UserManager implements UserProviderInterface
      * @param string $websiteEmail
      */
     public function __construct(
-        EntityManager $EntityManager,
+        EntityManager $entityManager,
         EncoderFactory $encoder,
         SecurityContext $securityContext,
         Swift_Mailer $mailer,
@@ -83,7 +83,7 @@ class UserManager implements UserProviderInterface
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->encoder = $encoder;
-        $this->dm = $EntityManager;
+        $this->dm = $entityManager;
         $this->websiteEmail = $websiteEmail;
         $this->securityContext = $securityContext;
     }

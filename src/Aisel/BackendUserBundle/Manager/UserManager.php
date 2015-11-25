@@ -44,16 +44,16 @@ class UserManager implements UserProviderInterface
     /**
      * Constructor
      *
-     * @param EntityManager $EntityManager
+     * @param EntityManager $entityManager
      * @param EncoderFactory  $encoder
-     * @param SecurityContext $securiwtyContext
+     * @param SecurityContext $securityContext
      */
     public function __construct(
-        EntityManager $EntityManager,
+        EntityManager $entityManager,
         EncoderFactory $encoder,
         SecurityContext $securityContext
     ) {
-        $this->dm = $EntityManager;
+        $this->dm = $entityManager;
         $this->encoder = $encoder;
         $this->securityContext = $securityContext;
     }
