@@ -4,6 +4,7 @@ namespace Aisel\AddressingBundle\Tests;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use JMS\Serializer\Serializer;
+use Aisel\AddressingBundle\Entity\Country;
 
 /**
  * SerializerTestCase
@@ -25,27 +26,22 @@ class SerializerTestCase extends AbstractWebTestCase
 
     public function testSerializer()
     {
-        $model = "Aisel\AddressingBundle\Entity\Country";
-
         $country = $this
             ->em
-            ->getRepository($model)
-            ->findOneBy(['id' => '1003']);
+            ->getRepository(Country::class)
+            ->findOneBy(['iso2' => 'RU']);
+
+        $obj = ['id' => $country->getId()];
 
         /** @var Serializer $serializer */
         $serializer = $this->getContainer()->get('jms_serializer');
         $convertedValue = $serializer->deserialize(
-            json_encode(['id' => 1003]),
-            $model,
+            json_encode($obj),
+            Country::class,
             'json'
         );
 
-        var_dump($convertedValue);
-
-
-//        var_dump($convertedValue);
-        exit();
-
+        $this->assertEquals($convertedValue->getIso2(), $country->getIso2());
     }
 
 }

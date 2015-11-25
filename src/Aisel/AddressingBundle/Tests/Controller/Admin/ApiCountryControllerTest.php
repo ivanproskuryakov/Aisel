@@ -77,7 +77,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
 //        $id = array_pop($parts);
 //
 //        $country = $this
-//            ->dm
+//            ->em
 //            ->getRepository('Aisel\AddressingBundle\Entity\Country')
 //            ->find($id);
 //
@@ -91,7 +91,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
 //    public function testGetCountryAction()
 //    {
 //        $country = $this
-//            ->dm
+//            ->em
 //            ->getRepository('Aisel\AddressingBundle\Entity\Country')
 //            ->findOneBy(['iso3' => 'AAA']);
 //        $id = $country->getId();
@@ -116,13 +116,15 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
     public function testPutCountryAction()
     {
         $country = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Country')
-            ->findOneBy(['iso2' => 'AA']);
+            ->findOneBy(['iso2' => 'RU']);
         $id = $country->getId();
         $data = array(
             'iso2' => 'ZZ',
         );
+//        var_dump($country);
+//        exit();
 
         $this->client->request(
             'PUT',
@@ -140,10 +142,10 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         var_dump($content);
         exit();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $country = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Country')
             ->find($id);
 
@@ -155,7 +157,7 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
     public function testDeleteCountryAction()
     {
         $country = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Country')
             ->findOneBy(['iso3' => 'AAA']);
         $id = $country->getId();
@@ -172,10 +174,10 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $country = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Country')
             ->find($id);
 

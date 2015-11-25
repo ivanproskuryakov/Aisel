@@ -21,11 +21,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Aisel\ResourceBundle\Exception\ValidationFailedException;
+use JMS\Serializer\SerializationContext;
 
 /**
  * Class ParamConverter
  *
- * @author Ivan Proskuryakov <volgodark@gmail.com>
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
  */
 class ParamConverter extends RequestBodyParamConverter
 {
@@ -41,7 +42,7 @@ class ParamConverter extends RequestBodyParamConverter
 
     /**
      * @param Serializer               $serializer
-     * @param EntityManager          $entityManager
+     * @param EntityManager            $entityManager
      * @param ValidatorInterface       $validator
      * @param EventDispatcherInterface $dispatcher
      */
@@ -66,23 +67,20 @@ class ParamConverter extends RequestBodyParamConverter
      */
     public function execute(Request $request, SensioParamConverter $configuration)
     {
-        $id = $request->attributes->get('id');
-        $locale = $request->attributes->get('locale');
-        $url = $request->attributes->get('url');
-
         $name = $configuration->getName();
         $options = $configuration->getOptions();
         $resolvedClass = $configuration->getClass();
+        $id = $request->attributes->get('id');
         $method = $request->getMethod();
         $rawPayload = $request->getContent();
 
         switch (true) {
             case ('GET' === $method):
-                $convertedValue = $this->loadEntity($resolvedClass, $id, $locale, $url );
+                $convertedValue = $this->loadEntity($resolvedClass, $id, $maxDepth = true);
                 break;
 
             case ('DELETE' === $method):
-                $convertedValue = $this->loadEntity($resolvedClass, $id, $locale, $url );
+                $convertedValue = $this->loadEntity($resolvedClass, $id);
                 break;
 
             case ('PUT' === $method):
@@ -104,8 +102,7 @@ class ParamConverter extends RequestBodyParamConverter
     /**
      * @param $resolvedClass
      * @param $id
-     * @param $locale
-     * @param $url
+     * @param $maxDepth
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -115,23 +112,21 @@ class ParamConverter extends RequestBodyParamConverter
      *
      * @return mixed $entity
      */
-    protected function loadEntity($resolvedClass, $id, $locale, $url)
+    protected function loadEntity($resolvedClass, $id, $maxDepth = false)
     {
-        if (isset($locale) && isset($url)) {
-            $entity = $this->em->getRepository($resolvedClass)->findOneBy(
-                array(
-                    'metaUrl' => $url,
-                    'locale' => $locale
-                )
-            );
-        }
-
-        if ($id) {
-            $entity = $this->em->find($resolvedClass, $id);
-        }
+        $entity = $this->em->find($resolvedClass, $id);
 
         if (null === $entity) {
             throw new NotFoundHttpException('Not found');
+        }
+
+        if ($maxDepth) {
+            $entity = $this->serializer->serialize(
+                $entity, 'json',
+                SerializationContext::create()->enableMaxDepthChecks()
+            );
+
+            return json_decode($entity, true);
         }
 
         return $entity;
@@ -156,14 +151,17 @@ class ParamConverter extends RequestBodyParamConverter
 
         if ($serializerGroups) {
             $deserializationContext
-                ->setGroups($serializerGroups);
+                ->setGroups($serializerGroups)
+            ;
         }
+
         $convertedValue = $this->serializer->deserialize(
             $rawPayload,
             $resolvedClass,
             'json'
         );
-
+        var_dump($rawPayload);
+        exit();
         $violations = $this->validator->validate($convertedValue);
 
         if ($violations->count()) {

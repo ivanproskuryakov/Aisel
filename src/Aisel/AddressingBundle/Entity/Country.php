@@ -1,53 +1,44 @@
 <?php
 
-/*
- * This file is part of the Aisel package.
- *
- * (c) Ivan Proskuryakov
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Aisel\AddressingBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Domain\IdTrait;
-use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Country
  *
- * @author Ivan Proskuryakov <volgodark@gmail.com>
+ * @author Ivan Proskoryakov <volgodark@gmail.com>
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
+ * @ORM\Entity(repositoryClass="Aisel\AddressingBundle\Entity\CountryRepository")
  * @ORM\Table(name="aisel_addressing_country")
  */
 class Country
 {
-
-    use IdTrait;
-    use UpdateCreateTrait;
+    /**
+     * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=2)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
-     * @JMS\Type("string")
      */
     private $iso2;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=3)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
-     * @JMS\Type("string")
      */
     private $iso3;
 
@@ -56,7 +47,6 @@ class Country
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
-     * @JMS\Type("string")
      */
     private $shortName;
 
@@ -65,16 +55,14 @@ class Country
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
-     * @JMS\Type("string")
      */
     private $longName;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=10)
      * @Assert\Type(type="string")
      * @Assert\NotNull()
-     * @JMS\Type("string")
      */
     private $numcode;
 
@@ -83,30 +71,58 @@ class Country
      * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
-     * @JMS\Type("boolean")
      */
     private $unMember = false;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=10)
      * @Assert\Type(type="string")
-     * @JMS\Type("string")
      */
     private $callingCode;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=10, nullable=true)
      * @Assert\Type(type="string")
-     * @JMS\Type("string")
      */
     private $cctld;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     * @JMS\Type("DateTime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     * @JMS\Type("DateTime")
+     */
+    private $updatedAt;
+
+    public function __toString()
+    {
+        return $this->getShortName();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Set iso2
      *
-     * @param  string  $iso2
+     * @param  string $iso2
      * @return Country
      */
     public function setIso2($iso2)
@@ -129,7 +145,7 @@ class Country
     /**
      * Set iso3
      *
-     * @param  string  $iso3
+     * @param  string $iso3
      * @return Country
      */
     public function setIso3($iso3)
@@ -152,7 +168,7 @@ class Country
     /**
      * Set shortName
      *
-     * @param  string  $shortName
+     * @param  string $shortName
      * @return Country
      */
     public function setShortName($shortName)
@@ -175,7 +191,7 @@ class Country
     /**
      * Set longName
      *
-     * @param  string  $longName
+     * @param  string $longName
      * @return Country
      */
     public function setLongName($longName)
@@ -198,7 +214,7 @@ class Country
     /**
      * Set numcode
      *
-     * @param  string  $numcode
+     * @param  string $numcode
      * @return Country
      */
     public function setNumcode($numcode)
@@ -244,7 +260,7 @@ class Country
     /**
      * Set callingCode
      *
-     * @param  string  $callingCode
+     * @param  string $callingCode
      * @return Country
      */
     public function setCallingCode($callingCode)
@@ -267,7 +283,7 @@ class Country
     /**
      * Set cctld
      *
-     * @param  string  $cctld
+     * @param  string $cctld
      * @return Country
      */
     public function setCctld($cctld)
@@ -287,5 +303,23 @@ class Country
         return $this->cctld;
     }
 
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
 
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 }

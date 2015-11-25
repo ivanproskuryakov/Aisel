@@ -11,6 +11,10 @@ parameters:
     aisel_exception_listener.class: Aisel\ResourceBundle\Request\ExceptionListener
 
 services:
+    jms_serializer.object_constructor:
+        alias: jms_serializer.doctrine_object_constructor
+        public: false
+
     api_param_converter:
         class: %aisel_param_converter.class%
         arguments:
@@ -26,9 +30,3 @@ services:
         arguments:
         tags:
             - { name: "kernel.event_listener", event: "kernel.exception", method: "onKernelException" }
-
-#    aisel_node_persistence_listener:
-#        class: %aisel_node_listener.class%
-#        tags:
-#            - { name: doctrine.event_listener, event: postPersist, method: postPersist }
-#            - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }

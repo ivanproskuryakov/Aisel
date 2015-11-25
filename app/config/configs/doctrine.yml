@@ -1,11 +1,4 @@
 # Doctrine Configuration
-stof_doctrine_extensions:
-    default_locale: en_US
-    orm:
-        default:
-            tree: true
-            timestampable: true
-
 doctrine:
     dbal:
         driver:   "%database_driver%"
@@ -21,6 +14,25 @@ doctrine:
             default:
                 auto_mapping: true
                 mappings:
+                    AiselPageBundle:
+                        type: annotation
+                    AiselAddressingBundle:
+                        type: annotation
+                    AiselFrontendUserBundle:
+                        type: annotation
+                    AiselBackendUserBundle:
+                        type: annotation
+                    AiselConfigBundle:
+                        type: annotation
+                    AiselCartBundle:
+                        type: annotation
+                    AiselProductBundle:
+                        type: annotation
+                    AiselNavigationBundle:
+                        type: annotation
+                    AiselOrderBundle:
+                        type: annotation
+
                     gedmo_tree:
                         type: annotation
                         prefix: Gedmo\Tree\Entity
@@ -32,3 +44,10 @@ doctrine:
 #                        type: xml
 #                        dir: %kernel.root_dir%/../vendor/payum/payum/src/Payum/Core/Bridge/Doctrine/Resources/mapping
 #                        prefix: Payum\Core\Model
+
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            tree: true
+            timestampable: true
