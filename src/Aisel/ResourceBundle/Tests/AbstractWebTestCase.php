@@ -30,7 +30,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
     /**
      * @var EntityManager
      */
-    protected $dm;
+    protected $em;
 
     /**
      * @var UserManager
@@ -75,11 +75,11 @@ abstract class AbstractWebTestCase extends KernelTestCase
 
     public function removeDocument($document, $model = 'Aisel\ReviewBundle\Entity\Node')
     {
-        $this->dm->remove($document);
-        $this->dm->flush();
+        $this->em->remove($document);
+        $this->em->flush();
 
         $isFound = $this
-            ->dm
+            ->em
             ->getRepository($model)
             ->findOneBy(['id' => $document->getId()]);
 
@@ -147,7 +147,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
         static::$kernel->boot();
 
         $this->client = static::createClient([], ['HTTP_HOST' => static::$httpHost]);
-        $this->dm = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
         $this->um = static::$kernel->getContainer()->get('backend.user.manager');
         $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
         $this->api = array(
@@ -163,7 +163,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
     protected function tearDown()
     {
         unset($this->client);
-        unset($this->dm);
+        unset($this->em);
 
         $refl = new \ReflectionObject($this);
         foreach ($refl->getProperties() as $prop) {

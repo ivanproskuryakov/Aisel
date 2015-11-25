@@ -9,7 +9,6 @@
 parameters:
     aisel_param_converter.class: Aisel\ResourceBundle\Request\ParamConverter
     aisel_exception_listener.class: Aisel\ResourceBundle\Request\ExceptionListener
-    aisel_node_listener.class: Aisel\ResourceBundle\EventListener\NodePersistenceListener
 
 services:
     api_param_converter:
