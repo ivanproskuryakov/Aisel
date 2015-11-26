@@ -34,14 +34,14 @@ class APiControllerTest extends AbstractBackendWebTestCase
     public function testPostUserAction()
     {
         $users = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
             ->findBy(['username' => 'test_backend_user_aisel']);
 
         foreach ($users as $user) {
-            $this->dm->remove($user);
+            $this->em->remove($user);
         }
-        $this->dm->flush();
+        $this->em->flush();
 
         $data = [
             'username' => 'test_backend_user_aisel',
@@ -106,7 +106,7 @@ class APiControllerTest extends AbstractBackendWebTestCase
     public function testGetUserAction()
     {
         $user = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
         $id = $user->getId();
@@ -131,7 +131,7 @@ class APiControllerTest extends AbstractBackendWebTestCase
     public function testPutUserAction()
     {
         $user = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
         $id = $user->getId();
@@ -150,15 +150,12 @@ class APiControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $user = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
-
-        var_dump($content);
-        exit();
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
@@ -169,7 +166,7 @@ class APiControllerTest extends AbstractBackendWebTestCase
     public function testDeletePageNodeAction()
     {
         $user = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
         $id = $user->getId();
@@ -187,7 +184,7 @@ class APiControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $user = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
 

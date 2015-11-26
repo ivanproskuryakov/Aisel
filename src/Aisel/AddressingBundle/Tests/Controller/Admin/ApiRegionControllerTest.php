@@ -53,9 +53,9 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
     public function testPostRegionAction()
     {
         $country = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Country')
-            ->findOneBy(['iso2' => 'ES']);
+            ->findOneBy(['iso2' => 'US']);
 
         $data = array(
             'name' => 'AAA',
@@ -79,7 +79,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
         $id = array_pop($parts);
 
         $region = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->find($id);
 
@@ -93,7 +93,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
     public function testGetRegionAction()
     {
         $region = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->findOneBy(['name' => 'AAA']);
         $id = $region->getId();
@@ -118,11 +118,11 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
     public function testPutRegionAction()
     {
         $country = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Country')
             ->findOneBy(['iso2' => 'RU']);
         $region = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->findOneBy(['name' => 'AAA']);
         $id = $region->getId();
@@ -143,10 +143,10 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $region = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->find($id);
 
@@ -158,7 +158,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
     public function testDeleteRegionAction()
     {
         $region = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->findOneBy(['name' => 'AAA']);
         $id = $region->getId();
@@ -175,10 +175,10 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $region = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->find($id);
 

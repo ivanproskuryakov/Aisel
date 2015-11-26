@@ -46,6 +46,7 @@ class UserPersistenceListener
         $object = $args->getEntity();
 
         if ($object instanceof AdvancedUserInterface) {
+
             $salt = md5(uniqid(null, true));
             $object->setSalt($salt);
 
@@ -54,6 +55,7 @@ class UserPersistenceListener
                 $object->getPlainPassword(),
                 $object->getSalt()
             );
+
             $object->setPassword($encodedPassword);
             $object->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
         }

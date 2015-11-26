@@ -41,6 +41,7 @@ class City
      *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
      * })
      * @JMS\Type("Aisel\AddressingBundle\Entity\Region")
+     *
      */
     private $region;
 

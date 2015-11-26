@@ -53,14 +53,14 @@ class UserManager implements UserProviderInterface
         EncoderFactory $encoder,
         SecurityContext $securityContext
     ) {
-        $this->dm = $entityManager;
+        $this->em = $entityManager;
         $this->encoder = $encoder;
         $this->securityContext = $securityContext;
     }
 
     protected function getRepository()
     {
-        $repo =  $this->dm
+        $repo =  $this->em
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser');
 
         return $repo;
@@ -82,8 +82,8 @@ class UserManager implements UserProviderInterface
         $user->setEnabled(true);
         $user->setLocked(false);
         $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
-        $this->dm->persist($user);
-        $this->dm->flush();
+        $this->em->persist($user);
+        $this->em->flush();
 
         return $user;
     }

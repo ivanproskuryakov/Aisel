@@ -47,7 +47,7 @@ class Region
 
     /**
      * @var ArrayCollection<Aisel\AddressingBundle\Entity\City>
-     * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\City", mappedBy="regions")
+     * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\City", mappedBy="region")*
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Entity\City>")

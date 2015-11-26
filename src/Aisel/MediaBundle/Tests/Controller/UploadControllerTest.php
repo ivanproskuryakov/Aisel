@@ -112,7 +112,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
         $this->assertNotNull($result);
 
         $image = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\MediaBundle\Entity\Media')
             ->findOneBy(['id' => $result['id']]);
 

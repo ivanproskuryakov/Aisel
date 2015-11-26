@@ -34,7 +34,7 @@ class ApiControllerTest extends AbstractWebTestCase
     public function testGetNavigationAction()
     {
         $menu = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findBy(
                 [

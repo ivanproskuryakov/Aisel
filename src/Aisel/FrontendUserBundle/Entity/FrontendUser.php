@@ -23,6 +23,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\OrderBundle\Entity\Order;
 use Aisel\CartBundle\Entity\Cart;
 use Aisel\ResourceBundle\Domain\IdTrait;
+use Aisel\ResourceBundle\Repository\CollectionRepository;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -32,7 +33,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(repositoryClass="Aisel\FrontendUserBundle\Entity\FrontendUserRepository")
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @ORM\Table(name="aisel_user_frontend")
  * @UniqueEntity("username")
  * @UniqueEntity("email")
@@ -235,7 +236,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set lastLogin
      *
-     * @param  \DateTime    $lastLogin
+     * @param  \DateTime $lastLogin
      * @return FrontendUser
      */
     public function setLastLogin($lastLogin)
@@ -258,7 +259,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set expiresAt
      *
-     * @param  \DateTime    $expiresAt
+     * @param  \DateTime $expiresAt
      * @return FrontendUser
      */
     public function setExpiresAt($expiresAt)
@@ -281,7 +282,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set enabled
      *
-     * @param  boolean      $enabled
+     * @param  boolean $enabled
      * @return FrontendUser
      */
     public function setEnabled($enabled)
@@ -304,7 +305,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set locked
      *
-     * @param  boolean      $locked
+     * @param  boolean $locked
      * @return FrontendUser
      */
     public function setLocked($locked)
@@ -327,7 +328,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set username
      *
-     * @param  string       $username
+     * @param  string $username
      * @return FrontendUser
      */
     public function setUsername($username)
@@ -350,7 +351,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set password
      *
-     * @param  string       $password
+     * @param  string $password
      * @return FrontendUser
      */
     public function setPassword($password)
@@ -373,7 +374,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set email
      *
-     * @param  string       $email
+     * @param  string $email
      * @return FrontendUser
      */
     public function setEmail($email)
@@ -407,7 +408,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set salt
      *
-     * @param  string       $salt
+     * @param  string $salt
      * @return FrontendUser
      */
     public function setSalt($salt)
@@ -481,7 +482,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set phone
      *
-     * @param  string       $phone
+     * @param  string $phone
      * @return FrontendUser
      */
     public function setPhone($phone)
@@ -504,7 +505,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set website
      *
-     * @param  string       $website
+     * @param  string $website
      * @return FrontendUser
      */
     public function setWebsite($website)
@@ -527,7 +528,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set facebook
      *
-     * @param  string       $facebook
+     * @param  string $facebook
      * @return FrontendUser
      */
     public function setFacebook($facebook)
@@ -550,7 +551,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set twitter
      *
-     * @param  string       $twitter
+     * @param  string $twitter
      * @return FrontendUser
      */
     public function setTwitter($twitter)
@@ -573,7 +574,7 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * Set about
      *
-     * @param  string       $about
+     * @param  string $about
      * @return FrontendUser
      */
     public function setAbout($about)
