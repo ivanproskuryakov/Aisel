@@ -34,7 +34,7 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
     public function testPostAction()
     {
         $productNode = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['locale' => 'en']);
 
@@ -75,7 +75,7 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
         $id = array_pop($parts);
 
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->find($id);
 

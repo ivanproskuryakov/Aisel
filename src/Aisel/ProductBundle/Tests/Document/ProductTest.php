@@ -43,8 +43,8 @@ class ProductTest extends AbstractWebTestCase
         $node->setMetaUrl('url_' . time());
         $node->setLocale('en');
 
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         $this->assertNotNull($node->getId());
 
@@ -59,16 +59,16 @@ class ProductTest extends AbstractWebTestCase
         $product->addNode($node);
         $product->addNode($node);
 
-        $this->dm->persist($product);
-        $this->dm->flush();
+        $this->em->persist($product);
+        $this->em->flush();
 
         $this->assertNotNull($product->getId());
         $this->assertEquals(count($product->getNodes()), 1);
 
-        $this->dm->remove($node);
-        $this->dm->flush();
-        $this->dm->remove($product);
-        $this->dm->flush();
+        $this->em->remove($node);
+        $this->em->flush();
+        $this->em->remove($product);
+        $this->em->flush();
     }
 
     public function testDuplicateImages()
@@ -77,8 +77,8 @@ class ProductTest extends AbstractWebTestCase
         $image->setFilename($this->faker->numberBetween(0, 10000));
         $image->setMainImage(false);
 
-        $this->dm->persist($image);
-        $this->dm->flush();
+        $this->em->persist($image);
+        $this->em->flush();
 
         $this->assertNotNull($image->getId());
 
@@ -93,16 +93,16 @@ class ProductTest extends AbstractWebTestCase
         $product->addMedia($image);
         $product->addMedia($image);
 
-        $this->dm->persist($product);
-        $this->dm->flush();
+        $this->em->persist($product);
+        $this->em->flush();
 
         $this->assertNotNull($product->getId());
         $this->assertEquals(count($product->getMedias()), 1);
 
-        $this->dm->remove($image);
-        $this->dm->flush();
-        $this->dm->remove($product);
-        $this->dm->flush();
+        $this->em->remove($image);
+        $this->em->flush();
+        $this->em->remove($product);
+        $this->em->flush();
     }
 
 }

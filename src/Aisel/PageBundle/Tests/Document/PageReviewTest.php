@@ -43,15 +43,15 @@ class PageReviewTest extends AbstractWebTestCase
         $node->setTitle($this->faker->sentence(1));
         $node->setDescription($this->faker->sentence(10));
         $node->setLocale('en');
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         $review = new Review();
         $review->setTitle($this->faker->sentence(1));
         $review->setContent($this->faker->sentence(10));
         $review->addNode($node);
-        $this->dm->persist($review);
-        $this->dm->flush();
+        $this->em->persist($review);
+        $this->em->flush();
 
         $page = new Page();
         $page->setLocale('en');
@@ -62,14 +62,14 @@ class PageReviewTest extends AbstractWebTestCase
         $page->setMetaUrl('url_' . time());
         $page->addReview($review);
 
-        $this->dm->persist($page);
-        $this->dm->flush();
+        $this->em->persist($page);
+        $this->em->flush();
 
         $this->assertNotNull($page->getId());
         $this->removeDocument($page);
 
         $review = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ReviewBundle\Entity\Review')
             ->findOneBy(['id' => $review->getId()]);
         $this->assertNull($review);

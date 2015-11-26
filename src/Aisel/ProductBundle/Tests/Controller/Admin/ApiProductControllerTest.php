@@ -52,7 +52,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
     public function testPostProductAction()
     {
         $node = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['locale' => 'en']);
 
@@ -90,7 +90,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
         $id = array_pop($parts);
 
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->find($id);
 
@@ -101,12 +101,12 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
     public function testPutProductAction()
     {
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['name' => 'AAAAA']);
 
         $node = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['locale' => 'ru']);
 
@@ -133,10 +133,10 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['id' => $id]);
 
@@ -150,7 +150,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
     public function testGetProductAction()
     {
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['name' => 'AAAAA']);
 
@@ -174,7 +174,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
     public function testDeleteProductAction()
     {
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
         $id = $product->getId();
@@ -192,7 +192,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['id' => $id]);
 

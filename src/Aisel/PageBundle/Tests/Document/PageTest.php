@@ -42,8 +42,8 @@ class PageTests extends AbstractWebTestCase
         $node->setMetaUrl('url_' . time());
         $node->setLocale('en');
 
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         $this->assertNotNull($node->getId());
 
@@ -57,16 +57,16 @@ class PageTests extends AbstractWebTestCase
         $page->addNode($node);
         $page->addNode($node);
 
-        $this->dm->persist($page);
-        $this->dm->flush();
+        $this->em->persist($page);
+        $this->em->flush();
 
         $this->assertNotNull($page->getId());
         $this->assertEquals(count($page->getNodes()), 1);
 
-        $this->dm->remove($node);
-        $this->dm->flush();
-        $this->dm->remove($page);
-        $this->dm->flush();
+        $this->em->remove($node);
+        $this->em->flush();
+        $this->em->remove($page);
+        $this->em->flush();
     }
 
 }

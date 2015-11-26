@@ -47,8 +47,8 @@ class ProductNodeUrlPersistenceListenerTest extends AbstractWebTestCase
         $node1->setStatus(true);
         $node1->setMetaUrl($urlText);
 
-        $this->dm->persist($node1);
-        $this->dm->flush();
+        $this->em->persist($node1);
+        $this->em->flush();
 
         // Create Product Node 2
         $node2 = new Node();
@@ -58,16 +58,16 @@ class ProductNodeUrlPersistenceListenerTest extends AbstractWebTestCase
         $node2->setStatus(true);
         $node2->setMetaUrl($urlText);
 
-        $this->dm->persist($node2);
-        $this->dm->flush();
+        $this->em->persist($node2);
+        $this->em->flush();
 
         // Delete Product Node 1
-        $node1 = $this->dm
+        $node1 = $this->em
             ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['metaUrl' => $urlText]);
 
-        $this->dm->remove($node1);
-        $this->dm->flush();
+        $this->em->remove($node1);
+        $this->em->flush();
     }
 
 }

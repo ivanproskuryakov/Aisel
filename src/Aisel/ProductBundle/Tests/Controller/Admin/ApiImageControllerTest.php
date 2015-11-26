@@ -24,7 +24,7 @@ class ApiImageControllerTest extends UploadControllerTest
     public function testPostImageAction()
     {
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 
@@ -60,11 +60,11 @@ class ApiImageControllerTest extends UploadControllerTest
 
         $this->assertEmpty($content);
         $this->assertTrue(204 === $statusCode);
-        $this->dm->clear();
+        $this->em->clear();
 
         //Checking
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->find($product->getId());
 
@@ -75,7 +75,7 @@ class ApiImageControllerTest extends UploadControllerTest
     public function testPutImageAction()
     {
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 
@@ -103,10 +103,10 @@ class ApiImageControllerTest extends UploadControllerTest
         $this->assertEquals($statusCode, 204);
         $this->assertEquals($result, '');
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
         $image = $product->getMedias()[0];
@@ -118,7 +118,7 @@ class ApiImageControllerTest extends UploadControllerTest
     public function testGetImageAction()
     {
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 
@@ -150,7 +150,7 @@ class ApiImageControllerTest extends UploadControllerTest
     public function testDeleteImageAction()
     {
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 
@@ -188,10 +188,10 @@ class ApiImageControllerTest extends UploadControllerTest
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $product = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
 

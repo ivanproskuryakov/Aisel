@@ -39,8 +39,8 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $node->setDescription('');
         $node->setMetaUrl('/' . md5(rand(111111, 999999)));
         $node->setTitle($name);
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -69,10 +69,10 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['parent']['id'], $parent->getId());
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $node = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['id' => $result['id']]);
 
@@ -104,15 +104,15 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['parent']['id'], $parent->getId());
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $parent = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['id' => $parent->getId()]);
 
         $node = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['id' => $result['id']]);
         $this->assertEquals($node->getParent()->getId(), $parent->getId());
@@ -164,7 +164,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $node = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['title' => 'ZZZZ']);
 

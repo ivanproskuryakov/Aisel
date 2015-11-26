@@ -80,7 +80,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testGetPageNodeAction()
     {
         $node = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['title' => 'AAA']);
 
@@ -104,12 +104,12 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testPutPageNodeAction()
     {
         $node = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['title' => 'AAA']);
 
         $node2 = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['locale' => 'en']);
 
@@ -131,10 +131,10 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $node = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['id' => $id]);
 
@@ -148,7 +148,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testDeletePageNodeAction()
     {
         $node = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['title' => 'AAA']);
         $id = $node->getId();
@@ -166,7 +166,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $node = $this
-            ->dm
+            ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['id' => $id]);
 

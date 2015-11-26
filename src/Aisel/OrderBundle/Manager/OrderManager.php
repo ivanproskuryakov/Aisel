@@ -53,7 +53,7 @@ class OrderManager
         ConfigManager $configManager,
         CartManager $cartManager
     ) {
-        $this->dm = $entityManager;
+        $this->em = $entityManager;
         $this->settingsManager = $configManager;
         $this->cartManager = $cartManager;
     }
@@ -84,7 +84,7 @@ class OrderManager
      */
     public function getUserOrder($userId, $orderId)
     {
-        $order = $this->dm
+        $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->findOrderForUser($userId, $orderId);
 
@@ -106,7 +106,7 @@ class OrderManager
             throw new LogicException('User Id is missing');
         }
 
-        $orders = $this->dm
+        $orders = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->findAllOrdersForUser($userId);
 
@@ -133,7 +133,7 @@ class OrderManager
             throw new LogicException('User cart is empty');
         };
 
-        $order = $this->dm
+        $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromCartForUser(
                 $user,
@@ -163,7 +163,7 @@ class OrderManager
         $currencyCode = $this->getCurrencyCode($orderInfo['locale']);
 
         $order = $this
-            ->dm
+            ->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromProductsForUser(
                 $user,
