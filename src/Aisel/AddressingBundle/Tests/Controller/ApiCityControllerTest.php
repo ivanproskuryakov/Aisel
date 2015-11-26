@@ -11,14 +11,14 @@
 
 namespace Aisel\AddressingBundle\Tests\Controller;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\AddressingBundle\Tests\AddressingWebTestCase;
 
 /**
  * ApiCityControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiCityControllerTest extends AbstractWebTestCase
+class ApiCityControllerTest extends AddressingWebTestCase
 {
 
     public function setUp()
@@ -33,6 +33,8 @@ class ApiCityControllerTest extends AbstractWebTestCase
 
     public function testGetCitiesAction()
     {
+        $city = $this->newCity();
+
         $this->client->request(
             'GET',
             '/'. $this->api['frontend'] . '/addressing/city/',
@@ -47,14 +49,15 @@ class ApiCityControllerTest extends AbstractWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertJson($content);
+
+        $this->removeEntity($city);
+        $this->removeEntity($city->getRegion());
+        $this->removeEntity($city->getRegion()->getCountry());
     }
 
     public function testGetCityAction()
     {
-        $city = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\City')
-            ->findOneBy(['name' => 'Madrid']);
+        $city = $this->newCity();
 
         $this->client->request(
             'GET',
@@ -71,6 +74,10 @@ class ApiCityControllerTest extends AbstractWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $city->getId());
+
+        $this->removeEntity($city);
+        $this->removeEntity($city->getRegion());
+        $this->removeEntity($city->getRegion()->getCountry());
     }
 
 }

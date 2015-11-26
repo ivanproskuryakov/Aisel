@@ -11,14 +11,14 @@
 
 namespace Aisel\AddressingBundle\Tests\Controller;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\AddressingBundle\Tests\AddressingWebTestCase;
 
 /**
  * ApiRegionControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiRegionControllerTest extends AbstractWebTestCase
+class ApiRegionControllerTest extends AddressingWebTestCase
 {
 
     public function setUp()
@@ -33,6 +33,8 @@ class ApiRegionControllerTest extends AbstractWebTestCase
 
     public function testGetCitiesAction()
     {
+        $region = $this->newRegion();
+
         $this->client->request(
             'GET',
             '/'. $this->api['frontend'] . '/addressing/region/',
@@ -47,14 +49,14 @@ class ApiRegionControllerTest extends AbstractWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertJson($content);
+
+        $this->removeEntity($region);
+        $this->removeEntity($region->getCountry());
     }
 
     public function testGetRegionAction()
     {
-        $region = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
-            ->findOneBy(['name' => 'Comunidad de Madrid']);
+        $region = $this->newRegion();
 
         $this->client->request(
             'GET',
@@ -71,6 +73,9 @@ class ApiRegionControllerTest extends AbstractWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $region->getId());
+
+        $this->removeEntity($region);
+        $this->removeEntity($region->getCountry());
     }
 
 }

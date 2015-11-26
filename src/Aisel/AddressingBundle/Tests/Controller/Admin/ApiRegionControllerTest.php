@@ -11,14 +11,14 @@
 
 namespace Aisel\AddressingBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\AddressingBundle\Tests\AddressingWebTestCase;
 
 /**
  * ApiRegionControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiRegionControllerTest extends AbstractBackendWebTestCase
+class ApiRegionControllerTest extends AddressingWebTestCase
 {
 
     public function setUp()

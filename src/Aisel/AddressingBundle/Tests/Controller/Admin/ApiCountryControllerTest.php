@@ -11,14 +11,14 @@
 
 namespace Aisel\AddressingBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\AddressingBundle\Tests\AddressingWebTestCase;
 
 /**
  * ApiCountryControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiCountryControllerTest extends AbstractBackendWebTestCase
+class ApiCountryControllerTest extends AddressingWebTestCase
 {
 
     public function setUp()
@@ -47,6 +47,8 @@ class ApiCountryControllerTest extends AbstractBackendWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertJson($content);
+
+        exit();
     }
 
     public function testPostCountryAction()

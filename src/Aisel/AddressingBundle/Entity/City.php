@@ -26,6 +26,7 @@ use Aisel\ResourceBundle\Domain\NameTrait;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @ORM\Table(name="aisel_addressing_city")
+ * @JMS\ExclusionPolicy("all")
  */
 class City
 {
@@ -41,46 +42,13 @@ class City
      *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
      * })
      * @JMS\Type("Aisel\AddressingBundle\Entity\Region")
-     *
+     * @JMS\Expose
      */
     private $region;
-
-    /**
-     * @var Country
-     * @ORM\ManyToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="country_id", referencedColumnName="id")
-     * })
-     * @JMS\Type("Aisel\AddressingBundle\Entity\Country")
-     */
-    private $country;
 
     public function __toString()
     {
         return $this->getName();
-    }
-
-    /**
-     * Set country
-     *
-     * @param  Country $country
-     * @return City
-     */
-    public function setCountry(Country $country = null)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return Country
-     */
-    public function getCountry()
-    {
-        return $this->country;
     }
 
     /**

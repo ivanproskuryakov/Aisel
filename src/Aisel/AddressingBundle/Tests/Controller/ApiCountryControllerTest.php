@@ -11,14 +11,14 @@
 
 namespace Aisel\AddressingBundle\Tests\Controller;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\AddressingBundle\Tests\AddressingWebTestCase;
 
 /**
  * ApiCountryControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiCountryControllerTest extends AbstractWebTestCase
+class ApiCountryControllerTest extends AddressingWebTestCase
 {
 
     public function setUp()
@@ -33,6 +33,8 @@ class ApiCountryControllerTest extends AbstractWebTestCase
 
     public function testGetCountriesAction()
     {
+        $country = $this->newCountry();
+
         $this->client->request(
             'GET',
             '/'. $this->api['frontend'] . '/addressing/country/',
@@ -47,14 +49,13 @@ class ApiCountryControllerTest extends AbstractWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertJson($content);
+
+        $this->removeEntity($country);
     }
 
     public function testGetCountryAction()
     {
-        $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-            ->findOneBy(['iso2' => 'ES']);
+        $country = $this->newCountry();
 
         $this->client->request(
             'GET',
@@ -71,6 +72,8 @@ class ApiCountryControllerTest extends AbstractWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $country->getId());
+
+        $this->removeEntity($country);
     }
 
 }

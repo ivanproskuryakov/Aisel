@@ -27,6 +27,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @ORM\Table(name="aisel_addressing_region")
+ * @JMS\ExclusionPolicy("all")
  */
 class Region
 {
@@ -47,7 +48,7 @@ class Region
 
     /**
      * @var ArrayCollection<Aisel\AddressingBundle\Entity\City>
-     * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\City", mappedBy="region")*
+     * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\City", mappedBy="region", cascade={"remove"})
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Entity\City>")

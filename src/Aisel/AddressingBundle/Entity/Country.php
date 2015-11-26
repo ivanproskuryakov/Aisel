@@ -105,7 +105,7 @@ class Country
 
     /**
      * @var ArrayCollection<Aisel\AddressingBundle\Entity\Region>
-     * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\Region", mappedBy="country")
+     * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\Region", mappedBy="country", cascade={"remove"})
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Entity\Region>")
