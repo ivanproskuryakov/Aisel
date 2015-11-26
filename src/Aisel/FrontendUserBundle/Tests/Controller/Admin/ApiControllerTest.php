@@ -62,9 +62,6 @@ class ApiControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        var_dump($content);
-        exit();
-
         $this->client->request(
             'POST',
             '/'. $this->api['backend'] . '/frontenduser/',
@@ -79,10 +76,10 @@ class ApiControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        // @todo: handle errors
-        $this->assertEquals($result['code'], 500);
-        $this->assertEquals($result['message'], 'Duplicate key error');
-        $this->assertTrue(500 === $statusCode);
+        $this->assertEquals($result['code'], 400);
+        $this->assertEquals($result['errors']['username'], 'This value is already used.');
+        $this->assertEquals($result['errors']['email'], 'This value is already used.');
+        $this->assertTrue(400 === $statusCode);
     }
 
     public function testGetUsersAction()

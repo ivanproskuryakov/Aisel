@@ -53,9 +53,9 @@ class ApiControllerTest extends AbstractWebTestCase
     public function testRegisterUserAction()
     {
         $data = [
-            'username' => rand(11111111, 999999999),
-            'password' => rand(11111111, 999999999),
-            'email' => rand(11111111, 999999999) . '@aisel.co'
+            'username' => $this->faker->userName,
+            'password' => $this->faker->password(),
+            'email' => $this->faker->email
         ];
 
         $this->client->request(

@@ -66,7 +66,7 @@ class PageReviewTest extends AbstractWebTestCase
         $this->em->flush();
 
         $this->assertNotNull($page->getId());
-        $this->removeDocument($page);
+        $this->removeEntity($page);
 
         $review = $this
             ->em

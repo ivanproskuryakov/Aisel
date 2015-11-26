@@ -68,7 +68,7 @@ class ProductReviewTest extends AbstractWebTestCase
         $this->em->flush();
 
         $this->assertNotNull($product->getId());
-        $this->removeDocument($product);
+        $this->removeEntity($product);
 
         $review = $this
             ->em
