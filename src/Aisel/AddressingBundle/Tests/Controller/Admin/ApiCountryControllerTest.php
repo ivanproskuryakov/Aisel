@@ -24,6 +24,8 @@ class ApiCountryControllerTest extends AddressingWebTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -47,8 +49,6 @@ class ApiCountryControllerTest extends AddressingWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertJson($content);
-
-        exit();
     }
 
     public function testPostCountryAction()

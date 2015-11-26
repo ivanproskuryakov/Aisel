@@ -43,6 +43,7 @@ class Region
      *   @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      * })
      * @JMS\Type("Aisel\AddressingBundle\Entity\Country")
+     * @JMS\Expose
      */
     private $country;
 

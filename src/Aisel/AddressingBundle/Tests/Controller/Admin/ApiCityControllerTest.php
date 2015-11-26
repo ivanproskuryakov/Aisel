@@ -24,6 +24,7 @@ class ApiCityControllerTest extends AddressingWebTestCase
     public function setUp()
     {
         parent::setUp();
+
         $this->logInBackend();
     }
 

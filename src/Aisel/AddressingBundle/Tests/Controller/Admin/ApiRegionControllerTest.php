@@ -24,6 +24,8 @@ class ApiRegionControllerTest extends AddressingWebTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -35,7 +37,7 @@ class ApiRegionControllerTest extends AddressingWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/addressing/region/',
+            '/' . $this->api['backend'] . '/addressing/region/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -52,10 +54,7 @@ class ApiRegionControllerTest extends AddressingWebTestCase
 
     public function testPostRegionAction()
     {
-        $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-            ->findOneBy(['iso2' => 'US']);
+        $country = $this->newCountry();
 
         $data = array(
             'name' => 'AAA',
@@ -65,7 +64,7 @@ class ApiRegionControllerTest extends AddressingWebTestCase
 
         $this->client->request(
             'POST',
-            '/'. $this->api['backend'] . '/addressing/region/',
+            '/' . $this->api['backend'] . '/addressing/region/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -92,15 +91,11 @@ class ApiRegionControllerTest extends AddressingWebTestCase
 
     public function testGetRegionAction()
     {
-        $region = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
-            ->findOneBy(['name' => 'AAA']);
-        $id = $region->getId();
+        $region = $this->newRegion();
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/addressing/region/' . $id,
+            '/' . $this->api['backend'] . '/addressing/region/' . $region->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -117,14 +112,9 @@ class ApiRegionControllerTest extends AddressingWebTestCase
 
     public function testPutRegionAction()
     {
-        $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-            ->findOneBy(['iso2' => 'RU']);
-        $region = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Region')
-            ->findOneBy(['name' => 'AAA']);
+        $country = $this->newCountry();
+        $region = $this->newRegion();
+
         $id = $region->getId();
         $data = array(
             'country' => array('id' => $country->getId()),
@@ -132,7 +122,7 @@ class ApiRegionControllerTest extends AddressingWebTestCase
 
         $this->client->request(
             'PUT',
-            '/'. $this->api['backend'] . '/addressing/region/' . $id,
+            '/' . $this->api['backend'] . '/addressing/region/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -165,7 +155,7 @@ class ApiRegionControllerTest extends AddressingWebTestCase
 
         $this->client->request(
             'DELETE',
-            '/'. $this->api['backend'] . '/addressing/region/'. $id,
+            '/' . $this->api['backend'] . '/addressing/region/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
