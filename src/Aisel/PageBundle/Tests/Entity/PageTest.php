@@ -15,6 +15,7 @@ use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
 use Aisel\PageBundle\Entity\Page;
 use Aisel\PageBundle\Entity\Node;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 /**
  * PageTests
@@ -36,7 +37,10 @@ class PageTests extends AbstractWebTestCase
 
     public function testDuplicateNodes()
     {
+        $this->setExpectedException(UniqueConstraintViolationException::class);
+
         $node = new Node();
+        $node->setTitle($this->faker->title);
         $node->setStatus(true);
         $node->setDescription($this->faker->sentence(10));
         $node->setMetaUrl('url_' . time());
@@ -58,14 +62,6 @@ class PageTests extends AbstractWebTestCase
         $page->addNode($node);
 
         $this->em->persist($page);
-        $this->em->flush();
-
-        $this->assertNotNull($page->getId());
-        $this->assertEquals(count($page->getNodes()), 1);
-
-        $this->em->remove($node);
-        $this->em->flush();
-        $this->em->remove($page);
         $this->em->flush();
     }
 

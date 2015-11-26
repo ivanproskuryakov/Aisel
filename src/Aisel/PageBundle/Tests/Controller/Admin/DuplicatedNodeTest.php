@@ -66,18 +66,8 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->assertEmpty($content);
-        $this->assertTrue(201 === $statusCode);
-        $parts = explode('/', $response->headers->get('location'));
-        $id = array_pop($parts);
-
-        $page = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->find($id);
-
-        $this->assertEquals($page->getNodes()[0]->getId(), $pageNode->getId());
-        $this->assertEquals(count($page->getNodes()), 1);
+        $this->assertNotEmpty($content);
+        $this->assertTrue(500 === $statusCode);
     }
 
 }
