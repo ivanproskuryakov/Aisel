@@ -49,7 +49,7 @@ class SearchManager
             ->getRepository('AiselPageBundle:Page');
 
         $total = $pageRepository->getTotalFromRequest($params);
-        $collection = $pageRepository->searchFromRequest($params);
+        $collection = $pageRepository->getCollectionFromRequest($params);
 
         $return = array(
             'total' => $total,

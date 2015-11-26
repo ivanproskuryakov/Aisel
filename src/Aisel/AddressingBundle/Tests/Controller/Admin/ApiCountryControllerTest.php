@@ -37,7 +37,7 @@ class ApiCountryControllerTest extends AddressingWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/addressing/country/',
+            '/' . $this->api['backend'] . '/addressing/country/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -65,7 +65,7 @@ class ApiCountryControllerTest extends AddressingWebTestCase
 
         $this->client->request(
             'POST',
-            '/'. $this->api['backend'] . '/addressing/country/',
+            '/' . $this->api['backend'] . '/addressing/country/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -92,15 +92,11 @@ class ApiCountryControllerTest extends AddressingWebTestCase
 
     public function testGetCountryAction()
     {
-        $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-            ->findOneBy(['iso3' => 'AAA']);
-        $id = $country->getId();
+        $country = $this->newCountry();
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/addressing/country/' . $id,
+            '/' . $this->api['backend'] . '/addressing/country/' . $country->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -113,22 +109,20 @@ class ApiCountryControllerTest extends AddressingWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $country->getId());
+
+//        $this->removeEntity($country);
     }
 
     public function testPutCountryAction()
     {
-        $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-            ->findOneBy(['iso2' => 'ES']);
-        $id = $country->getId();
+        $country = $this->newCountry();
         $data = array(
             'iso2' => 'ZZ',
         );
 
         $this->client->request(
             'PUT',
-            '/'. $this->api['backend'] . '/addressing/country/' . $id,
+            '/' . $this->api['backend'] . '/addressing/country/' . $country->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -144,7 +138,7 @@ class ApiCountryControllerTest extends AddressingWebTestCase
         $country = $this
             ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Country')
-            ->find($id);
+            ->find($country->getId());
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
@@ -153,15 +147,11 @@ class ApiCountryControllerTest extends AddressingWebTestCase
 
     public function testDeleteCountryAction()
     {
-        $country = $this
-            ->em
-            ->getRepository('Aisel\AddressingBundle\Entity\Country')
-            ->findOneBy(['iso3' => 'AAA']);
-        $id = $country->getId();
+        $country = $this->newCountry();
 
         $this->client->request(
             'DELETE',
-            '/'. $this->api['backend'] . '/addressing/country/'. $id,
+            '/' . $this->api['backend'] . '/addressing/country/' . $country->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -176,11 +166,13 @@ class ApiCountryControllerTest extends AddressingWebTestCase
         $country = $this
             ->em
             ->getRepository('Aisel\AddressingBundle\Entity\Country')
-            ->find($id);
+            ->find($country->getId());
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
         $this->assertEmpty($country);
+
+//        $this->removeEntity($country);
     }
 
 }

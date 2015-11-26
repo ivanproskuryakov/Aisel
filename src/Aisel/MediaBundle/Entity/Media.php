@@ -18,7 +18,6 @@ use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\DescriptionTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
-use Aisel\ProductBundle\Entity\Product;
 
 /**
  * Media
@@ -73,34 +72,6 @@ class Media
      */
     protected $type;
 
-    /**
-     * @var Product
-     * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="images")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
-     */
-    protected $product;
-
-    /**
-     * Set product
-     *
-     * @param  Product $product
-     * @return Media
-     */
-    public function setProduct(Product $product = null)
-    {
-        $this->product = $product;
-        return $this;
-    }
-
-    /**
-     * Get product
-     *
-     * @return \Aisel\ProductBundle\Entity\Product
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
 
     /**
      * @return string

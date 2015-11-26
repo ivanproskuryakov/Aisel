@@ -37,7 +37,7 @@ use Aisel\ResourceBundle\Annotation as AiselAnnotation;
  *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="aisel_page")
- * @ORM\Entity(repositoryClass="Aisel\PageBundle\Entity\PageRepository")
+ * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @JMS\ExclusionPolicy("all")
  */
 //* @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})

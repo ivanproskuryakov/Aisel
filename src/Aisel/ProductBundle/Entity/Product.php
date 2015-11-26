@@ -181,7 +181,12 @@ class Product implements UrlInterface
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Aisel\MediaBundle\Entity\Media", mappedBy="product", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Aisel\MediaBundle\Entity\Media", cascade={"all"})
+     * @ORM\JoinTable(
+     *     name="aisel_product_product_media",
+     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="media_id", referencedColumnName="id")}
+     * )
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Entity\Media>")
      */
