@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Entity\UrlInterface;
+use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\ProductBundle\Entity\Node;
 use Aisel\MediaBundle\Entity\Media;
 

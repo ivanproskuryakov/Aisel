@@ -16,7 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Entity\UrlInterface;
+use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\PageBundle\Entity\Node;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
