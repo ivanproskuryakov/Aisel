@@ -12,9 +12,9 @@
 namespace Aisel\OrderBundle\Manager;
 
 use LogicException;
-use Aisel\OrderBundle\Document\Invoice;
-use Doctrine\ODM\MongoDB\DocumentManager;
-use Aisel\OrderBundle\Document\Order;
+use Aisel\OrderBundle\Entity\Invoice;
+use Doctrine\ORM\EntityManager;
+use Aisel\OrderBundle\Entity\Order;
 
 /**
  * InvoiceManager
@@ -25,18 +25,18 @@ class InvoiceManager
 {
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
     /**
      * Constructor
      *
-     * @param DocumentManager $documentManager
+     * @param EntityManager $entityManager
      */
-    public function __construct(DocumentManager $documentManager)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->dm = $documentManager;
+        $this->em = $entityManager;
     }
 
     /**
@@ -50,7 +50,7 @@ class InvoiceManager
      */
     public function getInvoice($id)
     {
-        $invoice = $this->dm->getRepository('Aisel\OrderBundle\Document\Invoice')->find($id);
+        $invoice = $this->em->getRepository('Aisel\OrderBundle\Entity\Invoice')->find($id);
 
         if (!($invoice)) {
             throw new LogicException('Nothing found');
@@ -73,12 +73,12 @@ class InvoiceManager
 
             if (!$order->getInvoice()) {
                 $invoice = new Invoice();
-                $this->dm->persist($invoice);
-                $this->dm->flush();
+                $this->em->persist($invoice);
+                $this->em->flush();
                 // Update order data
                 $order->setInvoice($invoice);
-                $this->dm->persist($order);
-                $this->dm->flush();
+                $this->em->persist($order);
+                $this->em->flush();
 
                 return $invoice;
             }

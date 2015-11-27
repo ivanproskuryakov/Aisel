@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\ProductBundle\Document;
+namespace spec\Aisel\ProductBundle\Entity;
 
 use PhpSpec\ObjectBehavior;
 
@@ -20,7 +20,7 @@ class ProductSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\ProductBundle\Document\Product');
+        $this->shouldHaveType('Aisel\ProductBundle\Entity\Product');
     }
 
     public function it_should_not_have_id()

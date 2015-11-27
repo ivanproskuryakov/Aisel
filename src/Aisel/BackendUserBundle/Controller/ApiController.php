@@ -11,7 +11,7 @@
 
 namespace Aisel\BackendUserBundle\Controller;
 
-use Aisel\BackendUserBundle\Document\BackendUser;
+use Aisel\BackendUserBundle\Entity\BackendUser;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

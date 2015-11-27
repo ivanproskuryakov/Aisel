@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\ConfigBundle\Document;
+namespace spec\Aisel\ConfigBundle\Entity;
 
 use PhpSpec\ObjectBehavior;
 
@@ -20,7 +20,7 @@ class ConfigSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\ConfigBundle\Document\Config');
+        $this->shouldHaveType('Aisel\ConfigBundle\Entity\Config');
     }
 
     public function it_should_not_have_id()

@@ -5,7 +5,7 @@ namespace Aisel\ResourceBundle\Tests;
 use Buzz\Exception\LogicException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpKernel\Client;
 use Aisel\BackendUserBundle\Manager\UserManager;
 use Symfony\Component\Validator\Validator;
@@ -28,9 +28,9 @@ abstract class AbstractWebTestCase extends KernelTestCase
     protected $client;
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
-    protected $dm;
+    protected $em;
 
     /**
      * @var UserManager
@@ -67,25 +67,37 @@ abstract class AbstractWebTestCase extends KernelTestCase
      */
     protected static $seed = 2000;
 
+    /**
+     * @param string $httpHost
+     */
     public static function setUpBeforeClass($httpHost = 'http://api.aisel.dev')
     {
         static::$httpHost = $httpHost;
     }
 
-
-    public function removeDocument($document, $model = 'Aisel\ReviewBundle\Document\Node')
+    /**
+     * @param $entity
+     */
+    public function removeEntity($entity)
     {
-        $this->dm->remove($document);
-        $this->dm->flush();
+        $this->em->remove($entity);
+        $this->em->flush();
 
         $isFound = $this
-            ->dm
-            ->getRepository($model)
-            ->findOneBy(['id' => $document->getId()]);
+            ->em
+            ->getRepository(get_class($entity))
+            ->findOneBy(['id' => $entity->getId()]);
 
         $this->assertNull($isFound);
     }
 
+    /**
+     * logInBackend
+     *
+     * @param string $username
+     * @param string $password
+     * @return bool
+     */
     public function logInBackend($username = 'backenduser', $password = 'backenduser')
     {
         if ($this->um->isAuthenticated() === false) {
@@ -109,6 +121,13 @@ abstract class AbstractWebTestCase extends KernelTestCase
         return $this->um->isAuthenticated();
     }
 
+    /**
+     * logInFrontend
+     *
+     * @param string $username
+     * @param string $password
+     * @return bool
+     */
     public function logInFrontend($username = 'frontenduser', $password = 'frontenduser')
     {
         if ($this->um->isAuthenticated() === false) {
@@ -147,7 +166,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
         static::$kernel->boot();
 
         $this->client = static::createClient([], ['HTTP_HOST' => static::$httpHost]);
-        $this->dm = static::$kernel->getContainer()->get('doctrine.odm.mongodb.document_manager');
+        $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
         $this->um = static::$kernel->getContainer()->get('backend.user.manager');
         $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
         $this->api = array(
@@ -163,7 +182,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
     protected function tearDown()
     {
         unset($this->client);
-        unset($this->dm);
+        unset($this->em);
 
         $refl = new \ReflectionObject($this);
         foreach ($refl->getProperties() as $prop) {

@@ -11,7 +11,7 @@
 
 namespace Aisel\ResourceBundle\Domain;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -24,10 +24,12 @@ trait IdTrait
 {
 
     /**
-     * @var string
-     * @ODM\Id
+     * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @JMS\Expose
-     * @JMS\Type("string")
+     * @JMS\Type("integer")
      */
     private $id;
 

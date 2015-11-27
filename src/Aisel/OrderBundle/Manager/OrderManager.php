@@ -12,11 +12,11 @@
 namespace Aisel\OrderBundle\Manager;
 
 use LogicException;
-use Aisel\FrontendUserBundle\Document\FrontendUser;
-use Aisel\OrderBundle\Document\Order;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\OrderBundle\Entity\Order;
 use Aisel\CartBundle\Manager\CartManager;
 use Aisel\ConfigBundle\Manager\ConfigManager;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 
 /**
  * OrderManager
@@ -27,7 +27,7 @@ class OrderManager
 {
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
@@ -44,16 +44,16 @@ class OrderManager
     /**
      * Constructor
      *
-     * @param DocumentManager $documentManager
+     * @param EntityManager $entityManager
      * @param ConfigManager $configManager
      * @param CartManager   $cartManager
      */
     public function __construct(
-        DocumentManager $documentManager,
+        EntityManager $entityManager,
         ConfigManager $configManager,
         CartManager $cartManager
     ) {
-        $this->dm = $documentManager;
+        $this->em = $entityManager;
         $this->settingsManager = $configManager;
         $this->cartManager = $cartManager;
     }
@@ -84,7 +84,7 @@ class OrderManager
      */
     public function getUserOrder($userId, $orderId)
     {
-        $order = $this->dm
+        $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->findOrderForUser($userId, $orderId);
 
@@ -106,7 +106,7 @@ class OrderManager
             throw new LogicException('User Id is missing');
         }
 
-        $orders = $this->dm
+        $orders = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->findAllOrdersForUser($userId);
 
@@ -133,7 +133,7 @@ class OrderManager
             throw new LogicException('User cart is empty');
         };
 
-        $order = $this->dm
+        $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromCartForUser(
                 $user,
@@ -163,7 +163,7 @@ class OrderManager
         $currencyCode = $this->getCurrencyCode($orderInfo['locale']);
 
         $order = $this
-            ->dm
+            ->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromProductsForUser(
                 $user,

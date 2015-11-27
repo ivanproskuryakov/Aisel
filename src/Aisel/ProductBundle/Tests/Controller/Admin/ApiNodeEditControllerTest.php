@@ -11,20 +11,21 @@
 
 namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
-use Aisel\ProductBundle\Document\Node;
+use Aisel\ProductBundle\Tests\ProductWebTestCase;
 
 /**
  * ApiNodeEditControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
+class ApiNodeEditControllerTest extends ProductWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -32,23 +33,10 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         parent::tearDown();
     }
 
-    public function createNode($name)
-    {
-        $node = new Node();
-        $node->setLocale('en');
-        $node->setDescription('');
-        $node->setMetaUrl('/'. rand(111111,999999));
-        $node->setTitle($name);
-        $this->dm->persist($node);
-        $this->dm->flush();
-
-        return $node;
-    }
-
     public function testProductNodeUpdateParentAction()
     {
-        $parent = $this->createNode('Parent' . rand(1111, 9999));
-        $child = $this->createNode('Child' . rand(1111, 9999));
+        $parent = $this->newNode();
+        $child = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -69,11 +57,11 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['parent']['id'], $parent->getId());
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $node = $this
-            ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['id' => $result['id']]);
 
         $this->assertEquals($parent->getId(), $node->getParent()->getId());
@@ -82,7 +70,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
     public function testProductNodeAddChildAction()
     {
-        $parent = $this->createNode('AAA');
+        $parent = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -104,16 +92,16 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['parent']['id'], $parent->getId());
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $parent = $this
-            ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['id' => $parent->getId()]);
 
         $node = $this
-            ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['id' => $result['id']]);
         $this->assertEquals($node->getParent()->getId(), $parent->getId());
         $this->assertEquals($node->getId(), $parent->getChildren()[0]->getId());
@@ -121,7 +109,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
     public function testProductNodeChangeTitleAction()
     {
-        $node = $this->createNode('AAA');
+        $node = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -147,7 +135,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
     public function testProductNodeDeleteAction()
     {
         $name = 'NodeToDelete';
-        $node = $this->createNode($name);
+        $node = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -164,8 +152,8 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $node = $this
-            ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['title' => $name]);
 
         $this->assertTrue(200 === $statusCode);

@@ -12,5 +12,5 @@ services:
     aisel.sitemap.manager:
         class: %aisel_sitemap_manager.class%
         arguments:
-          - @doctrine.odm.mongodb.document_manager
+          - @doctrine.orm.entity_manager
           - @templating

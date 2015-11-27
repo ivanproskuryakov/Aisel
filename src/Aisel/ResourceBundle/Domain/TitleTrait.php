@@ -11,7 +11,7 @@
 
 namespace Aisel\ResourceBundle\Domain;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -25,7 +25,7 @@ trait TitleTrait
 
     /**
      * @var string
-     * @ODM\Field(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")

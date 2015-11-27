@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\OrderBundle\Document;
+namespace spec\Aisel\OrderBundle\Entity;
 
 use PhpSpec\ObjectBehavior;
 
@@ -20,7 +20,7 @@ class InvoiceSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\OrderBundle\Document\Invoice');
+        $this->shouldHaveType('Aisel\OrderBundle\Entity\Invoice');
     }
 
     public function it_should_not_have_id()

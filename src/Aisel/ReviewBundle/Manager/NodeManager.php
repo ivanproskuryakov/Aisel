@@ -22,7 +22,7 @@ use LogicException;
 class NodeManager extends ApiNodeManager
 {
 
-    protected $model = 'Aisel\ReviewBundle\Document\Node';
+    protected $model = 'Aisel\ReviewBundle\Entity\Node';
 
     /**
      * {@inheritDoc}
@@ -31,15 +31,15 @@ class NodeManager extends ApiNodeManager
     {
 
         if ($nodeId = $params['parentId']) {
-            $parent = $this->dm->getRepository($this->model)->find($nodeId);
+            $parent = $this->em->getRepository($this->model)->find($nodeId);
 
             if (!$parent) {
                 throw new LogicException('Nothing found');
             }
         }
 
-        /** @var \Aisel\ReviewBundle\Document\Node $node */
-        /** @var \Aisel\ReviewBundle\Document\Node $parent */
+        /** @var \Aisel\ReviewBundle\Entity\Node $node */
+        /** @var \Aisel\ReviewBundle\Entity\Node $parent */
 
         $node = new $this->model();
         $node->setlocale($params['locale']);
@@ -47,8 +47,8 @@ class NodeManager extends ApiNodeManager
         $node->setParent($parent);
         $node->setStatus(false);
         $node->setDescription('');
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -58,7 +58,7 @@ class NodeManager extends ApiNodeManager
      */
     public function addSibling($params)
     {
-        /** @var \Aisel\ReviewBundle\Document\Node $node */
+        /** @var \Aisel\ReviewBundle\Entity\Node $node */
 
         $node = new $this->model();
         $node->setlocale($params['locale']);
@@ -66,8 +66,8 @@ class NodeManager extends ApiNodeManager
         $node->setStatus(false);
         $node->setDescription('');
 
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }

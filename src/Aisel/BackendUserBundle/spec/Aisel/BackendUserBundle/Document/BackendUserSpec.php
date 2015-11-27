@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\BackendUserBundle\Document;
+namespace spec\Aisel\BackendUserBundle\Entity;
 
 use PhpSpec\ObjectBehavior;
 
@@ -20,7 +20,7 @@ class BackendUserSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\BackendUserBundle\Document\BackendUser');
+        $this->shouldHaveType('Aisel\BackendUserBundle\Entity\BackendUser');
     }
 
     public function it_should_not_have_id()

@@ -12,8 +12,8 @@
 namespace Aisel\ResourceBundle\Manager;
 
 use LogicException;
-use Doctrine\ODM\MongoDB\DocumentManager;
-use Aisel\ResourceBundle\Document\Node;
+use Doctrine\ORM\EntityManager;
+use Aisel\ResourceBundle\Entity\Node;
 
 /**
  * ApiNodeManager
@@ -29,9 +29,9 @@ class ApiNodeManager
     protected $model = null;
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
-    protected $dm;
+    protected $em;
 
     /**
      * @var array
@@ -41,13 +41,13 @@ class ApiNodeManager
     /**
      * Constructor
      *
-     * @param DocumentManager $dm
+     * @param EntityManager $em
      * @param string $locales
      */
-    public function __construct(DocumentManager $dm, $locales)
+    public function __construct(EntityManager $em, $locales)
     {
         $this->locales = explode('|', $locales);
-        $this->dm = $dm;
+        $this->em = $em;
     }
 
     /**
@@ -62,7 +62,7 @@ class ApiNodeManager
     {
         if ($childId = $params['id']) {
             $node = $this
-                ->dm
+                ->em
                 ->getRepository($this->model)
                 ->find($childId);
 
@@ -75,8 +75,8 @@ class ApiNodeManager
             $node->setTitle($params['name']);
         }
 
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -92,15 +92,15 @@ class ApiNodeManager
     public function remove($params)
     {
         if ($childId = $params['id']) {
-            $node = $this->dm->getRepository($this->model)->find($childId);
+            $node = $this->em->getRepository($this->model)->find($childId);
 
             if (!($node)) {
                 throw new LogicException('Nothing found');
             }
         }
 
-        $this->dm->remove($node);
-        $this->dm->flush();
+        $this->em->remove($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -118,7 +118,7 @@ class ApiNodeManager
         /** @var $node Node */
 
         if ($childId = $params['parentId']) {
-            $parent = $this->dm->getRepository($this->model)->find($childId);
+            $parent = $this->em->getRepository($this->model)->find($childId);
 
             if (!($parent)) {
                 throw new LogicException('Nothing found');
@@ -129,8 +129,8 @@ class ApiNodeManager
         $node->setTitle($params['name']);
         $node->setParent($parent);
         $node->setStatus(false);
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -148,8 +148,8 @@ class ApiNodeManager
         $node = new $this->nodeEntity();
         $node->setTitle($params['name']);
         $node->setStatus(false);
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -169,7 +169,7 @@ class ApiNodeManager
          * @var $parent Node
          */
         $repo = $this
-            ->dm
+            ->em
             ->getRepository($this->model);
 
         if ($parentId = $params['parentId']) {
@@ -189,8 +189,8 @@ class ApiNodeManager
         }
 
         $child->setParent($parent);
-        $this->dm->persist($child);
-        $this->dm->flush();
+        $this->em->persist($child);
+        $this->em->flush();
 
         return $child;
     }

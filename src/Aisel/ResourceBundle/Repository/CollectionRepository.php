@@ -11,14 +11,14 @@
 
 namespace Aisel\ResourceBundle\Repository;
 
-use Doctrine\ODM\MongoDB\DocumentRepository;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * CollectionRepository
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class CollectionRepository extends DocumentRepository
+class CollectionRepository extends EntityRepository
 {
 
     protected $model = '';
@@ -33,64 +33,59 @@ class CollectionRepository extends DocumentRepository
     protected $orderBy = '';
 
     /**
-     * Map request variables for later use in SQL
+     * mapRequest
      *
      * @param array $params
      */
     protected function mapRequest(array $params)
     {
-        $this->model = $this->getDocumentName();
+        $this->model = $this->getEntityName();
 
         // Pagination
-        if (isset($params['current'])) {
+        if (isset($params['current']) && $params['current'] > 0) {
             $this->pageCurrent = (int)$params['current'];
         } else {
             $this->pageCurrent = 1;
         }
 
-        if (isset($params['limit'])) {
+        if (isset($params['limit']) && $params['limit'] > 0) {
             $this->pageLimit = (int)$params['limit'];
         } else {
             $this->pageLimit = 5;
         }
 
-        if (isset($params['node'])) {
-            $this->node = (int)$params['node'];
+        if (isset($params['category'])) {
+            $this->category = (int)$params['category'];
         } else {
-            $this->node = 0;
+            $this->category = 0;
         }
-
         // Search
         if (isset($params['query'])) {
             $this->search = $params['query'];
         }
-
         // Locale
         if (isset($params['locale'])) {
             $this->locale = $params['locale'];
         }
-
         // Order
         if (isset($params['order'])) {
-            $this->order = $params['order'];
+            if (($params['order'] == 'ASC') || ($params['order'] == 'DESC')) {
+                $this->order = $params['order'];
+            }
         }
-
         // Order By
         if (isset($params['orderBy'])) {
             switch ($params['orderBy']) {
                 case 'ASC':
                     $this->orderBy = 'ASC';
                     break;
-
                 case 'DESC':
                     $this->orderBy = 'DESC';
                     break;
-
                 default:
                     $this->orderBy = 'ASC';
             }
         }
-
         // Filter
         if (isset($params['filter'])) {
             $this->filter = (array)json_decode($params['filter']);
@@ -99,7 +94,7 @@ class CollectionRepository extends DocumentRepository
     }
 
     /**
-     * Get page total
+     * getTotalFromRequest
      *
      * @param array $params
      *
@@ -108,31 +103,38 @@ class CollectionRepository extends DocumentRepository
     public function getTotalFromRequest(array $params)
     {
         $this->mapRequest($params);
+
         $query = $this
-            ->getDocumentManager()
-            ->createQueryBuilder($this->model);
+            ->getEntityManager()
+            ->createQueryBuilder();
+
+        $query->select('COUNT(e.id)')
+            ->from($this->model, 'e');
 
         if ($this->filter) {
-            foreach ($this->filter as $field => $value) {
-                $query->field($field)->equals($value);
+            foreach ($this->filter as $k => $value) {
+                $query->andWhere('e.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
             }
         }
 
         if ($this->locale) {
-            $query->field('locale')->equals($this->locale);
+            $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
         }
 
         if ($this->node) {
-            $query->field('node')->equals($this->node);
+            $query->innerJoin('e.nodes', 'n')
+                ->andWhere('n.metaUrl = :node')->setParameter('node', $this->node);
         }
 
-        if ($params['scope'] == 'frontend') {
-            $query->field('status')->equals(true);
+//        if ($params['scope'] == 'frontend') {
+//            $query->andWhere('e.status = :status')->setParameter('status', true);
+//        }
+
+        if ($this->search != '') {
+            $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
         }
 
-        $total = $query->count()
-            ->getQuery()
-            ->execute();
+        $total = $query->getQuery()->getSingleScalarResult();
 
         if (!$total) {
             return 0;
@@ -142,7 +144,7 @@ class CollectionRepository extends DocumentRepository
     }
 
     /**
-     * Get products based on limit, current pagination and search query
+     * getCollectionFromRequest
      *
      * @param array $params
      *
@@ -152,45 +154,46 @@ class CollectionRepository extends DocumentRepository
     {
         $this->mapRequest($params);
         $query = $this
-            ->getDocumentManager()
-            ->createQueryBuilder($this->model);
+            ->getEntityManager()
+            ->createQueryBuilder()
+            ->select('e')
+            ->from($this->model, 'e');
 
         if ($this->filter) {
-            foreach ($this->filter as $field => $value) {
-                $query->field($field)->equals($value);
+            foreach ($this->filter as $k => $value) {
+                $query->andWhere('e.' . $k . ' LIKE :' . $k)->setParameter($k, '%' . $value . '%');
             }
         }
 
         if ($this->locale) {
-            $query->field('locale')->equals($this->locale);
+            $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
         }
 
         if ($this->node) {
-            $query->field('node')->equals($this->node);
+            $query->innerJoin('e.nodes', 'c')
+                ->andWhere('c.metaUrl = :node')->setParameter('node', $this->node);
         }
 
-        if ($params['scope'] == 'frontend') {
-            $query->field('status')->equals(true);
-        }
+//        if ($params['scope'] == 'frontend') {
+//            $query->andWhere('e.status = :status')->setParameter('status', true);
+//        }
 
         if ($this->search != '') {
-            $query->expr()->operator('content', array(
-                '$search' => $this->search,
-            ));
+            $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
         }
 
         $collection = $query
-            ->limit($this->pageLimit)
-            ->skip($this->pageSkip)
-            ->sort($this->order, $this->orderBy)
+            ->setMaxResults($this->pageLimit)
+            ->setFirstResult($this->pageSkip)
+            ->orderBy('e.' . $this->order, $this->orderBy)
             ->getQuery()
-            ->toArray();
+            ->execute();
 
         return $collection;
     }
 
     /**
-     * Find pages by URL
+     * findTotalByURL
      *
      * @param string $url
      * @param int $entityId
@@ -200,10 +203,9 @@ class CollectionRepository extends DocumentRepository
     public function findTotalByURL($url, $entityId = null)
     {
         $query = $this
-            ->getDocumentManager()
-            ->createQueryBuilder();
-
-        $query->select('e')
+            ->getEntityManager()
+            ->createQueryBuilder()
+            ->select('e')
             ->from($this->model, 'e')
             ->where('e.metaUrl = :url')->setParameter('url', $url);
 
@@ -216,7 +218,7 @@ class CollectionRepository extends DocumentRepository
     }
 
     /**
-     * Returns enabled nodes
+     * getNodesAsTree
      *
      * @param array $params
      *
@@ -224,22 +226,23 @@ class CollectionRepository extends DocumentRepository
      */
     public function getNodesAsTree(array $params)
     {
-        $this->model = $this->getDocumentName();
-
+        $this->model = $this->getEntityName();
         $query = $this
-            ->getDocumentManager()
-            ->createQueryBuilder($this->model)
-            ->field('parent')->exists(false)
-            ->field('locale')->equals($params['locale']);
+            ->getEntityManager()
+            ->createQueryBuilder()
+            ->select('n')
+            ->from($this->model, 'n')
+            ->where('n.parent IS NULL')
+            ->andWhere('n.locale = :locale')->setParameter('locale', $params['locale']);
 
         if ($params['scope'] == 'frontend') {
-            $query->field('status')->equals(true);
+            $query->andWhere('n.status = :status')->setParameter('status', true);
         }
 
         $result = $query
-            ->sort($this->order, $this->orderBy)
+            ->orderBy('n.' . $this->order, $this->orderBy)
             ->getQuery()
-            ->toArray();
+            ->execute();
 
         return $result;
     }

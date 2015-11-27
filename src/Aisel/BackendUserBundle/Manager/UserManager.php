@@ -11,11 +11,11 @@
 
 namespace Aisel\BackendUserBundle\Manager;
 
-use Aisel\BackendUserBundle\Document\BackendUser;
+use Aisel\BackendUserBundle\Entity\BackendUser;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\SecurityContext;
 
@@ -37,31 +37,31 @@ class UserManager implements UserProviderInterface
     protected $securityContext;
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
     /**
      * Constructor
      *
-     * @param DocumentManager $documentManager
+     * @param EntityManager $entityManager
      * @param EncoderFactory  $encoder
      * @param SecurityContext $securityContext
      */
     public function __construct(
-        DocumentManager $documentManager,
+        EntityManager $entityManager,
         EncoderFactory $encoder,
         SecurityContext $securityContext
     ) {
-        $this->dm = $documentManager;
+        $this->em = $entityManager;
         $this->encoder = $encoder;
         $this->securityContext = $securityContext;
     }
 
     protected function getRepository()
     {
-        $repo =  $this->dm
-            ->getRepository('Aisel\BackendUserBundle\Document\BackendUser');
+        $repo =  $this->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser');
 
         return $repo;
     }
@@ -82,8 +82,8 @@ class UserManager implements UserProviderInterface
         $user->setEnabled(true);
         $user->setLocked(false);
         $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
-        $this->dm->persist($user);
-        $this->dm->flush();
+        $this->em->persist($user);
+        $this->em->flush();
 
         return $user;
     }

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\AddressingBundle\Document;
+namespace spec\Aisel\AddressingBundle\Entity;
 
 use PhpSpec\ObjectBehavior;
 
@@ -20,7 +20,7 @@ class AddressSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\AddressingBundle\Document\Address');
+        $this->shouldHaveType('Aisel\AddressingBundle\Entity\Address');
     }
 
     public function it_should_not_have_id()

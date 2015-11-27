@@ -24,6 +24,6 @@ class ApiNodeController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\ReviewBundle\Document\Node";
+    protected $model = "Aisel\ReviewBundle\Entity\Node";
 
 }

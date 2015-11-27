@@ -32,7 +32,7 @@ abstract class AbstractKernelTestCase extends KernelTestCase
         static::$kernel = static::createKernel();
         static::$kernel->boot();
 
-        $this->dm = static::$kernel->getContainer()->get('doctrine.odm.mongodb.document_manager');
+        $this->dm = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
 
         parent::setUp();
     }

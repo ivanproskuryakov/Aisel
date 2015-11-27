@@ -12,7 +12,7 @@
 namespace Aisel\SitemapBundle\Manager;
 
 use LogicException;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Templating\EngineInterface;
 
 /**
@@ -24,7 +24,7 @@ class SitemapManager
 {
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
@@ -36,10 +36,10 @@ class SitemapManager
     /**
      * Constructor
      *
-     * @param DocumentManager $dm
+     * @param EntityManager $dm
      * @param EngineInterface $templating
      */
-    public function __construct(DocumentManager $dm, $templating)
+    public function __construct(EntityManager $dm, $templating)
     {
         $this->templating = $templating;
         $this->dm = $dm;
@@ -56,7 +56,7 @@ class SitemapManager
         // Products
         $products = $this
             ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findBy([
                 'status' => true,
             ]);
@@ -68,7 +68,7 @@ class SitemapManager
         // Pages
         $pages = $this
             ->dm
-            ->getRepository('Aisel\PageBundle\Document\Page')
+            ->getRepository('Aisel\PageBundle\Entity\Page')
             ->findBy([
                 'status' => true,
             ]);

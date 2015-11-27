@@ -79,8 +79,8 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testGetNavigationNodeAction()
     {
         $navigationNode = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['title' => 'AAA']);
 
         $this->client->request(
@@ -103,8 +103,8 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testPutNavigationNodeAction()
     {
         $navigationNode = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['title' => 'AAA']);
         $id = $navigationNode->getId();
         $data['locale'] = 'ru';
@@ -122,11 +122,11 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $navigationNode = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['title' => 'AAA']);
 
         $this->assertTrue(204 === $statusCode);
@@ -138,8 +138,8 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testDeleteNavigationNodeAction()
     {
         $navigationNode = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['title' => 'AAA']);
         $id = $navigationNode->getId();
 
@@ -155,11 +155,11 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $navigationNode = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);

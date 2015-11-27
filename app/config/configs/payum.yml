@@ -1,10 +1,10 @@
 payum:
     security:
         token_storage:
-            Aisel\OrderBundle\Document\PaymentToken: { doctrine: mongodb }
+            Aisel\OrderBundle\Entity\PaymentToken: { doctrine: orm }
 
     storages:
-        Aisel\OrderBundle\Document\Order: { doctrine: mongodb }
+        Aisel\OrderBundle\Entity\Order: { doctrine: orm }
 
     gateways:
         offline:
