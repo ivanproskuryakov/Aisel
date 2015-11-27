@@ -11,19 +11,21 @@
 
 namespace Aisel\PageBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\PageBundle\Tests\PageWebTestCase;
 
 /**
  * ApiNodeControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiNodeControllerTest extends AbstractBackendWebTestCase
+class ApiNodeControllerTest extends PageWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -79,10 +81,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
     public function testGetPageNodeAction()
     {
-        $node = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Node')
-            ->findOneBy(['title' => 'AAA']);
+        $node = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -99,28 +98,22 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $node->getId());
+
+//        $this->removeEntity($node);
     }
 
     public function testPutPageNodeAction()
     {
-        $node = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Node')
-            ->findOneBy(['title' => 'AAA']);
+        $node1  = $this->newNode();
+        $node2 = $this->newNode();
 
-        $node2 = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Node')
-            ->findOneBy(['locale' => 'en']);
-
-        $id = $node->getId();
         $data['locale'] = 'ru';
         $data['description'] = time();
-        $data['children'][] = ['id' => $node2->getId()];
+        $data['parent'] = ['id' => $node1->getId()];
 
         $this->client->request(
             'PUT',
-            '/'. $this->api['backend'] . '/page/node/' . $id,
+            '/'. $this->api['backend'] . '/page/node/' . $node2->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -136,12 +129,11 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $node = $this
             ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
-            ->findOneBy(['id' => $id]);
+            ->findOneBy(['id' => $node1]);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
         $this->assertNotNull($node);
-        $this->assertEquals($data['locale'], $node->getLocale());
         $this->assertEquals(1, count($node->getChildren()));
     }
 
