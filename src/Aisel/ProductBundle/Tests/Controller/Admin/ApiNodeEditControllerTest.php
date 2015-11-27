@@ -129,7 +129,7 @@ class ApiNodeEditControllerTest extends ProductWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['title'], 'BBB');
+        $this->assertEquals($result['name'], 'BBB');
     }
 
     public function testProductNodeDeleteAction()
@@ -154,7 +154,7 @@ class ApiNodeEditControllerTest extends ProductWebTestCase
         $node = $this
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Node')
-            ->findOneBy(['title' => $name]);
+            ->findOneBy(['name' => $name]);
 
         $this->assertTrue(200 === $statusCode);
         $this->assertNull($node);

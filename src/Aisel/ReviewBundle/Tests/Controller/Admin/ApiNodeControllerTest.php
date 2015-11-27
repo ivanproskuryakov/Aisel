@@ -36,7 +36,7 @@ class ApiNodeControllerTest extends ReviewWebTestCase
     {
         $data = [
             'locale' => 'en',
-            'title' => $this->faker->sentence(2),
+            'name' => $this->faker->sentence(2),
             'description' => $this->faker->sentence(10),
             'status' => true,
             'meta_url' => 'metaUrl_' . time(),

@@ -41,14 +41,14 @@ class ProductReviewTest extends AbstractWebTestCase
         $this->markTestSkipped('skipping ...');
         $node = new ReviewNode();
         $node->setStatus(true);
-        $node->setTitle($this->faker->sentence(1));
+        $node->setName($this->faker->sentence(1));
         $node->setDescription($this->faker->sentence(10));
         $node->setLocale('en');
         $this->em->persist($node);
         $this->em->flush();
 
         $review = new Review();
-        $review->setTitle($this->faker->sentence(1));
+        $review->setName($this->faker->sentence(1));
         $review->setContent($this->faker->sentence(10));
         $review->addNode($node);
         $this->em->persist($review);

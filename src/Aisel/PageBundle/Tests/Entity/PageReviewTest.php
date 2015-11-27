@@ -40,14 +40,14 @@ class PageReviewTest extends AbstractWebTestCase
         $this->markTestSkipped('skipping... ');
         $node = new ReviewNode();
         $node->setStatus(true);
-        $node->setTitle($this->faker->sentence(1));
+        $node->setName($this->faker->sentence(1));
         $node->setDescription($this->faker->sentence(10));
         $node->setLocale('en');
         $this->em->persist($node);
         $this->em->flush();
 
         $review = new Review();
-        $review->setTitle($this->faker->sentence(1));
+        $review->setName($this->faker->sentence(1));
         $review->setContent($this->faker->sentence(10));
         $review->addNode($node);
         $this->em->persist($review);
@@ -55,7 +55,7 @@ class PageReviewTest extends AbstractWebTestCase
 
         $page = new Page();
         $page->setLocale('en');
-        $page->setTitle($this->faker->sentence(1));
+        $page->setName($this->faker->sentence(1));
         $page->setContent($this->faker->sentence(10));
         $page->setStatus(true);
         $page->setCommentStatus(true);

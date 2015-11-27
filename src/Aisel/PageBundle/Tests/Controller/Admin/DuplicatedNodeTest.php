@@ -41,7 +41,7 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
 
         $data = [
             'locale' => 'en',
-            'title' => $this->faker->sentence(1),
+            'name' => $this->faker->sentence(1),
             'content' => $this->faker->paragraph(10),
             'status' => true,
             'meta_url' => 'metaUrl_' . $this->faker->numberBetween(100000, 900000),

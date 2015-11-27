@@ -43,7 +43,7 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
         $page1 = new Page();
         $page1->setLocale('en');
         $page1->setContent('...');
-        $page1->setTitle('...');
+        $page1->setName('...');
         $page1->setStatus(true);
         $page1->setMetaUrl($urlText);
         $page1->setMetaTitle('...');
@@ -57,7 +57,7 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
         $page2 = new Page();
         $page2->setLocale('en');
         $page2->setContent('...');
-        $page2->setTitle('...');
+        $page2->setName('...');
         $page2->setStatus(true);
         $page2->setMetaUrl($urlText);
         $page2->setMetaTitle('...');

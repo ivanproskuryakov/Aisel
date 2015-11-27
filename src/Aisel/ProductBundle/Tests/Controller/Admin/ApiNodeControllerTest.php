@@ -37,7 +37,7 @@ class ApiNodeControllerTest extends ProductWebTestCase
     {
         $data = [
             'locale' => 'en',
-            'title' => 'AAA',
+            'name' => 'AAA',
             'description' => 'test',
             'status' => true,
             'meta_url' => 'metaUrl_' . time(),
@@ -138,7 +138,7 @@ class ApiNodeControllerTest extends ProductWebTestCase
         $node = $this
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Node')
-            ->findOneBy(['title' => 'AAA']);
+            ->findOneBy(['name' => 'AAA']);
         $id = $node->getId();
 
         $this->client->request(

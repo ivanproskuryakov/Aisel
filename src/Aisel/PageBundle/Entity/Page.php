@@ -24,7 +24,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
-use Aisel\ResourceBundle\Domain\TitleTrait;
+use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\ContentTrait;
 use Aisel\ResourceBundle\Domain\CommentStatusTrait;
 
@@ -43,7 +43,7 @@ use Aisel\ResourceBundle\Domain\CommentStatusTrait;
 class Page implements UrlInterface
 {
     use IdTrait;
-    use TitleTrait;
+    use NameTrait;
     use ContentTrait;
     use LocaleTrait;
     use StatusTrait;
@@ -77,7 +77,7 @@ class Page implements UrlInterface
      */
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getName();
     }
 
     /**

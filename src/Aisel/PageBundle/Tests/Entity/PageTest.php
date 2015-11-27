@@ -40,7 +40,7 @@ class PageTests extends AbstractWebTestCase
         $this->setExpectedException(UniqueConstraintViolationException::class);
 
         $node = new Node();
-        $node->setTitle($this->faker->title);
+        $node->setName($this->faker->title);
         $node->setStatus(true);
         $node->setDescription($this->faker->sentence(10));
         $node->setMetaUrl('url_' . time());
@@ -53,7 +53,7 @@ class PageTests extends AbstractWebTestCase
 
         $page = new Page();
         $page->setLocale('en');
-        $page->setTitle($this->faker->sentence(1));
+        $page->setName($this->faker->sentence(1));
         $page->setContent($this->faker->sentence(10));
         $page->setStatus(true);
         $page->setCommentStatus(true);

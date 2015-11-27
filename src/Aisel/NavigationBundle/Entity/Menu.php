@@ -40,7 +40,7 @@ class Menu extends BaseNode
 
     /**
      * @ORM\OneToMany(targetEntity="Aisel\NavigationBundle\Entity\Menu", mappedBy="parent")
-     * @ORM\OrderBy({"title" = "ASC"})
+     * @ORM\OrderBy({"name" = "ASC"})
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\NavigationBundle\Entity\Menu>")

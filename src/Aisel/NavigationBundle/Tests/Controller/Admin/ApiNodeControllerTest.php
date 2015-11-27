@@ -35,7 +35,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     {
         $data = [
             'locale' => 'en',
-            'title' => 'AAA',
+            'name' => 'AAA',
             'description' => 'test',
             'status' => true,
             'meta_url' => 'metaUrl_' . time(),
@@ -81,7 +81,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $navigationNode = $this
             ->em
             ->getRepository('Aisel\NavigationBundle\Entity\Menu')
-            ->findOneBy(['title' => 'AAA']);
+            ->findOneBy(['name' => 'AAA']);
 
         $this->client->request(
             'GET',
@@ -105,7 +105,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $navigationNode = $this
             ->em
             ->getRepository('Aisel\NavigationBundle\Entity\Menu')
-            ->findOneBy(['title' => 'AAA']);
+            ->findOneBy(['name' => 'AAA']);
         $id = $navigationNode->getId();
         $data['locale'] = 'ru';
 
@@ -127,7 +127,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $navigationNode = $this
             ->em
             ->getRepository('Aisel\NavigationBundle\Entity\Menu')
-            ->findOneBy(['title' => 'AAA']);
+            ->findOneBy(['name' => 'AAA']);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
@@ -140,7 +140,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $navigationNode = $this
             ->em
             ->getRepository('Aisel\NavigationBundle\Entity\Menu')
-            ->findOneBy(['title' => 'AAA']);
+            ->findOneBy(['name' => 'AAA']);
         $id = $navigationNode->getId();
 
         $this->client->request(

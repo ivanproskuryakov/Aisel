@@ -43,7 +43,7 @@ class LoadProductNodeData extends XMLFixture implements OrderedFixtureInterface
                 foreach ($XML->database->table as $table) {
                     $node = new Node();
                     $node->setLocale($table->column[1]);
-                    $node->setTitle($table->column[3]);
+                    $node->setName($table->column[3]);
                     $node->setDescription($table->column[8]);
                     $node->setStatus((int)$table->column[9]);
                     $node->setMetaUrl($table->column[10]);

@@ -22,7 +22,7 @@ use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
-use Aisel\ResourceBundle\Domain\TitleTrait;
+use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\ContentTrait;
 
 /**
@@ -39,7 +39,7 @@ class Review
 {
 
     use IdTrait;
-    use TitleTrait;
+    use NameTrait;
     use UpdateCreateTrait;
     use LocaleTrait;
     use StatusTrait;

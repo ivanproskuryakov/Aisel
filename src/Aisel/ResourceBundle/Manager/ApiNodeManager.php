@@ -72,7 +72,7 @@ class ApiNodeManager
         }
 
         if ($params['name']) {
-            $node->setTitle($params['name']);
+            $node->setName($params['name']);
         }
 
         $this->em->persist($node);
@@ -126,7 +126,7 @@ class ApiNodeManager
         }
         $node = new $this->nodeEntity();
 
-        $node->setTitle($params['name']);
+        $node->setName($params['name']);
         $node->setParent($parent);
         $node->setStatus(false);
         $this->em->persist($node);
@@ -146,7 +146,7 @@ class ApiNodeManager
     public function addSibling($params)
     {
         $node = new $this->nodeEntity();
-        $node->setTitle($params['name']);
+        $node->setName($params['name']);
         $node->setStatus(false);
         $this->em->persist($node);
         $this->em->flush();

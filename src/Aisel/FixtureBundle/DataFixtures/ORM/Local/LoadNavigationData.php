@@ -48,7 +48,7 @@ class LoadNavigationData extends XMLFixture implements OrderedFixtureInterface
                     }
                     $menu = new Menu();
                     $menu->setLocale($table->column[1]);
-                    $menu->setTitle($table->column[7]);
+                    $menu->setName($table->column[7]);
                     $menu->setMetaUrl($table->column[8]);
                     $menu->setStatus((int)$table->column[9]);
 

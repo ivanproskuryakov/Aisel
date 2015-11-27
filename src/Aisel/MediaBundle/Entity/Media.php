@@ -43,7 +43,7 @@ class Media
      * @JMS\Expose
      * @JMS\Type("string")
      */
-    protected $title;
+    protected $name;
 
     /**
      * @var boolean
@@ -76,17 +76,17 @@ class Media
     /**
      * @return string
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
     }
 
     /**
-     * @param string $title
+     * @param string $name
      */
-    public function setTitle($title)
+    public function setName($name)
     {
-        $this->title = $title;
+        $this->name = $name;
     }
 
 

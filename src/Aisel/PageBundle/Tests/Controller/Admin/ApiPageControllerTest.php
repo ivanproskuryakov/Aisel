@@ -40,7 +40,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
 
         $data = [
             'locale' => 'en',
-            'title' => 'AAA',
+            'name' => 'AAA',
             'content' => 'test',
             'status' => true,
             'meta_url' => 'metaUrl_' . time(),
@@ -108,7 +108,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
         $page = $this
             ->em
             ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->findOneBy(['title' => 'AAA']);
+            ->findOneBy(['name' => 'AAA']);
         $id = $page->getId();
 
         $this->client->request(

@@ -37,7 +37,7 @@ class ApiNodeControllerTest extends PageWebTestCase
     {
         $data = [
             'locale' => 'en',
-            'title' => 'AAA',
+            'name' => 'AAA',
             'description' => 'test',
             'status' => true,
             'meta_url' => 'metaUrl_' . time(),
@@ -142,7 +142,7 @@ class ApiNodeControllerTest extends PageWebTestCase
         $node = $this
             ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
-            ->findOneBy(['title' => 'AAA']);
+            ->findOneBy(['name' => 'AAA']);
         $id = $node->getId();
 
         $this->client->request(

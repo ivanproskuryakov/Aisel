@@ -59,7 +59,7 @@ class ApiReviewControllerTest extends ReviewWebTestCase
 
         $data = [
             'locale' => 'en',
-            'title' => $this->faker->title,
+            'name' => $this->faker->title,
             'content' => $this->faker->sentence(10),
             'status' => true,
             'comment_status' => false,

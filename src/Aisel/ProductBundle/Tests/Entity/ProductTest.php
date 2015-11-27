@@ -42,7 +42,7 @@ class ProductTest extends AbstractWebTestCase
 
         $node = new Node();
         $node->setStatus(true);
-        $node->setTitle($this->faker->sentence(1));
+        $node->setName($this->faker->sentence(1));
         $node->setDescription($this->faker->sentence(10));
         $node->setMetaUrl('url_' . time());
         $node->setLocale('en');

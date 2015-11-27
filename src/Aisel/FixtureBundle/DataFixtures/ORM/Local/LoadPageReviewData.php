@@ -41,7 +41,7 @@ class LoadPageReviewData extends XMLFixture implements OrderedFixtureInterface
                 foreach ($XML->database->table as $table) {
                     $review = new Review();
                     $review->setLocale($table->column[1]);
-                    $review->setTitle($table->column[2]);
+                    $review->setName($table->column[2]);
                     $review->setContent($table->column[3]);
                     $review->setStatus($table->column[4]);
 

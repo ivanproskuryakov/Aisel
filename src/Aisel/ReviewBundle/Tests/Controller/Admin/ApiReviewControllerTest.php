@@ -38,7 +38,7 @@ class ApiReviewControllerTest extends ReviewWebTestCase
 
         $data = [
             'locale' => 'en',
-            'title' => 'AAA',
+            'name' => 'AAA',
             'content' => 'test',
             'status' => true,
             'meta_url' => 'metaUrl_' . time(),

@@ -43,7 +43,7 @@ class ReviewWebTestCase extends AbstractWebTestCase
     {
         $node = new Node();
         $node->setStatus(true);
-        $node->setTitle($this->faker->sentence(1));
+        $node->setName($this->faker->sentence(1));
         $node->setDescription($this->faker->sentence(10));
         $node->setLocale('en');
 
@@ -64,7 +64,7 @@ class ReviewWebTestCase extends AbstractWebTestCase
     {
         $review = new Review();
         $review->setLocale('en');
-        $review->setTitle($this->faker->sentence(1));
+        $review->setName($this->faker->sentence(1));
         $review->setContent($this->faker->sentence(10));
         $review->setStatus(true);
         if ($node) {

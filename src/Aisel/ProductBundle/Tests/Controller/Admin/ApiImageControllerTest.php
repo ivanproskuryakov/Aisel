@@ -81,7 +81,7 @@ class ApiImageControllerTest extends UploadControllerTest
 
         $image = $product->getMedias()[0];
         $data = [
-            'title' => time(),
+            'name' => time(),
             'description' => time(),
         ];
 //        var_dump($image);
@@ -112,7 +112,7 @@ class ApiImageControllerTest extends UploadControllerTest
             ->findOneBy(['locale' => 'en']);
         $image = $product->getMedias()[0];
 
-        $this->assertEquals($image->getTitle(), $data['title']);
+        $this->assertEquals($image->getName(), $data['name']);
         $this->assertEquals($image->getDescription(), $data['description']);
     }
 

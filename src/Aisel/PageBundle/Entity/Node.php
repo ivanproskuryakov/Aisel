@@ -47,7 +47,7 @@ class Node extends BaseNode implements UrlInterface
 
     /**
      * @ORM\OneToMany(targetEntity="Aisel\PageBundle\Entity\Node", mappedBy="parent")
-     * @ORM\OrderBy({"title" = "ASC"})
+     * @ORM\OrderBy({"name" = "ASC"})
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Node>")
      */

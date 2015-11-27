@@ -41,7 +41,7 @@ class ProductWebTestCase extends AbstractWebTestCase
     public function newNode()
     {
         $node = new Node();
-        $node->setTitle($this->faker->sentence());
+        $node->setName($this->faker->sentence());
         $node->setStatus(true);
         $node->setDescription($this->faker->sentence());
         $node->setLocale('en');

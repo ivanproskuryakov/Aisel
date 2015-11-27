@@ -40,7 +40,7 @@ class NodeManager extends ApiNodeManager
 
         $node = new $this->model();
         $node->setlocale($params['locale']);
-        $node->setTitle($params['name']);
+        $node->setName($params['name']);
         $node->setParent($parent);
         $node->setStatus(false);
         $node->setDescription('');
@@ -58,7 +58,7 @@ class NodeManager extends ApiNodeManager
     {
         $node = new $this->model();
         $node->setlocale($params['locale']);
-        $node->setTitle($params['name']);
+        $node->setName($params['name']);
         $node->setStatus(false);
         $node->setDescription('');
         $node->setMetaUrl($params['name']);

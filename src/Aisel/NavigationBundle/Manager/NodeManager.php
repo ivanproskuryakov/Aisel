@@ -43,7 +43,7 @@ class NodeManager extends ApiNodeManager
 
         // our Node
         $node = new $this->model();
-        $node->setTitle($params['name']);
+        $node->setName($params['name']);
         $node->setParent($parent);
         $node->setLocale($params['locale']);
         $node->setMetaUrl('/');
@@ -63,7 +63,7 @@ class NodeManager extends ApiNodeManager
          * @var $node \Aisel\NavigationBundle\Entity\Menu
          */
         $node = new $this->model();
-        $node->setTitle($params['name']);
+        $node->setName($params['name']);
         $node->setLocale($params['locale']);
         $node->setMetaUrl('/');
         $node->setStatus(false);

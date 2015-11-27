@@ -43,7 +43,7 @@ class Node extends BaseNode
 
     /**
      * @ORM\OneToMany(targetEntity="Aisel\ReviewBundle\Entity\Node", mappedBy="parent")
-     * @ORM\OrderBy({"title" = "ASC"})
+     * @ORM\OrderBy({"name" = "ASC"})
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Node>")
      */

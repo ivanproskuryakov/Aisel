@@ -139,7 +139,7 @@ class ApiNodeEditControllerTest extends ReviewWebTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['title'], 'BBB');
+        $this->assertEquals($result['name'], 'BBB');
 
 //        $this->removeEntity($node);
     }
@@ -165,7 +165,7 @@ class ApiNodeEditControllerTest extends ReviewWebTestCase
         $node = $this
             ->em
             ->getRepository('Aisel\ReviewBundle\Entity\Node')
-            ->findOneBy(['title' => 'ZZZZ']);
+            ->findOneBy(['name' => 'ZZZZ']);
 
         $this->assertTrue(200 === $statusCode);
         $this->assertNull($node);

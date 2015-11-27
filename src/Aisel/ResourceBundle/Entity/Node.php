@@ -18,7 +18,7 @@ use JMS\Serializer\Annotation as JMS;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
-use Aisel\ResourceBundle\Domain\TitleTrait;
+use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Entity\NodeInterface;
@@ -36,7 +36,7 @@ abstract class Node implements NodeInterface
 {
 
     use IdTrait;
-    use TitleTrait;
+    use NameTrait;
     use LocaleTrait;
     use StatusTrait;
     use UpdateCreateTrait;
@@ -52,7 +52,7 @@ abstract class Node implements NodeInterface
 
     /**
      * @ORM\OneToMany(targetEntity="Aisel\ResourceBundle\Entity\Node", mappedBy="parent")
-     * @ORM\OrderBy({"title" = "ASC"})
+     * @ORM\OrderBy({"name" = "ASC"})
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\ResourceBundle\Entity\Node>")

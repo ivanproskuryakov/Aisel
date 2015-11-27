@@ -37,7 +37,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $node = new Menu();
         $node->setLocale('en');
         $node->setMetaUrl('/');
-        $node->setTitle($name);
+        $node->setName($name);
         $node->setStatus($name);
         $this->em->persist($node);
         $this->em->flush();
@@ -143,7 +143,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['title'], 'BBB');
+        $this->assertEquals($result['name'], 'BBB');
     }
 
     public function testNavigationNodeDeleteAction()
@@ -167,7 +167,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $node = $this
             ->em
             ->getRepository('Aisel\NavigationBundle\Entity\Menu')
-            ->findOneBy(['title' => 'ZZZZ']);
+            ->findOneBy(['name' => 'ZZZZ']);
 
         $this->assertTrue(200 === $statusCode);
         $this->assertNull($node);
