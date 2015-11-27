@@ -11,20 +11,21 @@
 
 namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
-use Aisel\ProductBundle\Entity\Node;
+use Aisel\ProductBundle\Tests\ProductWebTestCase;
 
 /**
  * ApiNodeEditControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
+class ApiNodeEditControllerTest extends ProductWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -32,23 +33,10 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         parent::tearDown();
     }
 
-    public function createNode($name)
-    {
-        $node = new Node();
-        $node->setLocale('en');
-        $node->setDescription('');
-        $node->setMetaUrl('/'. rand(111111,999999));
-        $node->setTitle($name);
-        $this->em->persist($node);
-        $this->em->flush();
-
-        return $node;
-    }
-
     public function testProductNodeUpdateParentAction()
     {
-        $parent = $this->createNode('Parent' . rand(1111, 9999));
-        $child = $this->createNode('Child' . rand(1111, 9999));
+        $parent = $this->newNode();
+        $child = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -82,7 +70,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
     public function testProductNodeAddChildAction()
     {
-        $parent = $this->createNode('AAA');
+        $parent = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -121,7 +109,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
     public function testProductNodeChangeTitleAction()
     {
-        $node = $this->createNode('AAA');
+        $node = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -147,7 +135,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
     public function testProductNodeDeleteAction()
     {
         $name = 'NodeToDelete';
-        $node = $this->createNode($name);
+        $node = $this->newNode();
 
         $this->client->request(
             'GET',

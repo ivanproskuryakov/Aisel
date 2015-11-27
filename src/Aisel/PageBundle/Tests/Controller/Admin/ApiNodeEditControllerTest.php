@@ -11,20 +11,21 @@
 
 namespace Aisel\PageBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
-use Aisel\PageBundle\Entity\Node;
+use Aisel\PageBundle\Tests\PageWebTestCase;
 
 /**
  * ApiNodeEditControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
+class ApiNodeEditControllerTest extends PageWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -32,23 +33,10 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         parent::tearDown();
     }
 
-    public function createNode($name)
-    {
-        $node = new Node();
-        $node->setLocale('en');
-        $node->setDescription('');
-        $node->setMetaUrl('/' . md5(rand(111111, 999999)));
-        $node->setTitle($name);
-        $this->em->persist($node);
-        $this->em->flush();
-
-        return $node;
-    }
-
     public function testPageNodeUpdateParentAction()
     {
-        $parent = $this->createNode('Parent' . rand(1111, 9999));
-        $child = $this->createNode('Child' . rand(1111, 9999));
+        $parent = $this->newNode();
+        $child = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -82,7 +70,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
     public function testPageNodeAddChildAction()
     {
-        $parent = $this->createNode('AAA');
+        $parent = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -121,8 +109,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
     public function testPageNodeChangeTitleAction()
     {
-
-        $node = $this->createNode('AAA');
+        $node = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -147,7 +134,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
 
     public function testPageNodeDeleteAction()
     {
-        $node = $this->createNode('DeleteMe');
+        $node = $this->newNode();
 
         $this->client->request(
             'GET',

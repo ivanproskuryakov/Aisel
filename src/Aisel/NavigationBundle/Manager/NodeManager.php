@@ -30,7 +30,7 @@ class NodeManager extends ApiNodeManager
     public function addChild($params)
     {
         $repo = $this
-            ->dm
+            ->em
             ->getRepository($this->model);
 
         if ($parentId = $params['parentId']) {
@@ -48,8 +48,8 @@ class NodeManager extends ApiNodeManager
         $node->setLocale($params['locale']);
         $node->setMetaUrl('/');
         $node->setStatus(false);
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -67,8 +67,8 @@ class NodeManager extends ApiNodeManager
         $node->setLocale($params['locale']);
         $node->setMetaUrl('/');
         $node->setStatus(false);
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }

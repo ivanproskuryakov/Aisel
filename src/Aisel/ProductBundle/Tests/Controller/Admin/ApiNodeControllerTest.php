@@ -11,19 +11,21 @@
 
 namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\ProductBundle\Tests\ProductWebTestCase;
 
 /**
  * ApiNodeControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiNodeControllerTest extends AbstractBackendWebTestCase
+class ApiNodeControllerTest extends ProductWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -78,10 +80,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
     public function testGetProductNodeAction()
     {
-        $node = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Node')
-            ->findOneBy(['title' => 'AAA']);
+        $node = $this->newNode();
 
         $this->client->request(
             'GET',
@@ -102,23 +101,15 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
 
     public function testPutProductNodeAction()
     {
-        $node = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Node')
-            ->findOneBy(['title' => 'AAA']);
+        $node1 = $this->newNode();
+        $node2 = $this->newNode();
 
-        $node2 = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Node')
-            ->findOneBy(['locale' => 'ru']);
-
-        $id = $node->getId();
         $data['locale'] = 'ru';
-        $data['children'][] = ['id' => $node2->getId()];
+        $data['parent'] = ['id' => $node1->getId()];
 
         $this->client->request(
             'PUT',
-            '/'. $this->api['backend'] . '/product/node/' . $id,
+            '/'. $this->api['backend'] . '/product/node/' . $node2->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -134,12 +125,11 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $node = $this
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Node')
-            ->findOneBy(['title' => 'AAA']);
+            ->findOneBy(['id' => $node1->getId()]);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
         $this->assertNotNull($node);
-        $this->assertEquals($data['locale'], $node->getLocale());
         $this->assertEquals(1, count($node->getChildren()));
     }
 
