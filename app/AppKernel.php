@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             new Aisel\ContactBundle\AiselContactBundle(),
             new Aisel\ConfigBundle\AiselConfigBundle(),
             new Aisel\SitemapBundle\AiselSitemapBundle(),
+            new Aisel\NodeBundle\AiselNodeBundle(),
             new Aisel\ResourceBundle\AiselResourceBundle(),
             new Aisel\FixtureBundle\AiselFixtureBundle(),
         );

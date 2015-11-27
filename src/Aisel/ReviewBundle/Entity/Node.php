@@ -11,7 +11,7 @@
 
 namespace Aisel\ReviewBundle\Entity;
 
-use Aisel\ResourceBundle\Entity\Node as BaseNode;
+use Aisel\NodeBundle\Entity\Node as BaseNode;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;

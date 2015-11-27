@@ -4,7 +4,7 @@
             <div class="col-lg-4" ng-repeat="item in newPages.collection">
                 <h2>
                     <a ui-sref="pageView({locale: locale, pageId:item.meta_url})">
-                        {{item.title}}
+                        {{item.name}}
                     </a>
                 </h2>
                 <p>{{item.content | limitTo: 200 }}</p>

@@ -13,7 +13,7 @@ namespace Aisel\NavigationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Aisel\ResourceBundle\Entity\Node as BaseNode;
+use Aisel\NodeBundle\Entity\Node as BaseNode;
 use JMS\Serializer\Annotation as JMS;
 
 /**

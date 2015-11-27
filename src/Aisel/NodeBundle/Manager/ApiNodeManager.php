@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ResourceBundle\Manager;
+namespace Aisel\NodeBundle\Manager;
 
 use LogicException;
 use Doctrine\ORM\EntityManager;

@@ -1,7 +1,7 @@
 <div class="related-review" ng-if="reviews">
     <ul class="categoryList">
         <li ng-repeat="review in reviews">
-            <p class="heading">{{review.title}}</p>
+            <p class="heading">{{review.name}}</p>
             <p>
                 <span class="glyphicon glyphicon-calendar"></span>
                 {{review.created_at | date:"MM/dd/yyyy @ h:mma" }}
