@@ -78,9 +78,15 @@ EOT
      */
     protected function setupDatabase(InputInterface $input, OutputInterface $output)
     {
-        $this->runCommand('doctrine:mongodb:schema:drop', $input, $output);
-        $this->runCommand('doctrine:mongodb:schema:create', $input, $output);
-        $this->runCommand('doctrine:mongodb:fixtures:load', $input, $output);
+        $drop = $this->getApplication()->find('doctrine:database:drop');
+        $drop_args = array(
+            'command' => 'doctrine:database:drop',
+            '--force' => true
+        );
+        $drop->run(new ArrayInput($drop_args), $output);
+        $this->runCommand('doctrine:database:create', $input, $output);
+        $this->runCommand('doctrine:schema:create', $input, $output);
+        $this->runCommand('doctrine:fixtures:load', $input, $output);
     }
 
     /**
