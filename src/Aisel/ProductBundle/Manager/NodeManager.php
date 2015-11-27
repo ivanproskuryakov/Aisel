@@ -43,7 +43,7 @@ class NodeManager extends ApiNodeManager
         $node->setLocale($params['locale']);
         $node->setParent($parent);
         $node->setStatus(false);
-        $node->setDescription('');
+        $node->setContent('');
         $node->setMetaUrl($url);
         $this->em->persist($node);
         $this->em->flush();
@@ -61,7 +61,7 @@ class NodeManager extends ApiNodeManager
         $node->setName($params['name']);
         $node->setLocale($params['locale']);
         $node->setStatus(false);
-        $node->setDescription('');
+        $node->setContent('');
         $node->setMetaUrl($url);
 
         $this->em->persist($node);

@@ -38,7 +38,7 @@ class ApiNodeControllerTest extends PageWebTestCase
         $data = [
             'locale' => 'en',
             'name' => 'AAA',
-            'description' => 'test',
+            'content' => $this->faker->sentence(),
             'status' => true,
             'meta_url' => 'metaUrl_' . time(),
             'meta_title' => 'metaTitle_' . time(),
@@ -108,7 +108,7 @@ class ApiNodeControllerTest extends PageWebTestCase
         $node2 = $this->newNode();
 
         $data['locale'] = 'ru';
-        $data['description'] = time();
+        $data['content'] = $this->faker->sentence();
         $data['parent'] = ['id' => $node1->getId()];
 
         $this->client->request(

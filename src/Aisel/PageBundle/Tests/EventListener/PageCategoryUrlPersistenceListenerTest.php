@@ -43,7 +43,7 @@ class PageNodeUrlPersistenceListenerTest extends AbstractWebTestCase
         $node1 = new Node();
         $node1->setLocale('en');
         $node1->setName('...');
-        $node1->setDescription('...');
+        $node1->setContent('...');
         $node1->setStatus(true);
         $node1->setMetaUrl($urlText);
 
@@ -55,7 +55,7 @@ class PageNodeUrlPersistenceListenerTest extends AbstractWebTestCase
         $node2 = new Node();
         $node2->setLocale('en');
         $node2->setName('...');
-        $node2->setDescription('...');
+        $node2->setContent('...');
         $node2->setStatus(true);
         $node2->setMetaUrl($urlText);
 

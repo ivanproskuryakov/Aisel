@@ -36,7 +36,7 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $data = [
             'locale' => 'en',
             'name' => 'AAA',
-            'description' => 'test',
+            'content' => $this->faker->sentence(),
             'status' => true,
             'meta_url' => 'metaUrl_' . time(),
             'meta_title' => 'metaTitle_' . time(),

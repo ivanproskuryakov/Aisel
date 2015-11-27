@@ -42,7 +42,7 @@ class LoadProductReviewNodeData extends XMLFixture implements OrderedFixtureInte
                     $node = new Node();
                     $node->setLocale($table->column[1]);
                     $node->setName($table->column[3]);
-                    $node->setDescription($table->column[8]);
+                    $node->setContent($table->column[8]);
                     $node->setStatus((int)$table->column[9]);
 
                     $parent = null;

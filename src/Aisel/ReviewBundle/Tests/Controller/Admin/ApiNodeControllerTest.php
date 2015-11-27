@@ -37,7 +37,7 @@ class ApiNodeControllerTest extends ReviewWebTestCase
         $data = [
             'locale' => 'en',
             'name' => $this->faker->sentence(2),
-            'description' => $this->faker->sentence(10),
+            'content' => $this->faker->sentence(10),
             'status' => true,
             'meta_url' => 'metaUrl_' . time(),
             'meta_title' => 'metaTitle_' . time(),
@@ -115,7 +115,7 @@ class ApiNodeControllerTest extends ReviewWebTestCase
         $node1 = $this->newReviewNode();
         $node2 = $this->newReviewNode();
 
-        $data['description'] = time();
+        $data['content'] = time();
         $data['parent'] = ['id' => $node2->getId()];
 
         $this->client->request(

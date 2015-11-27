@@ -121,7 +121,7 @@ class OrderRepository extends CollectionRepository
         $order->setRegion($orderInfo['billing_region']);
         $order->setCity($orderInfo['billing_city']);
         $order->setPhone($orderInfo['billing_phone']);
-        $order->setDescription($orderInfo['billing_comment']);
+        $order->setContent($orderInfo['billing_comment']);
         $em->persist($order);
         $em->flush();
 

@@ -45,7 +45,7 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
             'price' => $this->faker->numberBetween(1, 100),
             'content' => $this->faker->paragraph(10),
             'description_short' => $this->faker->paragraph(10),
-            'description' => $this->faker->paragraph(10),
+            'content' => $this->faker->paragraph(10),
             'status' => true,
             'meta_url' => 'metaUrl_' . $this->faker->numberBetween(100000, 900000),
             'meta_title' => 'metaTitle_' . $this->faker->numberBetween(100000, 900000),

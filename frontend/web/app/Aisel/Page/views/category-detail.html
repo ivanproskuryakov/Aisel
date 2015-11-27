@@ -3,7 +3,7 @@
         <h2>{{category.name}}</h2>
         <p><span class="glyphicon glyphicon-calendar"></span>
             {{category.created_at |date:"MM/dd/yyyy @ h:mma" }}</p>
-        <p ng-bind-html="category.description"></p>
+        <p ng-bind-html="category.content"></p>
     </div>
 
     <div class="col-xs-12 col-md-12">

@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\UrlInterface;
 
-use Aisel\ResourceBundle\Domain\DescriptionTrait;
+use Aisel\ResourceBundle\Domain\ContentTrait;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 
 /**
@@ -32,7 +32,7 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
  */
 class Node extends BaseNode implements UrlInterface
 {
-    use DescriptionTrait;
+    use ContentTrait;
     use MetaTrait;
 
 

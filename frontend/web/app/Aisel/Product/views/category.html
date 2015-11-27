@@ -12,7 +12,7 @@
             <li ng-repeat="category in collection.collection">
                 <h2><a ui-sref="productCategoryView({locale: locale, categoryId:category.meta_url})" class="thumb">{{category.name}}</a></h2>
 
-                <p ng-bind-html="category.description"></p>
+                <p ng-bind-html="category.content"></p>
                 <hr/>
             </li>
         </ul>

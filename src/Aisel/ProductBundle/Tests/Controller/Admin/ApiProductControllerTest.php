@@ -61,7 +61,7 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
             'name' => 'AAAAA',
             'sku' => time(),
             'price' => 100,
-            'description' => time(),
+            'content' => $this->faker->sentence(),
             'description_short' => time(),
             'meta_url' => time(),
             'nodes' => [

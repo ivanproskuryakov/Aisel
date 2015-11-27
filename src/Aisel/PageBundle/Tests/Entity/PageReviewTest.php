@@ -41,7 +41,7 @@ class PageReviewTest extends AbstractWebTestCase
         $node = new ReviewNode();
         $node->setStatus(true);
         $node->setName($this->faker->sentence(1));
-        $node->setDescription($this->faker->sentence(10));
+        $node->setContent($this->faker->sentence(10));
         $node->setLocale('en');
         $this->em->persist($node);
         $this->em->flush();

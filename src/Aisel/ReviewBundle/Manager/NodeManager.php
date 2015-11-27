@@ -46,7 +46,7 @@ class NodeManager extends ApiNodeManager
         $node->setName($params['name']);
         $node->setParent($parent);
         $node->setStatus(false);
-        $node->setDescription('');
+        $node->setContent('');
         $this->em->persist($node);
         $this->em->flush();
 
@@ -64,7 +64,7 @@ class NodeManager extends ApiNodeManager
         $node->setlocale($params['locale']);
         $node->setName($params['name']);
         $node->setStatus(false);
-        $node->setDescription('');
+        $node->setContent('');
 
         $this->em->persist($node);
         $this->em->flush();

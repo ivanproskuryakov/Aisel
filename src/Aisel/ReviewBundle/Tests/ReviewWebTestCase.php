@@ -44,7 +44,7 @@ class ReviewWebTestCase extends AbstractWebTestCase
         $node = new Node();
         $node->setStatus(true);
         $node->setName($this->faker->sentence(1));
-        $node->setDescription($this->faker->sentence(10));
+        $node->setContent($this->faker->sentence(10));
         $node->setLocale('en');
 
         $this->em->persist($node);

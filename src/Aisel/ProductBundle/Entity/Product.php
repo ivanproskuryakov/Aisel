@@ -28,7 +28,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\QtyTrait;
-use Aisel\ResourceBundle\Domain\DescriptionTrait;
+use Aisel\ResourceBundle\Domain\ContentTrait;
 //use Aisel\ReviewBundle\Domain\ReviewTrait;
 
 /**
@@ -51,7 +51,7 @@ class Product implements UrlInterface
     use NameTrait;
     use LocaleTrait;
     use QtyTrait;
-    use DescriptionTrait;
+    use ContentTrait;
 
     /**
      * @var string
@@ -449,7 +449,7 @@ class Product implements UrlInterface
      * @param  string  $descriptionShort
      * @return Product
      */
-    public function setDescriptionShort($descriptionShort)
+    public function setContentShort($descriptionShort)
     {
         $this->descriptionShort = $descriptionShort;
 

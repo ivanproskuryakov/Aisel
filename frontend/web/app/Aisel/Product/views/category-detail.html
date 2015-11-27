@@ -5,7 +5,7 @@
             <span class="glyphicon glyphicon-calendar"></span>
             {{category.created_at |date:"MM/dd/yyyy @ h:mma" }}
         </p>
-        <p ng-bind-html="category.description"></p>
+        <p ng-bind-html="category.content"></p>
     </div>
     <div class="col-xs-12 col-md-12">
         <div class="related categoryPages" ng-if="collection">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-md-9">
                                 <p><span class="label label-warning">{{product.price}} {{currency}}</span></p>
-                                <p ng-bind-html="product.description"></p>
+                                <p ng-bind-html="product.content"></p>
                             </div>
                         </div>
                         <hr/>

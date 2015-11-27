@@ -42,8 +42,8 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
         // Create Product 1
         $product1 = new Product();
         $product1->setLocale('en');
-        $product1->setDescription('...');
-        $product1->setDescriptionShort('...');
+        $product1->setContent('...');
+        $product1->setContentShort('...');
         $product1->setInStock(false);
         $product1->setName('...');
         $product1->setSku('test-1');
@@ -58,8 +58,8 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
         // Create Product 2
         $product2 = new Product();
         $product2->setLocale('en');
-        $product2->setDescription('...');
-        $product2->setDescriptionShort('...');
+        $product2->setContent('...');
+        $product2->setContentShort('...');
         $product2->setInStock(false);
         $product2->setName('...');
         $product2->setSku('test-2');

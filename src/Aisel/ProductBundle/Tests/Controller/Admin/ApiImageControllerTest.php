@@ -82,10 +82,8 @@ class ApiImageControllerTest extends UploadControllerTest
         $image = $product->getMedias()[0];
         $data = [
             'name' => time(),
-            'description' => time(),
+            'content' => $this->faker->sentence()
         ];
-//        var_dump($image);
-//        exit();
 
         $this->client->request(
             'PUT',
@@ -113,7 +111,7 @@ class ApiImageControllerTest extends UploadControllerTest
         $image = $product->getMedias()[0];
 
         $this->assertEquals($image->getName(), $data['name']);
-        $this->assertEquals($image->getDescription(), $data['description']);
+        $this->assertEquals($image->getContent(), $data['content']);
     }
 
     public function testGetImageAction()

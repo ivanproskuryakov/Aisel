@@ -43,7 +43,7 @@ class ProductTest extends AbstractWebTestCase
         $node = new Node();
         $node->setStatus(true);
         $node->setName($this->faker->sentence(1));
-        $node->setDescription($this->faker->sentence(10));
+        $node->setContent($this->faker->sentence(10));
         $node->setMetaUrl('url_' . time());
         $node->setLocale('en');
 
@@ -56,8 +56,8 @@ class ProductTest extends AbstractWebTestCase
         $product->setLocale('en');
         $product->setSku($this->faker->numberBetween());
         $product->setName($this->faker->sentence(1));
-        $product->setDescriptionShort($this->faker->sentence(10));
-        $product->setDescription($this->faker->sentence(10));
+        $product->setContentShort($this->faker->sentence(10));
+        $product->setContent($this->faker->sentence(10));
         $product->setStatus(true);
         $product->setCommentStatus(true);
         $product->setMetaUrl('url_' . time());
@@ -83,8 +83,8 @@ class ProductTest extends AbstractWebTestCase
         $product = new Product();
         $product->setLocale('en');
         $product->setName($this->faker->sentence(1));
-        $product->setDescriptionShort($this->faker->sentence(10));
-        $product->setDescription($this->faker->sentence(10));
+        $product->setContentShort($this->faker->sentence(10));
+        $product->setContent($this->faker->sentence(10));
         $product->setStatus(true);
         $product->setCommentStatus(true);
         $product->setMetaUrl('url_' . time());

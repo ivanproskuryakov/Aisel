@@ -42,7 +42,7 @@ class PageTests extends AbstractWebTestCase
         $node = new Node();
         $node->setName($this->faker->title);
         $node->setStatus(true);
-        $node->setDescription($this->faker->sentence(10));
+        $node->setContent($this->faker->sentence(10));
         $node->setMetaUrl('url_' . time());
         $node->setLocale('en');
 

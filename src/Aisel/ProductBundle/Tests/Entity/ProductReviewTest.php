@@ -42,7 +42,7 @@ class ProductReviewTest extends AbstractWebTestCase
         $node = new ReviewNode();
         $node->setStatus(true);
         $node->setName($this->faker->sentence(1));
-        $node->setDescription($this->faker->sentence(10));
+        $node->setContent($this->faker->sentence(10));
         $node->setLocale('en');
         $this->em->persist($node);
         $this->em->flush();
@@ -57,8 +57,8 @@ class ProductReviewTest extends AbstractWebTestCase
         $product = new Product();
         $product->setLocale('en');
         $product->setName($this->faker->sentence(1));
-        $product->setDescriptionShort($this->faker->sentence(10));
-        $product->setDescription($this->faker->sentence(10));
+        $product->setContentShort($this->faker->sentence(10));
+        $product->setContent($this->faker->sentence(10));
         $product->setStatus(true);
         $product->setCommentStatus(true);
         $product->setMetaUrl('url_' . time());

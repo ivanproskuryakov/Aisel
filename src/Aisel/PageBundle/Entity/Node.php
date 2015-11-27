@@ -18,7 +18,7 @@ use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\ResourceBundle\Domain\MetaTrait;
 
-use Aisel\ResourceBundle\Domain\DescriptionTrait;
+use Aisel\ResourceBundle\Domain\ContentTrait;
 
 /**
  * Node
@@ -35,7 +35,7 @@ class Node extends BaseNode implements UrlInterface
 {
 
     use MetaTrait;
-    use DescriptionTrait;
+    use ContentTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="Aisel\PageBundle\Entity\Node", inversedBy="children")

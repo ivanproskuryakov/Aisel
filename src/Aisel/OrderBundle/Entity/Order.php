@@ -19,7 +19,7 @@ use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use JMS\Serializer\Annotation as JMS;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
-use Aisel\ResourceBundle\Domain\DescriptionTrait;
+use Aisel\ResourceBundle\Domain\ContentTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
@@ -37,7 +37,7 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 class Order
 {
     use IdTrait;
-    use DescriptionTrait;
+    use ContentTrait;
     use LocaleTrait;
     use UpdateCreateTrait;
 

@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 
-use Aisel\ResourceBundle\Domain\DescriptionTrait;
+use Aisel\ResourceBundle\Domain\ContentTrait;
 
 /**
  * Node
@@ -31,7 +31,7 @@ use Aisel\ResourceBundle\Domain\DescriptionTrait;
 class Node extends BaseNode
 {
 
-    use DescriptionTrait;
+    use ContentTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="Aisel\ReviewBundle\Entity\Node", inversedBy="children")
