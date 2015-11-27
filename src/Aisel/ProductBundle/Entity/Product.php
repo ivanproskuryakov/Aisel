@@ -29,7 +29,7 @@ use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\QtyTrait;
 use Aisel\ResourceBundle\Domain\ContentTrait;
-//use Aisel\ReviewBundle\Domain\ReviewTrait;
+use Aisel\ResourceBundle\Domain\CommentStatusTrait;
 
 /**
  * Product
@@ -45,13 +45,14 @@ class Product implements UrlInterface
 {
 
     use IdTrait;
-    use UpdateCreateTrait;
-    use MetaTrait;
-    use StatusTrait;
-    use NameTrait;
     use LocaleTrait;
+    use StatusTrait;
     use QtyTrait;
+    use NameTrait;
     use ContentTrait;
+    use MetaTrait;
+    use CommentStatusTrait;
+    use UpdateCreateTrait;
 
     /**
      * @var string
@@ -169,16 +170,6 @@ class Product implements UrlInterface
     private $hidden = false;
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean")
-     * @Assert\Type(type="bool")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("boolean")
-     */
-    private $commentStatus = false;
-
-    /**
      * @var Collection
      * @ORM\ManyToMany(targetEntity="Aisel\MediaBundle\Entity\Media", cascade={"all"})
      * @ORM\JoinTable(
@@ -205,12 +196,26 @@ class Product implements UrlInterface
     private $nodes;
 
     /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Aisel\ReviewBundle\Entity\Review", cascade={"all"})
+     * @ORM\JoinTable(
+     *     name="aisel_product_product_review",
+     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="review_id", referencedColumnName="id")}
+     * )
+     * @JMS\Expose
+     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
+     */
+    private $reviews;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->medias = new ArrayCollection();
         $this->nodes = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     /**
@@ -489,28 +494,6 @@ class Product implements UrlInterface
         return $this->hidden;
     }
 
-    /**
-     * Set commentStatus
-     *
-     * @param  boolean $commentStatus
-     * @return Product
-     */
-    public function setCommentStatus($commentStatus)
-    {
-        $this->commentStatus = $commentStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get commentStatus
-     *
-     * @return boolean
-     */
-    public function getCommentStatus()
-    {
-        return $this->commentStatus;
-    }
 
     /**
      * Set medias
@@ -600,4 +583,21 @@ class Product implements UrlInterface
     {
         return $this->nodes;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param ArrayCollection $reviews
+     */
+    public function setReviews($reviews)
+    {
+        $this->reviews = $reviews;
+    }
+
 }

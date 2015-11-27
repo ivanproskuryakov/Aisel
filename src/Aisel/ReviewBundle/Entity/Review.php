@@ -24,6 +24,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\ContentTrait;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 
 /**
  * Review
@@ -57,6 +58,15 @@ class Review
      * @JMS\Expose
      */
     private $nodes;
+
+    /**
+     * @var FrontendUser
+     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="reviews")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $frontenduser;
 
     /**
      * Constructor
@@ -111,4 +121,21 @@ class Review
     {
         $this->nodes = $nodes;
     }
+
+    /**
+     * @return FrontendUser
+     */
+    public function getFrontenduser()
+    {
+        return $this->frontenduser;
+    }
+
+    /**
+     * @param FrontendUser $frontenduser
+     */
+    public function setFrontenduser($frontenduser)
+    {
+        $this->frontenduser = $frontenduser;
+    }
+
 }
