@@ -42,16 +42,18 @@ class CollectionRepository extends EntityRepository
         $this->model = $this->getEntityName();
 
         // Pagination
-        if (isset($params['current'])) {
+        if (isset($params['current']) && $params['current'] > 0) {
             $this->pageCurrent = (int)$params['current'];
         } else {
             $this->pageCurrent = 1;
         }
-        if (isset($params['limit'])) {
+
+        if (isset($params['limit']) && $params['limit'] > 0) {
             $this->pageLimit = (int)$params['limit'];
         } else {
             $this->pageLimit = 5;
         }
+
         if (isset($params['category'])) {
             $this->category = (int)$params['category'];
         } else {
@@ -67,7 +69,9 @@ class CollectionRepository extends EntityRepository
         }
         // Order
         if (isset($params['order'])) {
-            $this->order = $params['order'];
+            if (($params['order'] == 'ASC') || ($params['order'] == 'DESC')) {
+                $this->order = $params['order'];
+            }
         }
         // Order By
         if (isset($params['orderBy'])) {
