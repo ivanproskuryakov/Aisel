@@ -9,11 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ReviewBundle\Tests\Document;
+namespace Aisel\ReviewBundle\Tests\Entity;
 
 use Aisel\ReviewBundle\Tests\ReviewWebTestCase;
-use Aisel\ReviewBundle\Document\Review;
-use Aisel\ReviewBundle\Document\Node;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Faker;
 
 /**
@@ -36,20 +35,22 @@ class ReviewTests extends ReviewWebTestCase
 
     public function testDuplicateNodes()
     {
+        $this->setExpectedException(UniqueConstraintViolationException::class);
+
         $node = $this->newReviewNode();
 
         $this->assertNotNull($node->getId());
 
         $review = $this->newReview($node);
         $review->addNode($node);
-        $this->dm->persist($review);
-        $this->dm->flush();
+        $this->em->persist($review);
+        $this->em->flush();
 
         $this->assertNotNull($review->getId());
         $this->assertEquals(count($review->getNodes()), 1);
 
-        $this->removeDocument($review);
-        $this->removeDocument($node);
+        $this->removeEntity($review);
+        $this->removeEntity($node);
     }
 
     public function testChildParentNodes()
@@ -58,10 +59,10 @@ class ReviewTests extends ReviewWebTestCase
         $child = $this->newReviewNode();
         $child->setParent($parent);
 
-        $this->dm->persist($child);
-        $this->dm->flush();
+        $this->em->persist($child);
+        $this->em->flush();
 
-        $this->removeDocument($parent);
+        $this->removeEntity($parent);
     }
 
 }

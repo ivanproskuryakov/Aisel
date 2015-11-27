@@ -31,7 +31,7 @@ class NodeManager extends ApiNodeManager
     {
 
         if ($nodeId = $params['parentId']) {
-            $parent = $this->dm->getRepository($this->model)->find($nodeId);
+            $parent = $this->em->getRepository($this->model)->find($nodeId);
 
             if (!$parent) {
                 throw new LogicException('Nothing found');
@@ -47,8 +47,8 @@ class NodeManager extends ApiNodeManager
         $node->setParent($parent);
         $node->setStatus(false);
         $node->setDescription('');
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -66,8 +66,8 @@ class NodeManager extends ApiNodeManager
         $node->setStatus(false);
         $node->setDescription('');
 
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }

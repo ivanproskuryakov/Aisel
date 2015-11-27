@@ -50,7 +50,7 @@ class ApiReviewControllerTest extends ReviewWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertJson($content);
 
-        $this->removeDocument($node);
+        $this->removeEntity($node);
     }
 
     public function testPostReviewAction()
@@ -89,14 +89,14 @@ class ApiReviewControllerTest extends ReviewWebTestCase
         $id = array_pop($parts);
 
         $review = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Review')
+            ->em
+            ->getRepository('Aisel\ReviewBundle\Entity\Review')
             ->find($id);
 
         $this->assertEquals($review->getNodes()[0]->getId(), $reviewNode->getId());
 
-        $this->removeDocument($review);
-        $this->removeDocument($reviewNode);
+        $this->removeEntity($review);
+        $this->removeEntity($reviewNode);
     }
 
 }

@@ -11,7 +11,7 @@
 
 namespace Aisel\ReviewBundle\Tests\Controller\Admin;
 
-use Aisel\ReviewBundle\Document\Node;
+use Aisel\ReviewBundle\Entity\Node;
 use Aisel\ReviewBundle\Tests\ReviewWebTestCase;
 
 /**
@@ -58,22 +58,22 @@ class ApiNodeEditControllerTest extends ReviewWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['parent']['id'], $parent->getId());
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $node = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
+            ->em
+            ->getRepository('Aisel\ReviewBundle\Entity\Node')
             ->findOneBy(['id' => $result['id']]);
 
         $this->assertEquals($parent->getId(), $node->getParent()->getId());
         $this->assertEquals($child->getId(), $node->getParent()->getChildren()[0]->getId());
 
         $parent = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
+            ->em
+            ->getRepository('Aisel\ReviewBundle\Entity\Node')
             ->findOneBy(['id' => $result['parent']['id']]);
 
-        $this->removeDocument($parent);
+        $this->removeEntity($parent);
     }
 
     public function testReviewNodeAddChildAction()
@@ -100,21 +100,21 @@ class ApiNodeEditControllerTest extends ReviewWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['parent']['id'], $parent->getId());
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $parent = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
+            ->em
+            ->getRepository('Aisel\ReviewBundle\Entity\Node')
             ->findOneBy(['id' => $parent->getId()]);
 
         $node = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
+            ->em
+            ->getRepository('Aisel\ReviewBundle\Entity\Node')
             ->findOneBy(['id' => $result['id']]);
         $this->assertEquals($node->getParent()->getId(), $parent->getId());
         $this->assertEquals($node->getId(), $parent->getChildren()[0]->getId());
 
-        $this->removeDocument($parent);
+        $this->removeEntity($parent);
     }
 
     public function testReviewNodeChangeTitleAction()
@@ -141,7 +141,7 @@ class ApiNodeEditControllerTest extends ReviewWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['title'], 'BBB');
 
-        $this->removeDocument($node);
+//        $this->removeEntity($node);
     }
 
     public function testReviewNodeDeleteAction()
@@ -163,8 +163,8 @@ class ApiNodeEditControllerTest extends ReviewWebTestCase
         $statusCode = $response->getStatusCode();
 
         $node = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Node')
+            ->em
+            ->getRepository('Aisel\ReviewBundle\Entity\Node')
             ->findOneBy(['title' => 'ZZZZ']);
 
         $this->assertTrue(200 === $statusCode);

@@ -17,7 +17,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Entity\UrlInterface;
 use Aisel\ResourceBundle\Domain\MetaTrait;
-use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 use Aisel\ResourceBundle\Domain\DescriptionTrait;
 

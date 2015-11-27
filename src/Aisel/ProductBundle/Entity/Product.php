@@ -20,7 +20,6 @@ use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Entity\UrlInterface;
 use Aisel\ProductBundle\Entity\Node;
 use Aisel\MediaBundle\Entity\Media;
-use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;

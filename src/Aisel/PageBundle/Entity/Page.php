@@ -27,8 +27,6 @@ use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\TitleTrait;
 use Aisel\ResourceBundle\Domain\ContentTrait;
 use Aisel\ResourceBundle\Domain\CommentStatusTrait;
-use Aisel\ReviewBundle\Domain\ReviewTrait;
-use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 /**
  * Page

@@ -70,14 +70,14 @@ class ApiReviewControllerTest extends ReviewWebTestCase
         $id = array_pop($parts);
 
         $review = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Review')
+            ->em
+            ->getRepository('Aisel\ReviewBundle\Entity\Review')
             ->find($id);
 
         $this->assertEquals($review->getNodes()[0]->getId(), $reviewNode->getId());
 
-        $this->removeDocument($review);
-        $this->removeDocument($reviewNode);
+//        $this->removeEntity($review);
+//        $this->removeEntity($reviewNode);
     }
 
     public function testGetReviewAction()
@@ -100,7 +100,7 @@ class ApiReviewControllerTest extends ReviewWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $review->getId());
 
-        $this->removeDocument($review);
+//        $this->removeEntity($review);
     }
 
     public function testDeleteReviewAction()
@@ -121,8 +121,8 @@ class ApiReviewControllerTest extends ReviewWebTestCase
         $statusCode = $response->getStatusCode();
 
         $review = $this
-            ->dm
-            ->getRepository('Aisel\ReviewBundle\Document\Review')
+            ->em
+            ->getRepository('Aisel\ReviewBundle\Entity\Review')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);
@@ -130,43 +130,36 @@ class ApiReviewControllerTest extends ReviewWebTestCase
         $this->assertNull($review);
     }
 
-//    public function testPutReviewAction()
-//    {
-//        $this->newReview();
-//
-//        $review = $this
-//            ->dm
-//            ->getRepository('Aisel\ReviewBundle\Document\Review')
-//            ->findOneBy(['locale' => 'en']);
-////        var_dump($review->getId());
-////        exit();
-//        $id = $review->getId();
-//        $data['locale'] = 'ru';
-//
-//        $this->client->request(
-//            'PUT',
-//            '/' . $this->api['backend'] . '/review/' . $id,
-//            [],
-//            [],
-//            ['CONTENT_TYPE' => 'application/json'],
-//            json_encode($data)
-//        );
-//
-//        $response = $this->client->getResponse();
-//        $content = $response->getContent();
-//        $statusCode = $response->getStatusCode();
-//
-//        $this->dm->clear();
-//
-//        $review = $this
-//            ->dm
-//            ->getRepository('Aisel\ReviewBundle\Document\Review')
-//            ->findOneBy(['id' => $id]);
-//
-//        $this->assertTrue(204 === $statusCode);
-//        $this->assertEmpty($content);
-//        $this->assertNotNull($review);
-//        $this->assertEquals($data['locale'], $review->getLocale());
-//    }
+    public function testPutReviewAction()
+    {
+        $review = $this->newReview();
+
+        $data['locale'] = 'ru';
+
+        $this->client->request(
+            'PUT',
+            '/' . $this->api['backend'] . '/review/' . $review->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->em->clear();
+
+        $review = $this
+            ->em
+            ->getRepository('Aisel\ReviewBundle\Entity\Review')
+            ->findOneBy(['id' => $review->getId()]);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNotNull($review);
+        $this->assertEquals($data['locale'], $review->getLocale());
+    }
 
 }

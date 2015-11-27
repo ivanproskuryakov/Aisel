@@ -12,8 +12,8 @@
 namespace Aisel\ReviewBundle\Tests;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\ReviewBundle\Document\Review;
-use Aisel\ReviewBundle\Document\Node;
+use Aisel\ReviewBundle\Entity\Review;
+use Aisel\ReviewBundle\Entity\Node;
 use Faker;
 
 /**
@@ -43,11 +43,12 @@ class ReviewWebTestCase extends AbstractWebTestCase
     {
         $node = new Node();
         $node->setStatus(true);
+        $node->setTitle($this->faker->sentence(1));
         $node->setDescription($this->faker->sentence(10));
         $node->setLocale('en');
 
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -70,8 +71,8 @@ class ReviewWebTestCase extends AbstractWebTestCase
             $review->addNode($node);
         }
 
-        $this->dm->persist($review);
-        $this->dm->flush();
+        $this->em->persist($review);
+        $this->em->flush();
 
         return $review;
     }

@@ -24,7 +24,6 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\TitleTrait;
 use Aisel\ResourceBundle\Domain\ContentTrait;
-use Aisel\ResourceBundle\Annotation as AiselAnnotation;
 
 /**
  * Review
