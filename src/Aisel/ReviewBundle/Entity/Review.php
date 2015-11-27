@@ -39,11 +39,11 @@ class Review
 {
 
     use IdTrait;
-    use NameTrait;
-    use UpdateCreateTrait;
     use LocaleTrait;
     use StatusTrait;
+    use NameTrait;
     use ContentTrait;
+    use UpdateCreateTrait;
 
     /**
      * @var ArrayCollection
