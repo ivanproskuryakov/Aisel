@@ -11,7 +11,7 @@
 
 namespace Aisel\FrontendUserBundle\Controller;
 
-use Aisel\FrontendUserBundle\Document\FrontendUser;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

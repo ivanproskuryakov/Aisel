@@ -22,7 +22,7 @@ use LogicException;
 class NodeManager extends ApiNodeManager
 {
 
-    protected $model = 'Aisel\ProductBundle\Document\Node';
+    protected $model = 'Aisel\ProductBundle\Entity\Node';
 
     /**
      * {@inheritDoc}
@@ -30,7 +30,7 @@ class NodeManager extends ApiNodeManager
     public function addChild($params)
     {
         if ($nodeId = $params['parentId']) {
-            $parent = $this->dm->getRepository($this->model)->find($nodeId);
+            $parent = $this->em->getRepository($this->model)->find($nodeId);
 
             if (!($parent)) {
                 throw new LogicException('Nothing found');
@@ -45,8 +45,8 @@ class NodeManager extends ApiNodeManager
         $node->setStatus(false);
         $node->setDescription('');
         $node->setMetaUrl($url);
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -64,8 +64,8 @@ class NodeManager extends ApiNodeManager
         $node->setDescription('');
         $node->setMetaUrl($url);
 
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }

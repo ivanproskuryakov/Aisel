@@ -11,19 +11,21 @@
 
 namespace Aisel\AddressingBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\AddressingBundle\Tests\AddressingWebTestCase;
 
 /**
  * ApiRegionControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiRegionControllerTest extends AbstractBackendWebTestCase
+class ApiRegionControllerTest extends AddressingWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -35,7 +37,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/addressing/region/',
+            '/' . $this->api['backend'] . '/addressing/region/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -52,10 +54,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
 
     public function testPostRegionAction()
     {
-        $country = $this
-            ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Country')
-            ->findOneBy(['iso2' => 'ES']);
+        $country = $this->newCountry();
 
         $data = array(
             'name' => 'AAA',
@@ -65,7 +64,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/'. $this->api['backend'] . '/addressing/region/',
+            '/' . $this->api['backend'] . '/addressing/region/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -79,8 +78,8 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
         $id = array_pop($parts);
 
         $region = $this
-            ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Region')
+            ->em
+            ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->find($id);
 
         $this->assertTrue(201 === $statusCode);
@@ -92,15 +91,11 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
 
     public function testGetRegionAction()
     {
-        $region = $this
-            ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Region')
-            ->findOneBy(['name' => 'AAA']);
-        $id = $region->getId();
+        $region = $this->newRegion();
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/addressing/region/' . $id,
+            '/' . $this->api['backend'] . '/addressing/region/' . $region->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -117,14 +112,9 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
 
     public function testPutRegionAction()
     {
-        $country = $this
-            ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Country')
-            ->findOneBy(['iso2' => 'RU']);
-        $region = $this
-            ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Region')
-            ->findOneBy(['name' => 'AAA']);
+        $country = $this->newCountry();
+        $region = $this->newRegion();
+
         $id = $region->getId();
         $data = array(
             'country' => array('id' => $country->getId()),
@@ -132,7 +122,7 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'PUT',
-            '/'. $this->api['backend'] . '/addressing/region/' . $id,
+            '/' . $this->api['backend'] . '/addressing/region/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -143,11 +133,11 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $region = $this
-            ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Region')
+            ->em
+            ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->find($id);
 
         $this->assertTrue(204 === $statusCode);
@@ -158,14 +148,14 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
     public function testDeleteRegionAction()
     {
         $region = $this
-            ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Region')
+            ->em
+            ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->findOneBy(['name' => 'AAA']);
         $id = $region->getId();
 
         $this->client->request(
             'DELETE',
-            '/'. $this->api['backend'] . '/addressing/region/'. $id,
+            '/' . $this->api['backend'] . '/addressing/region/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -175,11 +165,11 @@ class ApiRegionControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $region = $this
-            ->dm
-            ->getRepository('Aisel\AddressingBundle\Document\Region')
+            ->em
+            ->getRepository('Aisel\AddressingBundle\Entity\Region')
             ->find($id);
 
         $this->assertTrue(204 === $statusCode);

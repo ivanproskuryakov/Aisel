@@ -11,7 +11,7 @@
 
 namespace Aisel\ResourceBundle\Domain;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -26,7 +26,7 @@ trait QtyTrait
     /**
      * @var integer
      * @Assert\NotNull()
-     * @ODM\Field(type="string")
+     * @ORM\Column(type="integer")
      * @JMS\Type("integer")
      */
     private $qty = 0;

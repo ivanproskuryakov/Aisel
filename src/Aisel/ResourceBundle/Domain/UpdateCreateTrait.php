@@ -11,7 +11,7 @@
 
 namespace Aisel\ResourceBundle\Domain;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -26,7 +26,7 @@ trait UpdateCreateTrait
 
     /**
      * @var \DateTime
-     * @ODM\Field(type="date")
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
      * @JMS\Expose
      * @JMS\Type("DateTime")
@@ -35,7 +35,7 @@ trait UpdateCreateTrait
 
     /**
      * @var \DateTime
-     * @ODM\Field(type="date")
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
      * @JMS\Expose
      * @JMS\Type("DateTime")

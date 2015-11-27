@@ -9,7 +9,7 @@ services:
     backend.user.manager:
         class: Aisel\BackendUserBundle\Manager\UserManager
         arguments:
-          - @doctrine.odm.mongodb.document_manager
+          - @doctrine.orm.entity_manager
           - @security.encoder_factory
           - @security.context
 
@@ -18,4 +18,4 @@ services:
         arguments:
             - @security.encoder_factory
         tags:
-            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: prePersist }

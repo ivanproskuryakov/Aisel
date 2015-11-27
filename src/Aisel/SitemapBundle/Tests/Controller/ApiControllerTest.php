@@ -52,14 +52,14 @@ class ApiControllerTest extends AbstractWebTestCase
         }
 
         $products = $this
-            ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findBy([
                 'status' => true,
             ]);
         $pages = $this
-            ->dm
-            ->getRepository('Aisel\PageBundle\Document\Page')
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
             ->findBy([
                 'status' => true,
             ]);

@@ -52,8 +52,8 @@ class ApiPageControllerTest extends AbstractWebTestCase
     public function testGetPageAction()
     {
         $page = $this
-            ->dm
-            ->getRepository('Aisel\PageBundle\Document\Page')
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
             ->findOneBy(['locale' => 'en']);
 
         $this->client->request(

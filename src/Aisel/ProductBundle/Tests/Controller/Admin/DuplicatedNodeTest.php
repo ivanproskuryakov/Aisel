@@ -34,8 +34,8 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
     public function testPostAction()
     {
         $productNode = $this
-            ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Node')
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Node')
             ->findOneBy(['locale' => 'en']);
 
         $data = [
@@ -69,18 +69,8 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->assertEmpty($content);
-        $this->assertTrue(201 === $statusCode);
-        $parts = explode('/', $response->headers->get('location'));
-        $id = array_pop($parts);
-
-        $product = $this
-            ->dm
-            ->getRepository('Aisel\ProductBundle\Document\Product')
-            ->find($id);
-
-        $this->assertEquals($product->getNodes()[0]->getId(), $productNode->getId());
-        $this->assertEquals(count($product->getNodes()), 1);
+        $this->assertNotEmpty($content);
+        $this->assertTrue(500 === $statusCode);
     }
 
 }

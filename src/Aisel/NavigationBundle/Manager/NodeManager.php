@@ -22,7 +22,7 @@ use Aisel\ResourceBundle\Manager\ApiNodeManager;
 class NodeManager extends ApiNodeManager
 {
 
-    protected $model = 'Aisel\NavigationBundle\Document\Menu';
+    protected $model = 'Aisel\NavigationBundle\Entity\Menu';
 
     /**
      * {@inheritDoc}
@@ -30,7 +30,7 @@ class NodeManager extends ApiNodeManager
     public function addChild($params)
     {
         $repo = $this
-            ->dm
+            ->em
             ->getRepository($this->model);
 
         if ($parentId = $params['parentId']) {
@@ -48,8 +48,8 @@ class NodeManager extends ApiNodeManager
         $node->setLocale($params['locale']);
         $node->setMetaUrl('/');
         $node->setStatus(false);
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -60,15 +60,15 @@ class NodeManager extends ApiNodeManager
     public function addSibling($params)
     {
         /**
-         * @var $node \Aisel\NavigationBundle\Document\Menu
+         * @var $node \Aisel\NavigationBundle\Entity\Menu
          */
         $node = new $this->model();
         $node->setTitle($params['name']);
         $node->setLocale($params['locale']);
         $node->setMetaUrl('/');
         $node->setStatus(false);
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }

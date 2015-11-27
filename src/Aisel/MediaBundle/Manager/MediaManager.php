@@ -11,8 +11,8 @@
 
 namespace Aisel\MediaBundle\Manager;
 
-use Aisel\MediaBundle\Document\Media;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Aisel\MediaBundle\Entity\Media;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -24,7 +24,7 @@ class MediaManager
 {
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
@@ -41,11 +41,11 @@ class MediaManager
     /**
      * Constructor
      *
-     * @param DocumentManager $dm
+     * @param EntityManager $dm
      * @param string $uploadPath
      * @param string $mediaPath
      */
-    public function __construct(DocumentManager $dm, $uploadPath, $mediaPath)
+    public function __construct(EntityManager $dm, $uploadPath, $mediaPath)
     {
         $this->dm = $dm;
         $this->uploadPath = $uploadPath;

@@ -11,7 +11,7 @@
 
 namespace Aisel\ResourceBundle\Domain;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -25,12 +25,14 @@ trait DescriptionTrait
 
     /**
      * @var string
-     * @ODM\Field(type="string")
+     * @ORM\Column(type="text", nullable=true)
+     * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("string")
      */
     private $description;
+
 
     /**
      * Set description
@@ -54,5 +56,4 @@ trait DescriptionTrait
     {
         return $this->description;
     }
-
 }

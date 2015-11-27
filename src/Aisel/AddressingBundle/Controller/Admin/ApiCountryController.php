@@ -24,6 +24,6 @@ class ApiCountryController extends BaseApiController
     /**
      * @var string
      */
-    protected $model = "Aisel\AddressingBundle\Document\Country";
+    protected $model = "Aisel\AddressingBundle\Entity\Country";
 
 }
