@@ -18,6 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\PageBundle\Entity\Node;
+use Aisel\ReviewBundle\Entity\Review;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -65,10 +66,25 @@ class Page implements UrlInterface
     private $nodes;
 
     /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Aisel\ReviewBundle\Entity\Review", cascade={"all"})
+     * @ORM\JoinTable(
+     *     name="aisel_page_page_review",
+     *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="review_id", referencedColumnName="id")}
+     * )
+     * @JMS\Expose
+     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
+     */
+    private $reviews;
+
+
+    /**
      * Constructor
      */
     public function __construct()
     {
+        $this->reviews = new ArrayCollection();
         $this->nodes = new ArrayCollection();
     }
 
@@ -125,4 +141,36 @@ class Page implements UrlInterface
     {
         $this->nodes = $nodes;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param ArrayCollection $reviews
+     */
+    public function setReviews($reviews)
+    {
+        $this->reviews = $reviews;
+    }
+
+    /**
+     * Add review
+     *
+     * @param Review $review
+     *
+     * @return Page
+     */
+    public function addReview($review)
+    {
+        $this->reviews->add($review);
+
+        return $this;
+    }
+
+
 }

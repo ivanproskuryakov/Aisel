@@ -22,7 +22,7 @@
             <column name="rgt">2</column>
             <column name="root">1270</column>
             <column name="lvl">0</column>
-            <column name="description">Mockups can be a very important part of a presentation, especially for those who design applications for mobile devices or computers. Our MacBook Air and Pro mockups are designed </column>
+            <column name="content">Mockups can be a very important part of a presentation, especially for those who design applications for mobile devices or computers. Our MacBook Air and Pro mockups are designed </column>
             <column name="status">0</column>
             <column name="created_at">2014-09-02 17:59:33</column>
             <column name="updated_at">2014-09-02 17:59:33</column>
@@ -36,7 +36,7 @@
             <column name="rgt">2</column>
             <column name="root">1270</column>
             <column name="lvl">0</column>
-            <column name="description">Mockups can be a very important part of a presentation, especially for those who design applications for mobile devices or computers. Our MacBook Air and Pro mockups are designed </column>
+            <column name="content">Mockups can be a very important part of a presentation, especially for those who design applications for mobile devices or computers. Our MacBook Air and Pro mockups are designed </column>
             <column name="status">1</column>
         </table>
         <table name="aisel_product_review_category">
@@ -48,7 +48,7 @@
             <column name="rgt">2</column>
             <column name="root">1271</column>
             <column name="lvl">0</column>
-            <column name="description">to showcase the work of programmers and designers so that they can have something to show their clients before the app is fully completed. These mockups are available in 1366x768 and </column>
+            <column name="content">to showcase the work of programmers and designers so that they can have something to show their clients before the app is fully completed. These mockups are available in 1366x768 and </column>
             <column name="status">1</column>
         </table>
         <table name="aisel_product_review_category">
@@ -60,7 +60,7 @@
             <column name="rgt">14</column>
             <column name="root">1272</column>
             <column name="lvl">0</column>
-            <column name="description">1280x800 resolutions for optimal viewing quality. Using mockups saves designers time by giving them something to display in presentations with clients so that they can get a better idea as to what the finished program will look like.</column>
+            <column name="content">1280x800 resolutions for optimal viewing quality. Using mockups saves designers time by giving them something to display in presentations with clients so that they can get a better idea as to what the finished program will look like.</column>
             <column name="status">1</column>
         </table>
         <table name="aisel_product_review_category">
@@ -72,7 +72,7 @@
             <column name="rgt">3</column>
             <column name="root">1272</column>
             <column name="lvl">1</column>
-            <column name="description">Those who use our website will find that it is easy to generate high quality MacBook, iPad, iMac, and iPhone mockups by simply uploading an image from their computer or a web screen </column>
+            <column name="content">Those who use our website will find that it is easy to generate high quality MacBook, iPad, iMac, and iPhone mockups by simply uploading an image from their computer or a web screen </column>
         </table>
         <table name="aisel_product_review_category">
             <column name="id">1274</column>
@@ -83,7 +83,7 @@
             <column name="rgt">5</column>
             <column name="root">1272</column>
             <column name="lvl">1</column>
-            <column name="description">shot. The mockup is generated within a matter of minutes and is guaranteed to look one hundred percent professional. We take great pride in creating mockups that look sharp and are perfect for </column>
+            <column name="content">shot. The mockup is generated within a matter of minutes and is guaranteed to look one hundred percent professional. We take great pride in creating mockups that look sharp and are perfect for </column>
             <column name="status">1</column>
         </table>
         <table name="aisel_product_review_category">
@@ -95,7 +95,7 @@
             <column name="rgt">13</column>
             <column name="root">1272</column>
             <column name="lvl">1</column>
-            <column name="description">professionals who need an impressive visual aid to show to their clients when designing a new app.</column>
+            <column name="content">professionals who need an impressive visual aid to show to their clients when designing a new app.</column>
             <column name="status">1</column>
         </table>
         <table name="aisel_product_review_category">
@@ -107,7 +107,7 @@
             <column name="rgt">8</column>
             <column name="root">1272</column>
             <column name="lvl">2</column>
-            <column name="description">By using our mockups in work or school presentations, you will be able to give your audience a good sense as to what the application looks like and even how it functions. Anyone who is </column>
+            <column name="content">By using our mockups in work or school presentations, you will be able to give your audience a good sense as to what the application looks like and even how it functions. Anyone who is </column>
             <column name="status">1</column>
         </table>
         <table name="aisel_product_review_category">
@@ -119,7 +119,7 @@
             <column name="rgt">10</column>
             <column name="root">1272</column>
             <column name="lvl">2</column>
-            <column name="description">designing an app specifically for a Mac device will certainly want to look into what we have to offer when it comes to these kinds of products. It can be difficult to describe how an application </column>
+            <column name="content">designing an app specifically for a Mac device will certainly want to look into what we have to offer when it comes to these kinds of products. It can be difficult to describe how an application </column>
             <column name="status">1</column>
         </table>
         <table name="aisel_product_review_category">
@@ -131,7 +131,7 @@
             <column name="rgt">12</column>
             <column name="root">1272</column>
             <column name="lvl">2</column>
-            <column name="description">works or looks like, which is why it is such a good idea to employ visual aids like these. MacBook mockups are perfect for presentations with clients because they are able to convey more than words ever could.</column>
+            <column name="content">works or looks like, which is why it is such a good idea to employ visual aids like these. MacBook mockups are perfect for presentations with clients because they are able to convey more than words ever could.</column>
             <column name="status">1</column>
         </table>
     </database>

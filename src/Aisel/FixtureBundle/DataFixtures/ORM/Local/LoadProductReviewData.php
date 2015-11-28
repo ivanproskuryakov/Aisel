@@ -39,13 +39,15 @@ class LoadProductReviewData extends XMLFixture implements OrderedFixtureInterfac
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
+                    $frontendUser = $this->getReference('frontenduser_' . $table->column[5]);
+
                     $review = new Review();
                     $review->setLocale($table->column[1]);
                     $review->setName($table->column[2]);
                     $review->setContent($table->column[3]);
                     $review->setStatus($table->column[4]);
-
-                    $nodes = explode(",", $table->column[5]);
+                    $review->setFrontenduser($frontendUser);
+                    $nodes = explode(",", $table->column[6]);
 
                     foreach ($nodes as $c) {
                         $node = $this->getReference('product_review_node_' . $c);

@@ -19,6 +19,7 @@ use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\ProductBundle\Entity\Node;
+use Aisel\ReviewBundle\Entity\Review;
 use Aisel\MediaBundle\Entity\Media;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
@@ -221,7 +222,7 @@ class Product implements UrlInterface
     /**
      * Set sku
      *
-     * @param  string  $sku
+     * @param  string $sku
      * @return Product
      */
     public function setSku($sku)
@@ -244,7 +245,7 @@ class Product implements UrlInterface
     /**
      * Set price
      *
-     * @param  float   $price
+     * @param  float $price
      * @return Product
      */
     public function setPrice($price)
@@ -267,7 +268,7 @@ class Product implements UrlInterface
     /**
      * Set priceSpecial
      *
-     * @param  float   $priceSpecial
+     * @param  float $priceSpecial
      * @return Product
      */
     public function setPriceSpecial($priceSpecial)
@@ -451,7 +452,7 @@ class Product implements UrlInterface
     /**
      * Set descriptionShort
      *
-     * @param  string  $descriptionShort
+     * @param  string $descriptionShort
      * @return Product
      */
     public function setContentShort($descriptionShort)
@@ -498,7 +499,7 @@ class Product implements UrlInterface
     /**
      * Set medias
      *
-     * @param  ArrayCollection   $medias
+     * @param  ArrayCollection $medias
      * @return Product
      */
     public function setMedias(ArrayCollection $medias)
@@ -511,7 +512,7 @@ class Product implements UrlInterface
     /**
      * Add media
      *
-     * @param  Media   $media
+     * @param  Media $media
      * @return Product
      */
     public function addMedia(Media $media)
@@ -598,6 +599,20 @@ class Product implements UrlInterface
     public function setReviews($reviews)
     {
         $this->reviews = $reviews;
+    }
+
+    /**
+     * Add review
+     *
+     * @param Review $review
+     *
+     * @return Page
+     */
+    public function addReview($review)
+    {
+        $this->reviews->add($review);
+
+        return $this;
     }
 
 }

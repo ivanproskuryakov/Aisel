@@ -61,20 +61,18 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
                     $product->setHidden((int)$table->column[17]);
                     $product->setCommentStatus((int)$table->column[18]);
                     $product->setMetaUrl($table->column[19]);
-
                     $nodes = explode(",", $table->column[20]);
+                    $review = explode(",", $table->column[21]);
 
                     foreach ($nodes as $c) {
                         $node = $this->getReference('product_node_' . $c);
                         $product->addNode($node);
                     }
 
-//                    $review = explode(",", $table->column[21]);
-//
-//                    foreach ($review as $r) {
-//                        $review = $this->getReference('prowduct_review_' . $r);
-//                        $product->addReview($review);
-//                    }
+                    foreach ($review as $r) {
+                        $review = $this->getReference('product_review_' . $r);
+                        $product->addReview($review);
+                    }
 
                     $manager->persist($product);
                     $manager->flush();
