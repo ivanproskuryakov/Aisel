@@ -32,6 +32,10 @@ use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 class Media
 {
 
+    const MEDIA_IMAGE = 'image';
+    const MEDIA_VIDEO = 'video';
+    const MEDIA_AUDIO = 'audio';
+
     use IdTrait;
     use ContentTrait;
     use UpdateCreateTrait;

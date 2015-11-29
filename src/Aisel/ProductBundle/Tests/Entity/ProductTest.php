@@ -70,8 +70,9 @@ class ProductTest extends AbstractWebTestCase
 
     public function testDuplicateImages()
     {
-        $this->markTestSkipped('...');
+        $this->setExpectedException(UniqueConstraintViolationException::class);
         $image = new Media();
+        $image->setType(Media::MEDIA_IMAGE);
         $image->setFilename($this->faker->numberBetween(0, 10000));
         $image->setMainImage(false);
 
@@ -86,20 +87,13 @@ class ProductTest extends AbstractWebTestCase
         $product->setContentShort($this->faker->sentence(10));
         $product->setContent($this->faker->sentence(10));
         $product->setStatus(true);
+        $product->setSku($this->faker->numberBetween());
         $product->setCommentStatus(true);
         $product->setMetaUrl('url_' . time());
         $product->addMedia($image);
         $product->addMedia($image);
 
         $this->em->persist($product);
-        $this->em->flush();
-
-        $this->assertNotNull($product->getId());
-        $this->assertEquals(count($product->getMedias()), 1);
-
-        $this->em->remove($image);
-        $this->em->flush();
-        $this->em->remove($product);
         $this->em->flush();
     }
 
