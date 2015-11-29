@@ -14,25 +14,6 @@ doctrine:
             default:
                 auto_mapping: true
                 mappings:
-                    AiselPageBundle:
-                        type: annotation
-                    AiselAddressingBundle:
-                        type: annotation
-                    AiselFrontendUserBundle:
-                        type: annotation
-                    AiselBackendUserBundle:
-                        type: annotation
-                    AiselConfigBundle:
-                        type: annotation
-                    AiselCartBundle:
-                        type: annotation
-                    AiselProductBundle:
-                        type: annotation
-                    AiselNavigationBundle:
-                        type: annotation
-                    AiselOrderBundle:
-                        type: annotation
-
                     gedmo_tree:
                         type: annotation
                         prefix: Gedmo\Tree\Entity
@@ -51,3 +32,4 @@ stof_doctrine_extensions:
         default:
             tree: true
             timestampable: true
+            blameable: true
