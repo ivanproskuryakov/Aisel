@@ -62,11 +62,17 @@ class ReviewWebTestCase extends AbstractWebTestCase
      */
     public function newReview(Node $node = null)
     {
+        $user = $this
+            ->em
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->findOneBy(['username' => 'frontenduser']);
+
         $review = new Review();
         $review->setLocale('en');
         $review->setName($this->faker->sentence(1));
         $review->setContent($this->faker->sentence(10));
         $review->setStatus(true);
+        $review->setFrontenduser($user);
         if ($node) {
             $review->addNode($node);
         }

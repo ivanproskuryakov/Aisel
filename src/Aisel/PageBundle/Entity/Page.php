@@ -62,6 +62,7 @@ class Page implements UrlInterface
      * )
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Node>")
      * @JMS\Expose
+     * @JMS\MaxDepth(2)
      */
     private $nodes;
 
@@ -73,8 +74,9 @@ class Page implements UrlInterface
      *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="review_id", referencedColumnName="id")}
      * )
-     * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
+     * @JMS\Expose
+     * @JMS\MaxDepth(4)
      */
     private $reviews;
 

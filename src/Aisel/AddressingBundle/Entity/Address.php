@@ -90,7 +90,7 @@ class Address
      * @var FrontendUser
      * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="addresses")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $frontenduser;

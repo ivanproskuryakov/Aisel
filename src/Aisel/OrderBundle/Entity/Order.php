@@ -124,7 +124,7 @@ class Order
      * @var FrontendUser
      * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="order")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
      * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
      * @JMS\MaxDepth(1)

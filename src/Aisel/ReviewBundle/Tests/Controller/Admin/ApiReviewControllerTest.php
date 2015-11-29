@@ -35,11 +35,15 @@ class ApiReviewControllerTest extends ReviewWebTestCase
     public function testPostReviewAction()
     {
         $reviewNode = $this->newReviewNode();
+        $user = $this
+            ->em
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->findOneBy(['username' => 'frontenduser']);
 
         $data = [
             'locale' => 'en',
-            'name' => 'AAA',
-            'content' => 'test',
+            'name' => $this->faker->sentence(),
+            'content' => $this->faker->sentence(),
             'status' => true,
             'meta_url' => 'metaUrl_' . time(),
             'meta_title' => 'metaTitle_' . time(),
@@ -48,7 +52,8 @@ class ApiReviewControllerTest extends ReviewWebTestCase
                 [
                     'id' => $reviewNode->getId()
                 ]
-            ]
+            ],
+            'frontenduser' => [ 'id' => $user->getId() ],
         ];
 
         $this->client->request(

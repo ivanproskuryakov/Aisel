@@ -127,7 +127,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var Collection
      * @ORM\OneToMany(targetEntity="Aisel\CartBundle\Entity\Cart", mappedBy="frontenduser")
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
+     * @JMS\MaxDepth(6)
      * @JMS\Type("ArrayCollection<Aisel\CartBundle\Entity\Cart>")
      */
     private $cart;

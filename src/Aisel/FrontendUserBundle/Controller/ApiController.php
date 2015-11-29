@@ -14,7 +14,7 @@ namespace Aisel\FrontendUserBundle\Controller;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 use Symfony\Component\HttpFoundation\Request;
 use Aisel\FrontendUserBundle\Manager\UserManager;
 
@@ -23,7 +23,7 @@ use Aisel\FrontendUserBundle\Manager\UserManager;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiController extends Controller
+class ApiController extends BaseApiController
 {
 
     /**
@@ -76,7 +76,7 @@ class ApiController extends Controller
             $this->loginUser($user);
 
             return array(
-                'user' => $user,
+                'user' => $this->filterMaxDepth($user),
                 'status' => true,
                 'message' => 'Successfully logged in'
             );
@@ -173,7 +173,7 @@ class ApiController extends Controller
         if ($this->isAuthenticated()) {
             $user = $this->get('security.context')->getToken()->getUser();
 
-            return $user;
+            return $this->filterMaxDepth($user);
         }
 
         return false;

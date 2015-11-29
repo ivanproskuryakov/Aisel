@@ -40,7 +40,7 @@ class Cart
      * @var FrontendUser
      * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="cart")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
      * @JMS\Exclude
      * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")

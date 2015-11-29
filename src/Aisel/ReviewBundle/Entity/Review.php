@@ -61,10 +61,13 @@ class Review
 
     /**
      * @var FrontendUser
+     * @Assert\NotNull()
      * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="reviews")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
+     * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
+     * @JMS\Expose
      */
     private $frontenduser;
 
