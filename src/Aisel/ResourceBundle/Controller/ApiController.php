@@ -245,7 +245,7 @@ class ApiController extends Controller
 
         return array(
             'total' => $total,
-            'collection' => $collection
+            'collection' => $this->filterMaxDepth($collection)
         );
     }
 

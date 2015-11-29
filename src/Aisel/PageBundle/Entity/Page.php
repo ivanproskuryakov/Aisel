@@ -76,7 +76,7 @@ class Page implements UrlInterface
      * )
      * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
      * @JMS\Expose
-     * @JMS\MaxDepth(4)
+     * @JMS\MaxDepth(2)
      */
     private $reviews;
 

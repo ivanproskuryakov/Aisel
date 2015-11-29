@@ -65,8 +65,9 @@ before_script:
 
     # Copy skeleton parameters file & Load Fixtures
     - cp app/config/parameters.yml.travis app/config/parameters.yml
-    - php app/console doctrine:mongodb:schema:create --env=test
-    - php app/console doctrine:mongodb:fixtures:load -n --env=test
+    - php app/console doctrine:database:create --env=test
+    - php app/console doctrine:schema:create --env=test
+    - php app/console doctrine:fixtures:load -n --env=test
     - php app/console assets:install web --symlink
     - php app/console cache:warmup --env=test
     - chmod -R 777 app/cache app/logs

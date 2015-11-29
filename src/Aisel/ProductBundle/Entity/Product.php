@@ -179,6 +179,7 @@ class Product implements UrlInterface
      *     inverseJoinColumns={@ORM\JoinColumn(name="media_id", referencedColumnName="id")}
      * )
      * @JMS\Expose
+     * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Entity\Media>")
      */
     private $medias;
@@ -192,6 +193,7 @@ class Product implements UrlInterface
      *     inverseJoinColumns={@ORM\JoinColumn(name="node_id", referencedColumnName="id")}
      * )
      * @JMS\Expose
+     * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Node>")
      */
     private $nodes;
@@ -205,6 +207,7 @@ class Product implements UrlInterface
      *     inverseJoinColumns={@ORM\JoinColumn(name="review_id", referencedColumnName="id")}
      * )
      * @JMS\Expose
+     * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
      */
     private $reviews;
