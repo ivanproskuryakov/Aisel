@@ -17,22 +17,49 @@
     <database name="aisel">
         <!-- English Reviews -->
         <table name="aisel_review">
-            <column name="id">1921</column>
+            <column name="id">19210</column>
             <column name="locale">en</column>
-            <column name="title">Page Review A</column>
+            <column name="title">Page Review A1</column>
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
+            <column name="page">1921</column>
         </table>
         <table name="aisel_review">
-            <column name="id">1922</column>
+            <column name="id">19211</column>
+            <column name="locale">en</column>
+            <column name="title">Page Review A2</column>
+            <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
+            <column name="status">1</column>
+            <column name="user">149</column>
+            <column name="page">1921</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">19212</column>
+            <column name="locale">en</column>
+            <column name="title">Page Review A3</column>
+            <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
+            <column name="status">1</column>
+            <column name="user">149</column>
+            <column name="page">1921</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">19221</column>
             <column name="locale">en</column>
             <column name="title">Page Review B</column>
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
+            <column name="page">1922</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">19222</column>
+            <column name="locale">en</column>
+            <column name="title">Page Review B</column>
+            <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
+            <column name="status">1</column>
+            <column name="user">149</column>
+            <column name="page">1922</column>
         </table>
         <table name="aisel_review">
             <column name="id">1923</column>
@@ -41,7 +68,7 @@
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
+            <column name="page">1923</column>
         </table>
         <table name="aisel_review">
             <column name="id">1924</column>
@@ -50,7 +77,7 @@
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
+            <column name="page">1924</column>
         </table>
         <table name="aisel_review">
             <column name="id">1925</column>
@@ -59,7 +86,7 @@
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
+            <column name="page">1925</column>
         </table>
 
         <table name="aisel_review">
@@ -69,7 +96,7 @@
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
+            <column name="page">1926</column>
         </table>
         <table name="aisel_review">
             <column name="id">1927</column>
@@ -78,7 +105,7 @@
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
+            <column name="page">1927</column>
         </table>
         <table name="aisel_review">
             <column name="id">1928</column>
@@ -87,7 +114,7 @@
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270</column>
+            <column name="page">1928</column>
         </table>
         <table name="aisel_review">
             <column name="id">1929</column>
@@ -96,7 +123,7 @@
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
+            <column name="page">1929</column>
         </table>
         <table name="aisel_review">
             <column name="id">1930</column>
@@ -105,7 +132,7 @@
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
+            <column name="page">1930</column>
         </table>
 
         <table name="aisel_review">
@@ -115,7 +142,7 @@
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
+            <column name="page">1931</column>
         </table>
         <table name="aisel_review">
             <column name="id">1932</column>
@@ -124,7 +151,7 @@
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
+            <column name="page">1932</column>
         </table>
         <table name="aisel_review">
             <column name="id">1933</column>
@@ -133,7 +160,7 @@
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
             <column name="status">1</column>
             <column name="user">149</column>
-            <column name="categories">1270,1271,1272,1273,1274,1278</column>
+            <column name="page">1933</column>
         </table>
     </database>
 </pma_xml_export>

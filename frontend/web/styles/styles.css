@@ -27,22 +27,24 @@
 
 .loading-interceptor {
     position: fixed;
-    left: 50%;
-    width: 150px;
-    margin-left: -75px;
-    text-align: center;
+    background-color: #fff;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 999;
+}
 
-    top: 3px;
-    z-index: 9999;
-    border: 1px solid rgb(240, 195, 109);
-    background-color: rgb(249, 237, 190);
-    font-size: 12px;
-    font-weight: bold;
-    padding: 2px 8px 2px 8px;
-    -webkit-transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
-    -moz-transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
-    -o-transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
-    transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
+.loading-interceptor .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 125px;
+    height: 125px;
+    margin: -62.5px 0 0 -62.5px;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
 }
 
 body #loading-bar .bar {

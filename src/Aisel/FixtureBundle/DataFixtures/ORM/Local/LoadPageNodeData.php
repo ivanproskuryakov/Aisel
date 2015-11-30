@@ -69,6 +69,6 @@ class LoadPageNodeData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 230;
+        return 200;
     }
 }
