@@ -152,12 +152,21 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Aisel\ReviewBundle\Entity\Review", mappedBy="frontenduser", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Review", mappedBy="frontenduser", cascade={"remove"})
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
-     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
+     * @JMS\MaxDepth(3)
+     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Review>")
      */
-    private $reviews;
+    private $reviewsProduct;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Aisel\PageBundle\Entity\Review", mappedBy="frontenduser", cascade={"remove"})
+     * @JMS\Expose
+     * @JMS\MaxDepth(3)
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Review>")
+     */
+    private $reviewsPage;
 
     /**
      * @var string
@@ -634,22 +643,6 @@ class FrontendUser implements AdvancedUserInterface
     }
 
     /**
-     * @return Collection
-     */
-    public function getReviews()
-    {
-        return $this->reviews;
-    }
-
-    /**
-     * @param Collection $reviews
-     */
-    public function setReviews($reviews)
-    {
-        $this->reviews = $reviews;
-    }
-
-    /**
      * Add orders
      *
      * @param  Order $orders
@@ -714,4 +707,38 @@ class FrontendUser implements AdvancedUserInterface
     {
         return $this->cart;
     }
+
+    /**
+     * @return Collection
+     */
+    public function getReviewsProduct()
+    {
+        return $this->reviewsProduct;
+    }
+
+    /**
+     * @param Collection $reviewsProduct
+     */
+    public function setReviewsProduct($reviewsProduct)
+    {
+        $this->reviewsProduct = $reviewsProduct;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getReviewsPage()
+    {
+        return $this->reviewsPage;
+    }
+
+    /**
+     * @param Collection $reviewsPage
+     */
+    public function setReviewsPage($reviewsPage)
+    {
+        $this->reviewsPage = $reviewsPage;
+    }
+
+
 }

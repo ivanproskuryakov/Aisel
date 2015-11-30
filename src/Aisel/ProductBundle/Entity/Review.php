@@ -31,19 +31,6 @@ class Review extends BaseReview
 {
 
     /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Aisel\ReviewBundle\Entity\Node")
-     * @ORM\JoinTable(
-     *     name="aisel_product_review_node",
-     *     joinColumns={@ORM\JoinColumn(name="review_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="node_id", referencedColumnName="id")}
-     * )
-     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Node>")
-     * @JMS\Expose
-     */
-    protected $nodes;
-
-    /**
      * @var Product
      * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="products")
      * @ORM\JoinColumns({

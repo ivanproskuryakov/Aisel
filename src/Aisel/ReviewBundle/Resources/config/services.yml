@@ -4,13 +4,3 @@
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
-
-parameters:
-    aisel_review_node_mode_manager.class: Aisel\ReviewBundle\Manager\NodeManager
-
-services:
-    aisel.reviewnode.node.manager:
-        class: %aisel_review_node_mode_manager.class%
-        arguments:
-          - @doctrine.orm.entity_manager
-          - "%locales%"

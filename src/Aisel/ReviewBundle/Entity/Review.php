@@ -30,6 +30,7 @@ use Aisel\FrontendUserBundle\Entity\FrontendUser;
  * Review
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
+ *
  * @ORM\HasLifecycleCallbacks()
  * @ORM\MappedSuperclass
  * @JMS\ExclusionPolicy("all")

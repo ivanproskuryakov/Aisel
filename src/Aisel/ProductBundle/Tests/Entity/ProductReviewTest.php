@@ -14,9 +14,8 @@ namespace Aisel\ProductBundle\Tests\Entity;
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
 use Aisel\ProductBundle\Entity\Product;
+use Aisel\ProductBundle\Entity\Review;
 use Aisel\MediaBundle\Entity\Media;
-use Aisel\ReviewBundle\Entity\Review;
-use Aisel\ReviewBundle\Entity\Node as ReviewNode;
 
 /**
  * ProductTest
@@ -39,13 +38,6 @@ class ProductReviewTest extends AbstractWebTestCase
     public function testProductReview()
     {
         $this->markTestSkipped('skipping ...');
-        $node = new ReviewNode();
-        $node->setStatus(true);
-        $node->setName($this->faker->sentence(1));
-        $node->setContent($this->faker->sentence(10));
-        $node->setLocale('en');
-        $this->em->persist($node);
-        $this->em->flush();
 
         $review = new Review();
         $review->setName($this->faker->sentence(1));

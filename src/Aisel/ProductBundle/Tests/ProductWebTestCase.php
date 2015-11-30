@@ -11,6 +11,7 @@
 
 namespace Aisel\ProductBundle\Tests;
 
+use Aisel\ProductBundle\Entity\Review;
 use Aisel\ProductBundle\Entity\Node;
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
@@ -51,6 +52,31 @@ class ProductWebTestCase extends AbstractWebTestCase
         $this->em->flush();
 
         return $node;
+    }
+
+    /**
+     * newReview
+     *
+     * @return Review $review
+     */
+    public function newReview()
+    {
+        $user = $this
+            ->em
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->findOneBy(['username' => 'frontenduser']);
+
+        $review = new Review();
+        $review->setLocale('en');
+        $review->setName($this->faker->sentence(1));
+        $review->setContent($this->faker->sentence(10));
+        $review->setStatus(true);
+        $review->setFrontenduser($user);
+
+        $this->em->persist($review);
+        $this->em->flush();
+
+        return $review;
     }
 
 

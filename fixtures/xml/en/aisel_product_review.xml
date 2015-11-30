@@ -24,7 +24,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">109</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
         </table>
         <table name="aisel_review">
             <column name="id">1922</column>
@@ -34,7 +33,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">110</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
         </table>
         <table name="aisel_review">
             <column name="id">1923</column>
@@ -44,7 +42,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">120</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
         </table>
         <table name="aisel_review">
             <column name="id">1924</column>
@@ -54,7 +51,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">130</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
         </table>
         <table name="aisel_review">
             <column name="id">1925</column>
@@ -64,7 +60,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">140</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
         </table>
 
         <table name="aisel_review">
@@ -75,7 +70,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">150</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
         </table>
         <table name="aisel_review">
             <column name="id">1927</column>
@@ -85,7 +79,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">160</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
         </table>
         <table name="aisel_review">
             <column name="id">1928</column>
@@ -105,7 +98,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">180</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
         </table>
         <table name="aisel_review">
             <column name="id">1930</column>
@@ -115,7 +107,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">190</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
         </table>
 
         <table name="aisel_review">
@@ -126,7 +117,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">200</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
         </table>
         <table name="aisel_review">
             <column name="id">1932</column>
@@ -136,7 +126,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">210</column>
-            <column name="categories">1270,1271,1272,1273,1274,1275</column>
         </table>
         <table name="aisel_review">
             <column name="id">1933</column>
@@ -146,7 +135,6 @@
             <column name="status">1</column>
             <column name="user">149</column>
             <column name="product">210</column>
-            <column name="categories">1270,1271,1272,1273,1274,1278</column>
         </table>
     </database>
 </pma_xml_export>
