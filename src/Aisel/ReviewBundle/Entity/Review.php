@@ -30,13 +30,11 @@ use Aisel\FrontendUserBundle\Entity\FrontendUser;
  * Review
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
- *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="aisel_review")
- * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
+ * @ORM\MappedSuperclass
  * @JMS\ExclusionPolicy("all")
  */
-class Review
+abstract class Review
 {
 
     use IdTrait;
@@ -47,23 +45,10 @@ class Review
     use UpdateCreateTrait;
 
     /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Aisel\ReviewBundle\Entity\Node")
-     * @ORM\JoinTable(
-     *     name="aisel_review_review_node",
-     *     joinColumns={@ORM\JoinColumn(name="review_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="node_id", referencedColumnName="id")}
-     * )
-     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Node>")
-     * @JMS\Expose
-     */
-    private $nodes;
-
-    /**
      * @var FrontendUser
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="reviews")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * @Gedmo\Blameable
      * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
      * @JMS\Expose
      */

@@ -65,6 +65,6 @@ class LoadProductReviewNodeData extends XMLFixture implements OrderedFixtureInte
      */
     public function getOrder()
     {
-        return 310;
+        return 350;
     }
 }

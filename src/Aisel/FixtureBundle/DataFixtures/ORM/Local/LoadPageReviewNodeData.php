@@ -38,24 +38,24 @@ class LoadPageReviewNodeData extends XMLFixture implements OrderedFixtureInterfa
                 $contents = file_get_contents($file);
                 $XML = simplexml_load_string($contents);
 
-                foreach ($XML->database->table as $table) {
-                    $node = new Node();
-                    $node->setLocale($table->column[1]);
-                    $node->setName($table->column[3]);
-                    $node->setContent($table->column[8]);
-                    $node->setStatus((int)$table->column[9]);
-
-                    $parent = null;
-
-                    if ($table->column[2] != 'NULL') {
-                        $parent = $this->getReference('page_review_node_' . $table->column[2]);
-                        $node->setParent($parent);
-                    }
-
-                    $manager->persist($node);
-                    $manager->flush();
-                    $this->addReference('page_review_node_' . $table->column[0], $node);
-                }
+//                foreach ($XML->database->table as $table) {
+//                    $node = new Node();
+//                    $node->setLocale($table->column[1]);
+//                    $node->setName($table->column[3]);
+//                    $node->setContent($table->column[8]);
+//                    $node->setStatus((int)$table->column[9]);
+//
+//                    $parent = null;
+//
+//                    if ($table->column[2] != 'NULL') {
+//                        $parent = $this->getReference('page_review_node_' . $table->column[2]);
+//                        $node->setParent($parent);
+//                    }
+//
+//                    $manager->persist($node);
+//                    $manager->flush();
+//                    $this->addReference('page_review_node_' . $table->column[0], $node);
+//                }
             }
         }
     }

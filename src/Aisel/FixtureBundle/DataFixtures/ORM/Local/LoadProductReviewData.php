@@ -14,7 +14,7 @@ namespace Aisel\ResourceBundle\DataFixtures\ORM\Local;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\ReviewBundle\Entity\Review;
+use Aisel\ProductBundle\Entity\Review;
 
 /**
  * Page fixtures
@@ -40,14 +40,16 @@ class LoadProductReviewData extends XMLFixture implements OrderedFixtureInterfac
 
                 foreach ($XML->database->table as $table) {
                     $frontendUser = $this->getReference('frontenduser_' . $table->column[5]);
+                    $product = $this->getReference('product_' . $table->column[6]);
 
                     $review = new Review();
                     $review->setLocale($table->column[1]);
                     $review->setName($table->column[2]);
                     $review->setContent($table->column[3]);
                     $review->setStatus($table->column[4]);
+                    $review->setProduct($product);
                     $review->setFrontenduser($frontendUser);
-                    $nodes = explode(",", $table->column[6]);
+                    $nodes = explode(",", $table->column[7]);
 
                     foreach ($nodes as $c) {
                         $node = $this->getReference('product_review_node_' . $c);
@@ -68,6 +70,6 @@ class LoadProductReviewData extends XMLFixture implements OrderedFixtureInterfac
      */
     public function getOrder()
     {
-        return 320;
+        return 360;
     }
 }

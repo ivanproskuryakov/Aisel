@@ -67,19 +67,13 @@ class Page implements UrlInterface
     private $nodes;
 
     /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Aisel\ReviewBundle\Entity\Review", cascade={"all"})
-     * @ORM\JoinTable(
-     *     name="aisel_page_page_review",
-     *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="review_id", referencedColumnName="id")}
-     * )
-     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
+     * @var ArrayCollection<Aisel\PageBundle\Entity\Review>
+     * @ORM\OneToMany(targetEntity="Aisel\PageBundle\Entity\Review", mappedBy="page", cascade={"all"})
      * @JMS\Expose
      * @JMS\MaxDepth(2)
+     * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Review>")
      */
     private $reviews;
-
 
     /**
      * Constructor

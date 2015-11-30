@@ -32,9 +32,9 @@ use Aisel\ResourceBundle\Domain\MetaTrait;
  */
 class Node extends BaseNode implements UrlInterface
 {
+    
     use ContentTrait;
     use MetaTrait;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Node", inversedBy="children")

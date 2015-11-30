@@ -19,7 +19,7 @@ use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\ProductBundle\Entity\Node;
-use Aisel\ReviewBundle\Entity\Review;
+use Aisel\ProductBundle\Entity\Review;
 use Aisel\MediaBundle\Entity\Media;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
@@ -199,16 +199,11 @@ class Product implements UrlInterface
     private $nodes;
 
     /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Aisel\ReviewBundle\Entity\Review", cascade={"all"})
-     * @ORM\JoinTable(
-     *     name="aisel_product_product_review",
-     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="review_id", referencedColumnName="id")}
-     * )
+     * @var ArrayCollection<Aisel\ProductBundle\Entity\Review>
+     * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Review", mappedBy="product", cascade={"all"})
      * @JMS\Expose
      * @JMS\MaxDepth(2)
-     * @JMS\Type("ArrayCollection<Aisel\ReviewBundle\Entity\Review>")
+     * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Review>")
      */
     private $reviews;
 

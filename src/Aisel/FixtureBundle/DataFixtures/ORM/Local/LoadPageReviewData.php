@@ -38,27 +38,27 @@ class LoadPageReviewData extends XMLFixture implements OrderedFixtureInterface
                 $contents = file_get_contents($file);
                 $XML = simplexml_load_string($contents);
 
-                foreach ($XML->database->table as $table) {
-                    $frontendUser = $this->getReference('frontenduser_' . $table->column[5]);
-
-                    $review = new Review();
-                    $review->setLocale($table->column[1]);
-                    $review->setName($table->column[2]);
-                    $review->setContent($table->column[3]);
-                    $review->setStatus($table->column[4]);
-                    $review->setFrontenduser($frontendUser);
-                    $nodes = explode(",", $table->column[6]);
-
-                    foreach ($nodes as $c) {
-                        $node = $this->getReference('page_review_node_' . $c);
-                        $review->addNode($node);
-                    }
-
-                    $manager->persist($review);
-                    $manager->flush();
-
-                    $this->addReference('page_review_' . $table->column[0], $review);
-                }
+//                foreach ($XML->database->table as $table) {
+//                    $frontendUser = $this->getReference('frontenduser_' . $table->column[5]);
+//
+//                    $review = new Review();
+//                    $review->setLocale($table->column[1]);
+//                    $review->setName($table->column[2]);
+//                    $review->setContent($table->column[3]);
+//                    $review->setStatus($table->column[4]);
+//                    $review->setFrontenduser($frontendUser);
+//                    $nodes = explode(",", $table->column[6]);
+//
+//                    foreach ($nodes as $c) {
+//                        $node = $this->getReference('page_review_node_' . $c);
+//                        $review->addNode($node);
+//                    }
+//
+//                    $manager->persist($review);
+//                    $manager->flush();
+//
+//                    $this->addReference('page_review_' . $table->column[0], $review);
+//                }
             }
         }
     }

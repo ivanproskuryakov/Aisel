@@ -38,7 +38,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-1</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1921</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -68,7 +67,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-2</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1922</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -98,7 +96,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-3</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1923</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -128,7 +125,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-4</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1924</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -158,7 +154,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-5</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1925</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -188,7 +183,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-6</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1926</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -218,7 +212,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-7</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1927</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -248,7 +241,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-8</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1928</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -278,7 +270,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-9</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1929</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -308,7 +299,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-10</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1930</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -338,7 +328,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-11</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1931</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
@@ -368,7 +357,6 @@
             <column name="comment_status">0</column>
             <column name="meta_url">en-nike-baseball-hat-12</column>
             <column name="categories">1091,1092,1093,1094,1095,1096</column>
-            <column name="reviews">1932</column>
             <column name="meta_title">NULL</column>
             <column name="meta_description">NULL</column>
             <column name="meta_keywords">NULL</column>
