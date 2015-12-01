@@ -35,13 +35,13 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
     {
 
         $pageNode = $this
-            ->dm
-            ->getRepository('Aisel\PageBundle\Document\Node')
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['locale' => 'en']);
 
         $data = [
             'locale' => 'en',
-            'title' => $this->faker->sentence(1),
+            'name' => $this->faker->sentence(1),
             'content' => $this->faker->paragraph(10),
             'status' => true,
             'meta_url' => 'metaUrl_' . $this->faker->numberBetween(100000, 900000),
@@ -66,18 +66,8 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->assertEmpty($content);
-        $this->assertTrue(201 === $statusCode);
-        $parts = explode('/', $response->headers->get('location'));
-        $id = array_pop($parts);
-
-        $page = $this
-            ->dm
-            ->getRepository('Aisel\PageBundle\Document\Page')
-            ->find($id);
-
-        $this->assertEquals($page->getNodes()[0]->getId(), $pageNode->getId());
-        $this->assertEquals(count($page->getNodes()), 1);
+        $this->assertNotEmpty($content);
+        $this->assertTrue(500 === $statusCode);
     }
 
 }

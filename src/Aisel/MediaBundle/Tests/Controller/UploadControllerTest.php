@@ -13,6 +13,7 @@ namespace Aisel\MediaBundle\Tests\Controller;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Aisel\MediaBundle\Entity\Media;
 
 /**
  * ApiImageControllerTest
@@ -112,8 +113,8 @@ class UploadControllerTest extends AbstractBackendWebTestCase
         $this->assertNotNull($result);
 
         $image = $this
-            ->dm
-            ->getRepository('Aisel\MediaBundle\Document\Media')
+            ->em
+            ->getRepository(Media::class)
             ->findOneBy(['id' => $result['id']]);
 
         $filePath = realpath($this->filenames['basePath'] . $file);
@@ -127,7 +128,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
         $uploadedBinary = file_get_contents($uploadedFile);
         $uploadedBinaryLength = strlen($uploadedBinary);
 
-        $this->assertEquals($image->getType(), 'image');
+        $this->assertEquals($image->getType(), Media::MEDIA_IMAGE);
         $this->assertEquals($uploadedBinaryLength, $binaryLength);
 
         return $result;

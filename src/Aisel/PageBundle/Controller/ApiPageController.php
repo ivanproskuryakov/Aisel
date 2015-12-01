@@ -24,6 +24,6 @@ class ApiPageController extends BaseApiController
     /**
      * @var string
      */
-    protected $model =  "Aisel\PageBundle\Document\Page";
+    protected $model =  "Aisel\PageBundle\Entity\Page";
 
 }

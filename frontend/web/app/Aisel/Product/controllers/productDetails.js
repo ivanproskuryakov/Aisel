@@ -26,7 +26,7 @@ define(['app'], function(app) {
             productService.getItemByURL(productURL).success(
                 function(data, status) {
                     $scope.product = data;
-                    $rootScope.productTitle = $scope.title;
+                    $rootScope.productTitle = $scope.name;
                     $scope.isDisabled = false;
 
                     window.disqus_shortname = $rootScope.disqusShortname;

@@ -22,7 +22,7 @@ use LogicException;
 class NodeManager extends ApiNodeManager
 {
 
-    protected $model = 'Aisel\PageBundle\Document\Node';
+    protected $model = 'Aisel\PageBundle\Entity\Node';
 
     /**
      * {@inheritDoc}
@@ -31,7 +31,7 @@ class NodeManager extends ApiNodeManager
     {
 
         if ($nodeId = $params['parentId']) {
-            $parent = $this->dm->getRepository($this->model)->find($nodeId);
+            $parent = $this->em->getRepository($this->model)->find($nodeId);
 
             if (!$parent) {
                 throw new LogicException('Nothing found');
@@ -40,13 +40,13 @@ class NodeManager extends ApiNodeManager
 
         $node = new $this->model();
         $node->setlocale($params['locale']);
-        $node->setTitle($params['name']);
+        $node->setName($params['name']);
         $node->setParent($parent);
         $node->setStatus(false);
-        $node->setDescription('');
+        $node->setContent('');
         $node->setMetaUrl($params['name'] . '_' . time());
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -58,13 +58,13 @@ class NodeManager extends ApiNodeManager
     {
         $node = new $this->model();
         $node->setlocale($params['locale']);
-        $node->setTitle($params['name']);
+        $node->setName($params['name']);
         $node->setStatus(false);
-        $node->setDescription('');
+        $node->setContent('');
         $node->setMetaUrl($params['name']);
 
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }

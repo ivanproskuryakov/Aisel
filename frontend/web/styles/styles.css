@@ -183,6 +183,7 @@ body .panel-primary {
 ************/
 .categoryList .heading {
     font-weight: bold;
+    font-size: 16px;
 }
 
 .categoryList .content {

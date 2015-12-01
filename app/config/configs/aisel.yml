@@ -69,5 +69,3 @@ aisel_order:
     payment_methods:
         offline:
             title: "Offline Payment"
-#        paypal_express_checkout_nvp:
-#            title: "Paypal Express Checkout"

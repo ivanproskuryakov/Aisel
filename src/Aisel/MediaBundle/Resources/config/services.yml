@@ -12,6 +12,6 @@ services:
     aisel.media.manager:
         class: %aisel_media_manager.class%
         arguments:
-          - @doctrine.odm.mongodb.document_manager
+          - @doctrine.orm.entity_manager
           - %application.media.upload_path%
           - %application.media.path%

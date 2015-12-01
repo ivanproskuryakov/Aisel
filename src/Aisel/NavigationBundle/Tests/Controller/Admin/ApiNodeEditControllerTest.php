@@ -12,7 +12,7 @@
 namespace Aisel\NavigationBundle\Tests\Controller\Admin;
 
 use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
-use Aisel\NavigationBundle\Document\Menu;
+use Aisel\NavigationBundle\Entity\Menu;
 
 /**
  * ApiNodeEditControllerTest
@@ -37,10 +37,10 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $node = new Menu();
         $node->setLocale('en');
         $node->setMetaUrl('/');
-        $node->setTitle($name);
+        $node->setName($name);
         $node->setStatus($name);
-        $this->dm->persist($node);
-        $this->dm->flush();
+        $this->em->persist($node);
+        $this->em->flush();
 
         return $node;
     }
@@ -70,11 +70,11 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['parent']['id'], $parent->getId());
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $node = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['id' => $result['id']]);
 
         $this->assertEquals($parent->getId(), $node->getParent()->getId());
@@ -106,16 +106,16 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['parent']['id'], $parent->getId());
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $parent = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['id' => $parent->getId()]);
 
         $node = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['id' => $result['id']]);
 
         $this->assertEquals($node->getParent()->getId(), $parent->getId());
@@ -143,7 +143,7 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals($result['title'], 'BBB');
+        $this->assertEquals($result['name'], 'BBB');
     }
 
     public function testNavigationNodeDeleteAction()
@@ -165,9 +165,9 @@ class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
 
         $node = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
-            ->findOneBy(['title' => 'ZZZZ']);
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
+            ->findOneBy(['name' => 'ZZZZ']);
 
         $this->assertTrue(200 === $statusCode);
         $this->assertNull($node);

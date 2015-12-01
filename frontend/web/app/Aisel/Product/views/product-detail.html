@@ -6,8 +6,7 @@
             class="product-image"
             img-style="img-rounded"
             slider="true"
-            images="product.medias"
-    >
+            images="product.medias">
     </aisel-product-images>
 </div>
 <div class="col-md-8">
@@ -32,7 +31,7 @@
         <div class="col-md-12">
             <br/>
 
-            <p ng-bind-html="product.description"></p>
+            <p ng-bind-html="product.content"></p>
         </div>
     </div>
 </div>
@@ -48,7 +47,7 @@
             <li ng-repeat="category in product.nodes">
                         <span class="label label-primary">
                             <a ui-sref="productCategoryView({locale: locale, categoryId:category.meta_url})">
-                                {{category.title }}</a>
+                                {{category.name }}</a>
                         </span>&nbsp;
             </li>
         </ul>

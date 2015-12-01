@@ -12,7 +12,7 @@
 namespace Aisel\PageBundle\Tests\EventListener;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\PageBundle\Document\Node;
+use Aisel\PageBundle\Entity\Node;
 
 /**
  * PageNodeUrlPersistenceListenerTest
@@ -42,34 +42,34 @@ class PageNodeUrlPersistenceListenerTest extends AbstractWebTestCase
         // Create Page Node 1
         $node1 = new Node();
         $node1->setLocale('en');
-        $node1->setTitle('...');
-        $node1->setDescription('...');
+        $node1->setName('...');
+        $node1->setContent('...');
         $node1->setStatus(true);
         $node1->setMetaUrl($urlText);
 
-        $this->dm->persist($node1);
-        $this->dm->flush();
-        $this->dm->clear();
+        $this->em->persist($node1);
+        $this->em->flush();
+        $this->em->clear();
 
         // Create Page Node 2
         $node2 = new Node();
         $node2->setLocale('en');
-        $node2->setTitle('...');
-        $node2->setDescription('...');
+        $node2->setName('...');
+        $node2->setContent('...');
         $node2->setStatus(true);
         $node2->setMetaUrl($urlText);
 
-        $this->dm->persist($node2);
-        $this->dm->flush();
+        $this->em->persist($node2);
+        $this->em->flush();
 
         // Delete Page Node 1
-        $node1 = $this->dm
-            ->getRepository('Aisel\PageBundle\Document\Node')
+        $node1 = $this->em
+            ->getRepository('Aisel\PageBundle\Entity\Node')
             ->findOneBy(['metaUrl' => $urlText]);
 
-        $this->dm->remove($node1);
-        $this->dm->flush();
-        $this->dm->clear();
+        $this->em->remove($node1);
+        $this->em->flush();
+        $this->em->clear();
     }
 
 }

@@ -12,10 +12,10 @@
 namespace Aisel\CartBundle\Manager;
 
 use LogicException;
-use Doctrine\ODM\MongoDB\DocumentManager;
-use Aisel\ProductBundle\Document\Product;
-use Aisel\FrontendUserBundle\Document\FrontendUser;
-use Aisel\CartBundle\Document\Cart;
+use Doctrine\ORM\EntityManager;
+use Aisel\ProductBundle\Entity\Product;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\CartBundle\Entity\Cart;
 
 /**
  * CartManager
@@ -26,18 +26,18 @@ class CartManager
 {
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
     /**
      * Constructor
      *
-     * @param DocumentManager $DocumentManager
+     * @param EntityManager $entityManager
      */
-    public function __construct(DocumentManager $DocumentManager)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->dm = $DocumentManager;
+        $this->dm = $entityManager;
     }
 
     /**
@@ -49,7 +49,7 @@ class CartManager
      */
     public function loadProductById($productId)
     {
-        $product = $this->dm->find('Aisel\ProductBundle\Document\Product', $productId);
+        $product = $this->dm->find('Aisel\ProductBundle\Entity\Product', $productId);
 
         if (!$product) {
             throw new LogicException('Product was not found');
@@ -69,8 +69,8 @@ class CartManager
     {
         if ($user) {
             return $this->dm
-                ->getRepository('Aisel\CartBundle\Document\Cart')
-                ->findBy(array('frontenduser.id' => $user->getId()));
+                ->getRepository('Aisel\CartBundle\Entity\Cart')
+                ->findBy(array('frontenduser' => $user->getId()));
         }
 
         return [];
@@ -96,7 +96,7 @@ class CartManager
         $product = $this->loadProductById($productId);
         $cartItem = $this
             ->dm
-            ->getRepository('Aisel\CartBundle\Document\Cart')
+            ->getRepository('Aisel\CartBundle\Entity\Cart')
             ->addProduct($user, $product, $qty);
 
         return $cartItem;
@@ -121,7 +121,7 @@ class CartManager
         $product = $this->loadProductById($productId);
         $cartItem = $this
             ->dm
-            ->getRepository('Aisel\CartBundle\Document\Cart')
+            ->getRepository('Aisel\CartBundle\Entity\Cart')
             ->updateProduct($user, $product, $qty);
 
         return $cartItem;

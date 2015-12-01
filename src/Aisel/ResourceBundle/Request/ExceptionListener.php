@@ -19,7 +19,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Exception;
 use Aisel\ResourceBundle\Exception\ValidationFailedException;
 use Symfony\Component\Validator\ConstraintViolation;
-use MongoDuplicateKeyException;
 
 /**
  * Class ExceptionListener.
@@ -85,7 +84,7 @@ class ExceptionListener
      * Set response vars and generate response with errors.
      *
      * @param mixed $errors
-     * @param array $headers
+     * @param array $headersw
      *
      * @return JsonResponse $response
      */
@@ -121,10 +120,6 @@ class ExceptionListener
 
             case $exception instanceof HttpExceptionInterface:
                 $response = $this->responseHttpException($exception);
-                break;
-
-            case $exception instanceof MongoDuplicateKeyException:
-                $response = $this->responseMongoDuplicateKeyException();
                 break;
 
             case $exception instanceof Exception:
@@ -171,21 +166,6 @@ class ExceptionListener
         }
 
         return $this->createErrorsResponse($errors);
-    }
-
-    /**
-     * Response for MongoDuplicateKeyException.
-     *
-     * @return JsonResponse
-     */
-    private function responseMongoDuplicateKeyException()
-    {
-        $message = 'Duplicate key error';
-
-        return $this->createResponse(
-            500,
-            $message
-        );
     }
 
     /**

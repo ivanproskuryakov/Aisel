@@ -32,10 +32,10 @@ class Configuration implements ConfigurationInterface
             ->children()
             ->arrayNode('payment_methods')
             ->requiresAtLeastOneElement()
-            ->useAttributeAsKey('name')
+            ->useAttributeAsKey('title')
             ->prototype('array')
             ->children()
-            ->scalarNode('title')->end()
+            ->scalarNode('name')->end()
             ->end();
 
         return $treeBuilder;

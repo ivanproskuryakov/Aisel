@@ -11,14 +11,14 @@
 
 namespace Aisel\PageBundle\Tests\Controller;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\PageBundle\Tests\PageWebTestCase;
 
 /**
  * ApiPageControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiPageControllerTest extends AbstractWebTestCase
+class ApiPageControllerTest extends PageWebTestCase
 {
 
     public function setUp()
@@ -52,8 +52,8 @@ class ApiPageControllerTest extends AbstractWebTestCase
     public function testGetPageAction()
     {
         $page = $this
-            ->dm
-            ->getRepository('Aisel\PageBundle\Document\Page')
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
             ->findOneBy(['locale' => 'en']);
 
         $this->client->request(

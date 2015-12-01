@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <ul class="pageList">
                 <li ng-repeat="item in collection.collection">
-                    <h2><a ui-sref="pageView({locale: locale, pageId:item.meta_url})" class="thumb">{{item.title}}</a></h2>
+                    <h2><a ui-sref="pageView({locale: locale, pageId:item.meta_url})" class="thumb">{{item.name}}</a></h2>
                     <p ng-bind-html="item.content"></p>
                     <p><span class="glyphicon glyphicon-calendar"></span> {{item.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
                     <hr/>

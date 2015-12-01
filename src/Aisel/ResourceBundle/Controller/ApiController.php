@@ -13,7 +13,7 @@ namespace Aisel\ResourceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use JMS\Serializer\SerializationContext;
@@ -35,11 +35,11 @@ class ApiController extends Controller
     protected $model;
 
     /**
-     * @return DocumentManager
+     * @return EntityManager
      */
-    protected function getDocumentManager()
+    protected function getEntityManager()
     {
-        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+        $dm = $this->get('doctrine.orm.entity_manager');
 
         return $dm;
     }
@@ -90,7 +90,6 @@ class ApiController extends Controller
         $configuration = new ParamConverter(array(
             'class' => $this->model
         ));
-
         $entity = $this->get('api_param_converter')->execute($request, $configuration);
 
         return $entity;
@@ -110,8 +109,8 @@ class ApiController extends Controller
             $statusCode = (null === $entity->getId()) ? 201 : 204;
         }
 
-        $this->getDocumentManager()->persist($entity);
-        $this->getDocumentManager()->flush();
+        $this->getEntityManager()->persist($entity);
+        $this->getEntityManager()->flush();
 
         $response = new Response();
         $response->setStatusCode($statusCode);
@@ -210,7 +209,7 @@ class ApiController extends Controller
     public function deleteAction(Request $request)
     {
         $document = $this->getEntityFromRequest($request);
-        $dm = $this->getDocumentManager();
+        $dm = $this->getEntityManager();
 
         $dm->remove($document);
         $dm->flush();
@@ -239,14 +238,14 @@ class ApiController extends Controller
          * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
-            ->getDocumentManager()
+            ->getEntityManager()
             ->getRepository($this->model);
         $total = $repo->getTotalFromRequest($params);
-        $collection = array_values($repo->getCollectionFromRequest($params));
+        $collection = $repo->getCollectionFromRequest($params);
 
         return array(
             'total' => $total,
-            'collection' => $collection
+            'collection' => $this->filterMaxDepth($collection)
         );
     }
 
@@ -266,9 +265,9 @@ class ApiController extends Controller
          * @var $repo \Aisel\ResourceBundle\Repository\CollectionRepository
          */
         $repo = $this
-            ->getDocumentManager()
+            ->getEntityManager()
             ->getRepository($this->model);
-        $collection = array_values($repo->getNodesAsTree($params));
+        $collection = $repo->getNodesAsTree($params);
 
         return $collection;
     }

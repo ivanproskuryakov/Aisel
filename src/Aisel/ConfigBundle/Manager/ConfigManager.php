@@ -11,7 +11,7 @@
 
 namespace Aisel\ConfigBundle\Manager;
 
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ORM\EntityManager;
 use LogicException;
 
 /**
@@ -26,10 +26,10 @@ class ConfigManager
     /**
      * @var string
      */
-    protected $model = 'Aisel\ConfigBundle\Document\Config';
+    protected $model = 'Aisel\ConfigBundle\Entity\Config';
 
     /**
-     * @var DocumentManager
+     * @var EntityManager
      */
     protected $dm;
 
@@ -41,11 +41,11 @@ class ConfigManager
     /**
      * Constructor
      *
-     * @param DocumentManager $dm
-     * @param string        $locale
-     * @param string        $locales
+     * @param EntityManager $dm
+     * @param string $locale
+     * @param string $locales
      */
-    public function __construct(DocumentManager $dm, $locale, $locales)
+    public function __construct(EntityManager $dm, $locale, $locales)
     {
         $this->dm = $dm;
         $this->locale['primary'] = $locale;
@@ -71,11 +71,10 @@ class ConfigManager
         if (!$collection) {
             throw new LogicException('Nothing found');
         }
-
         $config = array();
 
         foreach ($collection as $s) {
-            $config['settings'][$s->getLocale()][$s->getEntity()] = json_decode($s->getValue(), true);
+            $config['settings'][$s['locale']][$s['entity']] = json_decode($s['value'], true);
         }
         $config['locale'] = $this->locale;
 
@@ -112,7 +111,7 @@ class ConfigManager
             ->getRepository($this->model)
             ->getConfig($locale, $entity);
 
-        $value = (array) json_decode($config->getValue());
+        $value = (array)json_decode($config->getValue());
 
         return $value;
     }
@@ -129,7 +128,7 @@ class ConfigManager
         $decoded = array();
 
         if ($config && $config) {
-            $decoded = (array) json_decode($config->getValue());
+            $decoded = (array)json_decode($config->getValue());
         }
 
         return $decoded;

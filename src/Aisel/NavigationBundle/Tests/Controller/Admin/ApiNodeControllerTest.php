@@ -35,8 +35,8 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     {
         $data = [
             'locale' => 'en',
-            'title' => 'AAA',
-            'description' => 'test',
+            'name' => 'AAA',
+            'content' => $this->faker->sentence(),
             'status' => true,
             'meta_url' => 'metaUrl_' . time(),
             'meta_title' => 'metaTitle_' . time(),
@@ -79,9 +79,9 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testGetNavigationNodeAction()
     {
         $navigationNode = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
-            ->findOneBy(['title' => 'AAA']);
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
+            ->findOneBy(['name' => 'AAA']);
 
         $this->client->request(
             'GET',
@@ -103,9 +103,9 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testPutNavigationNodeAction()
     {
         $navigationNode = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
-            ->findOneBy(['title' => 'AAA']);
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
+            ->findOneBy(['name' => 'AAA']);
         $id = $navigationNode->getId();
         $data['locale'] = 'ru';
 
@@ -122,12 +122,12 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $navigationNode = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
-            ->findOneBy(['title' => 'AAA']);
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
+            ->findOneBy(['name' => 'AAA']);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
@@ -138,9 +138,9 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
     public function testDeleteNavigationNodeAction()
     {
         $navigationNode = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
-            ->findOneBy(['title' => 'AAA']);
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
+            ->findOneBy(['name' => 'AAA']);
         $id = $navigationNode->getId();
 
         $this->client->request(
@@ -155,11 +155,11 @@ class ApiNodeControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->dm->clear();
+        $this->em->clear();
 
         $navigationNode = $this
-            ->dm
-            ->getRepository('Aisel\NavigationBundle\Document\Menu')
+            ->em
+            ->getRepository('Aisel\NavigationBundle\Entity\Menu')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);

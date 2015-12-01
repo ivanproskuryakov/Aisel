@@ -25,7 +25,7 @@
             <column name="region">Madrid</column>
             <column name="city">Madrid</column>
             <column name="phone">+34 917 741000</column>
-            <column name="description">...</column>
+            <column name="content">...</column>
         </table>
     </database>
 </pma_xml_export>

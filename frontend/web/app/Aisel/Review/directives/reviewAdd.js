@@ -18,15 +18,16 @@ define(['app'], function (app) {
             return {
                 restrict: 'EA',
                 scope: {
-                    model: '=',
-                    resource: '='
+                    resourceName: '=',
+                    resourceId: '='
                 },
                 link: function ($scope, element, attrs) {
 
-                    var resource = new resourceService($scope.resource);
+                    var resource = new resourceService($scope.resourceName);
 
                     $scope.addReview = function (title, content) {
                         var params = {
+                            resourceId: $scope.resourceId,
                             title: title,
                             content: content
                         };

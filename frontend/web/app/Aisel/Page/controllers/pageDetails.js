@@ -19,7 +19,7 @@ define(['app'], function (app) {
 
         var handleSuccess = function (data, status) {
             $scope.page = data;
-            $rootScope.pageTitle = data.title;
+            $rootScope.pageTitle = data.name;
 
             window.disqus_shortname = $rootScope.disqusShortname;
             $scope.showComments = $rootScope.disqusStatus;

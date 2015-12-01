@@ -12,7 +12,7 @@
 namespace Aisel\OrderBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Aisel\FrontendUserBundle\Document\FrontendUser;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 
 /**
