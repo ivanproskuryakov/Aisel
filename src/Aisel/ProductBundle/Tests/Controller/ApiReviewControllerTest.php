@@ -30,4 +30,54 @@ class ApiReviewControllerTest extends ProductWebTestCase
     {
         parent::tearDown();
     }
+
+    public function testPostReviewAction()
+    {
+        $product = $this->newProduct();
+
+        $data = [
+            'locale' => 'en',
+            'name' => $this->faker->sentence(),
+            'content' => $this->faker->text(),
+            'product' => ['id' => $product->getId()]
+        ];
+
+        $this->client->request(
+            'POST',
+            '/' . $this->api['frontend'] . '/en/product/review/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->assertEmpty($content);
+        $this->assertTrue(201 === $statusCode);
+    }
+
+    public function testGetReviewAction()
+    {
+        $review = $this->newReview();
+
+        $this->client->request(
+            'GET',
+            '/' . $this->api['frontend'] . '/en/product/review/' . $review->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertJson($content);
+    }
+
+
 }

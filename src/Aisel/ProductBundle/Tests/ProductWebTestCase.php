@@ -13,6 +13,7 @@ namespace Aisel\ProductBundle\Tests;
 
 use Aisel\ProductBundle\Entity\Review;
 use Aisel\ProductBundle\Entity\Node;
+use Aisel\ProductBundle\Entity\Product;
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
 
@@ -77,6 +78,33 @@ class ProductWebTestCase extends AbstractWebTestCase
         $this->em->flush();
 
         return $review;
+    }
+
+    /**
+     * newProduct
+     *
+     * @return Product $product
+     */
+    public function newProduct()
+    {
+        $product = new Product();
+
+        $product->setLocale('en');
+        $product->setName($this->faker->sentence());
+        $product->setSku($this->faker->randomDigit);
+        $product->setPrice($this->faker->randomDigit);
+        $product->setQty($this->faker->randomDigit);
+        $product->setContentShort($this->faker->sentence());
+        $product->setContent($this->faker->text());
+        $product->setStatus(true);
+        $product->setHidden(false);
+        $product->setCommentStatus(false);
+        $product->setMetaUrl($this->faker->numberBetween(100000000, 9999999999));
+
+        $this->em->persist($product);
+        $this->em->flush();
+
+        return $product;
     }
 
 
