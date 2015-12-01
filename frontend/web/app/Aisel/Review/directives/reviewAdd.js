@@ -19,7 +19,7 @@ define(['app'], function (app) {
                 restrict: 'EA',
                 scope: {
                     resourceName: '=',
-                    resourceId: '='
+                    resource: '='
                 },
                 link: function ($scope, element, attrs) {
                     $scope.isDisabled = false;
@@ -37,7 +37,7 @@ define(['app'], function (app) {
 
                             var params = {
                                 subject: {
-                                    id: $scope.resourceId
+                                    id: $scope.resource.id
                                 },
                                 locale: locale,
                                 name: $scope.name,
@@ -46,9 +46,9 @@ define(['app'], function (app) {
 
                             resource.addReview(params).success(
                                 function (data, status) {
-                                    console.log(data);
                                     notify('Review was added');
 
+                                    $scope.resource.reviews.splice(0, 0, params);
                                     $scope.isDisabled = false;
                                     $scope.name = '';
                                     $scope.content = '';
