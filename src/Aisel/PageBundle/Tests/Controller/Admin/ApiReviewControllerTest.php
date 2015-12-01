@@ -9,27 +9,31 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Tests\Controller\Admin;
+namespace Aisel\PageBundle\Tests\Controller\Admin;
 
-use Aisel\ProductBundle\Tests\ProductWebTestCase;
+use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
 
 /**
  * ApiReviewControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiReviewControllerTest extends ProductWebTestCase
+class ApiReviewControllerTest extends AbstractBackendWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
-        $this->logInBackend();
     }
 
     protected function tearDown()
     {
         parent::tearDown();
+    }
+
+    public function testPostReviewAction()
+    {
+        $this->markTestSkipped('...');
     }
 
 }

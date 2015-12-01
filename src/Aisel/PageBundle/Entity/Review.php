@@ -32,12 +32,14 @@ class Review extends BaseReview
 
     /**
      * @var Page
+     * @Assert\NotNull()
      * @ORM\ManyToOne(targetEntity="Aisel\PageBundle\Entity\Page", inversedBy="pages")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="page_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="page_id", referencedColumnName="id", nullable=false)
      * })
      * @JMS\Type("Aisel\PageBundle\Entity\Page")
      * @JMS\Expose
+     * @JMS\MaxDepth(2)
      */
     private $page;
 

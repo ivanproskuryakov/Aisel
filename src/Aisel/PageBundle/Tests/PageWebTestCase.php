@@ -12,8 +12,10 @@
 namespace Aisel\PageBundle\Tests;
 
 use Aisel\PageBundle\Entity\Node;
+use Aisel\PageBundle\Entity\Review;
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
+use Aisel\PageBundle\Entity\Page;
 
 /**
  * PageWebTestCase
@@ -31,6 +33,55 @@ class PageWebTestCase extends AbstractWebTestCase
     protected function tearDown()
     {
         parent::tearDown();
+    }
+
+    /**
+     * newReview
+     *
+     * @return Page $page
+     */
+    public function newReview()
+    {
+        $user = $this
+            ->em
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->findOneBy(['username' => 'frontenduser']);
+
+        $page = $this->newPage();
+
+        $review = new Review();
+        $review->setLocale('en');
+        $review->setName($this->faker->sentence(1));
+        $review->setContent($this->faker->sentence(10));
+        $review->setStatus(true);
+        $review->setPage($page);
+        $review->setFrontenduser($user);
+
+        $this->em->persist($review);
+        $this->em->flush();
+
+        return $review;
+    }
+
+    /**
+     * newPage
+     *
+     * @return Page $page
+     */
+    public function newPage()
+    {
+        $page = new Page();
+        $page->setLocale('en');
+        $page->setName($this->faker->sentence(1));
+        $page->setContent($this->faker->sentence(10));
+        $page->setStatus(true);
+        $page->setCommentStatus(true);
+        $page->setMetaUrl('url_' . $this->faker->numberBetween(100000000, 9999999999));
+
+        $this->em->persist($page);
+        $this->em->flush();
+
+        return $page;
     }
 
     /**

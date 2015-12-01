@@ -35,3 +35,16 @@ api_aisel_page_node_get_tree:
     defaults: { _controller: AiselPageBundle:ApiNode:getTree, _format: json }
     requirements:
         _method: GET
+
+#Review
+api_aisel_page_review_post:
+    pattern:  /{locale}/page/review/
+    defaults: { _controller: AiselPageBundle:ApiReview:post, _format: json }
+    requirements:
+        _method: POST
+
+api_aisel_page_review_get:
+    pattern:  /{locale}/page/review/{id}
+    defaults: { _controller: AiselPageBundle:ApiReview:get, _format: json }
+    requirements:
+        _method: GET

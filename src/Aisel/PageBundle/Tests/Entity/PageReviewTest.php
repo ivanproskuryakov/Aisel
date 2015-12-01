@@ -14,15 +14,15 @@ namespace Aisel\PageBundle\Tests\Entity;
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
 use Aisel\PageBundle\Entity\Page;
-use Aisel\ReviewBundle\Entity\Review;
-use Aisel\ReviewBundle\Entity\Node as ReviewNode;
+use Aisel\PageBundle\Entity\Review;
+use Aisel\PageBundle\Tests\PageWebTestCase;
 
 /**
  * PageReviewTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class PageReviewTest extends AbstractWebTestCase
+class PageReviewTest extends PageWebTestCase
 {
 
     public function setUp()
@@ -37,42 +37,22 @@ class PageReviewTest extends AbstractWebTestCase
 
     public function testPageReview()
     {
-        $this->markTestSkipped('skipping... ');
-        $node = new ReviewNode();
-        $node->setStatus(true);
-        $node->setName($this->faker->sentence(1));
-        $node->setContent($this->faker->sentence(10));
-        $node->setLocale('en');
-        $this->em->persist($node);
-        $this->em->flush();
+        $this->logInFrontend();
+        $page = $this->newPage();
 
         $review = new Review();
+        $review->setLocale('en');
         $review->setName($this->faker->sentence(1));
         $review->setContent($this->faker->sentence(10));
-        $review->addNode($node);
+        $review->setPage($page);
         $this->em->persist($review);
         $this->em->flush();
 
-        $page = new Page();
-        $page->setLocale('en');
-        $page->setName($this->faker->sentence(1));
-        $page->setContent($this->faker->sentence(10));
-        $page->setStatus(true);
-        $page->setCommentStatus(true);
-        $page->setMetaUrl('url_' . time());
-        $page->addReview($review);
-
-        $this->em->persist($page);
-        $this->em->flush();
-
-        $this->assertNotNull($page->getId());
-        $this->removeEntity($page);
-
         $review = $this
             ->em
-            ->getRepository('Aisel\ReviewBundle\Entity\Review')
+            ->getRepository('Aisel\PageBundle\Entity\Review')
             ->findOneBy(['id' => $review->getId()]);
-        $this->assertNull($review);
+        $this->assertNotNull($review);
     }
 
 }

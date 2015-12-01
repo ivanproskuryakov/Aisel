@@ -52,6 +52,7 @@ abstract class Review
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
      * @JMS\Expose
+     * @JMS\MaxDepth(2)
      */
     private $frontenduser;
 
