@@ -1,17 +1,17 @@
-<form name="addReviewForm" role="form" ng-submit="addReview(title, content)">
+<form name="addReviewForm" role="form" ng-submit="addReview()">
     <div class="form-group">
-        <label for="title">Title</label>
+        <label for="name">Name</label>
         <input type="text"
-               ng-required="false"
-               ng-model="title"
+               ng-required="true"
+               ng-model="name"
                class="form-control"
-               id="title">
+               id="name">
     </div>
 
-    <h3>Content</h3>
+    <strong>Content</strong>
     <textarea class="form-control"
               rows="8"
-              ng-required="false"
+              ng-required="true"
               name="content"
               ng-model="content">
     </textarea>
@@ -19,6 +19,7 @@
 
     <div class="input-group pull-left">
         <button type="submit"
+                ng-disabled="isDisabled"
                 class="btn btn-primary">
             Submit Review
         </button>

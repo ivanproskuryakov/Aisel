@@ -39,7 +39,7 @@ class ApiReviewControllerTest extends PageWebTestCase
             'locale' => 'en',
             'name' => $this->faker->sentence(),
             'content' => $this->faker->text(),
-            'page' => ['id' => $page->getId()]
+            'subject' => ['id' => $page->getId()]
         ];
 
         $this->client->request(

@@ -200,7 +200,7 @@ class Product implements UrlInterface
 
     /**
      * @var ArrayCollection<Aisel\ProductBundle\Entity\Review>
-     * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Review", mappedBy="product", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Review", mappedBy="subject", cascade={"all"})
      * @JMS\Expose
      * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Review>")

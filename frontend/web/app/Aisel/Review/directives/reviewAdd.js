@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.directive('aiselReviewAdd', ['$compile', 'Environment', 'resourceService',
-        function ($compile, Environment, resourceService) {
+    app.directive('aiselReviewAdd', ['$rootScope', '$compile', 'Environment', 'resourceService', 'authService', 'notify',
+        function ($rootScope, $compile, Environment, resourceService, authService, notify) {
             return {
                 restrict: 'EA',
                 scope: {
@@ -22,16 +22,44 @@ define(['app'], function (app) {
                     resourceId: '='
                 },
                 link: function ($scope, element, attrs) {
+                    $scope.isDisabled = false;
 
+                    var locale = Environment.currentLocale();
                     var resource = new resourceService($scope.resourceName);
 
-                    $scope.addReview = function (title, content) {
-                        var params = {
-                            resourceId: $scope.resourceId,
-                            title: title,
-                            content: content
-                        };
-                        resource.addReview(params);
+                    $scope.addReview = function () {
+
+                        // if user is a guest - redirect or login page
+                        if (typeof $rootScope.user === 'undefined') {
+                            authService.authenticateWithModal();
+                        } else {
+                            $scope.isDisabled = true;
+
+                            var params = {
+                                subject: {
+                                    id: $scope.resourceId
+                                },
+                                locale: locale,
+                                name: $scope.name,
+                                content: $scope.content
+                            };
+
+                            resource.addReview(params).success(
+                                function (data, status) {
+                                    console.log(data);
+                                    notify('Review was added');
+
+                                    $scope.isDisabled = false;
+                                    $scope.name = '';
+                                    $scope.content = '';
+                                }
+                            ).error(function (data, status) {
+                                console.log(data);
+                                notify(data.message);
+                                $scope.isDisabled = false;
+                            });
+
+                        }
                     };
                 },
                 templateUrl: '/app/Aisel/Review/views/directives/review-add.html'
