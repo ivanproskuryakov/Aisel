@@ -32,4 +32,8 @@ class ApiReviewControllerTest extends ProductWebTestCase
         parent::tearDown();
     }
 
+    public function testPostReviewAction()
+    {
+        $this->markTestSkipped('...');
+    }
 }
