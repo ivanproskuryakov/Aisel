@@ -16,7 +16,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\ReviewBundle\Entity\Node;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -62,52 +61,6 @@ abstract class Review
     public function __construct()
     {
         $this->nodes = new ArrayCollection();
-    }
-
-    /**
-     * Add node
-     *
-     * @param Node $node
-     *
-     * @return Review
-     */
-    public function addNode(Node $node)
-    {
-        $this->nodes->add($node);
-
-        return $this;
-    }
-
-    /**
-     * Remove nodes
-     *
-     * @param Node $node
-     */
-    public function removeNode(Node $node)
-    {
-        $this->nodes->removeElement($node);
-    }
-
-    /**
-     * Get nodes
-     *
-     * @return ArrayCollection
-     */
-    public function getNodes()
-    {
-        return $this->nodes;
-    }
-
-    /**
-     * Get nodes
-     *
-     * @param Node $nodes
-     *
-     * @return Review
-     */
-    public function setNodes($nodes)
-    {
-        $this->nodes = $nodes;
     }
 
     /**

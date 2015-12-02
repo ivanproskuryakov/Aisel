@@ -28,8 +28,6 @@
         "requirejs-text": "~2.0.10",
         "domReady": "~2.0.1",
         "angular-translate": "2.2.0",
-        "blueimp-file-upload": "9.5.8",
-        "blueimp-gallery": "2.15.1",
         "fancytree": "2.8.0",
         "ui-contextmenu": "1.5.0",
         "holderjs": "^2.4.1",
