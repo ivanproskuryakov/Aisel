@@ -147,6 +147,7 @@ class Order
      * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\OrderItem", mappedBy="order")
      * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Entity\OrderItem>")
      * @JMS\Expose
+     * @JMS\MaxDepth(6)
      */
     private $item;
 

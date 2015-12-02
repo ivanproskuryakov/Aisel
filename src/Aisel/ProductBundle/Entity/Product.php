@@ -179,7 +179,7 @@ class Product implements UrlInterface
      *     inverseJoinColumns={@ORM\JoinColumn(name="media_id", referencedColumnName="id")}
      * )
      * @JMS\Expose
-     * @JMS\MaxDepth(2)
+     * @JMS\MaxDepth(3)
      * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Entity\Media>")
      */
     private $medias;

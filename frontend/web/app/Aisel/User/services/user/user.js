@@ -25,7 +25,6 @@ define(['app'], function(app) {
                     email: email,
                     password: password
                 };
-                console.log(url);
 
                 return $http({
                     method: 'POST',
@@ -48,18 +47,15 @@ define(['app'], function(app) {
 
                 var userData = JSON.stringify(formData);
                 var url = Environment.settings.api + '/user/editdetails.json?userdata=' + userData;
-                console.log(url);
                 return $http.get(url);
             },
             passwordforgot: function(form) {
                 var email = form.email.$modelValue;
                 var url = Environment.settings.api + '/user/password/forgot/?email=' + email;
-                console.log(url);
                 return $http.get(url);
             },
             signout: function() {
                 var url = Environment.settings.api + '/user/logout/';
-                console.log(url);
                 return $http.get(url);
             },
             login: function(username, password) {
@@ -76,7 +72,6 @@ define(['app'], function(app) {
             },
             getUserInformation: function() {
                 var url = Environment.settings.api + '/user/information/';
-                console.log(url);
                 return $http.get(url);
             }
         };

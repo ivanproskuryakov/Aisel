@@ -9,7 +9,7 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-12">
-                    <div ng-if="orderDetails.id" class="row">
+                    <div class="row">
 
                         <!-- Order Details -->
                         <div class="col-md-12">
@@ -37,9 +37,11 @@
                             <div ng-if="orderDetails.item.length > 0">
                                 <div class="cartItem row" ng-repeat="item in orderDetails.item">
                                     <div class="col-md-2">
-                                        <aisel-product-images class="product-image"
-                                                              img-style="img-rounded"
-                                                              images="item.product.medias">
+                                        <aisel-product-images
+                                                class="product-image"
+                                                img-style="img-rounded"
+                                                slider="false"
+                                                images="item.product.medias">
                                         </aisel-product-images>
                                     </div>
                                     <div class="col-md-4">
