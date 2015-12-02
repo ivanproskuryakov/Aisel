@@ -13,57 +13,85 @@
  */
 
 define(['app'], function (app) {
-    app.directive('aiselReviewAdd', ['$rootScope', '$compile', 'Environment', 'resourceService', 'authService', 'notify',
-        function ($rootScope, $compile, Environment, resourceService, authService, notify) {
-            return {
-                restrict: 'EA',
-                scope: {
-                    resourceName: '=',
-                    resource: '='
-                },
-                link: function ($scope, element, attrs) {
-                    $scope.isDisabled = false;
+    app.directive('aiselReviewAdd',
+        [
+            '$rootScope',
+            '$compile',
+            'Environment',
+            'resourceService',
+            'authService',
+            'notify',
+            '$http',
+            function ($rootScope,
+                      $compile,
+                      Environment,
+                      resourceService,
+                      authService,
+                      notify,
+                      $http) {
+                return {
+                    restrict: 'EA',
+                    scope: {
+                        resourceName: '=',
+                        resource: '='
+                    },
+                    link: function ($scope, element, attrs) {
+                        $scope.isDisabled = false;
 
-                    var locale = Environment.currentLocale();
-                    var resource = new resourceService($scope.resourceName);
+                        var locale = Environment.currentLocale();
+                        var resource = new resourceService($scope.resourceName);
 
-                    $scope.addReview = function () {
+                        $scope.addReview = function () {
 
-                        // if user is a guest - redirect or login page
-                        if (typeof $rootScope.user === 'undefined') {
-                            authService.authenticateWithModal();
-                        } else {
-                            $scope.isDisabled = true;
+                            // if user is a guest - redirect or login page
+                            if (typeof $rootScope.user === 'undefined') {
+                                authService.authenticateWithModal();
+                            } else {
+                                $scope.isDisabled = true;
 
-                            var params = {
-                                subject: {
-                                    id: $scope.resource.id
-                                },
-                                locale: locale,
-                                name: $scope.name,
-                                content: $scope.content
-                            };
+                                var params = {
+                                    subject: {
+                                        id: $scope.resource.id
+                                    },
+                                    locale: locale,
+                                    name: $scope.name,
+                                    content: $scope.content
+                                };
 
-                            resource.addReview(params).success(
-                                function (data, status) {
-                                    notify('Review was added');
+                                /**
+                                 * addReview
+                                 * @param {Array} params
+                                 */
+                                resource.addReview(params).success(
+                                    function (data, status, headers, config) {
+                                        var reviewURL = headers().location;
 
-                                    $scope.resource.reviews.splice(0, 0, params);
+                                        $http.get(reviewURL).success(
+                                            function (data, status) {
+                                                notify('Thank you! Review was added');
+
+                                                $scope.resource.reviews.splice(0, 0, data);
+                                                $scope.isDisabled = false;
+                                                $scope.name = '';
+                                                $scope.content = '';
+                                            }
+                                        ).error(
+                                            function (data, status) {
+                                                notify(data.message);
+                                                $scope.isDisabled = false;
+                                            }
+                                        );
+                                    }
+                                ).error(function (data, status) {
+                                    notify(data.message);
                                     $scope.isDisabled = false;
-                                    $scope.name = '';
-                                    $scope.content = '';
-                                }
-                            ).error(function (data, status) {
-                                console.log(data);
-                                notify(data.message);
-                                $scope.isDisabled = false;
-                            });
+                                });
 
-                        }
-                    };
-                },
-                templateUrl: '/app/Aisel/Review/views/directives/review-add.html'
-            };
-        }
-    ]);
+                            }
+                        };
+                    },
+                    templateUrl: '/app/Aisel/Review/views/directives/review-add.html'
+                };
+            }
+        ]);
 });
