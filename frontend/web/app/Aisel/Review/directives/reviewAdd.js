@@ -49,6 +49,8 @@ define(['app'], function (app) {
                             } else {
                                 $scope.isDisabled = true;
 
+                                console.log($scope.resource);
+
                                 var params = {
                                     subject: {
                                         id: $scope.resource.id
@@ -68,7 +70,7 @@ define(['app'], function (app) {
 
                                         $http.get(reviewURL).success(
                                             function (data, status) {
-                                                notify('Thank you! Review was added');
+                                                notify('Review was added, thank you!');
 
                                                 $scope.resource.reviews.splice(0, 0, data);
                                                 $scope.isDisabled = false;
