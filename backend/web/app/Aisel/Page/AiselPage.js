@@ -18,6 +18,8 @@ define(['app',
     './controllers/pageDetails',
     './controllers/pageNode',
     './controllers/pageNodeDetails',
+    './controllers/pageReview',
+    './controllers/pageReviewDetails',
 ], function(app) {
     console.log('Page module loaded ...');
 });

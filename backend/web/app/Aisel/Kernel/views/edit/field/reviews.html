@@ -1,0 +1,11 @@
+<div class="reviewTree">
+    <div class="review-item" ng-repeat="review in item.reviews">
+        <p class="heading">{{review.name}}</p>
+        <p>
+            <span class="glyphicon glyphicon-calendar"></span>
+            {{review.created_at | date:"MM/dd/yyyy @ h:mma" }}
+        </p>
+        <p class="content">{{review.content}}</p>
+        <hr/>
+    </div>
+</div>

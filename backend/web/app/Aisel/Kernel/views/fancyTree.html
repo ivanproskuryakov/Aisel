@@ -62,10 +62,8 @@
                         expanderClosed: "glyphicon glyphicon-plus-sign",
                         expanderLazy: "glyphicon glyphicon-expand",
                         expanderOpen: "glyphicon glyphicon-minus-sign",
-                        // expanderOpen: "glyphicon glyphicon-collapse-down",
                         folder: "glyphicon glyphicon-folder-close",
                         folderOpen: "glyphicon glyphicon-folder-open",
-                        //                loading: "glyphicon glyphicon-refresh",
                         loading: "icon-spinner icon-spin"
                     }
                 },
@@ -74,13 +72,6 @@
                     preventVoidMoves: true,
                     preventRecursiveMoves: true,
                     autoExpandMS: 400,
-                    dragStart: function (node, data) {
-                        return true;
-                    },
-                    dragEnter: function (node, data) {
-                        // return ["before", "after"];
-                        return true;
-                    },
                     dragDrop: function (node, data) {
                         data.otherNode.moveTo(node, data.hitMode);
 
@@ -118,7 +109,7 @@
                             xhrFields: {
                                 withCredentials: true
                             }
-                        })
+                        });
                     }
                 },
                 table: {
