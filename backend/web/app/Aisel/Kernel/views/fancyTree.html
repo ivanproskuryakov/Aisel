@@ -20,289 +20,251 @@
 </table>
 
 <script type="text/javascript">
-var editNode = function (id) {
-    angular.element(document.getElementById('dynamic-content')).scope().editNode(id);
-};
+    var editNode = function (id) {
+        angular.element(document.getElementById('dynamic-content')).scope().editNode(id);
+    };
 
-$(document).ready(function () {
-    setTimeout(function () {
+    $(document).ready(function () {
+        setTimeout(function () {
 
-        var routeNodeAjaxUpdate = angular.element(document.getElementById('dynamic-content')).scope().nodeUpdate;
-        var nodeJson = angular.element(document.getElementById('dynamic-content')).scope().nodeJson;
+            var routeNodeAjaxUpdate = angular.element(document.getElementById('dynamic-content')).scope().nodeUpdate;
+            var nodeJson = angular.element(document.getElementById('dynamic-content')).scope().nodeJson;
 
-        $("#adminNodeTree").fancytree({
-            extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter", "childcounter"],
-            childcounter: {
-                deep: true,
-                hideZeros: true,
-                hideExpanded: true
-            },
-            checkbox: false,
-            titlesTabbable: true,     // Add all node titles to TAB chain
-            source: $.ajax({
-                url: nodeJson,
-                dataType: "json",
-                xhrFields: {
-                    withCredentials: true
+            $("#adminNodeTree").fancytree({
+                extensions: ["edit", "dnd", "table", "gridnav", "glyph", "filter", "childcounter"],
+                childcounter: {
+                    deep: true,
+                    hideZeros: true,
+                    hideExpanded: true
                 },
-                cache: false
-            }),
-            selectMode: 2,
-            filter: {
-                mode: "hide"
-            },
-            glyph: {
-                map: {
-                    doc: "glyphicon glyphicon-file",
-                    docOpen: "glyphicon glyphicon-file",
-                    checkbox: "glyphicon glyphicon-unchecked",
-                    checkboxSelected: "glyphicon glyphicon-check",
-                    checkboxUnknown: "glyphicon glyphicon-share",
-                    error: "glyphicon glyphicon-warning-sign",
-                    expanderClosed: "glyphicon glyphicon-plus-sign",
-                    expanderLazy: "glyphicon glyphicon-expand",
-                    expanderOpen: "glyphicon glyphicon-minus-sign",
-                    // expanderOpen: "glyphicon glyphicon-collapse-down",
-                    folder: "glyphicon glyphicon-folder-close",
-                    folderOpen: "glyphicon glyphicon-folder-open",
-                    //                loading: "glyphicon glyphicon-refresh",
-                    loading: "icon-spinner icon-spin"
+                checkbox: false,
+                titlesTabbable: true,     // Add all node titles to TAB chain
+                source: $.ajax({
+                    url: nodeJson,
+                    dataType: "json",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    cache: false
+                }),
+                selectMode: 2,
+                filter: {
+                    mode: "hide"
+                },
+                glyph: {
+                    map: {
+                        doc: "glyphicon glyphicon-file",
+                        docOpen: "glyphicon glyphicon-file",
+                        checkbox: "glyphicon glyphicon-unchecked",
+                        checkboxSelected: "glyphicon glyphicon-check",
+                        checkboxUnknown: "glyphicon glyphicon-share",
+                        error: "glyphicon glyphicon-warning-sign",
+                        expanderClosed: "glyphicon glyphicon-plus-sign",
+                        expanderLazy: "glyphicon glyphicon-expand",
+                        expanderOpen: "glyphicon glyphicon-minus-sign",
+                        // expanderOpen: "glyphicon glyphicon-collapse-down",
+                        folder: "glyphicon glyphicon-folder-close",
+                        folderOpen: "glyphicon glyphicon-folder-open",
+                        //                loading: "glyphicon glyphicon-refresh",
+                        loading: "icon-spinner icon-spin"
+                    }
+                },
+
+                dnd: {
+                    preventVoidMoves: true,
+                    preventRecursiveMoves: true,
+                    autoExpandMS: 400,
+                    dragStart: function (node, data) {
+                        return true;
+                    },
+                    dragEnter: function (node, data) {
+                        // return ["before", "after"];
+                        return true;
+                    },
+                    dragDrop: function (node, data) {
+                        data.otherNode.moveTo(node, data.hitMode);
+
+                        var nodeId = data.otherNode.data.id;
+                        var nodeParentId = node.data.id;
+                        $.ajax({
+                            url: routeNodeAjaxUpdate,
+                            dataType: "json",
+                            data: {
+                                action: 'dragDrop',
+                                id: nodeId,
+                                parentId: nodeParentId,
+                            },
+                            xhrFields: {
+                                withCredentials: true
+                            }
+                        })
+                    }
+                },
+                edit: {
+                    triggerStart: ["f2", "dblclick", "shift+click", "mac+enter"],
+                    close: function (event, data) {
+                        var nodeId = data.node.data.id;
+                        data.node.name = data.node.title;
+                        var nodeTitle = data.node.title;
+
+                        $.ajax({
+                            url: routeNodeAjaxUpdate,
+                            dataType: "json",
+                            data: {
+                                action: 'save',
+                                name: nodeTitle,
+                                id: nodeId
+                            },
+                            xhrFields: {
+                                withCredentials: true
+                            }
+                        })
+                    }
+                },
+                table: {
+                    indentation: 20,
+                    nodeColumnIdx: 2
+                },
+                gridnav: {
+                    autofocusInput: false,
+                    handleCursorKeys: true
+                },
+
+                renderColumns: function (event, data) {
+                    var node = data.node;
+                    var $tdList = $(node.tr).find(">td");
+
+                    $tdList.eq(0).text(node.data.id).addClass("alignRight");
+                    $tdList.eq(1).html(node.data.locale);
+                    $tdList.eq(2).find('.fancytree-title').text(node.data.name);
+                    $tdList.eq(3).html(node.data.meta_url);
+                    $tdList.eq(4).html('<button ' +
+                            'class="btn btn-link"' +
+                            'onclick="editNode(\'' + node.data.id + '\')">' +
+                            '<span class="glyphicon glyphicon-edit"></span> edit</button>');
                 }
-            },
+            }).on("nodeCommand", function (event, data) {
+                var refNode, moveMode,
+                        tree = $(this).fancytree("getTree"),
+                        node = tree.getActiveNode();
 
-            dnd: {
-                preventVoidMoves: true,
-                preventRecursiveMoves: true,
-                autoExpandMS: 400,
-                dragStart: function (node, data) {
-                    return true;
-                },
-                dragEnter: function (node, data) {
-                    // return ["before", "after"];
-                    return true;
-                },
-                dragDrop: function (node, data) {
-                    data.otherNode.moveTo(node, data.hitMode);
+                switch (data.cmd) {
+                    case "moveUp":
+                        node.moveTo(node.getPrevSibling(), "before");
+                        node.setActive();
+                        break;
+                    case "moveDown":
+                        node.moveTo(node.getNextSibling(), "after");
+                        node.setActive();
+                        break;
+                    case "indent":
+                        refNode = node.getPrevSibling();
+                        node.moveTo(refNode, "child");
+                        refNode.setExpanded();
+                        node.setActive();
+                        break;
+                    case "outdent":
+                        node.moveTo(node.getParent(), "after");
+                        node.setActive();
+                        break;
+                    case "rename":
+                        node.editStart();
+                        break;
+                    case "remove":
+                        var nodeId = node.data.id;
+                        $.ajax({
+                            url: routeNodeAjaxUpdate,
+                            dataType: "json",
+                            data: {
+                                action: 'remove',
+                                id: nodeId
+                            },
+                            xhrFields: {
+                                withCredentials: true
+                            }
+                        });
+                        node.remove();
 
-                    var nodeId = data.otherNode.data.id;
-                    var nodeParentId = node.data.id;
-                    $.ajax({
-                        url: routeNodeAjaxUpdate,
-                        dataType: "json",
-                        data : {
-                            action: 'dragDrop',
-                            id: nodeId,
-                            parentId: nodeParentId,
-                        },
-                        xhrFields: {
-                            withCredentials: true
-                        }
-                    })
-                    .done(function (data) {
-//                                console.log('AJAX done');
-                    });
+                        break;
+                    case "addChild":
+                        refNode = node.addChildren({
+                            title: "New children",
+                            url: "/",
+                            isNew: true
+                        });
+                        node.setExpanded();
+                        refNode.editStart();
 
+                        var nodeId = node.data.id;
+                        var nodeTitle = refNode.title;
+                        $.ajax({
+                            url: routeNodeAjaxUpdate,
+                            dataType: "json",
+                            data: {
+                                action: 'addChild',
+                                name: nodeTitle,
+                                parentId: nodeId
+                            },
+                            xhrFields: {
+                                withCredentials: true
+                            }
+                        });
+                        break;
+
+                    case "addSibling":
+                        refNode = node.getParent().addChildren({
+                            title: "New sibling",
+                            url: "/",
+                            isNew: true
+                        }, node.getNextSibling());
+
+                        var nodeTitle = refNode.title;
+                        $.ajax({
+                            url: routeNodeAjaxUpdate,
+                            dataType: "json",
+                            data: {
+                                action: 'addSibling',
+                                name: nodeTitle
+                            },
+                            xhrFields: {
+                                withCredentials: true
+                            }
+                        });
+
+                        refNode.editStart();
+                        break;
+                    default:
+                        alert("Unhandled command: " + data.cmd);
+                        return;
                 }
-            },
-            edit: {
-                triggerStart: ["f2", "dblclick", "shift+click", "mac+enter"],
-                beforeClose: function (event, data) {
-                    // Return false to prevent cancel/save (data.input is available)
-                },
-                beforeEdit: function (event, data) {
-                    // Return false to prevent edit mode
-                },
-                close: function (event, data) {
-                    var nodeId = data.node.data.id;
-                    var nodeTitle = data.node.title;
 
-                    $.ajax({
-                        url: routeNodeAjaxUpdate,
-                        dataType: "json",
-                        data : {
-                            action: 'save',
-                            name: nodeTitle,
-                            id: nodeId
-                        },
-                        xhrFields: {
-                            withCredentials: true
-                        }
-                    })
-                    .done(function (data) {
-                        console.log('AJAX done');
-                    });
-                },
-                edit: function (event, data) {
-                    // Editor was opened (available as data.input)
-                },
-                save: function (event, data) {
-                }
-            },
-            table: {
-                indentation: 20,
-                nodeColumnIdx: 2,
-                //            checkboxColumnIdx: 0
-            },
-            gridnav: {
-                autofocusInput: false,
-                handleCursorKeys: true
-            },
-
-            renderColumns: function (event, data) {
-                var node = data.node;
-                var $select = $("<select data-id='" + node.key + "' id='node-" + node.key + "' class='node-action form-control' />");
-                var $tdList = $(node.tr).find(">td");
-
-                $tdList.eq(0).text(node.data.id).addClass("alignRight");
-                $tdList.eq(1).html(node.data.locale);
-                $tdList.eq(3).html("<input type='input' disabled class='form-control' value='" + node.data.meta_url + "'>");
-                $tdList.eq(4).html('<button ' +
-                'class="btn btn-link"' +
-                'onclick="editNode(\'' + node.data.id + '\')">' +
-                '<span class="glyphicon glyphicon-edit"></span> edit</button>');
-            }
-        }).on("nodeCommand", function (event, data) {
-            var refNode, moveMode,
-                    tree = $(this).fancytree("getTree"),
-                    node = tree.getActiveNode();
-
-            switch (data.cmd) {
-                case "moveUp":
-                    node.moveTo(node.getPrevSibling(), "before");
-                    node.setActive();
-                    break;
-                case "moveDown":
-                    node.moveTo(node.getNextSibling(), "after");
-                    node.setActive();
-                    break;
-                case "indent":
-                    refNode = node.getPrevSibling();
-                    node.moveTo(refNode, "child");
-                    refNode.setExpanded();
-                    node.setActive();
-                    break;
-                case "outdent":
-                    node.moveTo(node.getParent(), "after");
-                    node.setActive();
-                    break;
-                case "rename":
-                    node.editStart();
-                    break;
-                case "remove":
-                    var nodeId = node.data.id;
-                    $.ajax({
-                        url: routeNodeAjaxUpdate,
-                        dataType: "json",
-                        data : {
-                            action: 'remove',
-                            id: nodeId
-                        },
-                        xhrFields: {
-                            withCredentials: true
-                        }
-                    })
-                    .done(function (data) {
-                        console.log('AJAX done');
-                    });
-                    node.remove();
-
-                    break;
-                case "addChild":
-                    refNode = node.addChildren({
-                        title: "New children",
-                        url: "/",
-                        isNew: true
-                    });
-                    node.setExpanded();
-                    refNode.editStart();
-
-                    var nodeId = node.data.id;
-                    var nodeTitle = refNode.title;
-                    $.ajax({
-                        url: routeNodeAjaxUpdate,
-                        dataType: "json",
-                        data : {
-                            action: 'addChild',
-                            name: nodeTitle,
-                            parentId: nodeId
-                        },
-                        xhrFields: {
-                            withCredentials: true
-                        }
-                    })
-                    .done(function (data) {
-                        console.log('AJAX done');
-                    });
-                    break;
-
-                case "addSibling":
-                    refNode = node.getParent().addChildren({
-                        title: "New sibling",
-                        url: "/",
-                        isNew: true
-                    }, node.getNextSibling());
-
-                    var nodeTitle = refNode.title;
-                    $.ajax({
-                        url: routeNodeAjaxUpdate,
-                        dataType: "json",
-                        data : {
-                            action: 'addSibling',
-                            name: nodeTitle
-                        },
-                        xhrFields: {
-                            withCredentials: true
-                        }
-                    })
-                    .done(function (data) {
-                        console.log('AJAX done');
-                    });
-
-                    refNode.editStart();
-                    break;
-                default:
-                    alert("Unhandled command: " + data.cmd);
-                    return;
-            }
-
-        });
-
-        $("#adminNodeTree").contextmenu({
-                delegate: "span.fancytree-title",
-                menu: [
-                    {title: "Rename", cmd: "rename", uiIcon: "ui-icon-pencil"},
-                    {title: "Remove", cmd: "remove", uiIcon: "ui-icon-trash"},
-                    {title: "----"},
-                    {title: "Add Sibling", cmd: "addSibling", uiIcon: "ui-icon-plus"},
-                    {title: "Add Child", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e"},],
-                beforeOpen: function (event, ui) {
-
-                    var node = $.ui.fancytree.getNode(ui.target);
-                    $("#adminNodeTree").contextmenu("enableEntry", "paste", false);
-                    node.setActive();
-
-                },
-                select: function (event, ui) {
-                    var that = this;
-                    // delay the event, so the menu can close and the click event does
-                    // not interfere with the edit control
-                    setTimeout(function () {
-                        $(that).trigger("nodeCommand", {cmd: ui.cmd});
-                    }, 100);
-                }
-            }
-        );
-
-        $("#btnExpandAll").click(function () {
-            $("#adminNodeTree").fancytree("getTree").visit(function (node) {
-                node.setExpanded(true);
             });
-        });
-        $("#btnCollapseAll").click(function () {
-            $("#adminNodeTree").fancytree("getTree").visit(function (node) {
-                node.setExpanded(false);
-            });
-        });
-    }, 0);
-});
+
+            $("#adminNodeTree").contextmenu({
+                        delegate: "span.fancytree-title",
+                        menu: [
+                            {title: "Rename", cmd: "rename", uiIcon: "ui-icon-pencil"},
+                            {title: "Remove", cmd: "remove", uiIcon: "ui-icon-trash"},
+                            {title: "----"},
+                            {title: "Add Sibling", cmd: "addSibling", uiIcon: "ui-icon-plus"},
+                            {title: "Add Child", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e"},],
+                        beforeOpen: function (event, ui) {
+
+                            var node = $.ui.fancytree.getNode(ui.target);
+                            $("#adminNodeTree").contextmenu("enableEntry", "paste", false);
+                            node.setActive();
+
+                        },
+                        select: function (event, ui) {
+                            var that = this;
+                            // delay the event, so the menu can close and the click event does
+                            // not interfere with the edit control
+                            setTimeout(function () {
+                                $(that).trigger("nodeCommand", {cmd: ui.cmd});
+                            }, 100);
+                        }
+                    }
+            );
+        }, 0);
+    });
 </script>
