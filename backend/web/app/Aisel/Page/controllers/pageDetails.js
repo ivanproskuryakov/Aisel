@@ -17,7 +17,7 @@ define(['app'], function(app) {
 
         $scope.route = {
             name: 'Page',
-            collection: 'page',
+            collection: 'pages',
             edit: 'pageEdit'
         };
 

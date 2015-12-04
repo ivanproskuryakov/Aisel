@@ -65,7 +65,9 @@ define(['app'], function (app) {
                     width: '100',
                     cellTemplate: collectionService.actionTemplate()
                 }];
+
                 $scope.gridOptions = collectionService.gridOptions($scope);
+                $scope.disableNew = true;
 
                 // === Item Action ===
                 $scope.editDetails = function (id) {
