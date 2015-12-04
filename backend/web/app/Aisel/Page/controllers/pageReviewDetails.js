@@ -16,12 +16,12 @@ define(['app'], function(app) {
     app.controller('PageReviewDetailsCtrl', function($controller, $scope, resourceService, $stateParams) {
 
         $scope.route = {
-            name: 'Review',
-            collection: 'pages',
-            edit: 'pageEdit'
+            name: 'Page Review',
+            collection: 'pageReview',
+            edit: 'pageReviewEdit'
         };
 
-        var itemService = new resourceService('page');
+        var itemService = new resourceService('page/review');
         angular.extend(this, $controller('AbstractDetailsNodeCtrl', {
             $scope: $scope,
             itemService: itemService

@@ -28,9 +28,9 @@ define(['app'], function (app) {
                       Environment,
                       notify) {
 
-                var itemService = new resourceService('page');
+                var itemService = new resourceService('page/review');
 
-                $scope.collectionTitle = 'Reviews';
+                $scope.collectionTitle = 'Page Reviews';
                 $scope.pageLimit = 20;
                 $scope.pageNumber = 1;
 
@@ -44,16 +44,19 @@ define(['app'], function (app) {
                     width: '75'
                 }, {
                     name: 'name',
-                    enableColumnMenu: false
+                    enableColumnMenu: false,
+                    width: '200'
                 }, {
-                    name: 'meta_url',
-                    enableColumnMenu: false
+                    name: 'frontenduser.username',
+                    enableColumnMenu: false,
+                    width: '200'
                 }, {
-                    name: 'status',
+                    name: 'content',
                     enableColumnMenu: false
                 }, {
                     name: 'created_at',
-                    enableColumnMenu: false
+                    enableColumnMenu: false,
+                    width: '150'
                 }, {
                     name: 'action',
                     enableSorting: false,
@@ -66,14 +69,9 @@ define(['app'], function (app) {
 
                 // === Item Action ===
                 $scope.editDetails = function (id) {
-                    $state.transitionTo('pageEdit', {
+                    $state.transitionTo('pageReviewEdit', {
                         locale: Environment.currentLocale(),
                         id: id
-                    });
-                };
-                $scope.newItem = function () {
-                    $state.transitionTo('pageNew', {
-                        locale: Environment.currentLocale()
                     });
                 };
 

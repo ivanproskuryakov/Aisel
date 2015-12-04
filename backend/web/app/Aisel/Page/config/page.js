@@ -39,12 +39,12 @@ define(['app'], function(app) {
                 })
                 .state("pageReviewEdit", {
                     url: "/:locale/page/review/edit/:id/",
-                    templateUrl: '/app/Aisel/Page/views/edit.html',
+                    templateUrl: '/app/Aisel/Page/views/edit-review.html',
                     controller: 'PageReviewDetailsCtrl'
                 })
                 .state("pageReviewNew", {
                     url: "/:locale/page/review/new/",
-                    templateUrl: '/app/Aisel/Page/views/edit.html',
+                    templateUrl: '/app/Aisel/Page/views/edit-review.html',
                     controller: 'PageReviewDetailsCtrl'
                 })
 
@@ -67,7 +67,7 @@ define(['app'], function(app) {
                 "children": {
                     "pages": {
                         "ordering": 100,
-                        "slug": '/pages/',
+                        "slug": '/page/',
                         "title": 'Pages'
                     },
                     "pageNode": {
