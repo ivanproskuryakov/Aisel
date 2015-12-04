@@ -148,7 +148,6 @@ class ApiImageControllerTest extends UploadControllerTest
 
     public function testDeleteImageAction()
     {
-        $this->markTestSkipped('...');
         $product = $this
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')

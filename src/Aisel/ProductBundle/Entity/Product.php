@@ -172,11 +172,11 @@ class Product implements UrlInterface
 
     /**
      * @var Collection
-     * @ORM\ManyToMany(targetEntity="Aisel\MediaBundle\Entity\Media", cascade={"all"})
+     * @ORM\ManyToMany(targetEntity="Aisel\MediaBundle\Entity\Media", cascade="remove")
      * @ORM\JoinTable(
      *     name="aisel_product_product_media",
-     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="media_id", referencedColumnName="id")}
+     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="cascade")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="media_id", referencedColumnName="id", onDelete="cascade")}
      * )
      * @JMS\Expose
      * @JMS\MaxDepth(3)
