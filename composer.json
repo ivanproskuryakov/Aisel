@@ -3,7 +3,7 @@
     "license": "MIT",
     "type": "project",
     "homepage": "http://aisel.co",
-    "description": "Aisel - FullStack based on AngularJS, PHP(Symfony2), MongoDB",
+    "description": "Aisel - FullStack based on AngularJS, PHP(Symfony2)",
     "authors": [
         {
             "name": "Ivan Proskuryakov",
