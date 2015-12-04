@@ -61,16 +61,6 @@ jms_serializer:
     auto_detection: true
 
 
-#services:
-#    jms_serializer.doctrine_object_constructor:
-#        class:        %jms_serializer.doctrine_object_constructor.class%
-#        public:       false
-#        arguments:    ["@doctrine_orm", "@jms_serializer.unserialize_object_constructor"]
-#
-#    jms_serializer.object_constructor:
-#        alias: jms_serializer.doctrine_object_constructor
-#        public: false
-
 # REST
 fos_rest:
     view:

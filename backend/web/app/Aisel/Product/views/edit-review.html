@@ -1,0 +1,57 @@
+<div ng-include="'/app/Aisel/Kernel/views/edit/heading.html'"></div>
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal-edit" name="editForm" role="form">
+            <tabset>
+                <!-- General -->
+                <tab>
+                    <tab-heading>
+                        <i class="glyphicon glyphicon-font"></i> General Information
+                    </tab-heading>
+                    <div class="tab-content">
+                        <div class="form-group">
+                            <label for="title">Name</label>
+                            <input type="text"
+                                   name="title"
+                                   id="title"
+                                   class="form-control"
+                                   ng-required="true"
+                                   ng-model="item.name">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Content</label>
+                            <div text-angular
+                                 name="content"
+                                 id="content"
+                                 ng-required="true"
+                                 ng-model="item.content"
+                                 name="content"></div>
+                        </div>
+                        <ng-include src="'/app/Aisel/Kernel/views/edit/field/locale.html'"></ng-include>
+                        <ng-include src="'/app/Aisel/Kernel/views/edit/field/status.html'"></ng-include>
+                    </div>
+                </tab>
+
+                <!-- Dates -->
+                <tab>
+                    <tab-heading>
+                        <i class="glyphicon glyphicon-calendar"></i> Dates
+                    </tab-heading>
+                    <div class="tab-content">
+                        <ng-include src="'/app/Aisel/Kernel/views/edit/field/dates.html'"></ng-include>
+                    </div>
+                </tab>
+
+                <!-- FrontenUser -->
+                <tab>
+                    <tab-heading>
+                        <i class="glyphicon glyphicon-user"></i> User
+                    </tab-heading>
+                    <div class="tab-content">
+                        <ng-include src="'/app/Aisel/Kernel/views/edit/field/user.html'"></ng-include>
+                    </div>
+                </tab>
+            </tabset>
+        </form>
+    </div>
+</div>
