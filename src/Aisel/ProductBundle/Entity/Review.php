@@ -39,22 +39,24 @@ class Review extends BaseReview
      * @JMS\Type("Aisel\ProductBundle\Entity\Product")
      * @JMS\Expose
      */
-    private $product;
+    private $subject;
 
     /**
      * @return Product
      */
-    public function getProduct()
+    public function getSubject()
     {
-        return $this->product;
+        return $this->subject;
     }
 
     /**
-     * @param Product $product
+     * @param Product $subject
      */
-    public function setProduct($product)
+    public function setSubject($subject)
     {
-        $this->product = $product;
+        $this->subject = $subject;
     }
+
+
 
 }

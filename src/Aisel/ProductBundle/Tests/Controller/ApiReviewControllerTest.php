@@ -39,7 +39,7 @@ class ApiReviewControllerTest extends ProductWebTestCase
             'locale' => 'en',
             'name' => $this->faker->sentence(),
             'content' => $this->faker->text(),
-            'product' => ['id' => $product->getId()]
+            'subject' => ['id' => $product->getId()]
         ];
 
         $this->client->request(

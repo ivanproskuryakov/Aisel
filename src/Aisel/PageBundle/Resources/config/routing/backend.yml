@@ -44,7 +44,7 @@ admin_api_aisel_page_review_get:
 
 admin_api_aisel_page_review_get_collection:
     pattern:   /page/review/
-    defaults:  { _controller: AiselPageBundle:Admin/ApiReview:getTree, _format: json }
+    defaults:  { _controller: AiselPageBundle:Admin/ApiReview:getCollection, _format: json }
     requirements:
         _method: GET
 
@@ -53,12 +53,6 @@ admin_api_aisel_page_review_put:
     defaults:  { _controller: AiselPageBundle:Admin/ApiReview:put, _format: json }
     requirements:
         _method: PUT
-
-admin_api_aisel_page_review_post:
-    pattern:   /page/review/
-    defaults:  { _controller: AiselPageBundle:Admin/ApiReview:post, _format: json }
-    requirements:
-        _method: POST
 
 admin_api_aisel_page_review_delete:
     pattern:   /page/review/{id}

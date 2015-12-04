@@ -54,7 +54,7 @@ class PageWebTestCase extends AbstractWebTestCase
         $review->setName($this->faker->sentence(1));
         $review->setContent($this->faker->sentence(10));
         $review->setStatus(true);
-        $review->setPage($page);
+        $review->setSubject($page);
         $review->setFrontenduser($user);
 
         $this->em->persist($review);

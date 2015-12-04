@@ -66,7 +66,7 @@ class ApiNodeManager
                 ->getRepository($this->model)
                 ->find($childId);
 
-            if (!($node)) {
+            if (!$node) {
                 throw new LogicException('Nothing was found');
             }
         }

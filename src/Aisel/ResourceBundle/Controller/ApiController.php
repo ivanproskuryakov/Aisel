@@ -62,6 +62,7 @@ class ApiController extends Controller
                 SerializationContext::create()->enableMaxDepthChecks()
             );
 
+
         return json_decode($entity, true);
     }
 

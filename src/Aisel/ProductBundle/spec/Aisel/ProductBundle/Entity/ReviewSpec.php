@@ -9,18 +9,23 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\ProductBundle\Controller\Admin;
+namespace spec\Aisel\ProductBundle\Entity;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiProductControllerSpec extends ObjectBehavior
+class ProductSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\Aisel\ProductBundle\Controller\Admin\ApiProductController');
+        $this->shouldHaveType('Aisel\ProductBundle\Entity\Product');
+    }
+
+    public function it_should_not_have_id()
+    {
+        $this->getId()->shouldReturn(null);
     }
 
 }

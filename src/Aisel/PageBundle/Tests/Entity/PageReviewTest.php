@@ -44,7 +44,7 @@ class PageReviewTest extends PageWebTestCase
         $review->setLocale('en');
         $review->setName($this->faker->sentence(1));
         $review->setContent($this->faker->sentence(10));
-        $review->setPage($page);
+        $review->setSubject($page);
         $this->em->persist($review);
         $this->em->flush();
 

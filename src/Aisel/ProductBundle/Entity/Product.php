@@ -172,14 +172,14 @@ class Product implements UrlInterface
 
     /**
      * @var Collection
-     * @ORM\ManyToMany(targetEntity="Aisel\MediaBundle\Entity\Media", cascade={"all"})
+     * @ORM\ManyToMany(targetEntity="Aisel\MediaBundle\Entity\Media", cascade="remove")
      * @ORM\JoinTable(
      *     name="aisel_product_product_media",
-     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="media_id", referencedColumnName="id")}
+     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="cascade")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="media_id", referencedColumnName="id", onDelete="cascade")}
      * )
      * @JMS\Expose
-     * @JMS\MaxDepth(2)
+     * @JMS\MaxDepth(3)
      * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Entity\Media>")
      */
     private $medias;
@@ -200,7 +200,7 @@ class Product implements UrlInterface
 
     /**
      * @var ArrayCollection<Aisel\ProductBundle\Entity\Review>
-     * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Review", mappedBy="product", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Review", mappedBy="subject", cascade={"all"})
      * @JMS\Expose
      * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Review>")

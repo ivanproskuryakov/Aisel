@@ -46,11 +46,6 @@ class City
      */
     private $region;
 
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
     /**
      * Set region
      *

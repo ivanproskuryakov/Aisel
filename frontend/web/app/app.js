@@ -28,7 +28,8 @@ define([
         'angular-notify',
         'angular-ui-router',
         'angular-animate',
-        'angular-loading-bar'
+        'angular-loading-bar',
+        'twitter-bootstrap'
     ],
     function(angular) {
         'use strict';

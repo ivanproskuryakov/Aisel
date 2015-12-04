@@ -32,6 +32,8 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
     protected $fixturesName = array(
         'en/aisel_product.xml',
+        'es/aisel_product.xml',
+        'ru/aisel_product.xml',
     );
 
     /**

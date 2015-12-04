@@ -1,33 +1,33 @@
-<div class="col-md-12 page-header">
+<div class="col-sm-12 page-header">
     <span class="pull-left">
         <h2><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</h2>
     </span>
 </div>
-<div class="col-md-12">
+<div class="col-sm-12">
     <div class="" ng-if="user">
         <div ng-if="cartItems.length > 0">
-            <div class="tableHeading" >
-                <div class="col-md-1">
+            <div class="tableHeading hidden-xs hidden-xs">
+                <div class="col-sm-1">
                     Image
                 </div>
-                <div class="col-md-5">
+                <div class="col-sm-5">
                     Name
                 </div>
-                <div class="col-md-2">
+                <div class="col-sm-2">
                     Qty
                 </div>
-                <div class="col-md-2">
+                <div class="col-sm-2">
                     Price
                 </div>
-                <div class="col-md-2">
+                <div class="col-sm-2">
                     Total
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <hr>
                 </div>
             </div>
             <div class="cartItem" ng-repeat="item in cartItems">
-                <div class="col-md-1">
+                <div class="col-sm-1">
                     <aisel-product-images
                             class="product-image"
                             img-style="img-rounded"
@@ -35,12 +35,12 @@
                             images="item.product.medias">
                     </aisel-product-images>
                 </div>
-                <div class="col-md-5">
+                <div class="col-sm-5">
                     <h4>{{item.product.name}}</h4>
                 </div>
-                <div class="col-md-2">
+                <div class="col-sm-2">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-sm-8">
                             <input type="number"
                                    class="form-control"
                                    ng-model="item.qty"
@@ -48,28 +48,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-sm-2">
                     {{item.product.price}} {{currency}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-sm-2">
                     {{item.product.price*item.qty}} {{currency}}
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <hr>
                 </div>
             </div>
             <!-- Totals and Submit Order button-->
             <div class="row">
-                <div class="col-md-12">
-                    <div class="col-md-6">
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-3">
                         <span class="pull-right">
                             <strong>Cart Total:</strong> {{total()}} {{currency}}
                         </span>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-3">
                         <span class="pull-right">
                              <a type="button"
                                 ui-sref="checkout({locale: locale})"

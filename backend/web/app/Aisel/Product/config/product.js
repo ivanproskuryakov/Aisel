@@ -12,9 +12,9 @@
  * @description     Module configuration
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app
-        .config(['$stateProvider', function($stateProvider) {
+        .config(['$stateProvider', function ($stateProvider) {
             $stateProvider
                 .state("products", {
                     url: "/:locale/products/",
@@ -31,6 +31,23 @@ define(['app'], function(app) {
                     templateUrl: '/app/Aisel/Product/views/edit.html',
                     controller: 'ProductDetailsCtrl'
                 })
+
+                .state("productReviews", {
+                    url: "/:locale/product/review/",
+                    templateUrl: '/app/Aisel/Kernel/views/collection.html',
+                    controller: 'ProductReviewCtrl'
+                })
+                .state("productReviewEdit", {
+                    url: "/:locale/product/review/edit/:id/",
+                    templateUrl: '/app/Aisel/Product/views/edit-review.html',
+                    controller: 'ProductReviewDetailsCtrl'
+                })
+                .state("productReviewNew", {
+                    url: "/:locale/product/review/new/",
+                    templateUrl: '/app/Aisel/Product/views/edit-review.html',
+                    controller: 'ProductReviewDetailsCtrl'
+                })
+
                 .state("productNode", {
                     url: "/:locale/product/node/:lang/",
                     templateUrl: '/app/Aisel/Kernel/views/node.html',
@@ -42,7 +59,7 @@ define(['app'], function(app) {
                     controller: 'ProductNodeDetailsCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
             $rootScope.topMenu.push({
                 "ordering": 200,
                 "title": 'Products',
@@ -56,6 +73,11 @@ define(['app'], function(app) {
                         "ordering": 200,
                         "slug": '/product/node/' + Environment.currentLocale() + '/',
                         "title": 'Nodes'
+                    },
+                    "productReview": {
+                        "ordering": 300,
+                        "slug": '/product/review/',
+                        "title": 'Reviews'
                     }
                 }
             });

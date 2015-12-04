@@ -26,8 +26,8 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
 
     protected $fixturesName = array(
         'en/aisel_page.xml',
-//        'ru/aisel_page.xml',
-//        'es/aisel_page.xml',
+        'ru/aisel_page.xml',
+        'es/aisel_page.xml',
     );
 
     /**

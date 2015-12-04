@@ -32,8 +32,85 @@ class ApiReviewControllerTest extends ProductWebTestCase
         parent::tearDown();
     }
 
-    public function testPostReviewAction()
+    public function testGetProductReviewAction()
     {
-        $this->markTestSkipped('...');
+        $review = $this->newReview();
+
+        $this->client->request(
+            'GET',
+            '/' . $this->api['backend'] . '/product/review/' . $review->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $review->getId());
     }
+
+    public function testDeleteProductReviewAction()
+    {
+        $review = $this->newReview();
+        $id = $review->getId();
+
+        $this->client->request(
+            'DELETE',
+            '/' . $this->api['backend'] . '/product/review/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $review = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Review')
+            ->findOneBy(['id' => $id]);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNull($review);
+    }
+
+    public function testPutProductReviewAction()
+    {
+        $review = $this->newReview();
+        $id = $review->getId();
+        $data['locale'] = 'ru';
+
+        $this->client->request(
+            'PUT',
+            '/' . $this->api['backend'] . '/product/review/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->em->clear();
+
+        $review = $this
+            ->em
+            ->getRepository('Aisel\ProductBundle\Entity\Review')
+            ->findOneBy(['id' => $id]);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNotNull($review);
+        $this->assertEquals($data['locale'], $review->getLocale());
+    }
+
+
 }

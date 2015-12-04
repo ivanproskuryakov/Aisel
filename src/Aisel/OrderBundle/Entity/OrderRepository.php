@@ -164,7 +164,7 @@ class OrderRepository extends CollectionRepository
             ->where('o.frontenduser = :userId')->setParameter('userId', $userId)
             ->andWhere('o.id = :orderId')->setParameter('orderId', $orderId)
             ->getQuery()
-            ->execute();
+            ->getSingleResult();
 
         return $orders;
     }

@@ -25,13 +25,13 @@ define(['app'], function(app) {
             $scope.columns = [{
                 name: 'id',
                 enableColumnMenu: false,
-                width: '200'
+                width: '75'
             }, {
                 name: 'locale',
                 enableColumnMenu: false,
-                width: '15%'
+                width: '75'
             }, {
-                name: 'title',
+                name: 'name',
                 enableColumnMenu: false
             }, {
                 name: 'meta_url',

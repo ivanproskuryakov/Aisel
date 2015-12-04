@@ -41,22 +41,25 @@ class Review extends BaseReview
      * @JMS\Expose
      * @JMS\MaxDepth(2)
      */
-    private $page;
+    private $subject;
 
     /**
      * @return Page
      */
-    public function getPage()
+    public function getSubject()
     {
-        return $this->page;
+        return $this->subject;
     }
 
     /**
-     * @param Page $page
+     * @param Page $subject
      */
-    public function setPage($page)
+    public function setSubject($subject)
     {
-        $this->page = $page;
+        $this->subject = $subject;
     }
+
+
+
 
 }

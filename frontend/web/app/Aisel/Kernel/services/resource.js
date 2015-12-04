@@ -24,7 +24,8 @@ define(['app'], function (app) {
                 var locale = Environment.currentLocale();
                 var url = Environment.settings.api +
                     '/' + locale +
-                    '/' + this.resource + '/?limit=' + params.limit +
+                    '/' + this.resource +
+                    '/?limit=' + params.limit +
                     '&current=' + params.page +
                     '&order=' + params.order +
                     '&orderBy=' + params.orderBy +
@@ -37,13 +38,26 @@ define(['app'], function (app) {
                 var locale = Environment.currentLocale();
                 var url = Environment.settings.api +
                     '/' + locale +
-                    '/' + this.resource + '/' + $url;
+                    '/' + this.resource +
+                    '/' + $url;
 
                 console.log(url);
                 return $http.get(url);
             };
-            resourceService.prototype.addReview = function (params) {
-                console.log("addReview", params);
+            resourceService.prototype.addReview = function (data) {
+                console.log("addReview", data);
+                var locale = Environment.currentLocale();
+                var url = Environment.settings.api +
+                    '/' + locale +
+                    '/' + this.resource +
+                    '/review/';
+
+                console.log(url);
+                return $http({
+                    method: 'POST',
+                    url: url,
+                    data: data
+                });
             };
 
             return resourceService;

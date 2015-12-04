@@ -55,7 +55,6 @@ class OrderItem
      * @ORM\ManyToOne(targetEntity="Aisel\ProductBundle\Entity\Product", inversedBy="orderItem")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      * @JMS\Expose
-     * @JMS\MaxDepth(5)
      * @JMS\Type("Aisel\ProductBundle\Entity\Product")
      */
     private $product;

@@ -173,13 +173,13 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
 
     public function testDeleteProductAction()
     {
-        $this->markTestSkipped('...');
         $product = $this
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['locale' => 'en']);
-        $id = $product->getId();
+        $medias = $product->getMedias()->toArray();
 
+        $id = $product->getId();
         $this->client->request(
             'DELETE',
             '/' . $this->api['backend'] . '/product/' . $id,
@@ -192,13 +192,22 @@ class ApiProductControllerTest extends AbstractBackendWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $product = $this
+        $foundProduct = $this
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Product')
             ->findOneBy(['id' => $id]);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
-        $this->assertNull($product);
+        $this->assertNull($foundProduct);
+
+        foreach ($medias as $media) {
+            $foundMedia = $this
+                ->em
+                ->getRepository('Aisel\MediaBundle\Entity\Media')
+                ->findOneBy(['id' => $media->getId()]);
+            $this->assertNull($foundMedia);
+        }
+
     }
 }

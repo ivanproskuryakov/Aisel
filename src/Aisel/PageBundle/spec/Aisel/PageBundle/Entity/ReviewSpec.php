@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Aisel\ReviewBundle\Entity;
+namespace spec\Aisel\PageBundle\Entity;
 
 use PhpSpec\ObjectBehavior;
 
 /**
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ReviewSpec extends ObjectBehavior
+class PageSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Aisel\ReviewBundle\Entity\Review');
+        $this->shouldHaveType('Aisel\PageBundle\Entity\Page');
     }
 
     public function it_should_not_have_id()

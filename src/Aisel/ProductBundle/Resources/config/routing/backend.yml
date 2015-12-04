@@ -5,7 +5,7 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-
+#Product Node
 admin_api_aisel_product_node_get:
     pattern:   /product/node/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:get, _format: json }
@@ -36,6 +36,7 @@ admin_api_aisel_product_node_delete:
     requirements:
         _method: DELETE
 
+#Product
 admin_api_aisel_product_get:
     pattern:   /product/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:get, _format: json }
@@ -71,3 +72,28 @@ admin_api_aisel_product_node_node_edit:
     defaults:  { _controller: AiselProductBundle:Admin/ApiNodeEdit:nodeEdit, _format: json }
     requirements:
         _method: GET
+
+# Reviews
+admin_api_aisel_product_review_get:
+    pattern:   /product/review/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiReview:get, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_product_review_get_collection:
+    pattern:   /product/review/
+    defaults:  { _controller: AiselProductBundle:Admin/ApiReview:getCollection, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_product_review_put:
+    pattern:   /product/review/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiReview:put, _format: json }
+    requirements:
+        _method: PUT
+
+admin_api_aisel_product_review_delete:
+    pattern:   /product/review/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiReview:delete, _format: json }
+    requirements:
+        _method: DELETE
