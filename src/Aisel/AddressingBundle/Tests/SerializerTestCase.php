@@ -28,7 +28,7 @@ class SerializerTestCase extends AbstractWebTestCase
     {
         $country = $this
             ->em
-            ->getRepository(Country::class)
+            ->getRepository('Aisel\AddressingBundle\Entity\Country')
             ->findOneBy(['iso2' => 'RU']);
 
         $obj = ['id' => $country->getId()];
@@ -37,7 +37,7 @@ class SerializerTestCase extends AbstractWebTestCase
         $serializer = $this->getContainer()->get('jms_serializer');
         $convertedValue = $serializer->deserialize(
             json_encode($obj),
-            Country::class,
+            'Aisel\AddressingBundle\Entity\Country',
             'json'
         );
 

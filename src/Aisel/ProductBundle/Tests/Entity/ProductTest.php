@@ -16,7 +16,6 @@ use Faker;
 use Aisel\ProductBundle\Entity\Product;
 use Aisel\ProductBundle\Entity\Node;
 use Aisel\MediaBundle\Entity\Media;
-use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 /**
  * ProductTest
@@ -38,7 +37,7 @@ class ProductTest extends AbstractWebTestCase
 
     public function testDuplicateNodes()
     {
-        $this->setExpectedException(UniqueConstraintViolationException::class);
+        $this->setExpectedException('Doctrine\DBAL\Exception\UniqueConstraintViolationException');
 
         $node = new Node();
         $node->setStatus(true);
@@ -70,7 +69,7 @@ class ProductTest extends AbstractWebTestCase
 
     public function testDuplicateImages()
     {
-        $this->setExpectedException(UniqueConstraintViolationException::class);
+        $this->setExpectedException('Doctrine\DBAL\Exception\UniqueConstraintViolationException');
         $image = new Media();
         $image->setType(Media::MEDIA_IMAGE);
         $image->setFilename($this->faker->numberBetween(0, 10000));
