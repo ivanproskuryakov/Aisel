@@ -1,0 +1,65 @@
+########################################################
+### Do not forget to change %TRAVIS_BUILD_DIR% param ###
+########################################################
+
+server {
+    listen 80;
+    server_name api.aisel.dev;
+    client_max_body_size 20M;
+
+    root %TRAVIS_BUILD_DIR%/Aisel/web;
+    error_log  %TRAVIS_BUILD_DIR%/api.error.log;
+    access_log %TRAVIS_BUILD_DIR%/api.access.log;
+
+    location / {
+        try_files $uri @rewriteapp;
+    }
+
+    location @rewriteapp {
+        rewrite ^(.*)$ /app_dev.php/$1 last;
+    }
+
+    location ~ ^/(app|app_dev|config)\.php(/|$) {
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_intercept_errors on;
+        include fastcgi_params;
+    }
+}
+
+server {
+    listen 80;
+    server_name aisel.dev;
+
+    root %TRAVIS_BUILD_DIR%/Aisel/frontend/web;
+    error_log  %TRAVIS_BUILD_DIR%/frontend.error.log;
+    access_log %TRAVIS_BUILD_DIR%/frontend.access.log;
+
+    location / {
+        try_files $uri $uri/index_dev.html index_dev.html;
+        if (!-e $request_filename){
+                rewrite $ /index_dev.html$1 break;
+        }
+    }
+}
+
+server {
+    listen 80;
+    server_name admin.aisel.dev;
+
+    root %TRAVIS_BUILD_DIR%/Aisel/backend/web;
+    error_log  %TRAVIS_BUILD_DIR%/backend.error.log;
+    access_log %TRAVIS_BUILD_DIR%/backend.access.log;
+
+    location / {
+        try_files $uri $uri/index.html index.html;
+        if (!-e $request_filename){
+                rewrite $ /index.html$1 break;
+        }
+    }
+}
