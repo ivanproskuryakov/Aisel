@@ -37,7 +37,6 @@ define(['app'], function(app) {
                     console.log(url);
                     return $http.post(url, formData);
                 },
-
                 getCountries: function() {
                     var url = Environment.settings.api + '/addressing/country';
                     console.log(url);

@@ -16,9 +16,15 @@ define(['app'], function (app) {
     app.controller('AbstractCollectionCtrl',
         function ($controller, $scope, $stateParams, itemService, $state, Environment, notify) {
 
-            $scope.pageLimit = 5;
-            $scope.paginationPage = 1;
-            $scope.categoryId = 0;
+            if (!$scope.pageLimit) {
+                $scope.pageLimit = 5;
+            }
+            if (!$scope.paginationPage) {
+                $scope.paginationPage = 1;
+            }
+            if (!$scope.categoryId) {
+                $scope.categoryId = 0;
+            }
 
             /**
              * Load collection
