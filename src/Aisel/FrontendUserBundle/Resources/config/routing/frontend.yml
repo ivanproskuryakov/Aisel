@@ -46,3 +46,9 @@ api_aisel_user_delete:
     defaults: { _controller: AiselFrontendUserBundle:Api:delete, _format: json }
     requirements:
         _method: DELETE
+
+api_aisel_user_password_new:
+    pattern:  /user/password/change/
+    defaults: { _controller: AiselFrontendUserBundle:Api:changePassword, _format: json }
+    requirements:
+        _method: PATCH

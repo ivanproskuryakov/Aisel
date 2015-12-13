@@ -11,15 +11,15 @@
 
 namespace Aisel\FrontendUserBundle\Tests\Controller;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\FrontendUserBundle\Tests\FrontendUserTestCase;
 
 /**
  * ApiControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiControllerTest extends AbstractWebTestCase
+class ApiControllerTest extends FrontendUserTestCase
 {
 
     public function setUp()
@@ -179,13 +179,7 @@ class ApiControllerTest extends AbstractWebTestCase
         $password = $this->faker->password();
         $username = $this->faker->userName;
 
-        $user = new FrontendUser();
-        $user->setUsername($username);
-        $user->setEmail($this->faker->email);
-        $user->setPlainPassword($password);
-        $this->em->persist($user);
-        $this->em->flush();
-
+        $this->newFrontendUser($username, $password);
         $this->logInFrontend($username, $password);
 
         $this->client->request(
@@ -201,8 +195,55 @@ class ApiControllerTest extends AbstractWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        $this->assertTrue(200 === $statusCode);
-        $this->assertNull($result);
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($result);
+    }
+
+    public function testChangeUserPasswordAction()
+    {
+        $password = $this->faker->password();
+        $username = $this->faker->userName;
+        $user = $this->newFrontendUser($username, $password);
+        $oldPassword = $user->getPassword();
+
+        $this->logInFrontend($username, $password);
+
+        $newPassword = '000111222';
+        $encoder = $this->getContainer()->get('security.encoder_factory')->getEncoder($user);
+        $encodedPassword = $encoder->encodePassword(
+            $newPassword,
+            $user->getSalt()
+        );
+
+        $data = [
+            'password' => $newPassword,
+        ];
+
+        $this->client->request(
+            'PATCH',
+            '/' . $this->api['frontend'] . '/user/password/change/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->em->clear();
+
+        $user = $this
+            ->em
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->findOneBy(['username' => $username]);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertNotEquals($oldPassword, $user->getPassword());
+        $this->assertEquals($encodedPassword, $user->getPassword());
+        $this->removeEntity($user);
     }
 
 }

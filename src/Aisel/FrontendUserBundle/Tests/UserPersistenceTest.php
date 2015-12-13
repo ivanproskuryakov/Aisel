@@ -11,15 +11,14 @@
 
 namespace Aisel\FrontendUserBundle\Tests;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\FrontendUserBundle\Tests\FrontendUserTestCase;
 
 /**
  * UserPersistenceTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class UserPersistenceTest extends AbstractWebTestCase
+class UserPersistenceTest extends FrontendUserTestCase
 {
 
     public function setUp()
@@ -34,13 +33,9 @@ class UserPersistenceTest extends AbstractWebTestCase
 
     public function testUserPasswordListener()
     {
-        $user = new FrontendUser();
-        $user->setUsername($this->faker->userName);
-        $user->setEmail($this->faker->email);
-        $user->setPlainPassword($this->faker->password());
-
-        $this->em->persist($user);
-        $this->em->flush();
+        $password = $this->faker->password();
+        $username = $this->faker->userName;
+        $user = $this->newFrontendUser($username, $password);
 
         $this->assertNotEmpty($user->getId());
         $this->removeEntity($user);

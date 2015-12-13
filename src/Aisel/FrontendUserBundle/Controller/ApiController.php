@@ -198,8 +198,9 @@ class ApiController extends BaseApiController
     }
 
     /**
-     * @param Request $request
+     * deleteAction
      *
+     * @param Request $request
      * @return mixed
      */
     public function deleteAction(Request $request)
@@ -210,12 +211,33 @@ class ApiController extends BaseApiController
             $em = $this->getEntityManager();
             $em->remove($this->getUser());
             $em->flush();
-            $em->clear();
 
             // Logout
             $token = new AnonymousToken(null, new FrontendUser());
             $this->get('security.context')->setToken($token);
             $this->get('session')->invalidate();
+        }
+    }
+
+    /**
+     * changePasswordAction
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function changePasswordAction(Request $request)
+    {
+        if ($this->isAuthenticated()) {
+            $password = $request->get('password');
+
+            /** @var FrontendUser $user */
+            $em = $this->getEntityManager();
+            $user = $this->getUser();
+            $user->setPassword(null); // hack to force update user password
+            $user->setPlainPassword($password);
+
+            $em->persist($user);
+            $em->flush();
         }
     }
 

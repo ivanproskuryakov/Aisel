@@ -62,7 +62,6 @@ class UserPersistenceListener
         $object = $args->getEntity();
 
         if ($object instanceof AdvancedUserInterface) {
-
             $salt = md5(uniqid(null, true));
             $object->setSalt($salt);
 
