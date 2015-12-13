@@ -22,3 +22,4 @@ services:
             - @security.encoder_factory
         tags:
             - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }

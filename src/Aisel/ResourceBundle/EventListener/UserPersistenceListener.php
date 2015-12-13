@@ -40,7 +40,23 @@ class UserPersistenceListener
     /**
      * @param LifecycleEventArgs $args
      */
+    public function preUpdate(LifeCycleEventArgs $args)
+    {
+        $this->setPassword($args);
+    }
+
+    /**
+     * @param LifecycleEventArgs $args
+     */
     public function prePersist(LifeCycleEventArgs $args)
+    {
+        $this->setPassword($args);
+    }
+
+    /**
+     * @param LifecycleEventArgs $args
+     */
+    public function setPassword(LifeCycleEventArgs $args)
     {
         /** @var AdvancedUserInterface $object */
         $object = $args->getEntity();
@@ -60,5 +76,6 @@ class UserPersistenceListener
             $object->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
         }
     }
+
 
 }

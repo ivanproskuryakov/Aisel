@@ -130,12 +130,22 @@ class APiControllerTest extends AbstractBackendWebTestCase
 
     public function testPutUserAction()
     {
+        $passwordString = '000111222';
         $user = $this
             ->em
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
         $id = $user->getId();
+        $oldPassword = $user->getPassword();
+
         $data['email'] = 'test_backend_user_aisel2@aisel.co';
+        $data['plain_password'] = $passwordString;
+
+        $encoder = $this->getContainer()->get('security.encoder_factory')->getEncoder($user);
+        $encodedPassword = $encoder->encodePassword(
+            $passwordString,
+            $user->getSalt()
+        );
 
         $this->client->request(
             'PUT',
@@ -157,10 +167,11 @@ class APiControllerTest extends AbstractBackendWebTestCase
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
             ->findOneBy(['username' => 'test_backend_user_aisel']);
 
+        $this->assertNotEquals($oldPassword, $user->getPassword());
+        $this->assertEquals($encodedPassword, $user->getPassword());
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
         $this->assertNotNull($user);
-        $this->assertEquals($data['email'], $user->getEmail());
     }
 
     public function testDeletePageNodeAction()

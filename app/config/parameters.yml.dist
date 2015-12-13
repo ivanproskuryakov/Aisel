@@ -10,10 +10,10 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
     website_email: ~
-
     website_address: 'http://aisel.dev'
     locale: en
     locales: en|es|ru
+
     paypal.express_checkout.username:  EDIT ME
     paypal.express_checkout.password:  EDIT ME
     paypal.express_checkout.signature: EDIT ME

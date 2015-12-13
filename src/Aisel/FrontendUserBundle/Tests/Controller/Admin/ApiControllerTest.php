@@ -51,7 +51,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/'. $this->api['backend'] . '/frontenduser/',
+            '/' . $this->api['backend'] . '/frontenduser/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -64,7 +64,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'POST',
-            '/'. $this->api['backend'] . '/frontenduser/',
+            '/' . $this->api['backend'] . '/frontenduser/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -86,7 +86,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/frontenduser/',
+            '/' . $this->api['backend'] . '/frontenduser/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -111,7 +111,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/frontenduser/' . $id,
+            '/' . $this->api['backend'] . '/frontenduser/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -128,11 +128,19 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
     public function testPutUserAction()
     {
+        $passwordString = '000111222';
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
         $id = $user->getId();
+        $oldPassword = $user->getPassword();
+
+        $encoder = $this->getContainer()->get('security.encoder_factory')->getEncoder($user);
+        $encodedPassword = $encoder->encodePassword(
+            $passwordString,
+            $user->getSalt()
+        );
 
         $data = array(
             'id' => $id,
@@ -144,11 +152,12 @@ class ApiControllerTest extends AbstractBackendWebTestCase
             'locked' => false,
             'orders' => array(),
             'cart' => array(),
+            'plain_password' => $passwordString,
         );
 
         $this->client->request(
             'PUT',
-            '/'. $this->api['backend'] . '/frontenduser/' . $id,
+            '/' . $this->api['backend'] . '/frontenduser/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -166,6 +175,8 @@ class ApiControllerTest extends AbstractBackendWebTestCase
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
             ->findOneBy(['username' => 'test_frontend_user_aisel']);
 
+        $this->assertNotEquals($oldPassword, $user->getPassword());
+        $this->assertEquals($encodedPassword, $user->getPassword());
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);
         $this->assertNotNull($user);
@@ -181,7 +192,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
 
         $this->client->request(
             'DELETE',
-            '/'. $this->api['backend'] . '/frontenduser/' . $id,
+            '/' . $this->api['backend'] . '/frontenduser/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
