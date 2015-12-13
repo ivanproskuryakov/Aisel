@@ -125,7 +125,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Aisel\CartBundle\Entity\Cart", mappedBy="frontenduser")
+     * @ORM\OneToMany(targetEntity="Aisel\CartBundle\Entity\Cart", mappedBy="frontenduser", cascade={"remove"})
      * @JMS\Expose
      * @JMS\MaxDepth(6)
      * @JMS\Type("ArrayCollection<Aisel\CartBundle\Entity\Cart>")
@@ -134,7 +134,7 @@ class FrontendUser implements AdvancedUserInterface
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\Order", mappedBy="frontenduser")
+     * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\Order", mappedBy="frontenduser", cascade={"remove"})
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Entity\Order>")

@@ -39,9 +39,9 @@ class ApiController extends Controller
      */
     protected function getEntityManager()
     {
-        $dm = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine.orm.entity_manager');
 
-        return $dm;
+        return $em;
     }
 
     /**
@@ -210,11 +210,11 @@ class ApiController extends Controller
     public function deleteAction(Request $request)
     {
         $document = $this->getEntityFromRequest($request);
-        $dm = $this->getEntityManager();
+        $em = $this->getEntityManager();
 
-        $dm->remove($document);
-        $dm->flush();
-        $dm->clear();
+        $em->remove($document);
+        $em->flush();
+        $em->clear();
     }
 
     /**

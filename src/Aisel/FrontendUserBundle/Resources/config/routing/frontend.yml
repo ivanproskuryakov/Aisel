@@ -40,3 +40,9 @@ api_aisel_user_get:
     defaults: { _controller: AiselFrontendUserBundle:Api:information, _format: json }
     requirements:
         _method: GET
+
+api_aisel_user_delete:
+    pattern:  /user/
+    defaults: { _controller: AiselFrontendUserBundle:Api:delete, _format: json }
+    requirements:
+        _method: DELETE

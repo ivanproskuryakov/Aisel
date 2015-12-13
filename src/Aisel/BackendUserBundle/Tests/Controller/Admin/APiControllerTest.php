@@ -174,7 +174,7 @@ class APiControllerTest extends AbstractBackendWebTestCase
         $this->assertNotNull($user);
     }
 
-    public function testDeletePageNodeAction()
+    public function testDeleteUserAction()
     {
         $user = $this
             ->em

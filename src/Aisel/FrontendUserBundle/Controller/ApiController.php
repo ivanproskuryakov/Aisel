@@ -197,4 +197,26 @@ class ApiController extends BaseApiController
         return false;
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function deleteAction(Request $request)
+    {
+        if ($this->isAuthenticated()) {
+
+            // Delete entity
+            $em = $this->getEntityManager();
+            $em->remove($this->getUser());
+            $em->flush();
+            $em->clear();
+
+            // Logout
+            $token = new AnonymousToken(null, new FrontendUser());
+            $this->get('security.context')->setToken($token);
+            $this->get('session')->invalidate();
+        }
+    }
+
 }

@@ -12,6 +12,7 @@
 namespace Aisel\FrontendUserBundle\Tests\Controller;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 
 /**
  * ApiControllerTest
@@ -171,6 +172,37 @@ class ApiControllerTest extends AbstractWebTestCase
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals(true, $result['status']);
         $this->assertEquals('New password has been sent!', $result['message']);
+    }
+
+    public function testDeleteUserAccountAction()
+    {
+        $password = $this->faker->password();
+        $username = $this->faker->userName;
+
+        $user = new FrontendUser();
+        $user->setUsername($username);
+        $user->setEmail($this->faker->email);
+        $user->setPlainPassword($password);
+        $this->em->persist($user);
+        $this->em->flush();
+
+        $this->logInFrontend($username, $password);
+
+        $this->client->request(
+            'DELETE',
+            '/' . $this->api['frontend'] . '/user/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertNull($result);
     }
 
 }

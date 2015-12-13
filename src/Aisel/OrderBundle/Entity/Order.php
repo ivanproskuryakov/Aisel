@@ -144,7 +144,7 @@ class Order
 
     /**
      * @var OrderItem
-     * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\OrderItem", mappedBy="order")
+     * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\OrderItem", mappedBy="order", cascade={"remove"})
      * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Entity\OrderItem>")
      * @JMS\Expose
      * @JMS\MaxDepth(6)
