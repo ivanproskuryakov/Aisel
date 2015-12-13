@@ -135,8 +135,6 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\Order", mappedBy="frontenduser", cascade={"remove"})
-     * @JMS\Expose
-     * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Entity\Order>")
      */
     private $orders;
@@ -145,7 +143,7 @@ class FrontendUser implements AdvancedUserInterface
      * @var Collection
      * @ORM\OneToMany(targetEntity="Aisel\AddressingBundle\Entity\Address", mappedBy="frontenduser", cascade={"remove"})
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
+     * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Entity\Address>")
      */
     private $addresses;
