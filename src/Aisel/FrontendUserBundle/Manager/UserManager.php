@@ -44,7 +44,7 @@ class UserManager implements UserProviderInterface
     /**
      * @var EntityManager
      */
-    protected $dm;
+    protected $em;
 
     /**
      * @var EngineInterface
@@ -83,7 +83,7 @@ class UserManager implements UserProviderInterface
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->encoder = $encoder;
-        $this->dm = $entityManager;
+        $this->em = $entityManager;
         $this->websiteEmail = $websiteEmail;
         $this->securityContext = $securityContext;
     }
@@ -93,7 +93,7 @@ class UserManager implements UserProviderInterface
      */
     protected function getRepository()
     {
-        $repo = $this->dm
+        $repo = $this->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser');
 
         return $repo;
@@ -200,8 +200,8 @@ class UserManager implements UserProviderInterface
         $user->setTwitter($userData['twitter']);
         $user->setAbout($userData['about']);
 
-        $this->dm->persist($user);
-        $this->dm->flush();
+        $this->em->persist($user);
+        $this->em->flush();
 
         return $user;
     }
@@ -213,26 +213,18 @@ class UserManager implements UserProviderInterface
      *
      * @return string $message
      */
-    public function updateDetailsCurrentUser(array $userData)
+    public function updateDetailsForUser(array $userData)
     {
-        try {
-            $user = $this->securityContext->getToken()->getUser();
+        $user = $this->securityContext->getToken()->getUser();
 
-            if ($userData['phone']) $user->setPhone($userData['phone']);
-            if ($userData['website']) $user->setWebsite($userData['website']);
-            if ($userData['about']) $user->setAbout($userData['about']);
+        if ($userData['phone']) $user->setPhone($userData['phone']);
+        if ($userData['website']) $user->setWebsite($userData['website']);
+        if ($userData['about']) $user->setAbout($userData['about']);
+        if ($userData['facebook']) $user->setFacebook($userData['facebook']);
+        if ($userData['twitter']) $user->setTwitter($userData['twitter']);
 
-            if ($userData['facebook']) $user->setFacebook($userData['facebook']);
-            if ($userData['twitter']) $user->setTwitter($userData['twitter']);
-
-            $this->dm->persist($user);
-            $this->dm->flush();
-            $message = 'Information successfully updated!';
-        } catch (\Swift_TransportException $e) {
-            $message = $e->getMessage();
-        }
-
-        return $message;
+        $this->em->persist($user);
+        $this->em->flush();
     }
 
     /**
@@ -250,8 +242,8 @@ class UserManager implements UserProviderInterface
             $user->setEnabled(true);
             $user->setLocked(false);
 
-            $this->dm->persist($user);
-            $this->dm->flush();
+            $this->em->persist($user);
+            $this->em->flush();
 
             // Send user info via email
             try {
@@ -291,8 +283,8 @@ class UserManager implements UserProviderInterface
             $utility = new PasswordUtility();
             $password = $utility->generatePassword();
             $user->setPlainPassword($password);
-            $this->dm->persist($user);
-            $this->dm->flush();
+            $this->em->persist($user);
+            $this->em->flush();
 
             // Send password via email
             try {

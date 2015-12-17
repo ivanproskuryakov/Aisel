@@ -29,11 +29,11 @@ api_aisel_user_post:
     requirements:
         _method: POST
 
-api_aisel_user_put:
+api_aisel_user_patch:
     pattern:  /user/information/
     defaults: { _controller: AiselFrontendUserBundle:Api:edit, _format: json }
     requirements:
-        _method: PUT
+        _method: PATCH
 
 api_aisel_user_get:
     pattern:  /user/information/

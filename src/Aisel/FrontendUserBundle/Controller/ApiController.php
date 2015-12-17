@@ -180,6 +180,8 @@ class ApiController extends BaseApiController
     }
 
     /**
+     * editAction
+     *
      * @param Request $request
      *
      * @return array|false
@@ -187,14 +189,9 @@ class ApiController extends BaseApiController
     public function editAction(Request $request)
     {
         if ($this->isAuthenticated()) {
-            $json = utf8_decode($request->get('userdata'));
-            $userData = json_decode($json, true);
-            $message = $this->getUserManager()->updateDetailsCurrentUser($userData);
-
-            return array('status' => true, 'message' => $message);
+            $userData = json_decode($request->getContent(), true);
+            $this->getUserManager()->updateDetailsForUser($userData);
         }
-
-        return false;
     }
 
     /**

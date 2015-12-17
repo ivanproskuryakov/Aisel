@@ -51,6 +51,52 @@ class ApiControllerTest extends FrontendUserTestCase
         $this->assertFalse($result);
     }
 
+    public function testUpdateUserInformationAction()
+    {
+        $password = $this->faker->password();
+        $username = $this->faker->userName;
+        $user = $this->newFrontendUser($username, $password);
+        $this->logInFrontend($username, $password);
+
+        $data = [
+            'phone' => $this->faker->phoneNumber,
+            'website' => $this->faker->url,
+            'about' => $this->faker->text(),
+            'facebook' => $this->faker->url,
+            'twitter' => $this->faker->url,
+        ];
+
+        $this->client->request(
+            'PATCH',
+            '/' . $this->api['frontend'] . '/user/information/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($result);
+
+        $user = $this
+            ->em
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->findOneBy(['username' => $username]);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertNotEmpty($user->getPhone());
+        $this->assertNotEmpty($user->getWebsite());
+        $this->assertNotEmpty($user->getAbout());
+        $this->assertNotEmpty($user->getFacebook());
+        $this->assertNotEmpty($user->getTwitter());
+    }
+
+
     public function testRegisterUserAction()
     {
         $data = [
