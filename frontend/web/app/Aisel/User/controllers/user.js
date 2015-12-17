@@ -12,16 +12,16 @@
  * @description     ...
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app.controller('UserCtrl', ['$scope', '$rootScope', '$state', 'userService', 'notify', 'Environment',
-        function($scope, $rootScope, $state, userService, notify, Environment) {
+        function ($scope, $rootScope, $state, userService, notify, Environment) {
             var locale = Environment.currentLocale();
 
             // User Registration
-            $scope.submitRegistration = function(form) {
+            $scope.submitRegistration = function (form) {
                 if (form.$valid) {
                     userService.register(form).success(
-                        function(data, status) {
+                        function (data, status) {
                             notify(data.message);
                             if (data.status) {
                                 if (data.user.username) {
@@ -37,10 +37,10 @@ define(['app'], function(app) {
             };
 
             // User Password Forgot
-            $scope.submitPasswordForgot = function(form) {
+            $scope.submitPasswordForgot = function (form) {
                 if (form.$valid) {
                     userService.passwordforgot(form).success(
-                        function(data, status) {
+                        function (data, status) {
                             notify(data.message);
                             if (data.status) {
                                 $state.transitionTo('userLogin', {
@@ -53,10 +53,10 @@ define(['app'], function(app) {
             };
 
             // User Sign In/Out
-            $scope.signOut = function() {
+            $scope.signOut = function () {
                 userService.signout($scope).success(
-                    function(data, status) {
-                        notify(data.message);
+                    function (data, status) {
+                        notify('You have been successfully logged out!');
                         $rootScope.user = undefined;
                         $state.transitionTo('homepage', {
                             locale: locale
@@ -65,9 +65,9 @@ define(['app'], function(app) {
                 );
             };
 
-            $scope.login = function(username, password) {
+            $scope.login = function (username, password) {
                 userService.login(username, password).success(
-                    function(data, status) {
+                    function (data, status) {
                         notify(data.message);
                         if (data.status) {
                             $state.transitionTo('userInformation', {

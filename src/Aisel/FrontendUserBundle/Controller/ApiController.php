@@ -84,8 +84,6 @@ class ApiController extends BaseApiController
         } else {
             return array('message' => 'You already logged in. Try to refresh page');
         }
-
-        return array('message' => 'Error in login action');
     }
 
     /**
@@ -159,8 +157,6 @@ class ApiController extends BaseApiController
         $token = new AnonymousToken(null, new FrontendUser());
         $this->get('security.context')->setToken($token);
         $this->get('session')->invalidate();
-
-        return array('status' => true, 'message' => 'You have been successfully logged out!');
     }
 
     /**

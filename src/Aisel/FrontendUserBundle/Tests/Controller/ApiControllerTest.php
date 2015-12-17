@@ -125,9 +125,13 @@ class ApiControllerTest extends FrontendUserTestCase
 
     public function testLoginUserAction()
     {
+        $password = $this->faker->password();
+        $username = $this->faker->userName;
+        $user = $this->newFrontendUser($username, $password);
+
         $data = [
-            'username' => 'frontenduser',
-            'password' => 'frontenduser',
+            'username' => $username,
+            'password' => $password,
         ];
         $this->client->request(
             'POST',
@@ -144,16 +148,21 @@ class ApiControllerTest extends FrontendUserTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertTrue($result['status'] === true);
-        $this->assertTrue($result['message'] === 'Successfully logged in');
+
+        $this->removeEntity($user);
     }
 
     public function testLogoutUserAction()
     {
+        $password = $this->faker->password();
+        $username = $this->faker->userName;
+        $user = $this->newFrontendUser($username, $password);
+
         $data = [
-            'username' => 'frontenduser',
-            'password' => 'frontenduser',
+            'username' => $username,
+            'password' => $password,
         ];
+
         $this->client->request(
             'POST',
             '/' . $this->api['frontend'] . '/user/login/',
@@ -176,9 +185,7 @@ class ApiControllerTest extends FrontendUserTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        $this->assertTrue(200 === $statusCode);
-        $this->assertTrue($result['status'] === true);
-        $this->assertTrue($result['message'] === 'You have been successfully logged out!');
+        $this->assertTrue(204 === $statusCode);
     }
 
     public function testUserForgotPasswordUserNotFoundAction()
