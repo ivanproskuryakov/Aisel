@@ -36,20 +36,6 @@ define(['app'], function(app) {
                 }
             };
 
-            /**
-             * @param form registration form values
-             * @description sends data to API layer and update user object
-             */
-            $scope.submitEditUserDetails = function(form) {
-                if (form.$valid) {
-                    userService.editDetails(form).success(
-                        function(data, status) {
-                            notify(data.message);
-                        }
-                    );
-                }
-            };
-
             // User Password Forgot
             $scope.submitPasswordForgot = function(form) {
                 if (form.$valid) {

@@ -89,11 +89,11 @@ class ApiControllerTest extends FrontendUserTestCase
             ->findOneBy(['username' => $username]);
 
         $this->assertTrue(204 === $statusCode);
-        $this->assertNotEmpty($user->getPhone());
-        $this->assertNotEmpty($user->getWebsite());
-        $this->assertNotEmpty($user->getAbout());
-        $this->assertNotEmpty($user->getFacebook());
-        $this->assertNotEmpty($user->getTwitter());
+        $this->assertEquals($user->getPhone(), $data['phone']);
+        $this->assertEquals($user->getWebsite(), $data['website']);
+        $this->assertEquals($user->getAbout(), $data['about']);
+        $this->assertEquals($user->getFacebook(), $data['facebook']);
+        $this->assertEquals($user->getTwitter(), $data['twitter']);
     }
 
 

@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  *
  * @name            AiselUser
- * @description     UserDashboardCtrl
+ * @description     UserEditCtrl
  */
 
 define(['app'], function (app) {
     app.controller(
-        'UserDashboardCtrl', [
+        'UserEditCtrl', [
             '$scope',
             '$rootScope',
             '$state',

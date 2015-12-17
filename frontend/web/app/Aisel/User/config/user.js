@@ -39,23 +39,15 @@ define(['app'], function(app) {
                     role: 'guest'
                 }
             })
-            // Authenticated users actions
+            // Authenticated userInformationEdit actions
             .state("userInformation", {
                 url: "/:locale/user/information/",
                 templateUrl: '/app/Aisel/User/views/information/dashboard.html',
-                controller: 'UserCtrl',
+                controller: 'UserEditCtrl',
                 data: {
                     role: 'user'
                 }
 
-            })
-            .state("userInformationEdit", {
-                url: "/:locale/user/information/edit/",
-                templateUrl: '/app/Aisel/User/views/information/edit.html',
-                controller: 'UserDashboardCtrl',
-                data: {
-                    role: 'user'
-                }
             })
     }]);
 });

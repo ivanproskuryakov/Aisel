@@ -217,11 +217,11 @@ class UserManager implements UserProviderInterface
     {
         $user = $this->securityContext->getToken()->getUser();
 
-        if ($userData['phone']) $user->setPhone($userData['phone']);
-        if ($userData['website']) $user->setWebsite($userData['website']);
-        if ($userData['about']) $user->setAbout($userData['about']);
-        if ($userData['facebook']) $user->setFacebook($userData['facebook']);
-        if ($userData['twitter']) $user->setTwitter($userData['twitter']);
+        if (isset($userData['phone'])) $user->setPhone($userData['phone']);
+        if (isset($userData['website'])) $user->setWebsite($userData['website']);
+        if (isset($userData['about'])) $user->setAbout($userData['about']);
+        if (isset($userData['facebook'])) $user->setFacebook($userData['facebook']);
+        if (isset($userData['twitter'])) $user->setTwitter($userData['twitter']);
 
         $this->em->persist($user);
         $this->em->flush();
