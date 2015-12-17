@@ -1,69 +1,66 @@
 <div class="">
     <div class="col-md-12 page-header">
-        <h2><span class="glyphicon glyphicon-list-alt"></span> My orders</h2>
-        <p class=""><span class="glyphicon glyphicon-circle-arrow-left"></span>
-            <a ui-sref="userInformation({locale: locale})"> Back to dashboard</a></p>
+        <h2>My orders</h2>
     </div>
 
-    <div class="" ng-if="user">
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-12">
-                    <div ng-if="orders.length > 0">
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12">
+                <div ng-if="orders.length > 0">
 
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        Id
-                                    </div>
-                                    <div class="col-md-2">
-                                        Status
-                                    </div>
-                                    <div class="col-md-2">
-                                        Total
-                                    </div>
-                                    <div class="col-md-3">
-                                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Id
+                                </div>
+                                <div class="col-md-2">
+                                    Status
+                                </div>
+                                <div class="col-md-2">
+                                    Total
+                                </div>
+                                <div class="col-md-3">
                                 </div>
                             </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="orderItem" ng-repeat="order in orders">
-                                        <div class="col-md-5">
-                                            <span class="glyphicon glyphicon-info-sign"></span> #{{order.id}}<br/>
-                                            <span class="glyphicon glyphicon-calendar"></span> {{order.created_at | date:"MM/dd/yyyy @ h:mma" }}
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="orderItem" ng-repeat="order in orders">
+                                    <div class="col-md-5">
+                                        <span class="glyphicon glyphicon-info-sign"></span> #{{order.id}}<br/>
+                                        <span class="glyphicon glyphicon-calendar"></span> {{order.created_at |
+                                        date:"MM/dd/yyyy @ h:mma" }}
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{order.status}}
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{order.total_amount}} {{currency}}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="pull-right">
+                                            <a type="button"
+                                               ui-sref="viewOrder({locale: locale, orderId:order.id})"
+                                               class="btn btn-warning">View Order
+                                            </a>
                                         </div>
-                                        <div class="col-md-2">
-                                            {{order.status}}
-                                        </div>
-                                        <div class="col-md-2">
-                                            {{order.total_amount}} {{currency}}
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="pull-right">
-                                                <a type="button"
-                                                   ui-sref="viewOrder({locale: locale, orderId:order.id})"
-                                                   class="btn btn-warning">View Order
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <hr>
-                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="empty-cart-content" ng-if="orders.length == 0">
-                        <span>You have no orders yet</span>
-                    </div>
+                </div>
+                <div class="empty-cart-content" ng-if="orders.length == 0">
+                    <span>You have no orders yet</span>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
-            <div class="sidebar" ng-include="'/app/Aisel/User/views/sidebar.html'"></div>
-        </div>
+    </div>
+    <div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="sidebar" ng-include="'/app/Aisel/User/views/sidebar.html'"></div>
     </div>
 </div>

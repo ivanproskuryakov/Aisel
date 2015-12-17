@@ -32,23 +32,6 @@ define(['app'], function(app) {
                     data: data
                 });
             },
-            editDetails: function(form) {
-                var formData = {};
-                formData['about'] = encodeURIComponent(form.about.$modelValue);
-                formData['phone'] = encodeURIComponent(form.phone.$modelValue);
-                formData['website'] = encodeURIComponent(form.website.$modelValue);
-                formData['facebook'] = encodeURIComponent(form.facebook.$modelValue);
-                formData['linkedin'] = encodeURIComponent(form.linkedin.$modelValue);
-                formData['twitter'] = encodeURIComponent(form.twitter.$modelValue);
-                formData['googleplus'] = encodeURIComponent(form.googleplus.$modelValue);
-                formData['github'] = encodeURIComponent(form.github.$modelValue);
-                formData['behance'] = encodeURIComponent(form.behance.$modelValue);
-                formData['googleplus'] = encodeURIComponent(form.googleplus.$modelValue);
-
-                var userData = JSON.stringify(formData);
-                var url = Environment.settings.api + '/user/editdetails.json?userdata=' + userData;
-                return $http.get(url);
-            },
             passwordforgot: function(form) {
                 var email = form.email.$modelValue;
                 var url = Environment.settings.api + '/user/password/forgot/?email=' + email;
@@ -73,7 +56,38 @@ define(['app'], function(app) {
             getUserInformation: function() {
                 var url = Environment.settings.api + '/user/information/';
                 return $http.get(url);
-            }
+            },
+
+            updateAccount: function (user) {
+                var url = Environment.settings.api + '/user/information/';
+                var data = {
+                    notification_news: user.notification_news,
+                    notification_alarms: user.notification_alarms
+                };
+                return $http({
+                    method: 'PATCH',
+                    url: url,
+                    data: data
+                });
+            },
+            changePassword: function (password) {
+                var url = Environment.settings.api + '/user/password/change/';
+                var data = {
+                    password: password
+                };
+                return $http({
+                    method: 'PATCH',
+                    url: url,
+                    data: data
+                });
+            },
+            deleteAccount: function () {
+                var url = Environment.settings.api + '/user/';
+                return $http({
+                    method: 'DELETE',
+                    url: url
+                });
+            },
         };
     }]);
 });

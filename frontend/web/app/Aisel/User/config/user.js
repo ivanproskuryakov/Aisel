@@ -52,11 +52,10 @@ define(['app'], function(app) {
             .state("userInformationEdit", {
                 url: "/:locale/user/information/edit/",
                 templateUrl: '/app/Aisel/User/views/information/edit.html',
-                controller: 'UserCtrl',
+                controller: 'UserDashboardCtrl',
                 data: {
                     role: 'user'
                 }
-
             })
     }]);
 });
