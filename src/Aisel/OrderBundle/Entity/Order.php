@@ -17,6 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use JMS\Serializer\Annotation as JMS;
+use Aisel\BackendUserBundle\Entity\BackendUser;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\ContentTrait;
@@ -152,12 +153,22 @@ class Order
     private $item;
 
     /**
+     * @var BackendUser
+     * @ORM\ManyToOne(targetEntity="Aisel\BackendUserBundle\Entity\BackendUser", inversedBy="node")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $backendUser;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->item = new ArrayCollection();
     }
+
 
     /**
      * Set locale
@@ -445,4 +456,21 @@ class Order
     {
         return $this->paymentMethod;
     }
+
+    /**
+     * @return BackendUser
+     */
+    public function getBackendUser()
+    {
+        return $this->backendUser;
+    }
+
+    /**
+     * @param BackendUser $backendUser
+     */
+    public function setBackendUser($backendUser)
+    {
+        $this->backendUser = $backendUser;
+    }
+
 }

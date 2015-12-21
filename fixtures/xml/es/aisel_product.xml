@@ -18,6 +18,7 @@
         <!-- Spanish products -->
         <table name="aisel_product">
             <column name="id">409</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 100</column>
             <column name="sku">SP0001</column>
@@ -47,6 +48,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">410</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 110</column>
             <column name="sku">SP0002</column>
@@ -76,6 +78,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">420</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 120</column>
             <column name="sku">SP0002</column>
@@ -105,6 +108,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">430</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 130</column>
             <column name="sku">SP0003</column>
@@ -134,6 +138,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">440</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 140</column>
             <column name="sku">SP0004</column>
@@ -163,6 +168,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">450</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 150</column>
             <column name="sku">SP0005</column>
@@ -192,6 +198,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">460</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 160</column>
             <column name="sku">SP0006</column>
@@ -221,6 +228,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">470</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 170</column>
             <column name="sku">SP0007</column>
@@ -250,6 +258,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">480</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 180</column>
             <column name="sku">SP0008</column>
@@ -279,6 +288,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">490</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 190</column>
             <column name="sku">SP0009</column>
@@ -308,6 +318,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">4200</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 200</column>
             <column name="sku">SP0010</column>
@@ -337,6 +348,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">4210</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="name">Nike sombrero de béisbol 210</column>
             <column name="sku">SP0011</column>

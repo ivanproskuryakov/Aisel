@@ -51,19 +51,22 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
                 foreach ($XML->database->table as $table) {
 
+                    $backendUser = $this->getReference('backend_user_' . $table->column[1]);
+
                     $product = new Product();
-                    $product->setLocale($table->column[1]);
-                    $product->setName($table->column[2]);
-                    $product->setSku($table->column[3]);
-                    $product->setPrice((int)$table->column[4]);
-                    $product->setQty((int)$table->column[11]);
-                    $product->setContentShort($table->column[14]);
-                    $product->setContent($table->column[15]);
-                    $product->setStatus((int)$table->column[16]);
-                    $product->setHidden((int)$table->column[17]);
-                    $product->setCommentStatus((int)$table->column[18]);
-                    $product->setMetaUrl($table->column[19]);
-                    $nodes = explode(",", $table->column[20]);
+                    $product->setBackendUser($backendUser);
+                    $product->setLocale($table->column[2]);
+                    $product->setName($table->column[3]);
+                    $product->setSku($table->column[4]);
+                    $product->setPrice((int)$table->column[5]);
+                    $product->setQty((int)$table->column[12]);
+                    $product->setContentShort($table->column[15]);
+                    $product->setContent($table->column[16]);
+                    $product->setStatus((int)$table->column[17]);
+                    $product->setHidden((int)$table->column[18]);
+                    $product->setCommentStatus((int)$table->column[19]);
+                    $product->setMetaUrl($table->column[20]);
+                    $nodes = explode(",", $table->column[21]);
 
                     foreach ($nodes as $c) {
                         $node = $this->getReference('product_node_' . $c);

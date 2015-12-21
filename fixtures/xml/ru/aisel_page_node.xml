@@ -18,6 +18,7 @@
         <!-- Russian Categories -->
         <table name="aisel_page_category">
             <column name="id">23700</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
             <column name="title">Отключенная категория</column>
@@ -36,6 +37,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">2370</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
             <column name="title">Корневая Один</column>
@@ -54,6 +56,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">2371</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
             <column name="title">Корневая Два</column>
@@ -72,6 +75,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">2372</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
             <column name="title">Корневая Три</column>
@@ -90,6 +94,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">2373</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">ru</column>
             <column name="parent_id">2372</column>
             <column name="title">Первая 1</column>
@@ -108,6 +113,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">2374</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">ru</column>
             <column name="parent_id">2372</column>
             <column name="title">Первая 2</column>
@@ -126,6 +132,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">2375</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">ru</column>
             <column name="parent_id">2372</column>
             <column name="title">Первая 3</column>
@@ -144,6 +151,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">2376</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">ru</column>
             <column name="parent_id">2375</column>
             <column name="title">Вложенная 1</column>
@@ -162,6 +170,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">2377</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">ru</column>
             <column name="parent_id">2375</column>
             <column name="title">Вложенная 2</column>
@@ -180,6 +189,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">2378</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">ru</column>
             <column name="parent_id">2375</column>
             <column name="title">Вложенная 3</column>

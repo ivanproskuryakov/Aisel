@@ -18,6 +18,7 @@
         <!-- English Categories -->
         <table name="aisel_page_category">
             <column name="id">12701</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="title">Disabled Category</column>
@@ -36,6 +37,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">1270</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="title">Root One</column>
@@ -54,6 +56,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">1271</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="title">Root Two</column>
@@ -72,6 +75,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">1272</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="title">Root Three</column>
@@ -90,6 +94,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">1273</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">en</column>
             <column name="parent_id">1272</column>
             <column name="title">First 1</column>
@@ -108,6 +113,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">1274</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">en</column>
             <column name="parent_id">1272</column>
             <column name="title">First 2</column>
@@ -126,6 +132,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">1275</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">en</column>
             <column name="parent_id">1272</column>
             <column name="title">First 3</column>
@@ -144,6 +151,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">1276</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">en</column>
             <column name="parent_id">1275</column>
             <column name="title">Nested 1</column>
@@ -162,6 +170,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">1277</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">en</column>
             <column name="parent_id">1275</column>
             <column name="title">Nested 2</column>
@@ -180,6 +189,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">1278</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">en</column>
             <column name="parent_id">1275</column>
             <column name="title">Nested 3</column>

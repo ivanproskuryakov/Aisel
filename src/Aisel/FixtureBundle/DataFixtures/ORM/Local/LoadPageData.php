@@ -41,14 +41,18 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
+
+                    $backendUser = $this->getReference('backend_user_' . $table->column[1]);
+
                     $page = new Page();
-                    $page->setLocale($table->column[1]);
-                    $page->setName($table->column[2]);
-                    $page->setContent($table->column[3]);
-                    $page->setStatus($table->column[4]);
-                    $page->setCommentStatus($table->column[6]);
-                    $page->setMetaUrl($table->column[7]);
-                    $nodes = explode(",", $table->column[8]);
+                    $page->setBackendUser($backendUser);
+                    $page->setLocale($table->column[2]);
+                    $page->setName($table->column[3]);
+                    $page->setContent($table->column[4]);
+                    $page->setStatus($table->column[5]);
+                    $page->setCommentStatus($table->column[7]);
+                    $page->setMetaUrl($table->column[8]);
+                    $nodes = explode(",", $table->column[9]);
 
                     foreach ($nodes as $c) {
                         $node = $this->getReference('page_node_' . $c);

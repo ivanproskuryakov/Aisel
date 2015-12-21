@@ -21,6 +21,7 @@ use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\ProductBundle\Entity\Node;
 use Aisel\ProductBundle\Entity\Review;
 use Aisel\MediaBundle\Entity\Media;
+use Aisel\BackendUserBundle\Entity\BackendUser;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -206,6 +207,15 @@ class Product implements UrlInterface
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Review>")
      */
     private $reviews;
+
+    /**
+     * @var BackendUser
+     * @ORM\ManyToOne(targetEntity="Aisel\BackendUserBundle\Entity\BackendUser", inversedBy="product")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $backendUser;
 
     /**
      * Constructor
@@ -604,13 +614,31 @@ class Product implements UrlInterface
      *
      * @param Review $review
      *
-     * @return Page
+     * @return Product
      */
-    public function addReview($review)
+    public function addReview(Review $review)
     {
         $this->reviews->add($review);
 
         return $this;
     }
+
+
+    /**
+     * @return BackendUser
+     */
+    public function getBackendUser()
+    {
+        return $this->backendUser;
+    }
+
+    /**
+     * @param BackendUser $backendUser
+     */
+    public function setBackendUser(BackendUser $backendUser)
+    {
+        $this->backendUser = $backendUser;
+    }
+    
 
 }

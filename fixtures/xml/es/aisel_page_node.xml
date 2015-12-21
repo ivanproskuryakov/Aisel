@@ -18,6 +18,7 @@
         <!-- English Categories -->
         <table name="aisel_page_category">
             <column name="id">42710</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="parent_id">NULL</column>
             <column name="title">Categoría de discapacitados</column>
@@ -36,6 +37,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">4270</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="parent_id">NULL</column>
             <column name="title">Raíz Uno</column>
@@ -54,6 +56,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">4271</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="parent_id">NULL</column>
             <column name="title">Raíz Dos</column>
@@ -72,6 +75,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">4272</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="parent_id">NULL</column>
             <column name="title">Raíz Tres</column>
@@ -90,6 +94,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">4273</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="parent_id">4272</column>
             <column name="title">Primero 1</column>
@@ -108,6 +113,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">4274</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="parent_id">4272</column>
             <column name="title">Primero 2</column>
@@ -126,6 +132,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">4275</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="parent_id">4272</column>
             <column name="title">Primero 3</column>
@@ -144,6 +151,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">4276</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="parent_id">4275</column>
             <column name="title">Anidado 1</column>
@@ -162,6 +170,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">4277</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="parent_id">4275</column>
             <column name="title">Anidado 2</column>
@@ -180,6 +189,7 @@
         </table>
         <table name="aisel_page_category">
             <column name="id">4278</column>
+            <column name="backend_user_id">149</column>
             <column name="locale">es</column>
             <column name="parent_id">4275</column>
             <column name="title">Anidado 3</column>

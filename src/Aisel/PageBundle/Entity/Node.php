@@ -15,9 +15,10 @@ use Aisel\NodeBundle\Entity\Node as BaseNode;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
+use Aisel\BackendUserBundle\Entity\BackendUser;
+
 use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\ResourceBundle\Domain\MetaTrait;
-
 use Aisel\ResourceBundle\Domain\ContentTrait;
 
 /**
@@ -53,5 +54,29 @@ class Node extends BaseNode implements UrlInterface
      */
     protected $children;
 
+    /**
+     * @var BackendUser
+     * @ORM\ManyToOne(targetEntity="Aisel\BackendUserBundle\Entity\BackendUser", inversedBy="node")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $backendUser;
+
+    /**
+     * @return BackendUser
+     */
+    public function getBackendUser()
+    {
+        return $this->backendUser;
+    }
+
+    /**
+     * @param BackendUser $backendUser
+     */
+    public function setBackendUser($backendUser)
+    {
+        $this->backendUser = $backendUser;
+    }
 
 }

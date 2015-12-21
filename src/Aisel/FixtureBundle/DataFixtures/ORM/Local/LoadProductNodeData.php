@@ -41,15 +41,19 @@ class LoadProductNodeData extends XMLFixture implements OrderedFixtureInterface
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
-                    $node = new Node();
-                    $node->setLocale($table->column[1]);
-                    $node->setName($table->column[3]);
-                    $node->setContent($table->column[8]);
-                    $node->setStatus((int)$table->column[9]);
-                    $node->setMetaUrl($table->column[10]);
 
-                    if ($table->column[2] != 'NULL') {
-                        $parent = $this->getReference('product_node_' . $table->column[2]);
+                    $backendUser = $this->getReference('backend_user_' . $table->column[1]);
+
+                    $node = new Node();
+                    $node->setBackendUser($backendUser);
+                    $node->setLocale($table->column[2]);
+                    $node->setName($table->column[4]);
+                    $node->setContent($table->column[9]);
+                    $node->setStatus((int)$table->column[10]);
+                    $node->setMetaUrl($table->column[11]);
+
+                    if ($table->column[3] != 'NULL') {
+                        $parent = $this->getReference('product_node_' . $table->column[3]);
                         $node->setParent($parent);
                     }
                     $manager->persist($node);

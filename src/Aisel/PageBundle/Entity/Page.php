@@ -19,6 +19,7 @@ use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\PageBundle\Entity\Node;
 use Aisel\PageBundle\Entity\Review;
+use Aisel\BackendUserBundle\Entity\BackendUser;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -39,7 +40,6 @@ use Aisel\ResourceBundle\Domain\CommentStatusTrait;
  * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @JMS\ExclusionPolicy("all")
  */
-//* @ODM\UniqueIndex(keys={"locale"="asc", "metaUrl"="asc"})
 
 class Page implements UrlInterface
 {
@@ -75,6 +75,15 @@ class Page implements UrlInterface
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Review>")
      */
     private $reviews;
+
+    /**
+     * @var BackendUser
+     * @ORM\ManyToOne(targetEntity="Aisel\BackendUserBundle\Entity\BackendUser", inversedBy="page")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $backendUser;
 
     /**
      * Constructor
@@ -167,6 +176,22 @@ class Page implements UrlInterface
         $this->reviews->add($review);
 
         return $this;
+    }
+
+    /**
+     * @return BackendUser
+     */
+    public function getBackendUser()
+    {
+        return $this->backendUser;
+    }
+
+    /**
+     * @param BackendUser $backendUser
+     */
+    public function setBackendUser($backendUser)
+    {
+        $this->backendUser = $backendUser;
     }
 
 

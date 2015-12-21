@@ -17,7 +17,7 @@
     <database name="aisel">
         <table name="aisel_cart">
             <column name="id">10000</column>
-            <column name="user_id">149</column>
+            <column name="frontend_user_id">149</column>
             <column name="qty">1</column>
             <column name="product_id">190</column>
             <column name="created_at">2014-09-01 16:52:06</column>
@@ -25,7 +25,7 @@
         </table>
         <table name="aisel_cart">
             <column name="id">10001</column>
-            <column name="user_id">149</column>
+            <column name="frontend_user_id">149</column>
             <column name="qty">1</column>
             <column name="product_id">200</column>
             <column name="created_at">2014-09-01 16:52:06</column>
@@ -33,7 +33,7 @@
         </table>
         <table name="aisel_cart">
             <column name="id">10002</column>
-            <column name="user_id">149</column>
+            <column name="frontend_user_id">149</column>
             <column name="qty">1</column>
             <column name="product_id">210</column>
             <column name="created_at">2014-09-01 16:52:06</column>
@@ -42,7 +42,7 @@
 
         <table name="aisel_cart">
             <column name="id">10003</column>
-            <column name="user_id">150</column>
+            <column name="frontend_user_id">150</column>
             <column name="qty">1</column>
             <column name="product_id">190</column>
             <column name="created_at">2014-09-01 16:52:06</column>
@@ -50,7 +50,7 @@
         </table>
         <table name="aisel_cart">
             <column name="id">10004</column>
-            <column name="user_id">150</column>
+            <column name="frontend_user_id">150</column>
             <column name="qty">2</column>
             <column name="product_id">200</column>
             <column name="created_at">2014-09-01 16:52:06</column>
@@ -58,7 +58,7 @@
         </table>
         <table name="aisel_cart">
             <column name="id">10005</column>
-            <column name="user_id">150</column>
+            <column name="frontend_user_id">150</column>
             <column name="qty">3</column>
             <column name="product_id">210</column>
             <column name="created_at">2014-09-01 16:52:06</column>
