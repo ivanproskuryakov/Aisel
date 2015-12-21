@@ -13,6 +13,7 @@ namespace Aisel\OrderBundle\Entity;
 
 use Aisel\ResourceBundle\Repository\CollectionRepository;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\BackendUserBundle\Entity\BackendUser;
 use Aisel\OrderBundle\Entity\Order;
 
 /**
@@ -29,19 +30,29 @@ class OrderRepository extends CollectionRepository
     /**
      * Create from user cart
      *
-     * @param FrontendUser $user
+     * @param FrontendUser $frontendUser
+     * @param BackendUser $backendUser
      * @param string $currencyCode
      * @param mixed $orderInfo
      *
      * @return Order $order|false
      */
-    public function createOrderFromCartForUser(FrontendUser $user, $currencyCode, $orderInfo)
+    public function createOrderFromCartForUser(
+        FrontendUser $frontendUser,
+        BackendUser $backendUser,
+        $currencyCode,
+        $orderInfo)
     {
-        $order = $this->createEmptyOrder($user, $currencyCode, $orderInfo);
+        $order = $this->createEmptyOrder(
+            $frontendUser,
+            $backendUser,
+            $currencyCode,
+            $orderInfo
+        );
         $em = $this->getEntityManager();
         $total = 0;
 
-        foreach ($user->getCart() as $item) {
+        foreach ($frontendUser->getCart() as $item) {
             $total = $total + ($item->getProduct()->getPrice() * $item->getQty());
             $orderItem = new OrderItem();
             $orderItem->setName($item->getProduct()->getName());
@@ -64,16 +75,28 @@ class OrderRepository extends CollectionRepository
     /**
      * Create from array of product
      *
-     * @param FrontendUser $user
+     * @param FrontendUser $frontendUser
+     * @param BackendUser $backendUser
      * @param array $products
      * @param string $currencyCode
      * @param mixed $orderInfo
      *
      * @return Order $order|false
      */
-    public function createOrderFromProductsForUser(FrontendUser $user, $products, $currencyCode, $orderInfo)
+    public function createOrderFromProductsForUser(
+        FrontendUser $frontendUser,
+        BackendUser $backendUser,
+        $products,
+        $currencyCode,
+        $orderInfo
+    )
     {
-        $order = $this->createEmptyOrder($user, $currencyCode, $orderInfo);
+        $order = $this->createEmptyOrder(
+            $frontendUser,
+            $backendUser,
+            $currencyCode,
+            $orderInfo
+        );
         $em = $this->getEntityManager();
         $total = 0;
 
@@ -100,20 +123,27 @@ class OrderRepository extends CollectionRepository
     /**
      * Create empty order
      *
-     * @param FrontendUser $user
+     * @param FrontendUser $frontendUser
+     * @param BackendUser $backendUser
      * @param string $currencyCode
      * @param mixed $orderInfo
      *
      * @return Order $order
      */
-    public function createEmptyOrder(FrontendUser $user, $currencyCode, $orderInfo)
+    public function createEmptyOrder(
+        FrontendUser $frontendUser,
+        BackendUser $backendUser,
+        $currencyCode,
+        $orderInfo
+    )
     {
         $em = $this->getEntityManager();
 
         $order = new Order();
         $order->setTotalAmount(0);
         $order->setLocale($orderInfo['locale']);
-        $order->setFrontenduser($user);
+        $order->setFrontenduser($frontendUser);
+        $order->setBackendUser($backendUser);
         $order->setCurrency($currencyCode);
         $order->setStatus('new');
         $order->setPaymentMethod($orderInfo['payment_method']);

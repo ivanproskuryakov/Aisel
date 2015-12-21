@@ -13,6 +13,7 @@ namespace Aisel\OrderBundle\Manager;
 
 use LogicException;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\BackendUserBundle\Entity\BackendUser;
 use Aisel\OrderBundle\Entity\Order;
 use Aisel\CartBundle\Manager\CartManager;
 use Aisel\ConfigBundle\Manager\ConfigManager;
@@ -46,13 +47,14 @@ class OrderManager
      *
      * @param EntityManager $entityManager
      * @param ConfigManager $configManager
-     * @param CartManager   $cartManager
+     * @param CartManager $cartManager
      */
     public function __construct(
         EntityManager $entityManager,
         ConfigManager $configManager,
         CartManager $cartManager
-    ) {
+    )
+    {
         $this->em = $entityManager;
         $this->settingsManager = $configManager;
         $this->cartManager = $cartManager;
@@ -116,27 +118,29 @@ class OrderManager
     /**
      * Create order for given userId
      *
-     * @param FrontendUser $user
-     * @param mixed        $orderInfo
+     * @param FrontendUser $frontendUser
+     * @param BackendUser $backendUser
+     * @param mixed $orderInfo
      *
      * @throws LogicException
      *
      * @return Order $order
      */
-    public function createOrderFromCart(FrontendUser $user, $orderInfo)
+    public function createOrderFromCart(
+        FrontendUser $frontendUser,
+        BackendUser $backendUser,
+        array $orderInfo
+    )
     {
-        if (!($user)) {
-            throw new LogicException('User object is missing');
-        }
-
-        if (count($user->getCart()) == 0) {
-            throw new LogicException('User cart is empty');
+        if (count($frontendUser->getCart()) == 0) {
+            throw new LogicException('FrontendUser cart is empty');
         };
 
         $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromCartForUser(
-                $user,
+                $frontendUser,
+                $backendUser,
                 $this->getCurrencyCode($orderInfo['locale']),
                 $orderInfo
             );
@@ -147,26 +151,30 @@ class OrderManager
     /**
      * Create order for user
      *
-     * @param FrontendUser $user
-     * @param array        $products
-     * @param mixed        $orderInfo
+     * @param FrontendUser $frontendUser
+     * @param BackendUser $backendUser
+     * @param array $products
+     * @param array $orderInfo
      *
      * @throws LogicException
      *
      * @return Order $orderDetails
      */
-    public function createOrderFromProducts($user, $products, $orderInfo)
+    public function createOrderFromProducts(
+        FrontendUser $frontendUser,
+        BackendUser $backendUser,
+        array $products,
+        array $orderInfo
+    )
     {
-        if (!($user)) {
-            throw new LogicException('User object is missing');
-        }
         $currencyCode = $this->getCurrencyCode($orderInfo['locale']);
 
         $order = $this
             ->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromProductsForUser(
-                $user,
+                $frontendUser,
+                $backendUser,
                 $products,
                 $currencyCode,
                 $orderInfo
