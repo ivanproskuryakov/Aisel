@@ -42,7 +42,13 @@ class ProductWebTestCase extends AbstractWebTestCase
      */
     public function newNode()
     {
+        $user = $this
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(['username' => 'backenduser']);
+
         $node = new Node();
+        $node->setBackendUser($user);
         $node->setName($this->faker->sentence());
         $node->setStatus(true);
         $node->setContent($this->faker->sentence());
@@ -87,8 +93,14 @@ class ProductWebTestCase extends AbstractWebTestCase
      */
     public function newProduct()
     {
+        $user = $this
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(['username' => 'backenduser']);
+
         $product = new Product();
 
+        $product->setBackendUser($user);
         $product->setLocale('en');
         $product->setName($this->faker->sentence());
         $product->setSku($this->faker->randomDigit);

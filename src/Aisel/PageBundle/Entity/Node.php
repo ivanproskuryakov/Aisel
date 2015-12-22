@@ -15,6 +15,7 @@ use Aisel\NodeBundle\Entity\Node as BaseNode;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Aisel\BackendUserBundle\Entity\BackendUser;
 
 use Aisel\ResourceBundle\Domain\UrlInterface;
@@ -56,6 +57,7 @@ class Node extends BaseNode implements UrlInterface
 
     /**
      * @var BackendUser
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Aisel\BackendUserBundle\Entity\BackendUser", inversedBy="node")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)

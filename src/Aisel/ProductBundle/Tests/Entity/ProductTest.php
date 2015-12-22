@@ -38,8 +38,13 @@ class ProductTest extends AbstractWebTestCase
     public function testDuplicateNodes()
     {
         $this->setExpectedException('Doctrine\DBAL\Exception\UniqueConstraintViolationException');
+        $user = $this
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(['username' => 'backenduser']);
 
         $node = new Node();
+        $node->setBackendUser($user);
         $node->setStatus(true);
         $node->setName($this->faker->sentence(1));
         $node->setContent($this->faker->sentence(10));
@@ -52,6 +57,7 @@ class ProductTest extends AbstractWebTestCase
         $this->assertNotNull($node->getId());
 
         $product = new Product();
+        $product->setBackendUser($user);
         $product->setLocale('en');
         $product->setSku($this->faker->numberBetween());
         $product->setName($this->faker->sentence(1));
@@ -69,6 +75,11 @@ class ProductTest extends AbstractWebTestCase
 
     public function testDuplicateImages()
     {
+        $user = $this
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(['username' => 'backenduser']);
+
         $this->setExpectedException('Doctrine\DBAL\Exception\UniqueConstraintViolationException');
         $image = new Media();
         $image->setType(Media::MEDIA_IMAGE);
@@ -81,6 +92,7 @@ class ProductTest extends AbstractWebTestCase
         $this->assertNotNull($image->getId());
 
         $product = new Product();
+        $product->setBackendUser($user);
         $product->setLocale('en');
         $product->setName($this->faker->sentence(1));
         $product->setContentShort($this->faker->sentence(10));

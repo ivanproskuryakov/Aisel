@@ -78,6 +78,7 @@ class Page implements UrlInterface
 
     /**
      * @var BackendUser
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Aisel\BackendUserBundle\Entity\BackendUser", inversedBy="page")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)

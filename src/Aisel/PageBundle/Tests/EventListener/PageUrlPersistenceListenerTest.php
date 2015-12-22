@@ -38,9 +38,14 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
         $this->setExpectedException(
             'LogicException', 'Given URL already exists'
         );
+        $user = $this
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(['username' => 'backenduser']);
 
         // Create Page 1
         $page1 = new Page();
+        $page1->setBackendUser($user);
         $page1->setLocale('en');
         $page1->setContent('...');
         $page1->setName('...');
@@ -55,6 +60,7 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
 
         // Create Page 2
         $page2 = new Page();
+        $page2->setBackendUser($user);
         $page2->setLocale('en');
         $page2->setContent('...');
         $page2->setName('...');

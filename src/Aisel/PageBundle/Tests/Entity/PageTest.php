@@ -17,11 +17,11 @@ use Aisel\PageBundle\Entity\Page;
 use Aisel\PageBundle\Entity\Node;
 
 /**
- * PageTests
+ * PageTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class PageTests extends AbstractWebTestCase
+class PageTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -36,9 +36,15 @@ class PageTests extends AbstractWebTestCase
 
     public function testDuplicateNodes()
     {
+        $user = $this
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(['username' => 'backenduser']);
+
         $this->setExpectedException('Doctrine\DBAL\Exception\UniqueConstraintViolationException');
 
         $node = new Node();
+        $node->setBackendUser($user);
         $node->setName($this->faker->title);
         $node->setStatus(true);
         $node->setContent($this->faker->sentence(10));
@@ -51,6 +57,7 @@ class PageTests extends AbstractWebTestCase
         $this->assertNotNull($node->getId());
 
         $page = new Page();
+        $page->setBackendUser($user);
         $page->setLocale('en');
         $page->setName($this->faker->sentence(1));
         $page->setContent($this->faker->sentence(10));
