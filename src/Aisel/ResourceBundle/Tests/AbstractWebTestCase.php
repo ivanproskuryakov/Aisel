@@ -100,7 +100,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
      */
     public function logInBackend($username = 'backenduser', $password = 'backenduser')
     {
-        if ($this->um->isAuthenticated() === false) {
+        if ($this->um->getAuthenticatedUser() == false) {
 
             $this->client->request(
                 'GET',
@@ -118,7 +118,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
             }
         }
 
-        return $this->um->isAuthenticated();
+        return $this->um->getAuthenticatedUser();
     }
 
     /**
@@ -130,7 +130,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
      */
     public function logInFrontend($username = 'frontenduser', $password = 'frontenduser')
     {
-        if ($this->um->isAuthenticated() === false) {
+        if ($this->um->getAuthenticatedUser() == false) {
 
             $data = [
                 'username' => $username,
@@ -157,7 +157,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
         }
 
 
-        return $this->um->isAuthenticated();
+        return $this->um->getAuthenticatedUser();
     }
 
     public function setUp()

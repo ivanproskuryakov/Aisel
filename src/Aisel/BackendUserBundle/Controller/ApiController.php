@@ -27,25 +27,7 @@ class ApiController extends Controller
 {
 
     /**
-     * @return UserManager
-     */
-    protected function getUserManager()
-    {
-        return $this->get('backend.user.manager');
-    }
-
-    /**
-     * Is User Authenticated
-     *
-     * @return boolean
-     */
-    private function isAuthenticated()
-    {
-        return $this->getUserManager()->isAuthenticated();
-    }
-
-    /**
-     * Is User Authenticated
+     * loginUser
      *
      * @param BackendUser $user
      */
@@ -63,15 +45,22 @@ class ApiController extends Controller
      */
     public function loginAction(Request $request)
     {
-        if (!$this->isAuthenticated()) {
+        $user = $this
+            ->get('backend.user.manager')
+            ->getAuthenticatedUser();
+
+        if (!$user) {
             $username = $request->get('username');
             $password = $request->get('password');
-            $user = $this
-                ->getUserManager()
-                ->loadUserByUsername($username);
 
-            if ((!$user instanceof BackendUser) || (!$this->getUserManager()->checkUserPassword($user, $password)))
+            $user = $this
+                ->get('backend.user.manager')
+                ->loadUserByUsername($username);
+            $passwordIsValid = $this->get('backend.user.manager')->checkUserPassword($user, $password);
+
+            if ((!$user instanceof BackendUser) || ($passwordIsValid == false)) {
                 return array('message' => 'Wrong username or password!');
+            }
             $this->loginUser($user);
 
             return array('status' => true,
@@ -81,8 +70,6 @@ class ApiController extends Controller
         } else {
             return array('message' => 'You already logged in. Try to refresh page');
         }
-
-        return array('message' => 'Login error');
     }
 
     /**
@@ -102,13 +89,9 @@ class ApiController extends Controller
      */
     public function informationAction()
     {
-        if ($this->isAuthenticated()) {
-            $user = $this->get('security.context')->getToken()->getUser();
-
-            return $user;
-        } else {
-            return false;
-        }
+        return $this
+            ->get('backend.user.manager')
+            ->getAuthenticatedUser();
     }
 
 }

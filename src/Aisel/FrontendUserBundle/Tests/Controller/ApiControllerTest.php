@@ -47,8 +47,8 @@ class ApiControllerTest extends FrontendUserTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        $this->assertTrue(200 === $statusCode);
-        $this->assertFalse($result);
+        $this->assertTrue(204 === $statusCode);
+        $this->assertNull($result);
     }
 
     public function testUpdateUserInformationAction()

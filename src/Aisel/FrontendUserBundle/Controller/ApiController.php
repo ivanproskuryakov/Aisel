@@ -41,7 +41,7 @@ class ApiController extends BaseApiController
      */
     private function isAuthenticated()
     {
-        return $this->getUserManager()->isAuthenticated();
+        return $this->getUserManager()->getAuthenticatedUser();
     }
 
     /**
@@ -166,13 +166,7 @@ class ApiController extends BaseApiController
      */
     public function informationAction()
     {
-        if ($this->isAuthenticated()) {
-            $user = $this->get('security.context')->getToken()->getUser();
-
-            return $this->filterMaxDepth($user);
-        }
-
-        return false;
+        return $this->getUserManager()->getAuthenticatedUser();
     }
 
     /**

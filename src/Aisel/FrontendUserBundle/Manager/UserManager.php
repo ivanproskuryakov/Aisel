@@ -137,11 +137,11 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * Is frontend user authenticated
+     * authenticatedUser
      *
-     * @return boolean
+     * @return FrontendUser|boolean
      */
-    public function isAuthenticated()
+    public function getAuthenticatedUser()
     {
         $userToken = $this->securityContext->getToken();
 
@@ -151,11 +151,11 @@ class UserManager implements UserProviderInterface
             if ($user !== 'anon.') {
                 $roles = $user->getRoles();
 
-                if (in_array('ROLE_USER', $roles)) return true;
+                if (in_array('ROLE_USER', $roles)) {
+                    return $user;
+                }
             }
         }
-
-        return false;
     }
 
     /**
