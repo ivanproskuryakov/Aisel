@@ -55,11 +55,6 @@ swiftmailer:
     password:  "%mailer_password%"
 #    spool:     { type: memory }
 
-# JMS
-jms_serializer:
-  metadata:
-    auto_detection: true
-
 
 # REST
 fos_rest:
