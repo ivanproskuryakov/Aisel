@@ -40,9 +40,9 @@ class ParamConverter extends RequestBodyParamConverter
     private $dispatcher;
 
     /**
-     * @param Serializer               $serializer
-     * @param EntityManager          $em
-     * @param ValidatorInterface       $validator
+     * @param Serializer $serializer
+     * @param EntityManager $em
+     * @param ValidatorInterface $validator
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
@@ -50,7 +50,8 @@ class ParamConverter extends RequestBodyParamConverter
         EntityManager $em,
         ValidatorInterface $validator,
         EventDispatcherInterface $dispatcher
-    ) {
+    )
+    {
         parent::__construct($serializer, null, null, $validator, 'error');
         $this->em = $em;
         $this->dispatcher = $dispatcher;
@@ -59,7 +60,7 @@ class ParamConverter extends RequestBodyParamConverter
     /**
      * execute
      *
-     * @param Request              $request
+     * @param Request $request
      * @param SensioParamConverter $configuration
      *
      * @return bool|mixed
@@ -78,11 +79,11 @@ class ParamConverter extends RequestBodyParamConverter
 
         switch (true) {
             case ('GET' === $method):
-                $convertedValue = $this->loadEntity($resolvedClass, $id, $locale, $url );
+                $convertedValue = $this->loadEntity($resolvedClass, $id, $locale, $url, $options);
                 break;
 
             case ('DELETE' === $method):
-                $convertedValue = $this->loadEntity($resolvedClass, $id, $locale, $url );
+                $convertedValue = $this->loadEntity($resolvedClass, $id, $locale, $url, $options);
                 break;
 
             case ('PUT' === $method):
@@ -90,6 +91,9 @@ class ParamConverter extends RequestBodyParamConverter
                     array('id' => $id),
                     json_decode($rawPayload, true)
                 );
+                // For validation purpose only / PUT operation
+                $this->loadEntity($resolvedClass, $id, $locale, $url, $options);
+
                 $convertedValue = $this->updateEntity($resolvedClass, json_encode($payload));
                 break;
 
@@ -106,6 +110,7 @@ class ParamConverter extends RequestBodyParamConverter
      * @param $id
      * @param $locale
      * @param $url
+     * @param $options
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -115,20 +120,24 @@ class ParamConverter extends RequestBodyParamConverter
      *
      * @return mixed $entity
      */
-    protected function loadEntity($resolvedClass, $id, $locale, $url)
+    protected function loadEntity($resolvedClass, $id, $locale, $url, $options)
     {
+        $findBy = [];
+
         if (isset($locale) && isset($url)) {
-            $entity = $this->em->getRepository($resolvedClass)->findOneBy(
-                array(
-                    'metaUrl' => $url,
-                    'locale' => $locale
-                )
-            );
+            $findBy['metaUrl'] = $url;
+            $findBy['locale'] = $locale;
         }
 
         if ($id) {
-            $entity = $this->em->find($resolvedClass, $id);
+            $findBy['id'] = $id;
         }
+
+        if (isset($options['backendUser'])) {
+            $findBy['backendUser'] = $options['backendUser']->getId();
+        }
+
+        $entity = $this->em->getRepository($resolvedClass)->findOneBy($findBy);
 
         if (null === $entity) {
             throw new NotFoundHttpException('Not found');
@@ -156,8 +165,7 @@ class ParamConverter extends RequestBodyParamConverter
 
         if ($serializerGroups) {
             $deserializationContext
-                ->setGroups($serializerGroups)
-            ;
+                ->setGroups($serializerGroups);
         }
         $convertedValue = $this->serializer->deserialize(
             $rawPayload,

@@ -19,9 +19,9 @@
         <!-- Table aisel_user_backend -->
         <table name="aisel_user_backend">
             <column name="id">149</column>
-            <column name="username">backenduser</column>
-            <column name="email">backenduser@aisel.co</column>
-            <column name="password">backenduser</column>
+            <column name="username">seller</column>
+            <column name="email">seller@aisel.co</column>
+            <column name="password">seller</column>
             <column name="enabled">1</column>
             <column name="locked">0</column>
             <column name="created_at">2014-08-16 12:31:52</column>
@@ -31,9 +31,9 @@
         </table>
         <table name="aisel_user_backend">
             <column name="id">150</column>
-            <column name="username">service</column>
+            <column name="username">backenduser</column>
             <column name="email">service@aisel.co</column>
-            <column name="password">service</column>
+            <column name="password">backenduser</column>
             <column name="enabled">1</column>
             <column name="locked">0</column>
             <column name="created_at">2014-08-16 12:31:52</column>

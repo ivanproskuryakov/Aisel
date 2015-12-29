@@ -77,6 +77,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
             ->find($id);
 
         $this->assertEquals($page->getNodes()[0]->getId(), $pageNode->getId());
+        $this->assertEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
     }
 
     public function testGetPageAction()
@@ -84,7 +85,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
         $page = $this
             ->em
             ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->findOneBy(['locale' => 'en']);
+            ->findOneBy(['backendUser' => $this->backendUser->getId()]);
 
         $this->client->request(
             'GET',
@@ -99,6 +100,7 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
+
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $page->getId());
     }
@@ -108,7 +110,10 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
         $page = $this
             ->em
             ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->findOneBy(['name' => 'AAA']);
+            ->findOneBy(['backendUser' => $this->backendUser->getId()]);
+
+        $this->assertEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
+
         $id = $page->getId();
 
         $this->client->request(
@@ -133,12 +138,44 @@ class ApiPageControllerTest extends AbstractBackendWebTestCase
         $this->assertNull($page);
     }
 
+    public function testPutPageActionThrowsNotFound()
+    {
+        $page = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->findOneBy(['locale' => 'ru']);
+
+        $this->assertNotEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
+
+        $id = $page->getId();
+        $data['locale'] = 'ru';
+
+        $this->client->request(
+            'PUT',
+            '/' . $this->api['backend'] . '/page/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(404 === $statusCode);
+        $this->assertEquals($result['message'], 'Not found');
+    }
+
     public function testPutPageAction()
     {
         $page = $this
             ->em
             ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->findOneBy(['locale' => 'en']);
+            ->findOneBy(['backendUser' => $this->backendUser->getId()]);
+
+        $this->assertEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
 
         $id = $page->getId();
         $data['locale'] = 'ru';
