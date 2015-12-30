@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Tests\Controller;
+namespace Aisel\PageBundle\Tests\Controller\Frontend;
 
 use Aisel\PageBundle\Tests\PageWebTestCase;
 
 /**
- * ApiReviewControllerTest
+ * ApiPageControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiReviewControllerTest extends PageWebTestCase
+class ApiPageControllerTest extends PageWebTestCase
 {
 
     public function setUp()
@@ -31,41 +31,11 @@ class ApiReviewControllerTest extends PageWebTestCase
         parent::tearDown();
     }
 
-    public function testPostReviewAction()
+    public function testGePageTreeAction()
     {
-        $page = $this->newPage();
-
-        $data = [
-            'locale' => 'en',
-            'name' => $this->faker->sentence(),
-            'content' => $this->faker->text(),
-            'subject' => ['id' => $page->getId()]
-        ];
-
-        $this->client->request(
-            'POST',
-            '/' . $this->api['frontend'] . '/en/page/review/',
-            [],
-            [],
-            ['CONTENT_TYPE' => 'application/json'],
-            json_encode($data)
-        );
-
-        $response = $this->client->getResponse();
-        $content = $response->getContent();
-        $statusCode = $response->getStatusCode();
-
-        $this->assertEmpty($content);
-        $this->assertTrue(201 === $statusCode);
-    }
-
-    public function testGetReviewAction()
-    {
-        $review = $this->newReview();
-
         $this->client->request(
             'GET',
-            '/' . $this->api['frontend'] . '/en/page/review/' . $review->getId(),
+            '/' . $this->api['frontend'] . '/en/page/node/tree/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -79,5 +49,28 @@ class ApiReviewControllerTest extends PageWebTestCase
         $this->assertJson($content);
     }
 
+    public function testGetPageAction()
+    {
+        $page = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->findOneBy(['locale' => 'en']);
+
+        $this->client->request(
+            'GET',
+            '/' . $this->api['frontend'] . '/en/page/' . $page->getMetaUrl(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $page->getId());
+    }
 
 }
