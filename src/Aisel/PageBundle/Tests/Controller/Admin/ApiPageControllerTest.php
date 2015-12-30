@@ -11,14 +11,14 @@
 
 namespace Aisel\PageBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\PageBundle\Tests\PageWebTestCase;
 
 /**
  * ApiPageControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiPageControllerTest extends AbstractWebTestCase
+class ApiPageControllerTest extends PageWebTestCase
 {
 
     public function setUp()
@@ -171,11 +171,7 @@ class ApiPageControllerTest extends AbstractWebTestCase
 
     public function testPutPageAction()
     {
-        $page = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->findOneBy(['backendUser' => $this->backendUser->getId()]);
-
+        $page = $this->newPage();
         $this->assertEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
 
         $id = $page->getId();

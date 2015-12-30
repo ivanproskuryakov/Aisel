@@ -42,13 +42,11 @@ class LoadPageNodeData extends XMLFixture implements OrderedFixtureInterface
 
                 foreach ($XML->database->table as $table) {
                     $parent = null;
-                    $backendUser = $this->getReference('backend_user_' . $table->column[1]);
 
                     if ($table->column[3] != 'NULL') {
                         $parent = $this->getReference('page_node_' . $table->column[3]);
                     }
                     $node = new Node();
-                    $node->setBackendUser($backendUser);
                     $node->setLocale($table->column[2]);
                     $node->setName($table->column[4]);
                     $node->setContent($table->column[9]);

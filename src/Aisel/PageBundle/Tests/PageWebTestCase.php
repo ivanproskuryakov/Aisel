@@ -104,7 +104,6 @@ class PageWebTestCase extends AbstractWebTestCase
 
         $node = new Node();
         $node->setName($this->faker->sentence());
-        $node->setBackendUser($user);
         $node->setStatus(true);
         $node->setLocale('en');
         $node->setMetaUrl($this->faker->sentence());

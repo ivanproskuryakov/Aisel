@@ -44,7 +44,6 @@ class ProductTest extends AbstractWebTestCase
             ->findOneBy(['username' => 'backenduser']);
 
         $node = new Node();
-        $node->setBackendUser($user);
         $node->setStatus(true);
         $node->setName($this->faker->sentence(1));
         $node->setContent($this->faker->sentence(10));

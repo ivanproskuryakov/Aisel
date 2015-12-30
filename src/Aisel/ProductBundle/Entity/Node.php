@@ -54,30 +54,4 @@ class Node extends BaseNode implements UrlInterface
      */
     protected $children;
 
-    /**
-     * @var BackendUser
-     * @Gedmo\Blameable(on="create")
-     * @ORM\ManyToOne(targetEntity="Aisel\BackendUserBundle\Entity\BackendUser", inversedBy="node")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)
-     * })
-     */
-    private $backendUser;
-
-    /**
-     * @return BackendUser
-     */
-    public function getBackendUser()
-    {
-        return $this->backendUser;
-    }
-
-    /**
-     * @param BackendUser $backendUser
-     */
-    public function setBackendUser($backendUser)
-    {
-        $this->backendUser = $backendUser;
-    }
-
 }

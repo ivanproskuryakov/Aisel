@@ -44,7 +44,6 @@ class PageTest extends AbstractWebTestCase
         $this->setExpectedException('Doctrine\DBAL\Exception\UniqueConstraintViolationException');
 
         $node = new Node();
-        $node->setBackendUser($user);
         $node->setName($this->faker->title);
         $node->setStatus(true);
         $node->setContent($this->faker->sentence(10));
