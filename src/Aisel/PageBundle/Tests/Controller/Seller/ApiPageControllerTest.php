@@ -24,7 +24,7 @@ class ApiPageControllerTest extends PageWebTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->logInBackend();
+        $this->logInFrontend();
     }
 
     protected function tearDown()
@@ -79,7 +79,7 @@ class ApiPageControllerTest extends PageWebTestCase
             ->find($id);
 
         $this->assertEquals($page->getNodes()[0]->getId(), $pageNode->getId());
-        $this->assertEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
+        $this->assertEquals($page->getFrontendUser()->getUsername(), $this->backendUser->getUsername());
     }
 
     public function testGetPageAction()
@@ -114,7 +114,7 @@ class ApiPageControllerTest extends PageWebTestCase
             ->getRepository('Aisel\PageBundle\Entity\Page')
             ->findOneBy(['backendUser' => $this->backendUser->getId()]);
 
-        $this->assertEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
+        $this->assertEquals($page->getFrontendUser()->getUsername(), $this->backendUser->getUsername());
 
         $id = $page->getId();
 
@@ -147,7 +147,7 @@ class ApiPageControllerTest extends PageWebTestCase
             ->getRepository('Aisel\PageBundle\Entity\Page')
             ->findOneBy(['locale' => 'ru']);
 
-        $this->assertNotEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
+        $this->assertNotEquals($page->getFrontendUser()->getUsername(), $this->backendUser->getUsername());
 
         $id = $page->getId();
         $data['locale'] = 'ru';
@@ -173,7 +173,7 @@ class ApiPageControllerTest extends PageWebTestCase
     public function testPutPageAction()
     {
         $page = $this->newPage();
-        $this->assertEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
+        $this->assertEquals($page->getFrontendUser()->getUsername(), $this->backendUser->getUsername());
 
         $id = $page->getId();
         $data['locale'] = 'ru';

@@ -72,12 +72,12 @@ class PageWebTestCase extends AbstractWebTestCase
     {
         $user = $this
             ->em
-            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
-            ->findOneBy(['username' => 'backenduser']);
+            ->getRepository('Aisel\BackendUserBundle\Entity\FrontendUser')
+            ->findOneBy(['username' => 'frontenduser']);
 
         $page = new Page();
         $page->setLocale('en');
-        $page->setBackendUser($user);
+        $page->setFrontendUser($user);
         $page->setName($this->faker->sentence(1));
         $page->setContent($this->faker->sentence(10));
         $page->setStatus(true);
@@ -97,11 +97,6 @@ class PageWebTestCase extends AbstractWebTestCase
      */
     public function newNode()
     {
-        $user = $this
-            ->em
-            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
-            ->findOneBy(['username' => 'backenduser']);
-
         $node = new Node();
         $node->setName($this->faker->sentence());
         $node->setStatus(true);

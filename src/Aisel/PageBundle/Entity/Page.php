@@ -19,7 +19,7 @@ use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\PageBundle\Entity\Node;
 use Aisel\PageBundle\Entity\Review;
-use Aisel\BackendUserBundle\Entity\BackendUser;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -77,14 +77,14 @@ class Page implements UrlInterface
     private $reviews;
 
     /**
-     * @var BackendUser
+     * @var FrontendUser
      * @Gedmo\Blameable(on="create")
-     * @ORM\ManyToOne(targetEntity="Aisel\BackendUserBundle\Entity\BackendUser", inversedBy="page")
+     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="page")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)
+     *   @ORM\JoinColumn(name="frontend_user_id", referencedColumnName="id", nullable=false)
      * })
      */
-    private $backendUser;
+    private $frontendUser;
 
     /**
      * Constructor
@@ -180,19 +180,19 @@ class Page implements UrlInterface
     }
 
     /**
-     * @return BackendUser
+     * @return FrontendUser
      */
-    public function getBackendUser()
+    public function getFrontendUser()
     {
-        return $this->backendUser;
+        return $this->frontendUser;
     }
 
     /**
-     * @param BackendUser $backendUser
+     * @param FrontendUser $frontendUser
      */
-    public function setBackendUser($backendUser)
+    public function setFrontendUser($frontendUser)
     {
-        $this->backendUser = $backendUser;
+        $this->frontendUser = $frontendUser;
     }
 
 
