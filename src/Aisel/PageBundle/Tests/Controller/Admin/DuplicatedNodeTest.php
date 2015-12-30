@@ -11,19 +11,20 @@
 
 namespace Aisel\PageBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
  * DuplicatedNodeTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class DuplicatedNodeTest extends AbstractBackendWebTestCase
+class DuplicatedNodeTest extends AbstractWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+        $this->logInBackend();
     }
 
     protected function tearDown()

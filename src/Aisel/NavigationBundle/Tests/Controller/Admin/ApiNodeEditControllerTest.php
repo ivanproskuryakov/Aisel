@@ -11,7 +11,7 @@
 
 namespace Aisel\NavigationBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Aisel\NavigationBundle\Entity\Menu;
 
 /**
@@ -19,12 +19,13 @@ use Aisel\NavigationBundle\Entity\Menu;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiNodeEditControllerTest extends AbstractBackendWebTestCase
+class ApiNodeEditControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+        $this->logInBackend();
     }
 
     protected function tearDown()

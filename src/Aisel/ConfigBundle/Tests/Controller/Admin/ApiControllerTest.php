@@ -11,14 +11,14 @@
 
 namespace Aisel\ConfigBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
  * ApiControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiControllerTest extends AbstractBackendWebTestCase
+class ApiControllerTest extends AbstractWebTestCase
 {
 
     /**
@@ -30,6 +30,7 @@ class ApiControllerTest extends AbstractBackendWebTestCase
     {
         parent::setUp();
 
+        $this->logInBackend();
         $this->config = static::$kernel->getContainer()->getParameter('aisel_config');
     }
 

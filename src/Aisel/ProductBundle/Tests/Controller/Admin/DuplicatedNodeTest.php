@@ -11,19 +11,20 @@
 
 namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
  * DuplicatedNodeTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class DuplicatedNodeTest extends AbstractBackendWebTestCase
+class DuplicatedNodeTest extends AbstractWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+        $this->logInBackend();
     }
 
     protected function tearDown()
@@ -45,7 +46,6 @@ class DuplicatedNodeTest extends AbstractBackendWebTestCase
             'price' => $this->faker->numberBetween(1, 100),
             'content' => $this->faker->paragraph(10),
             'description_short' => $this->faker->paragraph(10),
-            'content' => $this->faker->paragraph(10),
             'status' => true,
             'meta_url' => 'metaUrl_' . $this->faker->numberBetween(100000, 900000),
             'meta_title' => 'metaTitle_' . $this->faker->numberBetween(100000, 900000),

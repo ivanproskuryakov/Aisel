@@ -11,19 +11,20 @@
 
 namespace Aisel\OrderBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
  * ApiOrderControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiOrderControllerTest extends AbstractBackendWebTestCase
+class ApiOrderControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
     {
         parent::setUp();
+        $this->logInBackend();
     }
 
     protected function tearDown()

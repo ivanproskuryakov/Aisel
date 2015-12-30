@@ -11,7 +11,7 @@
 
 namespace Aisel\MediaBundle\Tests\Controller;
 
-use Aisel\ResourceBundle\Tests\AbstractBackendWebTestCase;
+use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Aisel\MediaBundle\Entity\Media;
 
@@ -20,7 +20,7 @@ use Aisel\MediaBundle\Entity\Media;
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class UploadControllerTest extends AbstractBackendWebTestCase
+class UploadControllerTest extends AbstractWebTestCase
 {
 
     public function setUp()
@@ -28,6 +28,7 @@ class UploadControllerTest extends AbstractBackendWebTestCase
         parent::setUp();
 
         $this->getFixtureFiles();
+        $this->logInBackend();
     }
 
     protected function tearDown()

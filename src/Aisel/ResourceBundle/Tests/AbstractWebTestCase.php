@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Client;
 use Aisel\BackendUserBundle\Manager\UserManager;
 use Symfony\Component\Validator\Validator;
 use Faker;
+use Aisel\BackendUserBundle\Entity\BackendUser;
 
 /**
  * Class AbstractWebTestCase.
@@ -17,6 +18,11 @@ use Faker;
  */
 abstract class AbstractWebTestCase extends KernelTestCase
 {
+    /**
+     * @var BackendUser
+     */
+    protected $backendUser;
+
     /**
      * @var \Faker\Generator
      */
@@ -117,8 +123,9 @@ abstract class AbstractWebTestCase extends KernelTestCase
                 throw new \LogicException('Authentication failed.');
             }
         }
+        $this->backendUser = $this->um->getAuthenticatedUser();
 
-        return $this->um->getAuthenticatedUser();
+        return $this->backendUser;
     }
 
     /**
