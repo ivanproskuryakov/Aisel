@@ -31,6 +31,7 @@ class CollectionRepository extends EntityRepository
     protected $pageSkip = 1;
     protected $order = 'id';
     protected $orderBy = '';
+    protected $backendUser = null;
 
     /**
      * mapRequest
@@ -66,6 +67,10 @@ class CollectionRepository extends EntityRepository
         // Locale
         if (isset($params['locale'])) {
             $this->locale = $params['locale'];
+        }
+        // BackendUser
+        if (isset($params['backendUser'])) {
+            $this->backendUser = $params['backendUser'];
         }
         // Order
         if (isset($params['order'])) {
@@ -121,6 +126,10 @@ class CollectionRepository extends EntityRepository
             $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
         }
 
+        if ($this->backendUser) {
+            $query->andWhere('e.backendUser = :user')->setParameter('user', $this->backendUser->getId());
+        }
+
         if ($this->node) {
             $query->innerJoin('e.nodes', 'n')
                 ->andWhere('n.metaUrl = :node')->setParameter('node', $this->node);
@@ -167,6 +176,10 @@ class CollectionRepository extends EntityRepository
 
         if ($this->locale) {
             $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
+        }
+
+        if ($this->backendUser) {
+            $query->andWhere('e.backendUser = :user')->setParameter('user', $this->backendUser->getId());
         }
 
         if ($this->node) {

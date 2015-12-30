@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\PageBundle\Controller\Admin;
+namespace Aisel\PageBundle\Controller\Seller;
 
-use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
+use Aisel\ResourceBundle\Controller\ApiSellerController as BaseApiController;
 
 /**
  * ApiPageController

@@ -1,0 +1,44 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+#Product
+seller_api_aisel_product_get:
+    pattern:   /product/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:get, _format: json }
+    requirements:
+        _method: GET
+
+seller_api_aisel_product_delete:
+    pattern:   /product/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:delete, _format: json }
+    requirements:
+        _method: DELETE
+
+seller_api_aisel_product_put:
+    pattern:   /product/{id}
+    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:put, _format: json }
+    requirements:
+        _method: PUT
+
+seller_api_aisel_product_get_collection:
+    pattern:   /product/
+    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:getCollection, _format: json }
+    requirements:
+        _method: GET
+
+seller_api_aisel_product_post:
+    pattern:   /product/
+    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:post, _format: json }
+    requirements:
+        _method: POST
+
+seller_api_aisel_product_node_node_edit:
+    pattern:   /product/node/node/
+    defaults:  { _controller: AiselProductBundle:Admin/ApiNodeEdit:nodeEdit, _format: json }
+    requirements:
+        _method: GET
+

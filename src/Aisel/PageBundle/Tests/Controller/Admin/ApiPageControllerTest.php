@@ -78,16 +78,11 @@ class ApiPageControllerTest extends PageWebTestCase
             ->find($id);
 
         $this->assertEquals($page->getNodes()[0]->getId(), $pageNode->getId());
-        $this->assertEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
     }
 
     public function testGetPageAction()
     {
-        $page = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->findOneBy(['backendUser' => $this->backendUser->getId()]);
-
+        $page = $this->newPage();
         $this->client->request(
             'GET',
             '/' . $this->api['backend'] . '/page/' . $page->getId(),
@@ -108,13 +103,7 @@ class ApiPageControllerTest extends PageWebTestCase
 
     public function testDeletePageAction()
     {
-        $page = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->findOneBy(['backendUser' => $this->backendUser->getId()]);
-
-        $this->assertEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
-
+        $page = $this->newPage();
         $id = $page->getId();
 
         $this->client->request(
@@ -139,40 +128,9 @@ class ApiPageControllerTest extends PageWebTestCase
         $this->assertNull($page);
     }
 
-    public function testPutPageActionThrowsNotFound()
-    {
-        $page = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->findOneBy(['locale' => 'ru']);
-
-        $this->assertNotEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
-
-        $id = $page->getId();
-        $data['locale'] = 'ru';
-
-        $this->client->request(
-            'PUT',
-            '/' . $this->api['backend'] . '/page/' . $id,
-            [],
-            [],
-            ['CONTENT_TYPE' => 'application/json'],
-            json_encode($data)
-        );
-
-        $response = $this->client->getResponse();
-        $content = $response->getContent();
-        $statusCode = $response->getStatusCode();
-        $result = json_decode($content, true);
-
-        $this->assertTrue(404 === $statusCode);
-        $this->assertEquals($result['message'], 'Not found');
-    }
-
     public function testPutPageAction()
     {
         $page = $this->newPage();
-        $this->assertEquals($page->getBackendUser()->getUsername(), $this->backendUser->getUsername());
 
         $id = $page->getId();
         $data['locale'] = 'ru';
