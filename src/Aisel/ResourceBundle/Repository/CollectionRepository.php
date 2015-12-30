@@ -69,8 +69,8 @@ class CollectionRepository extends EntityRepository
             $this->locale = $params['locale'];
         }
         // BackendUser
-        if (isset($params['backendUser'])) {
-            $this->backendUser = $params['backendUser'];
+        if (isset($params['frontendUser'])) {
+            $this->frontendUser = $params['frontendUser'];
         }
         // Order
         if (isset($params['order'])) {
@@ -178,7 +178,7 @@ class CollectionRepository extends EntityRepository
             $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
         }
 
-        if ($this->backendUser) {
+        if ($this->frontendUser) {
             $query->andWhere('e.frontendUser = :user')->setParameter('user', $this->frontendUser->getId());
         }
 

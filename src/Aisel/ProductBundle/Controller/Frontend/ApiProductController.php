@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Controller;
+namespace Aisel\ProductBundle\Controller\Frontend;
 
 use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 

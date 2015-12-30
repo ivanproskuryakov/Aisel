@@ -9,21 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Controller;
+namespace Aisel\ProductBundle\Controller\Frontend;
 
 use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 
 /**
- * ApiNodeController
+ * ApiReviewController
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiNodeController extends BaseApiController
+class ApiReviewController extends BaseApiController
 {
 
     /**
      * @var string
      */
-    protected $model = "Aisel\ProductBundle\Entity\Node";
+    protected $model =  "Aisel\ProductBundle\Entity\Review";
 
 }

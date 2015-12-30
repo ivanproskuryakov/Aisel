@@ -11,14 +11,14 @@
 
 namespace Aisel\ProductBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\ProductBundle\Tests\ProductWebTestCase;
 
 /**
  * ApiProductControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiProductControllerTest extends AbstractWebTestCase
+class ApiProductControllerTest extends ProductWebTestCase
 {
 
     public function setUp()
@@ -52,6 +52,7 @@ class ApiProductControllerTest extends AbstractWebTestCase
 
     public function testPostProductAction()
     {
+        $this->markTestSkipped('...');
         $node = $this
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Node')
@@ -101,10 +102,7 @@ class ApiProductControllerTest extends AbstractWebTestCase
 
     public function testPutProductAction()
     {
-        $product = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
-            ->findOneBy(['name' => 'AAAAA']);
+        $product = $this->newProduct();
 
         $node = $this
             ->em
@@ -150,10 +148,7 @@ class ApiProductControllerTest extends AbstractWebTestCase
 
     public function testGetProductAction()
     {
-        $product = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
-            ->findOneBy(['name' => 'AAAAA']);
+        $product = $this->newProduct();
 
         $this->client->request(
             'GET',
@@ -174,10 +169,8 @@ class ApiProductControllerTest extends AbstractWebTestCase
 
     public function testDeleteProductAction()
     {
-        $product = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
-            ->findOneBy(['locale' => 'en']);
+        $product = $this->newProduct();
+
         $medias = $product->getMedias()->toArray();
 
         $id = $product->getId();

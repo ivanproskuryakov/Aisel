@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\ProductBundle\Tests\Controller;
+namespace Aisel\ProductBundle\Tests\Controller\Frontend;
 
 use Aisel\ProductBundle\Tests\ProductWebTestCase;
 
