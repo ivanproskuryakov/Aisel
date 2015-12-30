@@ -51,10 +51,10 @@ class LoadProductData extends XMLFixture implements OrderedFixtureInterface
 
                 foreach ($XML->database->table as $table) {
 
-                    $backendUser = $this->getReference('backend_user_' . $table->column[1]);
+                    $frontendUser = $this->getReference('frontenduser_' . $table->column[1]);
 
                     $product = new Product();
-                    $product->setBackendUser($backendUser);
+                    $product->setFrontendUser($frontendUser);
                     $product->setLocale($table->column[2]);
                     $product->setName($table->column[3]);
                     $product->setSku($table->column[4]);

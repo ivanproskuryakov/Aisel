@@ -38,8 +38,8 @@ class PageTest extends AbstractWebTestCase
     {
         $user = $this
             ->em
-            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
-            ->findOneBy(['username' => 'backenduser']);
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->findOneBy(['username' => 'frontenduser']);
 
         $this->setExpectedException('Doctrine\DBAL\Exception\UniqueConstraintViolationException');
 
@@ -56,7 +56,7 @@ class PageTest extends AbstractWebTestCase
         $this->assertNotNull($node->getId());
 
         $page = new Page();
-        $page->setBackendUser($user);
+        $page->setFrontendUser($user);
         $page->setLocale('en');
         $page->setName($this->faker->sentence(1));
         $page->setContent($this->faker->sentence(10));

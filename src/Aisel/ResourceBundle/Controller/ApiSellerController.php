@@ -36,7 +36,7 @@ class ApiSellerController extends ApiController
         $configuration = new ParamConverter(array(
             'class' => $this->model,
             'options' => [
-                'backendUser' => $this->getUser()
+                'frontendUser' => $this->getUser()
             ]
         ));
         $entity = $this
@@ -62,7 +62,7 @@ class ApiSellerController extends ApiController
             'orderBy' => $request->get('orderBy'),
             'filter' => $request->get('filter'),
             'scope' => $this->getScope($request),
-            'backendUser' => $this->getUser(),
+            'frontendUser' => $this->getUser(),
         );
 
         /**

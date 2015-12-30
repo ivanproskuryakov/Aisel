@@ -72,7 +72,7 @@ class PageWebTestCase extends AbstractWebTestCase
     {
         $user = $this
             ->em
-            ->getRepository('Aisel\BackendUserBundle\Entity\FrontendUser')
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
             ->findOneBy(['username' => 'frontenduser']);
 
         $page = new Page();

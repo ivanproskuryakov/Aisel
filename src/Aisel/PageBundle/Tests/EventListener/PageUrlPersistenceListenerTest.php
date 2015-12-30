@@ -40,12 +40,12 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
         );
         $user = $this
             ->em
-            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
-            ->findOneBy(['username' => 'backenduser']);
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->findOneBy(['username' => 'frontenduser']);
 
         // Create Page 1
         $page1 = new Page();
-        $page1->setBackendUser($user);
+        $page1->setFrontendUser($user);
         $page1->setLocale('en');
         $page1->setContent('...');
         $page1->setName('...');
@@ -60,7 +60,7 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
 
         // Create Page 2
         $page2 = new Page();
-        $page2->setBackendUser($user);
+        $page2->setFrontendUser($user);
         $page2->setLocale('en');
         $page2->setContent('...');
         $page2->setName('...');

@@ -7,10 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpKernel\Client;
-use Aisel\BackendUserBundle\Manager\UserManager;
+use Aisel\BackendUserBundle\Manager\UserManager as BackendUsermanager;
+use Aisel\FrontendUserBundle\Manager\UserManager as FrontendUsermanager;
 use Symfony\Component\Validator\Validator;
 use Faker;
 use Aisel\BackendUserBundle\Entity\BackendUser;
+use Aisel\FrontendUserBundle\Entity\FrontendUser;
 
 /**
  * Class AbstractWebTestCase.
@@ -22,6 +24,11 @@ abstract class AbstractWebTestCase extends KernelTestCase
      * @var BackendUser
      */
     protected $backendUser;
+
+    /**
+     * @var FrontendUser
+     */
+    protected $frontendUser;
 
     /**
      * @var \Faker\Generator
@@ -39,9 +46,14 @@ abstract class AbstractWebTestCase extends KernelTestCase
     protected $em;
 
     /**
-     * @var UserManager
+     * @var BackendUsermanager
      */
-    protected $um;
+    protected $backendUserManager;
+
+    /**
+     * @var FrontendUsermanager
+     */
+    protected $frontendUserManager;
 
     /**
      * @var array $locales
@@ -106,7 +118,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
      */
     public function logInBackend($username = 'backenduser', $password = 'backenduser')
     {
-        if ($this->um->getAuthenticatedUser() == false) {
+        if ($this->backendUserManager->getAuthenticatedUser() == false) {
 
             $this->client->request(
                 'GET',
@@ -123,7 +135,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
                 throw new \LogicException('Authentication failed.');
             }
         }
-        $this->backendUser = $this->um->getAuthenticatedUser();
+        $this->backendUser = $this->backendUserManager->getAuthenticatedUser();
 
         return $this->backendUser;
     }
@@ -137,7 +149,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
      */
     public function logInFrontend($username = 'frontenduser', $password = 'frontenduser')
     {
-        if ($this->um->getAuthenticatedUser() == false) {
+        if ($this->frontendUserManager->getAuthenticatedUser() == false) {
 
             $data = [
                 'username' => $username,
@@ -162,9 +174,9 @@ abstract class AbstractWebTestCase extends KernelTestCase
                 throw new \LogicException('Authentication failed.');
             }
         }
+        $this->frontendUser = $this->frontendUserManager->getAuthenticatedUser();
 
-
-        return $this->um->getAuthenticatedUser();
+        return $this->frontendUser;
     }
 
     public function setUp()
@@ -174,7 +186,8 @@ abstract class AbstractWebTestCase extends KernelTestCase
 
         $this->client = static::createClient([], ['HTTP_HOST' => static::$httpHost]);
         $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $this->um = static::$kernel->getContainer()->get('backend.user.manager');
+        $this->backendUserManager = static::$kernel->getContainer()->get('backend.user.manager');
+        $this->frontendUserManager = static::$kernel->getContainer()->get('frontend.user.manager');
         $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
         $this->api = array(
             'frontend' => static::$kernel->getContainer()->getParameter('frontend_api'),

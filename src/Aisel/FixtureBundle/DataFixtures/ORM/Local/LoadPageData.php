@@ -42,10 +42,10 @@ class LoadPageData extends XMLFixture implements OrderedFixtureInterface
 
                 foreach ($XML->database->table as $table) {
 
-                    $backendUser = $this->getReference('backend_user_' . $table->column[1]);
+                    $frontendUser = $this->getReference('frontenduser_' . $table->column[1]);
 
                     $page = new Page();
-                    $page->setBackendUser($backendUser);
+                    $page->setFrontendUser($frontendUser);
                     $page->setLocale($table->column[2]);
                     $page->setName($table->column[3]);
                     $page->setContent($table->column[4]);
