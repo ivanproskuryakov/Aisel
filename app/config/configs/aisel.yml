@@ -4,6 +4,7 @@ parameters:
     application.media.path: /media
     application.media.upload_path: %assetic.write_to%%application.media.path%
     frontend_api: frontend/api
+    seller_api: seller/api
     backend_api: backend/api
 
 aisel_config:

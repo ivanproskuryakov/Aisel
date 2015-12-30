@@ -12,3 +12,7 @@ be_api_aisel_page:
 fe_api_aisel_page:
     resource: "@AiselPageBundle/Resources/config/routing/frontend.yml"
     prefix:   /%frontend_api%
+
+seller_api_aisel_page:
+    resource: "@AiselPageBundle/Resources/config/routing/seller.yml"
+    prefix:   /%seller_api%

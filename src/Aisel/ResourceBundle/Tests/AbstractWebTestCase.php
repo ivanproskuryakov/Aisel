@@ -178,7 +178,8 @@ abstract class AbstractWebTestCase extends KernelTestCase
         $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
         $this->api = array(
             'frontend' => static::$kernel->getContainer()->getParameter('frontend_api'),
-            'backend' => static::$kernel->getContainer()->getParameter('backend_api')
+            'backend' => static::$kernel->getContainer()->getParameter('backend_api'),
+            'seller' => static::$kernel->getContainer()->getParameter('seller_api')
         );
         $this->validator = static::$kernel->getContainer()->get('validator');
         $this->faker = Faker\Factory::create();
