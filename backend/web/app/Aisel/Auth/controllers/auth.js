@@ -12,15 +12,15 @@
  * @description     ...
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app.controller('AuthCtrl', ['$scope', '$rootScope', '$state', 'authService', 'notify', 'Environment',
-        function($scope, $rootScope, $state, authService, notify, Environment) {
+        function ($scope, $rootScope, $state, authService, notify, Environment) {
             var locale = Environment.currentLocale();
 
             // User Sign In/Out
-            $scope.signOut = function() {
+            $scope.signOut = function () {
                 authService.signout($scope).success(
-                    function(data, status) {
+                    function (data, status) {
                         notify(data.message);
                         $rootScope.user = undefined;
                         $state.transitionTo('userLogin', {
@@ -28,20 +28,21 @@ define(['app'], function(app) {
                         });
                     }
                 );
-            }
+            };
 
-            $scope.login = function(username, password) {
+            $scope.login = function (username, password) {
                 authService.login(username, password).success(
-                    function(data, status) {
-                        notify(data.message);
-                        if (data.status) {
-                            $rootScope.user = data.user;
-                            $state.transitionTo('home', {
-                                locale: locale
-                            });
-                        }
+                    function (data, status) {
+                        $rootScope.user = data.user;
+                        $state.transitionTo('home', {
+                            locale: locale
+                        });
+                        notify('Hello ' + $rootScope.user.email + "!");
                     }
-                );
+                ).error(function (data, status) {
+                    notify(data.message);
+                    console.log(data);
+                });
             };
 
         }

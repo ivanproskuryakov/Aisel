@@ -55,16 +55,16 @@ define(['app'], function (app) {
                         $scope.item = data;
                     }
                 ).error(function (data, status) {
-                        if (data.error.code == 404) {
-                            $state.transitionTo('home', {
-                                locale: locale
-                            });
-                            notify('404 Noting found');
-                            console.log(data);
-                        } else {
-                            errorNotify(data);
-                        }
-                    });
+                    if (data.error.code == 404) {
+                        $state.transitionTo('home', {
+                            locale: locale
+                        });
+                        notify('404 Noting found');
+                        console.log(data);
+                    } else {
+                        errorNotify(data);
+                    }
+                });
             }
 
             /**
@@ -79,8 +79,8 @@ define(['app'], function (app) {
                             console.log(data);
                         }
                     ).error(function (data, status) {
-                            errorNotify(data);
-                        });
+                        errorNotify(data);
+                    });
                 }
                 // New item
                 if ($scope.details.id === undefined) {
@@ -95,8 +95,8 @@ define(['app'], function (app) {
                             );
                         }
                     ).error(function (data, status) {
-                            errorNotify(data);
-                        });
+                        errorNotify(data);
+                    });
                 }
 
                 if (callback) callback();
@@ -116,8 +116,8 @@ define(['app'], function (app) {
                         );
                     }
                 ).error(function (data, status) {
-                        errorNotify(data);
-                    });
+                    errorNotify(data);
+                });
             };
 
             /**
@@ -145,8 +145,8 @@ define(['app'], function (app) {
                         );
                     }
                 ).error(function (data, status) {
-                        errorNotify(data);
-                    });
+                    errorNotify(data);
+                });
             };
 
         });

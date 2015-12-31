@@ -57,11 +57,16 @@ class ApiController extends BaseApiController
             $user = $this
                 ->get('backend.user.manager')
                 ->loadUserByEmail($email);
+
+            if ($user === null) {
+                throw new LogicException('Wrong email or password!');
+            }
+
             $isPasswordValid = $this
                 ->get('backend.user.manager')
                 ->checkUserPassword($user, $password);
 
-            if ((!$user instanceof BackendUser) || ($isPasswordValid == false)) {
+            if ($isPasswordValid == false) {
                 throw new LogicException('Wrong email or password!');
             }
             $this->loginUser($user);
