@@ -72,19 +72,17 @@ class ApiController extends BaseApiController
             $user = $um->loadUserByEmail($email);
 
             if ((!$user instanceof FrontendUser) || (!$um->checkUserPassword($user, $password))) {
-                return array('message' => 'Wrong e-mail or password!');
+                throw new LogicException('Wrong e-mail or password!');
             }
 
             $this->loginUser($user);
 
             return array(
                 'user' => $this->filterMaxDepth($user),
-                'status' => true,
-                'message' => 'Successfully logged in'
             );
 
         } else {
-            return array('message' => 'You already logged in. Try to refresh page');
+            throw new LogicException('You already logged in. Try to refresh page');
         }
     }
 
@@ -95,8 +93,9 @@ class ApiController extends BaseApiController
      */
     public function registerAction(Request $request)
     {
-        if ($this->isAuthenticated())
-            return array('message' => 'You already logged in, please logout first');
+        if ($this->isAuthenticated()) {
+            throw new LogicException('You already logged in, please logout first');
+        }
 
         $params = array(
             'password' => $request->get('password'),
@@ -104,7 +103,7 @@ class ApiController extends BaseApiController
         );
 
         if ($this->getUserManager()->loadUserByEmail($params['email'])) {
-            return array('message' => 'E-mail already taken!');
+            throw new LogicException('E-mail already taken!');
         }
 
         $user = $this->getUserManager()->registerUser($params);
@@ -115,12 +114,7 @@ class ApiController extends BaseApiController
             $this->get('session')->set('_security_main', serialize($token));
         }
 
-        return array(
-            'user' => $user,
-            'status' => true,
-            'message' => 'Successfully registered'
-        );
-
+        return new Response();
     }
 
     /**

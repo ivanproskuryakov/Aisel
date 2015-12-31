@@ -119,7 +119,6 @@ class ApiControllerTest extends FrontendUserTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertNotNull($result);
     }
 
     public function testLoginUserAction()

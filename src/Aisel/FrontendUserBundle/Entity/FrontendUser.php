@@ -390,7 +390,6 @@ class FrontendUser implements AdvancedUserInterface
         return $this->getEmail();
     }
 
-
     /**
      * @inheritDoc
      */

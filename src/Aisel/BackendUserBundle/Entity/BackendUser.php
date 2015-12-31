@@ -28,7 +28,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="aisel_user_backend")
  * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
- * @UniqueEntity("username")
  * @UniqueEntity("email")
  */
 // todo: Finish with validation messages and Unique indexes
@@ -42,18 +41,15 @@ class BackendUser implements AdvancedUserInterface
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
-     * @Assert\Type(type="string")
-     * @Assert\NotBlank()
-     * @JMS\Type("string")
      */
     private $username;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
-     * @Assert\Email()
-     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @Assert\Email
+     * @JMS\Expose
      * @JMS\Type("string")
      */
     private $email;
@@ -184,7 +180,7 @@ class BackendUser implements AdvancedUserInterface
     {
         return serialize(array(
             $this->id,
-            $this->username,
+            $this->email,
             $this->password,
             $this->salt,
         ));
@@ -197,7 +193,7 @@ class BackendUser implements AdvancedUserInterface
     {
         list (
             $this->id,
-            $this->username,
+            $this->email,
             $this->password,
             $this->salt
             ) = unserialize($serialized);
@@ -224,26 +220,13 @@ class BackendUser implements AdvancedUserInterface
     }
 
     /**
-     * Set username
-     *
-     * @param  string      $username
-     * @return BackendUser
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
      * Get username
      *
      * @return string
      */
     public function getUsername()
     {
-        return $this->username;
+        return $this->getEmail();
     }
 
     /**
@@ -383,5 +366,14 @@ class BackendUser implements AdvancedUserInterface
     {
         return $this->lastLogin;
     }
+
+    /**
+     * @ORM\PreUpdate
+     * @ORM\PrePersist
+     */
+    public function setUsernameFromEmail() {
+        $this->username = $this->getEmail();
+    }
+
 
 }
