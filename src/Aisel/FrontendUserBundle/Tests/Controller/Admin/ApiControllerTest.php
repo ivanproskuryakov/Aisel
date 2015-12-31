@@ -38,7 +38,7 @@ class ApiControllerTest extends AbstractWebTestCase
         $users = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findBy(['username' => 'test_frontend_user_aisel']);
+            ->findBy(['email' => 'test_frontend_user_aisel@aisel.co']);
 
         foreach ($users as $user) {
             $this->em->remove($user);
@@ -46,7 +46,6 @@ class ApiControllerTest extends AbstractWebTestCase
         $this->em->flush();
 
         $data = [
-            'username' => 'test_frontend_user_aisel',
             'email' => 'test_frontend_user_aisel@aisel.co',
             'plain_password' => 'test_frontend_user_aisel',
         ];
@@ -64,6 +63,9 @@ class ApiControllerTest extends AbstractWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
+        var_dump($content);
+        exit();
+
         $this->client->request(
             'POST',
             '/' . $this->api['backend'] . '/frontenduser/',
@@ -79,7 +81,6 @@ class ApiControllerTest extends AbstractWebTestCase
         $result = json_decode($content, true);
 
         $this->assertEquals($result['code'], 400);
-        $this->assertEquals($result['errors']['username'], 'This value is already used.');
         $this->assertEquals($result['errors']['email'], 'This value is already used.');
         $this->assertTrue(400 === $statusCode);
     }
@@ -107,7 +108,7 @@ class ApiControllerTest extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'test_frontend_user_aisel']);
+            ->findOneBy(['email' => 'test_frontend_user_aisel@aisel.co']);
         $id = $user->getId();
 
 
@@ -134,7 +135,7 @@ class ApiControllerTest extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'test_frontend_user_aisel']);
+            ->findOneBy(['email' => 'test_frontend_user_aisel@aisel.co']);
         $id = $user->getId();
         $oldPassword = $user->getPassword();
 
@@ -175,7 +176,7 @@ class ApiControllerTest extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'test_frontend_user_aisel']);
+            ->findOneBy(['email' => 'test_frontend_user_aisel@aisel.co']);
 
         $this->assertNotEquals($oldPassword, $user->getPassword());
         $this->assertEquals($encodedPassword, $user->getPassword());
@@ -189,7 +190,7 @@ class ApiControllerTest extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'test_frontend_user_aisel']);
+            ->findOneBy(['email' => 'test_frontend_user_aisel@aisel.co']);
         $id = $user->getId();
 
         $this->client->request(
@@ -207,7 +208,7 @@ class ApiControllerTest extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'test_frontend_user_aisel']);
+            ->findOneBy(['email' => 'test_frontend_user_aisel@aisel.co']);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($content);

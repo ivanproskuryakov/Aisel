@@ -189,7 +189,6 @@ class UserManager implements UserProviderInterface
     {
         $user = new FrontendUser();
         $user->setEmail($userData['email']);
-        $user->setUsername($userData['username']);
         $user->setPlainPassword($userData['password']);
         $user->setEnabled($userData['enabled']);
         $user->setLocked($userData['locked']);
@@ -228,16 +227,18 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * Register user and send userinfo by email
+     * registerUser
+     *
+     * @param array $userData
+     * @return mixed
      */
     public function registerUser(array $userData)
     {
-        $user = $this->loadUserByUsername($userData['username']);
+        $user = $this->loadUserByEmail($userData['email']);
 
         if (!$user) {
             $user = new FrontendUser();
             $user->setEmail($userData['email']);
-            $user->setUsername($userData['username']);
             $user->setPlainPassword($userData['password']);
             $user->setEnabled(true);
             $user->setLocked(false);
@@ -255,7 +256,6 @@ class UserManager implements UserProviderInterface
                         $this->templating->render(
                             'AiselFrontendUserBundle:Email:registration.txt.twig',
                             array(
-                                'username' => $user->getUsername(),
                                 'password' => $userData['password'],
                                 'email' => $user->getEmail(),
                             )
@@ -275,7 +275,10 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     *   Reset and send password by email
+     * resetPassword
+     *
+     * @param FrontendUser $user
+     * @return mixed
      */
     public function resetPassword(FrontendUser $user)
     {
@@ -296,7 +299,7 @@ class UserManager implements UserProviderInterface
                         $this->templating->render(
                             'AiselFrontendUserBundle:Email:newPassword.txt.twig',
                             array(
-                                'username' => $user->getUsername(),
+                                'email' => $user->getEmail(),
                                 'password' => $password,
                             )
                         )
@@ -312,49 +315,26 @@ class UserManager implements UserProviderInterface
         }
     }
 
-    public function loadUserByUsername($username)
+    /**
+     * loadUserByEmail
+     *
+     * @param string $email
+     * @return FrontendUser|null|object
+     */
+    public function loadUserByEmail($email)
     {
-        $user = $this->getRepository()->findOneBy(array('username' => $username));
-
-        return $user;
-    }
-
-    public function loadById($id)
-    {
-        $user = $this->getRepository()->findOneBy(array('id' => $id));
-
-        if (!$user) {
-            throw new LogicException('User not found');
-        }
-
-        return $user;
-    }
-
-    public function findUserByEmail($email)
-    {
-        $user = $this->getRepository()->findOneBy(array('email' => $email));
-
-        if (!$user) {
-            throw new LogicException('User not found');
-        }
-
-        return $user;
+        return $this->loadUserByUsername($email);
     }
 
     /**
-     * @param $username
-     * @param $email
+     * loadUserByUsername
      *
-     * @return UserInterface
+     * @param string $email
+     * @return FrontendUser|null|object
      */
-    public function findUser($username, $email)
+    public function loadUserByUsername($email)
     {
-        $user = $this
-            ->getRepository()
-            ->findOneBy(array(
-                'username' => $username,
-                'email' => $email,
-            ));
+        $user = $this->getRepository()->findOneBy(array('email' => $email));
 
         return $user;
     }

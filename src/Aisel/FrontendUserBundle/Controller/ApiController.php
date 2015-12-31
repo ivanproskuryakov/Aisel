@@ -64,13 +64,13 @@ class ApiController extends BaseApiController
         /** @var \Aisel\FrontendUserBundle\Manager\UserManager $um */
 
         if (!$this->isAuthenticated()) {
-            $username = $request->get('username');
+            $email = $request->get('email');
             $password = $request->get('password');
             $um = $this->getUserManager();
-            $user = $um->loadUserByUsername($username);
+            $user = $um->loadUserByEmail($email);
 
             if ((!$user instanceof FrontendUser) || (!$um->checkUserPassword($user, $password))) {
-                return array('message' => 'Wrong username or password!');
+                return array('message' => 'Wrong e-mail or password!');
             }
 
             $this->loginUser($user);
@@ -97,13 +97,12 @@ class ApiController extends BaseApiController
             return array('message' => 'You already logged in, please logout first');
 
         $params = array(
-            'username' => $request->get('username'),
             'password' => $request->get('password'),
             'email' => $request->get('email'),
         );
 
-        if ($this->getUserManager()->findUser($params['username'], $params['email'])) {
-            return array('message' => 'Username or e-mail already taken!');
+        if ($this->getUserManager()->loadUserByEmail($params['email'])) {
+            return array('message' => 'E-mail already taken!');
         }
 
         $user = $this->getUserManager()->registerUser($params);
@@ -134,7 +133,7 @@ class ApiController extends BaseApiController
         }
         $email = $request->get('email');
 
-        if ($user = $this->getUserManager()->findUserByEmail($email)) {
+        if ($user = $this->getUserManager()->loadUserByEmail($email)) {
             $response = $this->getUserManager()->resetPassword($user);
 
             if ($response != 1) {

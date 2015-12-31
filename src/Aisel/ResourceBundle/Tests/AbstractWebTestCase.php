@@ -143,16 +143,16 @@ abstract class AbstractWebTestCase extends KernelTestCase
     /**
      * logInFrontend
      *
-     * @param string $username
+     * @param string $email
      * @param string $password
      * @return bool
      */
-    public function logInFrontend($username = 'frontenduser', $password = 'frontenduser')
+    public function logInFrontend($email = 'frontenduser@aisel.co', $password = 'frontenduser')
     {
         if ($this->frontendUserManager->getAuthenticatedUser() == false) {
 
             $data = [
-                'username' => $username,
+                'email' => $email,
                 'password' => $password,
             ];
 

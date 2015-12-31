@@ -34,7 +34,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Aisel\ResourceBundle\Repository\CollectionRepository")
  * @ORM\Table(name="aisel_user_frontend")
- * @UniqueEntity("username")
  * @UniqueEntity("email")
  */
 class FrontendUser implements AdvancedUserInterface
@@ -42,16 +41,6 @@ class FrontendUser implements AdvancedUserInterface
 
     use IdTrait;
     use UpdateCreateTrait;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Type(type="string")
-     * @Assert\NotNull()
-     * @JMS\Expose
-     * @JMS\Type("string")
-     */
-    private $username;
 
     /**
      * @var string
@@ -227,7 +216,7 @@ class FrontendUser implements AdvancedUserInterface
      */
     public function __toString()
     {
-        return $this->getUsername();
+        return $this->getEmail();
     }
 
     /**
@@ -339,29 +328,6 @@ class FrontendUser implements AdvancedUserInterface
     }
 
     /**
-     * Set username
-     *
-     * @param  string $username
-     * @return FrontendUser
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
      * Set password
      *
      * @param  string $password
@@ -397,6 +363,7 @@ class FrontendUser implements AdvancedUserInterface
         return $this;
     }
 
+
     /**
      * Get email
      *
@@ -405,6 +372,16 @@ class FrontendUser implements AdvancedUserInterface
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * getUsername
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->getEmail();
     }
 
 
@@ -453,7 +430,7 @@ class FrontendUser implements AdvancedUserInterface
     {
         return serialize(array(
             $this->id,
-            $this->username,
+            $this->email,
             $this->password,
             $this->salt,
         ));
@@ -466,7 +443,7 @@ class FrontendUser implements AdvancedUserInterface
     {
         list (
             $this->id,
-            $this->username,
+            $this->email,
             $this->password,
             $this->salt,
             ) = unserialize($serialized);

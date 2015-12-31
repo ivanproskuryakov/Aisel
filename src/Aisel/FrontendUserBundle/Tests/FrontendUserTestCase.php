@@ -36,15 +36,14 @@ class FrontendUserTestCase extends AbstractWebTestCase
     /**
      * newFrontendUser
      *
-     * @param string $username
+     * @param string $email
      * @param string $password
      * @return FrontendUser $frontendUser
      */
-    public function newFrontendUser($username, $password)
+    public function newFrontendUser($email, $password)
     {
         $user = new FrontendUser();
-        $user->setUsername($username);
-        $user->setEmail($this->faker->email);
+        $user->setEmail($email);
         $user->setPlainPassword($password);
 
         $this->em->persist($user);

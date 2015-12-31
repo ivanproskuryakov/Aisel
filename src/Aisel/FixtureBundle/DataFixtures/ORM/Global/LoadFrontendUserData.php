@@ -47,17 +47,16 @@ class LoadFrontendUserData extends XMLFixture implements OrderedFixtureInterface
 
                 foreach ($XML->database->table as $table) {
                     $userData = array(
-                        'username' => (string)$table->column[1],
-                        'email' => (string)$table->column[2],
-                        'password' => (string)$table->column[3],
-                        'enabled' => (string)$table->column[4],
-                        'locked' => (string)$table->column[5],
+                        'email' => (string)$table->column[1],
+                        'password' => (string)$table->column[2],
+                        'enabled' => (string)$table->column[3],
+                        'locked' => (string)$table->column[4],
 
-                        'about' => (string)$table->column[10],
-                        'phone' => (string)$table->column[11],
-                        'website' => (string)$table->column[12],
-                        'facebook' => (string)$table->column[13],
-                        'twitter' => (string)$table->column[14]
+                        'about' => (string)$table->column[5],
+                        'phone' => (string)$table->column[6],
+                        'website' => (string)$table->column[7],
+                        'facebook' => (string)$table->column[8],
+                        'twitter' => (string)$table->column[9]
                     );
 
                     $user = $this->getUserManager()->registerFixturesUser($userData);

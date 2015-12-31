@@ -18,7 +18,6 @@
         <!-- Table aisel_user_frontend -->
         <table name="aisel_user_frontend">
             <column name="id">149</column>
-            <column name="username">frontenduser</column>
             <column name="email">frontenduser@aisel.co</column>
             <column name="password">frontenduser</column>
             <column name="enabled">1</column>
@@ -36,7 +35,6 @@
         </table>
         <table name="aisel_user_frontend">
             <column name="id">150</column>
-            <column name="username">volgodark</column>
             <column name="email">volgodark@gmail.com</column>
             <column name="password">volgodark</column>
             <column name="enabled">1</column>

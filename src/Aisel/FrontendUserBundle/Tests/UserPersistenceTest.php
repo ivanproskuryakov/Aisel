@@ -34,8 +34,8 @@ class UserPersistenceTest extends FrontendUserTestCase
     public function testUserPasswordListener()
     {
         $password = $this->faker->password();
-        $username = $this->faker->userName;
-        $user = $this->newFrontendUser($username, $password);
+        $email = $this->faker->email;
+        $user = $this->newFrontendUser($email, $password);
 
         $this->assertNotEmpty($user->getId());
         $this->removeEntity($user);

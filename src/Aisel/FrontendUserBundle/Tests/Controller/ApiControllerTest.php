@@ -54,9 +54,9 @@ class ApiControllerTest extends FrontendUserTestCase
     public function testUpdateUserInformationAction()
     {
         $password = $this->faker->password();
-        $username = $this->faker->userName;
-        $user = $this->newFrontendUser($username, $password);
-        $this->logInFrontend($username, $password);
+        $email = $this->faker->email;
+        $user = $this->newFrontendUser($email, $password);
+        $this->logInFrontend($email, $password);
 
         $data = [
             'phone' => $this->faker->phoneNumber,
@@ -86,7 +86,7 @@ class ApiControllerTest extends FrontendUserTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => $username]);
+            ->findOneBy(['email' => $email]);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEquals($user->getPhone(), $data['phone']);
@@ -100,9 +100,8 @@ class ApiControllerTest extends FrontendUserTestCase
     public function testRegisterUserAction()
     {
         $data = [
-            'username' => $this->faker->userName,
-            'password' => $this->faker->password(),
-            'email' => $this->faker->email
+            'email' => $this->faker->email,
+            'password' => $this->faker->password()
         ];
 
         $this->client->request(
@@ -126,11 +125,11 @@ class ApiControllerTest extends FrontendUserTestCase
     public function testLoginUserAction()
     {
         $password = $this->faker->password();
-        $username = $this->faker->userName;
-        $user = $this->newFrontendUser($username, $password);
+        $email = $this->faker->email;
+        $user = $this->newFrontendUser($email, $password);
 
         $data = [
-            'username' => $username,
+            'email' => $email,
             'password' => $password,
         ];
         $this->client->request(
@@ -155,11 +154,11 @@ class ApiControllerTest extends FrontendUserTestCase
     public function testLogoutUserAction()
     {
         $password = $this->faker->password();
-        $username = $this->faker->userName;
-        $user = $this->newFrontendUser($username, $password);
+        $email = $this->faker->email;
+        $user = $this->newFrontendUser($email, $password);
 
         $data = [
-            'username' => $username,
+            'email' => $email,
             'password' => $password,
         ];
 
@@ -230,10 +229,10 @@ class ApiControllerTest extends FrontendUserTestCase
     public function testDeleteUserAccountAction()
     {
         $password = $this->faker->password();
-        $username = $this->faker->userName;
+        $email = $this->faker->email;
 
-        $this->newFrontendUser($username, $password);
-        $this->logInFrontend($username, $password);
+        $this->newFrontendUser($email, $password);
+        $this->logInFrontend($email, $password);
 
         $this->client->request(
             'DELETE',
@@ -255,11 +254,11 @@ class ApiControllerTest extends FrontendUserTestCase
     public function testChangeUserPasswordAction()
     {
         $password = $this->faker->password();
-        $username = $this->faker->userName;
-        $user = $this->newFrontendUser($username, $password);
+        $email = $this->faker->email;
+        $user = $this->newFrontendUser($email, $password);
         $oldPassword = $user->getPassword();
 
-        $this->logInFrontend($username, $password);
+        $this->logInFrontend($email, $password);
 
         $newPassword = '000111222';
         $encoder = $this->getContainer()->get('security.encoder_factory')->getEncoder($user);
@@ -291,7 +290,7 @@ class ApiControllerTest extends FrontendUserTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => $username]);
+            ->findOneBy(['email' => $email]);
 
         $this->assertTrue(204 === $statusCode);
         $this->assertNotEquals($oldPassword, $user->getPassword());
