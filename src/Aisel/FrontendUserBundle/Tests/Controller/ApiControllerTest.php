@@ -13,6 +13,7 @@ namespace Aisel\FrontendUserBundle\Tests\Controller;
 
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Aisel\FrontendUserBundle\Tests\FrontendUserTestCase;
+use Aisel\FrontendUserBundle\Manager\UserMailManager;
 
 /**
  * ApiControllerTest
@@ -119,6 +120,12 @@ class ApiControllerTest extends FrontendUserTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
+
+        $message = $this->getSwiftMailMessage();
+        $this->assertEquals(UserMailManager::MAIL_ACCOUNT_NEW, $message->getSubject());
+        $this->assertEquals($data['email'], key($message->getTo()));
+        $this->assertEquals($this->websiteEmail, key($message->getFrom()));
+        $this->assertNotNull($this->websiteEmail);
     }
 
     public function testLoginUserAction()
@@ -207,13 +214,15 @@ class ApiControllerTest extends FrontendUserTestCase
 
     public function testUserForgotPasswordEmailSentAction()
     {
+        $mailTo = 'volgodark@gmail.com';
         $this->client->request(
             'GET',
-            '/' . $this->api['frontend'] . '/user/password/forgot/?email=volgodark@gmail.com',
+            '/' . $this->api['frontend'] . '/user/password/forgot/?email=' . $mailTo,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
         );
+
 
         $response = $this->client->getResponse();
         $content = $response->getContent();
@@ -221,9 +230,15 @@ class ApiControllerTest extends FrontendUserTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
+
+        $message = $this->getSwiftMailMessage();
+        $this->assertEquals(UserMailManager::MAIL_PASSWORD_NEW, $message->getSubject());
+        $this->assertEquals($mailTo, key($message->getTo()));
+        $this->assertEquals($this->websiteEmail, key($message->getFrom()));
+        $this->assertNotNull($this->websiteEmail);
     }
 
-    public function testDeleteUserAccountAction()
+    public function testTerminateUserAccountAction()
     {
         $password = $this->faker->password();
         $email = $this->faker->email;
@@ -246,6 +261,12 @@ class ApiControllerTest extends FrontendUserTestCase
 
         $this->assertTrue(204 === $statusCode);
         $this->assertEmpty($result);
+
+        $message = $this->getSwiftMailMessage();
+        $this->assertEquals(UserMailManager::MAIL_ACCOUNT_TERMINATE, $message->getSubject());
+        $this->assertEquals($email, key($message->getTo()));
+        $this->assertEquals($this->websiteEmail, key($message->getFrom()));
+        $this->assertNotNull($this->websiteEmail);
     }
 
     public function testChangeUserPasswordAction()
@@ -293,6 +314,12 @@ class ApiControllerTest extends FrontendUserTestCase
         $this->assertNotEquals($oldPassword, $user->getPassword());
         $this->assertEquals($encodedPassword, $user->getPassword());
         $this->removeEntity($user);
+
+        $message = $this->getSwiftMailMessage();
+        $this->assertEquals(UserMailManager::MAIL_PASSWORD_NEW, $message->getSubject());
+        $this->assertEquals($email, key($message->getTo()));
+        $this->assertEquals($this->websiteEmail, key($message->getFrom()));
+        $this->assertNotNull($this->websiteEmail);
     }
 
 }

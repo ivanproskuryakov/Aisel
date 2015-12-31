@@ -22,6 +22,8 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Templating\EngineInterface;
 use Swift_Mailer;
+use Aisel\FrontendUserBundle\Manager\UserMailManager;
+
 
 /**
  * Manager for frontend users.
@@ -49,17 +51,7 @@ class UserManager implements UserProviderInterface
     /**
      * @var EngineInterface
      */
-    protected $templating;
-
-    /**
-     * @var Swift_Mailer
-     */
     protected $mailer;
-
-    /**
-     * @var string
-     */
-    protected $websiteEmail;
 
     /**
      * Constructor
@@ -67,24 +59,18 @@ class UserManager implements UserProviderInterface
      * @param EntityManager $entityManager
      * @param EncoderFactory $encoder
      * @param SecurityContext $securityContext
-     * @param Swift_Mailer $mailer
-     * @param EngineInterface $templating
-     * @param string $websiteEmail
+     * @param UserMailManager $mailer
      */
     public function __construct(
         EntityManager $entityManager,
         EncoderFactory $encoder,
         SecurityContext $securityContext,
-        Swift_Mailer $mailer,
-        EngineInterface $templating,
-        $websiteEmail
+        UserMailManager $mailer
     )
     {
         $this->mailer = $mailer;
-        $this->templating = $templating;
         $this->encoder = $encoder;
         $this->em = $entityManager;
-        $this->websiteEmail = $websiteEmail;
         $this->securityContext = $securityContext;
     }
 
@@ -245,33 +231,10 @@ class UserManager implements UserProviderInterface
 
             $this->em->persist($user);
             $this->em->flush();
-
-            // Send user info via email
-            try {
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('New Account!')
-                    ->setFrom($this->websiteEmail)
-                    ->setTo($user->getEmail())
-                    ->setBody(
-                        $this->templating->render(
-                            'AiselFrontendUserBundle:Email:registration.txt.twig',
-                            array(
-                                'password' => $userData['password'],
-                                'email' => $user->getEmail(),
-                            )
-                        )
-                    );
-
-                $this->mailer->send($message);
-            } catch (\Swift_TransportException $e) {
-            }
-
-            return $user;
-
-        } else {
-            return false;
+            $this->mailer->sendRegisterUserMail($user, $userData['password']);
         }
 
+        return $user;
     }
 
     /**
@@ -289,29 +252,7 @@ class UserManager implements UserProviderInterface
             $this->em->persist($user);
             $this->em->flush();
 
-            // Send password via email
-            try {
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Password reset')
-                    ->setFrom($this->websiteEmail)
-                    ->setTo($user->getEmail())
-                    ->setBody(
-                        $this->templating->render(
-                            'AiselFrontendUserBundle:Email:newPassword.txt.twig',
-                            array(
-                                'email' => $user->getEmail(),
-                                'password' => $password,
-                            )
-                        )
-                    );
-                $response = $this->mailer->send($message);
-            } catch (\Swift_TransportException $e) {
-                $response = $e->getMessage();
-            }
-
-            return $response;
-        } else {
-            return false;
+            $this->mailer->sendNewPasswordEmail($user, $password);
         }
     }
 

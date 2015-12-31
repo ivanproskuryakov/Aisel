@@ -18,10 +18,9 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\SecurityContext;
-use LogicException;
 
 /**
- * Manager for backend users. Register, Load and others ...
+ * UserManager
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
@@ -75,6 +74,7 @@ class UserManager implements UserProviderInterface
         $user->setEnabled(true);
         $user->setLocked(false);
         $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
+
         $this->em->persist($user);
         $this->em->flush();
 

@@ -12,6 +12,11 @@ services:
           - @doctrine.orm.entity_manager
           - @security.encoder_factory
           - @security.context
+          - @frontend.user_mail.manager
+
+    frontend.user_mail.manager:
+        class: Aisel\FrontendUserBundle\Manager\UserMailManager
+        arguments:
           - @mailer
           - @templating
           - %website_email%

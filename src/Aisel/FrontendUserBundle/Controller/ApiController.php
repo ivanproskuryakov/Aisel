@@ -143,6 +143,7 @@ class ApiController extends BaseApiController
 
         return new Response();
     }
+
     /**
      * logoutAction
      *
@@ -193,10 +194,16 @@ class ApiController extends BaseApiController
     {
         if ($this->isAuthenticated()) {
 
+            // Send Mail
+            $this->container
+                ->get('frontend.user_mail.manager')
+                ->sendAccountTerminateEmail($this->getUser());
+
             // Delete entity
             $em = $this->getEntityManager();
             $em->remove($this->getUser());
             $em->flush();
+            $em->clear();
 
             // Logout
             $token = new AnonymousToken(null, new FrontendUser());
@@ -224,6 +231,11 @@ class ApiController extends BaseApiController
 
             $em->persist($user);
             $em->flush();
+
+            // Send Mail
+            $this->container
+                ->get('frontend.user_mail.manager')
+                ->sendNewPasswordEmail($this->getUser(), $password);
         }
     }
 

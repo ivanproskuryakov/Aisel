@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Validator;
 use Faker;
 use Aisel\BackendUserBundle\Entity\BackendUser;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Swift_Message;
 
 /**
  * Class AbstractWebTestCase.
@@ -61,6 +62,11 @@ abstract class AbstractWebTestCase extends KernelTestCase
     protected $locales;
 
     /**
+     * @var string
+     */
+    protected $websiteEmail;
+
+    /**
      * @var array $api
      */
     protected $api;
@@ -91,6 +97,21 @@ abstract class AbstractWebTestCase extends KernelTestCase
     public static function setUpBeforeClass($httpHost = 'http://api.aisel.dev')
     {
         static::$httpHost = $httpHost;
+    }
+
+    /**
+     * getSwiftMailMessage
+     *
+     * @return Swift_Message $message
+     */
+    public function getSwiftMailMessage()
+    {
+        $mailCollector = $this->client->getProfile()->getCollector('swiftmailer');
+        $this->assertEquals(1, $mailCollector->getMessageCount());
+        $collectedMessages = $mailCollector->getMessages();
+        $message = $collectedMessages[0];
+
+        return $message;
     }
 
     /**
@@ -188,6 +209,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
         $this->backendUserManager = static::$kernel->getContainer()->get('backend.user.manager');
         $this->frontendUserManager = static::$kernel->getContainer()->get('frontend.user.manager');
         $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
+        $this->websiteEmail = static::$kernel->getContainer()->getParameter('website_email');
         $this->api = array(
             'frontend' => static::$kernel->getContainer()->getParameter('frontend_api'),
             'backend' => static::$kernel->getContainer()->getParameter('backend_api'),
