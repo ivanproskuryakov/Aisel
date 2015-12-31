@@ -63,9 +63,6 @@ class ApiControllerTest extends AbstractWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        var_dump($content);
-        exit();
-
         $this->client->request(
             'POST',
             '/' . $this->api['backend'] . '/frontenduser/',

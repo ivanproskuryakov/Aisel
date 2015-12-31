@@ -41,7 +41,7 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'frontenduser']);
+            ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
 
         // Create Product 1

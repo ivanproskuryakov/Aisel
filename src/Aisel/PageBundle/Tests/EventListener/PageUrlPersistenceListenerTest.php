@@ -41,7 +41,7 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'frontenduser']);
+            ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
         // Create Page 1
         $page1 = new Page();

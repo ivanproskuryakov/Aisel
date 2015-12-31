@@ -65,7 +65,7 @@ class ProductWebTestCase extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'frontenduser']);
+            ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
         $review = new Review();
         $review->setLocale('en');
@@ -90,7 +90,7 @@ class ProductWebTestCase extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'frontenduser']);
+            ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
         $product = new Product();
 

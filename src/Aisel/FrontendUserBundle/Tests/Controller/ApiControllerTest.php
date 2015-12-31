@@ -187,11 +187,11 @@ class ApiControllerTest extends FrontendUserTestCase
         $this->assertTrue(204 === $statusCode);
     }
 
-    public function testUserForgotPasswordUserNotFoundAction()
+    public function testUserForgotPasswordUserNotFoundActionFails()
     {
         $this->client->request(
             'GET',
-            '/' . $this->api['frontend'] . '/user/password/forgot/?email=fontenduser@aisel.co',
+            '/' . $this->api['frontend'] . '/user/password/forgot/?email=notexists@aisel.co',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -222,8 +222,6 @@ class ApiControllerTest extends FrontendUserTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-        $this->assertEquals(true, $result['status']);
-        $this->assertEquals('New password has been sent!', $result['message']);
     }
 
     public function testDeleteUserAccountAction()

@@ -39,7 +39,7 @@ class PageTest extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'frontenduser']);
+            ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
         $this->setExpectedException('Doctrine\DBAL\Exception\UniqueConstraintViolationException');
 

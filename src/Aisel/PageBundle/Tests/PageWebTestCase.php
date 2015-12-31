@@ -45,7 +45,7 @@ class PageWebTestCase extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'frontenduser']);
+            ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
         $page = $this->newPage();
 
@@ -73,7 +73,7 @@ class PageWebTestCase extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'frontenduser']);
+            ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
         $page = new Page();
         $page->setLocale('en');

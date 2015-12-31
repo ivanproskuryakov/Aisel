@@ -12,11 +12,13 @@
 namespace Aisel\FrontendUserBundle\Controller;
 
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 use Symfony\Component\HttpFoundation\Request;
 use Aisel\FrontendUserBundle\Manager\UserManager;
+use LogicException;
 
 /**
  * ApiController
@@ -124,13 +126,15 @@ class ApiController extends BaseApiController
     /**
      * @param Request $request
      *
+     * @throw LogicException
      * @return array
      */
     public function passwordForgotAction(Request $request)
     {
         if ($this->isAuthenticated()) {
-            return array('message' => 'You already logged in, Please logout first');
+            throw new LogicException('You already logged in, Please logout first');
         }
+
         $email = $request->get('email');
 
         if ($user = $this->getUserManager()->loadUserByEmail($email)) {
@@ -140,10 +144,10 @@ class ApiController extends BaseApiController
                 return array('message' => $response);
             }
         } else {
-            return array('message' => 'User not found!');
+            throw new LogicException('User not found');
         }
 
-        return array('status' => true, 'message' => 'New password has been sent!');
+        return new Response();
     }
 
     /**

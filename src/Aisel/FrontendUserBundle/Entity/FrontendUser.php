@@ -45,6 +45,12 @@ class FrontendUser implements AdvancedUserInterface
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
+     */
+    private $username;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotNull()
      * @Assert\Email
      * @JMS\Expose
@@ -713,6 +719,14 @@ class FrontendUser implements AdvancedUserInterface
     public function setReviewsPage($reviewsPage)
     {
         $this->reviewsPage = $reviewsPage;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     * @ORM\PrePersist
+     */
+    public function setUsernameFromEmail() {
+        $this->username = $this->getEmail();
     }
 
 
