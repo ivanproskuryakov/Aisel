@@ -93,15 +93,14 @@ class ApiController extends BaseApiController
      */
     public function registerAction(Request $request)
     {
-        if ($this->isAuthenticated()) {
-            throw new LogicException('You already logged in, please logout first');
-        }
-
         $params = array(
             'password' => $request->get('password'),
             'email' => $request->get('email'),
         );
 
+        if ($this->isAuthenticated()) {
+            throw new LogicException('You already logged in, please logout first');
+        }
         if ($this->getUserManager()->loadUserByEmail($params['email'])) {
             throw new LogicException('E-mail already taken!');
         }
