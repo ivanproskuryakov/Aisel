@@ -51,10 +51,7 @@ sensio_framework_extra:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "mailgun"
     transport: "%mailer_transport%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
 
 # REST
 fos_rest:

@@ -6,9 +6,7 @@ parameters:
     database_user:     root
     database_password: ~
 
-    mailer_transport:  gmail
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_transport: "mailgun"
     website_email: noreply@aisel.co
     website_address: 'http://aisel.dev'
     locale: en
