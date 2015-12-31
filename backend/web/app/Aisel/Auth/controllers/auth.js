@@ -21,7 +21,7 @@ define(['app'], function (app) {
             $scope.signOut = function () {
                 authService.signout($scope).success(
                     function (data, status) {
-                        notify(data.message);
+                        notify('Good bye!');
                         $rootScope.user = undefined;
                         $state.transitionTo('userLogin', {
                             locale: locale
