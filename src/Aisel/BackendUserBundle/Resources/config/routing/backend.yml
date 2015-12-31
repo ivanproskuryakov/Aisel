@@ -39,7 +39,7 @@ admin_api_aisel_backenduser_login:
     pattern:  /user/login/
     defaults: { _controller: AiselBackendUserBundle:Api:login, _format: json }
     requirements:
-        _method: GET
+        _method: POST
 
 admin_api_aisel_backenduser_logout:
     pattern:  /user/logout/

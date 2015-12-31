@@ -112,28 +112,32 @@ abstract class AbstractWebTestCase extends KernelTestCase
     /**
      * logInBackend
      *
-     * @param string $username
+     * @param string $email
      * @param string $password
      * @return bool
      */
-    public function logInBackend($username = 'backenduser', $password = 'backenduser')
+    public function logInBackend($email = 'backenduser@aisel.co', $password = 'backenduser')
     {
         if ($this->backendUserManager->getAuthenticatedUser() == false) {
 
+            $data = [
+                'email' => $email,
+                'password' => $password,
+            ];
             $this->client->request(
-                'GET',
-                '/' . $this->api['backend'] . '/user/login/?username=' . $username . '&password=' . $password,
+                'POST',
+                '/' . $this->api['backend'] . '/user/login/',
                 [],
                 [],
-                ['CONTENT_TYPE' => 'application/json']
+                ['CONTENT_TYPE' => 'application/json'],
+                json_encode($data)
             );
             $response = $this->client->getResponse();
-            $content = $response->getContent();
-            $result = json_decode($content, true);
 
-            if ($result['status'] !== true) {
+            if ($response->getStatusCode() !== 200) {
                 throw new \LogicException('Authentication failed.');
             }
+
         }
         $this->backendUser = $this->backendUserManager->getAuthenticatedUser();
 
@@ -155,7 +159,6 @@ abstract class AbstractWebTestCase extends KernelTestCase
                 'email' => $email,
                 'password' => $password,
             ];
-
             $this->client->request(
                 'POST',
                 '/' . $this->api['frontend'] . '/user/login/',
@@ -165,7 +168,6 @@ abstract class AbstractWebTestCase extends KernelTestCase
                 json_encode($data)
             );
             $response = $this->client->getResponse();
-            $content = $response->getContent();
 
             if ($response->getStatusCode() !== 200) {
                 throw new \LogicException('Authentication failed.');

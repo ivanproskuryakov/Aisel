@@ -327,10 +327,7 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * loadUserByUsername
-     *
-     * @param string $email
-     * @return FrontendUser|null|object
+     * {@inheritDoc}
      */
     public function loadUserByUsername($email)
     {

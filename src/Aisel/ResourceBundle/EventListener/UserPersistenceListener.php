@@ -71,6 +71,7 @@ class UserPersistenceListener
                 $object->getSalt()
             );
 
+//            var_dump('setPassword = ' . $encodedPassword);
             $object->setPassword($encodedPassword);
             $object->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
         }

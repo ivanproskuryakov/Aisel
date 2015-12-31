@@ -14,16 +14,17 @@ namespace Aisel\BackendUserBundle\Controller;
 use Aisel\BackendUserBundle\Entity\BackendUser;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 use Symfony\Component\HttpFoundation\Request;
-use Aisel\BackendUserBundle\Manager\UserManager;
+use LogicException;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * ApiController
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiController extends Controller
+class ApiController extends BaseApiController
 {
 
     /**
@@ -50,25 +51,26 @@ class ApiController extends Controller
             ->getAuthenticatedUser();
 
         if (!$user) {
-            $username = $request->get('username');
+            $email = $request->get('email');
             $password = $request->get('password');
 
             $user = $this
                 ->get('backend.user.manager')
-                ->loadUserByUsername($username);
-            $passwordIsValid = $this->get('backend.user.manager')->checkUserPassword($user, $password);
+                ->loadUserByEmail($email);
+            $isPasswordValid = $this
+                ->get('backend.user.manager')
+                ->checkUserPassword($user, $password);
 
-            if ((!$user instanceof BackendUser) || ($passwordIsValid == false)) {
-                return array('message' => 'Wrong username or password!');
+            if ((!$user instanceof BackendUser) || ($isPasswordValid == false)) {
+                throw new LogicException('Wrong email or password!');
             }
             $this->loginUser($user);
 
-            return array('status' => true,
-                'message' => 'Successfully logged in',
-                'user' => $this->get('security.context')->getToken()->getUser()
+            return array(
+                'user' => $this->filterMaxDepth($user),
             );
         } else {
-            return array('message' => 'You already logged in. Try to refresh page');
+            throw new LogicException('You already logged in. Try to refresh page');
         }
     }
 
@@ -81,7 +83,7 @@ class ApiController extends Controller
         $this->get('security.context')->setToken($token);
         $this->get('session')->invalidate();
 
-        return array('success' => true, 'message' => 'You have been successfully logged out!');
+        return new Response();
     }
 
     /**

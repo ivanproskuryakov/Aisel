@@ -183,7 +183,7 @@ class ApiControllerTest extends FrontendUserTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        $this->assertTrue(204 === $statusCode);
+        $this->assertTrue(200 === $statusCode);
     }
 
     public function testUserForgotPasswordUserNotFoundActionFails()

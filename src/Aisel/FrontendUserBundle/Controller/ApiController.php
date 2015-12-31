@@ -143,7 +143,6 @@ class ApiController extends BaseApiController
 
         return new Response();
     }
-
     /**
      * logoutAction
      *
@@ -154,7 +153,10 @@ class ApiController extends BaseApiController
         $token = new AnonymousToken(null, new FrontendUser());
         $this->get('security.context')->setToken($token);
         $this->get('session')->invalidate();
+
+        return new Response();
     }
+
 
     /**
      * informationAction

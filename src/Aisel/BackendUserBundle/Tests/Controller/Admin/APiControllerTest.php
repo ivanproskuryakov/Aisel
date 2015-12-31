@@ -37,7 +37,7 @@ class APiControllerTest extends AbstractWebTestCase
         $users = $this
             ->em
             ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
-            ->findBy(['username' => 'test_backend_user_aisel']);
+            ->findBy(['email' => 'test_backend_user_aisel@aisel.co']);
 
         foreach ($users as $user) {
             $this->em->remove($user);
@@ -45,14 +45,13 @@ class APiControllerTest extends AbstractWebTestCase
         $this->em->flush();
 
         $data = [
-            'username' => 'test_backend_user_aisel',
             'email' => 'test_backend_user_aisel@aisel.co',
             'plain_password' => 'test_backend_user_aisel',
         ];
 
         $this->client->request(
             'POST',
-            '/'. $this->api['backend'] . '/backenduser/',
+            '/' . $this->api['backend'] . '/backenduser/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -68,7 +67,7 @@ class APiControllerTest extends AbstractWebTestCase
 
         $this->client->request(
             'POST',
-            '/'. $this->api['backend'] . '/backenduser/',
+            '/' . $this->api['backend'] . '/backenduser/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -81,128 +80,126 @@ class APiControllerTest extends AbstractWebTestCase
         $result = json_decode($content, true);
 
         $this->assertEquals($result['code'], 400);
-        $this->assertEquals($result['errors']['username'], 'This value is already used.');
         $this->assertEquals($result['errors']['email'], 'This value is already used.');
         $this->assertTrue(400 === $statusCode);
     }
 
-        public function testGetUsersAction()
-        {
-            $this->client->request(
-                'GET',
-                '/'. $this->api['backend'] . '/backenduser/',
-                [],
-                [],
-                ['CONTENT_TYPE' => 'application/json']
-            );
+    public function testGetUsersAction()
+    {
+        $this->client->request(
+            'GET',
+            '/' . $this->api['backend'] . '/backenduser/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
 
-            $response = $this->client->getResponse();
-            $content = $response->getContent();
-            $statusCode = $response->getStatusCode();
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
 
-            $this->assertTrue(200 === $statusCode);
-            $this->assertJson($content);
-        }
+        $this->assertTrue(200 === $statusCode);
+        $this->assertJson($content);
+    }
 
-        public function testGetUserAction()
-        {
-            $user = $this
-                ->em
-                ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
-                ->findOneBy(['username' => 'test_backend_user_aisel']);
-            $id = $user->getId();
+    public function testGetUserAction()
+    {
+        $user = $this
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(['email' => 'test_backend_user_aisel@aisel.co']);
+        $id = $user->getId();
 
-            $this->client->request(
-                'GET',
-                '/'. $this->api['backend'] . '/backenduser/' . $id,
-                [],
-                [],
-                ['CONTENT_TYPE' => 'application/json']
-            );
+        $this->client->request(
+            'GET',
+            '/' . $this->api['backend'] . '/backenduser/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
 
-            $response = $this->client->getResponse();
-            $content = $response->getContent();
-            $statusCode = $response->getStatusCode();
-            $result = json_decode($content, true);
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
 
-            $this->assertTrue(200 === $statusCode);
-            $this->assertEquals($result['id'], $user->getId());
-        }
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $user->getId());
+    }
 
-        public function testPutUserAction()
-        {
-            $passwordString = '000111222';
-            $user = $this
-                ->em
-                ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
-                ->findOneBy(['username' => 'test_backend_user_aisel']);
-            $id = $user->getId();
-            $oldPassword = $user->getPassword();
+    public function testPutUserAction()
+    {
+        $user = $this
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(['email' => 'test_backend_user_aisel@aisel.co']);
+        $id = $user->getId();
+        $oldPassword = $user->getPassword();
 
-            $data['email'] = 'test_backend_user_aisel2@aisel.co';
-            $data['plain_password'] = $passwordString;
+        $passwordString = '000111222';
+        $data['username'] = $passwordString; // todo : password updating doesn't work without this line
+        $data['plain_password'] = $passwordString;
 
-            $encoder = $this->getContainer()->get('security.encoder_factory')->getEncoder($user);
-            $encodedPassword = $encoder->encodePassword(
-                $passwordString,
-                $user->getSalt()
-            );
+        $encoder = $this->getContainer()->get('security.encoder_factory')->getEncoder($user);
+        $encodedPassword = $encoder->encodePassword(
+            $passwordString,
+            $user->getSalt()
+        );
 
-            $this->client->request(
-                'PUT',
-                '/'. $this->api['backend'] . '/backenduser/' . $id,
-                [],
-                [],
-                ['CONTENT_TYPE' => 'application/json'],
-                json_encode($data)
-            );
+        $this->client->request(
+            'PUT',
+            '/' . $this->api['backend'] . '/backenduser/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
 
-            $response = $this->client->getResponse();
-            $content = $response->getContent();
-            $statusCode = $response->getStatusCode();
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $this->em->clear();
 
-            $this->em->clear();
+        $user = $this
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(['email' => 'test_backend_user_aisel@aisel.co']);
 
-            $user = $this
-                ->em
-                ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
-                ->findOneBy(['username' => 'test_backend_user_aisel']);
+        $this->assertNotEquals($oldPassword, $user->getPassword());
+        $this->assertEquals($encodedPassword, $user->getPassword());
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNotNull($user);
+    }
 
-            $this->assertNotEquals($oldPassword, $user->getPassword());
-            $this->assertEquals($encodedPassword, $user->getPassword());
-            $this->assertTrue(204 === $statusCode);
-            $this->assertEmpty($content);
-            $this->assertNotNull($user);
-        }
+    public function testDeleteUserAction()
+    {
+        $user = $this
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(['email' => 'test_backend_user_aisel@aisel.co']);
+        $id = $user->getId();
 
-        public function testDeleteUserAction()
-        {
-            $user = $this
-                ->em
-                ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
-                ->findOneBy(['username' => 'test_backend_user_aisel']);
-            $id = $user->getId();
+        $this->client->request(
+            'DELETE',
+            '/' . $this->api['backend'] . '/backenduser/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
 
-            $this->client->request(
-                'DELETE',
-                '/'. $this->api['backend'] . '/backenduser/' . $id,
-                [],
-                [],
-                ['CONTENT_TYPE' => 'application/json']
-            );
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
 
-            $response = $this->client->getResponse();
-            $content = $response->getContent();
-            $statusCode = $response->getStatusCode();
+        $user = $this
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(['email' => 'test_backend_user_aisel@aisel.co']);
 
-            $user = $this
-                ->em
-                ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
-                ->findOneBy(['username' => 'test_backend_user_aisel']);
-
-            $this->assertTrue(204 === $statusCode);
-            $this->assertEmpty($content);
-            $this->assertNull($user);
-        }
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNull($user);
+    }
 
 }

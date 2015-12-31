@@ -45,25 +45,18 @@ class UserManager implements UserProviderInterface
      * Constructor
      *
      * @param EntityManager $entityManager
-     * @param EncoderFactory  $encoder
+     * @param EncoderFactory $encoder
      * @param SecurityContext $securityContext
      */
     public function __construct(
         EntityManager $entityManager,
         EncoderFactory $encoder,
         SecurityContext $securityContext
-    ) {
+    )
+    {
         $this->em = $entityManager;
         $this->encoder = $encoder;
         $this->securityContext = $securityContext;
-    }
-
-    protected function getRepository()
-    {
-        $repo =  $this->em
-            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser');
-
-        return $repo;
     }
 
     /**
@@ -77,7 +70,6 @@ class UserManager implements UserProviderInterface
     {
         $user = new BackendUser();
         $user->setEmail($userData['email']);
-        $user->setUsername($userData['username']);
         $user->setPlainPassword($userData['password']);
         $user->setEnabled(true);
         $user->setLocked(false);
@@ -92,7 +84,7 @@ class UserManager implements UserProviderInterface
      * Is user password correct
      *
      * @param BackendUser $user
-     * @param string      $password
+     * @param string $password
      *
      * @return boolean $isValid
      */
@@ -131,51 +123,27 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * Loads user by username $username
+     * loadUserByEmail
      *
-     * @param array $username
-     *
+     * @param array $email
      * @return BackendUser $user
      */
-    public function loadUserByUsername($username)
+    public function loadUserByEmail($email)
+    {
+        $user = $this->loadUserByUsername($email);
+
+        return $user;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function loadUserByUsername($email)
     {
         $user = $this
-            ->getRepository()
-            ->findOneBy(array('username' => $username));
-
-        return $user;
-    }
-
-    /**
-     * Loads user by email $email
-     *
-     * @param array $email
-     *
-     * @return BackendUser $user
-     */
-    public function findUserByEmail($email)
-    {
-        $user = $this->getRepository()->findOneBy(array('email' => $email));
-
-        return $user;
-    }
-
-    /**
-     * Returns user object by combination of username and email
-     *
-     * @param array $username
-     * @param array $email
-     *
-     * @return UserInterface
-     */
-    public function findUser($username, $email)
-    {
-        $user =  $this
-            ->getRepository()
-            ->findOneBy(array(
-                'username' => $username,
-                'email' => $email,
-            ));
+            ->em
+            ->getRepository('Aisel\BackendUserBundle\Entity\BackendUser')
+            ->findOneBy(array('email' => $email));
 
         return $user;
     }
