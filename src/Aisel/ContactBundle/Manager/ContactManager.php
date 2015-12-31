@@ -23,6 +23,8 @@ use Symfony\Component\Templating\EngineInterface;
 class ContactManager
 {
 
+    const MAIL_CONTACT_FORM = 'Contact Form';
+
     /**
      * @var EntityManager
      */
@@ -54,7 +56,8 @@ class ContactManager
         Swift_Mailer $mailer,
         EngineInterface $templating,
         $appEmail
-    ) {
+    )
+    {
         $this->dm = $dm;
         $this->mailer = $mailer;
         $this->templating = $templating;
@@ -87,9 +90,10 @@ class ContactManager
 
         try {
             $message = \Swift_Message::newInstance()
-                ->setSubject('Contacts Mail')
+                ->setSubject($this::MAIL_CONTACT_FORM)
                 ->setFrom($params['email'])
                 ->setTo($this->appEmail)
+                ->setCc($params['email'])
                 ->setBody(
                     $this->getTemplating()->render(
                         'AiselContactBundle:Default:email.txt.twig',

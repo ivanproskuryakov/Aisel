@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new Payum\Bundle\PayumBundle\PayumBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
+            new cspoo\Swiftmailer\MailgunBundle\cspooSwiftmailerMailgunBundle(),
 
             // Aisel bundles
             new Aisel\FrontendUserBundle\AiselFrontendUserBundle(),

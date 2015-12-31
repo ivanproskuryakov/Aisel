@@ -6,6 +6,7 @@ imports:
     - { resource: configs/aisel.yml }
     - { resource: configs/payum.yml }
     - { resource: configs/cors.yml }
+    - { resource: configs/mailgun.yml }
 
 framework:
     translator:      { fallback: "%locale%" }
@@ -50,11 +51,10 @@ sensio_framework_extra:
 
 # Swiftmailer Configuration
 swiftmailer:
+    transport: "mailgun"
     transport: "%mailer_transport%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-#    spool:     { type: memory }
-
 
 # REST
 fos_rest:

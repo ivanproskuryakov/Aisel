@@ -12,6 +12,7 @@
 namespace Aisel\ContactBundle\Tests\Controller;
 
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\ContactBundle\Manager\ContactManager;
 
 /**
  * ApiControllerTest
@@ -34,15 +35,15 @@ class ApiControllerTest extends AbstractWebTestCase
     public function testContactPostAction()
     {
         $data = [
-            'name' => 'name',
-            'email' => 'email@mail.com',
-            'phone' => '+0100000000',
-            'message' => '....',
+            'name' => $this->faker->name,
+            'email' => 'volgodark@mail.com',
+            'phone' => $this->faker->phoneNumber,
+            'message' => $this->faker->text(400)
         ];
 
         $this->client->request(
             'POST',
-            '/'. $this->api['frontend'] . '/contact/message/',
+            '/' . $this->api['frontend'] . '/contact/form/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -55,6 +56,12 @@ class ApiControllerTest extends AbstractWebTestCase
 
         $this->assertJson($content);
         $this->assertTrue(200 === $statusCode);
+
+        $message = $this->getSwiftMailMessage();
+        $this->assertEquals(ContactManager::MAIL_CONTACT_FORM, $message->getSubject());
+        $this->assertEquals($this->websiteEmail, key($message->getTo()));
+        $this->assertEquals($data['email'], key($message->getFrom()));
+        $this->assertNotNull($this->websiteEmail);
     }
 
 }
