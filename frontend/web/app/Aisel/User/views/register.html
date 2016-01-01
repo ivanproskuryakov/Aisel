@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label for="registerPassword">Password</label>
-                    <input type="password"
+                    <input type="{{inputType}}"
                            name="password"
                            id="registerPassword"
                            class="form-control"
@@ -35,6 +35,12 @@
                            ng-required="true">
                     <span class="error"
                           ng-show="registrationForm.password.$error.minlength">Must be 6 or more chars!</span>
+
+                    <div class="pull-right">
+                        <input type="checkbox" id="checkbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
+                        <label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
+                        <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>
+                    </div>
                 </div>
 
                 <br class="divider">

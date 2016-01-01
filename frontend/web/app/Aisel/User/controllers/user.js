@@ -23,6 +23,19 @@ define(['app'], function (app) {
         function ($scope, $rootScope, $state, userService, notify, Environment) {
             var locale = Environment.currentLocale();
 
+
+            // Set the default value of inputType
+            $scope.inputType = 'password';
+
+            // Hide & show password function
+            $scope.hideShowPassword = function () {
+                if ($scope.inputType == 'password') {
+                    $scope.inputType = 'text';
+                } else {
+                    $scope.inputType = 'password';
+                }
+            };
+
             // User Registration
             $scope.submitRegistration = function (form) {
                 if (form.$valid) {
