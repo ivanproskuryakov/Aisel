@@ -43,7 +43,7 @@ define(['app'], function(app) {
                         userService.getUserInformation().success(
                             function(data, status) {
                                 console.log(data);
-                                if (data.username) {
+                                if (data.email) {
                                     $rootScope.user = data;
                                 } else {
                                     $rootScope.user = undefined;

@@ -13,33 +13,54 @@
  */
 
 define(['app'], function (app) {
-    app.config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-            .state("exception", {
-                url: "/:locale/exception/:code",
-                templateUrl: '/app/Aisel/Exception/views/exception.html',
-                controller: 'ExceptionCtrl'
-            });
-    }]);
+    app.config([
+        '$stateProvider',
+        function ($stateProvider) {
+            $stateProvider
+                .state("exception", {
+                    url: "/:locale/exception/:code",
+                    templateUrl: '/app/Aisel/Exception/views/exception.html',
+                    controller: 'ExceptionCtrl'
+                });
+        }
+    ]);
 
-    app.factory('errorInterceptor',
-        ['$rootScope', '$q', '$injector', '$location', 'Environment',
-            function ($rootScope, $q, $injector, $location, Environment) {
+    app.factory('errorInterceptor', [
+            '$rootScope',
+            '$q',
+            '$injector',
+            '$location',
+            'Environment',
+            function ($rootScope,
+                      $q,
+                      $injector,
+                      $location,
+                      Environment) {
                 return {
                     request: function (config) {
                         return config;
                     },
                     responseError: function (response) {
-                        console.log(response);
-                        $rootScope.exception = response;
-                        var locale = Environment.currentLocale();
 
-                        $injector.get('$state').transitionTo(
-                            'exception', {
-                                locale: locale,
-                                code: response.data.error.code
-                            }
-                        );
+                        var notify = $injector.get('notify');
+
+                        if (response.data.code) {
+                            notify(response.data.message);
+                            console.log(response.data.message);
+                        }
+
+                        if (response.data.error) {
+                            $rootScope.exception = response;
+                            var locale = Environment.currentLocale();
+
+                            $injector.get('$state').transitionTo(
+                                'exception', {
+                                    locale: locale,
+                                    code: response.data.error.code
+                                }
+                            );
+                        }
+
 
                         return $q.reject(response);
                     }
@@ -49,8 +70,10 @@ define(['app'], function (app) {
     );
 
 
-    app.config(['$httpProvider', function ($httpProvider) {
-        $httpProvider.interceptors.push('errorInterceptor');
-    }]);
+    app.config([
+        '$httpProvider',
+        function ($httpProvider) {
+            $httpProvider.interceptors.push('errorInterceptor');
+        }]);
 
 });

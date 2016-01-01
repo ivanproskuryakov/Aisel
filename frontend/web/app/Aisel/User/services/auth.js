@@ -12,14 +12,14 @@
  * @description     Auth service
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     console.log('Kernel Auth service loaded ...');
 
     angular.module('app')
         .service('authService', ['$uibModal',
-            function($uibModal) {
+            function ($uibModal) {
                 return {
-                    authenticateWithModal: function() {
+                    authenticateWithModal: function () {
                         var modalAuthInstance = $uibModal.open({
                             templateUrl: '/app/Aisel/User/views/modal/login.html',
                             controller: 'ModalAuthCtrl'
@@ -31,36 +31,37 @@ define(['app'], function(app) {
 
     angular.module('app')
         .controller('ModalAuthCtrl', ['$scope', '$rootScope', '$state', 'userService', 'notify', 'Environment',
-            function($scope, $rootScope, $state, userService, notify, Environment) {
+            function ($scope, $rootScope, $state, userService, notify, Environment) {
                 var locale = Environment.currentLocale();
 
-                $scope.passwordForgot = function() {
+                $scope.passwordForgot = function () {
                     $scope.$dismiss('close');
                     $state.transitionTo('userPasswordForgot', {
                         locale: locale
                     });
                 };
 
-                $scope.register = function() {
+                $scope.register = function () {
                     $scope.$dismiss('close');
                     $state.transitionTo('userRegister', {
                         locale: locale
                     });
                 };
 
-                $scope.login = function(username, password) {
-                    userService.login(username, password).success(
-                        function(data, status) {
-                            notify(data.message);
+                $scope.login = function (email, password) {
+                    userService.login(email, password).success(
+                        function (data, status) {
+                            notify('Hello ' + $rootScope.user.email + "!");
 
-                            if (data.status) {
-                                if (data.user.username) {
-                                    $rootScope.user = data.user;
-                                    $scope.$dismiss('close');
-                                }
+                            if (data.user.email) {
+                                $rootScope.user = data.user;
+                                $scope.$dismiss('close');
                             }
                         }
-                    );
+                    ).error(function (data, status) {
+                        notify(data.message);
+                        console.log(data);
+                    });
                 };
             }
         ]);

@@ -30,19 +30,21 @@ define(['app'], function (app) {
                 );
             };
 
-            $scope.login = function (username, password) {
-                authService.login(username, password).success(
-                    function (data, status) {
-                        $rootScope.user = data.user;
-                        $state.transitionTo('home', {
-                            locale: locale
-                        });
-                        notify('Hello ' + $rootScope.user.email + "!");
-                    }
-                ).error(function (data, status) {
-                    notify(data.message);
-                    console.log(data);
-                });
+            $scope.login = function (email, password) {
+                authService.login(email, password)
+                    .success(
+                        function (data, status) {
+                            $rootScope.user = data.user;
+                            $state.transitionTo('home', {
+                                locale: locale
+                            });
+                            notify('Hello!');
+                        }
+                    )
+                    .error(function (data, status) {
+                        notify(data.message);
+                        console.log(data);
+                    });
             };
 
         }

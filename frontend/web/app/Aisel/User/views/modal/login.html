@@ -6,18 +6,18 @@
         <!-- Form Fields -->
         <div class="col-md-12" role="main">
             <div class="col-md-12">
-                <form class="form-horizontal" name="loginForm" role="form" ng-submit="login(username, password)">
+                <form class="form-horizontal" name="loginForm" role="form" ng-submit="login(email, password)">
                     <div class="form-group">
-                        <label for="signInUsername">Username</label>
+                        <label for="signInEmail">E-mail</label>
 
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                            <input ng-model="username" type="text" class="form-control" id="signInUsername"
+                            <input ng-model="email" type="text" class="form-control" id="signInEmail"
                                    ng-required="true">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="signInPassword">Your password</label>
+                        <label for="signInPassword">Password</label>
 
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>

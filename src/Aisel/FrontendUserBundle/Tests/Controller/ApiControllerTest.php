@@ -120,6 +120,7 @@ class ApiControllerTest extends FrontendUserTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
+        $this->assertEmpty($content);
 
         $message = $this->getSwiftMailMessage();
         $this->assertEquals(UserMailManager::MAIL_ACCOUNT_NEW, $message->getSubject());
@@ -208,7 +209,7 @@ class ApiControllerTest extends FrontendUserTestCase
         $statusCode = $response->getStatusCode();
         $result = json_decode($content, true);
 
-        $this->assertTrue(500 === $statusCode);
+        $this->assertTrue(403 === $statusCode);
         $this->assertEquals('User not found', $result['message']);
     }
 

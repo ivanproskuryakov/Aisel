@@ -17,13 +17,9 @@ define(['app'], function (app) {
         ['$http', 'Environment',
             function ($http, Environment) {
                 return {
-                    register: function (form) {
-                        var username = form.username.$modelValue;
-                        var email = form.email.$modelValue;
-                        var password = form.password.$modelValue;
+                    register: function (email, password) {
                         var url = Environment.settings.api + '/user/register/';
                         var data = {
-                            username: username,
                             email: email,
                             password: password
                         };
@@ -43,10 +39,10 @@ define(['app'], function (app) {
                         var url = Environment.settings.api + '/user/logout/';
                         return $http.get(url);
                     },
-                    login: function (username, password) {
+                    login: function (email, password) {
                         var url = Environment.settings.api + '/user/login/';
                         var data = {
-                            username: username,
+                            email: email,
                             password: password
                         };
                         return $http({
@@ -68,7 +64,6 @@ define(['app'], function (app) {
                             facebook: user.facebook,
                             twitter: user.twitter
                         };
-                        console.log(data);
                         return $http({
                             method: 'PATCH',
                             url: url,

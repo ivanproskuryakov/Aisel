@@ -19,6 +19,7 @@ use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 use Symfony\Component\HttpFoundation\Request;
 use Aisel\FrontendUserBundle\Manager\UserManager;
 use LogicException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * ApiController
@@ -72,7 +73,7 @@ class ApiController extends BaseApiController
             $user = $um->loadUserByEmail($email);
 
             if ((!$user instanceof FrontendUser) || (!$um->checkUserPassword($user, $password))) {
-                throw new LogicException('Wrong e-mail or password!');
+                throw new AccessDeniedHttpException('Wrong e-mail or password!');
             }
 
             $this->loginUser($user);
@@ -82,7 +83,7 @@ class ApiController extends BaseApiController
             );
 
         } else {
-            throw new LogicException('You already logged in. Try to refresh page');
+            throw new AccessDeniedHttpException('You already logged in. Try to refresh page');
         }
     }
 
@@ -99,19 +100,13 @@ class ApiController extends BaseApiController
         );
 
         if ($this->isAuthenticated()) {
-            throw new LogicException('You already logged in, please logout first');
+            throw new AccessDeniedHttpException('You already logged in, please logout first');
         }
         if ($this->getUserManager()->loadUserByEmail($params['email'])) {
-            throw new LogicException('E-mail already taken!');
+            throw new AccessDeniedHttpException('E-mail already taken!');
         }
 
-        $user = $this->getUserManager()->registerUser($params);
-
-        if ($user) {
-            $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-            $this->get('security.context')->setToken($token);
-            $this->get('session')->set('_security_main', serialize($token));
-        }
+        $this->getUserManager()->registerUser($params);
 
         return new Response();
     }
@@ -137,7 +132,7 @@ class ApiController extends BaseApiController
                 return array('message' => $response);
             }
         } else {
-            throw new LogicException('User not found');
+            throw new AccessDeniedHttpException('User not found');
         }
 
         return new Response();
