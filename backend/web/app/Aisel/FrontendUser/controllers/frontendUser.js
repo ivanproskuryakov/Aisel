@@ -26,9 +26,6 @@ define(['app'], function(app) {
                 enableColumnMenu: false,
                 width: '200'
             }, {
-                name: 'username',
-                enableColumnMenu: false
-            }, {
                 name: 'email',
                 enableColumnMenu: false
             }, {
