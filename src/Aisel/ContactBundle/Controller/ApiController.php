@@ -13,6 +13,9 @@ namespace Aisel\ContactBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
 
 /**
  * ApiController
@@ -31,21 +34,10 @@ class ApiController extends Controller
      */
     public function sendMessageAction(Request $request)
     {
-        $params = json_decode($request->getContent(),true);
+        $params = json_decode($request->getContent(), true);
+        $this->container->get("aisel.contact.manager")->sendMail($params);
 
-        if ($params['name'] && $params['email'] && $params['phone'] && $params['message']) {
-            $response = $this->container->get("aisel.contact.manager")->sendMail($params);
-
-            if ($response == 1) {
-                $status = array('status' => true, 'message' => 'Your message has been sent!');
-            } else {
-                $status = array('status' => false, 'message' => $response);
-            }
-        } else {
-            $status = array('status' => false, 'message' => 'Empty params in your request');
-        }
-
-        return $status;
+        return new Response();
     }
 
 }

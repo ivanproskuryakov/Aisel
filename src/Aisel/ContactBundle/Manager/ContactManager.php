@@ -28,7 +28,7 @@ class ContactManager
     /**
      * @var EntityManager
      */
-    protected $dm;
+    protected $em;
 
     /**
      * @var Swift_Mailer
@@ -46,72 +46,49 @@ class ContactManager
     protected $templating;
 
     /**
-     * @param EntityManager $dm
+     * @param EntityManager $em
      * @param Swift_Mailer $mailer
      * @param EngineInterface $templating
      * @param $appEmail
      */
     public function __construct(
-        EntityManager $dm,
+        EntityManager $em,
         Swift_Mailer $mailer,
         EngineInterface $templating,
         $appEmail
     )
     {
-        $this->dm = $dm;
+        $this->em = $em;
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->appEmail = $appEmail;
     }
 
-    /**
-     * Get Templating service
-     */
-    public function getTemplating()
-    {
-        return $this->templating;
-    }
-
-    /**
-     * Get Mailer service
-     */
-    public function getMailer()
-    {
-        return $this->mailer;
-    }
 
     /**
      * Send email to administration E-mail
      * @param  array $params
-     * @return array
      */
     public function sendMail($params)
     {
-
-        try {
-            $message = \Swift_Message::newInstance()
-                ->setSubject($this::MAIL_CONTACT_FORM)
-                ->setFrom($params['email'])
-                ->setTo($this->appEmail)
-                ->setCc($params['email'])
-                ->setBody(
-                    $this->getTemplating()->render(
-                        'AiselContactBundle:Default:email.txt.twig',
-                        array(
-                            'name' => $params['name'],
-                            'email' => $params['email'],
-                            'phone' => $params['phone'],
-                            'message' => $params['message']
-                        )
+        $message = \Swift_Message::newInstance()
+            ->setSubject($this::MAIL_CONTACT_FORM)
+            ->setFrom($params['email'])
+            ->setTo($this->appEmail)
+            ->setCc($params['email'])
+            ->setBody(
+                $this->templating->render(
+                    'AiselContactBundle:Default:email.txt.twig',
+                    array(
+                        'name' => $params['name'],
+                        'email' => $params['email'],
+                        'phone' => $params['phone'],
+                        'message' => $params['message']
                     )
-                );
+                )
+            );
 
-            $response = $this->getMailer()->send($message);
-        } catch (\Swift_TransportException $e) {
-            $response = $e->getMessage();
-        }
-
-        return $response;
+        $this->mailer->send($message);
     }
 
 }

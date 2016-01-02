@@ -64,4 +64,29 @@ class ApiControllerTest extends AbstractWebTestCase
         $this->assertNotNull($this->websiteEmail);
     }
 
+
+    public function testContactPostActionFails()
+    {
+        $data = [
+            'name' => $this->faker->name,
+        ];
+
+        $this->client->request(
+            'POST',
+            '/' . $this->api['frontend'] . '/contact/form/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertEquals(500, $statusCode);
+        $this->assertEquals($result['message'], 'Undefined index: email');
+    }
+
 }
