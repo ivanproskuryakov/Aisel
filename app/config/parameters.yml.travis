@@ -12,9 +12,6 @@ parameters:
     locale: en
     locales: en|es|ru
 
-    mailgun_domain: EDIT ME
-    mailgun_key: EDIT ME
-
     paypal.express_checkout.username:  EDIT ME
     paypal.express_checkout.password:  EDIT ME
     paypal.express_checkout.signature: EDIT ME
