@@ -48,6 +48,8 @@ class ApiController extends BaseApiController
     }
 
     /**
+     * loginUser
+     *
      * @param FrontendUser $user
      */
     protected function loginUser(FrontendUser $user)
@@ -58,9 +60,10 @@ class ApiController extends BaseApiController
     }
 
     /**
-     * @param Request $request
+     * loginAction
      *
-     * @return array|false
+     * @param Request $request
+     * @return FrontendUser $user
      */
     public function loginAction(Request $request)
     {
@@ -89,7 +92,6 @@ class ApiController extends BaseApiController
 
     /**
      * @param Request $request
-     *
      * @return array|false
      */
     public function registerAction(Request $request)
@@ -120,7 +122,7 @@ class ApiController extends BaseApiController
     public function passwordForgotAction(Request $request)
     {
         if ($this->isAuthenticated()) {
-            throw new LogicException('You already logged in, Please logout first');
+            throw new AccessDeniedHttpException('You already logged in, Please logout first');
         }
 
         $email = $request->get('email');

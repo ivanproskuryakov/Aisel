@@ -16,17 +16,12 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Aisel\ResourceBundle\Utility\PasswordUtility;
-use LogicException;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\SecurityContext;
-use Symfony\Component\Templating\EngineInterface;
-use Swift_Mailer;
-use Aisel\FrontendUserBundle\Manager\UserMailManager;
-
 
 /**
- * Manager for frontend users.
+ * UserManager
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
@@ -49,7 +44,7 @@ class UserManager implements UserProviderInterface
     protected $em;
 
     /**
-     * @var EngineInterface
+     * @var UserMailManager
      */
     protected $mailer;
 
@@ -72,17 +67,6 @@ class UserManager implements UserProviderInterface
         $this->encoder = $encoder;
         $this->em = $entityManager;
         $this->securityContext = $securityContext;
-    }
-
-    /**
-     * Get User repository
-     */
-    protected function getRepository()
-    {
-        $repo = $this->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser');
-
-        return $repo;
     }
 
     /**
@@ -272,7 +256,10 @@ class UserManager implements UserProviderInterface
      */
     public function loadUserByUsername($email)
     {
-        $user = $this->getRepository()->findOneBy(array('email' => $email));
+        $user = $this
+            ->em
+            ->getRepository(FrontendUser::class)
+            ->findOneBy(array('email' => $email));
 
         return $user;
     }
@@ -292,8 +279,13 @@ class UserManager implements UserProviderInterface
                 )
             );
         }
+        $user = $this
+            ->em
+            ->getRepository(FrontendUser::class)
+            ->find($user->getId());
 
-        return $this->find($user->getId());
+
+        return $user;
     }
 
     /**
