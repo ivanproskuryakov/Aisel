@@ -108,18 +108,18 @@ define(['app'], function(app) {
                             }
                         );
 
-                        // Test with Gremlins.js
-                        var startGremlins = function () {
-                            console.log('Gremlins...');
-                            if (Environment.settings.gremlins.enabled) {
-                                gremlins.createHorde()
-                                    .gremlin(gremlins.species.clicker().clickTypes(['click']))
-                                    .unleash({ nb: Environment.settings.gremlins.time});
-                            }
-                        };
-                        $timeout(function() {
-                            startGremlins();
-                        }, 1000);
+                        //// Test with Gremlins.js
+                        //var startGremlins = function () {
+                        //    console.log('Gremlins...');
+                        //    if (Environment.settings.gremlins.enabled) {
+                        //        gremlins.createHorde()
+                        //            .gremlin(gremlins.species.clicker().clickTypes(['click']))
+                        //            .unleash({ nb: Environment.settings.gremlins.time});
+                        //    }
+                        //};
+                        //$timeout(function() {
+                        //    startGremlins();
+                        //}, 1000);
 
                     }
                 }

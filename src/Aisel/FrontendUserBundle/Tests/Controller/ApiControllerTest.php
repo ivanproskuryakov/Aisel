@@ -213,9 +213,11 @@ class ApiControllerTest extends FrontendUserTestCase
         $this->assertEquals('User not found', $result['message']);
     }
 
-    public function testUserForgotPasswordEmailSentAction()
+    public function testUserForgotPasswordAction()
     {
         $mailTo = 'volgodark@gmail.com';
+        $password = 'volgodark';
+
         $this->client->request(
             'GET',
             '/' . $this->api['frontend'] . '/user/password/forgot/?email=' . $mailTo,
@@ -232,11 +234,16 @@ class ApiControllerTest extends FrontendUserTestCase
 
         $this->assertTrue(200 === $statusCode);
 
+        // Check Message
         $message = $this->getSwiftMailMessage();
         $this->assertEquals(UserMailManager::MAIL_PASSWORD_NEW, $message->getSubject());
         $this->assertEquals($mailTo, key($message->getTo()));
         $this->assertEquals($this->websiteEmail, key($message->getFrom()));
         $this->assertNotNull($this->websiteEmail);
+
+        // Login Fails
+        $this->setExpectedException('LogicException');
+        $this->logInFrontend($mailTo, $password);
     }
 
     public function testTerminateUserAccountAction()
@@ -321,6 +328,8 @@ class ApiControllerTest extends FrontendUserTestCase
         $this->assertEquals($email, key($message->getTo()));
         $this->assertEquals($this->websiteEmail, key($message->getFrom()));
         $this->assertNotNull($this->websiteEmail);
+
+        $this->logInFrontend($email, $newPassword);
     }
 
 }

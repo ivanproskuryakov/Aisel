@@ -232,7 +232,10 @@ class UserManager implements UserProviderInterface
         if ($user) {
             $utility = new PasswordUtility();
             $password = $utility->generatePassword();
+
             $user->setPlainPassword($password);
+            $user->setPassword($password);
+
             $this->em->persist($user);
             $this->em->flush();
 

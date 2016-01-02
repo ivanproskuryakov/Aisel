@@ -22,7 +22,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <p><a ui-sref="userPasswordForgot({locale: locale})" class="thumb" ng-click="cancel()">Forgot password?</a></p>
+                    <p>
+                        <a ui-sref="userRegister({locale: locale})" class="thumb">New account</a><br/>
+                        <a ui-sref="userPasswordForgot({locale: locale})" class="thumb">Forgot password?</a>
+                    </p>
                 </div>
                 <div class="form-group pull-right">
                     <button class="btn btn-primary" type="submit" >Log In</button>
