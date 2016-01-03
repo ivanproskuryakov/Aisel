@@ -65,5 +65,5 @@ License can be found [here](https://github.com/ivanproskuryakov/Aisel/blob/maste
 
 Authors
 -----------------------------------
-Part of Aisel package, was originally created by [Ivan Proskuryakov](https://github.com/ivanproskuryakov) https://twitter.com/iproskuryakov<br/>
+Part of Aisel package, was originally created by [Ivan Proskuryakov](https://github.com/ivanproskuryakov) https://github.com/ivanproskuryakov<br/>
 List of [contributors](https://github.com/ivanproskuryakov/AiselConfigBundle/graphs/contributors).

@@ -88,7 +88,7 @@ define(['app'], function (app) {
                     .success(
                         function (data, status) {
                             $rootScope.user = data.user;
-                            $state.transitionTo('userInformation', {
+                            $state.transitionTo('dashboard', {
                                 locale: locale
                             });
                             notify('Hello ' + $rootScope.user.email);
