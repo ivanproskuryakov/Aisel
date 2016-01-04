@@ -15,23 +15,19 @@ https://github.com/ivanproskuryakov/Aisel/issues/new
 
 Installation with Vagrant - https://www.vagrantup.com/
 -----------------------------------
-- Add to /etc/hosts<br/>
+Add to /etc/hosts<br/>
 ```
 192.168.50.4   api.aisel.dev
 192.168.50.4   aisel.dev
 192.168.50.4   admin.aisel.dev
 ```
-- cd to project directory, where ```Vagrantfile``` is located and run<br/>
+Run in project directory<br/>
 ```
 vagrant up
 ```
-- Open in browser http://aisel.dev/ <br/><br/>
 
-
-
-to fully destroy and re-launch vagrant box, run<br/>
 ```
-vagrant halt && vagrant destroy -f && vagrant up
+vagrant halt && vagrant destroy -f && vagrant up # Destroy and re-launch vagrant box f
 ```
 
 
