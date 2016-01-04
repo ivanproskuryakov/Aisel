@@ -15,17 +15,17 @@ https://github.com/ivanproskuryakov/Aisel/issues/new
 
 Installation with Vagrant - https://www.vagrantup.com/
 -----------------------------------
-1. Add to /etc/hosts<br/>
+- Add to /etc/hosts<br/>
 ```
 192.168.50.4   api.aisel.dev
 192.168.50.4   aisel.dev
 192.168.50.4   admin.aisel.dev
 ```
-2. cd to project directory, where ```Vagrantfile``` is located and run<br/>
+- cd to project directory, where ```Vagrantfile``` is located and run<br/>
 ```
 vagrant up
 ```
-3. Open in browser http://aisel.dev/ <br/><br/>
+- Open in browser http://aisel.dev/ <br/><br/>
 
 
 
