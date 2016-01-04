@@ -26,7 +26,7 @@ Run in project directory<br/>
 vagrant up
 ```
 
-```vagrant halt && vagrant destroy -f && vagrant up``` #Destroy and re-launch vagrant box
+```vagrant halt && vagrant destroy -f && vagrant up```  - destroy and re-launch vagrant box
 
 
 
