@@ -13,8 +13,20 @@ Backend demo: http://admin.ecommerce.aisel.co/en/ [backenduser/backenduser]<br/>
 Ask us anything -- or issue, question, or feedback.
 https://github.com/ivanproskuryakov/Aisel/issues/new
 
+Installation with Vagrant - https://www.vagrantup.com/
+-----------------------------------
+```
+vagrant up
+```
 
-Installation
+Add to /etc/hosts<br/>
+```
+192.168.50.4   api.aisel.dev
+192.168.50.4   aisel.dev
+192.168.50.4   admin.aisel.dev
+```
+
+Installation without Vagrant
 -----------------------------------
 Framework: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-Aisel<br/>
 Environment: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-LAMP<br/>

@@ -24,9 +24,9 @@ framework:
     trusted_proxies: ~
     session:
         cookie_lifetime: 0
-        save_path: %kernel.root_dir%/var/sessions
         name: AISELSESSID
-#        cookie_domain: .aisel.dev
+        save_path: /tmp # for Vagrant
+#        save_path: %kernel.root_dir%/var/sessions
     fragments:       ~
     http_method_override: true
 

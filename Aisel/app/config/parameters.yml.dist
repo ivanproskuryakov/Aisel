@@ -4,7 +4,7 @@ parameters:
     database_port:     ~
     database_name:     aisel
     database_user:     root
-    database_password: ~
+    database_password: 12qw12
 
     mailer_transport: "mailgun"
     website_email: noreply@aisel.co

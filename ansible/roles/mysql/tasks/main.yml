@@ -1,0 +1,55 @@
+#---
+#- name: Install MySQL server
+#  sudo: yes
+#  apt:  pkg=mysql-server state=latest
+#
+#- name: Allow access to MySQL from anywhere
+#  sudo: yes
+#  lineinfile: dest=/etc/mysql/my.cnf regexp="^bind-address" "line=#bind-address = 0.0.0.0"
+#  notify: restart mysql
+#
+#- name: Add root user from anywhere to MySQL
+#  command: mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '12qw12'; FLUSH PRIVILEGES;"
+#
+##- name: Change user password
+##  command: mysqladmin -u root -p 12qw12
+#
+#
+##- name: Add root user from anywhere to MySQL
+##  command: mysql -u root2 -e "GRANT ALL PRIVILEGES ON *.* TO 'root2'@'%' IDENTIFIED BY '12qw12'; FLUSH PRIVILEGES;"
+#
+##- name: Create MySQL database symfony
+##  command: mysql -u root -e "CREATE DATABASE IF NOT EXISTS stock_dev;"
+#
+##- name: Set root user password
+##  mysql_user: user="root" host="%" password="12qw12" priv=*.*:"REPLICATION SLAVE"
+#
+#
+#- name: Change root user password on first run
+#  mysql_user: login_user=root
+#              login_password=''
+#              name=root
+#              password='12qw12'
+#              priv=*.*:ALL,GRANT
+#              host=localhost
+
+---
+# Retrieve the current hostname, because {{ ansible_hostname }} still contains the old name
+- shell: hostname
+  register: current_hostname
+
+- name: mysql | Install MySQL Packages
+  sudo: yes
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - mysql-server
+    - mysql-client
+    - python-mysqldb
+
+- name: mysql | Update root password for all root accounts
+  mysql_user: name=root host={{ item }} check_implicit_admin=yes password={{app_database_userpwd}} login_user={{app_database_user}} login_password={{app_database_userpwd}}
+  with_items:
+    - "{{ current_hostname.stdout | lower }}"
+    - 127.0.0.1
+    - ::1
+    - localhost

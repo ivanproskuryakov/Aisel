@@ -1,0 +1,1 @@
+{"nfs":{"application":{"id":"application","nfs":true,"guestpath":"/var/www/Aisel","hostpath":"/Users/ivan/www/aisel.dev/project/Aisel","disabled":false,"type":"nfs","map_uid":501,"map_gid":20,"nfs_udp":true,"nfs_version":3,"uuid":"1644682212"}},"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/ivan/www/aisel.dev/project","disabled":false}}}

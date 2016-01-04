@@ -1,0 +1,27 @@
+---
+- name: Install PHP packages
+  sudo: yes
+  apt:  package={{ item.package }} state=latest
+  with_items: php_packages
+
+- name: Enable PHP packages
+  sudo: yes
+  command: /usr/sbin/php5enmod {{ item.name }} creates=/etc/php5/cli/conf.d/20-{{ item.name }}.ini
+  with_items: php_packages
+  notify: restart php5-fpm
+
+- name: Install PHP extensions
+  sudo: yes
+  shell: echo "\n" | /usr/bin/pecl install {{ item.package }} creates=/usr/lib/php5/20121212/{{ item.name }}.so
+  with_items: php_extensions
+
+- name: Configure PHP extensions
+  sudo: yes
+  template: src=extension.tpl dest=/etc/php5/mods-available/{{ item.name }}.ini
+  with_items: php_extensions
+
+- name: Enable PHP extensions
+  sudo: yes
+  command: /usr/sbin/php5enmod {{ item.name }} creates=/etc/php5/cli/conf.d/20-{{ item.name }}.ini
+  with_items: php_extensions
+  notify: restart php5-fpm

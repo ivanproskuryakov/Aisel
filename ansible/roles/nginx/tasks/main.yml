@@ -1,0 +1,40 @@
+---
+#  - name: Ensure directories are 0755
+#    command: find {{ app_path }} -type d -exec chmod 0755 {} \;
+#
+#  - name: Ensure files are 0644
+#    command: find {{ app_path }} -type f -exec chmod 0644 {} \;
+
+  - name: Install nginx
+    sudo: yes
+    apt:  pkg=nginx state=latest
+
+#  - name: Ensure nginx log directory exists
+#    file: dest=/var/log/nginx/symfony state=directory
+
+  - name: Install nginx fastcgi_param
+    action: template src=fastcgi_param dest=/etc/nginx/fastcgi_param
+    notify:
+      - restart nginx
+
+  - name: Change default nginx site
+    sudo: yes
+    template: src=default.tpl dest=/etc/nginx/sites-available/default
+    notify: restart nginx
+
+
+#  - name: Create nginx site config
+#    action: template src=templates/nginx/site.conf dest=/etc/nginx/sites-available/{{app_name}}.conf
+#    notify:
+#      - restart nginx
+#
+#  - name: Remove default site
+#    action: file path=/etc/nginx/sites-enabled/default state=absent
+#    notify:
+#      - restart nginx
+#
+#  - name: Link nginx config
+#    action: file src=/etc/nginx/sites-available/{{app_name}}.conf dest=/etc/nginx/sites-enabled/{{app_name}}.conf state=link
+#    notify:
+#      - restart nginx
+#
