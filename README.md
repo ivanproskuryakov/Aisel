@@ -13,20 +13,22 @@ Backend demo: http://admin.ecommerce.aisel.co/en/ [backenduser/backenduser]<br/>
 Ask us anything -- or issue, question, or feedback.
 https://github.com/ivanproskuryakov/Aisel/issues/new
 
-Installation with Vagrant - https://www.vagrantup.com/
+Installation with [Vagrant](https://www.vagrantup.com/)
 -----------------------------------
-Add to /etc/hosts<br/>
+Add to /etc/hosts and open http://aisel.dev/en/<br/>
 ```
 192.168.50.4   api.aisel.dev
 192.168.50.4   aisel.dev
 192.168.50.4   admin.aisel.dev
 ```
-Run in project directory<br/>
+Launch vagrant box
 ```
 vagrant up
 ```
-
-```vagrant halt && vagrant destroy -f && vagrant up```  - destroy and re-launch vagrant box
+Destroy and re-launch vagrant box
+```
+vagrant halt && vagrant destroy -f && vagrant up
+```
 
 
 
