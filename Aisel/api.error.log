@@ -1,0 +1,18 @@
+2016/01/04 12:14:12 [error] 31040#0: *8 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Unsupported operand types in /var/www/Aisel/vendor/kriswallsmith/assetic/src/Assetic/Factory/Loader/CachedFormulaLoader.php on line 62
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/Aisel/web/app_dev.php:0
+PHP message: PHP   2. Symfony\Component\HttpKernel\Kernel->handle() /var/www/Aisel/web/app_dev.php:28
+PHP message: PHP   3. Symfony\Component\HttpKernel\DependencyInjection\ContainerAwareHttpKernel->handle() /var/www/Aisel/app/bootstrap.php.cache:2444
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/Aisel/app/bootstrap.php.cache:3222
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/Aisel/app/bootstrap.php.cache:3071
+PHP message: PHP   6. Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch() /var/www/Aisel/app/bootstrap.php.cache:3098
+PHP message: PHP   7. Symfony\Component\EventDispatcher\EventDispatcher->dispatch() /var/www/Aisel/vendor/symfony/symfony/src/Symfony/Component/EventDispatcher/Debug/TraceableEventDispatcher.php:124
+PHP message: PHP   8. Symfony\Component\EventDispatcher\EventDispatcher->doDispatch() /var/www/Aisel/app/cache/dev/classes.php:1763
+PHP message: PHP   9. call_user_func:{/var/www/Aisel/app/cache/dev/classes.php:1834}() /var/www/Aisel/app/cache/dev/classes.php:1834
+PHP message: PHP  10. Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke() /var/www/Aisel/app/cache/dev/classes.php:1834
+PHP message: PHP  11. call_user_func:{/var/www/Aisel/vendor/symfony/symfony/src/Symfony/Component/EventDispatcher/Debug/WrappedListener.php:61}() /var/www/Aisel/vendor/symfony/symfony/src/Symfony/Component/EventDispatcher/Debug/WrappedListener.php:61
+PHP message: PHP  12. Symfony\Component\HttpKernel\EventListener\RouterListener->onKernelRequest() /var/www/Aisel/vendor/symfony/symfony/src/Symfony/Component/EventDispatcher/Debug/WrappedListener.php:61
+PHP message: PHP  13. Symfony\Compone
+2016/01/04 12:14:12 [error] 31040#0: *8 FastCGI sent in stderr: "ymfony/assetic-bundle/Routing/AsseticLoader.php:64
+PHP message: PHP  27. Assetic\Factory\LazyAssetManager->load() /var/www/Aisel/vendor/kriswallsmith/assetic/src/Assetic/Factory/LazyAssetManager.php:195
+PHP message: PHP  28. Assetic\Factory\Loader\CachedFormulaLoader->load() /var/www/Aisel/vendor/kriswallsmith/assetic/src/Assetic/Factory/LazyAssetManager.php:160" while reading response header from upstream, client: 192.168.50.1, server: api.aisel.dev, request: "GET /frontend/api/en/page/?limit=3&current=1&order=id&orderBy=DESC&category=undefined HTTP/1.1", upstream: "fastcgi://unix://var/run/php5-fpm.sock:", host: "api.aisel.dev", referrer: "http://aisel.dev/en/"

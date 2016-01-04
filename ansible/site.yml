@@ -28,18 +28,18 @@
       version: _5.x
       packages: [casperjs, phantomjs, bower, gulp]
   roles:
-#    - init
+    - init
     - nginx
-#    - php5-fpm
-#    - php5-cli
-#    - php5-common
-#    - composer
-#    - mysql
-#    - mongo
-#    - git
-#    - curl
-#    - wget
-#    - redis
-#    - memcached
-#    - nodejs
-#    - deploy
+    - php5-fpm
+    - php5-cli
+    - php5-common
+    - composer
+    - mysql
+    - mongo
+    - git
+    - curl
+    - wget
+    - redis
+    - memcached
+    - nodejs
+    - deploy
