@@ -23,7 +23,7 @@ use Aisel\FixtureBundle\Model\XMLFixture;
 class LoadFrontendUserData extends XMLFixture implements OrderedFixtureInterface
 {
 
-    protected $fixturesName = array('global/aisel_user_frontend.xml');
+    protected $fixturesName = array('global/aisel_user.xml');
 
     /**
      * Frontend user manager
@@ -39,9 +39,11 @@ class LoadFrontendUserData extends XMLFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+
         foreach ($this->fixtureFiles as $file) {
 
             if (file_exists($file)) {
+
                 $contents = file_get_contents($file);
                 $XML = simplexml_load_string($contents);
 
@@ -60,6 +62,7 @@ class LoadFrontendUserData extends XMLFixture implements OrderedFixtureInterface
                     );
 
                     $user = $this->getUserManager()->registerFixturesUser($userData);
+
                     $this->addReference('frontenduser_' . $table->column[0], $user);
                 }
             }
@@ -71,6 +74,6 @@ class LoadFrontendUserData extends XMLFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 100;
+        return 10;
     }
 }

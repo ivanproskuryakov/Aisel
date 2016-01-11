@@ -17,7 +17,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\BackendUserBundle\Entity\BackendUser;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\ContentTrait;
@@ -153,13 +152,13 @@ class Order
     private $item;
 
     /**
-     * @var BackendUser
-     * @ORM\ManyToOne(targetEntity="Aisel\BackendUserBundle\Entity\BackendUser", inversedBy="node")
+     * @var FrontendUser
+     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="node")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)
      * })
      */
-    private $backendUser;
+    private $seller;
 
     /**
      * Constructor
@@ -458,19 +457,19 @@ class Order
     }
 
     /**
-     * @return BackendUser
+     * @return FrontendUser
      */
-    public function getBackendUser()
+    public function getSeller()
     {
-        return $this->backendUser;
+        return $this->seller;
     }
 
     /**
-     * @param BackendUser $backendUser
+     * @param FrontendUser $seller
      */
-    public function setBackendUser($backendUser)
+    public function setSeller($seller)
     {
-        $this->backendUser = $backendUser;
+        $this->seller = $seller;
     }
 
 }

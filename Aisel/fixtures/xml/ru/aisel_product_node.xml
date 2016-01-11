@@ -18,7 +18,7 @@
         <!-- Product category Russian-->
         <table name="aisel_product_category">
             <column name="id">20910</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
             <column name="title">Отключенная категория</column>
@@ -37,7 +37,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">2090</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
             <column name="title">Корневая Один</column>
@@ -56,7 +56,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">2091</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
             <column name="title">Корневая Два</column>
@@ -75,7 +75,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">2092</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="parent_id">NULL</column>
             <column name="title">Корневая Три</column>
@@ -94,7 +94,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">2093</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="parent_id">2092</column>
             <column name="title">Категория первая</column>
@@ -113,7 +113,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">2094</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="parent_id">2092</column>
             <column name="title">Категория вторая</column>
@@ -132,7 +132,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">2095</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="parent_id">2092</column>
             <column name="title">Категория третья</column>
@@ -151,7 +151,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">2096</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="parent_id">2095</column>
             <column name="title">Вложенная категория 1</column>
@@ -170,7 +170,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">2097</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="parent_id">2095</column>
             <column name="title">Вложенная категория 2</column>
@@ -189,7 +189,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">2098</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="parent_id">2095</column>
             <column name="title">Вложенная категория 3</column>

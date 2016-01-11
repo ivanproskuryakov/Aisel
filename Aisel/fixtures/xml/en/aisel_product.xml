@@ -18,7 +18,7 @@
         <!-- English products -->
         <table name="aisel_product">
             <column name="id">109</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 100</column>
             <column name="sku">P0001</column>
@@ -48,7 +48,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">110</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 110</column>
             <column name="sku">P0002</column>
@@ -78,7 +78,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">120</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 120</column>
             <column name="sku">P0002</column>
@@ -108,7 +108,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">130</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 130</column>
             <column name="sku">P0003</column>
@@ -138,7 +138,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">140</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 140</column>
             <column name="sku">P0004</column>
@@ -168,7 +168,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">150</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 150</column>
             <column name="sku">P0005</column>
@@ -198,7 +198,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">160</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 160</column>
             <column name="sku">P0006</column>
@@ -228,7 +228,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">170</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 170</column>
             <column name="sku">P0007</column>
@@ -258,7 +258,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">180</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 180</column>
             <column name="sku">P0008</column>
@@ -288,7 +288,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">190</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 190</column>
             <column name="sku">P0009</column>
@@ -318,7 +318,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">200</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 200</column>
             <column name="sku">P0010</column>
@@ -348,7 +348,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">210</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 210</column>
             <column name="sku">P0011</column>

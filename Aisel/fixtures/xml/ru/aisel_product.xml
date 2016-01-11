@@ -18,7 +18,7 @@
         <!-- Russian products -->
         <table name="aisel_product">
             <column name="id">209</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 100</column>
             <column name="sku">PR0001</column>
@@ -48,7 +48,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">5210</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 110</column>
             <column name="sku">PR0002</column>
@@ -78,7 +78,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">5220</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 120</column>
             <column name="sku">PR0002</column>
@@ -108,7 +108,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">5230</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 130</column>
             <column name="sku">PR0003</column>
@@ -138,7 +138,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">5240</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 140</column>
             <column name="sku">PR0004</column>
@@ -168,7 +168,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">5250</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 150</column>
             <column name="sku">PR0005</column>
@@ -198,7 +198,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">5260</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 160</column>
             <column name="sku">PR0006</column>
@@ -228,7 +228,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">5270</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 170</column>
             <column name="sku">PR0007</column>
@@ -258,7 +258,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">5280</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 180</column>
             <column name="sku">PR0008</column>
@@ -288,7 +288,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">5290</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 190</column>
             <column name="sku">PR0009</column>
@@ -318,7 +318,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">5300</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 200</column>
             <column name="sku">P0010</column>
@@ -348,7 +348,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">5310</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">ru</column>
             <column name="name">Бейсболка Nike 210</column>
             <column name="sku">P0011</column>

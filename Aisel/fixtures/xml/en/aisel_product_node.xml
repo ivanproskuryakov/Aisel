@@ -18,7 +18,7 @@
         <!-- Product category English-->
         <table name="aisel_product_category">
             <column name="id">10901</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="title">Disabled Category</column>
@@ -37,7 +37,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">1090</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="title">Product Root One</column>
@@ -56,7 +56,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">1091</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="title">Product Root Two</column>
@@ -75,7 +75,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">1092</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="parent_id">NULL</column>
             <column name="title">Product Root Three</column>
@@ -94,7 +94,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">1093</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="parent_id">1092</column>
             <column name="title">Product First 1</column>
@@ -113,7 +113,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">1094</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="parent_id">1092</column>
             <column name="title">Product First 2</column>
@@ -132,7 +132,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">1095</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="parent_id">1092</column>
             <column name="title">Product First 3</column>
@@ -151,7 +151,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">1096</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="parent_id">1095</column>
             <column name="title">Product Nested 1</column>
@@ -170,7 +170,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">1097</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="parent_id">1095</column>
             <column name="title">Product Nested 2</column>
@@ -189,7 +189,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">1098</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">en</column>
             <column name="parent_id">1095</column>
             <column name="title">Product Nested 3</column>

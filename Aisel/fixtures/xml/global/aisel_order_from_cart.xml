@@ -18,8 +18,8 @@
         <!-- Table aisel_order -->
         <table name="aisel_order">
             <column name="id">59</column>
-            <column name="backend_user_id">149</column>
-            <column name="frontend_user_id">150</column>
+            <column name="seller_id">1000</column>
+            <column name="frontend_user_id">3000</column>
             <column name="locale">en</column>
             <column name="payment_name">offline</column>
             <column name="country">Spain</column>

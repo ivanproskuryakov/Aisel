@@ -13,7 +13,6 @@ namespace Aisel\OrderBundle\Entity;
 
 use Aisel\ResourceBundle\Repository\CollectionRepository;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
-use Aisel\BackendUserBundle\Entity\BackendUser;
 use Aisel\OrderBundle\Entity\Order;
 
 /**
@@ -31,7 +30,7 @@ class OrderRepository extends CollectionRepository
      * Create from user cart
      *
      * @param FrontendUser $frontendUser
-     * @param BackendUser $backendUser
+     * @param FrontendUser $backendUser
      * @param string $currencyCode
      * @param mixed $orderInfo
      *
@@ -39,7 +38,7 @@ class OrderRepository extends CollectionRepository
      */
     public function createOrderFromCartForUser(
         FrontendUser $frontendUser,
-        BackendUser $backendUser,
+        FrontendUser $backendUser,
         $currencyCode,
         $orderInfo)
     {
@@ -76,7 +75,7 @@ class OrderRepository extends CollectionRepository
      * Create from array of product
      *
      * @param FrontendUser $frontendUser
-     * @param BackendUser $backendUser
+     * @param FrontendUser $backendUser
      * @param array $products
      * @param string $currencyCode
      * @param mixed $orderInfo
@@ -85,7 +84,7 @@ class OrderRepository extends CollectionRepository
      */
     public function createOrderFromProductsForUser(
         FrontendUser $frontendUser,
-        BackendUser $backendUser,
+        FrontendUser $backendUser,
         $products,
         $currencyCode,
         $orderInfo
@@ -124,7 +123,7 @@ class OrderRepository extends CollectionRepository
      * Create empty order
      *
      * @param FrontendUser $frontendUser
-     * @param BackendUser $backendUser
+     * @param FrontendUser $seller
      * @param string $currencyCode
      * @param mixed $orderInfo
      *
@@ -132,7 +131,7 @@ class OrderRepository extends CollectionRepository
      */
     public function createEmptyOrder(
         FrontendUser $frontendUser,
-        BackendUser $backendUser,
+        FrontendUser $seller,
         $currencyCode,
         $orderInfo
     )
@@ -143,7 +142,7 @@ class OrderRepository extends CollectionRepository
         $order->setTotalAmount(0);
         $order->setLocale($orderInfo['locale']);
         $order->setFrontenduser($frontendUser);
-        $order->setBackendUser($backendUser);
+        $order->setSeller($seller);
         $order->setCurrency($currencyCode);
         $order->setStatus('new');
         $order->setPaymentMethod($orderInfo['payment_method']);

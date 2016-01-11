@@ -13,7 +13,6 @@ namespace Aisel\OrderBundle\Manager;
 
 use LogicException;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
-use Aisel\BackendUserBundle\Entity\BackendUser;
 use Aisel\OrderBundle\Entity\Order;
 use Aisel\CartBundle\Manager\CartManager;
 use Aisel\ConfigBundle\Manager\ConfigManager;
@@ -119,7 +118,7 @@ class OrderManager
      * Create order for given userId
      *
      * @param FrontendUser $frontendUser
-     * @param BackendUser $backendUser
+     * @param FrontendUser $backendUser
      * @param mixed $orderInfo
      *
      * @throws LogicException
@@ -128,7 +127,7 @@ class OrderManager
      */
     public function createOrderFromCart(
         FrontendUser $frontendUser,
-        BackendUser $backendUser,
+        FrontendUser $backendUser,
         array $orderInfo
     )
     {
@@ -152,7 +151,7 @@ class OrderManager
      * Create order for user
      *
      * @param FrontendUser $frontendUser
-     * @param BackendUser $backendUser
+     * @param FrontendUser $backendUser
      * @param array $products
      * @param array $orderInfo
      *
@@ -162,7 +161,7 @@ class OrderManager
      */
     public function createOrderFromProducts(
         FrontendUser $frontendUser,
-        BackendUser $backendUser,
+        FrontendUser $backendUser,
         array $products,
         array $orderInfo
     )

@@ -18,7 +18,7 @@
         <!-- Product category English-->
         <table name="aisel_product_category">
             <column name="id">40910</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">es</column>
             <column name="parent_id">NULL</column>
             <column name="title">Categoría de discapacitados</column>
@@ -37,7 +37,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">4090</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">es</column>
             <column name="parent_id">NULL</column>
             <column name="title">Raíz Uno</column>
@@ -56,7 +56,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">4091</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">es</column>
             <column name="parent_id">NULL</column>
             <column name="title">Raíz Dos</column>
@@ -75,7 +75,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">4092</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">es</column>
             <column name="parent_id">NULL</column>
             <column name="title">Raíz Tres</column>
@@ -94,7 +94,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">4093</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">es</column>
             <column name="parent_id">4092</column>
             <column name="title">Categoría Primera 1</column>
@@ -113,7 +113,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">4094</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">es</column>
             <column name="parent_id">4092</column>
             <column name="title">Categoría Primera 2</column>
@@ -132,7 +132,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">4095</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">es</column>
             <column name="parent_id">4092</column>
             <column name="title">Categoría Primera 3</column>
@@ -151,7 +151,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">4096</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">es</column>
             <column name="parent_id">4095</column>
             <column name="title">Categoría Anidado 1</column>
@@ -170,7 +170,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">4097</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">es</column>
             <column name="parent_id">4095</column>
             <column name="title">Categoría Anidado 2</column>
@@ -189,7 +189,7 @@
         </table>
         <table name="aisel_product_category">
             <column name="id">4098</column>
-            <column name="backend_user_id">149</column>
+            <column name="seller_id">1000</column>
             <column name="locale">es</column>
             <column name="parent_id">4095</column>
             <column name="title">Categoría Anidado 3</column>

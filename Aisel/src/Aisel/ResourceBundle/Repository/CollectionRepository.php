@@ -68,7 +68,7 @@ class CollectionRepository extends EntityRepository
         if (isset($params['locale'])) {
             $this->locale = $params['locale'];
         }
-        // BackendUser
+        // FrontendUser
         if (isset($params['frontendUser'])) {
             $this->frontendUser = $params['frontendUser'];
         }

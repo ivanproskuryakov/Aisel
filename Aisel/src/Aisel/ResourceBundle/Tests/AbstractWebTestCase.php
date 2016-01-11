@@ -7,11 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpKernel\Client;
-use Aisel\BackendUserBundle\Manager\UserManager as BackendUsermanager;
 use Aisel\FrontendUserBundle\Manager\UserManager as FrontendUsermanager;
 use Symfony\Component\Validator\Validator;
 use Faker;
-use Aisel\BackendUserBundle\Entity\BackendUser;
 use Aisel\FrontendUserBundle\Entity\FrontendUser;
 use Swift_Message;
 
@@ -21,10 +19,6 @@ use Swift_Message;
  */
 abstract class AbstractWebTestCase extends KernelTestCase
 {
-    /**
-     * @var BackendUser
-     */
-    protected $backendUser;
 
     /**
      * @var FrontendUser
@@ -45,11 +39,6 @@ abstract class AbstractWebTestCase extends KernelTestCase
      * @var EntityManager
      */
     protected $em;
-
-    /**
-     * @var BackendUsermanager
-     */
-    protected $backendUserManager;
 
     /**
      * @var FrontendUsermanager
@@ -131,41 +120,6 @@ abstract class AbstractWebTestCase extends KernelTestCase
     }
 
     /**
-     * logInBackend
-     *
-     * @param string $email
-     * @param string $password
-     * @return bool
-     */
-    public function logInBackend($email = 'backenduser@aisel.co', $password = 'backenduser')
-    {
-        if ($this->backendUserManager->getAuthenticatedUser() == false) {
-
-            $data = [
-                'email' => $email,
-                'password' => $password,
-            ];
-            $this->client->request(
-                'POST',
-                '/' . $this->api['backend'] . '/user/login/',
-                [],
-                [],
-                ['CONTENT_TYPE' => 'application/json'],
-                json_encode($data)
-            );
-            $response = $this->client->getResponse();
-
-            if ($response->getStatusCode() !== 200) {
-                throw new \LogicException('Authentication failed.');
-            }
-
-        }
-        $this->backendUser = $this->backendUserManager->getAuthenticatedUser();
-
-        return $this->backendUser;
-    }
-
-    /**
      * logInFrontend
      *
      * @param string $email
@@ -206,7 +160,6 @@ abstract class AbstractWebTestCase extends KernelTestCase
 
         $this->client = static::createClient([], ['HTTP_HOST' => static::$httpHost]);
         $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $this->backendUserManager = static::$kernel->getContainer()->get('backend.user.manager');
         $this->frontendUserManager = static::$kernel->getContainer()->get('frontend.user.manager');
         $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
         $this->websiteEmail = static::$kernel->getContainer()->getParameter('website_email');

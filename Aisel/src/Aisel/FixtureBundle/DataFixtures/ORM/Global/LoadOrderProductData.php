@@ -45,7 +45,8 @@ class LoadOrderProductData extends XMLFixture implements OrderedFixtureInterface
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
-                    $backendUser = $this->getReference('backend_user_' . $table->column[1]);
+
+                    $seller = $this->getReference('frontenduser_' . $table->column[1]);
                     $frontendUser = $this->getReference('frontenduser_' . $table->column[4]);
 
                     $orderInfo = array(
@@ -67,7 +68,7 @@ class LoadOrderProductData extends XMLFixture implements OrderedFixtureInterface
                         ->getOrderManager()
                         ->createOrderFromProducts(
                             $frontendUser,
-                            $backendUser,
+                            $seller,
                             $products,
                             $orderInfo
                         );
