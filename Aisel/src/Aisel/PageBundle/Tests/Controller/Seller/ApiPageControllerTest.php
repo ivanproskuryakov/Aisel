@@ -143,8 +143,6 @@ class ApiPageControllerTest extends PageWebTestCase
 
     public function testPutPageActionThrowsNotFound()
     {
-        $this->markTestSkipped('...');
-
         $page = $this
             ->em
             ->getRepository('Aisel\PageBundle\Entity\Page')
