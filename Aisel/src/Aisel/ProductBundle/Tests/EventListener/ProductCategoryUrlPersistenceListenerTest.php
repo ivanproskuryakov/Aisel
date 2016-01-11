@@ -40,8 +40,8 @@ class ProductNodeUrlPersistenceListenerTest extends AbstractWebTestCase
         );
         $user = $this
             ->em
-            ->getRepository('Aisel\BackendUserBundle\Entity\FrontendUser')
-            ->findOneBy(['username' => 'backenduser']);
+            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->findOneBy(['username' => 'frontenduser']);
 
 
         // Create Product Node 1

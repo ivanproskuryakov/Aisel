@@ -39,10 +39,6 @@ aisel_user_frontend:
     resource: "@AiselFrontendUserBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
-aisel_user_backend:
-    resource: "@AiselBackendUserBundle/Resources/config/routing/routing.yml"
-    prefix:   /
-
 aisel_config:
     resource: "@AiselConfigBundle/Resources/config/routing.yml"
     prefix:   /

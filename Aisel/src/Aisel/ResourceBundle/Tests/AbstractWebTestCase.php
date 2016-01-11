@@ -120,6 +120,16 @@ abstract class AbstractWebTestCase extends KernelTestCase
     }
 
     /**
+     * logInBackend
+     *
+     * @return bool
+     */
+    public function logInBackend()
+    {
+        $this->logInFrontend();
+    }
+
+    /**
      * logInFrontend
      *
      * @param string $email
