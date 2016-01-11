@@ -79,6 +79,5 @@ before_script:
 
 script:
     - bin/phpunit -c app src/
-    - bin/phpspec run --stop-on-failure
 #    - protractor backend/protractor/conf.js
 #    - protractor frontend/protractor/conf.js

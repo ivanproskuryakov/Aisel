@@ -149,7 +149,7 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * Creates user, specially for fixtures
+     * registerFixturesUser
      *
      * @param array $userData
      *
