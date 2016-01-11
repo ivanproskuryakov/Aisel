@@ -27,7 +27,7 @@ class ApiCartController extends BaseApiController
     public function cartAction()
     {
         $user = $this
-            ->get('frontend.user.manager')
+            ->get('aisel.user.manager')
             ->getUser();
         $cart = $this
             ->get('aisel.cart.manager')
@@ -47,7 +47,7 @@ class ApiCartController extends BaseApiController
     public function productQtyUpdateAction($productId, $qty)
     {
         $user = $this
-            ->get('frontend.user.manager')
+            ->get('aisel.user.manager')
             ->getUser();
 
         $cartItem = $this
@@ -80,7 +80,7 @@ class ApiCartController extends BaseApiController
     public function productAddAction($productId, $qty)
     {
         $user = $this
-            ->get('frontend.user.manager')
+            ->get('aisel.user.manager')
             ->getUser();
 
         $cartItem = $this

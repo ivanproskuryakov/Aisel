@@ -12,7 +12,7 @@
 namespace Aisel\OrderBundle\Manager;
 
 use LogicException;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\UserBundle\Entity\User;
 use Aisel\OrderBundle\Entity\Order;
 use Aisel\CartBundle\Manager\CartManager;
 use Aisel\ConfigBundle\Manager\ConfigManager;
@@ -117,8 +117,8 @@ class OrderManager
     /**
      * Create order for given userId
      *
-     * @param FrontendUser $frontendUser
-     * @param FrontendUser $backendUser
+     * @param User $user
+     * @param User $backendUser
      * @param mixed $orderInfo
      *
      * @throws LogicException
@@ -126,19 +126,19 @@ class OrderManager
      * @return Order $order
      */
     public function createOrderFromCart(
-        FrontendUser $frontendUser,
-        FrontendUser $backendUser,
+        User $user,
+        User $backendUser,
         array $orderInfo
     )
     {
-        if (count($frontendUser->getCart()) == 0) {
-            throw new LogicException('FrontendUser cart is empty');
+        if (count($user->getCart()) == 0) {
+            throw new LogicException('User cart is empty');
         };
 
         $order = $this->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromCartForUser(
-                $frontendUser,
+                $user,
                 $backendUser,
                 $this->getCurrencyCode($orderInfo['locale']),
                 $orderInfo
@@ -150,8 +150,8 @@ class OrderManager
     /**
      * Create order for user
      *
-     * @param FrontendUser $frontendUser
-     * @param FrontendUser $backendUser
+     * @param User $user
+     * @param User $backendUser
      * @param array $products
      * @param array $orderInfo
      *
@@ -160,8 +160,8 @@ class OrderManager
      * @return Order $orderDetails
      */
     public function createOrderFromProducts(
-        FrontendUser $frontendUser,
-        FrontendUser $backendUser,
+        User $user,
+        User $backendUser,
         array $products,
         array $orderInfo
     )
@@ -172,7 +172,7 @@ class OrderManager
             ->em
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromProductsForUser(
-                $frontendUser,
+                $user,
                 $backendUser,
                 $products,
                 $currencyCode,

@@ -14,7 +14,7 @@ namespace Aisel\CartBundle\Entity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Aisel\ProductBundle\Entity\Product;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\UserBundle\Entity\User;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
 use Aisel\ResourceBundle\Domain\IdTrait;
@@ -37,15 +37,15 @@ class Cart
     use QtyTrait;
 
     /**
-     * @var FrontendUser
-     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="cart")
+     * @var User
+     * @ORM\ManyToOne(targetEntity="Aisel\UserBundle\Entity\User", inversedBy="cart")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
      * @JMS\Exclude
-     * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
+     * @JMS\Type("Aisel\UserBundle\Entity\User")
      */
-    private $frontenduser;
+    private $user;
 
     /**
      * @var Product
@@ -57,26 +57,26 @@ class Cart
     private $product;
 
     /**
-     * Set frontenduser
+     * Set user
      *
-     * @param  FrontendUser $frontenduser
+     * @param  User $user
      * @return Cart
      */
-    public function setFrontenduser(FrontendUser $frontenduser = null)
+    public function setFrontenduser(User $user = null)
     {
-        $this->frontenduser = $frontenduser;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get frontenduser
+     * Get user
      *
-     * @return FrontendUser
+     * @return User
      */
     public function getFrontenduser()
     {
-        return $this->frontenduser;
+        return $this->user;
     }
 
     /**

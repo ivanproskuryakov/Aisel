@@ -12,7 +12,7 @@
 namespace Aisel\OrderBundle\Entity;
 
 use Aisel\ResourceBundle\Repository\CollectionRepository;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\UserBundle\Entity\User;
 use Aisel\OrderBundle\Entity\Order;
 
 /**
@@ -29,21 +29,21 @@ class OrderRepository extends CollectionRepository
     /**
      * Create from user cart
      *
-     * @param FrontendUser $frontendUser
-     * @param FrontendUser $backendUser
+     * @param User $user
+     * @param User $backendUser
      * @param string $currencyCode
      * @param mixed $orderInfo
      *
      * @return Order $order|false
      */
     public function createOrderFromCartForUser(
-        FrontendUser $frontendUser,
-        FrontendUser $backendUser,
+        User $user,
+        User $backendUser,
         $currencyCode,
         $orderInfo)
     {
         $order = $this->createEmptyOrder(
-            $frontendUser,
+            $user,
             $backendUser,
             $currencyCode,
             $orderInfo
@@ -51,7 +51,7 @@ class OrderRepository extends CollectionRepository
         $em = $this->getEntityManager();
         $total = 0;
 
-        foreach ($frontendUser->getCart() as $item) {
+        foreach ($user->getCart() as $item) {
             $total = $total + ($item->getProduct()->getPrice() * $item->getQty());
             $orderItem = new OrderItem();
             $orderItem->setName($item->getProduct()->getName());
@@ -74,8 +74,8 @@ class OrderRepository extends CollectionRepository
     /**
      * Create from array of product
      *
-     * @param FrontendUser $frontendUser
-     * @param FrontendUser $backendUser
+     * @param User $user
+     * @param User $backendUser
      * @param array $products
      * @param string $currencyCode
      * @param mixed $orderInfo
@@ -83,15 +83,15 @@ class OrderRepository extends CollectionRepository
      * @return Order $order|false
      */
     public function createOrderFromProductsForUser(
-        FrontendUser $frontendUser,
-        FrontendUser $backendUser,
+        User $user,
+        User $backendUser,
         $products,
         $currencyCode,
         $orderInfo
     )
     {
         $order = $this->createEmptyOrder(
-            $frontendUser,
+            $user,
             $backendUser,
             $currencyCode,
             $orderInfo
@@ -122,16 +122,16 @@ class OrderRepository extends CollectionRepository
     /**
      * Create empty order
      *
-     * @param FrontendUser $frontendUser
-     * @param FrontendUser $seller
+     * @param User $user
+     * @param User $seller
      * @param string $currencyCode
      * @param mixed $orderInfo
      *
      * @return Order $order
      */
     public function createEmptyOrder(
-        FrontendUser $frontendUser,
-        FrontendUser $seller,
+        User $user,
+        User $seller,
         $currencyCode,
         $orderInfo
     )
@@ -141,7 +141,7 @@ class OrderRepository extends CollectionRepository
         $order = new Order();
         $order->setTotalAmount(0);
         $order->setLocale($orderInfo['locale']);
-        $order->setFrontenduser($frontendUser);
+        $order->setFrontenduser($user);
         $order->setSeller($seller);
         $order->setCurrency($currencyCode);
         $order->setStatus('new');
@@ -169,7 +169,7 @@ class OrderRepository extends CollectionRepository
         $query = $this->getEntityManager()->createQueryBuilder();
         $orders = $query->select('o')
             ->from('AiselOrderBundle:Order', 'o')
-            ->where('o.frontenduser = :userId')->setParameter('userId', $userId)
+            ->where('o.user = :userId')->setParameter('userId', $userId)
             ->orderBy('o.id', 'DESC')
             ->getQuery()
             ->execute();
@@ -190,7 +190,7 @@ class OrderRepository extends CollectionRepository
         $query = $this->getEntityManager()->createQueryBuilder();
         $orders = $query->select('o')
             ->from('AiselOrderBundle:Order', 'o')
-            ->where('o.frontenduser = :userId')->setParameter('userId', $userId)
+            ->where('o.user = :userId')->setParameter('userId', $userId)
             ->andWhere('o.id = :orderId')->setParameter('orderId', $orderId)
             ->getQuery()
             ->getSingleResult();

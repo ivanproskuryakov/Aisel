@@ -40,13 +40,13 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
         );
         $user = $this
             ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->getRepository('Aisel\UserBundle\Entity\User')
             ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
 
         // Create Product 1
         $product1 = new Product();
-        $product1->setFrontendUser($user);
+        $product1->setUser($user);
         $product1->setLocale('en');
         $product1->setContent('...');
         $product1->setContentShort('...');
@@ -63,7 +63,7 @@ class ProductUrlPersistenceListenerTest extends AbstractWebTestCase
 
         // Create Product 2
         $product2 = new Product();
-        $product2->setFrontendUser($user);
+        $product2->setUser($user);
         $product2->setLocale('en');
         $product2->setContent('...');
         $product2->setContentShort('...');

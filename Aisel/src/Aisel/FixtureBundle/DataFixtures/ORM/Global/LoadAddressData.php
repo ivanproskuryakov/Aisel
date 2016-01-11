@@ -40,14 +40,14 @@ class LoadAddressData extends XMLFixture implements OrderedFixtureInterface
                     $country = $this->getReference('country_' . $table->column[1]); // Spain
                     $region = $this->getReference('region_' . $table->column[2]); // City of Madrid
                     $city = $this->getReference('city_' . $table->column[3]); // Madrid
-                    $frontendUser = $this->getReference('frontenduser_' . $table->column[4]); // FrontendUser
+                    $user = $this->getReference('user_' . $table->column[4]); // User
 
                     $address = new Address();
                     $address->setPhone($table->column[5]);
                     $address->setStreet($table->column[6]);
                     $address->setZip($table->column[7]);
                     $address->setComment($table->column[8]);
-                    $address->setFrontenduser($frontendUser);
+                    $address->setFrontenduser($user);
                     $address->setCountry($country);
                     $address->setRegion($region);
                     $address->setCity($city);

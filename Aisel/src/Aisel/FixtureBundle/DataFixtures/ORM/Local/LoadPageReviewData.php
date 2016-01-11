@@ -39,7 +39,7 @@ class LoadPageReviewData extends XMLFixture implements OrderedFixtureInterface
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
-                    $frontendUser = $this->getReference('frontenduser_' . $table->column[5]);
+                    $user = $this->getReference('user_' . $table->column[5]);
                     $page = $this->getReference('page_' . $table->column[6]);
 
                     $review = new Review();
@@ -47,7 +47,7 @@ class LoadPageReviewData extends XMLFixture implements OrderedFixtureInterface
                     $review->setName($table->column[2]);
                     $review->setContent($table->column[3]);
                     $review->setStatus($table->column[4]);
-                    $review->setFrontenduser($frontendUser);
+                    $review->setFrontenduser($user);
                     $review->setSubject($page);
 
                     $manager->persist($review);

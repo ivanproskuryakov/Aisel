@@ -21,7 +21,7 @@ use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\ProductBundle\Entity\Node;
 use Aisel\ProductBundle\Entity\Review;
 use Aisel\MediaBundle\Entity\Media;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\UserBundle\Entity\User;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
@@ -209,14 +209,14 @@ class Product implements UrlInterface
     private $reviews;
 
     /**
-     * @var FrontendUser
+     * @var User
      * @Gedmo\Blameable(on="create")
-     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="product")
+     * @ORM\ManyToOne(targetEntity="Aisel\UserBundle\Entity\User", inversedBy="product")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)
      * })
      */
-    private $frontendUser;
+    private $user;
 
     /**
      * Constructor
@@ -626,19 +626,19 @@ class Product implements UrlInterface
 
 
     /**
-     * @return FrontendUser
+     * @return User
      */
-    public function getFrontendUser()
+    public function getUser()
     {
-        return $this->frontendUser;
+        return $this->user;
     }
 
     /**
-     * @param FrontendUser $frontendUser
+     * @param User $user
      */
-    public function setFrontendUser(FrontendUser $frontendUser)
+    public function setUser(User $user)
     {
-        $this->frontendUser = $frontendUser;
+        $this->user = $user;
     }
 
 

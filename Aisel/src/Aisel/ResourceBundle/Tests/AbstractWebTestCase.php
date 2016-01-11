@@ -2,15 +2,14 @@
 
 namespace Aisel\ResourceBundle\Tests;
 
-use Buzz\Exception\LogicException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpKernel\Client;
-use Aisel\FrontendUserBundle\Manager\UserManager as FrontendUsermanager;
+use Aisel\UserBundle\Manager\UserManager as UserManager;
 use Symfony\Component\Validator\Validator;
 use Faker;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\UserBundle\Entity\User;
 use Swift_Message;
 
 /**
@@ -21,9 +20,9 @@ abstract class AbstractWebTestCase extends KernelTestCase
 {
 
     /**
-     * @var FrontendUser
+     * @var User
      */
-    protected $frontendUser;
+    protected $user;
 
     /**
      * @var \Faker\Generator
@@ -41,9 +40,9 @@ abstract class AbstractWebTestCase extends KernelTestCase
     protected $em;
 
     /**
-     * @var FrontendUsermanager
+     * @var UserManager
      */
-    protected $frontendUserManager;
+    protected $userManager;
 
     /**
      * @var array $locales
@@ -122,11 +121,13 @@ abstract class AbstractWebTestCase extends KernelTestCase
     /**
      * logInBackend
      *
+     * @param string $email
+     * @param string $password
      * @return bool
      */
-    public function logInBackend()
+    public function logInBackend($email = 'backenduser@aisel.co', $password = 'backenduser')
     {
-        $this->logInFrontend();
+        $this->logIn($email, $password);
     }
 
     /**
@@ -136,9 +137,21 @@ abstract class AbstractWebTestCase extends KernelTestCase
      * @param string $password
      * @return bool
      */
-    public function logInFrontend($email = 'frontenduser@aisel.co', $password = 'frontenduser')
+    public function logInFrontend($email = 'user@aisel.co', $password = 'user')
     {
-        if ($this->frontendUserManager->getAuthenticatedUser() == false) {
+        $this->logIn($email, $password);
+    }
+
+    /**
+     * logIn
+     *
+     * @param string $email
+     * @param string $password
+     * @return bool
+     */
+    public function logIn($email = 'user@aisel.co', $password = 'user')
+    {
+        if ($this->userManager->getAuthenticatedUser() == false) {
 
             $data = [
                 'email' => $email,
@@ -158,9 +171,9 @@ abstract class AbstractWebTestCase extends KernelTestCase
                 throw new \LogicException('Authentication failed.');
             }
         }
-        $this->frontendUser = $this->frontendUserManager->getAuthenticatedUser();
+        $this->user = $this->userManager->getAuthenticatedUser();
 
-        return $this->frontendUser;
+        return $this->user;
     }
 
     public function setUp()
@@ -170,7 +183,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
 
         $this->client = static::createClient([], ['HTTP_HOST' => static::$httpHost]);
         $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $this->frontendUserManager = static::$kernel->getContainer()->get('frontend.user.manager');
+        $this->userManager = static::$kernel->getContainer()->get('aisel.user.manager');
         $this->locales = explode("|", static::$kernel->getContainer()->getParameter('locales'));
         $this->websiteEmail = static::$kernel->getContainer()->getParameter('website_email');
         $this->api = array(

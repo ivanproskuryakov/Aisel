@@ -12,7 +12,7 @@
 namespace Aisel\OrderBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\UserBundle\Entity\User;
 use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 
 /**
@@ -31,24 +31,24 @@ class ApiOrderController extends BaseApiController
         return $this->get('aisel.order.manager');
     }
 
-    /**
-     * User manager
-     *
-     * @return FrontendUser
-     */
-    private function getFrontendUser()
-    {
-        return $this
-            ->get('frontend.user.manager')
-            ->getUser();
-    }
+//    /**
+//     * User manager
+//     *
+//     * @return User
+//     */
+//    private function getUser()
+//    {
+//        return $this
+//            ->get('aisel.user.manager')
+//            ->getUser();
+//    }
 
     /**
      * getOrderCollection
      */
     public function getOrderCollectionAction()
     {
-        $user = $this->getFrontendUser();
+        $user = $this->getUser();
         $orders = $this
             ->getOrderManager()
             ->getUserOrders($user->getId());
@@ -65,7 +65,7 @@ class ApiOrderController extends BaseApiController
      */
     public function getOrderAction($orderId)
     {
-        $user = $this->getFrontendUser();
+        $user = $this->getUser();
         $order = $this
             ->getOrderManager()
             ->getUserOrder($user->getId(), $orderId);
@@ -84,7 +84,7 @@ class ApiOrderController extends BaseApiController
      */
     public function orderSubmitAction(Request $request, $locale)
     {
-        $user = $this->getFrontendUser();
+        $user = $this->getUser();
         $orderInfo = array(
             'payment_method' => $request->get('payment_method'),
             'billing_country' => $request->get('billing_country'),

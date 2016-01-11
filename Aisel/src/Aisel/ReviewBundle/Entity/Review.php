@@ -23,7 +23,7 @@ use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
 use Aisel\ResourceBundle\Domain\ContentTrait;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\UserBundle\Entity\User;
 
 /**
  * Review
@@ -45,15 +45,15 @@ abstract class Review
     use UpdateCreateTrait;
 
     /**
-     * @var FrontendUser
+     * @var User
      * @Gedmo\Blameable(on="create")
-     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="reviews")
+     * @ORM\ManyToOne(targetEntity="Aisel\UserBundle\Entity\User", inversedBy="reviews")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
+     * @JMS\Type("Aisel\UserBundle\Entity\User")
      * @JMS\Expose
      * @JMS\MaxDepth(2)
      */
-    private $frontenduser;
+    private $user;
 
     /**
      * Constructor
@@ -64,19 +64,19 @@ abstract class Review
     }
 
     /**
-     * @return FrontendUser
+     * @return User
      */
     public function getFrontenduser()
     {
-        return $this->frontenduser;
+        return $this->user;
     }
 
     /**
-     * @param FrontendUser $frontenduser
+     * @param User $user
      */
-    public function setFrontenduser($frontenduser)
+    public function setFrontenduser($user)
     {
-        $this->frontenduser = $frontenduser;
+        $this->user = $user;
     }
 
 }

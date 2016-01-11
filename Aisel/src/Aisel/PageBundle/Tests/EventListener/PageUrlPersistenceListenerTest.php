@@ -35,17 +35,18 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
     public function testDuplicatedUrlThrowsError()
     {
         $urlText = 'page-test-meta-url';
+
         $this->setExpectedException(
             'LogicException', 'Given URL already exists'
         );
         $user = $this
             ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->getRepository('Aisel\UserBundle\Entity\User')
             ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
         // Create Page 1
         $page1 = new Page();
-        $page1->setFrontendUser($user);
+        $page1->setUser($user);
         $page1->setLocale('en');
         $page1->setContent('...');
         $page1->setName('...');
@@ -60,7 +61,7 @@ class PageUrlPersistenceListenerTest extends AbstractWebTestCase
 
         // Create Page 2
         $page2 = new Page();
-        $page2->setFrontendUser($user);
+        $page2->setUser($user);
         $page2->setLocale('en');
         $page2->setContent('...');
         $page2->setName('...');

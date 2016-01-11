@@ -14,7 +14,7 @@ namespace Aisel\AddressingBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\UserBundle\Entity\User;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 
@@ -87,35 +87,35 @@ class Address
     private $country;
 
     /**
-     * @var FrontendUser
-     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="addresses")
+     * @var User
+     * @ORM\ManyToOne(targetEntity="Aisel\UserBundle\Entity\User", inversedBy="addresses")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
      */
-    private $frontenduser;
+    private $user;
 
     /**
-     * Set frontenduser
+     * Set user
      *
-     * @param  FrontendUser $frontenduser
+     * @param  User $user
      * @return Address
      */
-    public function setFrontenduser(FrontendUser $frontenduser = null)
+    public function setFrontenduser(User $user = null)
     {
-        $this->frontenduser = $frontenduser;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get frontenduser
+     * Get user
      *
-     * @return FrontendUser
+     * @return User
      */
     public function getFrontenduser()
     {
-        return $this->frontenduser;
+        return $this->user;
     }
 
     /**

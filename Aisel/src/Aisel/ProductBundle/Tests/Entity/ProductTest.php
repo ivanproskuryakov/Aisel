@@ -40,7 +40,7 @@ class ProductTest extends AbstractWebTestCase
         $this->setExpectedException('Doctrine\DBAL\Exception\UniqueConstraintViolationException');
         $user = $this
             ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->getRepository('Aisel\UserBundle\Entity\User')
             ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
         $node = new Node();
@@ -56,7 +56,7 @@ class ProductTest extends AbstractWebTestCase
         $this->assertNotNull($node->getId());
 
         $product = new Product();
-        $product->setFrontendUser($user);
+        $product->setUser($user);
         $product->setLocale('en');
         $product->setSku($this->faker->numberBetween());
         $product->setName($this->faker->sentence(1));
@@ -76,7 +76,7 @@ class ProductTest extends AbstractWebTestCase
     {
         $user = $this
             ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->getRepository('Aisel\UserBundle\Entity\User')
             ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
         $this->setExpectedException('Doctrine\DBAL\Exception\UniqueConstraintViolationException');
@@ -91,7 +91,7 @@ class ProductTest extends AbstractWebTestCase
         $this->assertNotNull($image->getId());
 
         $product = new Product();
-        $product->setFrontendUser($user);
+        $product->setUser($user);
         $product->setLocale('en');
         $product->setName($this->faker->sentence(1));
         $product->setContentShort($this->faker->sentence(10));

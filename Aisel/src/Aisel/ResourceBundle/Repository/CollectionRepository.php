@@ -31,7 +31,7 @@ class CollectionRepository extends EntityRepository
     protected $pageSkip = 1;
     protected $order = 'id';
     protected $orderBy = '';
-    protected $frontendUser = null;
+    protected $user = null;
 
     /**
      * mapRequest
@@ -68,9 +68,9 @@ class CollectionRepository extends EntityRepository
         if (isset($params['locale'])) {
             $this->locale = $params['locale'];
         }
-        // FrontendUser
-        if (isset($params['frontendUser'])) {
-            $this->frontendUser = $params['frontendUser'];
+        // User
+        if (isset($params['user'])) {
+            $this->user = $params['user'];
         }
         // Order
         if (isset($params['order'])) {
@@ -126,8 +126,8 @@ class CollectionRepository extends EntityRepository
             $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
         }
 
-        if ($this->frontendUser) {
-            $query->andWhere('e.frontendUser = :user')->setParameter('user', $this->frontendUser->getId());
+        if ($this->user) {
+            $query->andWhere('e.user = :user')->setParameter('user', $this->user->getId());
         }
 
         if ($this->node) {
@@ -178,8 +178,8 @@ class CollectionRepository extends EntityRepository
             $query->andWhere('e.locale = :locale')->setParameter('locale', $this->locale);
         }
 
-        if ($this->frontendUser) {
-            $query->andWhere('e.frontendUser = :user')->setParameter('user', $this->frontendUser->getId());
+        if ($this->user) {
+            $query->andWhere('e.user = :user')->setParameter('user', $this->user->getId());
         }
 
         if ($this->node) {

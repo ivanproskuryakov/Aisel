@@ -26,7 +26,7 @@ class AppKernel extends Kernel
             new cspoo\Swiftmailer\MailgunBundle\cspooSwiftmailerMailgunBundle(),
 
             // Aisel bundles
-            new Aisel\FrontendUserBundle\AiselFrontendUserBundle(),
+            new Aisel\UserBundle\AiselUserBundle(),
             new Aisel\PageBundle\AiselPageBundle(),
             new Aisel\ReviewBundle\AiselReviewBundle(),
             new Aisel\SearchBundle\AiselSearchBundle(),

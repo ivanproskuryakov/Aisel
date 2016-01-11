@@ -16,22 +16,22 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
 
 /**
- * LoadFrontendUserData
+ * LoadUserData
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class LoadFrontendUserData extends XMLFixture implements OrderedFixtureInterface
+class LoadUserData extends XMLFixture implements OrderedFixtureInterface
 {
 
     protected $fixturesName = array('global/aisel_user.xml');
 
     /**
      * Frontend user manager
-     * @return \Aisel\FrontendUserBundle\Manager\UserManager
+     * @return \Aisel\UserBundle\Manager\UserManager
      */
     protected function getUserManager()
     {
-        return $this->container->get('frontend.user.manager');
+        return $this->container->get('aisel.user.manager');
     }
 
     /**
@@ -63,7 +63,7 @@ class LoadFrontendUserData extends XMLFixture implements OrderedFixtureInterface
 
                     $user = $this->getUserManager()->registerFixturesUser($userData);
 
-                    $this->addReference('frontenduser_' . $table->column[0], $user);
+                    $this->addReference('user_' . $table->column[0], $user);
                 }
             }
         }

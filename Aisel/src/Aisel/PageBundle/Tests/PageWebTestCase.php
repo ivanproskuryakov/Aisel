@@ -44,7 +44,7 @@ class PageWebTestCase extends AbstractWebTestCase
     {
         $user = $this
             ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->getRepository('Aisel\UserBundle\Entity\User')
             ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
         $page = $this->newPage();
@@ -72,12 +72,12 @@ class PageWebTestCase extends AbstractWebTestCase
     {
         $user = $this
             ->em
-            ->getRepository('Aisel\FrontendUserBundle\Entity\FrontendUser')
+            ->getRepository('Aisel\UserBundle\Entity\User')
             ->findOneBy(['email' => 'frontenduser@aisel.co']);
 
         $page = new Page();
         $page->setLocale('en');
-        $page->setFrontendUser($user);
+        $page->setUser($user);
         $page->setName($this->faker->sentence(1));
         $page->setContent($this->faker->sentence(10));
         $page->setStatus(true);

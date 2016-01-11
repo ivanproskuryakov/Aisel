@@ -25,7 +25,7 @@ class CartRepository extends EntityRepository
     /**
      * Add product to cart
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param \Aisel\UserBundle\Entity\User $user
      * @param \Aisel\ProductBundle\Entity\Product $product
      * @param int $qty
      *
@@ -54,7 +54,7 @@ class CartRepository extends EntityRepository
     /**
      * Update product in cart
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param \Aisel\UserBundle\Entity\User $user
      * @param \Aisel\ProductBundle\Entity\Product $product
      * @param int $qty
      *
@@ -83,7 +83,7 @@ class CartRepository extends EntityRepository
     /**
      * Find product in cart
      *
-     * @param \Aisel\FrontendUserBundle\Entity\FrontendUser $user
+     * @param \Aisel\UserBundle\Entity\User $user
      * @param \Aisel\ProductBundle\Entity\Product $product
      *
      * @return \Aisel\CartBundle\Entity\Cart $cartItem
@@ -94,7 +94,7 @@ class CartRepository extends EntityRepository
         $query->select('c')
             ->from('AiselCartBundle:Cart', 'c')
             ->where('c.product = :productId')->setParameter('productId', $product->getId())
-            ->andWhere('c.frontenduser = :userId')->setParameter('userId', $user->getId());
+            ->andWhere('c.user = :userId')->setParameter('userId', $user->getId());
         $cartItem = $query->getQuery()->getResult();
 
         if ($cartItem) {

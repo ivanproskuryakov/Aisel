@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\UserBundle\Entity\User;
 use JMS\Serializer\Annotation as JMS;
 
 use Aisel\ResourceBundle\Domain\IdTrait;
@@ -121,16 +121,16 @@ class Order
     private $paymentMethod;
 
     /**
-     * @var FrontendUser
-     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="order")
+     * @var User
+     * @ORM\ManyToOne(targetEntity="Aisel\UserBundle\Entity\User", inversedBy="order")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
-     * @JMS\Type("Aisel\FrontendUserBundle\Entity\FrontendUser")
+     * @JMS\Type("Aisel\UserBundle\Entity\User")
      * @JMS\MaxDepth(1)
      * @JMS\Expose
      */
-    private $frontenduser;
+    private $user;
 
     /**
      * @var Invoice
@@ -152,8 +152,8 @@ class Order
     private $item;
 
     /**
-     * @var FrontendUser
-     * @ORM\ManyToOne(targetEntity="Aisel\FrontendUserBundle\Entity\FrontendUser", inversedBy="node")
+     * @var User
+     * @ORM\ManyToOne(targetEntity="Aisel\UserBundle\Entity\User", inversedBy="node")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)
      * })
@@ -217,26 +217,26 @@ class Order
 
 
     /**
-     * Set frontenduser
+     * Set user
      *
-     * @param  FrontendUser $frontenduser
+     * @param  User $user
      * @return Order
      */
-    public function setFrontenduser(FrontendUser $frontenduser = null)
+    public function setFrontenduser(User $user = null)
     {
-        $this->frontenduser = $frontenduser;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get frontenduser
+     * Get user
      *
-     * @return FrontendUser
+     * @return User
      */
     public function getFrontenduser()
     {
-        return $this->frontenduser;
+        return $this->user;
     }
 
     /**
@@ -457,7 +457,7 @@ class Order
     }
 
     /**
-     * @return FrontendUser
+     * @return User
      */
     public function getSeller()
     {
@@ -465,7 +465,7 @@ class Order
     }
 
     /**
-     * @param FrontendUser $seller
+     * @param User $seller
      */
     public function setSeller($seller)
     {

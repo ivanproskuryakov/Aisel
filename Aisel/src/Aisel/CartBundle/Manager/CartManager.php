@@ -14,7 +14,7 @@ namespace Aisel\CartBundle\Manager;
 use LogicException;
 use Doctrine\ORM\EntityManager;
 use Aisel\ProductBundle\Entity\Product;
-use Aisel\FrontendUserBundle\Entity\FrontendUser;
+use Aisel\UserBundle\Entity\User;
 use Aisel\CartBundle\Entity\Cart;
 
 /**
@@ -70,7 +70,7 @@ class CartManager
         if ($user) {
             return $this->dm
                 ->getRepository('Aisel\CartBundle\Entity\Cart')
-                ->findBy(array('frontenduser' => $user->getId()));
+                ->findBy(array('user' => $user->getId()));
         }
 
         return [];
@@ -79,7 +79,7 @@ class CartManager
     /**
      * Adds product to cart by given $id and $qty
      *
-     * @param FrontendUser $user
+     * @param User $user
      * @param int $productId
      * @param int $qty
      *
@@ -105,7 +105,7 @@ class CartManager
     /**
      * Updates product item inside cart by given $id and $qty
      *
-     * @param FrontendUser $user
+     * @param User $user
      * @param int $productId
      * @param int $qty
      *

@@ -45,8 +45,8 @@ class LoadOrderCartData extends XMLFixture implements OrderedFixtureInterface
                 $XML = simplexml_load_string($contents);
 
                 foreach ($XML->database->table as $table) {
-                    $frontendUser = $this->getReference('frontenduser_' . $table->column[2]);
-                    $seller = $this->getReference('frontenduser_' . $table->column[1]);
+                    $user = $this->getReference('user_' . $table->column[2]);
+                    $seller = $this->getReference('user_' . $table->column[1]);
 
                     $orderInfo = array(
                         'payment_method' => (string)$table->column[4],
@@ -61,7 +61,7 @@ class LoadOrderCartData extends XMLFixture implements OrderedFixtureInterface
                     $order = $this
                         ->getOrderManager()
                         ->createOrderFromCart(
-                            $frontendUser,
+                            $user,
                             $seller,
                             $orderInfo
                         );

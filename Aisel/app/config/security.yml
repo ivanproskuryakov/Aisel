@@ -1,12 +1,12 @@
 security:
     encoders:
-        Aisel\FrontendUserBundle\Entity\FrontendUser: sha512
+        Aisel\UserBundle\Entity\User: sha512
     role_hierarchy:
         ROLE_ADMIN:       [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        user_frontend:
-            entity: { class: Aisel\FrontendUserBundle\Entity\FrontendUser, property: username }
+        user:
+            entity: { class: Aisel\UserBundle\Entity\User, property: username }
 
     firewalls:
         # Disabling the security for the web debug toolbar, the profiler and Assetic.

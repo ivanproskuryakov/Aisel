@@ -80,7 +80,7 @@ class ApiPageControllerTest extends PageWebTestCase
             ->find($id);
 
         $this->assertEquals($page->getNodes()[0]->getId(), $pageNode->getId());
-        $this->assertEquals($page->getFrontendUser()->getUsername(), $this->frontendUser->getUsername());
+        $this->assertEquals($page->getUser()->getUsername(), $this->user->getUsername());
     }
 
     public function testGetPageAction()
@@ -88,7 +88,7 @@ class ApiPageControllerTest extends PageWebTestCase
         $page = $this
             ->em
             ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->findOneBy(['frontendUser' => $this->frontendUser->getId()]);
+            ->findOneBy(['user' => $this->user->getId()]);
 
         $this->client->request(
             'GET',
@@ -113,9 +113,9 @@ class ApiPageControllerTest extends PageWebTestCase
         $page = $this
             ->em
             ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->findOneBy(['frontendUser' => $this->frontendUser->getId()]);
+            ->findOneBy(['user' => $this->user->getId()]);
 
-        $this->assertEquals($page->getFrontendUser()->getUsername(), $this->frontendUser->getUsername());
+        $this->assertEquals($page->getUser()->getUsername(), $this->user->getUsername());
 
         $id = $page->getId();
 
@@ -150,7 +150,7 @@ class ApiPageControllerTest extends PageWebTestCase
             ->getRepository('Aisel\PageBundle\Entity\Page')
             ->findOneBy(['locale' => 'es']);
 
-        $this->assertNotEquals($page->getFrontendUser()->getUsername(), $this->frontendUser->getUsername());
+        $this->assertNotEquals($page->getUser()->getUsername(), $this->user->getUsername());
 
         $id = $page->getId();
         $data['locale'] = 'ru';
@@ -177,7 +177,7 @@ class ApiPageControllerTest extends PageWebTestCase
     public function testPutPageAction()
     {
         $page = $this->newPage();
-        $this->assertEquals($page->getFrontendUser()->getUsername(), $this->frontendUser->getUsername());
+        $this->assertEquals($page->getUser()->getUsername(), $this->user->getUsername());
 
         $id = $page->getId();
         $data['locale'] = 'ru';
