@@ -34,7 +34,7 @@ class ApiPageControllerTest extends PageWebTestCase
 
     public function testPostPageAction()
     {
-        $this->markTestSkipped('...');
+        $this->markTestSkipped('no POST action for page entity');
 
         $pageNode = $this
             ->em

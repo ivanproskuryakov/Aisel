@@ -52,7 +52,7 @@ class ApiProductControllerTest extends ProductWebTestCase
 
     public function testPostProductAction()
     {
-        $this->markTestSkipped('...');
+        $this->markTestSkipped('no POST action for product entity');
         $node = $this
             ->em
             ->getRepository('Aisel\ProductBundle\Entity\Node')

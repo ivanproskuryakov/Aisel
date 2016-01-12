@@ -85,11 +85,11 @@ admin_api_aisel_page_put:
     requirements:
         _method: PUT
 
-admin_api_aisel_page_post:
-    pattern:   /page/
-    defaults:  { _controller: AiselPageBundle:Admin/ApiPage:post, _format: json }
-    requirements:
-        _method: POST
+#admin_api_aisel_page_post:
+#    pattern:   /page/
+#    defaults:  { _controller: AiselPageBundle:Admin/ApiPage:post, _format: json }
+#    requirements:
+#        _method: POST
 
 admin_api_aisel_page_node_node_edit:
     pattern:   /page/node/node/

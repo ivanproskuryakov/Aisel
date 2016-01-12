@@ -61,11 +61,11 @@ admin_api_aisel_product_get_collection:
     requirements:
         _method: GET
 
-admin_api_aisel_product_post:
-    pattern:   /product/
-    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:post, _format: json }
-    requirements:
-        _method: POST
+#admin_api_aisel_product_post:
+#    pattern:   /product/
+#    defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:post, _format: json }
+#    requirements:
+#        _method: POST
 
 admin_api_aisel_product_node_node_edit:
     pattern:   /product/node/node/
