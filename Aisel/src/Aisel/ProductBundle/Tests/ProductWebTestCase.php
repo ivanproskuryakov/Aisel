@@ -72,7 +72,7 @@ class ProductWebTestCase extends AbstractWebTestCase
         $review->setName($this->faker->sentence(1));
         $review->setContent($this->faker->sentence(10));
         $review->setStatus(true);
-        $review->setFrontenduser($user);
+        $review->setUser($user);
 
         $this->em->persist($review);
         $this->em->flush();

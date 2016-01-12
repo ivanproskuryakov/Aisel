@@ -47,7 +47,7 @@ class LoadAddressData extends XMLFixture implements OrderedFixtureInterface
                     $address->setStreet($table->column[6]);
                     $address->setZip($table->column[7]);
                     $address->setComment($table->column[8]);
-                    $address->setFrontenduser($user);
+                    $address->setUser($user);
                     $address->setCountry($country);
                     $address->setRegion($region);
                     $address->setCity($city);

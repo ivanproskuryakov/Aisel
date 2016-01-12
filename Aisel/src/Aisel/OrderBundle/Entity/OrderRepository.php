@@ -30,7 +30,7 @@ class OrderRepository extends CollectionRepository
      * Create from user cart
      *
      * @param User $user
-     * @param User $backendUser
+     * @param User $seller
      * @param string $currencyCode
      * @param mixed $orderInfo
      *
@@ -38,13 +38,13 @@ class OrderRepository extends CollectionRepository
      */
     public function createOrderFromCartForUser(
         User $user,
-        User $backendUser,
+        User $seller,
         $currencyCode,
         $orderInfo)
     {
         $order = $this->createEmptyOrder(
             $user,
-            $backendUser,
+            $seller,
             $currencyCode,
             $orderInfo
         );
@@ -75,7 +75,7 @@ class OrderRepository extends CollectionRepository
      * Create from array of product
      *
      * @param User $user
-     * @param User $backendUser
+     * @param User $seller
      * @param array $products
      * @param string $currencyCode
      * @param mixed $orderInfo
@@ -84,7 +84,7 @@ class OrderRepository extends CollectionRepository
      */
     public function createOrderFromProductsForUser(
         User $user,
-        User $backendUser,
+        User $seller,
         $products,
         $currencyCode,
         $orderInfo
@@ -92,7 +92,7 @@ class OrderRepository extends CollectionRepository
     {
         $order = $this->createEmptyOrder(
             $user,
-            $backendUser,
+            $seller,
             $currencyCode,
             $orderInfo
         );
@@ -141,7 +141,7 @@ class OrderRepository extends CollectionRepository
         $order = new Order();
         $order->setTotalAmount(0);
         $order->setLocale($orderInfo['locale']);
-        $order->setFrontenduser($user);
+        $order->setUser($user);
         $order->setSeller($seller);
         $order->setCurrency($currencyCode);
         $order->setStatus('new');

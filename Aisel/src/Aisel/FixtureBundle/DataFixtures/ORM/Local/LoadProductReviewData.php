@@ -48,7 +48,7 @@ class LoadProductReviewData extends XMLFixture implements OrderedFixtureInterfac
                     $review->setContent($table->column[3]);
                     $review->setStatus($table->column[4]);
                     $review->setSubject($product);
-                    $review->setFrontenduser($user);
+                    $review->setUser($user);
 
                     $manager->persist($review);
                     $manager->flush();

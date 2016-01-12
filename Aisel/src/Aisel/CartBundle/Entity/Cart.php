@@ -62,7 +62,7 @@ class Cart
      * @param  User $user
      * @return Cart
      */
-    public function setFrontenduser(User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -74,7 +74,7 @@ class Cart
      *
      * @return User
      */
-    public function getFrontenduser()
+    public function getUser()
     {
         return $this->user;
     }

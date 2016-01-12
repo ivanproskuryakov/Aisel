@@ -41,7 +41,7 @@ class CartRepository extends EntityRepository
             $cartItem->setQty($newQty);
         } else {
             $cartItem = new Cart();
-            $cartItem->setFrontenduser($user);
+            $cartItem->setUser($user);
             $cartItem->setProduct($product);
             $cartItem->setQty($qty);
         }

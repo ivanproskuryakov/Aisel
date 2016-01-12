@@ -118,7 +118,7 @@ class OrderManager
      * Create order for given userId
      *
      * @param User $user
-     * @param User $backendUser
+     * @param User $seller
      * @param mixed $orderInfo
      *
      * @throws LogicException
@@ -127,7 +127,7 @@ class OrderManager
      */
     public function createOrderFromCart(
         User $user,
-        User $backendUser,
+        User $seller,
         array $orderInfo
     )
     {
@@ -139,7 +139,7 @@ class OrderManager
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromCartForUser(
                 $user,
-                $backendUser,
+                $seller,
                 $this->getCurrencyCode($orderInfo['locale']),
                 $orderInfo
             );
@@ -151,7 +151,7 @@ class OrderManager
      * Create order for user
      *
      * @param User $user
-     * @param User $backendUser
+     * @param User $seller
      * @param array $products
      * @param array $orderInfo
      *
@@ -161,7 +161,7 @@ class OrderManager
      */
     public function createOrderFromProducts(
         User $user,
-        User $backendUser,
+        User $seller,
         array $products,
         array $orderInfo
     )
@@ -173,7 +173,7 @@ class OrderManager
             ->getRepository('AiselOrderBundle:Order')
             ->createOrderFromProductsForUser(
                 $user,
-                $backendUser,
+                $seller,
                 $products,
                 $currencyCode,
                 $orderInfo

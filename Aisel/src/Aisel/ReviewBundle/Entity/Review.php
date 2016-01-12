@@ -66,7 +66,7 @@ abstract class Review
     /**
      * @return User
      */
-    public function getFrontenduser()
+    public function getUser()
     {
         return $this->user;
     }
@@ -74,7 +74,7 @@ abstract class Review
     /**
      * @param User $user
      */
-    public function setFrontenduser($user)
+    public function setUser($user)
     {
         $this->user = $user;
     }

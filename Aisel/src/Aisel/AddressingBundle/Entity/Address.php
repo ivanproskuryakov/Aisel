@@ -101,7 +101,7 @@ class Address
      * @param  User $user
      * @return Address
      */
-    public function setFrontenduser(User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -113,7 +113,7 @@ class Address
      *
      * @return User
      */
-    public function getFrontenduser()
+    public function getUser()
     {
         return $this->user;
     }

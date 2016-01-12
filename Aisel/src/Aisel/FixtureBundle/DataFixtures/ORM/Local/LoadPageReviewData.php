@@ -47,7 +47,7 @@ class LoadPageReviewData extends XMLFixture implements OrderedFixtureInterface
                     $review->setName($table->column[2]);
                     $review->setContent($table->column[3]);
                     $review->setStatus($table->column[4]);
-                    $review->setFrontenduser($user);
+                    $review->setUser($user);
                     $review->setSubject($page);
 
                     $manager->persist($review);

@@ -55,7 +55,7 @@ class PageWebTestCase extends AbstractWebTestCase
         $review->setContent($this->faker->sentence(10));
         $review->setStatus(true);
         $review->setSubject($page);
-        $review->setFrontenduser($user);
+        $review->setUser($user);
 
         $this->em->persist($review);
         $this->em->flush();
