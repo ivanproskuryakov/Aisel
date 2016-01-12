@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\UserBundle\Tests\Controller;
+namespace Aisel\UserBundle\Tests\Controller\Frontend;
 
 use Aisel\UserBundle\Entity\User;
 use Aisel\UserBundle\Tests\UserTestCase;

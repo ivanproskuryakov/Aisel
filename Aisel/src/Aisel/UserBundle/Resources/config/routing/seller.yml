@@ -1,0 +1,24 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+seller_aisel_user_login:
+    pattern:  /user/login/
+    defaults: { _controller: AiselUserBundle:Api:login, _format: json }
+    requirements:
+        _method: POST
+
+seller_aisel_user_logout:
+    pattern:  /user/logout/
+    defaults: { _controller: AiselUserBundle:Api:logout, _format: json }
+    requirements:
+        _method: GET
+
+seller_aisel_user_get:
+    pattern:  /user/information/
+    defaults: { _controller: AiselUserBundle:Api:information, _format: json }
+    requirements:
+        _method: GET

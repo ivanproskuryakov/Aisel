@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Aisel\UserBundle\Tests\Controller\Admin;
+namespace Aisel\UserBundle\Tests\Controller\Seller;
 
 use Aisel\UserBundle\Entity\User;
 use Aisel\UserBundle\Tests\UserTestCase;
@@ -37,7 +37,7 @@ class ApiControllerTest extends UserTestCase
     {
         $this->client->request(
             'GET',
-            '/' . $this->api['backend'] . '/user/information/',
+            '/' . $this->api['seller'] . '/user/information/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -64,7 +64,7 @@ class ApiControllerTest extends UserTestCase
         ];
         $this->client->request(
             'POST',
-            '/' . $this->api['backend'] . '/user/login/',
+            '/' . $this->api['seller'] . '/user/login/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -94,7 +94,7 @@ class ApiControllerTest extends UserTestCase
 
         $this->client->request(
             'POST',
-            '/' . $this->api['backend'] . '/user/login/',
+            '/' . $this->api['seller'] . '/user/login/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -103,7 +103,7 @@ class ApiControllerTest extends UserTestCase
 
         $this->client->request(
             'GET',
-            '/' . $this->api['backend'] . '/user/logout/',
+            '/' . $this->api['seller'] . '/user/logout/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']

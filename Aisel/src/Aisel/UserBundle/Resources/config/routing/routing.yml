@@ -5,10 +5,14 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-be_api_aisel_product:
+be_api_aisel_user:
     resource: "@AiselUserBundle/Resources/config/routing/backend.yml"
     prefix:   /%backend_api%
 
-fe_api_aisel_product:
+fe_api_aisel_user:
     resource: "@AiselUserBundle/Resources/config/routing/frontend.yml"
     prefix:   /%frontend_api%
+
+seller_api_aisel_user:
+    resource: "@AiselUserBundle/Resources/config/routing/seller.yml"
+    prefix:   /%seller_api%

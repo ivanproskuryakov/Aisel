@@ -18,7 +18,6 @@ use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
 use Symfony\Component\HttpFoundation\Request;
 use Aisel\UserBundle\Manager\UserManager;
-use LogicException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
@@ -116,7 +115,7 @@ class ApiController extends BaseApiController
     /**
      * @param Request $request
      *
-     * @throw LogicException
+     * @throw AccessDeniedHttpException
      * @return array
      */
     public function passwordForgotAction(Request $request)

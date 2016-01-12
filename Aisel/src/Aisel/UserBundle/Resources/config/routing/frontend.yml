@@ -17,6 +17,12 @@ api_aisel_user_logout:
     requirements:
         _method: GET
 
+api_aisel_user_get:
+    pattern:  /user/information/
+    defaults: { _controller: AiselUserBundle:Api:information, _format: json }
+    requirements:
+        _method: GET
+
 api_aisel_user_password_forgot:
     pattern:  /user/password/forgot/
     defaults: { _controller: AiselUserBundle:Api:passwordForgot, _format: json }
@@ -35,13 +41,7 @@ api_aisel_user_patch:
     requirements:
         _method: PATCH
 
-api_aisel_user_get:
-    pattern:  /user/information/
-    defaults: { _controller: AiselUserBundle:Api:information, _format: json }
-    requirements:
-        _method: GET
-
-api_aisel_user_delete:
+api_aisel_user_account_delete:
     pattern:  /user/
     defaults: { _controller: AiselUserBundle:Api:delete, _format: json }
     requirements:

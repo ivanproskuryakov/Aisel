@@ -25,9 +25,17 @@ security:
             anonymous:           true
 
     access_control:
-        - { path: ^/%backend_api%/, role: IS_AUTHENTICATED_FULLY }
-        - { path: ^/%seller_api%/, role: IS_AUTHENTICATED_FULLY }
-
+#        - { path: ^/%backend_api%/, role: IS_AUTHENTICATED_FULLY }
+#        - { path: ^/%seller_api%/, role: IS_AUTHENTICATED_FULLY }
+#
         - { path: ^/%frontend_api%/user/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/%frontend_api%/user/information/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/%frontend_api%/user/logout/, role: IS_AUTHENTICATED_FULLY }
+
+        - { path: ^/%seller_api%/user/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%seller_api%/user/information/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%seller_api%/user/logout/, role: IS_AUTHENTICATED_FULLY }
+
+        - { path: ^/%backend_api%/user/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%backend_api%/user/information/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%backend_api%/user/logout/, role: IS_AUTHENTICATED_FULLY }

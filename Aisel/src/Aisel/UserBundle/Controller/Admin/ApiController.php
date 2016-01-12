@@ -11,7 +11,7 @@
 
 namespace Aisel\UserBundle\Controller\Admin;
 
-use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
+use Aisel\UserBundle\Controller\ApiController as BaseApiController;
 
 /**
  * ApiController

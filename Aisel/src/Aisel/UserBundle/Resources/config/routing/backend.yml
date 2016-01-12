@@ -5,6 +5,7 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
+#CRUD
 admin_api_aisel_user_get_collection:
     pattern:   /user/
     defaults:  { _controller: AiselUserBundle:Admin/Api:getCollection, _format: json }
@@ -34,3 +35,22 @@ admin_api_aisel_user_post:
     defaults:  { _controller: AiselUserBundle:Admin/Api:post, _format: json }
     requirements:
         _method: POST
+
+#User
+admin_aisel_user_login:
+    pattern:  /user/login/
+    defaults: { _controller: AiselUserBundle:Admin/Api:login, _format: json }
+    requirements:
+        _method: POST
+
+admin_aisel_user_logout:
+    pattern:  /user/logout/
+    defaults: { _controller: AiselUserBundle:Admin/Api:logout, _format: json }
+    requirements:
+        _method: GET
+
+admin_aisel_user_get:
+    pattern:  /user/information/
+    defaults: { _controller: AiselUserBundle:Admin/Api:information, _format: json }
+    requirements:
+        _method: GET

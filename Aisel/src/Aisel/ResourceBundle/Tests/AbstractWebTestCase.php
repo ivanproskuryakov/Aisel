@@ -119,6 +119,18 @@ abstract class AbstractWebTestCase extends KernelTestCase
     }
 
     /**
+     * logInSeller
+     *
+     * @param string $email
+     * @param string $password
+     * @return bool
+     */
+    public function logInSeller($email = 'seller@aisel.co', $password = 'seller')
+    {
+        $this->logIn($email, $password);
+    }
+
+    /**
      * logInBackend
      *
      * @param string $email
@@ -172,6 +184,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
             }
         }
         $this->user = $this->userManager->getAuthenticatedUser();
+
 
         return $this->user;
     }
