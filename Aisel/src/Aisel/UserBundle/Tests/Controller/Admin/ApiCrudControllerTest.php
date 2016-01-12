@@ -11,14 +11,14 @@
 
 namespace Aisel\UserBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\UserBundle\Tests\UserTestCase;
 
 /**
- * ApiControllerTest
+ * ApiCrudControllerTest
  *
  * @author Ivan Proskuryakov <volgodark@gmail.com>
  */
-class ApiControllerTest extends AbstractWebTestCase
+class ApiCrudControllerTest extends UserTestCase
 {
 
     public function setUp()
@@ -186,10 +186,10 @@ class ApiControllerTest extends AbstractWebTestCase
     {
         $this->markTestSkipped('...');
 
-        $user = $this
-            ->em
-            ->getRepository('Aisel\UserBundle\Entity\User')
-            ->findOneBy(['email' => 'test_frontend_user_aisel@aisel.co']);
+        $user = $this->newUser(
+            $this->faker->email,
+            $this->faker->randomNumber(6)
+        );
         $id = $user->getId();
 
         $this->client->request(
