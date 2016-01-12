@@ -104,6 +104,7 @@ class UserManager implements UserProviderInterface
         $userToken = $this->securityContext->getToken();
 
         if ($userToken) {
+            /** @var User $user */
             $user = $userToken->getUser();
 
             if ($user !== 'anon.') {

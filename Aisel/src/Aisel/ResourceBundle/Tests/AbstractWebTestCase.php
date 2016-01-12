@@ -178,6 +178,9 @@ abstract class AbstractWebTestCase extends KernelTestCase
                 json_encode($data)
             );
             $response = $this->client->getResponse();
+            $result = json_decode($response->getContent(), true);
+
+            $this->assertEquals($result['user']['email'], $email);
 
             if ($response->getStatusCode() !== 200) {
                 throw new \LogicException('Authentication failed.');

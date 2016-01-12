@@ -51,8 +51,8 @@ class LoadUserData extends XMLFixture implements OrderedFixtureInterface
                     $userData = array(
                         'email' => (string)$table->column[1],
                         'password' => (string)$table->column[2],
-                        'enabled' => (string)$table->column[3],
-                        'roles' => (string)$table->column[4],
+                        'roles' => (string)$table->column[3],
+                        'enabled' => (string)$table->column[4],
                         'locked' => (string)$table->column[5],
 
                         'about' => (string)$table->column[6],

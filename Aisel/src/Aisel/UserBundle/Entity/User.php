@@ -56,7 +56,6 @@ class User implements AdvancedUserInterface
      * @ORM\Column(type="string", length=255)
      * @JMS\ReadOnly
      * @JMS\Expose
-     * @JMS\Type("string")
      */
     private $roles;
 

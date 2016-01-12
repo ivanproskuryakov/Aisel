@@ -12,6 +12,7 @@
 namespace Aisel\UserBundle\Tests;
 
 use Aisel\UserBundle\Tests\UserTestCase;
+use Aisel\UserBundle\Entity\User;
 
 /**
  * UserPersistenceTest
@@ -31,12 +32,13 @@ class UserPersistenceTest extends UserTestCase
         parent::tearDown();
     }
 
-    public function testUserPasswordListener()
+    public function testUserPasswordAndGroupListener()
     {
         $password = $this->faker->password();
         $email = $this->faker->email;
         $user = $this->newUser($email, $password);
 
+        $this->assertEquals($user->getRoles()[0], User::ROLE_USER);
         $this->assertNotEmpty($user->getId());
         $this->removeEntity($user);
     }

@@ -37,8 +37,6 @@ class ApiPageControllerTest extends PageWebTestCase
     public function testPostPageAction()
     {
 
-        $this->markTestSkipped('...');
-
         $pageNode = $this
             ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
@@ -86,129 +84,129 @@ class ApiPageControllerTest extends PageWebTestCase
         $this->assertEquals($page->getUser()->getUsername(), $this->user->getUsername());
     }
 
-//    public function testGetPageAction()
-//    {
-//        $page = $this
-//            ->em
-//            ->getRepository('Aisel\PageBundle\Entity\Page')
-//            ->findOneBy(['user' => $this->user->getId()]);
-//
-//        $this->client->request(
-//            'GET',
-//            '/' . $this->api['seller'] . '/page/' . $page->getId(),
-//            [],
-//            [],
-//            ['CONTENT_TYPE' => 'application/json']
-//        );
-//
-//        $response = $this->client->getResponse();
-//        $content = $response->getContent();
-//        $statusCode = $response->getStatusCode();
-//        $result = json_decode($content, true);
-//
-//
-//        $this->assertTrue(200 === $statusCode);
-//        $this->assertEquals($result['id'], $page->getId());
-//    }
-//
-//    public function testDeletePageAction()
-//    {
-//        $page = $this
-//            ->em
-//            ->getRepository('Aisel\PageBundle\Entity\Page')
-//            ->findOneBy(['user' => $this->user->getId()]);
-//
-//        $this->assertEquals($page->getUser()->getUsername(), $this->user->getUsername());
-//
-//        $id = $page->getId();
-//
-//        $this->client->request(
-//            'DELETE',
-//            '/' . $this->api['seller'] . '/page/' . $id,
-//            [],
-//            [],
-//            ['CONTENT_TYPE' => 'application/json']
-//        );
-//
-//        $response = $this->client->getResponse();
-//        $content = $response->getContent();
-//        $statusCode = $response->getStatusCode();
-//
-//        $page = $this
-//            ->em
-//            ->getRepository('Aisel\PageBundle\Entity\Page')
-//            ->findOneBy(['id' => $id]);
-//
-//        $this->assertTrue(204 === $statusCode);
-//        $this->assertEmpty($content);
-//        $this->assertNull($page);
-//    }
-//
-//    public function testPutPageActionThrowsNotFound()
-//    {
-//        $this->markTestSkipped('...');
-//
-//        $page = $this
-//            ->em
-//            ->getRepository('Aisel\PageBundle\Entity\Page')
-//            ->findOneBy(['locale' => 'es']);
-//
-//        $this->assertNotEquals($page->getUser()->getUsername(), $this->user->getUsername());
-//
-//        $id = $page->getId();
-//        $data['locale'] = 'ru';
-//
-//        $this->client->request(
-//            'PUT',
-//            '/' . $this->api['seller'] . '/page/' . $id,
-//            [],
-//            [],
-//            ['CONTENT_TYPE' => 'application/json'],
-//            json_encode($data)
-//        );
-//
-//        $response = $this->client->getResponse();
-//        $content = $response->getContent();
-//        $statusCode = $response->getStatusCode();
-//
-//        $result = json_decode($content, true);
-//
-//        $this->assertTrue(404 === $statusCode);
-//        $this->assertEquals($result['message'], 'Not found');
-//    }
-//
-//    public function testPutPageAction()
-//    {
-//        $page = $this->newPage();
-//        $this->assertEquals($page->getUser()->getUsername(), $this->user->getUsername());
-//
-//        $id = $page->getId();
-//        $data['locale'] = 'ru';
-//
-//        $this->client->request(
-//            'PUT',
-//            '/' . $this->api['seller'] . '/page/' . $id,
-//            [],
-//            [],
-//            ['CONTENT_TYPE' => 'application/json'],
-//            json_encode($data)
-//        );
-//
-//        $response = $this->client->getResponse();
-//        $content = $response->getContent();
-//        $statusCode = $response->getStatusCode();
-//
-//        $this->em->clear();
-//
-//        $page = $this
-//            ->em
-//            ->getRepository('Aisel\PageBundle\Entity\Page')
-//            ->findOneBy(['id' => $id]);
-//
-//        $this->assertTrue(204 === $statusCode);
-//        $this->assertEmpty($content);
-//        $this->assertNotNull($page);
-//        $this->assertEquals($data['locale'], $page->getLocale());
-//    }
+    public function testGetPageAction()
+    {
+        $page = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->findOneBy(['user' => $this->user->getId()]);
+
+        $this->client->request(
+            'GET',
+            '/' . $this->api['seller'] . '/page/' . $page->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertEquals($result['id'], $page->getId());
+    }
+
+    public function testDeletePageAction()
+    {
+        $page = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->findOneBy(['user' => $this->user->getId()]);
+
+        $this->assertEquals($page->getUser()->getUsername(), $this->user->getUsername());
+
+        $id = $page->getId();
+
+        $this->client->request(
+            'DELETE',
+            '/' . $this->api['seller'] . '/page/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $page = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->findOneBy(['id' => $id]);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNull($page);
+    }
+
+    public function testPutPageActionThrowsNotFound()
+    {
+        $this->markTestSkipped('...');
+
+        $page = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->findOneBy(['locale' => 'es']);
+
+        $this->assertNotEquals($page->getUser()->getUsername(), $this->user->getUsername());
+
+        $id = $page->getId();
+        $data['locale'] = 'ru';
+
+        $this->client->request(
+            'PUT',
+            '/' . $this->api['seller'] . '/page/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $result = json_decode($content, true);
+
+        $this->assertTrue(404 === $statusCode);
+        $this->assertEquals($result['message'], 'Not found');
+    }
+
+    public function testPutPageAction()
+    {
+        $page = $this->newPage();
+        $this->assertEquals($page->getUser()->getUsername(), $this->user->getUsername());
+
+        $id = $page->getId();
+        $data['locale'] = 'ru';
+
+        $this->client->request(
+            'PUT',
+            '/' . $this->api['seller'] . '/page/' . $id,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+
+        $this->em->clear();
+
+        $page = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->findOneBy(['id' => $id]);
+
+        $this->assertTrue(204 === $statusCode);
+        $this->assertEmpty($content);
+        $this->assertNotNull($page);
+        $this->assertEquals($data['locale'], $page->getLocale());
+    }
 
 }
