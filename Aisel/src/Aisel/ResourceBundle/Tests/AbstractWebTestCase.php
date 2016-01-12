@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Validator;
 use Faker;
 use Aisel\UserBundle\Entity\User;
 use Swift_Message;
+use LogicException;
 
 /**
  * Class AbstractWebTestCase.
@@ -180,11 +181,10 @@ abstract class AbstractWebTestCase extends KernelTestCase
             $response = $this->client->getResponse();
             $result = json_decode($response->getContent(), true);
 
-            $this->assertEquals($result['user']['email'], $email);
-
             if ($response->getStatusCode() !== 200) {
-                throw new \LogicException('Authentication failed.');
+                throw new LogicException('Authentication failed.');
             }
+            $this->assertEquals($result['user']['email'], $email);
         }
         $this->user = $this->userManager->getAuthenticatedUser();
 
