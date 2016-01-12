@@ -24,6 +24,7 @@ class ApiProductControllerTest extends ProductWebTestCase
     public function setUp()
     {
         parent::setUp();
+
         $this->logInFrontend();
     }
 
