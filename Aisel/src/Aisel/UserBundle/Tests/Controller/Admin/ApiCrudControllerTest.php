@@ -33,6 +33,30 @@ class ApiCrudControllerTest extends UserTestCase
         parent::tearDown();
     }
 
+    public function testPostUserRolesVerifyAction()
+    {
+        $data = [
+            'email' => $this->faker->email,
+            'plain_password' => $this->faker->randomNumber(6),
+        ];
+
+        $this->client->request(
+            'POST',
+            '/' . $this->api['backend'] . '/user/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertEquals(false, isset($result['errors']['roles']));
+    }
+
     public function testPostUserAction()
     {
         $users = $this
@@ -62,6 +86,7 @@ class ApiCrudControllerTest extends UserTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
 
         $this->client->request(
             'POST',
@@ -81,6 +106,7 @@ class ApiCrudControllerTest extends UserTestCase
         $this->assertEquals($result['errors']['email'], 'This value is already used.');
         $this->assertTrue(400 === $statusCode);
     }
+
 
     public function testGetUsersAction()
     {
@@ -107,7 +133,6 @@ class ApiCrudControllerTest extends UserTestCase
             ->getRepository('Aisel\UserBundle\Entity\User')
             ->findOneBy(['email' => 'test_frontend_user_aisel@aisel.co']);
         $id = $user->getId();
-
 
         $this->client->request(
             'GET',

@@ -87,23 +87,11 @@ class UserManager implements UserProviderInterface
             if ($user !== 'anon.') {
                 $roles = $user->getRoles();
 
-                if (in_array('ROLE_USER', $roles)) return $user;
+                if (in_array(User::ROLE_USER, $roles)) return $user;
             }
         }
 
         return false;
-    }
-
-    /**
-     * Get get session Id
-     *
-     * @return string $sessionId
-     */
-    public function getSessionId()
-    {
-        $sessionId = $this->getSession();
-
-        return $sessionId;
     }
 
     /**
@@ -121,7 +109,7 @@ class UserManager implements UserProviderInterface
             if ($user !== 'anon.') {
                 $roles = $user->getRoles();
 
-                if (in_array('ROLE_USER', $roles)) {
+                if (in_array(User::ROLE_USER, $roles)) {
                     return $user;
                 }
             }
@@ -160,6 +148,7 @@ class UserManager implements UserProviderInterface
         $user = new User();
         $user->setEmail($userData['email']);
         $user->setPlainPassword($userData['password']);
+        $user->setRoles($userData['roles']);
         $user->setEnabled($userData['enabled']);
         $user->setLocked($userData['locked']);
         $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));

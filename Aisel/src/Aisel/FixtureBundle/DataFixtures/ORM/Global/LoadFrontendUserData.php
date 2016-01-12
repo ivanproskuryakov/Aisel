@@ -52,13 +52,14 @@ class LoadUserData extends XMLFixture implements OrderedFixtureInterface
                         'email' => (string)$table->column[1],
                         'password' => (string)$table->column[2],
                         'enabled' => (string)$table->column[3],
-                        'locked' => (string)$table->column[4],
+                        'roles' => (string)$table->column[4],
+                        'locked' => (string)$table->column[5],
 
-                        'about' => (string)$table->column[5],
-                        'phone' => (string)$table->column[6],
-                        'website' => (string)$table->column[7],
-                        'facebook' => (string)$table->column[8],
-                        'twitter' => (string)$table->column[9]
+                        'about' => (string)$table->column[6],
+                        'phone' => (string)$table->column[7],
+                        'website' => (string)$table->column[8],
+                        'facebook' => (string)$table->column[9],
+                        'twitter' => (string)$table->column[10]
                     );
 
                     $user = $this->getUserManager()->registerFixturesUser($userData);

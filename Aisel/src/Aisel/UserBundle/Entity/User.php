@@ -39,6 +39,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class User implements AdvancedUserInterface
 {
 
+    const ROLE_USER = 'ROLE_USER';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+
     use IdTrait;
     use UpdateCreateTrait;
 
@@ -47,6 +50,15 @@ class User implements AdvancedUserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $username;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @JMS\ReadOnly
+     * @JMS\Expose
+     * @JMS\Type("string")
+     */
+    private $roles;
 
     /**
      * @var string
@@ -78,6 +90,7 @@ class User implements AdvancedUserInterface
      * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\ReadOnly
      * @JMS\Expose
      * @JMS\Type("boolean")
      */
@@ -88,6 +101,7 @@ class User implements AdvancedUserInterface
      * @ORM\Column(type="boolean")
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
+     * @JMS\ReadOnly
      * @JMS\Expose
      * @JMS\Type("boolean")
      */
@@ -414,11 +428,19 @@ class User implements AdvancedUserInterface
     }
 
     /**
-     * @inheritDoc
+     * @return string
      */
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return array($this->roles);
+    }
+
+    /**
+     * @param string $roles
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
     }
 
     /**
@@ -724,7 +746,8 @@ class User implements AdvancedUserInterface
      * @ORM\PreUpdate
      * @ORM\PrePersist
      */
-    public function setUsernameFromEmail() {
+    public function setUsernameFromEmail()
+    {
         $this->username = $this->getEmail();
     }
 

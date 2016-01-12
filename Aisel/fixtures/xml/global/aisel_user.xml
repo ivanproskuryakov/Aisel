@@ -21,6 +21,7 @@
             <column name="id">1000</column>
             <column name="email">seller@aisel.co</column>
             <column name="password">seller</column>
+            <column name="role">ROLE_USER</column>
             <column name="enabled">1</column>
             <column name="locked">0</column>
             <column name="created_at">2014-08-16 12:31:52</column>
@@ -32,6 +33,7 @@
             <column name="id">2000</column>
             <column name="email">admin@aisel.co</column>
             <column name="password">admin</column>
+            <column name="role">ROLE_ADMIN</column>
             <column name="enabled">1</column>
             <column name="locked">0</column>
             <column name="created_at">2014-08-16 12:31:52</column>
@@ -44,6 +46,7 @@
             <column name="id">3000</column>
             <column name="email">user@aisel.co</column>
             <column name="password">user</column>
+            <column name="role">ROLE_USER</column>
             <column name="enabled">1</column>
             <column name="locked">0</column>
             <column name="created_at">2014-08-16 12:31:52</column>
@@ -67,6 +70,7 @@
             <column name="id">4000</column>
             <column name="email">volgodark@gmail.com</column>
             <column name="password">volgodark</column>
+            <column name="role">ROLE_USER</column>
             <column name="enabled">1</column>
             <column name="locked">0</column>
             <column name="created_at">2014-08-16 12:31:52</column>

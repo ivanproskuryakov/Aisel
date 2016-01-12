@@ -185,7 +185,6 @@ abstract class AbstractWebTestCase extends KernelTestCase
         }
         $this->user = $this->userManager->getAuthenticatedUser();
 
-
         return $this->user;
     }
 
