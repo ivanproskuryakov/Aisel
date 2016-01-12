@@ -157,11 +157,13 @@ class ApiController extends BaseApiController
     /**
      * informationAction
      *
-     * @return User|false
+     * @return User
      */
     public function informationAction()
     {
-        return $this->getUserManager()->getAuthenticatedUser();
+        $user = $this->filterMaxDepth($this->getUser());
+
+        return $user;
     }
 
     /**

@@ -3,6 +3,7 @@ security:
         Aisel\UserBundle\Entity\User: sha512
 
     role_hierarchy:
+        ROLE_USER:        [ROLE_USER]
         ROLE_ADMIN:       [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
@@ -21,9 +22,9 @@ security:
             anonymous:           true
 
     access_control:
-        - { path: ^/%backend_api%/user/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/%backend_api%/user/information/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/%backend_api%/user/logout/, role: IS_AUTHENTICATED_FULLY }
-
-        - { path: ^/%backend_api%/, role: IS_AUTHENTICATED_FULLY }
-        - { path: ^/%seller_api%/, role: IS_AUTHENTICATED_FULLY }
+#        - { path: ^/%backend_api%/user/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/%backend_api%/user/information/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/%backend_api%/user/logout/, role: IS_AUTHENTICATED_FULLY }
+#
+#        - { path: ^/%backend_api%/, role: ROLE_ADMIN }
+#        - { path: ^/%seller_api%/, role: ROLE_USER }

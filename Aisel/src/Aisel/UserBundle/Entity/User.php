@@ -147,7 +147,7 @@ class User implements AdvancedUserInterface
      * @var Collection
      * @ORM\OneToMany(targetEntity="Aisel\ProductBundle\Entity\Review", mappedBy="user", cascade={"remove"})
      * @JMS\Expose
-     * @JMS\MaxDepth(3)
+     * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Review>")
      */
     private $reviewsProduct;
@@ -156,7 +156,7 @@ class User implements AdvancedUserInterface
      * @var Collection
      * @ORM\OneToMany(targetEntity="Aisel\PageBundle\Entity\Review", mappedBy="user", cascade={"remove"})
      * @JMS\Expose
-     * @JMS\MaxDepth(3)
+     * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Review>")
      */
     private $reviewsPage;

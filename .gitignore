@@ -8,7 +8,7 @@
 /Aisel/api.error.log
 /Aisel/backend.access.log
 /Aisel/backend.error.log
-/Aisel/frontend.error.log
+/Aisel/frontend.access.log
 /Aisel/frontend.error.log
 
 #Frontend AngularJS

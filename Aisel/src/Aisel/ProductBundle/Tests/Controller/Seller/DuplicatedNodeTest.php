@@ -58,7 +58,7 @@ class DuplicatedNodeTest extends AbstractWebTestCase
 
         $this->client->request(
             'POST',
-            '/' . $this->api['backend'] . '/product/',
+            '/' . $this->api['seller'] . '/product/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],

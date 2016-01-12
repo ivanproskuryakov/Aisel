@@ -24,7 +24,7 @@ class DuplicatedNodeTest extends AbstractWebTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->logInBackend();
+        $this->logInSeller();
     }
 
     protected function tearDown()
@@ -56,7 +56,7 @@ class DuplicatedNodeTest extends AbstractWebTestCase
 
         $this->client->request(
             'POST',
-            '/' . $this->api['backend'] . '/page/',
+            '/' . $this->api['seller'] . '/page/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
