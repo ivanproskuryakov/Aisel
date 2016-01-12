@@ -12,7 +12,3 @@ be_api_aisel_user:
 fe_api_aisel_user:
     resource: "@AiselUserBundle/Resources/config/routing/frontend.yml"
     prefix:   /%frontend_api%
-
-seller_api_aisel_user:
-    resource: "@AiselUserBundle/Resources/config/routing/seller.yml"
-    prefix:   /%seller_api%
