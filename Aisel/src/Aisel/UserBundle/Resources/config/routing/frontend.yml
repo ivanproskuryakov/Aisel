@@ -42,7 +42,7 @@ api_aisel_user_patch:
         _method: PATCH
 
 api_aisel_user_account_delete:
-    pattern:  /user/
+    pattern:  /user-terminate/
     defaults: { _controller: AiselUserBundle:Api:delete, _format: json }
     requirements:
         _method: DELETE

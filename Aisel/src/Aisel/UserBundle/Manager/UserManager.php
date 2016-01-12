@@ -108,9 +108,10 @@ class UserManager implements UserProviderInterface
             $user = $userToken->getUser();
 
             if ($user !== 'anon.') {
-                $roles = $user->getRoles();
+                $role = $user->getRoles()[0];
+                $rolesAvailable = [User::ROLE_USER, User::ROLE_ADMIN];
 
-                if (in_array(User::ROLE_USER, $roles)) {
+                if (in_array($role, $rolesAvailable)) {
                     return $user;
                 }
             }
@@ -149,7 +150,7 @@ class UserManager implements UserProviderInterface
         $user = new User();
         $user->setEmail($userData['email']);
         $user->setPlainPassword($userData['password']);
-        $user->setRoles($userData['roles']);
+
         $user->setEnabled($userData['enabled']);
         $user->setLocked($userData['locked']);
         $user->setLastLogin(new \DateTime(date('Y-m-d H:i:s')));
@@ -159,6 +160,11 @@ class UserManager implements UserProviderInterface
         $user->setTwitter($userData['twitter']);
         $user->setAbout($userData['about']);
 
+        $this->em->persist($user);
+        $this->em->flush();
+
+        // Update User role
+        $user->setRoles($userData['roles']);
         $this->em->persist($user);
         $this->em->flush();
 

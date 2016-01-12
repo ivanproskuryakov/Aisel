@@ -59,19 +59,9 @@ class ApiCrudControllerTest extends UserTestCase
 
     public function testPostUserAction()
     {
-        $users = $this
-            ->em
-            ->getRepository('Aisel\UserBundle\Entity\User')
-            ->findBy(['email' => 'test_frontend_user_aisel@aisel.co']);
-
-        foreach ($users as $user) {
-            $this->em->remove($user);
-        }
-        $this->em->flush();
-
         $data = [
-            'email' => 'test_frontend_user_aisel@aisel.co',
-            'plain_password' => 'test_frontend_user_aisel',
+            'email' => $this->faker->email,
+            'plain_password' => $this->faker->randomNumber(6),
         ];
 
         $this->client->request(
@@ -128,10 +118,7 @@ class ApiCrudControllerTest extends UserTestCase
 
     public function testGetUserAction()
     {
-        $user = $this
-            ->em
-            ->getRepository('Aisel\UserBundle\Entity\User')
-            ->findOneBy(['email' => 'test_frontend_user_aisel@aisel.co']);
+        $user = $this->newUser($this->faker->email, $this->faker->randomNumber(6));
         $id = $user->getId();
 
         $this->client->request(
@@ -154,10 +141,7 @@ class ApiCrudControllerTest extends UserTestCase
     public function testPutUserAction()
     {
         $passwordString = '000111222';
-        $user = $this
-            ->em
-            ->getRepository('Aisel\UserBundle\Entity\User')
-            ->findOneBy(['email' => 'test_frontend_user_aisel@aisel.co']);
+        $user = $this->newUser($this->faker->email, $this->faker->randomNumber(6));
         $id = $user->getId();
         $oldPassword = $user->getPassword();
 
@@ -198,7 +182,7 @@ class ApiCrudControllerTest extends UserTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\UserBundle\Entity\User')
-            ->findOneBy(['email' => 'test_frontend_user_aisel@aisel.co']);
+            ->find($id);
 
         $this->assertNotEquals($oldPassword, $user->getPassword());
         $this->assertEquals($encodedPassword, $user->getPassword());
@@ -210,11 +194,7 @@ class ApiCrudControllerTest extends UserTestCase
     public function testDeleteUserAction()
     {
         $this->markTestSkipped('...');
-
-        $user = $this->newUser(
-            $this->faker->email,
-            $this->faker->randomNumber(6)
-        );
+        $user = $this->newUser($this->faker->email, $this->faker->randomNumber(6));
         $id = $user->getId();
 
         $this->client->request(

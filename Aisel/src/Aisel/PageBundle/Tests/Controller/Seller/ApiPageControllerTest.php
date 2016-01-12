@@ -146,10 +146,7 @@ class ApiPageControllerTest extends PageWebTestCase
     {
         $this->markTestSkipped('...');
 
-        $page = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->findOneBy(['locale' => 'es']);
+        $page = $this->newPage();
 
         $this->assertNotEquals($page->getUser()->getUsername(), $this->user->getUsername());
 
@@ -173,6 +170,7 @@ class ApiPageControllerTest extends PageWebTestCase
 
         $this->assertTrue(404 === $statusCode);
         $this->assertEquals($result['message'], 'Not found');
+
     }
 
     public function testPutPageAction()

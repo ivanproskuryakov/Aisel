@@ -34,8 +34,6 @@ class ApiPageControllerTest extends PageWebTestCase
 
     public function testPostPageAction()
     {
-        $this->markTestSkipped('no POST action for page entity');
-
         $pageNode = $this
             ->em
             ->getRepository('Aisel\PageBundle\Entity\Node')
@@ -69,17 +67,7 @@ class ApiPageControllerTest extends PageWebTestCase
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->assertEmpty($content);
-        $this->assertTrue(201 === $statusCode);
-        $parts = explode('/', $response->headers->get('location'));
-        $id = array_pop($parts);
-
-        $page = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Page')
-            ->find($id);
-
-        $this->assertEquals($page->getNodes()[0]->getId(), $pageNode->getId());
+        $this->assertEquals(405, $statusCode); // No route found
     }
 
     public function testGetPageAction()

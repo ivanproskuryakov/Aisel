@@ -22,9 +22,9 @@ security:
             anonymous:           true
 
     access_control:
-#        - { path: ^/%backend_api%/user/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/%backend_api%/user/information/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/%backend_api%/user/logout/, role: IS_AUTHENTICATED_FULLY }
-#
-#        - { path: ^/%backend_api%/, role: ROLE_ADMIN }
-#        - { path: ^/%seller_api%/, role: ROLE_USER }
+        - { path: ^/%frontend_api%/user/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%frontend_api%/user/information/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%frontend_api%/user/logout/, role: IS_AUTHENTICATED_FULLY }
+
+        - { path: ^/%backend_api%/, role: ROLE_ADMIN }
+        - { path: ^/%seller_api%/, role: ROLE_USER }

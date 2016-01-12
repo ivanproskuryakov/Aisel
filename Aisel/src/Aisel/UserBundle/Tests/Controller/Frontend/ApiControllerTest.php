@@ -52,6 +52,27 @@ class ApiControllerTest extends UserTestCase
         $this->assertNull($result);
     }
 
+    public function testGetLoggedUserInfoAction()
+    {
+        $this->logInFrontend();
+
+        $this->client->request(
+            'GET',
+            '/' . $this->api['frontend'] . '/user/information/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertTrue(200 === $statusCode);
+        $this->assertNotNull($result);
+    }
+
     public function testUpdateUserInformationAction()
     {
         $password = $this->faker->password();
@@ -256,7 +277,7 @@ class ApiControllerTest extends UserTestCase
 
         $this->client->request(
             'DELETE',
-            '/' . $this->api['frontend'] . '/user/',
+            '/' . $this->api['frontend'] . '/user-terminate/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
