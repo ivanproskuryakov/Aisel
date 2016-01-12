@@ -52,25 +52,7 @@ class ApiProductControllerTest extends ProductWebTestCase
 
     public function testPostProductAction()
     {
-        $this->markTestSkipped('no POST action for product entity');
-        $node = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Node')
-            ->findOneBy(['locale' => 'en']);
-
         $data = [
-            'locale' => 'en',
-            'name' => 'AAAAA',
-            'sku' => time(),
-            'price' => 100,
-            'content' => $this->faker->sentence(),
-            'description_short' => time(),
-            'meta_url' => time(),
-            'nodes' => [
-                [
-                    'id' => $node->getId()
-                ]
-            ]
         ];
 
         $this->client->request(
@@ -83,21 +65,9 @@ class ApiProductControllerTest extends ProductWebTestCase
         );
 
         $response = $this->client->getResponse();
-        $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
-        $this->assertEmpty($content);
-        $this->assertTrue(201 === $statusCode);
-        $parts = explode('/', $response->headers->get('location'));
-        $id = array_pop($parts);
-
-        $product = $this
-            ->em
-            ->getRepository('Aisel\ProductBundle\Entity\Product')
-            ->find($id);
-
-        $this->assertEquals($data['locale'], $product->getLocale());
-        $this->assertEquals($product->getNodes()[0]->getId(), $node->getId());
+        $this->assertEquals(405, $statusCode); // No route found
     }
 
     public function testPutProductAction()

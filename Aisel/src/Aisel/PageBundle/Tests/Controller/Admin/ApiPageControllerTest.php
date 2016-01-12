@@ -34,24 +34,7 @@ class ApiPageControllerTest extends PageWebTestCase
 
     public function testPostPageAction()
     {
-        $pageNode = $this
-            ->em
-            ->getRepository('Aisel\PageBundle\Entity\Node')
-            ->findOneBy(['locale' => 'en']);
-
         $data = [
-            'locale' => 'en',
-            'name' => 'AAA',
-            'content' => 'test',
-            'status' => true,
-            'meta_url' => 'metaUrl_' . time(),
-            'meta_title' => 'metaTitle_' . time(),
-            'comment_status' => false,
-            'nodes' => [
-                [
-                    'id' => $pageNode->getId()
-                ]
-            ]
         ];
 
         $this->client->request(
@@ -64,7 +47,6 @@ class ApiPageControllerTest extends PageWebTestCase
         );
 
         $response = $this->client->getResponse();
-        $content = $response->getContent();
         $statusCode = $response->getStatusCode();
 
         $this->assertEquals(405, $statusCode); // No route found
