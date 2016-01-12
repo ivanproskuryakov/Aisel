@@ -30,8 +30,8 @@
         </table>
         <table name="aisel_user_backend">
             <column name="id">2000</column>
-            <column name="email">backenduser@aisel.co</column>
-            <column name="password">backenduser</column>
+            <column name="email">admin@aisel.co</column>
+            <column name="password">admin</column>
             <column name="enabled">1</column>
             <column name="locked">0</column>
             <column name="created_at">2014-08-16 12:31:52</column>
@@ -42,8 +42,8 @@
 
         <table name="aisel_user_frontend">
             <column name="id">3000</column>
-            <column name="email">frontenduser@aisel.co</column>
-            <column name="password">frontenduser</column>
+            <column name="email">user@aisel.co</column>
+            <column name="password">user</column>
             <column name="enabled">1</column>
             <column name="locked">0</column>
             <column name="created_at">2014-08-16 12:31:52</column>

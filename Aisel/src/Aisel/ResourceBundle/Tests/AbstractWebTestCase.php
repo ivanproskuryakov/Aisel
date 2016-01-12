@@ -137,7 +137,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
      * @param string $password
      * @return bool
      */
-    public function logInBackend($email = 'backenduser@aisel.co', $password = 'backenduser')
+    public function logInBackend($email = 'admin@aisel.co', $password = 'admin')
     {
         $this->logIn($email, $password);
     }
@@ -149,7 +149,7 @@ abstract class AbstractWebTestCase extends KernelTestCase
      * @param string $password
      * @return bool
      */
-    public function logInFrontend($email = 'frontenduser@aisel.co', $password = 'frontenduser')
+    public function logInFrontend($email = 'user@aisel.co', $password = 'user')
     {
         $this->logIn($email, $password);
     }

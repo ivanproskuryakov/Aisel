@@ -41,7 +41,7 @@ class ProductTest extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\UserBundle\Entity\User')
-            ->findOneBy(['email' => 'frontenduser@aisel.co']);
+            ->findOneBy(['email' => 'user@aisel.co']);
 
         $node = new Node();
         $node->setStatus(true);
@@ -77,7 +77,7 @@ class ProductTest extends AbstractWebTestCase
         $user = $this
             ->em
             ->getRepository('Aisel\UserBundle\Entity\User')
-            ->findOneBy(['email' => 'frontenduser@aisel.co']);
+            ->findOneBy(['email' => 'user@aisel.co']);
 
         $this->setExpectedException('Doctrine\DBAL\Exception\UniqueConstraintViolationException');
         $image = new Media();
