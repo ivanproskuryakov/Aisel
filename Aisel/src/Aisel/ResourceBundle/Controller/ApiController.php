@@ -280,12 +280,10 @@ class ApiController extends Controller
      */
     protected function getScope()
     {
-        $uri = $this->get('request')->getUri();
         $scope = self::SCOPE_BACKEND;
 
-        $urlFrontend = $this
-            ->container
-            ->getParameter('frontend_api');
+        $uri = $this->get('request')->getUri();
+        $urlFrontend = $this->container->getParameter('frontend_api');
 
         if (strpos($uri, $urlFrontend)) {
             $scope = self::SCOPE_FRONTEND;

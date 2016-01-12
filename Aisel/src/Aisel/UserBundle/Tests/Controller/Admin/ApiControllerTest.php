@@ -77,7 +77,6 @@ class ApiControllerTest extends UserTestCase
         $result = json_decode($content, true);
 
         $this->assertTrue(200 === $statusCode);
-
         $this->removeEntity($user);
     }
 

@@ -35,9 +35,7 @@ class ApiSellerController extends ApiController
     {
         $configuration = new ParamConverter(array(
             'class' => $this->model,
-            'options' => [
-                'user' => $this->getUser()
-            ]
+            'options' => ['user' => $this->getUser()]
         ));
         $entity = $this
             ->get('api_param_converter')
