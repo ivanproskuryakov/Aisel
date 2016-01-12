@@ -39,6 +39,7 @@ server {
 server {
     listen 80;
     server_name aisel.dev;
+    sendfile off;
 
     root {{app_path}}/frontend/web;
     error_log  {{app_path}}/frontend.error.log;
@@ -55,6 +56,7 @@ server {
 server {
     listen 80;
     server_name admin.aisel.dev;
+    sendfile off;
 
     root {{app_path}}/backend/web;
     error_log  {{app_path}}/backend.error.log;
