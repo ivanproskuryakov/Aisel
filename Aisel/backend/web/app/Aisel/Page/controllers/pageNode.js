@@ -16,8 +16,8 @@ define(['app'], function(app) {
     app.controller('PageNodeCtrl', function($scope, $stateParams, $state, Environment) {
 
         $scope.sectionName = 'Page nodes';
-        $scope.nodeJson = Environment.settings.apiBackend + '/page/node/?locale=' + $stateParams.lang;
-        $scope.nodeUpdate = Environment.settings.apiBackend + '/page/node/node/?locale=' + $stateParams.lang;
+        $scope.nodeJson = Environment.settings.api + '/page/node/?locale=' + $stateParams.lang;
+        $scope.nodeUpdate = Environment.settings.api + '/page/node/node/?locale=' + $stateParams.lang;
 
         $scope.editNode = function(id) {
             $state.transitionTo('pageNodeEdit', {
