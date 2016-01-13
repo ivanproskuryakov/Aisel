@@ -12,9 +12,9 @@
  * @description     Module configuration
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app
-        .config(['$stateProvider', function($stateProvider) {
+        .config(['$stateProvider', function ($stateProvider) {
             $stateProvider
                 .state("countries", {
                     url: "/:locale/addressing/country/",
@@ -32,7 +32,7 @@ define(['app'], function(app) {
                     controller: 'AddressingCountryDetailsCtrl'
                 })
 
-            .state("regions", {
+                .state("regions", {
                     url: "/:locale/addressing/region/",
                     templateUrl: '/app/Aisel/Kernel/views/collection.html',
                     controller: 'AddressingRegionCtrl'
@@ -48,7 +48,7 @@ define(['app'], function(app) {
                     controller: 'AddressingRegionDetailsCtrl'
                 })
 
-            .state("cities", {
+                .state("cities", {
                     url: "/:locale/addressing/city/",
                     templateUrl: '/app/Aisel/Kernel/views/collection.html',
                     controller: 'AddressingCityCtrl'
@@ -64,23 +64,28 @@ define(['app'], function(app) {
                     controller: 'AddressingCityDetailsCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
+
             $rootScope.topMenu.push({
                 "ordering": 900,
+                "roles": 'ROLE_ADMIN',
                 "title": 'Addresses',
                 "children": {
                     "countries": {
                         "ordering": 100,
+                        "roles": 'ROLE_ADMIN',
                         "slug": '/addressing/country/',
                         "title": 'Countries'
                     },
                     "regions": {
                         "ordering": 200,
+                        "roles": 'ROLE_ADMIN',
                         "slug": '/addressing/region/',
                         "title": 'Regions'
                     },
                     "cities": {
                         "ordering": 300,
+                        "roles": 'ROLE_ADMIN',
                         "slug": '/addressing/city/',
                         "title": 'Cities'
                     }

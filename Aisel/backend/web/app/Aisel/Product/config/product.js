@@ -62,6 +62,7 @@ define(['app'], function (app) {
         .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
             $rootScope.topMenu.push({
                 "ordering": 200,
+                "roles": 'ROLE_ADMIN',
                 "title": 'Products',
                 "children": {
                     "products": {
@@ -71,11 +72,13 @@ define(['app'], function (app) {
                     },
                     "productNode": {
                         "ordering": 200,
+                        "roles": 'ROLE_ADMIN',
                         "slug": '/product/node/' + Environment.currentLocale() + '/',
                         "title": 'Nodes'
                     },
                     "productReview": {
                         "ordering": 300,
+                        "roles": 'ROLE_ADMIN',
                         "slug": '/product/review/',
                         "title": 'Reviews'
                     }

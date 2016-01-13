@@ -8,14 +8,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselBackendUser
- * @description     BackendUser module
+ * @name            AiselUser
+ * @description     User module
  */
 
 define(['app',
-    './config/backendUser',
-    './controllers/backendUser',
-    './controllers/backendUserDetails',
+    './config/user',
+    './controllers/user',
+    './controllers/userDetails',
 ], function(app) {
-    console.log('BackendUser module loaded ...');
+    console.log('User module loaded ...');
 });

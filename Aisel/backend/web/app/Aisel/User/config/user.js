@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @name            AiselFrontendUser
+ * @name            AiselUser
  * @description     Module configuration
  */
 
@@ -16,27 +16,28 @@ define(['app'], function(app) {
     app
         .config(['$stateProvider', function($stateProvider) {
             $stateProvider
-                .state("frontendUsers", {
-                    url: "/:locale/users/frontend/",
+                .state("users", {
+                    url: "/:locale/users/",
                     templateUrl: '/app/Aisel/Kernel/views/collection.html',
-                    controller: 'FrontendUserCtrl'
+                    controller: 'UserCtrl'
                 })
-                .state("frontendUserEdit", {
-                    url: "/:locale/users/frontend/edit/:id/",
-                    templateUrl: '/app/Aisel/FrontendUser/views/edit.html',
-                    controller: 'FrontendUserDetailCtrl'
+                .state("userEdit", {
+                    url: "/:locale/users/edit/:id/",
+                    templateUrl: '/app/Aisel/User/views/edit.html',
+                    controller: 'UserDetailCtrl'
                 })
-                .state("frontendUserNew", {
-                    url: "/:locale/users/frontend/new/",
-                    templateUrl: '/app/Aisel/FrontendUser/views/edit.html',
-                    controller: 'FrontendUserDetailCtrl'
+                .state("userNew", {
+                    url: "/:locale/users/new/",
+                    templateUrl: '/app/Aisel/User/views/edit.html',
+                    controller: 'UserDetailCtrl'
                 })
         }])
         .run(['$rootScope', 'Environment', function($rootScope, Environment) {
             $rootScope.topMenu.push({
                 "ordering": 300,
+                "roles": 'ROLE_ADMIN',
                 "title": 'Users',
-                "slug": '/users/frontend/'
+                "slug": '/users/'
             });
         }]);
 });

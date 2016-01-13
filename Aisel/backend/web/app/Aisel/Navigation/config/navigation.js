@@ -31,6 +31,7 @@ define(['app'], function(app) {
         .run(['$rootScope', 'Environment', function($rootScope, Environment) {
             $rootScope.topMenu.push({
                 "ordering": 500,
+                "roles": 'ROLE_ADMIN',
                 "slug": '/navigation/' + Environment.currentLocale() + '/',
                 "title": 'Navigation'
             });

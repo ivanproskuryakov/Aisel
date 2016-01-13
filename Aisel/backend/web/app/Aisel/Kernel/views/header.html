@@ -14,7 +14,9 @@
         <div class="navbar-collapse collapse">
             <!-- Navigation -->
             <ul class="nav navbar-nav">
-                <li ng-class="item.children ? 'dropdown' : ''" ng-repeat="(name,item) in topMenu | orderBy: 'ordering'">
+                <li ng-class="item.children ? 'dropdown' : ''"
+                    ng-if="item.roles === user.roles"
+                    ng-repeat="(name,item) in topMenu | orderBy: 'ordering'">
                     <a href="/{{locale}}{{item.slug}}" ng-if="!item.children">
                         <span ng-if="item.glyphicon" class="glyphicon {{item.glyphicon}}" aria-hidden="true"></span>
                         {{item.title}}
@@ -24,7 +26,8 @@
                         {{item.title}} <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" ng-if="item.children">
-                        <li ng-repeat="(childrenName,childrenItem) in item.children">
+                        <li ng-if="item.roles === user.roles"
+                            ng-repeat="(childrenName,childrenItem) in item.children">
                             <a href="/{{locale}}{{childrenItem.slug}}">{{childrenItem.title}}</a>
                         </li>
                     </ul>

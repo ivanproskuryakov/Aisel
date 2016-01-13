@@ -12,9 +12,9 @@
  * @description     Module configuration
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app
-        .config(['$stateProvider', function($stateProvider) {
+        .config(['$stateProvider', function ($stateProvider) {
             $stateProvider
                 .state("pages", {
                     url: "/:locale/page/",
@@ -60,23 +60,27 @@ define(['app'], function(app) {
                 })
         }])
 
-        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
             $rootScope.topMenu.push({
                 "ordering": 100,
                 "title": 'Pages',
+                "roles": 'ROLE_ADMIN',
                 "children": {
                     "pages": {
                         "ordering": 100,
                         "slug": '/page/',
+                        "roles": 'ROLE_ADMIN',
                         "title": 'Pages'
                     },
                     "pageNode": {
                         "ordering": 200,
+                        "roles": 'ROLE_ADMIN',
                         "slug": '/page/node/' + Environment.currentLocale() + '/',
                         "title": 'Nodes'
                     },
                     "pageReview": {
                         "ordering": 300,
+                        "roles": 'ROLE_ADMIN',
                         "slug": '/page/review/',
                         "title": 'Reviews'
                     }
