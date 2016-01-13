@@ -64,23 +64,22 @@ define(['app'], function (app) {
             $rootScope.topMenu.push({
                 "ordering": 100,
                 "title": 'Pages',
-                "roles": 'ROLE_ADMIN',
+                "roles": ['ROLE_ADMIN', 'ROLE_USER'],
                 "children": {
                     "pages": {
                         "ordering": 100,
                         "slug": '/page/',
-                        "roles": 'ROLE_ADMIN',
+                        "roles": ['ROLE_ADMIN', 'ROLE_USER'],
                         "title": 'Pages'
                     },
                     "pageNode": {
                         "ordering": 200,
-                        "roles": 'ROLE_ADMIN',
                         "slug": '/page/node/' + Environment.currentLocale() + '/',
                         "title": 'Nodes'
                     },
                     "pageReview": {
                         "ordering": 300,
-                        "roles": 'ROLE_ADMIN',
+                        "roles": ['ROLE_ADMIN', 'ROLE_USER'],
                         "slug": '/page/review/',
                         "title": 'Reviews'
                     }
