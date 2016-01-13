@@ -35,3 +35,23 @@ admin_api_aisel_user_post:
     defaults:  { _controller: AiselUserBundle:Admin/Api:post, _format: json }
     requirements:
         _method: POST
+
+
+# Login
+admin_api_aisel_user_login:
+    pattern:  /user/login/
+    defaults: { _controller: AiselUserBundle:Api:login, _format: json }
+    requirements:
+        _method: POST
+
+admin_api_aisel_user_logout:
+    pattern:  /user/logout/
+    defaults: { _controller: AiselUserBundle:Api:logout, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_user_information:
+    pattern:  /user/information/
+    defaults: { _controller: AiselUserBundle:Api:information, _format: json }
+    requirements:
+        _method: GET

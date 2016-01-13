@@ -34,7 +34,7 @@ define(['app',
                         authService.getUserInformation().success(
                             function(data, status) {
                                 console.log('----------- User-----------');
-                                if (data.username) {
+                                if (data.email) {
                                     $rootScope.user = data;
                                 } else {
                                     $rootScope.user = false;

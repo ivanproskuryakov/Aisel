@@ -47,7 +47,7 @@ define(['app'], function (app) {
                     enableColumnMenu: false,
                     width: '200'
                 }, {
-                    name: 'frontenduser.username',
+                    name: 'frontenduser.email',
                     enableColumnMenu: false,
                     width: '200'
                 }, {

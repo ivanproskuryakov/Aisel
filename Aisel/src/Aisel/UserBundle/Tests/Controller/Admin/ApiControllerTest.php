@@ -37,7 +37,7 @@ class ApiControllerTest extends UserTestCase
     {
         $this->client->request(
             'GET',
-            '/' . $this->api['frontend'] . '/user/information/',
+            '/' . $this->api['backend'] . '/user/information/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -64,7 +64,7 @@ class ApiControllerTest extends UserTestCase
         ];
         $this->client->request(
             'POST',
-            '/' . $this->api['frontend'] . '/user/login/',
+            '/' . $this->api['backend'] . '/user/login/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -93,7 +93,7 @@ class ApiControllerTest extends UserTestCase
 
         $this->client->request(
             'POST',
-            '/' . $this->api['frontend'] . '/user/login/',
+            '/' . $this->api['backend'] . '/user/login/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -102,7 +102,7 @@ class ApiControllerTest extends UserTestCase
 
         $this->client->request(
             'GET',
-            '/' . $this->api['frontend'] . '/user/logout/',
+            '/' . $this->api['backend'] . '/user/logout/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
