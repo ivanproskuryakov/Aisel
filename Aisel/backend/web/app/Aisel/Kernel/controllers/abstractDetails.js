@@ -28,7 +28,6 @@ define(['app'], function (app) {
                 name: $scope.route.name
             };
             $scope.item = {};
-
             var locale = Environment.currentLocale();
 
             var errorNotify = function (data) {

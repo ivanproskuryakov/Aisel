@@ -73,7 +73,7 @@ define(['app'], function (app) {
                     },
                     "productNode": {
                         "ordering": 200,
-                        "roles": 'ROLE_ADMIN',
+                        "roles": ['ROLE_ADMIN'],
                         "slug": '/product/node/' + Environment.currentLocale() + '/',
                         "title": 'Nodes'
                     },

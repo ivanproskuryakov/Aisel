@@ -22,10 +22,11 @@ security:
             anonymous:           true
 
     access_control:
+        - { path: ^/%backend_api%/, role: ROLE_ADMIN }
+        - { path: ^/%seller_api%/, role: ROLE_USER }
+
+        - { path: ^/%frontend_api%/user/password/forgot/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%frontend_api%/user/register/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/%frontend_api%/user/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/%frontend_api%/user/information/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
-        - { path: ^/%seller_api%/, role: ROLE_USER }
         - { path: ^/%frontend_api%/user/, role: ROLE_USER }
-
-        - { path: ^/%backend_api%/, role: ROLE_ADMIN }

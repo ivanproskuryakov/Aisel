@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.service('resourceService', ['$http', 'Environment',
-        function ($http, Environment) {
+    app.factory('resourceService', ['$http', 'Environment', '$rootScope',
+        function ($http, Environment, $rootScope) {
 
             var resourceService = function (name) {
                 this.resource = name;
@@ -58,14 +58,12 @@ define(['app'], function (app) {
                     data: data
                 });
             };
-
             resourceService.prototype.getNodeTree = function (locale) {
                 var url = Environment.settings.api + '/' + this.resource +
                     '/node/?locale=' + locale;
                 console.log(url);
                 return $http.get(url);
             };
-
             resourceService.prototype.getNode = function ($id) {
                 var url = Environment.settings.api + '/' + this.resource +
                     '/node/' + $id;

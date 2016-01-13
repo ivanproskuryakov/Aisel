@@ -25,7 +25,7 @@ define(['app'], function(app) {
         .run(['$rootScope', 'Environment', function($rootScope, Environment) {
             $rootScope.topMenu.push({
                 "ordering": 900,
-                "roles": 'ROLE_ADMIN',
+                "roles": ['ROLE_ADMIN'],
                 "glyphicon": 'glyphicon-cog',
                 "slug": '/settings/',
                 "title": 'Settings'

@@ -31,17 +31,20 @@ define(['app'], function (app) {
 
                 var locale = Environment.currentLocale();
 
+                // If role needed
                 if (typeof toState.data !== 'undefined') {
                     var role = toState.data.role;
 
                     if ((role === 'ROLE_ADMIN') && (role !== $rootScope.user)) {
                         event.preventDefault();
                     }
-                    
+
                     console.log('Needed role: ' + role);
                 } else {
+                // role not needed
+
                     if ($rootScope.user === undefined) {
-                        // Load user statuss
+                        // Load user status
                         authService.getUserInformation().success(
                             function (data, status) {
                                 if (data.email) {
@@ -53,7 +56,7 @@ define(['app'], function (app) {
                                         locale: locale
                                     });
                                 }
-                                console.log('----------- $stateChangeStart: User Information Required -----------');
+                                console.log('----------- $stateChangцeStart: User Information Required -----------');
                                 console.log($rootScope);
                             }
                         );

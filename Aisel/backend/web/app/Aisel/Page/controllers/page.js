@@ -12,9 +12,20 @@
  * @description     PageCtrl
  */
 
-define(['app'], function(app) {
-    app.controller('PageCtrl', ['$state', '$scope', 'resourceService', 'collectionService', 'Environment', 'notify',
-        function($state, $scope, resourceService, collectionService, Environment, notify) {
+define(['app'], function (app) {
+    app.controller('PageCtrl', [
+        '$state',
+        '$scope',
+        'resourceService',
+        'collectionService',
+        'Environment',
+        'notify',
+        function ($state,
+                  $scope,
+                  resourceService,
+                  collectionService,
+                  Environment,
+                  notify) {
 
             var itemService = new resourceService('page');
 
@@ -53,20 +64,20 @@ define(['app'], function(app) {
             $scope.gridOptions = collectionService.gridOptions($scope);
 
             // === Item Action ===
-            $scope.editDetails = function(id) {
+            $scope.editDetails = function (id) {
                 $state.transitionTo('pageEdit', {
                     locale: Environment.currentLocale(),
                     id: id
                 });
             };
-            $scope.newItem = function() {
+            $scope.newItem = function () {
                 $state.transitionTo('pageNew', {
                     locale: Environment.currentLocale()
                 });
             };
 
             // === Load collection from remote ===
-            $scope.loadCollection = function(pageNumber) {
+            $scope.loadCollection = function (pageNumber) {
                 collectionService.loadCollection($scope, itemService, pageNumber);
             };
             $scope.loadCollection();
