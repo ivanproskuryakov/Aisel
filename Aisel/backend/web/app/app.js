@@ -38,7 +38,7 @@ define([
         'ui-grid',
         'flow'
     ],
-    function(angular) {
+    function (angular) {
         'use strict';
 
         var app = angular.module('app', [
@@ -46,17 +46,17 @@ define([
             'ui.utils', 'ui.validate', 'ui.gravatar', 'textAngular', 'ngDisqus', 'cgNotify',
             'ngAnimate', 'angular-loading-bar', 'ngTouch', 'ui.grid', 'flow',
             'environment'
-        ])
+        ]);
 
         app
-            .run(function($http, $rootScope, initService) {
+            .run(function ($http, $rootScope, initService) {
                 initService.launch();
             })
-            .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+            .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
                 cfpLoadingBarProvider.includeSpinner = false
                 cfpLoadingBarProvider.includeBar = true;
             }])
-            .config(['$provide', '$locationProvider', '$httpProvider', function($provide, $locationProvider, $httpProvider) {
+            .config(['$provide', '$locationProvider', '$httpProvider', function ($provide, $locationProvider, $httpProvider) {
                 $httpProvider.defaults.withCredentials = true;
                 $locationProvider.html5Mode(true);
                 document.getElementById("page-is-loading").style.visibility = "hidden";

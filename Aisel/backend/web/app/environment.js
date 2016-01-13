@@ -13,15 +13,17 @@
  */
 
 define(['angular'],
-    function(angular) {
+    function (angular) {
         'use strict';
         console.log('Environment loaded ...');
         angular.module('environment', [])
-            .service('Environment', function() {
+            .service('Environment', function () {
                 var api_domain = document.domain.replace("admin", "api");
 
                 return {
                     settings: {
+                        apiSeller: 'http://' + api_domain + '/seller/api',
+                        apiBackend: 'http://' + api_domain + '/backend/api',
                         api: 'http://' + api_domain + '/backend/api',
                         domain: 'http://' + api_domain,
                         pageTitle: 'Aisel - open source project | Admin',
@@ -30,7 +32,7 @@ define(['angular'],
                             "available": ['ru', 'es', 'en']
                         }
                     },
-                    currentLocale: function() {
+                    currentLocale: function () {
                         var locale = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
                         if (this.settings.locale.available.indexOf(locale) == -1) {
                             locale = this.settings.locale.primary;

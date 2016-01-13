@@ -21,23 +21,23 @@ define(['app'], function(app) {
             };
 
             resourceService.prototype.getCollection = function($scope, pageNumber) {
-                var url = Environment.settings.api + '/' + this.resource + '/?limit=' + $scope.pageLimit + '&current=' + pageNumber + '&filter=' + $scope.filter;
+                var url = Environment.settings.apiBackend + '/' + this.resource + '/?limit=' + $scope.pageLimit + '&current=' + pageNumber + '&filter=' + $scope.filter;
 
                 console.log(url);
                 return $http.get(url);
             };
             resourceService.prototype.remove = function($id) {
-                var url = Environment.settings.api + '/' + this.resource + '/' + $id;
+                var url = Environment.settings.apiBackend + '/' + this.resource + '/' + $id;
                 console.log(url);
                 return $http.delete(url);
             };
             resourceService.prototype.get = function($id) {
-                var url = Environment.settings.api + '/' + this.resource + '/' + $id;
+                var url = Environment.settings.apiBackend + '/' + this.resource + '/' + $id;
                 console.log(url);
                 return $http.get(url);
             };
             resourceService.prototype.save = function(data) {
-                var url = Environment.settings.api + '/' + this.resource + '/' + data.id;
+                var url = Environment.settings.apiBackend + '/' + this.resource + '/' + data.id;
                 console.log(data);
                 return $http({
                     method: 'PUT',
@@ -46,7 +46,7 @@ define(['app'], function(app) {
                 });
             };
             resourceService.prototype.create = function(data) {
-                var url = Environment.settings.api + '/' + this.resource + '/';
+                var url = Environment.settings.apiBackend + '/' + this.resource + '/';
                 return $http({
                     method: 'POST',
                     url: url,
@@ -55,13 +55,13 @@ define(['app'], function(app) {
             };
 
             resourceService.prototype.getNodeTree = function(locale) {
-                var url = Environment.settings.api + '/' + this.resource + '/node/?locale=' + locale;
+                var url = Environment.settings.apiBackend + '/' + this.resource + '/node/?locale=' + locale;
                 console.log(url);
                 return $http.get(url);
             };
 
             resourceService.prototype.getNode = function($id) {
-                var url = Environment.settings.api + '/' + this.resource + '/node/' + $id;
+                var url = Environment.settings.apiBackend + '/' + this.resource + '/node/' + $id;
                 console.log(url);
                 return $http.get(url);
             };
