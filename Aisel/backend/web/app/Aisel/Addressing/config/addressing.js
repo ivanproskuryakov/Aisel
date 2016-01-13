@@ -19,49 +19,76 @@ define(['app'], function (app) {
                 .state("countries", {
                     url: "/:locale/addressing/country/",
                     templateUrl: '/app/Aisel/Kernel/views/collection.html',
-                    controller: 'AddressingCountryCtrl'
+                    controller: 'AddressingCountryCtrl',
+                    data: {
+                        role: 'ROLE_ADMIN'
+                    }
                 })
                 .state("countryEdit", {
                     url: "/:locale/addressing/country/edit/:id/",
                     templateUrl: '/app/Aisel/Addressing/views/edit-country.html',
-                    controller: 'AddressingCountryDetailsCtrl'
+                    controller: 'AddressingCountryDetailsCtrl',
+                    data: {
+                        role: 'ROLE_ADMIN'
+                    }
                 })
                 .state("countryNew", {
                     url: "/:locale/addressing/country/new/",
                     templateUrl: '/app/Aisel/Addressing/views/edit-country.html',
-                    controller: 'AddressingCountryDetailsCtrl'
+                    controller: 'AddressingCountryDetailsCtrl',
+                    data: {
+                        role: 'ROLE_ADMIN'
+                    }
                 })
 
                 .state("regions", {
                     url: "/:locale/addressing/region/",
                     templateUrl: '/app/Aisel/Kernel/views/collection.html',
-                    controller: 'AddressingRegionCtrl'
+                    controller: 'AddressingRegionCtrl',
+                    data: {
+                        role: 'ROLE_ADMIN'
+                    }
                 })
                 .state("regionEdit", {
                     url: "/:locale/addressing/region/edit/:id/",
                     templateUrl: '/app/Aisel/Addressing/views/edit-region.html',
-                    controller: 'AddressingRegionDetailsCtrl'
+                    controller: 'AddressingRegionDetailsCtrl',
+                    data: {
+                        role: 'ROLE_ADMIN'
+                    }
                 })
                 .state("regionNew", {
                     url: "/:locale/addressing/region/new/",
                     templateUrl: '/app/Aisel/Addressing/views/edit-region.html',
-                    controller: 'AddressingRegionDetailsCtrl'
+                    controller: 'AddressingRegionDetailsCtrl',
+                    data: {
+                        role: 'ROLE_ADMIN'
+                    }
                 })
 
                 .state("cities", {
                     url: "/:locale/addressing/city/",
                     templateUrl: '/app/Aisel/Kernel/views/collection.html',
-                    controller: 'AddressingCityCtrl'
+                    controller: 'AddressingCityCtrl',
+                    data: {
+                        role: 'ROLE_ADMIN'
+                    }
                 })
                 .state("cityEdit", {
                     url: "/:locale/addressing/city/edit/:id/",
                     templateUrl: '/app/Aisel/Addressing/views/edit-city.html',
-                    controller: 'AddressingCityDetailsCtrl'
+                    controller: 'AddressingCityDetailsCtrl',
+                    data: {
+                        role: 'ROLE_ADMIN'
+                    }
                 })
                 .state("cityNew", {
                     url: "/:locale/addressing/city/new/",
                     templateUrl: '/app/Aisel/Addressing/views/edit-city.html',
-                    controller: 'AddressingCityDetailsCtrl'
+                    controller: 'AddressingCityDetailsCtrl',
+                    data: {
+                        role: 'ROLE_ADMIN'
+                    }
                 })
         }])
         .run(['$rootScope', 'Environment', function ($rootScope, Environment) {

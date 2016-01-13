@@ -15,10 +15,11 @@
 define(['app'], function (app) {
     console.log('Kernel init service loaded ...');
     angular.module('app')
-        .service('initService', ['$http', '$rootScope', 'Environment',
-            function ($http, $rootScope, Environment) {
+        .service('initService', ['$http', '$rootScope', 'Environment', 'authService',
+            function ($http, $rootScope, Environment, authService) {
                 return {
                     launch: function () {
+
                         console.log('----------- Aisel Loaded! -----------');
                         $rootScope.pageTitle = Environment.settings.pageTitle;
                         $rootScope.availableLocales = Environment.settings.locale.available;

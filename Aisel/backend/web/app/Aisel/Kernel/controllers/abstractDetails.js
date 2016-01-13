@@ -14,7 +14,14 @@
 
 define(['app'], function (app) {
     app.controller('AbstractDetailsCtrl',
-        function ($controller, $scope, $stateParams, itemService, $state, Environment, notify) {
+        function ($controller,
+                  $scope,
+                  $rootScope,
+                  $stateParams,
+                  itemService,
+                  $state,
+                  Environment,
+                  notify) {
 
             $scope.details = {
                 id: $stateParams.id,

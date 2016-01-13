@@ -22,8 +22,10 @@ define(['angular'],
 
                 return {
                     settings: {
-                        apiFrontend: 'http://' + api_domain + '/frontend/api',
                         api: 'http://' + api_domain + '/backend/api',
+                        apiBackend: 'http://' + api_domain + '/backend/api',
+                        apiFrontend: 'http://' + api_domain + '/frontend/api',
+                        apiSeller: 'http://' + api_domain + '/seller/api',
 
                         domain: 'http://' + api_domain,
                         pageTitle: 'Aisel | Admin',

@@ -74,6 +74,7 @@ define(['app'], function (app) {
                     },
                     "pageNode": {
                         "ordering": 200,
+                        "roles": ['ROLE_ADMIN', 'ROLE_USER'],
                         "slug": '/page/node/' + Environment.currentLocale() + '/',
                         "title": 'Nodes'
                     },

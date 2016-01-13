@@ -22,7 +22,9 @@ define(['app'], function (app) {
                 authService.signout($scope).success(
                     function (data, status) {
                         notify('Good bye!');
+
                         $rootScope.user = undefined;
+
                         $state.transitionTo('userLogin', {
                             locale: locale
                         });
@@ -34,7 +36,9 @@ define(['app'], function (app) {
                 authService.login(email, password)
                     .success(
                         function (data, status) {
+
                             $rootScope.user = data.user;
+
                             $state.transitionTo('home', {
                                 locale: locale
                             });

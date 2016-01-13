@@ -84,7 +84,7 @@ define(['app'], function(app) {
                                     setLocale();
                                     setMetaData();
 
-                                    //startGremlins();
+                                    startGremlins();
                                 });
                             }
                         );

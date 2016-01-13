@@ -13,7 +13,7 @@
  */
 
 define(['app'], function(app) {
-    app.controller('PageDetailsCtrl', function($controller, $scope, resourceService, $stateParams) {
+    app.controller('PageDetailsCtrl', function($controller, $scope, resourceService) {
 
         $scope.route = {
             name: 'Page',

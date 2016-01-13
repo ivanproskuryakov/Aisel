@@ -12,8 +12,8 @@
  * @description     Module config
  */
 
-define(['app'], function(app) {
-    app.config(['$stateProvider', function($stateProvider) {
+define(['app'], function (app) {
+    app.config(['$stateProvider', function ($stateProvider) {
         $stateProvider
             .state("userLogin", {
                 url: "/:locale/user/login/",
@@ -24,4 +24,47 @@ define(['app'], function(app) {
                 }
             })
     }]);
+
+    app.run(['$http', '$state', '$rootScope', 'authService', 'Environment',
+        function ($http, $state, $rootScope, authService, Environment) {
+            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+
+                var locale = Environment.currentLocale();
+
+                if (typeof toState.data !== 'undefined') {
+                    var role = toState.data.role;
+
+                    if ((role === 'ROLE_ADMIN') && (role !== $rootScope.user)) {
+                        event.preventDefault();
+                    }
+                    
+                    console.log('Needed role: ' + role);
+                } else {
+                    if ($rootScope.user === undefined) {
+                        // Load user statuss
+                        authService.getUserInformation().success(
+                            function (data, status) {
+                                if (data.email) {
+                                    $rootScope.user = data;
+                                } else {
+                                    $rootScope.user = false;
+                                    event.preventDefault();
+                                    $state.transitionTo('userLogin', {
+                                        locale: locale
+                                    });
+                                }
+                                console.log('----------- $stateChangeStart: User Information Required -----------');
+                                console.log($rootScope);
+                            }
+                        );
+                    } else if ($rootScope.user == false) {
+                        event.preventDefault();
+                        $state.transitionTo('userLogin', {
+                            locale: locale
+                        });
+                    }
+                }
+            });
+        }
+    ])
 });
