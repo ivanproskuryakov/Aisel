@@ -14,7 +14,7 @@
 
 define(['app'], function (app) {
     app.controller('ProductDetailsCtrl',
-        function ($controller, $stateParams, $scope, resourceService, Environment, mediaService, notify) {
+        function ($controller, $stateParams, $scope, resourceService, Env, mediaService, notify) {
 
             $scope.route = {
                 name: 'Product',
@@ -30,7 +30,7 @@ define(['app'], function (app) {
             }));
 
             // Product Images
-            $scope.uploadPath = Environment.api + '/media/upload/image/';
+            $scope.uploadPath = Env.api + '/media/upload/image/';
 
             // Delete file
             var deleteFile = function (id) {

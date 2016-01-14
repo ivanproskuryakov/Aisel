@@ -13,7 +13,7 @@
  */
 
 define(['app'], function(app) {
-    app.controller('PageNodeDetailsCtrl', function($controller, $stateParams, $state, Environment, $scope, resourceService) {
+    app.controller('PageNodeDetailsCtrl', function($controller, $stateParams, $state, Env, $scope, resourceService) {
 
         $scope.route = {
             name: 'Page Node',
@@ -31,7 +31,7 @@ define(['app'], function(app) {
         $scope.editCancel = function() {
             $state.transitionTo(
                 $scope.route.collection, {
-                    locale: Environment.currentLocale(),
+                    locale: Env.currentLocale(),
                     lang: $stateParams.lang
                 }
             );

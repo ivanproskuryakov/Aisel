@@ -13,9 +13,9 @@
  */
 
 define(['app'], function (app) {
-    app.controller('AuthCtrl', ['$scope', '$rootScope', '$state', 'authService', 'notify', 'Environment',
-        function ($scope, $rootScope, $state, authService, notify, Environment) {
-            var locale = Environment.currentLocale();
+    app.controller('AuthCtrl', ['$scope', '$rootScope', '$state', 'authService', 'notify', 'Env',
+        function ($scope, $rootScope, $state, authService, notify, Env) {
+            var locale = Env.currentLocale();
 
             // User Sign In/Out
             $scope.signOut = function () {

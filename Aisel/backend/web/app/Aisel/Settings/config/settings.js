@@ -22,7 +22,7 @@ define(['app'], function(app) {
                     controller: 'SettingsCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+        .run(['$rootScope', 'Env', function($rootScope, Env) {
             $rootScope.topMenu.push({
                 "ordering": 900,
                 "roles": ['ROLE_ADMIN'],

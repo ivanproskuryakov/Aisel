@@ -13,8 +13,8 @@
  */
 
 define(['app'], function(app) {
-    app.controller('UserCtrl', ['$scope', '$state', 'Environment', 'resourceService', 'collectionService',
-        function($scope, $state, Environment, resourceService, collectionService) {
+    app.controller('UserCtrl', ['$scope', '$state', 'Env', 'resourceService', 'collectionService',
+        function($scope, $state, Env, resourceService, collectionService) {
 
             var itemService = new resourceService('user');
 
@@ -47,13 +47,13 @@ define(['app'], function(app) {
             // === Item Actions ===
             $scope.editDetails = function(id) {
                 $state.transitionTo('userEdit', {
-                    locale: Environment.currentLocale(),
+                    locale: Env.currentLocale(),
                     id: id
                 });
             };
             $scope.newItem = function() {
                 $state.transitionTo('userNew', {
-                    locale: Environment.currentLocale()
+                    locale: Env.currentLocale()
                 });
             };
 

@@ -13,15 +13,15 @@
  */
 
 define(['app'], function(app) {
-    app.controller('NavigationCtrl', function($scope, $stateParams, $state, Environment) {
+    app.controller('NavigationCtrl', function($scope, $stateParams, $state, Env) {
 
         $scope.sectionName = 'Navigation';
-        $scope.nodeJson = Environment.api + '/navigation/?locale=' + $stateParams.lang;
-        $scope.nodeUpdate = Environment.api + '/navigation/node/?locale=' + $stateParams.lang;
+        $scope.nodeJson = Env.api + '/navigation/?locale=' + $stateParams.lang;
+        $scope.nodeUpdate = Env.api + '/navigation/node/?locale=' + $stateParams.lang;
 
         $scope.editNode = function(id) {
             $state.transitionTo('navigationEdit', {
-                locale: Environment.currentLocale(),
+                locale: Env.currentLocale(),
                 lang: $stateParams.lang,
                 id: id
             });
@@ -29,7 +29,7 @@ define(['app'], function(app) {
 
         $scope.changeNodeLocale = function(lang) {
             $state.transitionTo('navigation', {
-                locale: Environment.currentLocale(),
+                locale: Env.currentLocale(),
                 lang: lang
             });
         };

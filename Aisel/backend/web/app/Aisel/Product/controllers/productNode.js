@@ -13,15 +13,15 @@
  */
 
 define(['app'], function(app) {
-    app.controller('ProductNodeCtrl', function($scope, $stateParams, $state, Environment) {
+    app.controller('ProductNodeCtrl', function($scope, $stateParams, $state, Env) {
 
         $scope.sectionName = 'Product nodes';
-        $scope.nodeJson = Environment.api + '/product/node/?locale=' + $stateParams.lang;
-        $scope.nodeUpdate = Environment.api + '/product/node/node/?locale=' + $stateParams.lang;
+        $scope.nodeJson = Env.api + '/product/node/?locale=' + $stateParams.lang;
+        $scope.nodeUpdate = Env.api + '/product/node/node/?locale=' + $stateParams.lang;
 
         $scope.editNode = function(id) {
             $state.transitionTo('productNodeEdit', {
-                locale: Environment.currentLocale(),
+                locale: Env.currentLocale(),
                 lang: $stateParams.lang,
                 id: id
             });
@@ -29,7 +29,7 @@ define(['app'], function(app) {
 
         $scope.changeNodeLocale = function(lang) {
             $state.transitionTo('productNode', {
-                locale: Environment.currentLocale(),
+                locale: Env.currentLocale(),
                 lang: lang
             });
         };

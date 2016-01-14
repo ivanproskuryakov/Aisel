@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.service('mediaService', ['$http', 'Environment',
-        function ($http, Environment) {
+    app.service('mediaService', ['$http', 'Env',
+        function ($http, Env) {
             
         }
     ]);

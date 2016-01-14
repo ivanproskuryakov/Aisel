@@ -13,8 +13,8 @@
  */
 
 define(['app'], function(app) {
-    app.directive('aiselProductImages', ['$compile', 'Environment',
-        function($compile, Environment) {
+    app.directive('aiselProductImages', ['$compile', 'Env',
+        function($compile, Env) {
             return {
                 restrict: 'EA',
                 scope: {
@@ -22,7 +22,7 @@ define(['app'], function(app) {
                     imgSize: '='
                 },
                 link: function($scope, element, attrs) {
-                    $scope.domain = Environment.domain;
+                    $scope.domain = Env.domain;
                     $scope.size = attrs.imgSize;
                 },
                 templateUrl: '/app/Aisel/Product/views/directives/product-images.html'

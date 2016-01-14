@@ -20,7 +20,7 @@ define(['app'], function (app) {
                   $stateParams,
                   itemService,
                   $state,
-                  Environment,
+                  Env,
                   notify) {
 
             $scope.details = {
@@ -28,7 +28,7 @@ define(['app'], function (app) {
                 name: $scope.route.name
             };
             $scope.item = {};
-            var locale = Environment.currentLocale();
+            var locale = Env.currentLocale();
 
             var errorNotify = function (data) {
 
@@ -95,7 +95,7 @@ define(['app'], function (app) {
                             notify($scope.route.name + ' was added');
                             $state.transitionTo(
                                 $scope.route.edit, {
-                                    locale: Environment.currentLocale(),
+                                    locale: Env.currentLocale(),
                                     id: data.id
                                 }
                             );
@@ -117,7 +117,7 @@ define(['app'], function (app) {
                         notify($scope.route.name + ' has been saved');
                         $state.transitionTo(
                             $scope.route.collection, {
-                                locale: Environment.currentLocale()
+                                locale: Env.currentLocale()
                             }
                         );
                     }
@@ -132,7 +132,7 @@ define(['app'], function (app) {
             $scope.editCancel = function () {
                 $state.transitionTo(
                     $scope.route.collection, {
-                        locale: Environment.currentLocale()
+                        locale: Env.currentLocale()
                     }
                 );
             };
@@ -146,7 +146,7 @@ define(['app'], function (app) {
                         notify($scope.route.name + ' has been deleted');
                         $state.transitionTo(
                             $scope.route.collection, {
-                                locale: Environment.currentLocale()
+                                locale: Env.currentLocale()
                             }
                         );
                     }

@@ -27,7 +27,7 @@ define(['app'], function(app) {
                     controller: 'OrderDetailsCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+        .run(['$rootScope', 'Env', function($rootScope, Env) {
             $rootScope.topMenu.push({
                 "ordering": 400,
                 "roles": 'ROLE_ADMIN',

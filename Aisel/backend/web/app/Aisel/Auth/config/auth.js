@@ -25,11 +25,11 @@ define(['app'], function (app) {
             })
     }]);
 
-    app.run(['$http', '$state', '$rootScope', 'authService', 'Environment',
-        function ($http, $state, $rootScope, authService, Environment) {
+    app.run(['$http', '$state', '$rootScope', 'authService', 'Env',
+        function ($http, $state, $rootScope, authService, Env) {
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
-                var locale = Environment.currentLocale();
+                var locale = Env.currentLocale();
 
                 // If role needed
                 if (typeof toState.data !== 'undefined') {
@@ -62,10 +62,10 @@ define(['app'], function (app) {
 
 
                                 if ($rootScope.user === 'ROLE_USER') {
-                                    Environment.api = Environment.apiSeller;
+                                    Env.api = Env.apiSeller;
                                 }
                                 if ($rootScope.user === 'ROLE_ADMIN') {
-                                    Environment.api = Environment.apiBackend;
+                                    Env.api = Env.apiBackend;
                                 }
                             }
                         );

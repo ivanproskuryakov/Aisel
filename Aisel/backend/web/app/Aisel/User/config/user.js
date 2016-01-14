@@ -32,7 +32,7 @@ define(['app'], function(app) {
                     controller: 'UserDetailCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function($rootScope, Environment) {
+        .run(['$rootScope', 'Env', function($rootScope, Env) {
             $rootScope.topMenu.push({
                 "ordering": 300,
                 "roles": 'ROLE_ADMIN',

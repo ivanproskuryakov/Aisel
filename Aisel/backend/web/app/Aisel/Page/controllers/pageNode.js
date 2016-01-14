@@ -13,15 +13,15 @@
  */
 
 define(['app'], function(app) {
-    app.controller('PageNodeCtrl', function($scope, $stateParams, $state, Environment) {
+    app.controller('PageNodeCtrl', function($scope, $stateParams, $state, Env) {
 
         $scope.sectionName = 'Page nodes';
-        $scope.nodeJson = Environment.api + '/page/node/?locale=' + $stateParams.lang;
-        $scope.nodeUpdate = Environment.api + '/page/node/node/?locale=' + $stateParams.lang;
+        $scope.nodeJson = Env.api + '/page/node/?locale=' + $stateParams.lang;
+        $scope.nodeUpdate = Env.api + '/page/node/node/?locale=' + $stateParams.lang;
 
         $scope.editNode = function(id) {
             $state.transitionTo('pageNodeEdit', {
-                locale: Environment.currentLocale(),
+                locale: Env.currentLocale(),
                 lang: $stateParams.lang,
                 id: id
             });
@@ -29,7 +29,7 @@ define(['app'], function(app) {
 
         $scope.changeNodeLocale = function(lang) {
             $state.transitionTo('pageNode', {
-                locale: Environment.currentLocale(),
+                locale: Env.currentLocale(),
                 lang: lang
             });
         };

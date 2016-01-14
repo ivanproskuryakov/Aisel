@@ -60,7 +60,7 @@ define(['app'], function (app) {
                 })
         }])
 
-        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
+        .run(['$rootScope', 'Env', function ($rootScope, Env) {
             $rootScope.topMenu.push({
                 "ordering": 100,
                 "title": 'Pages',
@@ -75,7 +75,7 @@ define(['app'], function (app) {
                     "pageNode": {
                         "ordering": 200,
                         "roles": ['ROLE_ADMIN'],
-                        "slug": '/page/node/' + Environment.currentLocale() + '/',
+                        "slug": '/page/node/' + Env.currentLocale() + '/',
                         "title": 'Nodes'
                     },
                     "pageReview": {

@@ -19,13 +19,13 @@ define(['app'], function (app) {
             '$scope',
             'resourceService',
             'collectionService',
-            'Environment',
+            'Env',
             'notify',
             function ($state,
                       $scope,
                       resourceService,
                       collectionService,
-                      Environment,
+                      Env,
                       notify) {
 
                 var itemService = new resourceService('product/review');
@@ -72,7 +72,7 @@ define(['app'], function (app) {
                 // === Item Action ===
                 $scope.editDetails = function (id) {
                     $state.transitionTo('productReviewEdit', {
-                        locale: Environment.currentLocale(),
+                        locale: Env.currentLocale(),
                         id: id
                     });
                 };

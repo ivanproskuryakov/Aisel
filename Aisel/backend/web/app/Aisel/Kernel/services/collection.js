@@ -15,8 +15,8 @@
 define(['app'], function (app) {
     console.log('Kernel collection service loaded ...');
     angular.module('app')
-        .service('collectionService', ['$http', '$rootScope', 'Environment', '$state',
-            function ($http, $rootScope, Environment, $state) {
+        .service('collectionService', ['$http', '$rootScope', 'Env', '$state',
+            function ($http, $rootScope, Env, $state) {
 
                 var filterChanged = function (grid) {
                     var filters = {};

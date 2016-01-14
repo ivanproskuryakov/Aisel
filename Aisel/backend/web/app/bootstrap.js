@@ -59,8 +59,7 @@ define([
                         Env.api = Env.apiBackend;
                     }
 
-                    app.constant("Environment", Env);
-                    app.constant("settings", response.data);
+                    app.constant("Env", Env);
                 });
         }
 

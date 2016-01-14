@@ -13,8 +13,8 @@
  */
 
 define(['app'], function(app) {
-    app.controller('AddressingCountryCtrl', ['$scope', '$state', 'Environment', 'resourceService', 'collectionService',
-        function($scope, $state, Environment, resourceService, collectionService) {
+    app.controller('AddressingCountryCtrl', ['$scope', '$state', 'Env', 'resourceService', 'collectionService',
+        function($scope, $state, Env, resourceService, collectionService) {
 
             var itemService = new resourceService('addressing/country');
             $scope.collectionTitle = 'Countries';
@@ -48,13 +48,13 @@ define(['app'], function(app) {
             // === Item Action ===
             $scope.editDetails = function(id) {
                 $state.transitionTo('countryEdit', {
-                    locale: Environment.currentLocale(),
+                    locale: Env.currentLocale(),
                     id: id
                 });
             };
             $scope.newItem = function() {
                 $state.transitionTo('countryNew', {
-                    locale: Environment.currentLocale()
+                    locale: Env.currentLocale()
                 });
             }
 

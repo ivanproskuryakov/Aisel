@@ -59,7 +59,7 @@ define(['app'], function (app) {
                     controller: 'ProductNodeDetailsCtrl'
                 })
         }])
-        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
+        .run(['$rootScope', 'Env', function ($rootScope, Env) {
             $rootScope.topMenu.push({
                 "ordering": 200,
                 "roles": ['ROLE_ADMIN', 'ROLE_USER'],
@@ -74,7 +74,7 @@ define(['app'], function (app) {
                     "productNode": {
                         "ordering": 200,
                         "roles": ['ROLE_ADMIN'],
-                        "slug": '/product/node/' + Environment.currentLocale() + '/',
+                        "slug": '/product/node/' + Env.currentLocale() + '/',
                         "title": 'Nodes'
                     },
                     "productReview": {

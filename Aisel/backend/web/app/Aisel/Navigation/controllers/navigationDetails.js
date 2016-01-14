@@ -19,7 +19,7 @@ define(['app'], function(app) {
         resourceService,
         $state,
         $stateParams,
-        Environment
+        Env
     ) {
 
         $scope.route = {
@@ -38,7 +38,7 @@ define(['app'], function(app) {
         $scope.editCancel = function() {
             $state.transitionTo(
                 $scope.route.collection, {
-                    locale: Environment.currentLocale(),
+                    locale: Env.currentLocale(),
                     lang: $stateParams.lang
                 }
             );

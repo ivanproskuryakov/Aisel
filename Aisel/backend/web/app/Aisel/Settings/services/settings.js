@@ -13,17 +13,17 @@
  */
 
 define(['app'], function(app) {
-    app.service('settingsService', ['$http', 'Environment',
-        function($http, Environment) {
+    app.service('settingsService', ['$http', 'Env',
+        function($http, Env) {
             return {
                 get: function() {
-                    var url = Environment.api + '/config/';
+                    var url = Env.api + '/config/';
                     console.log(url);
 
                     return $http.get(url);
                 },
                 save: function(data) {
-                    var url = Environment.api + '/config/';
+                    var url = Env.api + '/config/';
 
                     return $http({
                         method: 'PUT',

@@ -48,14 +48,12 @@ define([
         ]);
 
         app
-            .run(function ($http, $rootScope, initService, settings, Environment) {
-
-                console.log('Environment:', Environment);
-                console.log('settings:', settings);
+            .run(function ($http, $rootScope, initService, Env) {
+                console.log('Env:', Env);
                 initService.launch();
             })
             .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
-                cfpLoadingBarProvider.includeSpinner = false
+                cfpLoadingBarProvider.includeSpinner = false;
                 cfpLoadingBarProvider.includeBar = true;
             }])
             .config(['$provide', '$locationProvider', '$httpProvider', function ($provide, $locationProvider, $httpProvider) {
@@ -78,4 +76,5 @@ define([
             }]);
 
         return app;
-    });
+    }
+);

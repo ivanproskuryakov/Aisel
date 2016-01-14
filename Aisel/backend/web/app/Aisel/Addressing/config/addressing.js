@@ -91,7 +91,7 @@ define(['app'], function (app) {
                     }
                 })
         }])
-        .run(['$rootScope', 'Environment', function ($rootScope, Environment) {
+        .run(['$rootScope', 'Env', function ($rootScope, Env) {
 
             $rootScope.topMenu.push({
                 "ordering": 900,

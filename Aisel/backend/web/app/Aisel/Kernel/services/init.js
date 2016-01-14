@@ -16,17 +16,17 @@ define(['app'], function (app) {
     console.log('Kernel init service loaded ...');
     angular.module('app')
         .service('initService',
-            ['$http', '$rootScope', 'Environment', 'authService',
-                function ($http, $rootScope, Environment, authService) {
+            ['$http', '$rootScope', 'Env', 'authService',
+                function ($http, $rootScope, Env, authService) {
                     return {
                         launch: function () {
 
                             console.log('----------- Aisel Loaded! -----------');
-                            $rootScope.pageTitle = Environment.pageTitle;
-                            $rootScope.availableLocales = Environment.locale.available;
-                            $rootScope.locale = Environment.currentLocale();
+                            $rootScope.pageTitle = Env.pageTitle;
+                            $rootScope.availableLocales = Env.locale.available;
+                            $rootScope.locale = Env.currentLocale();
                             $rootScope.topMenu = [];
-                            $rootScope.domain = Environment.domain;
+                            $rootScope.domain = Env.domain;
                         }
                     }
                 }
