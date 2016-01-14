@@ -18,8 +18,6 @@ define(['app'], function (app) {
 
             var itemService = new resourceService('product');
 
-            console.log(">>>", $rootScope.domain);
-
             $scope.collectionTitle = 'Products';
             $scope.pageLimit = 20;
             $scope.pageNumber = 1;
