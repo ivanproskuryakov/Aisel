@@ -84,6 +84,9 @@ class Page implements UrlInterface
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
+     * @JMS\Readonly
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("Aisel\UserBundle\Entity\User")
      */
     private $user;
 
