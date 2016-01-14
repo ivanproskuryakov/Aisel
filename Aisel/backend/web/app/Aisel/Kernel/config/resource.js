@@ -18,7 +18,7 @@ define(['app'], function(app) {
             $urlRouterProvider.otherwise(function($injector, $location) {
                 var Environment = $injector.get('Environment');
                 var $state = $injector.get('$state');
-                var locale = Environment.settings.locale.primary;
+                var locale = Environment.locale.primary;
 
                 console.log('Fallback to primary locale');
                 $state.transitionTo('home', {

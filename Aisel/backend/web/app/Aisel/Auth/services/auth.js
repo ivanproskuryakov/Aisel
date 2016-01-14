@@ -16,12 +16,12 @@ define(['app'], function (app) {
     app.service('authService', ['$http', 'Environment', function ($http, Environment) {
         return {
             signout: function () {
-                var url = Environment.settings.apiFrontend + '/user/logout/';
+                var url = Environment.apiFrontend + '/user/logout/';
                 console.log(url);
                 return $http.get(url);
             },
             login: function (email, password) {
-                var url = Environment.settings.apiFrontend + '/user/login/';
+                var url = Environment.apiFrontend + '/user/login/';
                 var data = {
                     email: email,
                     password: password
@@ -34,7 +34,7 @@ define(['app'], function (app) {
                 });
             },
             getUserInformation: function () {
-                var url = Environment.settings.apiFrontend + '/user/information/';
+                var url = Environment.apiFrontend + '/user/information/';
                 // console.log(url);
                 return $http.get(url);
             }

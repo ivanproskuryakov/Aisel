@@ -22,7 +22,7 @@ define(['app'], function(app) {
                     imgSize: '='
                 },
                 link: function($scope, element, attrs) {
-                    $scope.domain = Environment.settings.domain;
+                    $scope.domain = Environment.domain;
                     $scope.size = attrs.imgSize;
                 },
                 templateUrl: '/app/Aisel/Product/views/directives/product-images.html'

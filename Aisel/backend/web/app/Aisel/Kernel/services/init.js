@@ -21,11 +21,12 @@ define(['app'], function (app) {
                     launch: function () {
 
                         console.log('----------- Aisel Loaded! -----------');
-                        $rootScope.pageTitle = Environment.settings.pageTitle;
-                        $rootScope.availableLocales = Environment.settings.locale.available;
+                        console.log(Environment);
+                        $rootScope.pageTitle = Environment.pageTitle;
+                        $rootScope.availableLocales = Environment.locale.available;
                         $rootScope.locale = Environment.currentLocale();
                         $rootScope.topMenu = [];
-                        $rootScope.domain = Environment.settings.domain;
+                        $rootScope.domain = Environment.domain;
                     }
                 }
             }

@@ -44,12 +44,14 @@ define([
         var app = angular.module('app', [
             'ngCookies', 'ngResource', 'ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.router',
             'ui.utils', 'ui.validate', 'ui.gravatar', 'textAngular', 'ngDisqus', 'cgNotify',
-            'ngAnimate', 'angular-loading-bar', 'ngTouch', 'ui.grid', 'flow',
-            'environment'
+            'ngAnimate', 'angular-loading-bar', 'ngTouch', 'ui.grid', 'flow'
         ]);
 
         app
-            .run(function ($http, $rootScope, initService) {
+            .run(function ($http, $rootScope, initService, settings, Environment) {
+
+                console.log('Environment:', Environment);
+                console.log('settings:', settings);
                 initService.launch();
             })
             .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
@@ -74,5 +76,6 @@ define([
                 // Can be used with different implementations of Flow.js
                 // flowFactoryProvider.factory = fustyFlowFactory;
             }]);
+
         return app;
     });

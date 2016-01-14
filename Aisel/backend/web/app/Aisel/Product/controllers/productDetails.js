@@ -30,7 +30,7 @@ define(['app'], function (app) {
             }));
 
             // Product Images
-            $scope.uploadPath = Environment.settings.api + '/media/upload/image/';
+            $scope.uploadPath = Environment.api + '/media/upload/image/';
 
             // Delete file
             var deleteFile = function (id) {

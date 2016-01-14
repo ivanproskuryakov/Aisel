@@ -16,8 +16,8 @@ define(['app'], function(app) {
     app.controller('NavigationCtrl', function($scope, $stateParams, $state, Environment) {
 
         $scope.sectionName = 'Navigation';
-        $scope.nodeJson = Environment.settings.api + '/navigation/?locale=' + $stateParams.lang;
-        $scope.nodeUpdate = Environment.settings.api + '/navigation/node/?locale=' + $stateParams.lang;
+        $scope.nodeJson = Environment.api + '/navigation/?locale=' + $stateParams.lang;
+        $scope.nodeUpdate = Environment.api + '/navigation/node/?locale=' + $stateParams.lang;
 
         $scope.editNode = function(id) {
             $state.transitionTo('navigationEdit', {

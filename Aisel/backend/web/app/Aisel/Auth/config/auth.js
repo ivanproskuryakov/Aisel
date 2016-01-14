@@ -41,12 +41,13 @@ define(['app'], function (app) {
 
                     console.log('Needed role: ' + role);
                 } else {
-                // role not needed
+                    // role not needed
 
                     if ($rootScope.user === undefined) {
                         // Load user status
                         authService.getUserInformation().success(
                             function (data, status) {
+
                                 if (data.email) {
                                     $rootScope.user = data;
                                 } else {
