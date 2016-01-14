@@ -38,6 +38,7 @@ class Review extends BaseReview
      * })
      * @JMS\Type("Aisel\ProductBundle\Entity\Product")
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $subject;
 

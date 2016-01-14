@@ -39,6 +39,7 @@ class Country
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $iso2;
 
@@ -48,6 +49,7 @@ class Country
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $iso3;
 
@@ -57,6 +59,7 @@ class Country
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $shortName;
 
@@ -66,6 +69,7 @@ class Country
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $longName;
 
@@ -75,6 +79,7 @@ class Country
      * @Assert\Type(type="string")
      * @Assert\NotNull()
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $numcode;
 
@@ -84,6 +89,7 @@ class Country
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      * @JMS\Type("boolean")
+     * @JMS\Groups({"collection","details"})
      */
     private $unMember = false;
 
@@ -92,6 +98,7 @@ class Country
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $callingCode;
 
@@ -100,6 +107,7 @@ class Country
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $cctld;
 
@@ -109,6 +117,7 @@ class Country
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Entity\Region>")
+     * @JMS\Groups({"collection","details"})
      */
     private $regions;
 

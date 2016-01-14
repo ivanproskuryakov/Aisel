@@ -30,6 +30,7 @@ trait CommentStatusTrait
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("boolean")
+     * @JMS\Groups({"collection","details"})
      */
     private $commentStatus = false;
 

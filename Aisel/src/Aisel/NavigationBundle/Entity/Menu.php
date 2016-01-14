@@ -35,6 +35,7 @@ class Menu extends BaseNode
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\NavigationBundle\Entity\Menu")
+     * @JMS\Groups({"collection","details"})
      */
     protected $parent = null;
 
@@ -44,6 +45,7 @@ class Menu extends BaseNode
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\NavigationBundle\Entity\Menu>")
+     * @JMS\Groups({"collection","details"})
      */
     protected $children = null;
 
@@ -52,6 +54,7 @@ class Menu extends BaseNode
      * @ORM\Column(type="string", nullable=true)
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $metaUrl;
 

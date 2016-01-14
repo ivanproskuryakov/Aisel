@@ -2,7 +2,13 @@
     <h2>{{page.name}}</h2>
 </div>
 <div class="col-xs-12 col-md-12">
-    <p><span class="glyphicon glyphicon-calendar"></span> {{page.created_at | date:"MM/dd/yyyy @ h:mma" }}</p>
+
+    <p>
+        <span class="glyphicon glyphicon-user"></span>
+        {{page.user.email | date:"MM/dd/yyyy @ h:mma" }}<br/>
+        <span class="glyphicon glyphicon-calendar"></span>
+        {{page.created_at | date:"MM/dd/yyyy @ h:mma" }}
+    </p>
 
     <p ng-bind-html="page.content"></p>
 </div>

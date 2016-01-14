@@ -33,6 +33,7 @@ trait LocaleTrait
      * )
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     protected $locale;
 

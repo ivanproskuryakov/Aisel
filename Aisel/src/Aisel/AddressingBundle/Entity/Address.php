@@ -38,6 +38,7 @@ class Address
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $street;
 
@@ -46,6 +47,7 @@ class Address
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $phone;
 
@@ -54,6 +56,7 @@ class Address
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $comment;
 
@@ -62,6 +65,7 @@ class Address
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type="string")
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $zip;
 
@@ -69,6 +73,7 @@ class Address
      * @var City
      * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\City")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     * @JMS\Groups({"collection","details"})
      */
     private $city;
 
@@ -76,6 +81,7 @@ class Address
      * @var Region
      * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\Region")
      * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     * @JMS\Groups({"collection","details"})
      */
     private $region;
 
@@ -83,6 +89,7 @@ class Address
      * @var Country
      * @ORM\OneToOne(targetEntity="Aisel\AddressingBundle\Entity\Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * @JMS\Groups({"collection","details"})
      */
     private $country;
 
@@ -92,6 +99,7 @@ class Address
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
+     * @JMS\Groups({"collection","details"})
      */
     private $user;
 

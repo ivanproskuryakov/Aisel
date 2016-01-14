@@ -46,6 +46,7 @@ class Media
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     protected $name;
 
@@ -55,6 +56,7 @@ class Media
      * @ORM\Column(type="boolean")
      * @JMS\Expose
      * @JMS\Type("boolean")
+     * @JMS\Groups({"collection","details"})
      */
     protected $mainImage = false;
 
@@ -64,6 +66,7 @@ class Media
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     protected $filename;
 
@@ -73,6 +76,7 @@ class Media
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     protected $type;
 

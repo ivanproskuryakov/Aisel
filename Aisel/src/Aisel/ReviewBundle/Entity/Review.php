@@ -52,6 +52,7 @@ abstract class Review
      * @JMS\Type("Aisel\UserBundle\Entity\User")
      * @JMS\Expose
      * @JMS\MaxDepth(2)
+     * @JMS\Groups({"collection","details"})
      */
     private $user;
 

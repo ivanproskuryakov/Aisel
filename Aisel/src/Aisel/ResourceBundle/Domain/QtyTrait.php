@@ -28,6 +28,7 @@ trait QtyTrait
      * @Assert\NotNull()
      * @ORM\Column(type="integer")
      * @JMS\Type("integer")
+     * @JMS\Groups({"collection","details"})
      */
     private $qty = 0;
 

@@ -48,6 +48,7 @@ class Order
      * @Assert\NotNull()
      * @JMS\Type("string")
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $status = 'new';
 
@@ -57,6 +58,7 @@ class Order
      * @ORM\Column(type="float", scale=2, nullable=false)
      * @JMS\Type("float")
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $totalAmount = 0;
 
@@ -67,6 +69,7 @@ class Order
      * @Assert\NotNull()
      * @JMS\Type("string")
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $currency;
 
@@ -77,6 +80,7 @@ class Order
      * @Assert\NotNull()
      * @JMS\Type("string")
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $country;
 
@@ -87,6 +91,7 @@ class Order
      * @Assert\NotNull()
      * @JMS\Type("string")
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $region;
 
@@ -97,6 +102,7 @@ class Order
      * @Assert\NotNull()
      * @JMS\Type("string")
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $city;
 
@@ -107,6 +113,7 @@ class Order
      * @Assert\NotNull()
      * @JMS\Type("string")
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $phone;
 
@@ -117,6 +124,7 @@ class Order
      * @Assert\NotNull()
      * @JMS\Type("string")
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $paymentMethod;
 
@@ -129,6 +137,7 @@ class Order
      * @JMS\Type("Aisel\UserBundle\Entity\User")
      * @JMS\MaxDepth(1)
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $user;
 
@@ -139,6 +148,7 @@ class Order
      * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\OrderBundle\Entity\Invoice")
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $invoice;
 
@@ -148,6 +158,7 @@ class Order
      * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Entity\OrderItem>")
      * @JMS\Expose
      * @JMS\MaxDepth(6)
+     * @JMS\Groups({"collection","details"})
      */
     private $item;
 
@@ -157,6 +168,7 @@ class Order
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)
      * })
+     * @JMS\Groups({"collection","details"})
      */
     private $seller;
 

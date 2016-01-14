@@ -56,6 +56,7 @@ class User implements AdvancedUserInterface
      * @ORM\Column(type="string", length=255)
      * @JMS\ReadOnly
      * @JMS\Expose
+     * @JMS\Groups({"collection","details"})
      */
     private $roles;
 
@@ -66,6 +67,7 @@ class User implements AdvancedUserInterface
      * @Assert\Email
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $email;
 
@@ -90,7 +92,7 @@ class User implements AdvancedUserInterface
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      * @JMS\ReadOnly
-     * @JMS\Expose
+     * @JMS\Exclude
      * @JMS\Type("boolean")
      */
     private $enabled = false;
@@ -101,7 +103,7 @@ class User implements AdvancedUserInterface
      * @Assert\Type(type="bool")
      * @Assert\NotNull()
      * @JMS\ReadOnly
-     * @JMS\Expose
+     * @JMS\Exclude
      * @JMS\Type("boolean")
      */
     private $locked = false;
@@ -117,7 +119,7 @@ class User implements AdvancedUserInterface
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
-     * @JMS\Expose
+     * @JMS\Exclude
      * @JMS\Type("DateTime")
      */
     private $expiresAt;
@@ -137,6 +139,7 @@ class User implements AdvancedUserInterface
      * @JMS\Expose
      * @JMS\MaxDepth(6)
      * @JMS\Type("ArrayCollection<Aisel\CartBundle\Entity\Cart>")
+     * @JMS\Groups({"collection","details"})
      */
     private $cart;
 
@@ -144,6 +147,7 @@ class User implements AdvancedUserInterface
      * @var Collection
      * @ORM\OneToMany(targetEntity="Aisel\OrderBundle\Entity\Order", mappedBy="user", cascade={"remove"})
      * @JMS\Type("ArrayCollection<Aisel\OrderBundle\Entity\Order>")
+     * @JMS\Groups({"collection","details"})
      */
     private $orders;
 
@@ -153,6 +157,7 @@ class User implements AdvancedUserInterface
      * @JMS\Expose
      * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\AddressingBundle\Entity\Address>")
+     * @JMS\Groups({"collection","details"})
      */
     private $addresses;
 
@@ -162,6 +167,7 @@ class User implements AdvancedUserInterface
      * @JMS\Expose
      * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Review>")
+     * @JMS\Groups({"collection","details"})
      */
     private $reviewsProduct;
 
@@ -171,6 +177,7 @@ class User implements AdvancedUserInterface
      * @JMS\Expose
      * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Review>")
+     * @JMS\Groups({"collection","details"})
      */
     private $reviewsPage;
 
@@ -180,6 +187,7 @@ class User implements AdvancedUserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $about;
 
@@ -189,6 +197,7 @@ class User implements AdvancedUserInterface
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $phone;
 
@@ -198,6 +207,7 @@ class User implements AdvancedUserInterface
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $website;
 
@@ -207,6 +217,7 @@ class User implements AdvancedUserInterface
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $facebook;
 
@@ -216,6 +227,7 @@ class User implements AdvancedUserInterface
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $twitter;
 

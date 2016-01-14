@@ -46,6 +46,7 @@ abstract class Node implements NodeInterface
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\NodeBundle\Entity\Node")
+     * @JMS\Groups({"collection","details"})
      */
     protected $parent = null;
 
@@ -55,6 +56,7 @@ abstract class Node implements NodeInterface
      * @JMS\Expose
      * @JMS\MaxDepth(1)
      * @JMS\Type("ArrayCollection<Aisel\NodeBundle\Entity\Node>")
+     * @JMS\Groups({"collection","details"})
      */
     protected $children = null;
 

@@ -44,6 +44,7 @@ class Cart
      * })
      * @JMS\Exclude
      * @JMS\Type("Aisel\UserBundle\Entity\User")
+     * @JMS\Groups({"collection","details"})
      */
     private $user;
 
@@ -53,6 +54,7 @@ class Cart
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      * @JMS\Type("Aisel\ProductBundle\Entity\Product")
      * @JMS\MaxDepth(3)
+     * @JMS\Groups({"collection","details"})
      */
     private $product;
 

@@ -30,6 +30,7 @@ trait NameTrait
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $name;
 

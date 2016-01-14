@@ -30,6 +30,7 @@ trait IdTrait
      * @ORM\GeneratedValue(strategy="AUTO")
      * @JMS\Expose
      * @JMS\Type("integer")
+     * @JMS\Groups({"collection","details"})
      */
     private $id;
 

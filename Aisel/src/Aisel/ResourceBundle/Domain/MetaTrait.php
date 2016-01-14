@@ -30,6 +30,7 @@ trait MetaTrait
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $metaUrl;
 
@@ -39,6 +40,7 @@ trait MetaTrait
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $metaTitle;
 
@@ -48,6 +50,7 @@ trait MetaTrait
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $metaDescription;
 
@@ -57,6 +60,7 @@ trait MetaTrait
      * @Assert\Type(type="string")
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $metaKeywords;
 

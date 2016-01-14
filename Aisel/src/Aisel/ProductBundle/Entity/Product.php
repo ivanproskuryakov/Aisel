@@ -63,6 +63,7 @@ class Product implements UrlInterface
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $sku;
 
@@ -73,6 +74,7 @@ class Product implements UrlInterface
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("float")
+     * @JMS\Groups({"collection","details"})
      */
     private $price;
 
@@ -82,6 +84,7 @@ class Product implements UrlInterface
      * @Assert\Type(type="float")
      * @JMS\Expose
      * @JMS\Type("float")
+     * @JMS\Groups({"collection","details"})
      */
     private $priceSpecial;
 
@@ -91,6 +94,7 @@ class Product implements UrlInterface
      * @Gedmo\Timestampable(on="update")
      * @JMS\Expose
      * @JMS\Type("DateTime")
+     * @JMS\Groups({"collection","details"})
      */
     private $priceSpecialFrom;
 
@@ -100,6 +104,7 @@ class Product implements UrlInterface
      * @Gedmo\Timestampable(on="update")
      * @JMS\Expose
      * @JMS\Type("DateTime")
+     * @JMS\Groups({"collection","details"})
      */
     private $priceSpecialTo;
 
@@ -110,6 +115,7 @@ class Product implements UrlInterface
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("boolean")
+     * @JMS\Groups({"collection","details"})
      */
     private $new = false;
 
@@ -119,6 +125,7 @@ class Product implements UrlInterface
      * @Gedmo\Timestampable(on="update")
      * @JMS\Expose
      * @JMS\Type("DateTime")
+     * @JMS\Groups({"collection","details"})
      */
     private $newFrom;
 
@@ -128,6 +135,7 @@ class Product implements UrlInterface
      * @Gedmo\Timestampable(on="update")
      * @JMS\Expose
      * @JMS\Type("DateTime")
+     * @JMS\Groups({"collection","details"})
      */
     private $newTo;
 
@@ -138,6 +146,7 @@ class Product implements UrlInterface
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("boolean")
+     * @JMS\Groups({"collection","details"})
      */
     private $inStock = false;
 
@@ -148,6 +157,7 @@ class Product implements UrlInterface
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("boolean")
+     * @JMS\Groups({"collection","details"})
      */
     private $manageStock = false;
 
@@ -158,6 +168,7 @@ class Product implements UrlInterface
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("string")
+     * @JMS\Groups({"collection","details"})
      */
     private $descriptionShort;
 
@@ -168,6 +179,7 @@ class Product implements UrlInterface
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("boolean")
+     * @JMS\Groups({"collection","details"})
      */
     private $hidden = false;
 
@@ -182,6 +194,7 @@ class Product implements UrlInterface
      * @JMS\Expose
      * @JMS\MaxDepth(3)
      * @JMS\Type("ArrayCollection<Aisel\MediaBundle\Entity\Media>")
+     * @JMS\Groups({"collection","details"})
      */
     private $medias;
 
@@ -196,6 +209,7 @@ class Product implements UrlInterface
      * @JMS\Expose
      * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Node>")
+     * @JMS\Groups({"collection","details"})
      */
     private $nodes;
 
@@ -205,6 +219,7 @@ class Product implements UrlInterface
      * @JMS\Expose
      * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\ProductBundle\Entity\Review>")
+     * @JMS\Groups({"collection","details"})
      */
     private $reviews;
 
@@ -215,6 +230,11 @@ class Product implements UrlInterface
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="backend_user_id", referencedColumnName="id", nullable=false)
      * })
+     * @JMS\Expose
+     * @JMS\Readonly
+     * @JMS\MaxDepth(1)
+     * @JMS\Type("Aisel\UserBundle\Entity\User")
+     * @JMS\Groups({"collection","details"})
      */
     private $user;
 

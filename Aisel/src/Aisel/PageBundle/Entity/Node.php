@@ -43,6 +43,7 @@ class Node extends BaseNode implements UrlInterface
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      * @JMS\Expose
      * @JMS\Type("Aisel\PageBundle\Entity\Node")
+     * @JMS\Groups({"collection","details"})
      */
     protected $parent;
 
@@ -51,6 +52,7 @@ class Node extends BaseNode implements UrlInterface
      * @ORM\OrderBy({"name" = "ASC"})
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Node>")
+     * @JMS\Groups({"collection","details"})
      */
     protected $children;
 

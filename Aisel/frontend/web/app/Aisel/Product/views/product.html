@@ -29,6 +29,13 @@
                             </a>
                         </h2>
 
+                        <p>
+                            <span class="glyphicon glyphicon-user"></span>
+                            {{product.user.email | date:"MM/dd/yyyy @ h:mma" }}<br/>
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            {{product.created_at | date:"MM/dd/yyyy @ h:mma" }}
+                        </p>
+
                         <h3>
                             <span class="label label-warning">{{product.price}} {{currency}}</span>
                         </h3>

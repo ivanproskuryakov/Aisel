@@ -30,6 +30,7 @@ trait UpdateCreateTrait
      * @Gedmo\Timestampable(on="create")
      * @JMS\Expose
      * @JMS\Type("DateTime")
+     * @JMS\Groups({"collection","details"})
      */
     protected $createdAt;
 
@@ -39,6 +40,7 @@ trait UpdateCreateTrait
      * @Gedmo\Timestampable(on="update")
      * @JMS\Expose
      * @JMS\Type("DateTime")
+     * @JMS\Groups({"collection","details"})
      */
     protected $updatedAt;
 

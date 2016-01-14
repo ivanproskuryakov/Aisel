@@ -63,6 +63,7 @@ class Page implements UrlInterface
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Node>")
      * @JMS\Expose
      * @JMS\MaxDepth(2)
+     * @JMS\Groups({"collection","details"})
      */
     private $nodes;
 
@@ -73,6 +74,7 @@ class Page implements UrlInterface
      * @JMS\Expose
      * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\PageBundle\Entity\Review>")
+     * @JMS\Groups({"collection","details"})
      */
     private $reviews;
 
@@ -84,9 +86,11 @@ class Page implements UrlInterface
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
+     * @JMS\Expose
      * @JMS\Readonly
      * @JMS\MaxDepth(1)
      * @JMS\Type("Aisel\UserBundle\Entity\User")
+     * @JMS\Groups({"collection","details"})
      */
     private $user;
 

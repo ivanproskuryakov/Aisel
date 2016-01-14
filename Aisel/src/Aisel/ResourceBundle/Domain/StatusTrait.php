@@ -30,6 +30,7 @@ trait StatusTrait
      * @Assert\NotNull()
      * @JMS\Expose
      * @JMS\Type("boolean")
+     * @JMS\Groups({"collection","details"})
      */
     protected $status = false;
 
