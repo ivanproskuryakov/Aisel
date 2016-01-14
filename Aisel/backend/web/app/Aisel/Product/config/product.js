@@ -60,26 +60,39 @@ define(['app'], function (app) {
                 })
         }])
         .run(['$rootScope', 'Env', function ($rootScope, Env) {
-            $rootScope.topMenu.push({
+            $rootScope.adminMenu.push({
                 "ordering": 200,
-                "roles": ['ROLE_ADMIN', 'ROLE_USER'],
                 "title": 'Products',
                 "children": {
                     "products": {
                         "ordering": 100,
-                        "roles": ['ROLE_ADMIN', 'ROLE_USER'],
                         "slug": '/products/',
                         "title": 'Products'
                     },
                     "productNode": {
                         "ordering": 200,
-                        "roles": ['ROLE_ADMIN'],
                         "slug": '/product/node/' + Env.currentLocale() + '/',
                         "title": 'Nodes'
                     },
                     "productReview": {
                         "ordering": 300,
-                        "roles": ['ROLE_ADMIN', 'ROLE_USER'],
+                        "slug": '/product/review/',
+                        "title": 'Reviews'
+                    }
+                }
+            });
+
+            $rootScope.sellerMenu.push({
+                "ordering": 200,
+                "title": 'Products',
+                "children": {
+                    "products": {
+                        "ordering": 100,
+                        "slug": '/products/',
+                        "title": 'Products'
+                    },
+                    "productReview": {
+                        "ordering": 300,
                         "slug": '/product/review/',
                         "title": 'Reviews'
                     }

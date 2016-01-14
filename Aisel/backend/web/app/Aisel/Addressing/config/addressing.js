@@ -93,26 +93,22 @@ define(['app'], function (app) {
         }])
         .run(['$rootScope', 'Env', function ($rootScope, Env) {
 
-            $rootScope.topMenu.push({
+            $rootScope.adminMenu.push({
                 "ordering": 900,
-                "roles": 'ROLE_ADMIN',
                 "title": 'Addresses',
                 "children": {
                     "countries": {
                         "ordering": 100,
-                        "roles": 'ROLE_ADMIN',
                         "slug": '/addressing/country/',
                         "title": 'Countries'
                     },
                     "regions": {
                         "ordering": 200,
-                        "roles": 'ROLE_ADMIN',
                         "slug": '/addressing/region/',
                         "title": 'Regions'
                     },
                     "cities": {
                         "ordering": 300,
-                        "roles": 'ROLE_ADMIN',
                         "slug": '/addressing/city/',
                         "title": 'Cities'
                     }

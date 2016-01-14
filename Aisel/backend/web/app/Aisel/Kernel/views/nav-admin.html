@@ -1,0 +1,23 @@
+<ul class="nav navbar-nav" ng-if="user.roles === 'ROLE_ADMIN'">
+    <li ng-class="item.children ? 'dropdown' : ''"
+        ng-repeat="(name,item) in adminMenu | orderBy: 'ordering'">
+        <a href="/{{locale}}{{item.slug}}" ng-if="!item.children">
+            <span ng-if="item.glyphicon" class="glyphicon {{item.glyphicon}}" aria-hidden="true"></span>
+            {{item.title}}
+        </a>
+        <a href="#"
+           ng-if="item.children"
+           class="dropdown-toggle"
+           data-toggle="dropdown">
+                        <span ng-if="item.glyphicon"
+                              class="glyphicon {{item.glyphicon}}"
+                              aria-hidden="true"></span>
+            {{item.title}} <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" ng-if="item.children">
+            <li ng-repeat="(childrenName,childrenItem) in item.children">
+                <a href="/{{locale}}{{childrenItem.slug}}">{{childrenItem.title}}</a>
+            </li>
+        </ul>
+    </li>
+</ul>

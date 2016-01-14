@@ -25,7 +25,8 @@ define(['app'], function (app) {
                             $rootScope.pageTitle = Env.pageTitle;
                             $rootScope.availableLocales = Env.locale.available;
                             $rootScope.locale = Env.currentLocale();
-                            $rootScope.topMenu = [];
+                            $rootScope.adminMenu = [];
+                            $rootScope.sellerMenu = [];
                             $rootScope.domain = Env.domain;
                         }
                     }

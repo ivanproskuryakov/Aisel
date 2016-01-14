@@ -28,9 +28,8 @@ define(['app'], function(app) {
                 })
         }])
         .run(['$rootScope', 'Env', function($rootScope, Env) {
-            $rootScope.topMenu.push({
+            $rootScope.adminMenu.push({
                 "ordering": 400,
-                "roles": 'ROLE_ADMIN',
                 "slug": '/orders/',
                 "title": 'Orders'
             });

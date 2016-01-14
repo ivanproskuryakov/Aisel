@@ -12,9 +12,9 @@
  * @description     Module configuration
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app
-        .config(['$stateProvider', function($stateProvider) {
+        .config(['$stateProvider', function ($stateProvider) {
             $stateProvider
                 .state("settings", {
                     url: "/:locale/settings/",
@@ -22,10 +22,9 @@ define(['app'], function(app) {
                     controller: 'SettingsCtrl'
                 })
         }])
-        .run(['$rootScope', 'Env', function($rootScope, Env) {
-            $rootScope.topMenu.push({
+        .run(['$rootScope', 'Env', function ($rootScope, Env) {
+            $rootScope.adminMenu.push({
                 "ordering": 900,
-                "roles": ['ROLE_ADMIN'],
                 "glyphicon": 'glyphicon-cog',
                 "slug": '/settings/',
                 "title": 'Settings'
