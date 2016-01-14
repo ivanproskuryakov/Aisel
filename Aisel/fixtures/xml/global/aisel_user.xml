@@ -84,5 +84,55 @@
             <column name="facebook">https://www.facebook.com/pages/Aisel/1439524699618478</column>
             <column name="twitter">https://twitter.com/aisel</column>
         </table>
+
+
+        <table name="aisel_user_seller">
+            <column name="id">11000</column>
+            <column name="email">andres@aisel.co</column>
+            <column name="password">andres</column>
+            <column name="role">ROLE_USER</column>
+            <column name="enabled">1</column>
+            <column name="locked">0</column>
+            <column name="created_at">2014-08-16 12:31:52</column>
+            <column name="updated_at">2014-08-16 12:31:52</column>
+            <column name="expires_at">NULL</column>
+            <column name="last_login">2014-08-16 12:31:52</column>
+        </table>
+        <table name="aisel_user_seller">
+            <column name="id">12000</column>
+            <column name="email">peter@aisel.co</column>
+            <column name="password">peter</column>
+            <column name="role">ROLE_USER</column>
+            <column name="enabled">1</column>
+            <column name="locked">0</column>
+            <column name="created_at">2014-08-16 12:31:52</column>
+            <column name="updated_at">2014-08-16 12:31:52</column>
+            <column name="expires_at">NULL</column>
+            <column name="last_login">2014-08-16 12:31:52</column>
+        </table>
+        <table name="aisel_user_seller">
+            <column name="id">13000</column>
+            <column name="email">lucia@aisel.co</column>
+            <column name="password">lucia</column>
+            <column name="role">ROLE_USER</column>
+            <column name="enabled">1</column>
+            <column name="locked">0</column>
+            <column name="created_at">2014-08-16 12:31:52</column>
+            <column name="updated_at">2014-08-16 12:31:52</column>
+            <column name="expires_at">NULL</column>
+            <column name="last_login">2014-08-16 12:31:52</column>
+        </table>
+        <table name="aisel_user_seller">
+            <column name="id">14000</column>
+            <column name="email">anna@aisel.co</column>
+            <column name="password">anna</column>
+            <column name="role">ROLE_USER</column>
+            <column name="enabled">1</column>
+            <column name="locked">0</column>
+            <column name="created_at">2014-08-16 12:31:52</column>
+            <column name="updated_at">2014-08-16 12:31:52</column>
+            <column name="expires_at">NULL</column>
+            <column name="last_login">2014-08-16 12:31:52</column>
+        </table>
     </database>
 </pma_xml_export>

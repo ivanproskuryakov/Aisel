@@ -18,7 +18,7 @@
         <!-- English Pages -->
         <table name="aisel_page">
             <column name="id">1921</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">11000</column>
             <column name="locale">en</column>
             <column name="title">About Us</column>
             <column name="content">If you are designing a website and need to show what it will look like on the MacBook without actually using one, a mockup can be an excellent option. Although there are numerous places on the web that offer these mockups, we take pride in being the very best. All of our mockups are high quality and guaranteed to meet the needs of our customers. A good mockup can go a long way towards impressing clients, especially if you are involved in the designing of a new application or website. Technology has come a long way in recent years, and these mockups help to supplement the tools that these designers use to create innovative new apps. Anyone who is designing an application for the Apple iPad and needs to show their clients in a way that looks finished and polished will definitely want to consider using our generator, as it is a great way to go about doing this. Clients respond the best to apps they can see on the device, or at least an image of the device. We specialize in providing designers with a way to showcase their hard work on a variety of Apple devices, including the iPad and iPad Mini models. Allow your clients to see what you have created with one of our high quality mockups which will give them a much better idea as to what the app looks like and how it functions.</column>
@@ -37,14 +37,14 @@
         </table>
         <table name="aisel_page">
             <column name="id">1922</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">12000</column>
             <column name="locale">en</column>
-            <column name="title">Disabled Page</column>
+            <column name="title">Another Page</column>
             <column name="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur dolor eget viverra commodo. Ut vehicula volutpat massa. Maecenas congue sed risus ut semper. Fusce blandit sem nunc, nec facilisis neque eleifend eget. Pellentesque fringilla velit enim, vel convallis libero ultrices vel. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas consectetur lacus et nibh facilisis, non vulputate urna convallis. Donec quis dictum magna, id dictum urna. Aliquam euismod sit amet arcu vulputate laoreet. Vivamus at leo nibh. Proin scelerisque orci sit amet sem varius, a porttitor tortor iaculis. Aenean sollicitudin diam sed euismod varius. Duis commodo a metus eu scelerisque. Etiam porttitor placerat urna vel tincidunt. Quisque congue tellus quam, non volutpat justo eleifend vehicula. Phasellus cursus convallis aliquam. Morbi adipiscing vulputate tellus, id auctor metus interdum a. Fusce diam tellus, varius commodo tincidunt in, ornare a mauris. Phasellus interdum, metus non fringilla rhoncus, odio massa pharetra orci, in semper tortor enim nec quam. Duis consectetur quis nibh at convallis. Integer tincidunt ligula sem, vitae bibendum sem elementum nec. Etiam ornare nisl lacinia, facilisis nisl a, mollis sem. Aliquam erat volutpat.</column>
             <column name="status">0</column>
             <column name="is_hidden">1</column>
             <column name="comment_status">0</column>
-            <column name="meta_url">en-page-disabled</column>
+            <column name="meta_url">en-page-another</column>
             <column name="categories">1270,1271,1272,1273,1274,1275</column>
             <column name="reviews">1922</column>
             <column name="meta_title">NULL</column>
@@ -55,7 +55,7 @@
         </table>
         <table name="aisel_page">
             <column name="id">1923</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">13000</column>
             <column name="locale">en</column>
             <column name="title">Sample Page 1</column>
             <column name="content">Anyone who has designed an application and needs to showcase it to clients will need to consider the immense benefits of using a Macbook mockup. These mockups are realistic high quality representations of Apple devices which can be very useful when it comes to showing clients what you have created. Whether it is an app for finding restaurants in a given area or social networking, our mockups are the very best and can provide designers with the perfect way to go about showing their clients what they have made while saving a lot of time in the process.An iPhone mockup can be of great use to designers who are looking to impress their clients with a high quality visual representation of the apps they create. We offer mockups for the iPhone 4 and 5 from numerous angles with different backgrounds which will be sure to please your clients by giving them a better idea as to what your finished application is going to look like on the actual device. Mockups are definitely an important part of presenting finished or prototype applications, and we specialize in meeting the needs of designers that have to bring something to their clients in an official presentation.</column>
@@ -163,7 +163,7 @@
         </table>
         <table name="aisel_page">
             <column name="id">1929</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">12000</column>
             <column name="locale">en</column>
             <column name="title">Sample Page 7</column>
             <column name="content">When you use our website you can choose to upload an existing image on your computer or use a screen shot from the web to generate your mockup. It only takes a few minutes to receive the mockup after the image has been uploaded, so you don’t have to wait very long to get it. Those who have an important presentation where they need to give a visual representation of the app they are designing will find that our mockups are extremely useful. We can guarantee your satisfaction when it comes to generating a mockup that will be incredibly convincing and effective at showing what your app is going to look like after it has been completed.</column>
@@ -181,7 +181,7 @@
         </table>
         <table name="aisel_page">
             <column name="id">1930</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">14000</column>
             <column name="locale">en</column>
             <column name="title">Sample Page 8</column>
             <column name="content">One of the other reasons why our website is so popular with professional designers who need mockups made is because we offer a free and simple process for getting them. Using mockups can save a ton of time and effort, so it is definitely wise to consider using them, especially if you have a presentation with clients coming up in the near future. You will find that using these mockups can be a great way to go about showcasing your work for the people who have hired you to design a new logo for their product or an app which is made to be used on the MacBook.</column>
@@ -199,7 +199,7 @@
         </table>
         <table name="aisel_page">
             <column name="id">1931</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">13000</column>
             <column name="locale">en</column>
             <column name="title">Sample Page 9</column>
             <column name="content">Those who need to design a new app to be used on the Apple iPad will find that having a mockup of this device will help out quite a bit. Designing a program of any kind for a mobile device, whether it is for social media or GPS, can be quite difficult with the proper visualization. The iPad mockups that we offer are high quality and can help designers to transform the ideas in their mind into a reality.</column>
@@ -217,7 +217,7 @@
         </table>
         <table name="aisel_page">
             <column name="id">1932</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">12000</column>
             <column name="locale">en</column>
             <column name="title">Sample Page 10</column>
             <column name="content">Designers who want to save as much time as possible when it comes to designing new apps for the iPad will find that our mockups are the very best way to go about doing this. Our mockup generation tools can provide program designers with a great way to go about seeing what their app is like in practice and on the screen so all the necessary improvements and adjustments can be made. These mockups can really help those who need to design an app which is completely flawless by giving them a way to see it visually and not just in code.</column>
@@ -235,7 +235,7 @@
         </table>
         <table name="aisel_page">
             <column name="id">1933</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">11000</column>
             <column name="locale">en</column>
             <column name="title">Sample Page 11</column>
             <column name="content">Our iPad mockups can help designers with testing their application prototypes in a way that is easier and more straightforward than any other. Your iPad mockup will be ready within a matter of minutes after placing your order, so you can get started on designing your app as soon as possible. It is certainly important to please your clients, and the mockups that we offer are the very best on the web. You will find that these mockups are detailed and can be of great use when it comes to the design process.</column>

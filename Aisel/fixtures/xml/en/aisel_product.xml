@@ -18,7 +18,7 @@
         <!-- English products -->
         <table name="aisel_product">
             <column name="id">109</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">11000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 100</column>
             <column name="sku">P0001</column>
@@ -48,7 +48,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">110</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">12000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 110</column>
             <column name="sku">P0002</column>
@@ -78,7 +78,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">120</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">13000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 120</column>
             <column name="sku">P0002</column>
@@ -168,7 +168,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">150</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">14000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 150</column>
             <column name="sku">P0005</column>
@@ -228,7 +228,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">170</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">13000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 170</column>
             <column name="sku">P0007</column>
@@ -258,7 +258,7 @@
         </table>
         <table name="aisel_product">
             <column name="id">180</column>
-            <column name="seller_id">1000</column>
+            <column name="seller_id">12000</column>
             <column name="locale">en</column>
             <column name="name">Nike Baseball Hat 180</column>
             <column name="sku">P0008</column>
