@@ -7,7 +7,7 @@ FullStack based on AngularJS, PHP(Symfony2) - http://aisel.co/
 Demo:<br/>
 Frontend: http://ecommerce.aisel.co/en/ [user@aisel.co/user]<br/>
 Admin: http://admin.ecommerce.aisel.co/en/ [admin@aisel.co/admin]<br/>
-Seller: http://admin.ecommerce.aisel.co/en/ [seller@aisel.co/seller]<br/>
+Seller: http://seller.ecommerce.aisel.co/en/ [seller@aisel.co/seller]<br/>
 
 <img width="400" src="http://aisel.co/images/frontend_product_view.png"/>
 
