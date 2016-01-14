@@ -21,14 +21,15 @@ define([
     require(['domReady!'], function (document) {
 
         function fetchSettings() {
+
             var initInjector = angular.injector(["ng"]);
             var $http = initInjector.get("$http");
+            var api_domain = document.domain.replace("admin", "api");
+
 
             return $http
-                .get("http://api.aisel.dev/frontend/api/user/information/", {withCredentials: true})
+                .get("http://" + api_domain + "/frontend/api/user/information/", {withCredentials: true})
                 .then(function (response) {
-
-                    var api_domain = document.domain.replace("admin", "api");
 
                     var Env = {
                         api: 'http://' + api_domain + '/backend/api',
