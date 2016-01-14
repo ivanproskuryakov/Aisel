@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.1.9
+- http://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Sep 01, 2014 at 04:53 PM
+- Server version: 5.6.16
+- PHP Version: 5.4.24
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Database: 'aisel'
+    -->
+    <database name="aisel">
+        <table name="aisel_cart">
+            <column name="id">10000</column>
+            <column name="frontend_user_id">3000</column>
+            <column name="qty">1</column>
+            <column name="product_id">190</column>
+            <column name="created_at">2014-09-01 16:52:06</column>
+            <column name="updated_at">2014-09-01 16:52:06</column>
+        </table>
+        <table name="aisel_cart">
+            <column name="id">10001</column>
+            <column name="frontend_user_id">3000</column>
+            <column name="qty">1</column>
+            <column name="product_id">200</column>
+            <column name="created_at">2014-09-01 16:52:06</column>
+            <column name="updated_at">2014-09-01 16:52:06</column>
+        </table>
+        <table name="aisel_cart">
+            <column name="id">10002</column>
+            <column name="frontend_user_id">3000</column>
+            <column name="qty">1</column>
+            <column name="product_id">210</column>
+            <column name="created_at">2014-09-01 16:52:06</column>
+            <column name="updated_at">2014-09-01 16:52:06</column>
+        </table>
+
+        <table name="aisel_cart">
+            <column name="id">10003</column>
+            <column name="frontend_user_id">4000</column>
+            <column name="qty">1</column>
+            <column name="product_id">190</column>
+            <column name="created_at">2014-09-01 16:52:06</column>
+            <column name="updated_at">2014-09-01 16:52:06</column>
+        </table>
+        <table name="aisel_cart">
+            <column name="id">10004</column>
+            <column name="frontend_user_id">4000</column>
+            <column name="qty">2</column>
+            <column name="product_id">200</column>
+            <column name="created_at">2014-09-01 16:52:06</column>
+            <column name="updated_at">2014-09-01 16:52:06</column>
+        </table>
+        <table name="aisel_cart">
+            <column name="id">10005</column>
+            <column name="frontend_user_id">4000</column>
+            <column name="qty">3</column>
+            <column name="product_id">210</column>
+            <column name="created_at">2014-09-01 16:52:06</column>
+            <column name="updated_at">2014-09-01 16:52:06</column>
+        </table>
+    </database>
+</pma_xml_export>

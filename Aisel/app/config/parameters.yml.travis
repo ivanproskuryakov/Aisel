@@ -1,0 +1,18 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     aisel
+    database_user:     root
+    database_password: 12qw12
+
+    mailer_transport: "mailgun"
+    website_email: noreply@aisel.co
+    website_address: 'http://aisel.dev'
+    locale: en
+    locales: en|es|ru
+
+    paypal.express_checkout.username:  EDIT ME
+    paypal.express_checkout.password:  EDIT ME
+    paypal.express_checkout.signature: EDIT ME
+    secret:            SecretTokenAisel

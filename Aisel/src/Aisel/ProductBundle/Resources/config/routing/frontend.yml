@@ -1,0 +1,50 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+api_aisel_product_get_collection:
+    pattern:  /{locale}/product/
+    defaults: { _controller: AiselProductBundle:Frontend/ApiProduct:getCollection, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_product_get_by_url:
+    pattern:  /{locale}/product/{url}
+    defaults: { _controller: AiselProductBundle:Frontend/ApiProduct:getByURL, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_product_node_get_by_url:
+    pattern:  /{locale}/product/node/{url}
+    defaults: { _controller: AiselProductBundle:Frontend/ApiNode:getByURL, _format: json }
+    requirements:
+        _method: GET
+        id: "\d+"
+
+api_aisel_product_node_get:
+    pattern:  /{locale}/product/node/
+    defaults: { _controller: AiselProductBundle:Frontend/ApiNode:getCollection, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_product_node_get_tree:
+    pattern:  /{locale}/product/node/tree/
+    defaults: { _controller: AiselProductBundle:Frontend/ApiNode:getTree, _format: json }
+    requirements:
+        _method: GET
+
+#Review
+api_aisel_product_review_post:
+    pattern:  /{locale}/product/review/
+    defaults: { _controller: AiselProductBundle:Frontend/ApiReview:post, _format: json }
+    requirements:
+        _method: POST
+
+api_aisel_product_review_get:
+    pattern:  /{locale}/product/review/{id}
+    defaults: { _controller: AiselProductBundle:Frontend/ApiReview:get, _format: json }
+    requirements:
+        _method: GET

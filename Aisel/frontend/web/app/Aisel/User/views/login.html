@@ -1,0 +1,36 @@
+<div class="col-xs-12 page-header">
+    <h2><span class="glyphicon glyphicon glyphicon-user"></span> Sign In</h2>
+</div>
+
+<form class="form-horizontal" name="loginForm" role="form" ng-submit="login(email, password)">
+    <div class="modal-body">
+        <div class="row">
+            <!-- Form Fields -->
+            <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4" role="main">
+                <div class="form-group">
+                    <label for="signInEmail">E-mail</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                        <input ng-model="email" type="text" class="form-control" id="signInEmail" ng-required="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signInPassword">Your password</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <input ng-model="password" type="password" class="form-control" id="signInPassword" ng-required="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a ui-sref="userRegister({locale: locale})" class="thumb">New account</a><br/>
+                        <a ui-sref="userPasswordForgot({locale: locale})" class="thumb">Forgot password?</a>
+                    </p>
+                </div>
+                <div class="form-group pull-right">
+                    <button class="btn btn-primary" type="submit" >Log In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

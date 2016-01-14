@@ -1,0 +1,32 @@
+security:
+    encoders:
+        Aisel\UserBundle\Entity\User: sha512
+
+    role_hierarchy:
+        ROLE_USER:        [ROLE_USER]
+        ROLE_ADMIN:       [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        user:
+            entity: { class: Aisel\UserBundle\Entity\User, property: username }
+
+    firewalls:
+        # Disabling the security for the web debug toolbar, the profiler and Assetic.
+        dev:
+            pattern:    ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        user:
+            pattern:             .*
+            context:             user
+            anonymous:           true
+
+    access_control:
+        - { path: ^/%backend_api%/, role: ROLE_ADMIN }
+        - { path: ^/%seller_api%/, role: ROLE_USER }
+
+        - { path: ^/%frontend_api%/user/password/forgot/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%frontend_api%/user/register/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%frontend_api%/user/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%frontend_api%/user/information/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%frontend_api%/user/, role: ROLE_USER }

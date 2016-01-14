@@ -1,49 +1,56 @@
-#Node.js
 /.idea/*
+/.vagrant/*
+/Aisel/node_modules/*
 
-#Node.js
-/node_modules/*
+#Logs
+/Aisel/npm-debug.log
+/Aisel/api.access.log
+/Aisel/api.error.log
+/Aisel/backend.access.log
+/Aisel/backend.error.log
+/Aisel/frontend.access.log
+/Aisel/frontend.error.log
 
 #Frontend AngularJS
-/frontend/web/.htaccess
-/frontend/web/robots.txt
-/frontend/web/sitemap.xml
-/frontend/web/images/logo.png
-/frontend/web/bundles/*
-/frontend/web/bower_components/*
-/frontend/web/npm-debug.log
-!/frontend/web/media/product/.htaccess
-/frontend/web/photo/*
-/frontend/web/css/*
-/frontend/web/build/*
+/Aisel/frontend/web/.htaccess
+/Aisel/frontend/web/robots.txt
+/Aisel/frontend/web/sitemap.xml
+/Aisel/frontend/web/images/logo.png
+/Aisel/frontend/web/bundles/*
+/Aisel/frontend/web/bower_components/*
+/Aisel/frontend/web/npm-debug.log
+!/Aisel/frontend/web/media/product/.htaccess
+/Aisel/frontend/web/photo/*
+/Aisel/frontend/web/css/*
+/Aisel/frontend/web/build/*
 
 #Backend AngularJS
-/backend/web/.htaccess
-/backend/web/bower_components/*
-/backend/web/npm-debug.log
-/backend/web/build/*
+/Aisel/backend/web/.htaccess
+/Aisel/backend/web/bower_components/*
+/Aisel/backend/web/npm-debug.log
+/Aisel/backend/web/build/*
 
 #Symfony API
-/web/.htaccess
-/web/media/*
-/web/media/*/*
-/web/media/*/*/*
-/web/css/*
-/web/bundles/*
-/app/bootstrap.php.cache
-/app/cache/*
-/app/var/*
-/app/config/parameters.yml
-/app/logs/*
-!/app/cache/.gitkeep
-!app/logs/.gitkeep
-/build/
-/vendor/
-/bin/
-/composer.phar
-/composer.lock
-Capfile
-dist
-.tmp
-.sass-cache
+/Aisel/web/.htaccess
+/Aisel/web/media/*
+/Aisel/web/media/*/*
+/Aisel/web/media/*/*/*
+/Aisel/web/css/*
+/Aisel/web/bundles/*
+/Aisel/app/bootstrap.php.cache
+/Aisel/app/cache/*
+/Aisel/app/var/*
+/Aisel/app/config/parameters.yml
+/Aisel/app/logs/*
+!/Aisel/app/cache/.gitkeep
+!Aisel/app/logs/.gitkeep
+/Aisel/build/
+/Aisel/vendor/
+/Aisel/bin/
+/Aisel/composer.phar
+/Aisel/composer.lock
+/Aisel/Capfile
+/Aisel/dist
+/Aisel/.tmp
+/Aisel/.sass-cache
 

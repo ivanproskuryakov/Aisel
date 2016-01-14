@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.1.9
+- http://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Sep 02, 2014 at 05:27 PM
+- Server version: 5.6.16
+- PHP Version: 5.4.24
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Database: 'aisel'
+    -->
+    <database name="aisel">
+        <!-- Product category English-->
+        <table name="aisel_product_category">
+            <column name="id">10901</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="parent_id">NULL</column>
+            <column name="title">Disabled Category</column>
+            <column name="lft">1</column>
+            <column name="rgt">2</column>
+            <column name="root">1090</column>
+            <column name="lvl">0</column>
+            <column name="content">Mockups can be a very important part of a presentation, especially for those who design applications for mobile devices or computers. Our MacBook Air and Pro mockups are designed </column>
+            <column name="status">0</column>
+            <column name="meta_url">en-disabled-category</column>
+            <column name="meta_title">NULL</column>
+            <column name="meta_description">NULL</column>
+            <column name="meta_keywords">NULL</column>
+            <column name="created_at">2014-09-01 17:06:16</column>
+            <column name="updated_at">2014-09-01 17:06:16</column>
+        </table>
+        <table name="aisel_product_category">
+            <column name="id">1090</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="parent_id">NULL</column>
+            <column name="title">Product Root One</column>
+            <column name="lft">1</column>
+            <column name="rgt">2</column>
+            <column name="root">1090</column>
+            <column name="lvl">0</column>
+            <column name="content">Mockups can be a very important part of a presentation, especially for those who design applications for mobile devices or computers. Our MacBook Air and Pro mockups are designed </column>
+            <column name="status">1</column>
+            <column name="meta_url">en-product-root-category-one</column>
+            <column name="meta_title">NULL</column>
+            <column name="meta_description">NULL</column>
+            <column name="meta_keywords">NULL</column>
+            <column name="created_at">2014-09-01 17:06:16</column>
+            <column name="updated_at">2014-09-01 17:06:16</column>
+        </table>
+        <table name="aisel_product_category">
+            <column name="id">1091</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="parent_id">NULL</column>
+            <column name="title">Product Root Two</column>
+            <column name="lft">1</column>
+            <column name="rgt">2</column>
+            <column name="root">1091</column>
+            <column name="lvl">0</column>
+            <column name="content">to showcase the work of programmers and designers so that they can have something to show their clients before the app is fully completed. These mockups are available in 1366x768 and </column>
+            <column name="status">1</column>
+            <column name="meta_url">en-product-root-category-two</column>
+            <column name="meta_title">NULL</column>
+            <column name="meta_description">NULL</column>
+            <column name="meta_keywords">NULL</column>
+            <column name="created_at">2014-09-01 17:06:16</column>
+            <column name="updated_at">2014-09-01 17:06:16</column>
+        </table>
+        <table name="aisel_product_category">
+            <column name="id">1092</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="parent_id">NULL</column>
+            <column name="title">Product Root Three</column>
+            <column name="lft">1</column>
+            <column name="rgt">14</column>
+            <column name="root">1092</column>
+            <column name="lvl">0</column>
+            <column name="content">1280x800 resolutions for optimal viewing quality. Using mockups saves designers time by giving them something to display in presentations with clients so that they can get a better idea as to what the finished program will look like.</column>
+            <column name="status">1</column>
+            <column name="meta_url">en-product-root-category-three</column>
+            <column name="meta_title">NULL</column>
+            <column name="meta_description">NULL</column>
+            <column name="meta_keywords">NULL</column>
+            <column name="created_at">2014-09-01 17:06:16</column>
+            <column name="updated_at">2014-09-01 17:06:16</column>
+        </table>
+        <table name="aisel_product_category">
+            <column name="id">1093</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="parent_id">1092</column>
+            <column name="title">Product First 1</column>
+            <column name="lft">2</column>
+            <column name="rgt">3</column>
+            <column name="root">1092</column>
+            <column name="lvl">1</column>
+            <column name="content">Those who use our website will find that it is easy to generate high quality MacBook, iPad, iMac, and iPhone mockups by simply uploading an image from their computer or a web screen </column>
+            <column name="status">1</column>
+            <column name="meta_url">en-product-category-first-level-1</column>
+            <column name="meta_title">NULL</column>
+            <column name="meta_description">NULL</column>
+            <column name="meta_keywords">NULL</column>
+            <column name="created_at">2014-09-01 17:06:16</column>
+            <column name="updated_at">2014-09-01 17:06:16</column>
+        </table>
+        <table name="aisel_product_category">
+            <column name="id">1094</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="parent_id">1092</column>
+            <column name="title">Product First 2</column>
+            <column name="lft">4</column>
+            <column name="rgt">5</column>
+            <column name="root">1092</column>
+            <column name="lvl">1</column>
+            <column name="content">shot. The mockup is generated within a matter of minutes and is guaranteed to look one hundred percent professional. We take great pride in creating mockups that look sharp and are perfect for </column>
+            <column name="status">1</column>
+            <column name="meta_url">en-product-category-first-level-2</column>
+            <column name="meta_title">NULL</column>
+            <column name="meta_description">NULL</column>
+            <column name="meta_keywords">NULL</column>
+            <column name="created_at">2014-09-01 17:06:16</column>
+            <column name="updated_at">2014-09-01 17:06:16</column>
+        </table>
+        <table name="aisel_product_category">
+            <column name="id">1095</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="parent_id">1092</column>
+            <column name="title">Product First 3</column>
+            <column name="lft">6</column>
+            <column name="rgt">13</column>
+            <column name="root">1092</column>
+            <column name="lvl">1</column>
+            <column name="content">professionals who need an impressive visual aid to show to their clients when designing a new app.</column>
+            <column name="status">1</column>
+            <column name="meta_url">en-product-category-first-level-3</column>
+            <column name="meta_title">NULL</column>
+            <column name="meta_description">NULL</column>
+            <column name="meta_keywords">NULL</column>
+            <column name="created_at">2014-09-01 17:06:16</column>
+            <column name="updated_at">2014-09-01 17:06:16</column>
+        </table>
+        <table name="aisel_product_category">
+            <column name="id">1096</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="parent_id">1095</column>
+            <column name="title">Product Nested 1</column>
+            <column name="lft">7</column>
+            <column name="rgt">8</column>
+            <column name="root">1092</column>
+            <column name="lvl">2</column>
+            <column name="content">By using our mockups in work or school presentations, you will be able to give your audience a good sense as to what the application looks like and even how it functions. Anyone who is </column>
+            <column name="status">1</column>
+            <column name="meta_url">en-product-category-nested-level-1</column>
+            <column name="meta_title">NULL</column>
+            <column name="meta_description">NULL</column>
+            <column name="meta_keywords">NULL</column>
+            <column name="created_at">2014-09-01 17:06:16</column>
+            <column name="updated_at">2014-09-01 17:06:16</column>
+        </table>
+        <table name="aisel_product_category">
+            <column name="id">1097</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="parent_id">1095</column>
+            <column name="title">Product Nested 2</column>
+            <column name="lft">9</column>
+            <column name="rgt">10</column>
+            <column name="root">1092</column>
+            <column name="lvl">2</column>
+            <column name="content">designing an app specifically for a Mac device will certainly want to look into what we have to offer when it comes to these kinds of products. It can be difficult to describe how an application </column>
+            <column name="status">1</column>
+            <column name="meta_url">en-product-category-nested-level-2</column>
+            <column name="meta_title">NULL</column>
+            <column name="meta_description">NULL</column>
+            <column name="meta_keywords">NULL</column>
+            <column name="created_at">2014-09-01 17:06:16</column>
+            <column name="updated_at">2014-09-01 17:06:16</column>
+        </table>
+        <table name="aisel_product_category">
+            <column name="id">1098</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="parent_id">1095</column>
+            <column name="title">Product Nested 3</column>
+            <column name="lft">11</column>
+            <column name="rgt">12</column>
+            <column name="root">1092</column>
+            <column name="lvl">2</column>
+            <column name="content">works or looks like, which is why it is such a good idea to employ visual aids like these. MacBook mockups are perfect for presentations with clients because they are able to convey more than words ever could.</column>
+            <column name="status">1</column>
+            <column name="meta_url">en-product-category-nested-level-3</column>
+            <column name="meta_title">NULL</column>
+            <column name="meta_description">NULL</column>
+            <column name="meta_keywords">NULL</column>
+            <column name="created_at">2014-09-01 17:06:16</column>
+            <column name="updated_at">2014-09-01 17:06:16</column>
+        </table>
+    </database>
+</pma_xml_export>

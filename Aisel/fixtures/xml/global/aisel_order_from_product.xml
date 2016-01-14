@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.1.9
+- http://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Sep 03, 2014 at 09:46 AM
+- Server version: 5.6.16
+- PHP Version: 5.4.24
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Database: 'aisel'
+    -->
+    <database name="aisel">
+        <!-- Table aisel_order -->
+        <table name="aisel_order">
+            <column name="id">1001</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">3000</column>
+            <column name="products">109</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+        <table name="aisel_order">
+            <column name="id">1002</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">3000</column>
+            <column name="products">109,110</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+        <table name="aisel_order">
+            <column name="id">1003</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">3000</column>
+            <column name="products">109,110,120</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+        <table name="aisel_order">
+            <column name="id">1004</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">3000</column>
+            <column name="products">109,110,120,130</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+        <table name="aisel_order">
+            <column name="id">1005</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">3000</column>
+            <column name="products">109,110,120,130,140</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+        <table name="aisel_order">
+            <column name="id">1006</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">4000</column>
+            <column name="products">109,110,120,130,140,150</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+
+        <table name="aisel_order">
+            <column name="id">1011</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">3000</column>
+            <column name="products">109</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+        <table name="aisel_order">
+            <column name="id">1012</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">3000</column>
+            <column name="products">109,110</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+        <table name="aisel_order">
+            <column name="id">1013</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">3000</column>
+            <column name="products">109,110,120</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+        <table name="aisel_order">
+            <column name="id">1014</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">3000</column>
+            <column name="products">109,110,120,130</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+        <table name="aisel_order">
+            <column name="id">1015</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">3000</column>
+            <column name="products">109,110,120,130,140</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+        <table name="aisel_order">
+            <column name="id">1016</column>
+            <column name="seller_id">1000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="user_id">4000</column>
+            <column name="products">109,110,120,130,140,150</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+    </database>
+</pma_xml_export>

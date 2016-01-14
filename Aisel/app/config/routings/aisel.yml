@@ -1,0 +1,44 @@
+
+aisel_contact:
+    resource: "@AiselContactBundle/Resources/config/routing.yml"
+    prefix:   /
+
+aisel_navigation:
+    resource: "@AiselNavigationBundle/Resources/config/routing/routing.yml"
+    prefix:   /
+
+aisel_page:
+    resource: "@AiselPageBundle/Resources/config/routing/routing.yml"
+    prefix:   /
+
+aisel_search:
+    resource: "@AiselSearchBundle/Resources/config/routing.yml"
+    prefix:   /
+
+aisel_product:
+    resource: "@AiselProductBundle/Resources/config/routing/routing.yml"
+    prefix:   /
+
+aisel_media:
+    resource: "@AiselMediaBundle/Resources/config/routing/routing.yml"
+    prefix:   /
+
+aisel_cart:
+    resource: "@AiselCartBundle/Resources/config/routing.yml"
+    prefix:   /
+
+aisel_order:
+    resource: "@AiselOrderBundle/Resources/config/routing/routing.yml"
+    prefix:   /
+
+aisel_addressing:
+    resource: "@AiselAddressingBundle/Resources/config/routing/routing.yml"
+    prefix:   /
+
+aisel_user:
+    resource: "@AiselUserBundle/Resources/config/routing/routing.yml"
+    prefix:   /
+
+aisel_config:
+    resource: "@AiselConfigBundle/Resources/config/routing.yml"
+    prefix:   /

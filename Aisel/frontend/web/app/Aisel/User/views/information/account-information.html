@@ -1,0 +1,21 @@
+<div class="col-md-3">
+</div>
+<div class="col-md-6">
+    <p>
+        <strong><span class="glyphicon glyphicon-barcode"></span> ID</strong>:
+        {{ user.id }} / {{ user.email }}
+    </p>
+
+    <p>
+        <strong><span class="glyphicon glyphicon-envelope"></span> E-mail</strong>:
+        {{ user.email }}
+    </p>
+
+    <p>
+        <strong><span class="glyphicon  glyphicon-calendar"></span> Last login</strong>:
+        {{user.last_login | date:"MM/dd/yyyy @ h:mma" }}
+    </p>
+
+</div>
+<div class="col-md-3">
+</div>

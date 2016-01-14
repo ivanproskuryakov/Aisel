@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.1.9
+- http://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Sep 03, 2014 at 09:26 AM
+- Server version: 5.6.16
+- PHP Version: 5.4.24
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Database: 'aisel'
+    -->
+    <database name="aisel">
+        <!-- English Reviews -->
+        <table name="aisel_review">
+            <column name="id">19210</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página A1</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4921</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">19211</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página A2</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4921</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">19212</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página A3</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4921</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">19221</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página B</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4922</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">19222</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página B</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4922</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">1923</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página C</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4923</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">1924</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página D</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4924</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">1925</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página E</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4925</column>
+        </table>
+
+        <table name="aisel_review">
+            <column name="id">1926</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página F</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4926</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">1927</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página G</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4927</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">1928</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página H</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4928</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">1929</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página I</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4929</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">1930</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página J</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4930</column>
+        </table>
+
+        <table name="aisel_review">
+            <column name="id">1931</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página K</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4931</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">1932</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página L</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4932</column>
+        </table>
+        <table name="aisel_review">
+            <column name="id">1933</column>
+            <column name="locale">en</column>
+            <column name="title">Crítica Página M</column>
+            <column name="content">En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</column>
+            <column name="status">1</column>
+            <column name="user">3000</column>
+            <column name="page">4933</column>
+        </table>
+    </database>
+</pma_xml_export>

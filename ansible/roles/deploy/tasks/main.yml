@@ -1,0 +1,42 @@
+# Node.js
+#- name: Install node packages
+#  command: npm install chdir={{ app_path }}
+
+# Bower
+- name: App deploy -> Bower frontend
+  command: bower install -f --allow-root chdir="{{app_path}}/frontend/"
+
+- name: App deploy -> Bower backend
+  command: bower install -f --allow-root chdir="{{app_path}}/backend/"
+
+# Composer
+- name: App deploy -> Composer Install
+  command: composer --no-interaction install chdir={{ app_path }}
+
+# Symfony
+- name: App deploy -> App copy parameters.yml
+  command: cp {{app_path}}/app/config/parameters.yml.dist {{app_path}}/app/config/parameters.yml
+
+- name: App deploy -> Database drop
+  command: /usr/bin/php app/console doctrine:database:drop --force --no-interaction chdir={{ app_path }}
+  ignore_errors: yes
+
+- name: App deploy -> Database create
+  command: /usr/bin/php app/console doctrine:database:create --no-interaction chdir={{ app_path }}
+
+- name: App deploy -> Database schema create
+  command: /usr/bin/php app/console doctrine:schema:create --no-interaction chdir={{ app_path }}
+
+- name: App deploy - database fixtures load
+  command: /usr/bin/php app/console doctrine:fixtures:load --no-interaction chdir={{ app_path }}
+
+# Clearing logs
+- name: App deploy -> Remove Symfony2 log dir
+  command: rm -rf {{ app_path }}/app/logs
+
+- name: App deploy -> Remove Symfony2 cache dir
+  command: rm -rf {{ app_path }}/app/cache
+
+# Running PHPunit
+#- name: App deploy -> PHPunit
+#  command: php bin/phpunit -c app src/ chdir={{ app_path }}

@@ -1,0 +1,55 @@
+<div class="">
+    <div class="" ng-if="!loggedIn">
+        <div class="col-xs-12 page-header">
+            <h2><span class="glyphicon glyphicon glyphicon-user"></span> Create Account</h2>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4" role="main">
+            <form class="form-horizontal" name="registrationForm" role="form"
+                  ng-submit="submitRegistration(registrationForm)">
+
+                <div class="form-group">
+                    <label for="registerEmail">E-mail address</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </span>
+                        <input type="email"
+                               name="email"
+                               class="form-control"
+                               id="registerEmail"
+                               ng-model="email"
+                               ng-required="true">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="{{inputType}}"
+                           name="password"
+                           id="registerPassword"
+                           class="form-control"
+                           ng-minlength="6"
+                           ng-model="password"
+                           ng-required="true">
+                    <span class="error"
+                          ng-show="registrationForm.password.$error.minlength">Must be 6 or more chars!</span>
+
+                    <div class="pull-right">
+                        <input type="checkbox" id="checkbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
+                        <label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
+                        <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>
+                    </div>
+                </div>
+
+                <br class="divider">
+
+                <div class="form-group pull-right">
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,45 @@
+---
+- hosts: all
+  sudo:  true
+  vars:
+    app_database_user: root
+    app_database_userpwd: "12qw12"
+    app_path: /var/www/Aisel
+    sys_packages:
+      - mcrypt
+      - vim
+    php_packages:
+      - { name: dev, package: php5-dev }
+      - { name: pear, package: php-pear }
+      - { name: xdebug, package: php5-xdebug }
+      - { name: curl, package: php5-curl }
+      - { name: mcrypt, package: php5-mcrypt }
+      - { name: mysql, package: php5-mysql }
+      - { name: redis, package: php5-redis }
+      - { name: apc, package: php-apc }
+      - { name: memcached, package: php5-memcached }
+      - { name: gd, package: php5-gd }
+    php_extensions:
+      - { name: "jsmin", package: "pecl.php.net/jsmin-beta" }
+      - { name: "mongo", package: "pecl.php.net/mongo" }
+      - { name: "xhprof", package: "pecl.php.net/xhprof-beta" }
+    php_ppa: php5
+    nodejs:
+      version: _5.x
+      packages: [casperjs, phantomjs, bower, gulp]
+  roles:
+    - init
+    - nginx
+    - php5-fpm
+    - php5-cli
+    - php5-common
+    - composer
+    - mysql
+    - mongo
+    - git
+    - curl
+    - wget
+    - redis
+    - memcached
+    - nodejs
+    - deploy

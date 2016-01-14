@@ -1,0 +1,34 @@
+<!-- Static navbar -->
+<div class="navbar navbar-default" role="navigation" ng-if="user">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="home({locale: locale})">
+                <img class="header-logo" src="/images/logo.png" title="Aisel"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+
+            <div ng-include="'/app/Aisel/Kernel/views/nav-admin.html'"></div>
+            <div ng-include="'/app/Aisel/Kernel/views/nav-user.html'"></div>
+
+            <ul class="user-navbar nav navbar-nav navbar-right" ng-controller="AuthCtrl">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img class="gavatar-navbar" gravatar-src="'{{ user.email }}'" gravatar-size="18">
+                        {{ user.email }}<b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="home({locale: locale})">Dashboard</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a ng-click="signOut()">Sign out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

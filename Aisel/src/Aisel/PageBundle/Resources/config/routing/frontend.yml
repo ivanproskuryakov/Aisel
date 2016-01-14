@@ -1,0 +1,50 @@
+# This file is part of the Aisel package.
+#
+# (c) Ivan Proskuryakov
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+api_aisel_page_get:
+    pattern:  /{locale}/page/
+    defaults: { _controller: AiselPageBundle:Frontend/ApiPage:getCollection, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_page_get_by_url:
+    pattern:  /{locale}/page/{url}
+    defaults: { _controller: AiselPageBundle:Frontend/ApiPage:getByURL, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_page_node_get:
+    pattern:  /{locale}/page/node/
+    defaults: { _controller: AiselPageBundle:Frontend/ApiNode:getCollection, _format: json }
+    requirements:
+        _method: GET
+
+api_aisel_page_node_get_by_url:
+    pattern:  /{locale}/page/node/{url}
+    defaults: { _controller: AiselPageBundle:Frontend/ApiNode:getByURL, _format: json }
+    requirements:
+        _method: GET
+        id: "\d+"
+
+api_aisel_page_node_get_tree:
+    pattern:  /{locale}/page/node/tree/
+    defaults: { _controller: AiselPageBundle:Frontend/ApiNode:getTree, _format: json }
+    requirements:
+        _method: GET
+
+#Review
+api_aisel_page_review_post:
+    pattern:  /{locale}/page/review/
+    defaults: { _controller: AiselPageBundle:Frontend/ApiReview:post, _format: json }
+    requirements:
+        _method: POST
+
+api_aisel_page_review_get:
+    pattern:  /{locale}/page/review/{id}
+    defaults: { _controller: AiselPageBundle:Frontend/ApiReview:get, _format: json }
+    requirements:
+        _method: GET

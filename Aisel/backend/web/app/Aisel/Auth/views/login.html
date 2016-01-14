@@ -1,0 +1,44 @@
+<form
+        class="form-horizontal"
+        name="loginForm"
+        role="form"
+        ng-show="!user"
+        ng-submit="login(email, password)">
+    <div class="user-login">
+        <div class="row">
+            <!-- Form Fields -->
+            <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4" role="main">
+                <div class="row">
+                    <div class="col-xs-12 page-header">
+                        <h2><span class="glyphicon glyphicon glyphicon-user"></span> Sign In</h2>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signInUsername">E-mail</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </span>
+                        <input ng-model="email" type="text" class="form-control" id="signInUsername"
+                               ng-required="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signInPassword">Your password</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                        </span>
+                        <input ng-model="password" type="password" class="form-control" id="signInPassword"
+                               ng-required="true">
+                    </div>
+                </div>
+                <div class="form-group pull-right">
+                    <button id="login-button" class="btn btn-primary" type="submit">Log In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

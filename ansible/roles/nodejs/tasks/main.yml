@@ -1,0 +1,9 @@
+- name: Add ppa Repository
+  command: bash -lc "curl -sL https://deb.nodesource.com/setup{{ nodejs.version }} |  bash -"
+
+- name: Install nodeJS
+  apt: pkg=nodejs state=present
+
+- name: Install NPM Packages
+  npm: name={{ item }} global=yes
+  with_items: nodejs.packages

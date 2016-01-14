@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.1.9
+- http://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Sep 03, 2014 at 09:46 AM
+- Server version: 5.6.16
+- PHP Version: 5.4.24
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Database: 'aisel'
+    -->
+    <database name="aisel">
+        <!-- Table aisel_order -->
+        <table name="aisel_order">
+            <column name="id">59</column>
+            <column name="seller_id">1000</column>
+            <column name="frontend_user_id">3000</column>
+            <column name="locale">en</column>
+            <column name="payment_name">offline</column>
+            <column name="country">Spain</column>
+            <column name="region">Madrid</column>
+            <column name="city">Madrid</column>
+            <column name="phone">+34 917 741000</column>
+            <column name="content">...</column>
+        </table>
+    </database>
+</pma_xml_export>
