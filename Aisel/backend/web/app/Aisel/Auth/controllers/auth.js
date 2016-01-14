@@ -37,12 +37,12 @@ define(['app'], function (app) {
                     .success(
                         function (data, status) {
 
-                            $rootScope.user = data.user;
 
-                            $state.transitionTo('home', {
-                                locale: locale
-                            });
-                            notify('Hello!');
+                            window.location.href = '/';
+                            //$rootScope.user = data.user;
+                            //$state.transitionTo('home', {
+                            //    locale: locale
+                            //});
                         }
                     )
                     .error(function (data, status) {

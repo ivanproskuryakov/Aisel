@@ -49,7 +49,6 @@ define([
 
         app
             .run(function ($http, $rootScope, initService, Env) {
-                console.log('Env:', Env);
                 initService.launch();
             })
             .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
