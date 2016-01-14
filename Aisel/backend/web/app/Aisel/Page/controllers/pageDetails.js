@@ -12,8 +12,8 @@
  * @description     PageDetailsCtrl
  */
 
-define(['app'], function(app) {
-    app.controller('PageDetailsCtrl', function($controller, $scope, resourceService) {
+define(['app'], function (app) {
+    app.controller('PageDetailsCtrl', function ($controller, $scope, $rootScope, resourceService) {
 
         $scope.route = {
             name: 'Page',

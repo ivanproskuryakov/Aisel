@@ -59,6 +59,14 @@ define(['app'], function (app) {
                                 }
                                 console.log('----------- $stateChangцeStart: User Information Required -----------');
                                 console.log($rootScope);
+
+
+                                if ($rootScope.user === 'ROLE_USER') {
+                                    Environment.api = Environment.apiSeller;
+                                }
+                                if ($rootScope.user === 'ROLE_ADMIN') {
+                                    Environment.api = Environment.apiBackend;
+                                }
                             }
                         );
                     } else if ($rootScope.user == false) {

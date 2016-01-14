@@ -16,12 +16,13 @@ define(['app'], function (app) {
     app.factory('resourceService', ['$http', 'Environment', '$rootScope', 'settings',
         function ($http, Environment, $rootScope, settings) {
 
-            var resourceService = function (name) {
+            var resourceService = function (name, api) {
                 this.resource = name;
             };
 
             resourceService.prototype.getCollection = function ($scope, pageNumber) {
-                var url = Environment.api + '/' + this.resource +
+                var url = Environment.api +
+                    '/' + this.resource +
                     '/?limit=' + $scope.pageLimit +
                     '&current=' + pageNumber +
                     '&filter=' + $scope.filter;

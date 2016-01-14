@@ -32,6 +32,7 @@ define([
 
                     var Env = {
                         api: 'http://' + api_domain + '/backend/api',
+
                         apiBackend: 'http://' + api_domain + '/backend/api',
                         apiFrontend: 'http://' + api_domain + '/frontend/api',
                         apiSeller: 'http://' + api_domain + '/seller/api',
@@ -50,6 +51,14 @@ define([
                             return locale;
                         }
                     };
+
+                    if (response.data.roles === 'ROLE_USER') {
+                        Env.api = Env.apiSeller;
+                    }
+                    if (response.data.roles === 'ROLE_ADMIN') {
+                        Env.api = Env.apiBackend;
+                    }
+
                     app.constant("Environment", Env);
                     app.constant("settings", response.data);
                 });
