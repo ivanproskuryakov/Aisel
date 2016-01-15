@@ -53,6 +53,7 @@ class ApiController extends Controller
      */
     protected function filterMaxDepth($entity)
     {
+
         $entity = $this
             ->container
             ->get('jms_serializer')

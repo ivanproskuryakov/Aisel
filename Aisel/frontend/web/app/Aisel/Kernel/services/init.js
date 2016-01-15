@@ -83,8 +83,7 @@ define(['app'], function(app) {
                                     console.log('State Change ...');
                                     setLocale();
                                     setMetaData();
-
-                                    startGremlins();
+                                    //startGremlins();
                                 });
                             }
                         );

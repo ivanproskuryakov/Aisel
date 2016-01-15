@@ -31,7 +31,7 @@ define([
         'angular-loading-bar',
         'twitter-bootstrap'
     ],
-    function(angular) {
+    function (angular) {
         'use strict';
 
         var app = angular.module('app', [
@@ -46,20 +46,19 @@ define([
             'ngDisqus',
             'cgNotify',
             'ngAnimate',
-            'angular-loading-bar',
-            'environment'
+            'angular-loading-bar'
         ]);
 
         app.run(['$http', '$rootScope', 'settingsService', 'initService',
-                function($http, $rootScope, settingsService, initService) {
+                function ($http, $rootScope, settingsService, initService) {
                     initService.launch();
                 }
             ])
-            .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-                cfpLoadingBarProvider.includeSpinner = false
+            .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
+                cfpLoadingBarProvider.includeSpinner = false;
                 cfpLoadingBarProvider.includeBar = true;
             }])
-            .config(function($provide, $locationProvider, $httpProvider) {
+            .config(function ($provide, $locationProvider, $httpProvider) {
                 $httpProvider.defaults.withCredentials = true;
                 $locationProvider.html5Mode(true);
                 document.getElementById("page-is-loading").style.visibility = "hidden";
