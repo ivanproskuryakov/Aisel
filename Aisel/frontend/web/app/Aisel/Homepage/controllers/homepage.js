@@ -13,11 +13,11 @@
  */
 
 define(['app'], function(app) {
-    app.controller('HomepageCtrl', ['$location', '$scope', '$rootScope', 'settingsService', 'Environment',
-        function($location, $scope, $rootScope, settingsService, Environment) {
+    app.controller('HomepageCtrl', ['$location', '$scope', '$rootScope', 'settingsService', 'Env',
+        function($location, $scope, $rootScope, settingsService, Env) {
             settingsService.getApplicationConfig().success(
                 function(data, status) {
-                    var locale = Environment.currentLocale();
+                    var locale = Env.currentLocale();
                     $scope.content = data.settings[locale].content.homepageContent;
                 }
             );

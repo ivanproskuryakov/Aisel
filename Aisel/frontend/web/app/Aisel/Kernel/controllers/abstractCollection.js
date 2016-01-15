@@ -14,7 +14,7 @@
 
 define(['app'], function (app) {
     app.controller('AbstractCollectionCtrl',
-        function ($controller, $scope, $stateParams, itemService, $state, Environment, notify) {
+        function ($controller, $scope, $stateParams, itemService, $state, Env, notify) {
 
             if (!$scope.pageLimit) {
                 $scope.pageLimit = 5;

@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.service('contactService', ['$http', 'Environment',
-        function ($http, Environment) {
+    app.service('contactService', ['$http', 'Env',
+        function ($http, Env) {
             return {
                 send: function (form) {
                     var data = {
@@ -23,7 +23,7 @@ define(['app'], function (app) {
                         phone: form.phone.$modelValue,
                         message: form.message.$modelValue
                     };
-                    var url = Environment.settings.api + '/contact/form/';
+                    var url = Env.api + '/contact/form/';
                     return $http.post(
                         url,
                         data

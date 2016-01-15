@@ -13,8 +13,8 @@
  */
 
 define(['app'], function(app) {
-    app.controller('ExceptionCtrl', ['$state', '$scope', 'notify', 'Environment', '$rootScope',
-        function($state, $scope, notify, Environment, $rootScope) {
+    app.controller('ExceptionCtrl', ['$state', '$scope', 'notify', 'Env', '$rootScope',
+        function($state, $scope, notify, Env, $rootScope) {
 
             $scope.exception = undefined;
 
@@ -31,7 +31,7 @@ define(['app'], function(app) {
                 notify(message);
 
             } else {
-                var locale = Environment.currentLocale();
+                var locale = Env.currentLocale();
                 $state.transitionTo('homepage', {
                     locale: locale
                 });

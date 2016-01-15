@@ -13,9 +13,9 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductCategoryCtrl', ['$location', '$scope', '$stateParams', 'productCategoryService', 'Environment', '$controller',
-        function ($location, $scope, $stateParams, productCategoryService, Environment, $controller) {
-            $scope.media = Environment.settings.media;
+    app.controller('ProductCategoryCtrl', ['$location', '$scope', '$stateParams', 'productCategoryService', 'Env', '$controller',
+        function ($location, $scope, $stateParams, productCategoryService, Env, $controller) {
+            $scope.media = Env.media;
 
             angular.extend(this, $controller('AbstractCollectionCtrl', {
                 $scope: $scope,

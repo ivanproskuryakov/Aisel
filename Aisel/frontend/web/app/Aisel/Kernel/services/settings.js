@@ -15,18 +15,18 @@
 define(['app'], function(app) {
     console.log('Kernel settings loaded ...');
     angular.module('app')
-        .service('settingsService', ['$http', '$rootScope', 'Environment',
-            function($http, $rootScope, Environment) {
+        .service('settingsService', ['$http', '$rootScope', 'Env',
+            function($http, $rootScope, Env) {
                 return {
                     getApplicationConfig: function() {
-                        var locale = Environment.currentLocale();
-                        var url = Environment.settings.api + '/' + locale + '/config/';
+                        var locale = Env.currentLocale();
+                        var url = Env.api + '/' + locale + '/config/';
                         // console.log(url);
                         return $http.get(url);
                     },
                     getMenu: function() {
-                        var locale = Environment.currentLocale();
-                        var url = Environment.settings.api + '/' + locale + '/navigation/';
+                        var locale = Env.currentLocale();
+                        var url = Env.api + '/' + locale + '/navigation/';
                         //console.log(url);
                         return $http.get(url);
                     }

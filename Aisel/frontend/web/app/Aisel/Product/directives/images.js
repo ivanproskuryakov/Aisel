@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.directive('aiselProductImages', ['$compile', 'Environment',
-        function ($compile, Environment) {
+    app.directive('aiselProductImages', ['$compile', 'Env',
+        function ($compile, Env) {
             return {
                 restrict: 'EA',
                 scope: {
@@ -24,7 +24,7 @@ define(['app'], function (app) {
                     slider: '='
                 },
                 link: function ($scope, element, attrs) {
-                    $scope.media = Environment.settings.media;
+                    $scope.media = Env.media;
                     $scope.width = attrs.imgWidth ? attrs.imgWidth +'px' : '100%';
                     $scope.height = attrs.imgHeight ? attrs.imgHeight + 'px' : 'auto';
                     $scope.interval = 0;

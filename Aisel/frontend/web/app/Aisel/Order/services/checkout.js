@@ -13,12 +13,12 @@
  */
 
 define(['app'], function(app) {
-    app.service('checkoutService', ['$http', 'Environment',
-        function($http, Environment) {
+    app.service('checkoutService', ['$http', 'Env',
+        function($http, Env) {
             return {
                 init: function() {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/order/checkout';
+                    var locale = Env.currentLocale();
+                    var url = Env.api + '/' + locale + '/order/checkout';
                     console.log(url);
                     return $http.get(url);
                 },
@@ -31,24 +31,24 @@ define(['app'], function(app) {
                     formData['billing_comment'] = encodeURIComponent(form.billing_comment.$modelValue);
                     formData['payment_method'] = encodeURIComponent(form.payment_method.$modelValue);
 
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/order';
+                    var locale = Env.currentLocale();
+                    var url = Env.api + '/' + locale + '/order';
                     console.log(formData);
                     console.log(url);
                     return $http.post(url, formData);
                 },
                 getCountries: function() {
-                    var url = Environment.settings.api + '/addressing/country';
+                    var url = Env.api + '/addressing/country';
                     console.log(url);
                     return $http.get(url);
                 },
                 getRegions: function() {
-                    var url = Environment.settings.api + '/addressing/region';
+                    var url = Env.api + '/addressing/region';
                     console.log(url);
                     return $http.get(url);
                 },
                 getCities: function() {
-                    var url = Environment.settings.api + '/addressing/city';
+                    var url = Env.api + '/addressing/city';
                     console.log(url);
                     return $http.get(url);
                 }

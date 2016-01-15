@@ -30,9 +30,9 @@ define(['app'], function (app) {
         ]);
 
     angular.module('app')
-        .controller('ModalAuthCtrl', ['$scope', '$rootScope', '$state', 'userService', 'notify', 'Environment',
-            function ($scope, $rootScope, $state, userService, notify, Environment) {
-                var locale = Environment.currentLocale();
+        .controller('ModalAuthCtrl', ['$scope', '$rootScope', '$state', 'userService', 'notify', 'Env',
+            function ($scope, $rootScope, $state, userService, notify, Env) {
+                var locale = Env.currentLocale();
 
                 $scope.passwordForgot = function () {
                     $scope.$dismiss('close');

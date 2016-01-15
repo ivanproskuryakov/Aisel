@@ -13,16 +13,16 @@
  */
 
 define(['app'], function (app) {
-    app.service('resourceService', ['$http', 'Environment',
-        function ($http, Environment) {
+    app.service('resourceService', ['$http', 'Env',
+        function ($http, Env) {
 
             var resourceService = function (name) {
                 this.resource = name;
             };
 
             resourceService.prototype.getCollection = function (params) {
-                var locale = Environment.currentLocale();
-                var url = Environment.settings.api +
+                var locale = Env.currentLocale();
+                var url = Env.api +
                     '/' + locale +
                     '/' + this.resource +
                     '/?limit=' + params.limit +
@@ -35,8 +35,8 @@ define(['app'], function (app) {
                 return $http.get(url);
             };
             resourceService.prototype.getItemByURL = function ($url) {
-                var locale = Environment.currentLocale();
-                var url = Environment.settings.api +
+                var locale = Env.currentLocale();
+                var url = Env.api +
                     '/' + locale +
                     '/' + this.resource +
                     '/' + $url;
@@ -46,8 +46,8 @@ define(['app'], function (app) {
             };
             resourceService.prototype.addReview = function (data) {
                 console.log("addReview", data);
-                var locale = Environment.currentLocale();
-                var url = Environment.settings.api +
+                var locale = Env.currentLocale();
+                var url = Env.api +
                     '/' + locale +
                     '/' + this.resource +
                     '/review/';

@@ -13,9 +13,9 @@
  */
 
 define(['app'], function (app) {
-    app.controller('ProductCtrl', ['$scope', '$stateParams', 'resourceService', 'Environment', '$controller',
-        function ($scope, $stateParams, resourceService, Environment, $controller) {
-            $scope.media = Environment.settings.media;
+    app.controller('ProductCtrl', ['$scope', '$stateParams', 'resourceService', 'Env', '$controller',
+        function ($scope, $stateParams, resourceService, Env, $controller) {
+            $scope.media = Env.media;
 
             var productService = new resourceService('product');
 

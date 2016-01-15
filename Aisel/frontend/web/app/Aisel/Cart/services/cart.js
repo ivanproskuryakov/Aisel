@@ -13,21 +13,21 @@
  */
 
 define(['app'], function(app) {
-    app.service('cartService', ['$http', 'Environment',
-        function($http, Environment) {
+    app.service('cartService', ['$http', 'Env',
+        function($http, Env) {
             return {
                 getCartItems: function($scope) {
-                    var url = Environment.settings.api + '/cart/';
+                    var url = Env.api + '/cart/';
                     console.log(url);
                     return $http.get(url);
                 },
                 addToCart: function(productId, qty) {
-                    var url = Environment.settings.api + '/cart/product/' + productId + '/add/' + qty;
+                    var url = Env.api + '/cart/product/' + productId + '/add/' + qty;
                     console.log(url);
                     return $http.put(url);
                 },
                 updateProductQty: function(productId, qty) {
-                    var url = Environment.settings.api + '/cart/product/' + productId + '/qty/' + qty;
+                    var url = Env.api + '/cart/product/' + productId + '/qty/' + qty;
                     console.log(url);
                     return $http.put(url);
                 },

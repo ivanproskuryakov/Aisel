@@ -17,14 +17,14 @@ define(['app'], function (app) {
         [
             '$rootScope',
             '$compile',
-            'Environment',
+            'Env',
             'resourceService',
             'authService',
             'notify',
             '$http',
             function ($rootScope,
                       $compile,
-                      Environment,
+                      Env,
                       resourceService,
                       authService,
                       notify,
@@ -38,7 +38,7 @@ define(['app'], function (app) {
                     link: function ($scope, element, attrs) {
                         $scope.isDisabled = false;
 
-                        var locale = Environment.currentLocale();
+                        var locale = Env.currentLocale();
                         var resource = new resourceService($scope.resourceName);
 
                         $scope.addReview = function () {

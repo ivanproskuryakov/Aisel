@@ -23,7 +23,7 @@ define(['app'], function(app) {
             'userService',
             'pageCategoryService',
             'productCategoryService',
-            'Environment',
+            'Env',
             '$timeout',
             function(
                 $http,
@@ -33,7 +33,7 @@ define(['app'], function(app) {
                 userService,
                 pageCategoryService,
                 productCategoryService,
-                Environment,
+                Env,
                 $timeout
             ) {
                 return {
@@ -55,7 +55,7 @@ define(['app'], function(app) {
                         settingsService.getApplicationConfig().success(
                             function(data, status) {
 
-                                var settings = data.settings[Environment.currentLocale()];
+                                var settings = data.settings[Env.currentLocale()];
 
                                 $rootScope.footer = settings.content.footerContent;
                                 $rootScope.disqusShortname = settings.disqus.shortname;
@@ -65,8 +65,8 @@ define(['app'], function(app) {
 
                                 console.log('----------- Aisel Loaded! -----------');
                                 var setLocale = function() {
-                                    $rootScope.availableLocales = Environment.settings.locale.available;
-                                    $rootScope.locale = Environment.currentLocale();
+                                    $rootScope.availableLocales = Env.locale.available;
+                                    $rootScope.locale = Env.currentLocale();
                                 };
                                 var setMetaData = function() {
                                     $rootScope.pageTitle = settings.meta.defaultMetaTitle;
@@ -110,10 +110,10 @@ define(['app'], function(app) {
                         //// Test with Gremlins.js
                         //var startGremlins = function () {
                         //    console.log('Gremlins...');
-                        //    if (Environment.settings.gremlins.enabled) {
+                        //    if (Env.gremlins.enabled) {
                         //        gremlins.createHorde()
                         //            .gremlin(gremlins.species.clicker().clickTypes(['click']))
-                        //            .unleash({ nb: Environment.settings.gremlins.time});
+                        //            .unleash({ nb: Env.gremlins.time});
                         //    }
                         //};
                         //$timeout(function() {

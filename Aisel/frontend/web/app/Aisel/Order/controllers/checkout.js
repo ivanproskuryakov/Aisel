@@ -13,10 +13,10 @@
  */
 
 define(['app'], function(app) {
-    app.controller('CheckoutCtrl', ['$location', '$scope', '$state', 'orderService', 'notify', 'cartService', 'checkoutService', 'checkoutSettings', 'Environment',
-        function($location, $scope, $state, orderService, notify, cartService, checkoutService, checkoutSettings, Environment) {
+    app.controller('CheckoutCtrl', ['$location', '$scope', '$state', 'orderService', 'notify', 'cartService', 'checkoutService', 'checkoutSettings', 'Env',
+        function($location, $scope, $state, orderService, notify, cartService, checkoutService, checkoutSettings, Env) {
 
-            var locale = Environment.currentLocale();
+            var locale = Env.currentLocale();
             $scope.checkout = {
                 settings: checkoutSettings.data,
                 address: {},

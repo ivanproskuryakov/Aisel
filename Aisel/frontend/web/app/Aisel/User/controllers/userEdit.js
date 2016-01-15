@@ -20,14 +20,14 @@ define(['app'], function (app) {
             '$state',
             'userService',
             'notify',
-            'Environment',
+            'Env',
             function ($scope,
                       $rootScope,
                       $state,
                       userService,
                       notify,
-                      Environment) {
-                var locale = Environment.currentLocale();
+                      Env) {
+                var locale = Env.currentLocale();
 
                 /**
                  * changePassword

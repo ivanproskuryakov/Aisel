@@ -14,14 +14,14 @@
 
 define(['app'], function (app) {
     app.controller('ContactCtrl', [
-        '$location', '$scope', 'contactService', 'settingsService', 'notify', 'Environment',
-        function ($location, $scope, contactService, settingsService, notify, Environment) {
+        '$location', '$scope', 'contactService', 'settingsService', 'notify', 'Env',
+        function ($location, $scope, contactService, settingsService, notify, Env) {
 
             $scope.config = false;
 
             settingsService.getApplicationConfig().success(
                 function (data, status) {
-                    var locale = Environment.currentLocale();
+                    var locale = Env.currentLocale();
                     $scope.config = data.settings[locale].contact;
                 }
             );

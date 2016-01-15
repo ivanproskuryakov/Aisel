@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.directive('ngSearchRedirect', ['$state', 'Environment',
-        function ($state, Environment) {
+    app.directive('ngSearchRedirect', ['$state', 'Env',
+        function ($state, Env) {
             return {
                 restrict: 'A',
                 link: function postLink(scope, element, attrs) {
@@ -23,7 +23,7 @@ define(['app'], function (app) {
                             var query = attrs.ngSearchRedirect;
 
                             if (query.length > 1) {
-                                var locale = Environment.currentLocale();
+                                var locale = Env.currentLocale();
 
                                 $state.transitionTo('search', {
                                     locale: locale,

@@ -14,11 +14,11 @@
 
 define(['app'], function(app) {
     app.controller('ProductDetailCtrl', ['$scope', '$location', '$stateParams', 'resourceService', '$rootScope',
-        'cartService', 'notify', 'Environment', 'authService',
+        'cartService', 'notify', 'Env', 'authService',
         function($scope, $location, $stateParams, resourceService, $rootScope,
-            cartService, notify, Environment, authService) {
+            cartService, notify, Env, authService) {
 
-            $scope.media = Environment.settings.media;
+            $scope.media = Env.media;
             $scope.isDisabled = true;
             var productService = new resourceService('product');
             var productURL = $stateParams.productId;

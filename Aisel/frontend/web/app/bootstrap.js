@@ -21,28 +21,26 @@ define([
     require(['domReady!'], function (document) {
 
         var Env = {
-            settings: {
-                media: 'http://api.' + document.domain,
-                api: 'http://api.' + document.domain + '/frontend/api',
-                locale: {
-                    "primary": 'en',
-                    "available": ['en', 'es', 'ru']
-                },
-                gremlins: {
-                    time: 9999 * 9999 * 9999 * 9999 * 9999,
-                    enabled: false
-                }
+            media: 'http://api.' + document.domain,
+            api: 'http://api.' + document.domain + '/frontend/api',
+            locale: {
+                "primary": 'en',
+                "available": ['en', 'es', 'ru']
+            },
+            gremlins: {
+                time: 9999 * 9999 * 9999 * 9999 * 9999,
+                enabled: false
             },
             currentLocale: function () {
                 var locale = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
-                if (this.settings.locale.available.indexOf(locale) == -1) {
-                    locale = this.settings.locale.primary;
+                if (this.locale.available.indexOf(locale) == -1) {
+                    locale = this.locale.primary;
                 }
                 return locale;
             }
         };
 
-        app.constant("Environment", Env);
+        app.constant("Env", Env);
         angular.bootstrap(document, ['app']);
 
 

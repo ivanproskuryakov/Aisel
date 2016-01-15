@@ -13,15 +13,15 @@
  */
 
 define(['app'], function (app) {
-    app.service('orderService', ['$http', 'Environment',
-        function ($http, Environment) {
+    app.service('orderService', ['$http', 'Env',
+        function ($http, Env) {
             return {
                 getOrders: function () {
-                    var url = Environment.settings.api + '/orders/my';
+                    var url = Env.api + '/orders/my';
                     return $http.get(url);
                 },
                 getOrder: function (orderId) {
-                    var url = Environment.settings.api + '/order/' + orderId;
+                    var url = Env.api + '/order/' + orderId;
                     return $http.get(url);
                 }
             };

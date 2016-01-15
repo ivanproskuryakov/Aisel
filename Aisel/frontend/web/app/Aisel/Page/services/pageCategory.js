@@ -13,12 +13,12 @@
  */
 
 define(['app'], function(app) {
-    app.service('pageCategoryService', ['$http', 'Environment',
-        function($http, Environment) {
+    app.service('pageCategoryService', ['$http', 'Env',
+        function($http, Env) {
             return {
                 getCollection: function(params) {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api +
+                    var locale = Env.currentLocale();
+                    var url = Env.api +
                         '/' + locale +
                         '/page/node/?limit=' + params.limit +
                         '&current=' + params.page +
@@ -29,8 +29,8 @@ define(['app'], function(app) {
                     return $http.get(url);
                 },
                 getPageCategoryTree: function() {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/page/node/tree/';
+                    var locale = Env.currentLocale();
+                    var url = Env.api + '/' + locale + '/page/node/tree/';
                     console.log(url);
 
                     return $http.get(url);

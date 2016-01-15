@@ -19,9 +19,9 @@ define(['app'], function (app) {
         '$state',
         'userService',
         'notify',
-        'Environment',
-        function ($scope, $rootScope, $state, userService, notify, Environment) {
-            var locale = Environment.currentLocale();
+        'Env',
+        function ($scope, $rootScope, $state, userService, notify, Env) {
+            var locale = Env.currentLocale();
 
 
             // Set the default value of inputType

@@ -13,12 +13,12 @@
  */
 
 define(['app'], function(app) {
-    app.service('searchService', ['$http', 'Environment',
-        function($http, Environment) {
+    app.service('searchService', ['$http', 'Env',
+        function($http, Env) {
             return {
                 getSearchResult: function($scope) {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api +
+                    var locale = Env.currentLocale();
+                    var url = Env.api +
                         '/' + locale + '/search/?query=' +
                         $scope.queryText + '&current=' +
                         $scope.paginationPage;

@@ -30,12 +30,12 @@ define(['app'], function (app) {
             '$q',
             '$injector',
             '$location',
-            'Environment',
+            'Env',
             function ($rootScope,
                       $q,
                       $injector,
                       $location,
-                      Environment) {
+                      Env) {
                 return {
                     request: function (config) {
                         return config;
@@ -51,7 +51,7 @@ define(['app'], function (app) {
 
                         if (response.data.error) {
                             $rootScope.exception = response;
-                            var locale = Environment.currentLocale();
+                            var locale = Env.currentLocale();
 
                             $injector.get('$state').transitionTo(
                                 'exception', {

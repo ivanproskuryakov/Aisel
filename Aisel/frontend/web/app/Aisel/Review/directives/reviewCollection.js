@@ -13,8 +13,8 @@
  */
 
 define(['app'], function (app) {
-    app.directive('aiselReviewCollection', ['$compile', 'Environment',
-        function ($compile, Environment) {
+    app.directive('aiselReviewCollection', ['$compile', 'Env',
+        function ($compile, Env) {
             return {
                 restrict: 'EA',
                 scope: {

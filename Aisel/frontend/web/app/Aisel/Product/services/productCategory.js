@@ -13,12 +13,12 @@
  */
 
 define(['app'], function(app) {
-    app.service('productCategoryService', ['$http', 'Environment',
-        function($http, Environment) {
+    app.service('productCategoryService', ['$http', 'Env',
+        function($http, Env) {
             return {
                 getCollection: function(params) {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' +
+                    var locale = Env.currentLocale();
+                    var url = Env.api + '/' +
                         locale + '/product/node/?limit=' + params.limit +
                         '&current=' + params.page +
                         '&order=' + params.order +
@@ -28,8 +28,8 @@ define(['app'], function(app) {
                     return $http.get(url);
                 },
                 getProductCategoryTree: function() {
-                    var locale = Environment.currentLocale();
-                    var url = Environment.settings.api + '/' + locale + '/product/node/tree/';
+                    var locale = Env.currentLocale();
+                    var url = Env.api + '/' + locale + '/product/node/tree/';
                     console.log(url);
                     return $http.get(url);
                 }

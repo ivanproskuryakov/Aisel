@@ -14,11 +14,11 @@
 
 define(['app'], function (app) {
     app.service('userService',
-        ['$http', 'Environment',
-            function ($http, Environment) {
+        ['$http', 'Env',
+            function ($http, Env) {
                 return {
                     register: function (email, password) {
-                        var url = Environment.settings.api + '/user/register/';
+                        var url = Env.api + '/user/register/';
                         var data = {
                             email: email,
                             password: password
@@ -32,15 +32,15 @@ define(['app'], function (app) {
                     },
                     passwordforgot: function (form) {
                         var email = form.email.$modelValue;
-                        var url = Environment.settings.api + '/user/password/forgot/?email=' + email;
+                        var url = Env.api + '/user/password/forgot/?email=' + email;
                         return $http.get(url);
                     },
                     signout: function () {
-                        var url = Environment.settings.api + '/user/logout/';
+                        var url = Env.api + '/user/logout/';
                         return $http.get(url);
                     },
                     login: function (email, password) {
-                        var url = Environment.settings.api + '/user/login/';
+                        var url = Env.api + '/user/login/';
                         var data = {
                             email: email,
                             password: password
@@ -52,11 +52,11 @@ define(['app'], function (app) {
                         });
                     },
                     getUserInformation: function () {
-                        var url = Environment.settings.api + '/user/information/';
+                        var url = Env.api + '/user/information/';
                         return $http.get(url);
                     },
                     updateAccount: function (user) {
-                        var url = Environment.settings.api + '/user/information/';
+                        var url = Env.api + '/user/information/';
                         var data = {
                             phone: user.phone,
                             about: user.about,
@@ -71,7 +71,7 @@ define(['app'], function (app) {
                         });
                     },
                     changePassword: function (password) {
-                        var url = Environment.settings.api + '/user/password/change/';
+                        var url = Env.api + '/user/password/change/';
                         var data = {
                             password: password
                         };
@@ -82,7 +82,7 @@ define(['app'], function (app) {
                         });
                     },
                     deleteAccount: function () {
-                        var url = Environment.settings.api + '/user/';
+                        var url = Env.api + '/user/';
                         return $http({
                             method: 'DELETE',
                             url: url
