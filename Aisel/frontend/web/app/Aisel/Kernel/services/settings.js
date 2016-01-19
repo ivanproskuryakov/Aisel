@@ -12,22 +12,15 @@
  * @description     Grabs application settings from backend
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     console.log('Kernel settings loaded ...');
     angular.module('app')
         .service('settingsService', ['$http', '$rootScope', 'Env',
-            function($http, $rootScope, Env) {
+            function ($http, $rootScope, Env) {
                 return {
-                    getApplicationConfig: function() {
-                        var locale = Env.currentLocale();
-                        var url = Env.api + '/' + locale + '/config/';
-                        // console.log(url);
-                        return $http.get(url);
-                    },
-                    getMenu: function() {
+                    getMenu: function () {
                         var locale = Env.currentLocale();
                         var url = Env.api + '/' + locale + '/navigation/';
-                        //console.log(url);
                         return $http.get(url);
                     }
                 };

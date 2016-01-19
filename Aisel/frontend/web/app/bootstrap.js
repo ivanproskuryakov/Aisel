@@ -20,29 +20,41 @@ define([
     'use strict';
     require(['domReady!'], function (document) {
 
-        var Env = {
-            media: 'http://api.' + document.domain,
-            api: 'http://api.' + document.domain + '/frontend/api',
-            locale: {
-                "primary": 'en',
-                "available": ['en', 'es', 'ru']
-            },
-            gremlins: {
-                time: 9999 * 9999 * 9999 * 9999 * 9999,
-                enabled: false
-            },
-            currentLocale: function () {
-                var locale = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
-                if (this.locale.available.indexOf(locale) == -1) {
-                    locale = this.locale.primary;
-                }
-                return locale;
-            }
-        };
+        function fetchSettings() {
 
-        app.constant("Env", Env);
-        angular.bootstrap(document, ['app']);
+            var initInjector = angular.injector(["ng"]);
+            var $http = initInjector.get("$http");
 
+            var apiDomain = "http://api." + document.domain;
+            var api = apiDomain + "/frontend/api";
+
+
+            return $http
+                .get(api + '/en/config/', {withCredentials: true})
+                .then(function (response) {
+                    var Env = response.data;
+
+                    Env.api = api;
+                    Env.media = apiDomain;
+                    Env.currentLocale = function () {
+                        var locale = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
+                        if (this.locale.available.indexOf(locale) == -1) {
+                            locale = this.locale.primary;
+                        }
+                        return locale;
+                    };
+                    console.log(Env.currentLocale());
+
+                    app.constant("Env", Env);
+                });
+        }
+
+        fetchSettings().then(bootstrapApplication);
+
+
+        function bootstrapApplication() {
+            angular.bootstrap(document, ['app']);
+        }
 
     });
 });
