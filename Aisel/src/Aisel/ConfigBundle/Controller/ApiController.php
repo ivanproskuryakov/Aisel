@@ -33,7 +33,7 @@ class ApiController extends Controller
         $config = $this
             ->container
             ->get("aisel.config.manager")
-            ->getConfig($locale);
+            ->getConfigFrontend($locale);
 
         return $config;
     }

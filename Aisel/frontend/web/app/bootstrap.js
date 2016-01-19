@@ -22,22 +22,21 @@ define([
 
         function fetchSettings() {
 
-            var initInjector = angular.injector(["ng"]);
-            var $http = initInjector.get("$http");
+            var $http = angular.injector(["ng"]).get("$http");
+            var api = "http://api." + document.domain + "/frontend/api";
+            var locale = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
 
-            var apiDomain = "http://api." + document.domain;
-            var api = apiDomain + "/frontend/api";
+            if (locale == "") {
+                locale = 'en';
+            }
 
-
-            return $http
-                .get(api + '/en/config/', {withCredentials: true})
+            return $http.get(api + '/' + locale + '/config/', {withCredentials: true})
                 .then(function (response) {
                     var Env = response.data;
 
                     Env.api = api;
-                    Env.media = apiDomain;
+                    Env.media = "http://api." + document.domain;
                     Env.currentLocale = function () {
-                        var locale = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
                         if (this.locale.available.indexOf(locale) == -1) {
                             locale = this.locale.primary;
                         }

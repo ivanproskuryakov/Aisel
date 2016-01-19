@@ -33,6 +33,7 @@ class ApiController extends Controller
             ->container
             ->get("aisel.config.manager")
             ->getConfig();
+
         $config['fields'] = $this
             ->container
             ->getParameter('aisel_config');

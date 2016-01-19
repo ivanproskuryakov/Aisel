@@ -56,7 +56,6 @@ class ConfigManager
      * Get all settings
      *
      * @param string $locale
-     *
      * @throws LogicException
      *
      * @return array $config
@@ -74,6 +73,36 @@ class ConfigManager
         $config = array();
 
         foreach ($collection as $s) {
+            $config['settings'][$s['locale']][$s['entity']] = json_decode($s['value'], true);
+        }
+        $config['locale'] = $this->locale;
+
+        return $config;
+    }
+
+    /**
+     * Get all settings
+     *
+     * @param string $locale
+     *
+     * @throws LogicException
+     *
+     * @return array $config
+     */
+    public function getConfigFrontend($locale)
+    {
+        if (in_array($locale, $this->locale['available']) === false) {
+            $locale = $this->locale['primary'];
+        }
+
+        $collection = $this
+            ->dm
+            ->getRepository($this->model)
+            ->getAllSettings($locale);
+
+        $config = array();
+
+        foreach ($collection as $s) {
             $config[$s['entity']] = json_decode($s['value'], true);
         }
         $config['locale'] = $this->locale;
@@ -85,7 +114,6 @@ class ConfigManager
      * Save config settings
      *
      * @param string $settingsData
-     *
      * @return array $config
      */
     public function saveConfig($settingsData)
@@ -102,7 +130,6 @@ class ConfigManager
      *
      * @param string $entity
      * @param string $locale
-     *
      * @return array $config
      */
     public function getConfigForEntity($locale = null, $entity)
@@ -120,7 +147,6 @@ class ConfigManager
      * Prepare config data for later use in form
      *
      * @param array $config
-     *
      * @return array $decoded
      */
     public function prepare(array $config)

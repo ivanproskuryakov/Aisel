@@ -40,10 +40,11 @@ class ApiControllerTest extends AbstractWebTestCase
 
     public function testGetConfigAction()
     {
+        $locale = 'en';
 
         $this->client->request(
             'GET',
-            '/'. $this->api['frontend'] . '/en/config/'
+            '/' . $this->api['frontend'] . '/en/config/'
         );
 
         $response = $this->client->getResponse();
@@ -53,8 +54,49 @@ class ApiControllerTest extends AbstractWebTestCase
 
         $this->assertJson($content);
         $this->assertTrue(200 === $statusCode);
-        $this->assertTrue(isset($result['settings']));
-        $this->assertTrue(isset($result['locale']));
+
+        $this->assertEquals($result['locale']['primary'], 'en');
+
+        $collection = $this->em
+            ->getRepository('Aisel\ConfigBundle\Entity\Config')
+            ->getAllSettings($locale);
+
+        foreach ($collection as $item) {
+            $this->assertNotEmpty($result[$item['entity']]);
+        }
+
+        foreach ($result['locale']['available'] as $locale) {
+            $this->assertNotFalse(array_search($locale, $this->locales));
+        }
+    }
+
+
+    public function testGetBrokenConfigAction()
+    {
+        $locale = '0';
+
+        $this->client->request(
+            'GET',
+            '/' . $this->api['frontend'] . '/' . $locale . '/config/'
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertJson($content);
+        $this->assertTrue(200 === $statusCode);
+
+        $this->assertEquals($result['locale']['primary'], 'en');
+
+        $collection = $this->em
+            ->getRepository('Aisel\ConfigBundle\Entity\Config')
+            ->getAllSettings($locale);
+
+        foreach ($collection as $item) {
+            $this->assertNotEmpty($result[$item['entity']]);
+        }
 
         foreach ($result['locale']['available'] as $locale) {
             $this->assertNotFalse(array_search($locale, $this->locales));

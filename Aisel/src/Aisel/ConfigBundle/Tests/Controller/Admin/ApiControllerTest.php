@@ -53,7 +53,6 @@ class ApiControllerTest extends AbstractWebTestCase
 
         $this->assertJson($content);
         $this->assertTrue(200 === $statusCode);
-        $this->assertTrue(isset($result['settings']));
         $this->assertTrue(isset($result['locale']));
         $this->assertTrue(isset($result['fields']));
 
