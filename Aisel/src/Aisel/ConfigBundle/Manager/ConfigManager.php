@@ -74,7 +74,7 @@ class ConfigManager
         $config = array();
 
         foreach ($collection as $s) {
-            $config['settings'][$s['locale']][$s['entity']] = json_decode($s['value'], true);
+            $config[$s['entity']] = json_decode($s['value'], true);
         }
         $config['locale'] = $this->locale;
 

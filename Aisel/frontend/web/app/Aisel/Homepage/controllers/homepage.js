@@ -12,15 +12,9 @@
  * @description     ...
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app.controller('HomepageCtrl', ['$location', '$scope', '$rootScope', 'settingsService', 'Env',
-        function($location, $scope, $rootScope, settingsService, Env) {
-            settingsService.getApplicationConfig().success(
-                function(data, status) {
-                    var locale = Env.currentLocale();
-                    $scope.content = data.settings[locale].content.homepageContent;
-                }
-            );
+        function ($location, $scope, $rootScope, settingsService, Env) {
         }
     ]);
 });

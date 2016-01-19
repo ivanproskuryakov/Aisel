@@ -12,8 +12,8 @@
  * @description     Module config
  */
 
-define(['app'], function(app) {
-    app.config(['$stateProvider', function($stateProvider) {
+define(['app'], function (app) {
+    app.config(['$stateProvider', function ($stateProvider) {
         $stateProvider
             .state("userLogin", {
                 url: "/:locale/user/login/",
@@ -50,4 +50,24 @@ define(['app'], function(app) {
 
             })
     }]);
+
+
+    app.run(['$http', '$rootScope', 'userService',
+        function ($http, $rootScope, userService) {
+
+            // Load user status
+            userService.getUserInformation().success(
+                function (data, status) {
+                    console.log(data);
+                    if (data.email) {
+                        $rootScope.user = data;
+                    } else {
+                        $rootScope.user = undefined;
+                    }
+                }
+            );
+        }
+    ]);
+
+
 });

@@ -17,14 +17,7 @@ define(['app'], function (app) {
         '$location', '$scope', 'contactService', 'settingsService', 'notify', 'Env',
         function ($location, $scope, contactService, settingsService, notify, Env) {
 
-            $scope.config = false;
-
-            settingsService.getApplicationConfig().success(
-                function (data, status) {
-                    var locale = Env.currentLocale();
-                    $scope.config = data.settings[locale].contact;
-                }
-            );
+            $scope.config = Env.contact;
 
             // Submit Contact
             $scope.submitContact = function (form) {

@@ -49,9 +49,35 @@ define([
             'angular-loading-bar'
         ]);
 
-        app.run(['$http', '$rootScope', 'settingsService', 'initService',
-                function ($http, $rootScope, settingsService, initService) {
-                    initService.launch();
+        app.run(['$http',
+                '$rootScope',
+                'settingsService',
+                'Env',
+                function ($http, $rootScope, settingsService, Env) {
+
+                    $rootScope.env = Env;
+
+                    $rootScope.locale = $rootScope.env.currentLocale();
+                    $rootScope.disqusShortname = $rootScope.env.shortname;
+                    $rootScope.disqusStatus = false;
+                    $rootScope.currency = $rootScope.env.general.currency;
+                    $rootScope.paymentMethods = $rootScope.env.general.paymentMethods;
+
+                    console.log('----------- Aisel Loaded! -----------');
+
+                    $rootScope.$on('$stateChangeStart',
+                        function (event, toState, toParams, fromState, fromParams) {
+                            $rootScope.pageTitle = $rootScope.env.meta.defaultMetaTitle;
+                            $rootScope.metaDescription = $rootScope.env.meta.defaultMetaDescription;
+                            $rootScope.metaKeywords = $rootScope.env.meta.defaultMetaKeywords;
+                        }
+                    );
+
+                    settingsService.getMenu().success(
+                        function (data, status) {
+                            $rootScope.topMenu = data;
+                        }
+                    );
                 }
             ])
             .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {

@@ -11,14 +11,14 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="row">
-                    <div class="col-xs-10" ng-bind-html="footer">
+                    <div class="col-xs-10" ng-bind-html="env.content.footerContent">
                     </div>
                     <div class="col-xs-2">
                         <div class="pull-right">
-                            <div ng-if="availableLocales" class="availableLocales">
+                            <div ng-if="env.locale.available" class="availableLocales">
                                 <span>Language:</span>
                                 <ul class="list">
-                                    <li ng-repeat="item in availableLocales">
+                                    <li ng-repeat="item in env.locale.available">
                                         <span ng-if="item == locale">{{ item }}</span>
                                         <a ng-if="item != locale" target="_self" ui-sref="homepage({locale: item})">{{ item }}</a>
                                     </li>

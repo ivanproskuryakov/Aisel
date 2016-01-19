@@ -12,8 +12,8 @@
  * @description     Product config
  */
 
-define(['app'], function(app) {
-    app.config(['$stateProvider', function($stateProvider) {
+define(['app'], function (app) {
+    app.config(['$stateProvider', function ($stateProvider) {
         $stateProvider
             .state("products", {
                 url: "/:locale/products/",
@@ -36,4 +36,16 @@ define(['app'], function(app) {
                 controller: 'ProductCategoryDetailCtrl'
             });
     }]);
+
+    app.run(['$http', '$rootScope', 'productCategoryService',
+        function ($http, $rootScope, productCategoryService) {
+            
+            // Load page categories
+            productCategoryService.getProductCategoryTree().success(
+                function (data, status) {
+                    $rootScope.productCategoryTree = data;
+                }
+            );
+        }
+    ]);
 });

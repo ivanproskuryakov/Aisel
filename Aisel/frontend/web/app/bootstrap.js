@@ -43,8 +43,6 @@ define([
                         }
                         return locale;
                     };
-                    console.log(Env.currentLocale());
-
                     app.constant("Env", Env);
                 });
         }
