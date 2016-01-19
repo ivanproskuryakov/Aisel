@@ -52,22 +52,60 @@ define(['app'], function (app) {
     }]);
 
 
-    app.run(['$http', '$rootScope', 'userService',
-        function ($http, $rootScope, userService) {
+    //Will be removed later
+    //app.run(['$http', '$rootScope', 'userService',
+    //    function ($http, $rootScope, userService) {
+    //
+    //        // Load user status
+    //        userService.getUserInformation().success(
+    //            function (data, status) {
+    //                console.log(data);
+    //                if (data.email) {
+    //                    $rootScope.user = data;
+    //                } else {
+    //                    $rootScope.user = undefined;
+    //                }
+    //            }
+    //        );
+    //    }
+    //]);
 
-            // Load user status
-            userService.getUserInformation().success(
-                function (data, status) {
-                    console.log(data);
-                    if (data.email) {
-                        $rootScope.user = data;
-                    } else {
-                        $rootScope.user = undefined;
+
+    app.run(['$http', '$rootScope', '$state', 'Env', 'userService',
+        function ($http, $rootScope, $state, Env, userService) {
+
+            var locale = Env.currentLocale();
+
+            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+                if (typeof toState.data !== 'undefined') {
+                    console.log('Role needed: ' + toState.data.role);
+                    var role = toState.data.role;
+
+                    if (role == 'user') {
+                        if ($rootScope.user === undefined) {
+                            userService.getUserInformation().success(
+                                function (data, status) {
+                                    if (data.email) {
+                                        $rootScope.user = data;
+                                    } else {
+                                        $rootScope.user = false;
+                                        event.preventDefault();
+                                        $state.transitionTo('userRegister', {
+                                            locale: locale
+                                        });
+                                    }
+                                }
+                            );
+                        } else if ($rootScope.user == false) {
+                            event.preventDefault();
+
+                            $state.transitionTo('userRegister', {
+                                locale: locale
+                            });
+                        }
                     }
                 }
-            );
+            });
         }
-    ]);
-
-
+    ])
 });
