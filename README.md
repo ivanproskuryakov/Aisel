@@ -2,7 +2,7 @@ About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=mast
 -----------------------------------
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
-Marketplace based on AngularJS and Symfony2 framework - http://aisel.co/
+Marketplace on top of AngularJS and Symfony2 framework - http://aisel.co/
 
 Demo:<br/>
 Frontend: http://ecommerce.aisel.co/en/ [user@aisel.co/user]<br/>
