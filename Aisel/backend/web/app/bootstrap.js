@@ -22,8 +22,8 @@ define([
 
         function fetchSettings() {
 
-            var initInjector = angular.injector(["ng"]);
-            var $http = initInjector.get("$http");
+            var $http = angular.injector(["ng"]).get("$http");
+
             var api_domain = document.domain.replace("admin", "api");
 
 
