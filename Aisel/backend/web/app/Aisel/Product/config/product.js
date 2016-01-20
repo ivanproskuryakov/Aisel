@@ -55,7 +55,7 @@ define(['app'], function (app) {
                     controller: 'ProductNodeCtrl'
                 })
                 .state("productNodeEdit", {
-                    url: "/:locale/product/node/:id/",
+                    url: "/:locale/product/node/edit/:id/",
                     templateUrl: '/app/Aisel/Product/views/edit-node.html',
                     controller: 'ProductNodeDetailsCtrl'
                 })

@@ -54,7 +54,7 @@ define(['app'], function (app) {
                     controller: 'PageNodeCtrl'
                 })
                 .state("pageNodeEdit", {
-                    url: "/:locale/page/node/:id/",
+                    url: "/:locale/page/node/edit/:id/",
                     templateUrl: '/app/Aisel/Page/views/edit-node.html',
                     controller: 'PageNodeDetailsCtrl'
                 })

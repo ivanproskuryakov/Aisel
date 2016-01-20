@@ -27,7 +27,7 @@ define(['app'], function (app) {
                     controller: 'NavigationDetailCtrl'
                 })
                 .state("navigationNew", {
-                    url: "/:locale/navigation/new/",
+                    url: "/:locale/navigation/edit/new/",
                     templateUrl: '/app/Aisel/Navigation/views/edit-node.html',
                     controller: 'NavigationDetailCtrl'
                 })
