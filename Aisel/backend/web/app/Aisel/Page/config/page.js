@@ -49,13 +49,18 @@ define(['app'], function (app) {
                 })
 
                 .state("pageNode", {
-                    url: "/:locale/page/node/:lang/",
+                    url: "/:locale/page/node/",
                     templateUrl: '/app/Aisel/Kernel/views/node.html',
                     controller: 'PageNodeCtrl'
                 })
                 .state("pageNodeEdit", {
-                    url: "/:locale/page/node/edit/:lang/:id/",
+                    url: "/:locale/page/node/",
                     templateUrl: '/app/Aisel/Page/views/edit-node.html',
+                    controller: 'PageNodeDetailsCtrl'
+                })
+                .state("pageNodeNew", {
+                    url: "/:locale/page/node/new/",
+                    templateUrl: '/app/Aisel/Page/views/edit.html',
                     controller: 'PageNodeDetailsCtrl'
                 })
         }])

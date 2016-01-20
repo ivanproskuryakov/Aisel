@@ -34,9 +34,3 @@ admin_api_aisel_navigation_delete:
     defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:delete, _format: json }
     requirements:
         _method: DELETE
-
-admin_api_aisel_navigation_node_edit:
-    pattern:   /navigation/node/
-    defaults:  { _controller: AiselNavigationBundle:Admin/ApiNodeEdit:nodeEdit, _format: json }
-    requirements:
-        _method: GET

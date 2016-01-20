@@ -33,6 +33,98 @@ class ApiNodeControllerTest extends PageWebTestCase
         parent::tearDown();
     }
 
+    public function testNodeUpdateParentAction()
+    {
+        $child = $this->newNode();
+        $parent = $this->newNode();
+
+        $data = [
+            'parent' => [
+                'id' => $parent->getId()
+            ],
+        ];
+
+        $this->client->request(
+            'PUT',
+            '/' . $this->api['backend'] . '/page/node/' . $child->getId(),
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertEmpty($content);
+        $this->assertTrue(204 === $statusCode);
+
+        $node = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Node')
+            ->findOneBy(['id' => $child->getId()]);
+
+        $this->assertEquals($parent->getId(), $node->getParent()->getId());
+        $this->assertEquals($child->getId(), $node->getParent()->getChildren()[0]->getId());
+    }
+
+    public function testNodeAddChildAction()
+    {
+        $parent = $this->newNode();
+
+        $data = [
+            'locale' => 'en',
+            'name' => 'AAA',
+            'content' => $this->faker->sentence(),
+            'status' => true,
+            'meta_url' => 'metaUrl_' . $this->faker->randomNumber(),
+            'meta_title' => 'metaTitle_' . $this->faker->randomNumber(),
+            'parent' => [
+                'id' => $parent->getId()
+            ]
+        ];
+
+        $this->client->request(
+            'POST',
+            '/' . $this->api['backend'] . '/page/node/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($data)
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $parts = explode('/', $response->headers->get('location'));
+        $id = array_pop($parts);
+
+        $this->assertTrue(201 === $statusCode);
+        $this->assertEmpty($content);
+
+
+        $this->em->clear();
+
+        $node = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Node')
+            ->findOneBy(['id' => $id]);
+
+
+        $parent = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Node')
+            ->findOneBy(['id' => $parent->getId()]);
+
+
+        $this->assertEquals($node->getParent()->getId(), $parent->getId());
+        $this->assertEquals($node->getId(), $parent->getChildren()[0]->getId());
+    }
+
+
     public function testPostPageNodeAction()
     {
         $data = [
@@ -40,13 +132,13 @@ class ApiNodeControllerTest extends PageWebTestCase
             'name' => 'AAA',
             'content' => $this->faker->sentence(),
             'status' => true,
-            'meta_url' => 'metaUrl_' . time(),
-            'meta_title' => 'metaTitle_' . time(),
+            'meta_url' => 'metaUrl_' . $this->faker->randomNumber(),
+            'meta_title' => 'metaTitle_' . $this->faker->randomNumber(),
         ];
 
         $this->client->request(
             'POST',
-            '/'. $this->api['backend'] . '/page/node/',
+            '/' . $this->api['backend'] . '/page/node/',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -65,7 +157,7 @@ class ApiNodeControllerTest extends PageWebTestCase
     {
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/page/node/?locale=en'
+            '/' . $this->api['backend'] . '/page/node/?locale=en'
         );
 
         $response = $this->client->getResponse();
@@ -85,7 +177,7 @@ class ApiNodeControllerTest extends PageWebTestCase
 
         $this->client->request(
             'GET',
-            '/'. $this->api['backend'] . '/page/node/' . $node->getId(),
+            '/' . $this->api['backend'] . '/page/node/' . $node->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
@@ -104,7 +196,7 @@ class ApiNodeControllerTest extends PageWebTestCase
 
     public function testPutPageNodeAction()
     {
-        $node1  = $this->newNode();
+        $node1 = $this->newNode();
         $node2 = $this->newNode();
 
         $data['locale'] = 'ru';
@@ -113,7 +205,7 @@ class ApiNodeControllerTest extends PageWebTestCase
 
         $this->client->request(
             'PUT',
-            '/'. $this->api['backend'] . '/page/node/' . $node2->getId(),
+            '/' . $this->api['backend'] . '/page/node/' . $node2->getId(),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -147,7 +239,7 @@ class ApiNodeControllerTest extends PageWebTestCase
 
         $this->client->request(
             'DELETE',
-            '/'. $this->api['backend'] . '/page/node/' . $id,
+            '/' . $this->api['backend'] . '/page/node/' . $id,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json']
