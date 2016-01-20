@@ -61,7 +61,7 @@ define(['app'], function (app) {
             };
             resourceService.prototype.getNodeTree = function (locale) {
                 var url = Env.api + '/' + this.resource +
-                    '/node/?locale=' + locale;
+                    '/node/tree/?locale=' + locale;
                 console.log(url);
                 return $http.get(url);
             };

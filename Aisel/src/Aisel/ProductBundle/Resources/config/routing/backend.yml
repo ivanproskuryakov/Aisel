@@ -12,9 +12,15 @@ admin_api_aisel_product_node_get:
     requirements:
         _method: GET
 
-admin_api_aisel_product_node_get_tree:
+admin_api_aisel_product_node_get_collectiom:
     pattern:   /product/node/
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:getCollection, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_product_node_get_tree:
+    pattern:   /product/node/tree/
+    defaults:  { _controller: AiselProductBundle:Admin/ApiNode:getTree, _format: json }
     requirements:
         _method: GET
 

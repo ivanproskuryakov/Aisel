@@ -170,6 +170,23 @@ class ApiNodeControllerTest extends AbstractWebTestCase
     {
         $this->client->request(
             'GET',
+            '/' . $this->api['backend'] . '/navigation/tree/'
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertJson($content);
+        $this->assertTrue(200 === $statusCode);
+        $this->assertTrue(is_array($result));
+    }
+
+    public function testGetNodesAsTreeAction()
+    {
+        $this->client->request(
+            'GET',
             '/' . $this->api['backend'] . '/navigation/?locale=en'
         );
 

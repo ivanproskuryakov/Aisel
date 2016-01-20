@@ -158,7 +158,23 @@ class ApiNodeControllerTest extends ProductWebTestCase
     {
         $this->client->request(
             'GET',
-            '/' . $this->api['backend'] . '/product/node/?locale=en'
+            '/' . $this->api['backend'] . '/product/node/'
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertJson($content);
+        $this->assertTrue(200 === $statusCode);
+        $this->assertTrue(is_array($result));
+    }
+    public function testGetProductNodesAsTreeAction()
+    {
+        $this->client->request(
+            'GET',
+            '/' . $this->api['backend'] . '/product/node/tree/?locale=en'
         );
 
         $response = $this->client->getResponse();

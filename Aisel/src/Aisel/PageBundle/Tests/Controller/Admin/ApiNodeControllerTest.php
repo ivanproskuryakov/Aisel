@@ -157,7 +157,7 @@ class ApiNodeControllerTest extends PageWebTestCase
     {
         $this->client->request(
             'GET',
-            '/' . $this->api['backend'] . '/page/node/?locale=en'
+            '/' . $this->api['backend'] . '/page/node/'
         );
 
         $response = $this->client->getResponse();
@@ -168,7 +168,23 @@ class ApiNodeControllerTest extends PageWebTestCase
         $this->assertJson($content);
         $this->assertTrue(200 === $statusCode);
         $this->assertTrue(is_array($result));
+    }
 
+    public function testGetPageNodesAsTreeAction()
+    {
+        $this->client->request(
+            'GET',
+            '/' . $this->api['backend'] . '/page/node/tree/?locale=en'
+        );
+
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $statusCode = $response->getStatusCode();
+        $result = json_decode($content, true);
+
+        $this->assertJson($content);
+        $this->assertTrue(200 === $statusCode);
+        $this->assertTrue(is_array($result));
     }
 
     public function testGetPageNodeAction()
@@ -190,8 +206,6 @@ class ApiNodeControllerTest extends PageWebTestCase
 
         $this->assertTrue(200 === $statusCode);
         $this->assertEquals($result['id'], $node->getId());
-
-//        $this->removeEntity($node);
     }
 
     public function testPutPageNodeAction()
