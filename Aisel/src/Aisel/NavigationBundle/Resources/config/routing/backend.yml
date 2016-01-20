@@ -13,7 +13,7 @@ admin_api_aisel_navigation_get:
 
 admin_api_aisel_navigation_get_tree:
     pattern:   /navigation/
-    defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:getTree, _format: json }
+    defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:getCollection, _format: json }
     requirements:
         _method: GET
 

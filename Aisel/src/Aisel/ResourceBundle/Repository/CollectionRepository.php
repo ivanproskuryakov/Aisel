@@ -153,13 +153,13 @@ class CollectionRepository extends EntityRepository
     }
 
     /**
-     * getCollectionFromRequest
+     * getCollection
      *
      * @param array $params
      *
      * @return mixed $collection
      */
-    public function getCollectionFromRequest(array $params)
+    public function getCollection(array $params)
     {
         $this->mapRequest($params);
         $query = $this

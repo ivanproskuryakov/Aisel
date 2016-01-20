@@ -13,25 +13,75 @@
  */
 
 define(['app'], function(app) {
-    app.controller('PageNodeCtrl', function($scope, $stateParams, $state, Env) {
+    app.controller('PageNodeCtrl', [
+        '$state',
+        '$scope',
+        'resourceService',
+        'collectionService',
+        'Env',
+        'notify',
+        function ($state,
+                  $scope,
+                  resourceService,
+                  collectionService,
+                  Env,
+                  notify) {
 
-        $scope.sectionName = 'Page nodes';
-        $scope.nodeJson = Env.api + '/page/node/?locale=' + $stateParams.lang;
-        $scope.nodeUpdate = Env.api + '/page/node/node/?locale=' + $stateParams.lang;
+            var itemService = new resourceService('page/node');
 
-        $scope.editNode = function(id) {
-            $state.transitionTo('pageNodeEdit', {
-                locale: Env.currentLocale(),
-                lang: $stateParams.lang,
-                id: id
-            });
-        };
+            $scope.collectionTitle = 'Page Nodes';
+            $scope.pageLimit = 20;
+            $scope.pageNumber = 1;
 
-        $scope.changeNodeLocale = function(lang) {
-            $state.transitionTo('pageNode', {
-                locale: Env.currentLocale(),
-                lang: lang
-            });
-        };
-    });
+            $scope.columns = [{
+                name: 'id',
+                enableColumnMenu: false,
+                width: '75'
+            }, {
+                name: 'locale',
+                enableColumnMenu: false,
+                width: '75'
+            }, {
+                name: 'name',
+                enableColumnMenu: false
+            }, {
+                name: 'meta_url',
+                enableColumnMenu: false
+            }, {
+                name: 'status',
+                enableColumnMenu: false
+            }, {
+                name: 'created_at',
+                enableColumnMenu: false
+            }, {
+                name: 'action',
+                enableSorting: false,
+                enableFiltering: false,
+                enableColumnMenu: false,
+                width: '100',
+                cellTemplate: collectionService.actionTemplate()
+            }];
+            $scope.gridOptions = collectionService.gridOptions($scope);
+
+            // === Item Action ===
+            $scope.editDetails = function (id) {
+                $state.transitionTo('pageNodeEdit', {
+                    locale: Env.currentLocale(),
+                    id: id
+                });
+            };
+            $scope.newItem = function () {
+                $state.transitionTo('pageNodeNew', {
+                    locale: Env.currentLocale()
+                });
+            };
+
+            // === Load collection from remote ===
+            $scope.loadCollection = function (pageNumber) {
+                collectionService.loadCollection($scope, itemService, pageNumber);
+            };
+            $scope.loadCollection();
+
+        }
+    ]);
 });

@@ -243,7 +243,7 @@ class ApiController extends Controller
             ->getEntityManager()
             ->getRepository($this->model);
         $total = $repo->getTotalFromRequest($params);
-        $collection = $repo->getCollectionFromRequest($params);
+        $collection = $repo->getCollection($params);
 
         return array(
             'total' => $total,
