@@ -109,7 +109,12 @@ abstract class Node implements NodeInterface
      */
     public function setParent($parent = null)
     {
+        if ($this->parent) {
+            $this->parent->removeChild($this);
+        }
+
         $this->parent = $parent;
+        $this->parent->addChild($this);
 
         return $this;
     }

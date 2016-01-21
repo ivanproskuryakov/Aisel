@@ -1,19 +1,10 @@
 <div class="form-group">
-    <label for="nodes">Parent</label>
-    <select id="nodes"
+    <label for="nodes">Parent:</label>
+    {{item.parent.id}} / {{item.parent.name}}
+    <select ng-model="item.parent"
+            id="nodes"
             class="form-control"
-            ng-required="true"
-            ng-model="item.parent.id"
-            name="status">
-        <option
-                ng-repeat="node in availableNodes"
-                ng-select="item.parent.id == node.id"
-                value="{{node.id}}">
-            {{node.id}} / {{node.name}}
-        </option>
+            ng-options="node.name for node in availableNodes">
     </select>
 
 </div>
-
-{{item.parent.id}}
-{{item.parent.name}}

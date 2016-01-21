@@ -33,7 +33,7 @@ class Menu extends BaseNode
      * @ORM\ManyToOne(targetEntity="Aisel\NavigationBundle\Entity\Menu", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
+     * @JMS\MaxDepth(2)
      * @JMS\Type("Aisel\NavigationBundle\Entity\Menu")
      * @JMS\Groups({"collection","details"})
      */
@@ -43,7 +43,7 @@ class Menu extends BaseNode
      * @ORM\OneToMany(targetEntity="Aisel\NavigationBundle\Entity\Menu", mappedBy="parent")
      * @ORM\OrderBy({"name" = "ASC"})
      * @JMS\Expose
-     * @JMS\MaxDepth(1)
+     * @JMS\MaxDepth(2)
      * @JMS\Type("ArrayCollection<Aisel\NavigationBundle\Entity\Menu>")
      * @JMS\Groups({"collection","details"})
      */
