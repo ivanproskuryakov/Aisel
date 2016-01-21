@@ -39,7 +39,7 @@ class ApiNodeControllerTest extends AbstractWebTestCase
         $node->setLocale('en');
         $node->setMetaUrl('/');
         $node->setName($name);
-        $node->setStatus($name);
+        $node->setStatus(true);
         $this->em->persist($node);
         $this->em->flush();
 
