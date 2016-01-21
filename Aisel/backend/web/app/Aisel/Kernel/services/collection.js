@@ -35,7 +35,7 @@ define(['app'], function (app) {
                     loadCollection: function ($scope, service, pageNumber) {
                         if (pageNumber === undefined) pageNumber = 1;
                         if ($scope.filter === undefined) $scope.filter = '';
-                        service.getCollection($scope, pageNumber).success(
+                        service.getCollection($scope.pageLimit, pageNumber, $scope.filter).success(
                             function (data, status) {
                                 console.log(data);
                                 $scope.gridOptions.data = data.collection;

@@ -20,12 +20,12 @@ define(['app'], function (app) {
                 this.resource = name;
             };
 
-            resourceService.prototype.getCollection = function ($scope, pageNumber) {
+            resourceService.prototype.getCollection = function (pageLimit, pageNumber, filter) {
                 var url = Env.api +
                     '/' + this.resource +
-                    '/?limit=' + $scope.pageLimit +
+                    '/?limit=' + pageLimit +
                     '&current=' + pageNumber +
-                    '&filter=' + $scope.filter;
+                    '&filter=' + filter;
 
                 console.log(url);
                 return $http.get(url);
