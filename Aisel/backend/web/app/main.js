@@ -17,7 +17,6 @@ require.config({
     paths: {
         'jQuery': '../bower_components/jquery/jquery.min',
         'jQuery-ui': '../bower_components/jquery-ui/jquery-ui',
-        'fancytree': '../bower_components/fancytree/dist/jquery.fancytree-all',
         'ui-contextmenu': '../bower_components/ui-contextmenu/jquery.ui-contextmenu',
         'underscore': '../bower_components/underscore/underscore-min',
         'domReady': '../bower_components/domReady/domReady',
@@ -61,7 +60,6 @@ require.config({
             'exports': 'jQuery-ui',
             deps: ['jQuery']
         },
-        "fancytree": ["jQuery-ui"],
         "ui-contextmenu": ["jQuery-ui"],
         "domReady": ["angular"],
         "angular-resource": ["angular"],

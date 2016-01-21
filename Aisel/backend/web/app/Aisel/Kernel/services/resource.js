@@ -20,12 +20,12 @@ define(['app'], function (app) {
                 this.resource = name;
             };
 
-            resourceService.prototype.getCollection = function ($scope, pageNumber) {
+            resourceService.prototype.getCollection = function (pageLimit, pageNumber, filter) {
                 var url = Env.api +
                     '/' + this.resource +
-                    '/?limit=' + $scope.pageLimit +
+                    '/?limit=' + pageLimit +
                     '&current=' + pageNumber +
-                    '&filter=' + $scope.filter;
+                    '&filter=' + filter;
 
                 console.log(url);
                 return $http.get(url);
@@ -61,7 +61,7 @@ define(['app'], function (app) {
             };
             resourceService.prototype.getNodeTree = function (locale) {
                 var url = Env.api + '/' + this.resource +
-                    '/node/?locale=' + locale;
+                    '/node/tree/?locale=' + locale;
                 console.log(url);
                 return $http.get(url);
             };

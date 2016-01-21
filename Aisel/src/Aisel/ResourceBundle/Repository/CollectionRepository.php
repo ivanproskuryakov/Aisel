@@ -153,13 +153,13 @@ class CollectionRepository extends EntityRepository
     }
 
     /**
-     * getCollectionFromRequest
+     * getCollection
      *
      * @param array $params
      *
      * @return mixed $collection
      */
-    public function getCollectionFromRequest(array $params)
+    public function getCollection(array $params)
     {
         $this->mapRequest($params);
         $query = $this
@@ -210,7 +210,6 @@ class CollectionRepository extends EntityRepository
      *
      * @param string $url
      * @param int $entityId
-     *
      * @return int $found
      */
     public function findTotalByURL($url, $entityId = null)
@@ -231,13 +230,12 @@ class CollectionRepository extends EntityRepository
     }
 
     /**
-     * getNodesAsTree
+     * getCollectionAsTree
      *
      * @param array $params
-     *
      * @return array $result
      */
-    public function getNodesAsTree(array $params)
+    public function getCollectionAsTree(array $params)
     {
         $this->model = $this->getEntityName();
         $query = $this

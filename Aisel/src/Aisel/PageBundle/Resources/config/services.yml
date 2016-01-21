@@ -6,17 +6,10 @@
 # file that was distributed with this source code.
 
 parameters:
-    aisel_page_node_mode_manager.class: Aisel\PageBundle\Manager\NodeManager
     aisel_page_url_persistence_listener.class: Aisel\PageBundle\EventListener\PageUrlPersistenceListener
     aisel_page_node_url_persistence_listener.class: Aisel\PageBundle\EventListener\NodeUrlPersistenceListener
 
 services:
-    aisel.pagenode.node.manager:
-        class: %aisel_page_node_mode_manager.class%
-        arguments:
-          - @doctrine.orm.entity_manager
-          - "%locales%"
-
     aisel_page_url_persistence_listener:
         class: %aisel_page_url_persistence_listener.class%
         tags:

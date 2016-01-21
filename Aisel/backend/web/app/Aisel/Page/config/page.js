@@ -49,12 +49,17 @@ define(['app'], function (app) {
                 })
 
                 .state("pageNode", {
-                    url: "/:locale/page/node/:lang/",
-                    templateUrl: '/app/Aisel/Kernel/views/node.html',
+                    url: "/:locale/page/node/",
+                    templateUrl: '/app/Aisel/Kernel/views/collection.html',
                     controller: 'PageNodeCtrl'
                 })
                 .state("pageNodeEdit", {
-                    url: "/:locale/page/node/edit/:lang/:id/",
+                    url: "/:locale/page/node/edit/:id/",
+                    templateUrl: '/app/Aisel/Page/views/edit-node.html',
+                    controller: 'PageNodeDetailsCtrl'
+                })
+                .state("pageNodeNew", {
+                    url: "/:locale/page/node/new/",
                     templateUrl: '/app/Aisel/Page/views/edit-node.html',
                     controller: 'PageNodeDetailsCtrl'
                 })
@@ -73,7 +78,7 @@ define(['app'], function (app) {
                     },
                     "pageNode": {
                         "ordering": 200,
-                        "slug": '/page/node/' + Env.currentLocale() + '/',
+                        "slug": '/page/node/',
                         "title": 'Nodes'
                     },
                     "pageReview": {

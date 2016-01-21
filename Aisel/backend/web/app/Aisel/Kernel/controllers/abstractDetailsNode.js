@@ -22,9 +22,7 @@ define(['app'], function (app) {
             }));
 
             $scope.$watch("item.locale", function () {
-
                 if (angular.isUndefined($scope.item.locale) === false) {
-
                     itemService.getNodeTree($scope.item.locale).success(
                         function (data, status) {
                             $scope.nodes = data;
@@ -33,7 +31,6 @@ define(['app'], function (app) {
                         }
                     )
                 }
-
             });
 
             /**

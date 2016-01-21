@@ -6,17 +6,10 @@
 # file that was distributed with this source code.
 
 parameters:
-    aisel_product_node_manager.class: Aisel\ProductBundle\Manager\NodeManager
     aisel_product_url_persistence_listener.class: Aisel\ProductBundle\EventListener\ProductUrlPersistenceListener
     aisel_product_node_url_persistence_listener.class: Aisel\ProductBundle\EventListener\NodeUrlPersistenceListener
 
 services:
-    aisel.productnode.node.manager:
-        class: %aisel_product_node_manager.class%
-        arguments:
-          - @doctrine.orm.entity_manager
-          - "%locales%"
-
     aisel_product_url_persistence_listener:
         class: %aisel_product_url_persistence_listener.class%
         tags:

@@ -11,8 +11,14 @@ admin_api_aisel_page_node_get:
     requirements:
         _method: GET
 
-admin_api_aisel_page_node_get_tree:
+admin_api_aisel_page_node_get_collection:
     pattern:   /page/node/
+    defaults:  { _controller: AiselPageBundle:Admin/ApiNode:getCollection, _format: json }
+    requirements:
+        _method: GET
+
+admin_api_aisel_page_node_get_tree:
+    pattern:   /page/node/tree/
     defaults:  { _controller: AiselPageBundle:Admin/ApiNode:getTree, _format: json }
     requirements:
         _method: GET
@@ -84,15 +90,3 @@ admin_api_aisel_page_put:
     defaults:  { _controller: AiselPageBundle:Admin/ApiPage:put, _format: json }
     requirements:
         _method: PUT
-
-#admin_api_aisel_page_post:
-#    pattern:   /page/
-#    defaults:  { _controller: AiselPageBundle:Admin/ApiPage:post, _format: json }
-#    requirements:
-#        _method: POST
-
-admin_api_aisel_page_node_node_edit:
-    pattern:   /page/node/node/
-    defaults:  { _controller: AiselPageBundle:Admin/ApiNodeEdit:nodeEdit, _format: json }
-    requirements:
-        _method: GET

@@ -1,0 +1,9 @@
+<div class="form-group">
+    <label for="nodes">Parent:</label>
+    <select ng-model="item.parent"
+            id="nodes"
+            class="form-control"
+            ng-options="node.name for node in availableNodes track by node.id">
+    </select>
+
+</div>

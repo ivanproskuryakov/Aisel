@@ -48,13 +48,19 @@ define(['app'], function (app) {
                     controller: 'ProductReviewDetailsCtrl'
                 })
 
+
                 .state("productNode", {
-                    url: "/:locale/product/node/:lang/",
-                    templateUrl: '/app/Aisel/Kernel/views/node.html',
+                    url: "/:locale/product/node/",
+                    templateUrl: '/app/Aisel/Kernel/views/collection.html',
                     controller: 'ProductNodeCtrl'
                 })
                 .state("productNodeEdit", {
-                    url: "/:locale/product/node/edit/:lang/:id/",
+                    url: "/:locale/product/node/edit/:id/",
+                    templateUrl: '/app/Aisel/Product/views/edit-node.html',
+                    controller: 'ProductNodeDetailsCtrl'
+                })
+                .state("productNodeNew", {
+                    url: "/:locale/product/node/new/",
                     templateUrl: '/app/Aisel/Product/views/edit-node.html',
                     controller: 'ProductNodeDetailsCtrl'
                 })
@@ -71,7 +77,7 @@ define(['app'], function (app) {
                     },
                     "productNode": {
                         "ordering": 200,
-                        "slug": '/product/node/' + Env.currentLocale() + '/',
+                        "slug": '/product/node/',
                         "title": 'Nodes'
                     },
                     "productReview": {

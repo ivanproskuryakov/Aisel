@@ -4,13 +4,3 @@
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
-
-parameters:
-    aisel_navigation_node_manager.class: Aisel\NavigationBundle\Manager\NodeManager
-
-services:
-    aisel.navigation.node.manager:
-        class: %aisel_navigation_node_manager.class%
-        arguments:
-          - @doctrine.orm.entity_manager
-          - "%locales%"

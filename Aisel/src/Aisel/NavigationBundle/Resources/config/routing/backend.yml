@@ -11,8 +11,13 @@ admin_api_aisel_navigation_get:
     requirements:
         _method: GET
 
-admin_api_aisel_navigation_get_tree:
+admin_api_aisel_navigation_get_collection:
     pattern:   /navigation/
+    defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:getCollection, _format: json }
+    requirements:
+        _method: GET
+admin_api_aisel_navigation_get_tree:
+    pattern:   /navigation/tree/
     defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:getTree, _format: json }
     requirements:
         _method: GET
@@ -34,9 +39,3 @@ admin_api_aisel_navigation_delete:
     defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:delete, _format: json }
     requirements:
         _method: DELETE
-
-admin_api_aisel_navigation_node_edit:
-    pattern:   /navigation/node/
-    defaults:  { _controller: AiselNavigationBundle:Admin/ApiNodeEdit:nodeEdit, _format: json }
-    requirements:
-        _method: GET

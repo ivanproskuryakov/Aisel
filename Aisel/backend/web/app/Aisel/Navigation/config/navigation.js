@@ -12,26 +12,31 @@
  * @description     Module configuration
  */
 
-define(['app'], function(app) {
+define(['app'], function (app) {
     app
-        .config(['$stateProvider', function($stateProvider) {
+        .config(['$stateProvider', function ($stateProvider) {
             $stateProvider
                 .state("navigation", {
-                    url: "/:locale/navigation/:lang/",
-                    templateUrl: '/app/Aisel/Kernel/views/node.html',
+                    url: "/:locale/navigation/",
+                    templateUrl: '/app/Aisel/Kernel/views/collection.html',
                     controller: 'NavigationCtrl'
                 })
                 .state("navigationEdit", {
-                    url: "/:locale/navigation/edit/:lang/:id/",
+                    url: "/:locale/navigation/:id/",
+                    templateUrl: '/app/Aisel/Navigation/views/edit-node.html',
+                    controller: 'NavigationDetailCtrl'
+                })
+                .state("navigationNew", {
+                    url: "/:locale/navigation/edit/new/",
                     templateUrl: '/app/Aisel/Navigation/views/edit-node.html',
                     controller: 'NavigationDetailCtrl'
                 })
 
         }])
-        .run(['$rootScope', 'Env', function($rootScope, Env) {
+        .run(['$rootScope', 'Env', function ($rootScope, Env) {
             $rootScope.adminMenu.push({
                 "ordering": 500,
-                "slug": '/navigation/' + Env.currentLocale() + '/',
+                "slug": '/navigation/',
                 "title": 'Navigation'
             });
         }]);
