@@ -27,8 +27,13 @@ define(['app'], function (app) {
                             }
                         }
                     });
+
                     var filter = JSON.stringify(filters);
-                    return filter;
+                    var camelCasedFilter = filter.replace(/_([a-z])/g, function (g) {
+                        return g[1].toUpperCase();
+                    });
+
+                    return camelCasedFilter;
                 };
 
                 return {
