@@ -51,6 +51,7 @@ abstract class Review
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * @JMS\Type("Aisel\UserBundle\Entity\User")
      * @JMS\Expose
+     * @JMS\ReadOnly
      * @JMS\MaxDepth(2)
      * @JMS\Groups({"collection","details"})
      */
