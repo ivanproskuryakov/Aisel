@@ -29,7 +29,6 @@ define(['app'], function (app) {
 
             var itemService = new resourceService('navigation');
 
-
             $scope.$watch('item.locale', function () {
                 if ($scope.item.locale) {
                     var filter = '{"locale":"' + $scope.item.locale + '"}';
