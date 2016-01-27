@@ -90,7 +90,7 @@ define(['app'], function (app) {
                                     } else {
                                         $rootScope.user = false;
                                         event.preventDefault();
-                                        $state.transitionTo('userRegister', {
+                                        $state.transitionTo('userLogin', {
                                             locale: locale
                                         });
                                     }
@@ -99,7 +99,7 @@ define(['app'], function (app) {
                         } else if ($rootScope.user == false) {
                             event.preventDefault();
 
-                            $state.transitionTo('userRegister', {
+                            $state.transitionTo('userLogin', {
                                 locale: locale
                             });
                         }
