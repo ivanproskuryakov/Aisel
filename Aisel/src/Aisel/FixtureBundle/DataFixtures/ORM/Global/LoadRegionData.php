@@ -42,6 +42,7 @@ class LoadRegionData extends XMLFixture implements OrderedFixtureInterface
 
                     $region = new Region();
                     $region->setName($table->column[1]);
+                    $region->setStatus($table->column[2]);
                     $region->setCountry($country);
                     $manager->persist($region);
                     $manager->flush();

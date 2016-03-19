@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\IdTrait;
+use Aisel\ResourceBundle\Domain\StatusTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -31,6 +32,7 @@ class Country
 {
 
     use IdTrait;
+    use StatusTrait;
     use UpdateCreateTrait;
 
     /**

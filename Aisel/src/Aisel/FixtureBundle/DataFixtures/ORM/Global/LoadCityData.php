@@ -42,6 +42,7 @@ class LoadCityData extends XMLFixture implements OrderedFixtureInterface
 
                     $city = new City();
                     $city->setName($table->column[1]);
+                    $city->setStatus($table->column[2]);
                     $city->setRegion($region);
                     $manager->persist($city);
                     $manager->flush();

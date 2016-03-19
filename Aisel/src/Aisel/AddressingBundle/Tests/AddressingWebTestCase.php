@@ -50,6 +50,7 @@ class AddressingWebTestCase extends AbstractWebTestCase
         $country->setNumcode($this->faker->numberBetween());
         $country->setCallingCode($this->faker->numberBetween());
         $country->setCctld($this->faker->domainWord);
+        $country->setStatus(true);
 
         $this->em->persist($country);
         $this->em->flush();
@@ -68,6 +69,7 @@ class AddressingWebTestCase extends AbstractWebTestCase
         $region = new Region();
         $region->setName($this->faker->city);
         $region->setCountry($country);
+        $region->setStatus(true);
 
         $this->em->persist($region);
         $this->em->flush();
@@ -87,6 +89,7 @@ class AddressingWebTestCase extends AbstractWebTestCase
         $city = new City();
         $city->setName($this->faker->city);
         $city->setRegion($region);
+        $city->setStatus(true);
 
         $this->em->persist($city);
         $this->em->flush();

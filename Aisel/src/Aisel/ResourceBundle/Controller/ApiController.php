@@ -27,6 +27,7 @@ class ApiController extends Controller
 {
 
     CONST SCOPE_FRONTEND = 'frontend';
+    CONST SCOPE_SELLER = 'seller';
     CONST SCOPE_BACKEND = 'backend';
 
     /**
@@ -133,7 +134,7 @@ class ApiController extends Controller
                 );
             }
 
-            if ($this->getScope() == self::SCOPE_FRONTEND) {
+            if ($this->getScope() == self::SCOPE_FRONTEND || $this->getScope() == self::SCOPE_SELLER) {
                 $url = $this->generateUrl(
                     $route,
                     array(
@@ -233,7 +234,7 @@ class ApiController extends Controller
             'order' => $request->get('order'),
             'orderBy' => $request->get('orderBy'),
             'filter' => $request->get('filter'),
-            'scope' => $this->getScope($request)
+            'scope' => $this->getScope()
         );
 
         /**
@@ -260,7 +261,7 @@ class ApiController extends Controller
     {
         $params = array(
             'locale' => $request->get('locale'),
-            'scope' => $this->getScope($request)
+            'scope' => $this->getScope()
         );
 
         /**
@@ -284,10 +285,12 @@ class ApiController extends Controller
         $scope = self::SCOPE_BACKEND;
 
         $uri = $this->get('request')->getUri();
-        $urlFrontend = $this->container->getParameter('frontend_api');
 
-        if (strpos($uri, $urlFrontend)) {
+        if (strpos($uri, $this->container->getParameter('frontend_api'))) {
             $scope = self::SCOPE_FRONTEND;
+        }
+        if (strpos($uri, $this->container->getParameter('seller_api'))) {
+            $scope = self::SCOPE_SELLER;
         }
 
         return $scope;

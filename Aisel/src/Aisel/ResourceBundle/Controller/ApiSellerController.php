@@ -59,7 +59,7 @@ class ApiSellerController extends ApiController
             'order' => $request->get('order'),
             'orderBy' => $request->get('orderBy'),
             'filter' => $request->get('filter'),
-            'scope' => $this->getScope($request),
+            'scope' => $this->getScope(),
             'user' => $this->getUser(),
         );
 

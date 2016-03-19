@@ -135,9 +135,9 @@ class CollectionRepository extends EntityRepository
                 ->andWhere('n.metaUrl = :node')->setParameter('node', $this->node);
         }
 
-//        if ($params['scope'] == 'frontend') {
-//            $query->andWhere('e.status = :status')->setParameter('status', true);
-//        }
+        if ($params['scope'] == 'frontend') {
+            $query->andWhere('e.status = :status')->setParameter('status', true);
+        }
 
         if ($this->search != '') {
             $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
@@ -187,9 +187,9 @@ class CollectionRepository extends EntityRepository
                 ->andWhere('c.metaUrl = :node')->setParameter('node', $this->node);
         }
 
-//        if ($params['scope'] == 'frontend') {
-//            $query->andWhere('e.status = :status')->setParameter('status', true);
-//        }
+        if ($params['scope'] == 'frontend') {
+            $query->andWhere('e.status = :status')->setParameter('status', true);
+        }
 
         if ($this->search != '') {
             $query->andWhere('e.content LIKE :search')->setParameter('search', '%' . $this->search . '%');
