@@ -38,7 +38,7 @@ class LoadRegionData extends XMLFixture implements OrderedFixtureInterface
                 $region = null;
 
                 foreach ($XML->database->table as $table) {
-                    $country = $this->getReference('country_' . $table->column[4]); // Spain
+                    $country = $this->getReference('country_' . $table->column[3]); // Spain
 
                     $region = new Region();
                     $region->setName($table->column[1]);

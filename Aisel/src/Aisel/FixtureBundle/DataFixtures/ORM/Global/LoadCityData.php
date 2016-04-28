@@ -38,7 +38,7 @@ class LoadCityData extends XMLFixture implements OrderedFixtureInterface
                 $city = null;
 
                 foreach ($XML->database->table as $table) {
-                    $region = $this->getReference('region_' . $table->column[5]); // City of Madrid
+                    $region = $this->getReference('region_' . $table->column[3]); // City of Madrid
 
                     $city = new City();
                     $city->setName($table->column[1]);
