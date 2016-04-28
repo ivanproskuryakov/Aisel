@@ -6,12 +6,9 @@
          style="width: {{width}}; height: {{height}}"
     />
 </div>
-<uib-carousel ng-if="slider" interval="interval" style="width: {{width}}; height: {{height}}">
-    <uib-slide ng-repeat="image in images" active="image.main_image" no-wrap="false">
-        <img class="{{style}} product-image"
-             style="width: {{width}}; height: {{height}}"
-             ng-src="{{media}}{{image.filename}}"
-             data-holder-rendered="true"
-        />
+
+<uib-carousel>
+    <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+        <img ng-src="{{slide.image}}">
     </uib-slide>
 </uib-carousel>
