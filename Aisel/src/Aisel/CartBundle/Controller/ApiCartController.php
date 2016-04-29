@@ -26,12 +26,9 @@ class ApiCartController extends BaseApiController
      */
     public function cartAction()
     {
-        $user = $this
-            ->get('aisel.user.manager')
-            ->getUser();
         $cart = $this
             ->get('aisel.cart.manager')
-            ->getUserCart($user);
+            ->getUserCart($this->getUser());
 
         return $this->filterMaxDepth($cart);
     }
@@ -46,13 +43,13 @@ class ApiCartController extends BaseApiController
      */
     public function productQtyUpdateAction($productId, $qty)
     {
-        $user = $this
-            ->get('aisel.user.manager')
-            ->getUser();
-
         $cartItem = $this
             ->get('aisel.cart.manager')
-            ->updateProductInCart($user, $productId, $qty);
+            ->updateProductInCart(
+                $this->getUser(),
+                $productId,
+                $qty
+            );
 
         if ($cartItem) {
             $response =
@@ -79,19 +76,19 @@ class ApiCartController extends BaseApiController
      */
     public function productAddAction($productId, $qty)
     {
-        $user = $this
-            ->get('aisel.user.manager')
-            ->getUser();
-
         $cartItem = $this
             ->get('aisel.cart.manager')
-            ->addProductToCart($user, $productId, $qty);
+            ->addProductToCart(
+                $this->getUser(),
+                $productId,
+                $qty
+            );
 
         return array(
-                'status' => true,
-                'message' => 'Product was added',
-                'cartItem' => $cartItem
-            );
+            'status' => true,
+            'message' => 'Product was added',
+            'cartItem' => $cartItem
+        );
     }
 
 }

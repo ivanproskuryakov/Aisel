@@ -1,5 +1,2 @@
 _aisel:
     resource: routings/aisel.yml
-
-_payum:
-    resource: routings/payum.yml

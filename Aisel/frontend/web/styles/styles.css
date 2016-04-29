@@ -56,6 +56,10 @@ body #loading-bar .peg {
 /***********
     Body
 ***********/
+body {
+    overflow-y: scroll;
+}
+
 body .website-content {
     color: #999;
 }

@@ -4,7 +4,6 @@ imports:
     - { resource: twig.yml }
     - { resource: configs/doctrine.yml }
     - { resource: configs/aisel.yml }
-    - { resource: configs/payum.yml }
     - { resource: configs/cors.yml }
     - { resource: configs/mailgun.yml }
 
