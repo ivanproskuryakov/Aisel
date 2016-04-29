@@ -7,7 +7,7 @@
     />
 </div>
 
-<uib-carousel>
+<uib-carousel ng-if="slider == true">
     <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
         <img ng-src="{{slide.image}}">
     </uib-slide>

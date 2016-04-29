@@ -51,11 +51,10 @@ define(['app'], function (app) {
                 $scope.login = function (email, password) {
                     userService.login(email, password).success(
                         function (data, status) {
-                            notify('Hello ' + $rootScope.user.email + "!");
-
                             if (data.user.email) {
                                 $rootScope.user = data.user;
                                 $scope.$dismiss('close');
+                                notify('Hello ' + $rootScope.user.email + "!");
                             }
                         }
                     ).error(function (data, status) {
