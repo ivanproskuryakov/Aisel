@@ -40,7 +40,6 @@
 /Aisel/app/bootstrap.php.cache
 /Aisel/var/*
 /Aisel/app/config/parameters.yml
-/Aisel/app/logs/*
 !/Aisel/app/cache/.gitkeep
 !Aisel/app/logs/.gitkeep
 /Aisel/build/
