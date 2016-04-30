@@ -9,18 +9,15 @@
 admin_api_aisel_config_get:
     path:   /%backend_api%/config/
     defaults:  { _controller: AiselConfigBundle:Admin/Api:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_config_put:
     path:   /%backend_api%/config/
     defaults:  { _controller: AiselConfigBundle:Admin/Api:save, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 # Frontend
 api_aisel_config:
     path:  /%frontend_api%/{locale}/config/
     defaults:  { _controller: AiselConfigBundle:Api:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]

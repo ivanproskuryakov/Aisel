@@ -8,23 +8,19 @@
 api_aisel_order_collection:
     path:  /orders/my
     defaults: { _controller: AiselOrderBundle:ApiOrder:getOrderCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_order_get:
     path:  /order/{orderId}
     defaults: { _controller: AiselOrderBundle:ApiOrder:getOrder, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_order_post:
     path:  /{locale}/order
     defaults: { _controller: AiselOrderBundle:ApiOrder:orderSubmit, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 api_aisel_order_checkout:
     path:  /{locale}/order/checkout
     defaults: { _controller: AiselOrderBundle:ApiCheckout:init, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]

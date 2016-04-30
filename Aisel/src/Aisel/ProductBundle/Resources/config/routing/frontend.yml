@@ -8,42 +8,35 @@
 api_aisel_product_get_collection:
     path:  /{locale}/product/
     defaults: { _controller: AiselProductBundle:Frontend/ApiProduct:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_product_get_by_url:
     path:  /{locale}/product/{url}
     defaults: { _controller: AiselProductBundle:Frontend/ApiProduct:getByURL, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_product_node_get_by_url:
     path:  /{locale}/product/node/{url}
     defaults: { _controller: AiselProductBundle:Frontend/ApiNode:getByURL, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_product_node_get:
     path:  /{locale}/product/node/
     defaults: { _controller: AiselProductBundle:Frontend/ApiNode:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_product_node_get_tree:
     path:  /{locale}/product/node/tree/
     defaults: { _controller: AiselProductBundle:Frontend/ApiNode:getTree, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 #Review
 api_aisel_product_review_post:
     path:  /{locale}/product/review/
     defaults: { _controller: AiselProductBundle:Frontend/ApiReview:post, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 api_aisel_product_review_get:
     path:  /{locale}/product/review/{id}
     defaults: { _controller: AiselProductBundle:Frontend/ApiReview:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]

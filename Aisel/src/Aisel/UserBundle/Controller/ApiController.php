@@ -54,7 +54,7 @@ class ApiController extends BaseApiController
     protected function loginUser(User $user)
     {
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-        $this->get('security.context')->setToken($token);
+        $this->get('security.token_storage')->setToken($token);
         $this->get('session')->set('_security_main', serialize($token));
     }
 
@@ -147,7 +147,7 @@ class ApiController extends BaseApiController
     public function logoutAction()
     {
         $token = new AnonymousToken(null, new User());
-        $this->get('security.context')->setToken($token);
+        $this->get('security.token_storage')->setToken($token);
         $this->get('session')->invalidate();
 
         return new Response();
@@ -204,7 +204,7 @@ class ApiController extends BaseApiController
 
             // Logout
             $token = new AnonymousToken(null, new User());
-            $this->get('security.context')->setToken($token);
+            $this->get('security.token_storage')->setToken($token);
             $this->get('session')->invalidate();
         }
     }

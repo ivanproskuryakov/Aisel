@@ -9,85 +9,71 @@
 admin_api_aisel_product_node_get:
     path:   /product/node/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_product_node_get_collectiom:
     path:   /product/node/
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_product_node_get_tree:
     path:   /product/node/tree/
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:getTree, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_product_node_put:
     path:   /product/node/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 admin_api_aisel_product_node_post:
     path:   /product/node/
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:post, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 admin_api_aisel_product_node_delete:
     path:   /product/node/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiNode:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]
 
 #Product
 admin_api_aisel_product_get:
     path:   /product/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_product_delete:
     path:   /product/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]
 
 admin_api_aisel_product_put:
     path:   /product/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 admin_api_aisel_product_get_collection:
     path:   /product/
     defaults:  { _controller: AiselProductBundle:Admin/ApiProduct:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 # Reviews
 admin_api_aisel_product_review_get:
     path:   /product/review/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiReview:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_product_review_get_collection:
     path:   /product/review/
     defaults:  { _controller: AiselProductBundle:Admin/ApiReview:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_product_review_put:
     path:   /product/review/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiReview:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 admin_api_aisel_product_review_delete:
     path:   /product/review/{id}
     defaults:  { _controller: AiselProductBundle:Admin/ApiReview:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]

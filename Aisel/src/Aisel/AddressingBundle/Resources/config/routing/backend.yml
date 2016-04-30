@@ -8,92 +8,76 @@
 admin_api_aisel_addressing_city_get_collection:
     path:  /addressing/city/
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCity:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_addressing_city_get:
     path:  /addressing/city/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCity:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_addressing_city_post:
     path:  /addressing/city/
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCity:post, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 admin_api_aisel_addressing_city_put:
     path:  /addressing/city/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCity:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 admin_api_aisel_addressing_city_delete:
     path:  /addressing/city/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCity:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]
 
 #Region
 admin_api_aisel_addressing_region_get_collection:
     path:  /addressing/region/
     defaults: { _controller: AiselAddressingBundle:Admin/ApiRegion:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_addressing_region_get:
     path:  /addressing/region/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiRegion:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_addressing_region_post:
     path:  /addressing/region/
     defaults: { _controller: AiselAddressingBundle:Admin/ApiRegion:post, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 admin_api_aisel_addressing_region_put:
     path:  /addressing/region/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiRegion:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 admin_api_aisel_addressing_region_delete:
     path:  /addressing/region/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiRegion:delete, _format: json }
-    requirements:
-        _method: DELETE
-
+    methods: [DELETE]
 
 #Countries
 admin_api_aisel_addressing_country_get_collection:
     path:  /addressing/country/
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_addressing_country_get:
     path:  /addressing/country/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_addressing_country_post:
     path:  /addressing/country/
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:post, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 admin_api_aisel_addressing_country_put:
     path:  /addressing/country/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 admin_api_aisel_addressing_country_delete:
     path:  /addressing/country/{id}
     defaults: { _controller: AiselAddressingBundle:Admin/ApiCountry:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]

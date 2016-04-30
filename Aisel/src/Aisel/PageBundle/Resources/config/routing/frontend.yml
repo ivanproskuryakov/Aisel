@@ -8,42 +8,35 @@
 api_aisel_page_get:
     path:  /{locale}/page/
     defaults: { _controller: AiselPageBundle:Frontend/ApiPage:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_page_get_by_url:
     path:  /{locale}/page/{url}
     defaults: { _controller: AiselPageBundle:Frontend/ApiPage:getByURL, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_page_node_get:
     path:  /{locale}/page/node/
     defaults: { _controller: AiselPageBundle:Frontend/ApiNode:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_page_node_get_by_url:
     path:  /{locale}/page/node/{url}
     defaults: { _controller: AiselPageBundle:Frontend/ApiNode:getByURL, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_page_node_get_tree:
     path:  /{locale}/page/node/tree/
     defaults: { _controller: AiselPageBundle:Frontend/ApiNode:getTree, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 #Review
 api_aisel_page_review_post:
     path:  /{locale}/page/review/
     defaults: { _controller: AiselPageBundle:Frontend/ApiReview:post, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 api_aisel_page_review_get:
     path:  /{locale}/page/review/{id}
     defaults: { _controller: AiselPageBundle:Frontend/ApiReview:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]

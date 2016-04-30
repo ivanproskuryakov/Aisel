@@ -8,5 +8,4 @@
 api_aisel_search:
     path:  /%frontend_api%/{locale}/search/
     defaults: { _controller: AiselSearchBundle:Api:search, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]

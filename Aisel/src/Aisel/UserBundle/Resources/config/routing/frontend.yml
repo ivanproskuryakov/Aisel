@@ -8,47 +8,39 @@
 api_aisel_user_login:
     path:  /user/login/
     defaults: { _controller: AiselUserBundle:Api:login, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 api_aisel_user_logout:
     path:  /user/logout/
     defaults: { _controller: AiselUserBundle:Api:logout, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_user_get:
     path:  /user/information/
     defaults: { _controller: AiselUserBundle:Api:information, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_user_password_forgot:
     path:  /user/password/forgot/
     defaults: { _controller: AiselUserBundle:Api:passwordForgot, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_user_post:
     path:  /user/register/
     defaults: { _controller: AiselUserBundle:Api:register, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 api_aisel_user_patch:
     path:  /user/information/
     defaults: { _controller: AiselUserBundle:Api:edit, _format: json }
-    requirements:
-        _method: PATCH
+    methods: [PATCH]
 
 api_aisel_user_account_delete:
     path:  /user-terminate/
     defaults: { _controller: AiselUserBundle:Api:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]
 
 api_aisel_user_password_new:
     path:  /user/password/change/
     defaults: { _controller: AiselUserBundle:Api:changePassword, _format: json }
-    requirements:
-        _method: PATCH
+    methods: [PATCH]

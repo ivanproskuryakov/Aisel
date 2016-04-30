@@ -8,85 +8,71 @@
 admin_api_aisel_page_node_get:
     path:   /page/node/{id}
     defaults:  { _controller: AiselPageBundle:Admin/ApiNode:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_page_node_get_collection:
     path:   /page/node/
     defaults:  { _controller: AiselPageBundle:Admin/ApiNode:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_page_node_get_tree:
     path:   /page/node/tree/
     defaults:  { _controller: AiselPageBundle:Admin/ApiNode:getTree, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_page_node_put:
     path:   /page/node/{id}
     defaults:  { _controller: AiselPageBundle:Admin/ApiNode:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 admin_api_aisel_page_node_post:
     path:   /page/node/
     defaults:  { _controller: AiselPageBundle:Admin/ApiNode:post, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 admin_api_aisel_page_node_delete:
     path:   /page/node/{id}
     defaults:  { _controller: AiselPageBundle:Admin/ApiNode:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]
 
 # Reviews
 admin_api_aisel_page_review_get:
     path:   /page/review/{id}
     defaults:  { _controller: AiselPageBundle:Admin/ApiReview:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_page_review_get_collection:
     path:   /page/review/
     defaults:  { _controller: AiselPageBundle:Admin/ApiReview:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_page_review_put:
     path:   /page/review/{id}
     defaults:  { _controller: AiselPageBundle:Admin/ApiReview:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 admin_api_aisel_page_review_delete:
     path:   /page/review/{id}
     defaults:  { _controller: AiselPageBundle:Admin/ApiReview:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]
 
-#Page
+# Page
 admin_api_aisel_page_get_collection:
     path:   /page/
     defaults:  { _controller: AiselPageBundle:Admin/ApiPage:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_page_get:
     path:   /page/{id}
     defaults:  { _controller: AiselPageBundle:Admin/ApiPage:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_page_delete:
     path:   /page/{id}
     defaults:  { _controller: AiselPageBundle:Admin/ApiPage:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]
 
 admin_api_aisel_page_put:
     path:   /page/{id}
     defaults:  { _controller: AiselPageBundle:Admin/ApiPage:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]

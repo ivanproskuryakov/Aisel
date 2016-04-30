@@ -9,29 +9,24 @@
 seller_api_aisel_product_get:
     path:   /product/{id}
     defaults:  { _controller: AiselProductBundle:Seller/ApiProduct:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 seller_api_aisel_product_delete:
     path:   /product/{id}
     defaults:  { _controller: AiselProductBundle:Seller/ApiProduct:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]
 
 seller_api_aisel_product_put:
     path:   /product/{id}
     defaults:  { _controller: AiselProductBundle:Seller/ApiProduct:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 seller_api_aisel_product_get_collection:
     path:   /product/
     defaults:  { _controller: AiselProductBundle:Seller/ApiProduct:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 seller_api_aisel_product_post:
     path:   /product/
     defaults:  { _controller: AiselProductBundle:Seller/ApiProduct:post, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]

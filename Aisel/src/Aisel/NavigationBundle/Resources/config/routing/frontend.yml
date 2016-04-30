@@ -8,5 +8,4 @@
 api_aisel_navigationmenu:
     path:  /{locale}/navigation/
     defaults: { _controller: AiselNavigationBundle:Api:getTree, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]

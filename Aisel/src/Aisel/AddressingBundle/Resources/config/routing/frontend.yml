@@ -8,35 +8,29 @@
 api_aisel_addressing_city_collection:
     path:  /addressing/city/
     defaults: { _controller: AiselAddressingBundle:ApiCity:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_addressing_city_get:
     path:  /addressing/city/{id}
     defaults: { _controller: AiselAddressingBundle:ApiCity:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_addressing_region_collection:
     path:  /addressing/region/
     defaults: { _controller: AiselAddressingBundle:ApiRegion:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_addressing_region_get:
     path:  /addressing/region/{id}
     defaults: { _controller: AiselAddressingBundle:ApiRegion:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_addressing_country_collection:
     path:  /addressing/country/
     defaults: { _controller: AiselAddressingBundle:ApiCountry:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_addressing_country_get:
     path:  /addressing/country/{id}
     defaults: { _controller: AiselAddressingBundle:ApiCountry:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]

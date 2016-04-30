@@ -8,5 +8,4 @@
 api_aisel_contact_send:
     path: /%frontend_api%/contact/form/
     defaults: { _controller: AiselContactBundle:Api:sendMessage, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
