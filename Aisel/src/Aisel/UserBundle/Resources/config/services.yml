@@ -11,7 +11,7 @@ services:
         arguments:
             - "@doctrine.orm.entity_manager"
             - "@security.encoder_factory"
-            - "@security.context_listener"
+            - "@security.token_storage"
             - "@aisel.user_mail.manager"
 
     aisel.user_mail.manager:

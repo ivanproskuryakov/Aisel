@@ -17,6 +17,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
@@ -34,9 +35,9 @@ class UserManager implements UserProviderInterface
     protected $encoder;
 
     /**
-     * @var SecurityContext
+     * @var TokenStorage
      */
-    protected $securityContext;
+    protected $tokenStorage;
 
     /**
      * @var EntityManager
@@ -53,20 +54,20 @@ class UserManager implements UserProviderInterface
      *
      * @param EntityManager $entityManager
      * @param EncoderFactory $encoder
-     * @param SecurityContext $securityContext
+     * @param TokenStorage $tokenStorage
      * @param UserMailManager $mailer
      */
     public function __construct(
         EntityManager $entityManager,
         EncoderFactory $encoder,
-        SecurityContext $securityContext,
+        TokenStorage $tokenStorage,
         UserMailManager $mailer
     )
     {
         $this->mailer = $mailer;
         $this->encoder = $encoder;
         $this->em = $entityManager;
-        $this->securityContext = $securityContext;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -80,7 +81,7 @@ class UserManager implements UserProviderInterface
     {
         if ($userId) return $this->loadById($userId);
 
-        $userToken = $this->securityContext->getToken();
+        $userToken = $this->tokenStorage->getToken();
         if ($userToken) {
             $user = $userToken->getUser();
 
@@ -101,7 +102,7 @@ class UserManager implements UserProviderInterface
      */
     public function getAuthenticatedUser()
     {
-        $userToken = $this->securityContext->getToken();
+        $userToken = $this->tokenStorage->getToken();
 
         if ($userToken) {
             /** @var User $user */
@@ -180,7 +181,7 @@ class UserManager implements UserProviderInterface
      */
     public function updateDetailsForUser(array $userData)
     {
-        $user = $this->securityContext->getToken()->getUser();
+        $user = $this->tokenStorage->getToken()->getUser();
 
         if (isset($userData['phone'])) $user->setPhone($userData['phone']);
         if (isset($userData['website'])) $user->setWebsite($userData['website']);
