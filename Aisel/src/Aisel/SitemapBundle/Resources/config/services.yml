@@ -12,5 +12,5 @@ services:
     aisel.sitemap.manager:
         class: %aisel_sitemap_manager.class%
         arguments:
-          - @doctrine.orm.entity_manager
-          - @templating
+          - "@doctrine.orm.entity_manager"
+          - "@templating"

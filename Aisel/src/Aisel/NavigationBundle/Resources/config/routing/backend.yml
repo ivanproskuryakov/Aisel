@@ -6,36 +6,36 @@
 # file that was distributed with this source code.
 
 admin_api_aisel_navigation_get:
-    pattern:   /navigation/{id}
+    path:   /navigation/{id}
     defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:get, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_navigation_get_collection:
-    pattern:   /navigation/
+    path:   /navigation/
     defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:getCollection, _format: json }
     requirements:
         _method: GET
 admin_api_aisel_navigation_get_tree:
-    pattern:   /navigation/tree/
+    path:   /navigation/tree/
     defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:getTree, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_navigation_put:
-    pattern:   /navigation/{id}
+    path:   /navigation/{id}
     defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:put, _format: json }
     requirements:
         _method: PUT
 
 admin_api_aisel_navigation_post:
-    pattern:   /navigation/
+    path:   /navigation/
     defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:post, _format: json }
     requirements:
         _method: POST
 
 admin_api_aisel_navigation_delete:
-    pattern:   /navigation/{id}
+    path:   /navigation/{id}
     defaults:  { _controller: AiselNavigationBundle:Admin/ApiNode:delete, _format: json }
     requirements:
         _method: DELETE

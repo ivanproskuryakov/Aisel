@@ -11,10 +11,10 @@
 
 namespace Aisel\FixtureBundle\DataFixtures\ORM\Local;
 
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
 use Aisel\PageBundle\Entity\Review;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Page fixtures

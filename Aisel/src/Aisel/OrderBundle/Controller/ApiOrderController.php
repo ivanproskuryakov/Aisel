@@ -11,9 +11,9 @@
 
 namespace Aisel\OrderBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Aisel\UserBundle\Entity\User;
 use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
+use Aisel\UserBundle\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * ApiOrderController

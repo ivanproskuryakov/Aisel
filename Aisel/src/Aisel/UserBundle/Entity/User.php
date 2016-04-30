@@ -11,19 +11,19 @@
 
 namespace Aisel\UserBundle\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as JMS;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Aisel\AddressingBundle\Entity\Address;
-use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
-use Aisel\OrderBundle\Entity\Order;
 use Aisel\CartBundle\Entity\Cart;
+use Aisel\OrderBundle\Entity\Order;
 use Aisel\ResourceBundle\Domain\IdTrait;
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation as JMS;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User

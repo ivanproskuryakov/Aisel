@@ -11,11 +11,11 @@
 
 namespace Aisel\ProductBundle\Tests\Entity;
 
+use Aisel\MediaBundle\Entity\Media;
+use Aisel\ProductBundle\Entity\Node;
+use Aisel\ProductBundle\Entity\Product;
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
-use Aisel\ProductBundle\Entity\Product;
-use Aisel\ProductBundle\Entity\Node;
-use Aisel\MediaBundle\Entity\Media;
 
 /**
  * ProductTest

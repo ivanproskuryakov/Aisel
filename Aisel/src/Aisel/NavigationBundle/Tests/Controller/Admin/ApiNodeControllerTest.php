@@ -11,8 +11,8 @@
 
 namespace Aisel\NavigationBundle\Tests\Controller\Admin;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Aisel\NavigationBundle\Entity\Menu;
+use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
  * ApiNodeControllerTest

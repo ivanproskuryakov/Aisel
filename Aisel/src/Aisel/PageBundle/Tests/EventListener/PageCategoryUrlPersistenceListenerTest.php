@@ -11,8 +11,8 @@
 
 namespace Aisel\PageBundle\Tests\EventListener;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Aisel\PageBundle\Entity\Node;
+use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
  * PageNodeUrlPersistenceListenerTest

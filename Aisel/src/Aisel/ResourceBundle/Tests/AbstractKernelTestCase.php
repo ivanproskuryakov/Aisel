@@ -2,9 +2,9 @@
 
 namespace Aisel\ResourceBundle\Tests;
 
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Doctrine\ORM\EntityManager;
 
 /**
  * Class AbstractKernelTestCase.

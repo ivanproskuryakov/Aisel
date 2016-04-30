@@ -11,8 +11,8 @@
 
 namespace Aisel\UserBundle\Tests;
 
-use Aisel\UserBundle\Tests\UserTestCase;
 use Aisel\UserBundle\Entity\User;
+use Aisel\UserBundle\Tests\UserTestCase;
 
 /**
  * UserPersistenceTest

@@ -24,29 +24,28 @@ class AppKernel extends Kernel
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new cspoo\Swiftmailer\MailgunBundle\cspooSwiftmailerMailgunBundle(),
 
-//             Aisel bundles
+            // Aisel bundles
             new Aisel\UserBundle\AiselUserBundle(),
-//            new Aisel\PageBundle\AiselPageBundle(),
-//            new Aisel\ReviewBundle\AiselReviewBundle(),
-//            new Aisel\SearchBundle\AiselSearchBundle(),
-//            new Aisel\ProductBundle\AiselProductBundle(),
-//            new Aisel\MediaBundle\AiselMediaBundle(),
-//            new Aisel\CartBundle\AiselCartBundle(),
-//            new Aisel\OrderBundle\AiselOrderBundle(),
-//            new Aisel\NavigationBundle\AiselNavigationBundle(),
-//            new Aisel\AddressingBundle\AiselAddressingBundle(),
-//            new Aisel\ContactBundle\AiselContactBundle(),
-//            new Aisel\ConfigBundle\AiselConfigBundle(),
-//            new Aisel\SitemapBundle\AiselSitemapBundle(),
-//            new Aisel\NodeBundle\AiselNodeBundle(),
-//            new Aisel\ResourceBundle\AiselResourceBundle(),
-//            new Aisel\FixtureBundle\AiselFixtureBundle(),
+            new Aisel\PageBundle\AiselPageBundle(),
+            new Aisel\ReviewBundle\AiselReviewBundle(),
+            new Aisel\SearchBundle\AiselSearchBundle(),
+            new Aisel\ProductBundle\AiselProductBundle(),
+            new Aisel\MediaBundle\AiselMediaBundle(),
+            new Aisel\CartBundle\AiselCartBundle(),
+            new Aisel\OrderBundle\AiselOrderBundle(),
+            new Aisel\NavigationBundle\AiselNavigationBundle(),
+            new Aisel\AddressingBundle\AiselAddressingBundle(),
+            new Aisel\ContactBundle\AiselContactBundle(),
+            new Aisel\ConfigBundle\AiselConfigBundle(),
+            new Aisel\SitemapBundle\AiselSitemapBundle(),
+            new Aisel\NodeBundle\AiselNodeBundle(),
+            new Aisel\ResourceBundle\AiselResourceBundle(),
+            new Aisel\FixtureBundle\AiselFixtureBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-//            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
 
         return $bundles;

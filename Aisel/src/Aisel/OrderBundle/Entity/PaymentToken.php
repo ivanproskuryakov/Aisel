@@ -11,10 +11,10 @@
 
 namespace Aisel\OrderBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Payum\Core\Model\Token;
-use JMS\Serializer\Annotation as JMS;
 use Aisel\ResourceBundle\Domain\IdTrait;
+use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
+use Payum\Core\Model\Token;
 
 /**
  * PaymentToken

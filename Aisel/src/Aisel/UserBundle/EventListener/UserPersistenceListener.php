@@ -11,10 +11,10 @@
 
 namespace Aisel\UserBundle\EventListener;
 
+use Aisel\UserBundle\Entity\User;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-use Aisel\UserBundle\Entity\User;
 
 /**
  * Class UserPersistenceListener

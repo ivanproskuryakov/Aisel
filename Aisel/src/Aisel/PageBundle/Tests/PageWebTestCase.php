@@ -12,10 +12,10 @@
 namespace Aisel\PageBundle\Tests;
 
 use Aisel\PageBundle\Entity\Node;
+use Aisel\PageBundle\Entity\Page;
 use Aisel\PageBundle\Entity\Review;
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Faker;
-use Aisel\PageBundle\Entity\Page;
 
 /**
  * PageWebTestCase

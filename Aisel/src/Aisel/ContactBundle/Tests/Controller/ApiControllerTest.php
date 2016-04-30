@@ -11,8 +11,8 @@
 
 namespace Aisel\ContactBundle\Tests\Controller;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Aisel\ContactBundle\Manager\ContactManager;
+use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
  * ApiControllerTest

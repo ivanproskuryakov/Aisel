@@ -6,49 +6,49 @@
 # file that was distributed with this source code.
 
 api_aisel_user_login:
-    pattern:  /user/login/
+    path:  /user/login/
     defaults: { _controller: AiselUserBundle:Api:login, _format: json }
     requirements:
         _method: POST
 
 api_aisel_user_logout:
-    pattern:  /user/logout/
+    path:  /user/logout/
     defaults: { _controller: AiselUserBundle:Api:logout, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_get:
-    pattern:  /user/information/
+    path:  /user/information/
     defaults: { _controller: AiselUserBundle:Api:information, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_password_forgot:
-    pattern:  /user/password/forgot/
+    path:  /user/password/forgot/
     defaults: { _controller: AiselUserBundle:Api:passwordForgot, _format: json }
     requirements:
         _method: GET
 
 api_aisel_user_post:
-    pattern:  /user/register/
+    path:  /user/register/
     defaults: { _controller: AiselUserBundle:Api:register, _format: json }
     requirements:
         _method: POST
 
 api_aisel_user_patch:
-    pattern:  /user/information/
+    path:  /user/information/
     defaults: { _controller: AiselUserBundle:Api:edit, _format: json }
     requirements:
         _method: PATCH
 
 api_aisel_user_account_delete:
-    pattern:  /user-terminate/
+    path:  /user-terminate/
     defaults: { _controller: AiselUserBundle:Api:delete, _format: json }
     requirements:
         _method: DELETE
 
 api_aisel_user_password_new:
-    pattern:  /user/password/change/
+    path:  /user/password/change/
     defaults: { _controller: AiselUserBundle:Api:changePassword, _format: json }
     requirements:
         _method: PATCH

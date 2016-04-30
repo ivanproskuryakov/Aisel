@@ -11,14 +11,14 @@
 
 namespace Aisel\UserBundle\Controller;
 
-use Aisel\UserBundle\Entity\User;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
-use Symfony\Component\HttpFoundation\Request;
+use Aisel\UserBundle\Entity\User;
 use Aisel\UserBundle\Manager\UserManager;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * ApiController

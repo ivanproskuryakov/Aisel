@@ -11,9 +11,9 @@
 
 namespace Aisel\OrderBundle\Entity;
 
+use Aisel\OrderBundle\Entity\Order;
 use Aisel\ResourceBundle\Repository\CollectionRepository;
 use Aisel\UserBundle\Entity\User;
-use Aisel\OrderBundle\Entity\Order;
 
 /**
  * OrderRepository

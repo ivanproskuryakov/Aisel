@@ -11,10 +11,10 @@
 
 namespace Aisel\ResourceBundle\EventListener;
 
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\EntityManager;
-use Aisel\ResourceBundle\Utility\UrlUtility;
 use Aisel\ResourceBundle\Domain\UrlInterface;
+use Aisel\ResourceBundle\Utility\UrlUtility;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 
 /**
  * Class UrlPersistenceListener.

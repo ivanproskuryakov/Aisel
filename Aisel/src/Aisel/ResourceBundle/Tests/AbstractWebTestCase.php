@@ -2,16 +2,16 @@
 
 namespace Aisel\ResourceBundle\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\HttpKernel\KernelInterface;
-use Doctrine\ORM\EntityManager;
-use Symfony\Component\HttpKernel\Client;
-use Aisel\UserBundle\Manager\UserManager as UserManager;
-use Symfony\Component\Validator\Validator;
-use Faker;
 use Aisel\UserBundle\Entity\User;
-use Swift_Message;
+use Aisel\UserBundle\Manager\UserManager as UserManager;
+use Doctrine\ORM\EntityManager;
+use Faker;
 use LogicException;
+use Swift_Message;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\HttpKernel\Client;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Validator\Validator;
 
 /**
  * Class AbstractWebTestCase.

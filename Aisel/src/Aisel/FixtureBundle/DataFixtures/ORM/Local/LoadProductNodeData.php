@@ -11,10 +11,10 @@
 
 namespace Aisel\FixtureBundle\DataFixtures\ORM\Local;
 
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 use Aisel\FixtureBundle\Model\XMLFixture;
 use Aisel\ProductBundle\Entity\Node;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Product Nodes

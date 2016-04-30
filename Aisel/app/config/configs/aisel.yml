@@ -7,66 +7,66 @@ parameters:
     seller_api: seller/api
     backend_api: backend/api
 
-#aisel_config:
-#    entities:
-#        general:
-#            order: 0
-#            fields:
-#                currency:
-#                    type: input
-#                paymentMethods:
-#                    type: select
-#                    options:
-#                        offline:  offline
-#                        paypal_express_checkout_nvp:   paypal_express_checkout_nvp
-#
-#        content:
-#            order: 100
-#            fields:
-#                homepageContent:
-#                    type: textarea
-#                footerContent:
-#                    type: textarea
-#
-#        meta:
-#            order: 200
-#            fields:
-#                defaultMetaTitle:
-#                    type: input
-#                defaultMetaDescription:
-#                    type: input
-#                defaultMetaKeywords:
-#                    type: input
-#
-#        contact:
-#            order: 300
-#            fields:
-#                Name:
-#                    type: input
-#                Email:
-#                    type: input
-#                AddressLine1:
-#                    type: input
-#                AddressLine2:
-#                    type: input
-#                information:
-#                    type: textarea
-#
-#        disqus:
-#            order: 400
-#            fields:
-#                shortname:
-#                    type: input
-#                enabled:
-#                    type: select
-#                    options:
-#                        yes:  yes
-#                        no:   no
-#
-#aisel_fixture:
-#    xml_path: /fixtures/xml
-#
-#aisel_order:
-#    payment_methods:
-#        offline:
-#            title: "Offline Payment"
+aisel_config:
+    entities:
+        general:
+            order: 0
+            fields:
+                currency:
+                    type: input
+                paymentMethods:
+                    type: select
+                    options:
+                        offline:  offline
+                        paypal_express_checkout_nvp:   paypal_express_checkout_nvp
+
+        content:
+            order: 100
+            fields:
+                homepageContent:
+                    type: textarea
+                footerContent:
+                    type: textarea
+
+        meta:
+            order: 200
+            fields:
+                defaultMetaTitle:
+                    type: input
+                defaultMetaDescription:
+                    type: input
+                defaultMetaKeywords:
+                    type: input
+
+        contact:
+            order: 300
+            fields:
+                Name:
+                    type: input
+                Email:
+                    type: input
+                AddressLine1:
+                    type: input
+                AddressLine2:
+                    type: input
+                information:
+                    type: textarea
+
+        disqus:
+            order: 400
+            fields:
+                shortname:
+                    type: input
+                enabled:
+                    type: select
+                    options:
+                        yes:  yes
+                        no:   no
+
+aisel_fixture:
+    xml_path: /fixtures/xml
+
+aisel_order:
+    payment_methods:
+        offline:
+            title: "Offline Payment"

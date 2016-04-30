@@ -11,8 +11,8 @@
 
 namespace Aisel\ProductBundle\Tests\EventListener;
 
-use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Aisel\ProductBundle\Entity\Product;
+use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 
 /**
  * ProductUrlPersistenceListenerTest

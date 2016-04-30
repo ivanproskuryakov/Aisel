@@ -11,8 +11,8 @@
 
 namespace Aisel\UserBundle\Tests;
 
-use Aisel\UserBundle\Entity\User;
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
+use Aisel\UserBundle\Entity\User;
 use Faker;
 
 /**

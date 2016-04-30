@@ -6,31 +6,31 @@
 # file that was distributed with this source code.
 
 api_aisel_media_upload:
-    pattern:   /media/upload/{type}/
+    path:   /media/upload/{type}/
     defaults:  { _controller: AiselMediaBundle:Upload:upload, _format: json }
     requirements:
         _method: GET|POST
 
 admin_api_aisel_media_post:
-    pattern:   /media/
+    path:   /media/
     defaults:  { _controller: AiselMediaBundle:Admin/ApiMedia:post, _format: json }
     requirements:
         _method: POST
 
 admin_api_aisel_media_get:
-    pattern:   /media/{id}
+    path:   /media/{id}
     defaults:  { _controller: AiselMediaBundle:Admin/ApiMedia:get, _format: json }
     requirements:
         _method: GET
 
 admin_api_aisel_media_put:
-    pattern:   /media/{id}
+    path:   /media/{id}
     defaults:  { _controller: AiselMediaBundle:Admin/ApiMedia:put, _format: json }
     requirements:
         _method: PUT
 
 admin_api_aisel_media_delete:
-    pattern:   /media/{id}
+    path:   /media/{id}
     defaults:  { _controller: AiselMediaBundle:Admin/ApiMedia:delete, _format: json }
     requirements:
         _method: DELETE

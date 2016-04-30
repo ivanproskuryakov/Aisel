@@ -11,17 +11,17 @@
 
 namespace Aisel\OrderBundle\Entity;
 
-use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ORM\Mapping as ORM;
-use Aisel\ProductBundle\Entity\Product;
-use JMS\Serializer\Annotation as JMS;
 use Aisel\OrderBundle\Entity\Order;
-
+use Aisel\ProductBundle\Entity\Product;
 use Aisel\ResourceBundle\Domain\IdTrait;
-use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
 use Aisel\ResourceBundle\Domain\NameTrait;
-use Symfony\Component\Validator\Constraints as Assert;
 use Aisel\ResourceBundle\Domain\QtyTrait;
+
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * OrderItem

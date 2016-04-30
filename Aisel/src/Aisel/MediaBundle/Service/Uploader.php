@@ -11,12 +11,12 @@
 
 namespace Aisel\MediaBundle\Service;
 
-use Symfony\Component\HttpFoundation\Request;
-use Flow\Request as FlowRequest;
 use Flow\Config as FlowConfig;
 use Flow\File as FlowFile;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Flow\Request as FlowRequest;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Uploader

@@ -11,11 +11,11 @@
 
 namespace Aisel\CartBundle\Manager;
 
-use LogicException;
-use Doctrine\ORM\EntityManager;
+use Aisel\CartBundle\Entity\Cart;
 use Aisel\ProductBundle\Entity\Product;
 use Aisel\UserBundle\Entity\User;
-use Aisel\CartBundle\Entity\Cart;
+use Doctrine\ORM\EntityManager;
+use LogicException;
 
 /**
  * CartManager
