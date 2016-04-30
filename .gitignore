@@ -38,8 +38,7 @@
 /Aisel/web/css/*
 /Aisel/web/bundles/*
 /Aisel/app/bootstrap.php.cache
-/Aisel/app/cache/*
-/Aisel/app/var/*
+/Aisel/var/*
 /Aisel/app/config/parameters.yml
 /Aisel/app/logs/*
 !/Aisel/app/cache/.gitkeep

@@ -15,7 +15,8 @@
         }
     ],
     "autoload": {
-        "psr-0": {"": "src"}
+        "psr-4": { "": "src/" },
+        "files": ["app/AppKernel.php"]
     },
     "require": {
         "php": ">=5.3.3",
@@ -48,7 +49,6 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "php app/console aisel:install:files"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -59,11 +59,14 @@
         ]
     },
     "config": {
-        "bin-dir": "bin/"
+        "bin-dir": "bin"
     },
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
+        "symfony-var-dir": "var",
+        "symfony-bin-dir": "bin",
+        "symfony-tests-dir": "tests",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         }

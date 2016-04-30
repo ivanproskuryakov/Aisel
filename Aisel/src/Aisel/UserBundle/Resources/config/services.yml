@@ -11,20 +11,20 @@ services:
         arguments:
           - @doctrine.orm.entity_manager
           - @security.encoder_factory
-          - @security.context
-          - @aisel.user_mail.manager
-
-    aisel.user_mail.manager:
-        class: Aisel\UserBundle\Manager\UserMailManager
-        arguments:
-          - @mailer
-          - @templating
-          - %website_email%
-
-    aisel_frontend_user_persistence_listener:
-        class: Aisel\UserBundle\EventListener\UserPersistenceListener
-        arguments:
-            - @security.encoder_factory
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
+#          - @security.context
+#          - @aisel.user_mail.manager
+#
+#    aisel.user_mail.manager:
+#        class: Aisel\UserBundle\Manager\UserMailManager
+#        arguments:
+#          - @mailer
+#          - @templating
+#          - %website_email%
+#
+#    aisel_frontend_user_persistence_listener:
+#        class: Aisel\UserBundle\EventListener\UserPersistenceListener
+#        arguments:
+#            - @security.encoder_factory
+#        tags:
+#            - { name: doctrine.event_listener, event: prePersist }
+#            - { name: doctrine.event_listener, event: preUpdate }
