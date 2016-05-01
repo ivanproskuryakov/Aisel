@@ -4,12 +4,6 @@
 
 #Logs
 /Aisel/npm-debug.log
-/Aisel/api.access.log
-/Aisel/api.error.log
-/Aisel/backend.access.log
-/Aisel/backend.error.log
-/Aisel/frontend.access.log
-/Aisel/frontend.error.log
 
 #Frontend AngularJS
 /Aisel/frontend/web/.htaccess
