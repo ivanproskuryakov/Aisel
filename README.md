@@ -2,7 +2,7 @@ About [![Travis-CI](https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=mast
 -----------------------------------
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png)](https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4)<br/>
-Marketplace on top of AngularJS and Symfony2 framework - http://aisel.co/
+Marketplace on top of AngularJS and Symfony3 - http://aisel.co/
 
 Demo:<br/>
 Frontend: http://ecommerce.aisel.co/en/ [user@aisel.co/user]<br/>
@@ -12,8 +12,35 @@ Seller: http://admin.ecommerce.aisel.co/en/ [seller@aisel.co/seller]<br/>
 <img width="400" src="http://aisel.co/images/frontend_product_view.png"/>
 
 
-Ask us anything -- or issue, question, or feedback.
-https://github.com/ivanproskuryakov/Aisel/issues/new
+Installation
+-----------------------------------
+LAMP: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-LAMP<br/>
+Framework: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-Aisel<br/>
+Commands: https://github.com/ivanproskuryakov/Aisel/wiki/Development:-Aisel-commands<br/>
+
+Quick installation:<br/>
+https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
+https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
+
+```
+1. git clone git@github.com:ivanproskuryakov/Aisel.git
+2. cd Aisel
+3. composer install
+4. bin/console aisel:install
+5. Give permissions to following directories: 
+ - app/cache/
+ - app/var/
+ - app/logs/
+ - web/media/
+```
+
+Requirements:<br/>
+```
+Node.js and NPM
+Bower
+Grunt
+```
+
 
 Installation with [Vagrant](https://www.vagrantup.com/)
 -----------------------------------
@@ -33,46 +60,9 @@ vagrant halt && vagrant destroy -f && vagrant up
 ```
 
 
-
-Installation without Vagrant
------------------------------------
-Framework: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-Aisel<br/>
-Environment: https://github.com/ivanproskuryakov/Aisel/wiki/Installation:-LAMP<br/>
-Commands: https://github.com/ivanproskuryakov/Aisel/wiki/Development:-Aisel-commands<br/>
-
-Quick installation:<br/>
-https://github.com/ivanproskuryakov/Aisel/blob/master/.travis/apache/virtual.host<br/>
-
-```
-1. git clone git@github.com:ivanproskuryakov/Aisel.git
-2. cd Aisel
-3. composer install
-4. php app/console aisel:install
-5. Give permissions to following directories: 
- - app/cache/
- - app/var/
- - app/logs/
- - web/media/
-```
-
-Requirements:<br/>
-```
-Node.js and NPM
-Bower
-Grunt
-```
-
 Contacts
 -----------------------------------
 For support and consulting inquiries: https://github.com/ivanproskuryakov/Aisel/wiki/Contact-&-Support
-
-Speed
------------------------------------
-Check with http://tools.pingdom.com/
-
-Mobile ready check on [Responsinator](http://www.responsinator.com/)
------------------------------------
-http://www.responsinator.com/?url=ecommerce.aisel.co%2Fen%2Fproducts%2F
 
 Bug tracking
 -----------------------------------

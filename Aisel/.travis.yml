@@ -65,12 +65,12 @@ before_script:
 
     # Copy skeleton parameters file & Load Fixtures
     - cp app/config/parameters.yml.travis app/config/parameters.yml
-    - php app/console doctrine:database:create --env=test
-    - php app/console doctrine:schema:create --env=test
-    - php app/console doctrine:fixtures:load -n --env=test
-    - php app/console assets:install web --symlink
-    - php app/console cache:warmup --env=test
-    - chmod -R 777 app/cache app/logs
+    - bin/console doctrine:database:create --env=test
+    - bin/console doctrine:schema:create --env=test
+    - bin/console doctrine:fixtures:load -n --env=test
+    - bin/console assets:install web --symlink
+    - bin/console cache:warmup --env=test
+    - chmod -R 777 var/cache var/logs
     - cd $TRAVIS_BUILD_DIR/backend
     - bower install -f
     - cd $TRAVIS_BUILD_DIR/frontend

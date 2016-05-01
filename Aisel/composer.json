@@ -3,14 +3,14 @@
     "license": "MIT",
     "type": "project",
     "homepage": "http://aisel.co",
-    "description": "Aisel - FullStack based on AngularJS, PHP(Symfony2)",
+    "description": "Aisel - Marketplace on top of AngularJS and Symfony3",
     "authors": [
         {
             "name": "Ivan Proskuryakov",
             "homepage": "http://www.linkedin.com/pub/ivan-proskuryakov/31/200/316"
         },
         {
-            "name": "Aisel - CMS based on AngularJS and Symfony2",
+            "name": "Aisel - Marketplace on top of AngularJS and Symfony3",
             "homepage": "http://aisel.co"
         }
     ],

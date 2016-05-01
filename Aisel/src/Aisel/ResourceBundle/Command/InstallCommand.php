@@ -13,11 +13,14 @@ namespace Aisel\ResourceBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Process\Process;
+
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
+
 
 /**
  * InstallCommand
@@ -60,14 +63,16 @@ EOT
      */
     protected function launchSetup(InputInterface $input, OutputInterface $output)
     {
-        $dialog = $this->getHelperSet()->get('dialog');
+        $helper = $this->getHelper('question');
+        $questionDependencies = new ConfirmationQuestion('Install frontend dependencies (Y/N)?', false);
+        $questionFixtures = new ConfirmationQuestion('Create database and load fixtures (Y/N)?', false);
 
-        if ($dialog->askConfirmation($output, '<question>Install frontend dependencies (Y/N)?</question>', false)) {
+        if ($helper->ask($input, $output, $questionDependencies)) {
             $this->installDependencies($output);
         }
 
-        if ($dialog->askConfirmation($output, '<question>Create database and load fixtures (Y/N)?</question>', false)) {
-            $this->setupDatabase($input, $output);
+        if ($helper->ask($input, $output, $questionFixtures)) {
+            $this->installDependencies($output);
         }
 
         return $this;
