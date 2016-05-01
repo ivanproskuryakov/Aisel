@@ -11,11 +11,11 @@
 
 namespace Aisel\ConfigBundle\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Mapping as ORM;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\LocaleTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Config

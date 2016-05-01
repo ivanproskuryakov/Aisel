@@ -45,10 +45,6 @@
     transition: top 0.5s ease-out, opacity 0.5s ease-out 4s;
 }
 
-body {
-    width: calc(100vw - 34px);
-}
-
 body #loading-bar .bar {
     background: #657496;
 }
@@ -60,6 +56,10 @@ body #loading-bar .peg {
 /***********
     Body
 ***********/
+body {
+    overflow-y: scroll;
+}
+
 body .website-content {
     color: #999;
 }

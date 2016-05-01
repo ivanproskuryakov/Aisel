@@ -6,31 +6,26 @@
 # file that was distributed with this source code.
 
 admin_api_aisel_order_get_collection:
-    pattern:   /order/
+    path:   /order/
     defaults:  { _controller: AiselOrderBundle:Admin/Api:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_order_get:
-    pattern:   /order/{id}
+    path:   /order/{id}
     defaults:  { _controller: AiselOrderBundle:Admin/Api:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_order_put:
-    pattern:   /order/{id}
+    path:   /order/{id}
     defaults:  { _controller: AiselOrderBundle:Admin/Api:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 admin_api_aisel_order_delete:
-    pattern:   /order/{id}
+    path:   /order/{id}
     defaults:  { _controller: AiselOrderBundle:Admin/Api:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]
 
 admin_api_aisel_order_post:
-    pattern:   /order/
+    path:   /order/
     defaults:  { _controller: AiselOrderBundle:Admin/Api:post, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]

@@ -11,10 +11,10 @@
 
 namespace Aisel\FixtureBundle\DataFixtures\ORM;
 
+use Aisel\AddressingBundle\Entity\Region;
+use Aisel\FixtureBundle\Model\XMLFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\AddressingBundle\Entity\Region;
 
 /**
  * Region fixtures
@@ -38,7 +38,7 @@ class LoadRegionData extends XMLFixture implements OrderedFixtureInterface
                 $region = null;
 
                 foreach ($XML->database->table as $table) {
-                    $country = $this->getReference('country_' . $table->column[4]); // Spain
+                    $country = $this->getReference('country_' . $table->column[3]); // Spain
 
                     $region = new Region();
                     $region->setName($table->column[1]);

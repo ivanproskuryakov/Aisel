@@ -11,14 +11,14 @@
 
 namespace Aisel\UserBundle\Controller;
 
-use Aisel\UserBundle\Entity\User;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Aisel\ResourceBundle\Controller\ApiController as BaseApiController;
-use Symfony\Component\HttpFoundation\Request;
+use Aisel\UserBundle\Entity\User;
 use Aisel\UserBundle\Manager\UserManager;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * ApiController
@@ -54,7 +54,7 @@ class ApiController extends BaseApiController
     protected function loginUser(User $user)
     {
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-        $this->get('security.context')->setToken($token);
+        $this->get('security.token_storage')->setToken($token);
         $this->get('session')->set('_security_main', serialize($token));
     }
 
@@ -147,7 +147,7 @@ class ApiController extends BaseApiController
     public function logoutAction()
     {
         $token = new AnonymousToken(null, new User());
-        $this->get('security.context')->setToken($token);
+        $this->get('security.token_storage')->setToken($token);
         $this->get('session')->invalidate();
 
         return new Response();
@@ -204,7 +204,7 @@ class ApiController extends BaseApiController
 
             // Logout
             $token = new AnonymousToken(null, new User());
-            $this->get('security.context')->setToken($token);
+            $this->get('security.token_storage')->setToken($token);
             $this->get('session')->invalidate();
         }
     }

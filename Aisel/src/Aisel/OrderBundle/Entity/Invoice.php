@@ -11,11 +11,11 @@
 
 namespace Aisel\OrderBundle\Entity;
 
-use JMS\Serializer\Annotation as JMS;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ORM\Mapping as ORM;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Invoice

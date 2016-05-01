@@ -11,9 +11,9 @@
 
 namespace Aisel\NodeBundle\Manager;
 
-use LogicException;
-use Doctrine\ORM\EntityManager;
 use Aisel\NodeBundle\Entity\Node;
+use Doctrine\ORM\EntityManager;
+use LogicException;
 
 /**
  * ApiNodeManager

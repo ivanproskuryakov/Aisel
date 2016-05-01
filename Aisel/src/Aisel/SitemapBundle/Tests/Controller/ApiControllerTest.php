@@ -64,7 +64,7 @@ class ApiControllerTest extends AbstractWebTestCase
                 'status' => true,
             ]);
         $totalText = sprintf('URL total: %d', count($products) + count($pages));
-        $command = 'php app/console aisel:sitemap:generate';
+        $command = 'bin/console aisel:sitemap:generate';
         $process = new Process($command, null, null, null, 3600);
         $process->run();
 

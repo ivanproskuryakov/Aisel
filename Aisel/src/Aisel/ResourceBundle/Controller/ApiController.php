@@ -11,12 +11,12 @@
 
 namespace Aisel\ResourceBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use JMS\Serializer\SerializationContext;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ApiController
@@ -123,7 +123,7 @@ class ApiController extends Controller
             $route = str_replace(
                 "_post",
                 '_get',
-                $this->container->get('request')->get('_route')
+                $this->get('request_stack')->getCurrentRequest()->get('_route')
             );
 
             if ($this->getScope() == self::SCOPE_BACKEND) {
@@ -284,7 +284,7 @@ class ApiController extends Controller
     {
         $scope = self::SCOPE_BACKEND;
 
-        $uri = $this->get('request')->getUri();
+        $uri = $this->get('request_stack')->getCurrentRequest()->getUri();
 
         if (strpos($uri, $this->container->getParameter('frontend_api'))) {
             $scope = self::SCOPE_FRONTEND;

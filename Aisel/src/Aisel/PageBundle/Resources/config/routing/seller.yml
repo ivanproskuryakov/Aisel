@@ -7,31 +7,26 @@
 
 #Page
 seller_api_aisel_page_get_collection:
-    pattern:   /page/
+    path:   /page/
     defaults:  { _controller: AiselPageBundle:Seller/ApiPage:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 seller_api_aisel_page_get:
-    pattern:   /page/{id}
+    path:   /page/{id}
     defaults:  { _controller: AiselPageBundle:Seller/ApiPage:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 seller_api_aisel_page_delete:
-    pattern:   /page/{id}
+    path:   /page/{id}
     defaults:  { _controller: AiselPageBundle:Seller/ApiPage:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]
 
 seller_api_aisel_page_put:
-    pattern:   /page/{id}
+    path:   /page/{id}
     defaults:  { _controller: AiselPageBundle:Seller/ApiPage:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 seller_api_aisel_page_post:
-    pattern:   /page/
+    path:   /page/
     defaults:  { _controller: AiselPageBundle:Seller/ApiPage:post, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]

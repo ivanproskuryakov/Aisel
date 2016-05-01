@@ -25,9 +25,22 @@ define(['app'], function (app) {
                 },
                 link: function ($scope, element, attrs) {
                     $scope.media = Env.media;
-                    $scope.width = attrs.imgWidth ? attrs.imgWidth +'px' : '100%';
+                    $scope.width = attrs.imgWidth ? attrs.imgWidth + 'px' : '100%';
                     $scope.height = attrs.imgHeight ? attrs.imgHeight + 'px' : 'auto';
                     $scope.interval = 0;
+
+                    $scope.slides = [];
+                    $scope.$watch('images', function () {
+                        if ($scope.images) {
+                            angular.forEach($scope.images, function (image, key) {
+                                $scope.slides.push({
+                                    image: Env.media + image.filename,
+                                    id: key
+                                });
+                            });
+                        }
+                    });
+
                 },
                 templateUrl: '/app/Aisel/Product/views/directives/product-images.html'
             };

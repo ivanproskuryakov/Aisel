@@ -11,8 +11,8 @@
 
 namespace Aisel\SitemapBundle\Manager;
 
-use LogicException;
 use Doctrine\ORM\EntityManager;
+use LogicException;
 use Symfony\Component\Templating\EngineInterface;
 
 /**

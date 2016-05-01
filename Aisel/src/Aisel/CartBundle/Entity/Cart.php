@@ -11,14 +11,14 @@
 
 namespace Aisel\CartBundle\Entity;
 
-use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ORM\Mapping as ORM;
 use Aisel\ProductBundle\Entity\Product;
-use Aisel\UserBundle\Entity\User;
-use JMS\Serializer\Annotation as JMS;
-use Symfony\Component\Validator\Constraints as Assert;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\QtyTrait;
+use Aisel\UserBundle\Entity\User;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Cart

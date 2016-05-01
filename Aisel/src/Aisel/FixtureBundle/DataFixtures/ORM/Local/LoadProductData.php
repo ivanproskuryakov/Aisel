@@ -11,14 +11,14 @@
 
 namespace Aisel\FixtureBundle\DataFixtures\ORM\Local;
 
+use Aisel\FixtureBundle\Model\XMLFixture;
+use Aisel\MediaBundle\Entity\Media;
+use Aisel\ProductBundle\Entity\Product;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\ProductBundle\Entity\Product;
-use Aisel\MediaBundle\Entity\Media;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 

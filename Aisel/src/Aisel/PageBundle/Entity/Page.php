@@ -11,24 +11,24 @@
 
 namespace Aisel\PageBundle\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use JMS\Serializer\Annotation as JMS;
-use Aisel\ResourceBundle\Domain\UrlInterface;
 use Aisel\PageBundle\Entity\Node;
 use Aisel\PageBundle\Entity\Review;
-use Aisel\UserBundle\Entity\User;
-
-use Aisel\ResourceBundle\Domain\IdTrait;
-use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
-use Aisel\ResourceBundle\Domain\MetaTrait;
-use Aisel\ResourceBundle\Domain\LocaleTrait;
-use Aisel\ResourceBundle\Domain\StatusTrait;
-use Aisel\ResourceBundle\Domain\NameTrait;
-use Aisel\ResourceBundle\Domain\ContentTrait;
 use Aisel\ResourceBundle\Domain\CommentStatusTrait;
+use Aisel\ResourceBundle\Domain\ContentTrait;
+use Aisel\ResourceBundle\Domain\IdTrait;
+use Aisel\ResourceBundle\Domain\LocaleTrait;
+use Aisel\ResourceBundle\Domain\MetaTrait;
+use Aisel\ResourceBundle\Domain\NameTrait;
+use Aisel\ResourceBundle\Domain\StatusTrait;
+
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Aisel\ResourceBundle\Domain\UrlInterface;
+use Aisel\UserBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Page

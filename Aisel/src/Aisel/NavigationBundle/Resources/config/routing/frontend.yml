@@ -6,7 +6,6 @@
 # file that was distributed with this source code.
 
 api_aisel_navigationmenu:
-    pattern:  /{locale}/navigation/
+    path:  /{locale}/navigation/
     defaults: { _controller: AiselNavigationBundle:Api:getTree, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]

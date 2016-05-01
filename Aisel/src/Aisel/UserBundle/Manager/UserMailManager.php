@@ -11,10 +11,10 @@
 
 namespace Aisel\UserBundle\Manager;
 
-use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Aisel\UserBundle\Entity\User;
-use Symfony\Component\Templating\EngineInterface;
 use Swift_Mailer;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Templating\EngineInterface;
 
 /**
  * UserMailManager

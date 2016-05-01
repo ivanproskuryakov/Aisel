@@ -1,4 +1,3 @@
-
 aisel_contact:
     resource: "@AiselContactBundle/Resources/config/routing.yml"
     prefix:   /

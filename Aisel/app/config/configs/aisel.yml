@@ -1,6 +1,6 @@
 parameters:
     application.name: Aisel
-    application.version: 0.4.0
+    application.version: 0.4.1
     application.media.path: /media
     application.media.upload_path: %assetic.write_to%%application.media.path%
     frontend_api: frontend/api

@@ -11,8 +11,8 @@
 
 namespace Aisel\ResourceBundle\Tests\Utility;
 
-use Aisel\ResourceBundle\Utility\UrlUtility;
 use Aisel\ResourceBundle\Tests\AbstractKernelTestCase;
+use Aisel\ResourceBundle\Utility\UrlUtility;
 
 /**
  * UrlUtilityTest

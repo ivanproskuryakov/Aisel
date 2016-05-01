@@ -11,10 +11,10 @@
 
 namespace Aisel\OrderBundle\Manager;
 
-use LogicException;
 use Aisel\OrderBundle\Entity\Invoice;
-use Doctrine\ORM\EntityManager;
 use Aisel\OrderBundle\Entity\Order;
+use Doctrine\ORM\EntityManager;
+use LogicException;
 
 /**
  * InvoiceManager

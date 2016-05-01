@@ -6,25 +6,21 @@
 # file that was distributed with this source code.
 
 api_aisel_order_collection:
-    pattern:  /orders/my
+    path:  /orders/my
     defaults: { _controller: AiselOrderBundle:ApiOrder:getOrderCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_order_get:
-    pattern:  /order/{orderId}
+    path:  /order/{orderId}
     defaults: { _controller: AiselOrderBundle:ApiOrder:getOrder, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 api_aisel_order_post:
-    pattern:  /{locale}/order
+    path:  /{locale}/order
     defaults: { _controller: AiselOrderBundle:ApiOrder:orderSubmit, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 api_aisel_order_checkout:
-    pattern:  /{locale}/order/checkout
+    path:  /{locale}/order/checkout
     defaults: { _controller: AiselOrderBundle:ApiCheckout:init, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]

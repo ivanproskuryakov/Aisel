@@ -2,9 +2,9 @@
 
 namespace Aisel\AddressingBundle\Tests;
 
+use Aisel\AddressingBundle\Entity\Country;
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use JMS\Serializer\Serializer;
-use Aisel\AddressingBundle\Entity\Country;
 
 /**
  * SerializerTestCase

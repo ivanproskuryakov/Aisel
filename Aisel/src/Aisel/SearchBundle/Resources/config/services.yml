@@ -12,4 +12,4 @@ services:
     aisel.search.manager:
         class: %aisel_search_manager.class%
         arguments:
-            - @doctrine.orm.entity_manager
+            - "@doctrine.orm.entity_manager"

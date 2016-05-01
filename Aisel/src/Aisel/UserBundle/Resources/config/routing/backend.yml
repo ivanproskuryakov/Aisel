@@ -7,31 +7,26 @@
 
 #CRUD
 admin_api_aisel_user_get_collection:
-    pattern:   /user/
+    path:   /user/
     defaults:  { _controller: AiselUserBundle:Admin/Api:getCollection, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_user_get:
-    pattern:   /user/{id}
+    path:   /user/{id}
     defaults:  { _controller: AiselUserBundle:Admin/Api:get, _format: json }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 admin_api_aisel_user_put:
-    pattern:   /user/{id}
+    path:   /user/{id}
     defaults:  { _controller: AiselUserBundle:Admin/Api:put, _format: json }
-    requirements:
-        _method: PUT
+    methods: [PUT]
 
 admin_api_aisel_user_delete:
-    pattern:   /user/{id}
+    path:   /user/{id}
     defaults:  { _controller: AiselUserBundle:Admin/Api:delete, _format: json }
-    requirements:
-        _method: DELETE
+    methods: [DELETE]
 
 admin_api_aisel_user_post:
-    pattern:   /user/
+    path:   /user/
     defaults:  { _controller: AiselUserBundle:Admin/Api:post, _format: json }
-    requirements:
-        _method: POST
+    methods: [POST]

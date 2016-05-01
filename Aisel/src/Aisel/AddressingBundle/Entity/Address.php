@@ -11,12 +11,12 @@
 
 namespace Aisel\AddressingBundle\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as JMS;
-use Aisel\UserBundle\Entity\User;
 use Aisel\ResourceBundle\Domain\IdTrait;
 use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Aisel\UserBundle\Entity\User;
+use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Address

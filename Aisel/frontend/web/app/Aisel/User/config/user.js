@@ -53,22 +53,22 @@ define(['app'], function (app) {
 
 
     //Will be removed later
-    //app.run(['$http', '$rootScope', 'userService',
-    //    function ($http, $rootScope, userService) {
-    //
-    //        // Load user status
-    //        userService.getUserInformation().success(
-    //            function (data, status) {
-    //                console.log(data);
-    //                if (data.email) {
-    //                    $rootScope.user = data;
-    //                } else {
-    //                    $rootScope.user = undefined;
-    //                }
-    //            }
-    //        );
-    //    }
-    //]);
+    app.run(['$http', '$rootScope', 'userService',
+        function ($http, $rootScope, userService) {
+
+            // Load user status
+            userService.getUserInformation().success(
+                function (data, status) {
+                    console.log(data);
+                    if (data.email) {
+                        $rootScope.user = data;
+                    } else {
+                        $rootScope.user = undefined;
+                    }
+                }
+            );
+        }
+    ]);
 
 
     app.run(['$http', '$rootScope', '$state', 'Env', 'userService',

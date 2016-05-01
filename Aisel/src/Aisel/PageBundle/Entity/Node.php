@@ -12,14 +12,14 @@
 namespace Aisel\PageBundle\Entity;
 
 use Aisel\NodeBundle\Entity\Node as BaseNode;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use JMS\Serializer\Annotation as JMS;
-use Gedmo\Mapping\Annotation as Gedmo;
-
-use Aisel\ResourceBundle\Domain\UrlInterface;
-use Aisel\ResourceBundle\Domain\MetaTrait;
 use Aisel\ResourceBundle\Domain\ContentTrait;
+use Aisel\ResourceBundle\Domain\MetaTrait;
+use Aisel\ResourceBundle\Domain\UrlInterface;
+use Doctrine\ORM\Mapping as ORM;
+
+use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Node

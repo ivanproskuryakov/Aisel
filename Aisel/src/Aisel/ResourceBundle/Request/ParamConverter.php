@@ -11,6 +11,8 @@
 
 namespace Aisel\ResourceBundle\Request;
 
+use Aisel\ResourceBundle\Exception\ValidationFailedException;
+use Doctrine\ORM\EntityManager;
 use FOS\RestBundle\Request\RequestBodyParamConverter;
 use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\Serializer;
@@ -18,9 +20,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter as SensioPar
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Aisel\ResourceBundle\Exception\ValidationFailedException;
 
 /**
  * Class ParamConverter

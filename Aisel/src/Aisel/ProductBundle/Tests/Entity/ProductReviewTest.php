@@ -11,8 +11,8 @@
 
 namespace Aisel\ProductBundle\Tests\Entity;
 
-use Aisel\ProductBundle\Tests\ProductWebTestCase;
 use Aisel\ProductBundle\Entity\Review;
+use Aisel\ProductBundle\Tests\ProductWebTestCase;
 use Faker;
 
 /**

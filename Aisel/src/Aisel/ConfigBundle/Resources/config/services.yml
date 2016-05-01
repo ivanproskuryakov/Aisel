@@ -12,6 +12,6 @@ services:
     aisel.config.manager:
         class: %aisel_config_manager.class%
         arguments:
-            - @doctrine.orm.entity_manager
+            - "@doctrine.orm.entity_manager"
             - "%locale%"
             - "%locales%"

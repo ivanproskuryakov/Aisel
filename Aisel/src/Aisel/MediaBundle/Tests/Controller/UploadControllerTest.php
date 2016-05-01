@@ -11,9 +11,9 @@
 
 namespace Aisel\MediaBundle\Tests\Controller;
 
+use Aisel\MediaBundle\Entity\Media;
 use Aisel\ResourceBundle\Tests\AbstractWebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Aisel\MediaBundle\Entity\Media;
 
 /**
  * ApiImageControllerTest

@@ -18,10 +18,10 @@ services:
     api_param_converter:
         class: %aisel_param_converter.class%
         arguments:
-            - @jms_serializer
-            - @doctrine.orm.entity_manager
-            - @validator
-            - @event_dispatcher
+            - "@jms_serializer"
+            - "@doctrine.orm.entity_manager"
+            - "@validator"
+            - "@event_dispatcher"
         tags:
             - { name: request.param_converter, converter: api_param_converter }
 

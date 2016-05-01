@@ -11,13 +11,13 @@
 
 namespace Aisel\ResourceBundle\Request;
 
-use Symfony\Component\HttpFoundation\Response;
+use Aisel\ResourceBundle\Exception\ValidationFailedException;
+use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Exception;
-use Aisel\ResourceBundle\Exception\ValidationFailedException;
 use Symfony\Component\Validator\ConstraintViolation;
 
 /**

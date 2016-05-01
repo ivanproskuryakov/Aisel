@@ -4,12 +4,6 @@
 
 #Logs
 /Aisel/npm-debug.log
-/Aisel/api.access.log
-/Aisel/api.error.log
-/Aisel/backend.access.log
-/Aisel/backend.error.log
-/Aisel/frontend.access.log
-/Aisel/frontend.error.log
 
 #Frontend AngularJS
 /Aisel/frontend/web/.htaccess
@@ -38,10 +32,8 @@
 /Aisel/web/css/*
 /Aisel/web/bundles/*
 /Aisel/app/bootstrap.php.cache
-/Aisel/app/cache/*
-/Aisel/app/var/*
+/Aisel/var/*
 /Aisel/app/config/parameters.yml
-/Aisel/app/logs/*
 !/Aisel/app/cache/.gitkeep
 !Aisel/app/logs/.gitkeep
 /Aisel/build/

@@ -11,10 +11,10 @@
 
 namespace Aisel\FixtureBundle\DataFixtures\ORM;
 
+use Aisel\AddressingBundle\Entity\City;
+use Aisel\FixtureBundle\Model\XMLFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Aisel\FixtureBundle\Model\XMLFixture;
-use Aisel\AddressingBundle\Entity\City;
 
 /**
  * City fixtures
@@ -38,7 +38,7 @@ class LoadCityData extends XMLFixture implements OrderedFixtureInterface
                 $city = null;
 
                 foreach ($XML->database->table as $table) {
-                    $region = $this->getReference('region_' . $table->column[5]); // City of Madrid
+                    $region = $this->getReference('region_' . $table->column[3]); // City of Madrid
 
                     $city = new City();
                     $city->setName($table->column[1]);

@@ -12,8 +12,8 @@
 namespace Aisel\UserBundle\Tests\Controller\Frontend;
 
 use Aisel\UserBundle\Entity\User;
-use Aisel\UserBundle\Tests\UserTestCase;
 use Aisel\UserBundle\Manager\UserMailManager;
+use Aisel\UserBundle\Tests\UserTestCase;
 
 /**
  * ApiControllerTest

@@ -11,13 +11,13 @@
 
 namespace Aisel\MediaBundle\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
+use Aisel\ResourceBundle\Domain\ContentTrait;
+use Aisel\ResourceBundle\Domain\IdTrait;
+use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
-
-use Aisel\ResourceBundle\Domain\IdTrait;
-use Aisel\ResourceBundle\Domain\ContentTrait;
-use Aisel\ResourceBundle\Domain\UpdateCreateTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Media
