@@ -69,7 +69,7 @@ class Page implements UrlInterface
 
     /**
      * @var ArrayCollection<Aisel\PageBundle\Entity\Review>
-     * @ORM\OneToMany(targetEntity="Aisel\PageBundle\Entity\Review", mappedBy="subject", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="Aisel\PageBundle\Entity\Review", mappedBy="subject", cascade={"remove"})
      * @ORM\OrderBy({"createdAt" = "DESC"})
      * @JMS\Expose
      * @JMS\MaxDepth(2)

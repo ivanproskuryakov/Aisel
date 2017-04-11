@@ -31,7 +31,7 @@ class ApiReviewControllerTest extends PageWebTestCase
         parent::tearDown();
     }
 
-    public function testPostReviewAction()
+    public function testPostReviewAndUpdateParentPageAction()
     {
         $page = $this->newPage();
 
@@ -39,7 +39,10 @@ class ApiReviewControllerTest extends PageWebTestCase
             'locale' => 'en',
             'name' => $this->faker->sentence(),
             'content' => $this->faker->text(),
-            'subject' => ['id' => $page->getId()]
+            'subject' => [
+                'id' => $page->getId(),
+                'name' => 'new name'
+            ]
         ];
 
         $this->client->request(
@@ -54,30 +57,67 @@ class ApiReviewControllerTest extends PageWebTestCase
         $response = $this->client->getResponse();
         $content = $response->getContent();
         $statusCode = $response->getStatusCode();
+        $parts = explode('/', $response->headers->get('location'));
+        $id = array_pop($parts);
 
         $this->assertEmpty($content);
         $this->assertTrue(201 === $statusCode);
+
+        $this->em->clear();
+
+        $updatePage = $this
+            ->em
+            ->getRepository('Aisel\PageBundle\Entity\Page')
+            ->find($page->getId());
+
+        var_dump($updatePage->getName());
     }
-
-    public function testGetReviewAction()
-    {
-        $review = $this->newReview();
-
-        $this->client->request(
-            'GET',
-            '/' . $this->api['frontend'] . '/en/page/review/' . $review->getId(),
-            [],
-            [],
-            ['CONTENT_TYPE' => 'application/json']
-        );
-
-        $response = $this->client->getResponse();
-        $content = $response->getContent();
-        $statusCode = $response->getStatusCode();
-
-        $this->assertTrue(200 === $statusCode);
-        $this->assertJson($content);
-    }
-
-
+//
+//    public function testPostReviewAction()
+//    {
+//        $page = $this->newPage();
+//
+//        $data = [
+//            'locale' => 'en',
+//            'name' => $this->faker->sentence(),
+//            'content' => $this->faker->text(),
+//            'subject' => ['id' => $page->getId()]
+//        ];
+//
+//        $this->client->request(
+//            'POST',
+//            '/' . $this->api['frontend'] . '/en/page/review/',
+//            [],
+//            [],
+//            ['CONTENT_TYPE' => 'application/json'],
+//            json_encode($data)
+//        );
+//
+//        $response = $this->client->getResponse();
+//        $content = $response->getContent();
+//        $statusCode = $response->getStatusCode();
+//
+//        $this->assertEmpty($content);
+//        $this->assertTrue(201 === $statusCode);
+//    }
+//
+//    public function testGetReviewAction()
+//    {
+//        $review = $this->newReview();
+//
+//        $this->client->request(
+//            'GET',
+//            '/' . $this->api['frontend'] . '/en/page/review/' . $review->getId(),
+//            [],
+//            [],
+//            ['CONTENT_TYPE' => 'application/json']
+//        );
+//
+//        $response = $this->client->getResponse();
+//        $content = $response->getContent();
+//        $statusCode = $response->getStatusCode();
+//
+//        $this->assertTrue(200 === $statusCode);
+//        $this->assertJson($content);
+//    }
 }
